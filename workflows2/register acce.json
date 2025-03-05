@@ -1,0 +1,385 @@
+{
+  "active": true,
+  "connections": {
+    "Switch": {
+      "main": [
+        [
+          {
+            "node": "Set CPA1",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Set CMA1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Set CMA1": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request5",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "WhatsApp Business Cloud4",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request1": {
+      "main": [
+        [
+          {
+            "node": "WhatsApp Business Cloud5",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Set CPA1": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Switch",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2023-11-28T14:01:00.660Z",
+  "id": "nD1X3IVv0uJOPA0P",
+  "meta": null,
+  "name": "register acce",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "598baf1d-46af-4454-9e3e-85226de459a0",
+        "options": {}
+      },
+      "id": "f814bf5c-c2b0-4518-882e-6f1a4fd6c138",
+      "name": "Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        840,
+        820
+      ],
+      "webhookId": "598baf1d-46af-4454-9e3e-85226de459a0"
+    },
+    {
+      "parameters": {
+        "mode": "expression",
+        "output": "={{$json.body.course.includes(\"cpa\")?\n0 : $json.body.course.includes(\"cma\") ? 1 : 0}}"
+      },
+      "id": "3aca5028-0324-470b-a0fe-c16d66c799f3",
+      "name": "Switch",
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 1,
+      "position": [
+        1160,
+        820
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://cma-api.mileseducation.com/registerLiveSessionWhatsapp",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n\"live_webinar_id\" :207,\n\"city\" : \"{{ $json.city_id }}\",\n\"phone_no\" : \"{{ $json.phone }}\",\n\"is_enrolled\" : 0,\n\"source\" : \"Superbot\",\n\"user_name\" :\"{{ $json.name }}\",\n\"email_id\" :\"{{ $json.email }}\",\n\"canid\" :\"CAN_EMPTY\"\n} ",
+        "options": {}
+      },
+      "id": "6089bc8b-05f9-48b5-9153-8180aa8c64c9",
+      "name": "HTTP Request5",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        1900,
+        1060
+      ]
+    },
+    {
+      "parameters": {
+        "keepOnlySet": true,
+        "values": {
+          "string": [
+            {
+              "name": "city_id",
+              "value": "={{$json.body.city.toLowerCase() == \"bangalore\" ? \"2\" : \n$json.body.city.toLowerCase() == \"hyderabad\" ?\"7\" : \n$json.body.city.toLowerCase() == \"ahmedabad\" ? \"1\" : \n$json.body.city.toLowerCase() == \"delhi\" ? \"4\" :\n$json.body.city.toLowerCase() == \"mumbai\" ? \"8\" :\n$json.body.city.toLowerCase() == \"chennai\" ? \"3\" :\n$json.body.city.toLowerCase() == \"pune\" ? \"9\" : \"7\"\n  }}"
+            },
+            {
+              "name": "name",
+              "value": "={{ $json.body.name }}"
+            },
+            {
+              "name": "email",
+              "value": "={{ $json.body.email }}"
+            },
+            {
+              "name": "date",
+              "value": "={{$json.body.city.toLowerCase() == \"bangalore\" ? \"17-12-2023\" : \n$json.body.city.toLowerCase() == \"hyderabad\" ?\"09-12-2023\" : \n$json.body.city.toLowerCase() == \"ahmedabad\" ? \"03-12-2023\" : \n$json.body.city.toLowerCase() == \"delhi\" ? \"10-12-2023\" :\n$json.body.city.toLowerCase() == \"mumbai\" ? \"16-12-2023\" : \"03-12-2023\"\n  }}"
+            },
+            {
+              "name": "phone",
+              "value": "={{ $json.body.phone }}"
+            },
+            {
+              "name": "city",
+              "value": "={{ $json.body.city }}"
+            },
+            {
+              "name": "time",
+              "value": "11:00 AM"
+            },
+            {
+              "name": "phone_formatted",
+              "value": "={{ $json.body.phone.length <= 10 ? 91+ $json.body.phone:$json.body.phone }} "
+            },
+            {
+              "name": "course",
+              "value": "CMA"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "8f9d24ae-81ff-439a-801c-c668f279701d",
+      "name": "Set CMA1",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 2,
+      "position": [
+        1600,
+        920
+      ]
+    },
+    {
+      "parameters": {
+        "phoneNumberId": "108019349036743",
+        "recipientPhoneNumber": "={{ $('Set CMA1').item.json.phone_formatted }}",
+        "template": "accelerator_sessions_thank_you|en",
+        "components": {
+          "component": [
+            {
+              "bodyParameters": {
+                "parameter": [
+                  {
+                    "text": "={{ $('Set CMA1').item.json.course }}"
+                  },
+                  {
+                    "text": "={{ $('Set CMA1').item.json.city }}"
+                  },
+                  {
+                    "text": "={{ $('Set CMA1').item.json.date }}"
+                  },
+                  {
+                    "text": "={{ $('Set CMA1').item.json.time }}"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      },
+      "id": "a44dbb9c-ce76-40f2-86ad-6ccab3f3fd85",
+      "name": "WhatsApp Business Cloud4",
+      "type": "n8n-nodes-base.whatsApp",
+      "typeVersion": 1,
+      "position": [
+        1900,
+        840
+      ],
+      "credentials": {
+        "whatsAppApi": {
+          "id": "FoPXmnu4lAta3dqt",
+          "name": "WhatsApp account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://cpa-api.mileseducation.com/registerLiveSessionWhatsapp",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n\"live_webinar_id\" :170,\n\"city\" : \"{{ $json.city_id }}\",\n\"phone_no\" : \"{{ $json.phone }}\",\n\"is_enrolled\" : 0,\n\"source\" : \"Superbot\",\n\"user_name\" :\"{{ $json.name }}\",\n\"email_id\" :\"{{ $json.email }}\",\n\"canid\" :\"CAN_EMPTY\"\n} ",
+        "options": {}
+      },
+      "id": "c9092359-3f67-4b02-bedf-87b3987ceee8",
+      "name": "HTTP Request1",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        1760,
+        640
+      ]
+    },
+    {
+      "parameters": {
+        "phoneNumberId": "108019349036743",
+        "recipientPhoneNumber": "={{ $('Set CPA1').item.json.phone_formatted }}",
+        "template": "accelerator_sessions_thank_you|en",
+        "components": {
+          "component": [
+            {
+              "bodyParameters": {
+                "parameter": [
+                  {
+                    "text": "={{ $('Set CPA1').item.json.course }}"
+                  },
+                  {
+                    "text": "={{ $('Set CPA1').item.json.city }}"
+                  },
+                  {
+                    "text": "={{ $('Set CPA1').item.json.date }}"
+                  },
+                  {
+                    "text": "={{ $('Set CPA1').item.json.time }}"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      },
+      "id": "a0cf48b7-3389-497e-9e76-687bdab333b8",
+      "name": "WhatsApp Business Cloud5",
+      "type": "n8n-nodes-base.whatsApp",
+      "typeVersion": 1,
+      "position": [
+        1920,
+        640
+      ],
+      "credentials": {
+        "whatsAppApi": {
+          "id": "FoPXmnu4lAta3dqt",
+          "name": "WhatsApp account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "keepOnlySet": true,
+        "values": {
+          "string": [
+            {
+              "name": "city_id",
+              "value": "={{$json.body.city.toLowerCase() == \"bangalore\" ? \"2\" : \n$json.body.city.toLowerCase() == \"hyderabad\" ?\"7\" : \n$json.body.city.toLowerCase() == \"ahmedabad\" ? \"1\" : \n$json.body.city.toLowerCase() == \"delhi\" ? \"4\" :\n$json.body.city.toLowerCase() == \"mumbai\" ? \"8\" :\n$json.body.city.toLowerCase() == \"chennai\" ? \"3\" :\n$json.body.city.toLowerCase() == \"pune\" ? \"9\" : \"7\"\n  }}"
+            },
+            {
+              "name": "name",
+              "value": "={{ $json.body.name }}"
+            },
+            {
+              "name": "email",
+              "value": "={{ $json.body.email }}"
+            },
+            {
+              "name": "date",
+              "value": "={{$json.body.city.toLowerCase() == \"bangalore\" ? \"17-12-2023\" : \n$json.body.city.toLowerCase() == \"hyderabad\" ?\"09-12-2023\" : \n$json.body.city.toLowerCase() == \"ahmedabad\" ? \"03-12-2023\" : \n$json.body.city.toLowerCase() == \"delhi\" ? \"10-12-2023\" :\n$json.body.city.toLowerCase() == \"mumbai\" ? \"16-12-2023\" : \"03-12-2023\"\n  }}"
+            },
+            {
+              "name": "phone",
+              "value": "={{ $json.body.phone }}"
+            },
+            {
+              "name": "city",
+              "value": "={{ $json.body.city }}"
+            },
+            {
+              "name": "time",
+              "value": "03:00 PM"
+            },
+            {
+              "name": "phone_formatted",
+              "value": "={{ $json.body.phone.length <= 10 ? \"91\"+ $json.body.phone:$json.body.phone }} "
+            },
+            {
+              "name": "course",
+              "value": "CPA"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "5aa9fda2-4aa5-45bd-af5d-be542a102881",
+      "name": "Set CPA1",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 2,
+      "position": [
+        1600,
+        640
+      ]
+    }
+  ],
+  "pinData": {
+    "Webhook": [
+      {
+        "json": {
+          "headers": {
+            "host": "webhook.miles-api.com",
+            "x-real-ip": "162.158.227.211",
+            "x-forwarded-host": "webhook.miles-api.com",
+            "x-forwarded-server": "webhook.miles-api.com",
+            "x-forwarded-for": "3.110.109.251, 162.158.227.211",
+            "connection": "close",
+            "content-length": "120",
+            "accept-encoding": "gzip",
+            "cf-ray": "82d371594d6c6eca-BOM",
+            "x-forwarded-proto": "https",
+            "user-agent": "PostgreSQL 15.1 (Ubuntu 15.1-1.pgdg20.04+1) on aarch64-unknown-linux-gnu, compiled by gcc (Ubuntu 9.4.0-1ubuntu1~20.04.1) 9.4.0, 64-bit",
+            "accept": "*/*",
+            "charsets": "utf-8",
+            "content-type": "application/json",
+            "cdn-loop": "cloudflare",
+            "cf-connecting-ip": "3.110.109.251",
+            "cf-ipcountry": "IN"
+          },
+          "params": {},
+          "query": {},
+          "body": {
+            "city": "Hyderabad",
+            "name": "Jithin",
+            "email": "jithinkpraveen10@gmail.com",
+            "phone": "+916238133298",
+            "course": "cpa"
+          }
+        }
+      }
+    ]
+  },
+  "settings": {
+    "executionOrder": "v1",
+    "saveManualExecutions": true,
+    "callerPolicy": "workflowsFromSameOwner",
+    "executionTimeout": 120
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 1,
+  "updatedAt": "2023-11-29T09:36:01.000Z",
+  "versionId": "9e382035-935f-4bde-87c2-d3c6d7499f80"
+}
