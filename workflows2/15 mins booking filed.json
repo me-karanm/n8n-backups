@@ -1,0 +1,1357 @@
+{
+  "active": false,
+  "connections": {
+    "IF2": {
+      "main": [
+        [
+          {
+            "node": "Code1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Set6": {
+      "main": [
+        [
+          {
+            "node": "Merge2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code1": {
+      "main": [
+        [
+          {
+            "node": "IF5",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "IF5": {
+      "main": [
+        [
+          {
+            "node": "Set6",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Set7",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Merge2": {
+      "main": [
+        [
+          {
+            "node": "Wait1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Set7": {
+      "main": [
+        [
+          {
+            "node": "Merge2",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "Wait1": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request9",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request9": {
+      "main": [
+        [
+          {
+            "node": "1 Day Check | IF - office visit is completed (form - 2 is completed) then exit",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "IF2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Set8": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request10",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "WhatsApp Business Cloud": {
+      "main": [
+        [
+          {
+            "node": "Set8",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "IF7": {
+      "main": [
+        [
+          {
+            "node": "IF8",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "WhatsApp Business Cloud4",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "IF8": {
+      "main": [
+        [
+          {
+            "node": "IF9",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "WhatsApp Business Cloud",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "IF9": {
+      "main": [
+        [
+          {
+            "node": "WhatsApp Business Cloud6",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "WhatsApp Business Cloud5",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Set9": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request11",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "WhatsApp Business Cloud4": {
+      "main": [
+        [
+          {
+            "node": "Set9",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Set10": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request12",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "WhatsApp Business Cloud5": {
+      "main": [
+        [
+          {
+            "node": "Set10",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Set11": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request13",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "WhatsApp Business Cloud6": {
+      "main": [
+        [
+          {
+            "node": "Set11",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "IF": {
+      "main": [
+        [
+          {
+            "node": "IF7",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Switch1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Switch1": {
+      "main": [
+        [
+          {
+            "node": "CFA",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "FRM",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "IIML",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Set12": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request14",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Set13": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request15",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Set14": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request16",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "CFA": {
+      "main": [
+        [
+          {
+            "node": "Set13",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "FRM": {
+      "main": [
+        [
+          {
+            "node": "Set14",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "IIML": {
+      "main": [
+        [
+          {
+            "node": "Set12",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "1 Day Check | IF - office visit is completed (form - 2 is completed) then exit": {
+      "main": [
+        [
+          {
+            "node": "IF",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2024-03-26T13:13:01.174Z",
+  "id": "4IfgpQ3SiD1iR7ey",
+  "meta": null,
+  "name": "15 mins booking filed",
+  "nodes": [
+    {
+      "parameters": {
+        "path": "a3b39e18-048b-4a81-9dae-c429a02edfb4",
+        "options": {}
+      },
+      "id": "3bed12d5-f1e7-4e0b-9e74-63aa2e2fd7ce",
+      "name": "Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        380,
+        280
+      ],
+      "webhookId": "a3b39e18-048b-4a81-9dae-c429a02edfb4"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "string": [
+            {
+              "value1": "={{ $json.body.data.page_full_url }}",
+              "operation": "notContains",
+              "value2": "ct.miles"
+            },
+            {
+              "value1": "={{ $json.body.data.coming_from }}",
+              "operation": "notEqual",
+              "value2": "MF"
+            }
+          ],
+          "boolean": [
+            {
+              "value1": "={{ $json.body.data.whatsapp }}",
+              "value2": true
+            }
+          ]
+        }
+      },
+      "id": "3985f57d-3a2f-4a06-a996-d778aeb206b2",
+      "name": "IF2",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        580,
+        280
+      ]
+    },
+    {
+      "parameters": {
+        "values": {
+          "number": [
+            {
+              "name": "delay1_time",
+              "value": "10"
+            },
+            {
+              "name": "delay2_time",
+              "value": 10
+            },
+            {
+              "name": "delay3_time",
+              "value": 10
+            },
+            {
+              "name": "delay4_time",
+              "value": 10
+            },
+            {
+              "name": "delay5_time",
+              "value": 10
+            }
+          ],
+          "string": [
+            {
+              "name": "delay1_unit",
+              "value": "seconds"
+            },
+            {
+              "name": "delay2_unit",
+              "value": "seconds"
+            },
+            {
+              "name": "delay3_unit",
+              "value": "seconds"
+            },
+            {
+              "name": "delay4_unit",
+              "value": "seconds"
+            },
+            {
+              "name": "delay5_unit",
+              "value": "seconds"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "8599ff8e-f6ae-4623-9f2b-f02d43b9ca8d",
+      "name": "Set6",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 2,
+      "position": [
+        1240,
+        160
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "for (const item of $input.all()) {\n  var emailList = ['jithin@miles.com','info@mileseducation.com'];\n  if (emailList.includes(item.json.body.data.email)) {\n    item.json.is_UAT = true;\n  } else {\n    item.json.is_UAT = false;\n    // item.json.is_UAT = true;\n  }\n}\n\nreturn $input.all();\n"
+      },
+      "id": "00972c37-b538-43a8-8523-c75f789e8322",
+      "name": "Code1",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        800,
+        260
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "boolean": [
+            {
+              "value1": "={{ $json.is_UAT }}",
+              "value2": true
+            }
+          ]
+        }
+      },
+      "id": "0ab3c81d-bb15-4ce5-bc98-195632acd0ca",
+      "name": "IF5",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        1000,
+        260
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "combine",
+        "combinationMode": "mergeByPosition",
+        "options": {}
+      },
+      "id": "e286adaf-3c1a-4e5e-bebc-8908ef8cef8b",
+      "name": "Merge2",
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 2.1,
+      "position": [
+        1460,
+        260
+      ]
+    },
+    {
+      "parameters": {
+        "values": {
+          "number": [
+            {
+              "name": "delay1_time",
+              "value": 15
+            },
+            {
+              "name": "delay2_time",
+              "value": 1
+            },
+            {
+              "name": "delay3_time",
+              "value": 1
+            },
+            {
+              "name": "delay4_time",
+              "value": 1
+            },
+            {
+              "name": "delay5_time",
+              "value": 10
+            }
+          ],
+          "string": [
+            {
+              "name": "delay1_unit",
+              "value": "minutes"
+            },
+            {
+              "name": "delay2_unit",
+              "value": "days"
+            },
+            {
+              "name": "delay3_unit",
+              "value": "days"
+            },
+            {
+              "name": "delay4_unit",
+              "value": "days"
+            },
+            {
+              "name": "delay5_unit",
+              "value": "days"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "ac203cc6-a380-43c0-9a98-10635312e204",
+      "name": "Set7",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 2,
+      "position": [
+        1240,
+        320
+      ]
+    },
+    {
+      "parameters": {
+        "amount": "={{ $('Merge2').item.json.delay1_time }}",
+        "unit": "={{ $('Merge2').item.json.delay1_unit }}"
+      },
+      "id": "09804815-0777-477d-a7ec-4cd7b84ff666",
+      "name": "Wait1",
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1,
+      "position": [
+        1640,
+        260
+      ],
+      "webhookId": "9b6cccbd-4859-4cbc-a8c8-967ec9c1028b"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://blcwdqfhupddorxpdcjl.supabase.co/rest/v1/rpc/get_lead_not_booked_visit_by_id",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "ApiKey",
+              "value": " eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJsY3dkcWZodXBkZG9yeHBkY2psIiwicm9sZSI6ImFub24iLCJpYXQiOjE2OTI4NzkxMjgsImV4cCI6MjAwODQ1NTEyOH0.NdAhT3uGNwQahfxxUKM8BGV-gEjuIpl8NKVPpcaSFGM"
+            }
+          ]
+        },
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "data_id",
+              "value": "={{ $json.body.data.id }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "644fa7d9-5e47-4fa7-83c7-3d0eefb6413a",
+      "name": "HTTP Request9",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        1820,
+        260
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://webhook.miles-api.com/webhook/create-send-message",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n    \"camp_id\":320,\n    \"message_id\":\"{{ $json.messages[0].id }}\",\n    \"message\":\"{{ $json.message }}\",\n    \"mobile\":{{ $json.contacts[0].wa_id }},\n    \"sender_id\":917338649613,\n\"next_flow\":\"Mfke1kvGEi1aq2E5\",\n\"lead_dump_id\":{{ $('1 Day Check | IF - office visit is completed (form - 2 is completed) then exit').item.json.lead_details.id }},\n\"template\":\"901_booking_failed_reminder_1\"\n}",
+        "options": {}
+      },
+      "id": "6c923600-4fcc-400d-9646-cc26f50c3b24",
+      "name": "HTTP Request10",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        3320,
+        -220
+      ],
+      "continueOnFail": true
+    },
+    {
+      "parameters": {
+        "values": {
+          "string": [
+            {
+              "name": "message",
+              "value": "=15_mins_730_booking_failed_reminder_1"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "53440e04-ab44-4c31-a38f-2433fb232533",
+      "name": "Set8",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 2,
+      "position": [
+        3160,
+        -220
+      ]
+    },
+    {
+      "parameters": {
+        "phoneNumberId": "171009622770823",
+        "recipientPhoneNumber": "={{ $json.lead_details.phone }}",
+        "template": "15_mins_730_booking_failed_reminder_1|en",
+        "components": {
+          "component": [
+            {
+              "bodyParameters": {
+                "parameter": [
+                  {
+                    "text": "={{ $json.lead_details.first_name }}"
+                  }
+                ]
+              }
+            },
+            {
+              "type": "header",
+              "headerParameters": {
+                "parameter": [
+                  {
+                    "type": "image",
+                    "imageLink": "https://one.mileseducation.us/storage/v1/object/public/wa_assets/m102_usp.jpg"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      },
+      "id": "290456e1-d05f-47c4-a4ba-0ea5a6e1ac7e",
+      "name": "WhatsApp Business Cloud",
+      "type": "n8n-nodes-base.whatsApp",
+      "typeVersion": 1,
+      "position": [
+        3000,
+        -220
+      ],
+      "credentials": {
+        "whatsAppApi": {
+          "id": "JPvNp2kC4SudtNkr",
+          "name": "WhatsApp account New"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "string": [
+            {
+              "value1": "={{ $json.lead_details.education_qualification }}",
+              "operation": "notContains",
+              "value2": "will_graduate_in_2025_or_later"
+            }
+          ]
+        }
+      },
+      "id": "ce394382-a30f-465d-ab67-762807be6e08",
+      "name": "IF7",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        2420,
+        -140
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "string": [
+            {
+              "value1": "={{ $json.lead_details.intrested_in }}",
+              "value2": "No"
+            }
+          ]
+        }
+      },
+      "id": "fb1f80c5-8697-4336-9b7f-9e030eb2cbee",
+      "name": "IF8",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        2560,
+        -360
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "number": [
+            {
+              "value1": "={{ $json.lead_details.course }}",
+              "operation": "equal",
+              "value2": 2
+            }
+          ]
+        }
+      },
+      "id": "1a5f7cab-aaff-4748-9435-2cfa9da42831",
+      "name": "IF9",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        2720,
+        -540
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://webhook.miles-api.com/webhook/create-send-message",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n    \"camp_id\":320,\n    \"message_id\":\"{{ $json.messages[0].id }}\",\n    \"message\":\"{{ $json.message }}\",\n    \"mobile\":{{ $json.contacts[0].wa_id }},\n    \"sender_id\":917338649613,\n\"next_flow\":\"Mfke1kvGEi1aq2E5\",\n\"lead_dump_id\":{{ $('1 Day Check | IF - office visit is completed (form - 2 is completed) then exit').item.json.lead_details.id }},\n\"template\":\"901_booking_failed_reminder_1\"\n}",
+        "options": {}
+      },
+      "id": "f526e179-1d67-4d6d-8c6e-f4f3dffbd63f",
+      "name": "HTTP Request11",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        3360,
+        0
+      ],
+      "continueOnFail": true
+    },
+    {
+      "parameters": {
+        "values": {
+          "string": [
+            {
+              "name": "message",
+              "value": "=Hey {{ $('1 Day Check | IF - office visit is completed (form - 2 is completed) then exit').item.json.lead_details.first_name }},\\n\\nWe noticed you haven't booked a slot to visit the Miles office yet. \\nMeeting the expert at the Miles office is a crucial first step in your journey to earn your CMA leading to opportunities to work with MNCs in India and in the US. The best part, you can appear for the 2 CMA exams even before you graduate. \\nSchedule your visit today! \n"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "cc9cd333-d3e1-4afa-84d3-8e517e2744a2",
+      "name": "Set9",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 2,
+      "position": [
+        3180,
+        0
+      ]
+    },
+    {
+      "parameters": {
+        "phoneNumberId": "171009622770823",
+        "recipientPhoneNumber": "={{ $json.lead_details.phone }}",
+        "template": "801_booking_failed_reminder_1|en",
+        "components": {
+          "component": [
+            {
+              "bodyParameters": {
+                "parameter": [
+                  {
+                    "text": "={{ $json.lead_details.first_name }}"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      },
+      "id": "2c34f7f1-d552-4922-a959-021fe5b97a95",
+      "name": "WhatsApp Business Cloud4",
+      "type": "n8n-nodes-base.whatsApp",
+      "typeVersion": 1,
+      "position": [
+        3000,
+        0
+      ],
+      "credentials": {
+        "whatsAppApi": {
+          "id": "JPvNp2kC4SudtNkr",
+          "name": "WhatsApp account New"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://webhook.miles-api.com/webhook/create-send-message",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n    \"camp_id\":320,\n    \"message_id\":\"{{ $json.messages[0].id }}\",\n    \"message\":\"{{ $json.message }}\",\n    \"mobile\":{{ $json.contacts[0].wa_id }},\n    \"sender_id\":917338649613,\n\"next_flow\":\"Mfke1kvGEi1aq2E5\",\n\"lead_dump_id\":{{ $('1 Day Check | IF - office visit is completed (form - 2 is completed) then exit').item.json.lead_details.id }},\n\"template\":\"901_booking_failed_reminder_1\"\n}",
+        "options": {}
+      },
+      "id": "cce5f719-0ada-4807-b981-547c54a3afd0",
+      "name": "HTTP Request12",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        3320,
+        -400
+      ],
+      "continueOnFail": true
+    },
+    {
+      "parameters": {
+        "values": {
+          "string": [
+            {
+              "name": "message",
+              "value": "=Hey {{ $('1 Day Check | IF - office visit is completed (form - 2 is completed) then exit').item.json.lead_details.first_name }},\\n\\nWe noticed you haven't booked a slot to visit the Miles office yet. \\nMeeting the expert at the Miles office is a crucial first step in your journey to earn your CMA and work at top MNCs. \\nSchedule your visit today!"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "3325b6e3-dcba-493f-8c21-0cd90af95284",
+      "name": "Set10",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 2,
+      "position": [
+        3160,
+        -400
+      ]
+    },
+    {
+      "parameters": {
+        "phoneNumberId": "171009622770823",
+        "recipientPhoneNumber": "={{ $json.lead_details.phone }}",
+        "template": "231_booking_failed_reminder_1|en",
+        "components": {
+          "component": [
+            {
+              "bodyParameters": {
+                "parameter": [
+                  {
+                    "text": "={{ $json.lead_details.first_name }}"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      },
+      "id": "08b5afb4-dd34-4754-abdc-21aa153725c3",
+      "name": "WhatsApp Business Cloud5",
+      "type": "n8n-nodes-base.whatsApp",
+      "typeVersion": 1,
+      "position": [
+        3000,
+        -400
+      ],
+      "credentials": {
+        "whatsAppApi": {
+          "id": "JPvNp2kC4SudtNkr",
+          "name": "WhatsApp account New"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://webhook.miles-api.com/webhook/create-send-message",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n    \"camp_id\":320,\n    \"message_id\":\"{{ $json.messages[0].id }}\",\n    \"message\":\"{{ $json.message }}\",\n    \"mobile\":{{ $json.contacts[0].wa_id }},\n    \"sender_id\":917338649613,\n\"next_flow\":\"Mfke1kvGEi1aq2E5\",\n\"lead_dump_id\":{{ $('1 Day Check | IF - office visit is completed (form - 2 is completed) then exit').item.json.lead_details.id }},\n\"template\":\"901_booking_failed_reminder_1\"\n}",
+        "options": {}
+      },
+      "id": "3c1b63be-bfd2-42e5-a034-98350e5545ef",
+      "name": "HTTP Request13",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        3360,
+        -640
+      ],
+      "continueOnFail": true
+    },
+    {
+      "parameters": {
+        "values": {
+          "string": [
+            {
+              "name": "message",
+              "value": "=Hey {{ $('1 Day Check | IF - office visit is completed (form - 2 is completed) then exit').item.json.lead_details.first_name }},\\n\\nWe noticed you haven't booked a slot to visit the Miles office yet. \\nMeeting the expert at the Miles office is a crucial first step in your journey to earn your CPA and work at the Big 4 and top MNCs. \\nSchedule your visit today!"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "fb52f47a-4392-4cd3-b545-739f4162c0e3",
+      "name": "Set11",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 2,
+      "position": [
+        3180,
+        -640
+      ]
+    },
+    {
+      "parameters": {
+        "phoneNumberId": "171009622770823",
+        "recipientPhoneNumber": "={{ $json.lead_details.phone }}",
+        "template": "131_booking_failed_reminder_1|en",
+        "components": {
+          "component": [
+            {
+              "bodyParameters": {
+                "parameter": [
+                  {
+                    "text": "={{ $json.lead_details.first_name }}"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      },
+      "id": "dc0cd954-9591-4e43-b3a5-c544044eb6a1",
+      "name": "WhatsApp Business Cloud6",
+      "type": "n8n-nodes-base.whatsApp",
+      "typeVersion": 1,
+      "position": [
+        3000,
+        -640
+      ],
+      "credentials": {
+        "whatsAppApi": {
+          "id": "JPvNp2kC4SudtNkr",
+          "name": "WhatsApp account New"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "boolean": [
+            {
+              "value1": "={{ $json.lead_details.course == 4 || $json.lead_details.course == 5 || $json.lead_details.course == 6 }}"
+            }
+          ]
+        }
+      },
+      "id": "6730423f-2c9b-4d32-a9e0-1467e34abc70",
+      "name": "IF",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        2240,
+        120
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "expression",
+        "output": "={{ $json.lead_details.course == 4 ? 0 : $json.lead_details.course == 5 ? 1 :2 }}"
+      },
+      "id": "37d88ed1-3697-40cb-8c0d-97793fd9ebd6",
+      "name": "Switch1",
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 1,
+      "position": [
+        2460,
+        700
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://webhook.miles-api.com/webhook/create-send-message",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n    \"camp_id\":320,\n    \"message_id\":\"{{ $json.messages[0].id }}\",\n    \"message\":\"{{ $json.message }}\",\n    \"mobile\":{{ $json.contacts[0].wa_id }},\n    \"sender_id\":917338649613,\n\"next_flow\":\"Mfke1kvGEi1aq2E5\",\n\"lead_dump_id\":{{ $('1 Day Check | IF - office visit is completed (form - 2 is completed) then exit').item.json.lead_details.id }},\n\"template\":\"901_booking_failed_reminder_1\"\n}",
+        "options": {}
+      },
+      "id": "23ef3c08-adb9-48c1-a3d6-ee1ad58b96b8",
+      "name": "HTTP Request14",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        3000,
+        840
+      ],
+      "continueOnFail": true
+    },
+    {
+      "parameters": {
+        "values": {
+          "string": [
+            {
+              "name": "message",
+              "value": "=Hey {{ $('1 Day Check | IF - office visit is completed (form - 2 is completed) then exit').item.json.lead_details.first_name }},\\n\\nWe noticed you haven't booked a slot to visit the Miles office yet. \\nMeeting the expert at the Miles office is a crucial first step in your journey to become a strategic finance leader.  \\nSchedule your visit today! "
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "b5044461-650a-44f4-9a11-467c4141f86b",
+      "name": "Set12",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 2,
+      "position": [
+        2840,
+        840
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://webhook.miles-api.com/webhook/create-send-message",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n    \"camp_id\":320,\n    \"message_id\":\"{{ $json.messages[0].id }}\",\n    \"message\":\"{{ $json.message }}\",\n    \"mobile\":{{ $json.contacts[0].wa_id }},\n    \"sender_id\":917338649613,\n\"next_flow\":\"Mfke1kvGEi1aq2E5\",\n\"lead_dump_id\":{{ $('1 Day Check | IF - office visit is completed (form - 2 is completed) then exit').item.json.lead_details.id }},\n\"template\":\"901_booking_failed_reminder_1\"\n}",
+        "options": {}
+      },
+      "id": "7516e06c-4e88-47c8-a510-1eecb0e3f301",
+      "name": "HTTP Request15",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        3000,
+        360
+      ],
+      "continueOnFail": true
+    },
+    {
+      "parameters": {
+        "values": {
+          "string": [
+            {
+              "name": "message",
+              "value": "=Hey {{ $('1 Day Check | IF - office visit is completed (form - 2 is completed) then exit').item.json.lead_details.first_name }},\\n\\nWe noticed you haven't booked a slot to visit the Miles office yet.\\nMeeting the expert at the Miles office is a crucial first step in your journey to earn your CFA Charter leading to opportunities to work with top finance firms. \nSchedule your visit today! "
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "9100fbc3-3294-4c86-a125-1b48aa6fb976",
+      "name": "Set13",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 2,
+      "position": [
+        2840,
+        360
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://webhook.miles-api.com/webhook/create-send-message",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n    \"camp_id\":320,\n    \"message_id\":\"{{ $json.messages[0].id }}\",\n    \"message\":\"{{ $json.message }}\",\n    \"mobile\":{{ $json.contacts[0].wa_id }},\n    \"sender_id\":917338649613,\n\"next_flow\":\"Mfke1kvGEi1aq2E5\",\n\"lead_dump_id\":{{ $('1 Day Check | IF - office visit is completed (form - 2 is completed) then exit').item.json.lead_details.id }},\n\"template\":\"901_booking_failed_reminder_1\"\n}",
+        "options": {}
+      },
+      "id": "612f83d0-129b-4b4a-bc9d-435ba423c2f8",
+      "name": "HTTP Request16",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        3000,
+        560
+      ],
+      "continueOnFail": true
+    },
+    {
+      "parameters": {
+        "values": {
+          "string": [
+            {
+              "name": "message",
+              "value": "=Hey {{ $('1 Day Check | IF - office visit is completed (form - 2 is completed) then exit').item.json.lead_details.first_name }},\\n\\nWe noticed you haven't booked a slot to visit the Miles office yet.\\nMeeting the expert at the Miles office is a crucial first step in your journey to earn your FRM certification leading to opportunities to work with top finance firms. \\nSchedule your visit today! "
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "5a2f389a-a3fe-4b2f-a14c-b120a5ab6354",
+      "name": "Set14",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 2,
+      "position": [
+        2840,
+        560
+      ]
+    },
+    {
+      "parameters": {
+        "phoneNumberId": "171009622770823",
+        "recipientPhoneNumber": "={{ $json.lead_details.phone }}",
+        "template": "331_booking_failed_reminder_1",
+        "components": {
+          "component": [
+            {
+              "bodyParameters": {
+                "parameter": [
+                  {
+                    "text": "={{ $json.lead_details.first_name }}"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      },
+      "id": "60dec845-e1ba-4fc0-9aea-bf53d12d0510",
+      "name": "CFA",
+      "type": "n8n-nodes-base.whatsApp",
+      "typeVersion": 1,
+      "position": [
+        2680,
+        360
+      ],
+      "credentials": {
+        "whatsAppApi": {
+          "id": "JPvNp2kC4SudtNkr",
+          "name": "WhatsApp account New"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "phoneNumberId": "171009622770823",
+        "recipientPhoneNumber": "={{ $json.lead_details.phone }}",
+        "template": "431_booking_failed_reminder_1|en",
+        "components": {
+          "component": [
+            {
+              "bodyParameters": {
+                "parameter": [
+                  {
+                    "text": "={{ $json.lead_details.first_name }}"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      },
+      "id": "8a2577f9-715d-495d-988d-0a291e6ae9ed",
+      "name": "FRM",
+      "type": "n8n-nodes-base.whatsApp",
+      "typeVersion": 1,
+      "position": [
+        2680,
+        560
+      ],
+      "credentials": {
+        "whatsAppApi": {
+          "id": "JPvNp2kC4SudtNkr",
+          "name": "WhatsApp account New"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "phoneNumberId": "171009622770823",
+        "recipientPhoneNumber": "={{ $json.lead_details.phone }}",
+        "template": "531_booking_failed_reminder_1|en",
+        "components": {
+          "component": [
+            {
+              "bodyParameters": {
+                "parameter": [
+                  {
+                    "text": "={{ $json.lead_details.first_name }}"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      },
+      "id": "9e5cdbe0-7af5-4e50-a3ba-70bf05944290",
+      "name": "IIML",
+      "type": "n8n-nodes-base.whatsApp",
+      "typeVersion": 1,
+      "position": [
+        2680,
+        840
+      ],
+      "credentials": {
+        "whatsAppApi": {
+          "id": "JPvNp2kC4SudtNkr",
+          "name": "WhatsApp account New"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "boolean": [
+            {
+              "value1": "={{ $json.exists_in_visit_office }}"
+            }
+          ]
+        }
+      },
+      "id": "2375bdb2-0675-4074-a411-e20737ac496c",
+      "name": "1 Day Check | IF - office visit is completed (form - 2 is completed) then exit",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        2040,
+        260
+      ]
+    },
+    {
+      "parameters": {
+        "content": "USP ",
+        "height": 221.03515625,
+        "width": 954.111328125
+      },
+      "id": "f1fa8935-cda8-47d4-9291-1836ca8a405e",
+      "name": "Sticky Note",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        2740,
+        -260
+      ]
+    }
+  ],
+  "pinData": {
+    "Webhook": [
+      {
+        "json": {
+          "headers": {
+            "accept": "application/json,text/html,application/xhtml+xml,application/xml,text/*;q=0.9, image/*;q=0.8, */*;q=0.7",
+            "content-type": "application/json",
+            "user-agent": "axios/0.21.4",
+            "content-length": "609",
+            "sentry-trace": "06aa6f44f8ab462db8ac72f03f262065-90cb714469c36ed6-0",
+            "baggage": "sentry-environment=production,sentry-release=1.1.1,sentry-public_key=1f954e089a054b8e943ae4f4042b2bff,sentry-trace_id=06aa6f44f8ab462db8ac72f03f262065",
+            "host": "34.100.240.130:5678",
+            "connection": "close"
+          },
+          "params": {},
+          "query": {},
+          "body": {
+            "data": {
+              "id": 684549,
+              "city": "Ernakulam",
+              "json": null,
+              "email": "jithin@miles.com",
+              "phone": "+916238133298",
+              "course": 9,
+              "gcl_id": null,
+              "camp_id": 65,
+              "whatsapp": true,
+              "clevertap": null,
+              "last_name": null,
+              "camp_token": null,
+              "first_name": "Jithin",
+              "push_to_mf": false,
+              "webinar_id": null,
+              "campaign_id": null,
+              "coming_from": "website-page",
+              "intrested_in": "",
+              "campaign_name": null,
+              "page_full_url": "https://www.mileseducation.com/",
+              "sync_to_sheet": false,
+              "url_page_path": "/",
+              "english_proficiency": null,
+              "registration_status": false,
+              "register_for_webinar": null,
+              "whatsapp_send_status": false,
+              "education_qualification": "completed_graduation"
+            }
+          }
+        }
+      }
+    ]
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2024-03-26T13:53:48.000Z",
+  "versionId": "a273f562-28f1-4dfa-85b8-7efe5ab0fc56"
+}
