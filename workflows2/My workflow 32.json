@@ -1,0 +1,145 @@
+{
+  "active": false,
+  "connections": {
+    "When clicking \"Execute Workflow\"": {
+      "main": [
+        [
+          {
+            "node": "Postgres1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Postgres1": {
+      "main": [
+        [
+          {
+            "node": "Postgres",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Postgres": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-02-28T07:17:38.038Z",
+  "id": "aa9EbTkqvRrmZ4VS",
+  "meta": null,
+  "name": "My workflow 32",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "0e1e9d25-9d21-4441-aa7e-4055e1a722a0",
+      "name": "When clicking \"Execute Workflow\"",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        380,
+        360
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "executeQuery",
+        "query": "SELECT \n    ne.\"id\", \n    ne.\"created_at\", \n    ne.\"first_name\", \n    ne.\"last_name\", \n    ne.\"phone\", \n    ne.\"email\", \n    ne.\"city\", \n    ne.\"coming_from\", \n    ne.\"register_for_webinar\", \n    ne.\"uuid\", \n    ne.\"program_id\", \n    ne.\"campaign_id\", \n    ne.\"leadId\"\nFROM \n    net_enquiry AS ne\nWHERE \n    ne.\"created_at\" >= NOW() - INTERVAL '1 day'\n    AND (ne.\"email\" IS NOT NULL AND ne.\"email\" <> '')\n    AND NOT EXISTS (\n        SELECT 1 \n        FROM webinar_registration AS wr\n        WHERE wr.\"leadId\" = ne.\"leadId\" \n        AND wr.\"webinarId\" = {{ $json.id }}\n    );\n",
+        "options": {}
+      },
+      "id": "50573914-9b49-4798-8d02-40b850ea2817",
+      "name": "Postgres",
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.2,
+      "position": [
+        820,
+        360
+      ],
+      "credentials": {
+        "postgres": {
+          "id": "VPJUosohtvWNBW4H",
+          "name": "MF Prod (DO NOT USE)"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "select",
+        "schema": {
+          "__rl": true,
+          "mode": "list",
+          "value": "public"
+        },
+        "table": {
+          "__rl": true,
+          "value": "webinar",
+          "mode": "name"
+        },
+        "limit": 1,
+        "where": {
+          "values": [
+            {
+              "column": "courseId",
+              "value": "3"
+            }
+          ]
+        },
+        "sort": {
+          "values": [
+            {
+              "column": "created_at",
+              "direction": "DESC"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "3a5eef38-bb01-4444-8264-b4a43fff011d",
+      "name": "Postgres1",
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.2,
+      "position": [
+        600,
+        360
+      ],
+      "credentials": {
+        "postgres": {
+          "id": "VPJUosohtvWNBW4H",
+          "name": "MF Prod (DO NOT USE)"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "id": "53b81980-4951-4a29-bd4b-ab3409be0534",
+      "name": "HTTP Request",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        1040,
+        360
+      ]
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2025-02-28T07:53:24.000Z",
+  "versionId": "fe936bc7-0d20-402b-b806-063e89d53fab"
+}
