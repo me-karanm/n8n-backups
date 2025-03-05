@@ -1,0 +1,252 @@
+{
+  "active": true,
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Supabase",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Supabase": {
+      "main": [
+        [
+          {
+            "node": "Respond to Webhook",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2024-07-02T06:44:40.936Z",
+  "id": "Ffued96c8mRYwc3W",
+  "meta": null,
+  "name": "Insert to Leads dump",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "7d21526b-8f3e-4515-ac7b-f650b8c7f3e4",
+        "responseMode": "responseNode",
+        "options": {
+          "responseHeaders": {
+            "entries": [
+              {
+                "name": "Access-Control-Allow-Headers",
+                "value": "*"
+              },
+              {
+                "name": "Access-Control-Allow-Methods",
+                "value": "*"
+              }
+            ]
+          }
+        }
+      },
+      "id": "efec476a-0bb3-43fc-a16a-b9e336e8f670",
+      "name": "Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        660,
+        280
+      ],
+      "webhookId": "7d21526b-8f3e-4515-ac7b-f650b8c7f3e4"
+    },
+    {
+      "parameters": {
+        "tableId": "leads_dump",
+        "fieldsUi": {
+          "fieldValues": [
+            {
+              "fieldId": "first_name",
+              "fieldValue": "={{ $json.body[0].first_name }}"
+            },
+            {
+              "fieldId": "city",
+              "fieldValue": "={{ $json.body[0].city }}"
+            },
+            {
+              "fieldId": "email",
+              "fieldValue": "={{ $json.body[0].email }}"
+            },
+            {
+              "fieldId": "phone",
+              "fieldValue": "={{ $json.body[0].phone }}"
+            },
+            {
+              "fieldId": "whatsapp",
+              "fieldValue": "={{ $json.body[0].whatsapp }}"
+            },
+            {
+              "fieldId": "sms",
+              "fieldValue": "={{ $json.body[0].sms }}"
+            },
+            {
+              "fieldId": "camp_id",
+              "fieldValue": "={{ $json.body[0].camp_id }}"
+            },
+            {
+              "fieldId": "gcl_id",
+              "fieldValue": "={{ $json.body[0].gcl_id }}"
+            },
+            {
+              "fieldId": "ga_client_id",
+              "fieldValue": "={{ $json.body[0].ga_client_id }}"
+            },
+            {
+              "fieldId": "ga_session_id",
+              "fieldValue": "={{ $json.body[0].ga_session_id }}"
+            },
+            {
+              "fieldId": "ga_session_number",
+              "fieldValue": "={{ $json.body[0].ga_session_number }}"
+            },
+            {
+              "fieldId": "course",
+              "fieldValue": "={{ $json.body[0].course }}"
+            },
+            {
+              "fieldId": "education_qualification",
+              "fieldValue": "={{ $json.body[0].education_qualification }}"
+            },
+            {
+              "fieldId": "clevertap",
+              "fieldValue": "={{ $json.body[0].clevertap }}"
+            },
+            {
+              "fieldId": "webinar_id",
+              "fieldValue": "={{ $json.body[0].webinar_id }}"
+            },
+            {
+              "fieldId": "register_for_webinar",
+              "fieldValue": "={{ $json.body[0].register_for_webinar }}"
+            },
+            {
+              "fieldId": "coming_from",
+              "fieldValue": "={{ $json.body[0].coming_from }}"
+            },
+            {
+              "fieldId": "page_full_url",
+              "fieldValue": "={{ $json.body[0].page_full_url }}"
+            },
+            {
+              "fieldId": "intrested_in",
+              "fieldValue": "={{ $json.body[0].intrested_in }}"
+            },
+            {
+              "fieldId": "url_page_path",
+              "fieldValue": "={{ $json.body[0].url_page_path }}"
+            },
+            {
+              "fieldId": "us_visa_orientation_session",
+              "fieldValue": "={{ $json.body[0].us_visa_orientation_session }}"
+            },
+            {
+              "fieldId": "user_track_id",
+              "fieldValue": "={{ $json.body[0].user_track_id }}"
+            }
+          ]
+        }
+      },
+      "id": "51c68aa0-1807-4363-9f82-bd41f6e50a46",
+      "name": "Supabase",
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        880,
+        260
+      ],
+      "credentials": {
+        "supabaseApi": {
+          "id": "6stEFLC7gtftREcf",
+          "name": "Supabase Campaign manager"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "id": "6e849f82-c8a9-44f1-8f77-c4f09c089015",
+      "name": "Respond to Webhook",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1,
+      "position": [
+        1100,
+        260
+      ]
+    }
+  ],
+  "pinData": {
+    "Webhook": [
+      {
+        "json": {
+          "headers": {
+            "host": "webhook.miles-api.com",
+            "x-real-ip": "172.68.242.50",
+            "x-forwarded-host": "webhook.miles-api.com",
+            "x-forwarded-server": "webhook.miles-api.com",
+            "x-forwarded-for": "115.240.189.114, 172.68.242.50",
+            "connection": "close",
+            "content-length": "814",
+            "accept-encoding": "gzip, br",
+            "cf-ray": "89ccb46a6ee49ca5-SIN",
+            "x-forwarded-proto": "https",
+            "cf-visitor": "{\"scheme\":\"https\"}",
+            "content-type": "application/json",
+            "user-agent": "PostmanRuntime/7.39.0",
+            "accept": "*/*",
+            "cache-control": "no-cache",
+            "postman-token": "6ee47471-f39a-457e-a499-427b9378591d",
+            "cf-connecting-ip": "115.240.189.114",
+            "cdn-loop": "cloudflare",
+            "cf-ipcountry": "IN"
+          },
+          "params": {},
+          "query": {},
+          "body": [
+            {
+              "first_name": "Krishna",
+              "city": "Hyderabad",
+              "email": "ajhsdfgjayg@gmail.com",
+              "phone": "+917989787890",
+              "whatsapp": true,
+              "sms": false,
+              "camp_id": 65,
+              "gcl_id": null,
+              "ga_client_id": "571508230.1704187328",
+              "ga_session_id": "1719377911",
+              "ga_session_number": "4",
+              "course": "2",
+              "education_qualification": "will_graduate_in_2025_or_later",
+              "clevertap": null,
+              "webinar_id": null,
+              "register_for_webinar": null,
+              "coming_from": "website-page",
+              "page_full_url": "http://localhost:3100/",
+              "intrested_in": "Yes",
+              "url_page_path": "/",
+              "us_visa_orientation_session": null,
+              "user_track_id": "997139a7-e14a-4b9c-b045-252e9aa2b3fc"
+            }
+          ]
+        }
+      }
+    ]
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 1,
+  "updatedAt": "2024-07-02T11:18:35.000Z",
+  "versionId": "fbe959b6-c1d5-4fbb-a1ec-3190ff94d1dd"
+}
