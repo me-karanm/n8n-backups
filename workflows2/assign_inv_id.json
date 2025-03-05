@@ -1,0 +1,158 @@
+{
+  "active": true,
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Supabase",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Supabase": {
+      "main": [
+        [
+          {
+            "node": "Supabase1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Supabase1": {
+      "main": [
+        [
+          {
+            "node": "Respond to Webhook",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2024-07-31T13:52:45.835Z",
+  "id": "gVHckiMWeiSKNrfF",
+  "meta": null,
+  "name": "assign_inv_id",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "get_ga_inv_id",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "id": "c782d348-3080-4822-83fa-0f161f4f190f",
+      "name": "Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        660,
+        320
+      ],
+      "webhookId": "c88a259d-0388-4bbe-a161-9e782c062d37"
+    },
+    {
+      "parameters": {
+        "operation": "getAll",
+        "tableId": "temp_inv_ids",
+        "limit": 1,
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "ga_session_id",
+              "condition": "is",
+              "keyValue": "=null"
+            }
+          ]
+        }
+      },
+      "id": "6e53854f-cdca-42af-aa83-c25f57fb4a12",
+      "name": "Supabase",
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        880,
+        320
+      ],
+      "credentials": {
+        "supabaseApi": {
+          "id": "6stEFLC7gtftREcf",
+          "name": "Supabase Campaign manager"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "tableId": "temp_inv_ids",
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "id",
+              "condition": "eq",
+              "keyValue": "={{ $json.id }}"
+            }
+          ]
+        },
+        "fieldsUi": {
+          "fieldValues": [
+            {
+              "fieldId": "ga_session_id",
+              "fieldValue": "={{ $('Webhook').item.json.body.ga_session_id }}"
+            },
+            {
+              "fieldId": "ga_client_id",
+              "fieldValue": "={{ $('Webhook').item.json.body.ga_client_id }}"
+            },
+            {
+              "fieldId": "ga_session_number",
+              "fieldValue": "={{ $('Webhook').item.json.body.ga_session_number }}"
+            }
+          ]
+        }
+      },
+      "id": "21f581fc-47f8-4dfa-b79c-4a6b0e9f89fe",
+      "name": "Supabase1",
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        1100,
+        320
+      ],
+      "credentials": {
+        "supabaseApi": {
+          "id": "6stEFLC7gtftREcf",
+          "name": "Supabase Campaign manager"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "id": "79a36963-8cd5-420e-bb3f-972be1c82750",
+      "name": "Respond to Webhook",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1,
+      "position": [
+        1320,
+        320
+      ]
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 1,
+  "updatedAt": "2024-08-08T10:07:45.000Z",
+  "versionId": "7af8049f-54c9-4f33-9144-0d109410f7d1"
+}
