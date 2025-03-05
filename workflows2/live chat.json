@@ -1,0 +1,313 @@
+{
+  "active": true,
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Set1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Set": {
+      "main": [
+        [
+          {
+            "node": "Supabase",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Supabase1": {
+      "main": [
+        [
+          {
+            "node": "Set",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Set1": {
+      "main": [
+        [
+          {
+            "node": "Supabase1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Supabase": {
+      "main": [
+        [
+          {
+            "node": "Respond to Webhook",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2023-10-20T06:18:22.834Z",
+  "id": "KaxmefG8sxOqraED",
+  "meta": null,
+  "name": "live chat",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "90937312-0982-4c0c-8372-dba1741ae1de",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "id": "3726cda7-2ec5-48df-a5fb-58721db4409e",
+      "name": "Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        -20,
+        300
+      ],
+      "webhookId": "90937312-0982-4c0c-8372-dba1741ae1de"
+    },
+    {
+      "parameters": {
+        "keepOnlySet": true,
+        "values": {
+          "string": [
+            {
+              "name": "name",
+              "value": "={{  $('Webhook').item.json.body.name ?? $('Webhook').item.json.body.data.variables['@name'] }}"
+            },
+            {
+              "name": "email",
+              "value": "={{ $('Webhook').item.json.body.email?? $('Webhook').item.json.body.data.variables['@email'] }}"
+            },
+            {
+              "name": "phone",
+              "value": "={{ $('Webhook').item.json.body.phone?? $('Webhook').item.json.body.data.variables['@phone'] }}"
+            },
+            {
+              "name": "city",
+              "value": "="
+            },
+            {
+              "name": "course_name",
+              "value": "={{$('Webhook').item.json.body.subject ?? $('Webhook').item.json.body.data.variables['@choice'] }}"
+            }
+          ],
+          "number": [
+            {
+              "name": "course",
+              "value": "={{ $json.id }}"
+            },
+            {
+              "name": "camp_id",
+              "value": 66
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "da92a64b-8a90-493d-96fb-d91d8f5b7924",
+      "name": "Set",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 2,
+      "position": [
+        640,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "tableId": "leads_dump",
+        "fieldsUi": {
+          "fieldValues": [
+            {
+              "fieldId": "first_name",
+              "fieldValue": "={{ $('Webhook').item.json.body.Name }}"
+            },
+            {
+              "fieldId": "phone",
+              "fieldValue": "={{ $('Webhook').item.json.body.Phone }}"
+            },
+            {
+              "fieldId": "email",
+              "fieldValue": "={{ $('Webhook').item.json.body.Email }}"
+            },
+            {
+              "fieldId": "whatsapp",
+              "fieldValue": "true"
+            },
+            {
+              "fieldId": "course",
+              "fieldValue": "={{ $json.course }}"
+            },
+            {
+              "fieldId": "camp_id",
+              "fieldValue": "={{ $json.camp_id }}"
+            },
+            {
+              "fieldId": "city",
+              "fieldValue": "={{ $json.city }}"
+            },
+            {
+              "fieldId": "register_for_webinar",
+              "fieldValue": "true"
+            },
+            {
+              "fieldId": "webinar_id",
+              "fieldValue": "={{ $json.course == 'CPA' ? 31 : $json.name  == 'CMA' ? 30 :43 }}"
+            },
+            {
+              "fieldId": "education_qualification",
+              "fieldValue": "={{ $('Webhook').item.json.body.Qualification == 'Graduation Completed' ? 'completed_graduation':$('Webhook').item.json.body.Qualification == 'Will graduate in 2024' ? 'will_graduate_in_2024': 'will_graduate_in_2025_or_later'}}"
+            },
+            {
+              "fieldId": "education_qualification",
+              "fieldValue": "={{ $('Set1').item.json.intrestedin }}"
+            },
+            {
+              "fieldId": "intrested_in",
+              "fieldValue": "={{ $('Webhook').item.json.body.Intetrested_in }}"
+            }
+          ]
+        }
+      },
+      "id": "ba8672b4-853e-4cbc-bc82-ad4339016bd6",
+      "name": "Supabase",
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        920,
+        300
+      ],
+      "credentials": {
+        "supabaseApi": {
+          "id": "6stEFLC7gtftREcf",
+          "name": "Supabase Campaign manager"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "get",
+        "tableId": "course_list",
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "name",
+              "keyValue": "={{ $json['selected-course'] }}"
+            }
+          ]
+        }
+      },
+      "id": "60b82476-ced6-4aec-a64a-4a0fccf94193",
+      "name": "Supabase1",
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        420,
+        300
+      ],
+      "credentials": {
+        "supabaseApi": {
+          "id": "6stEFLC7gtftREcf",
+          "name": "Supabase Campaign manager"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "values": {
+          "string": [
+            {
+              "name": "selected-course",
+              "value": "={{ \n    $json.body.Subject == \"Work in US (Miles US Pathway)\" ? \"Work in US\":\n    $json.body.Subject == \"CPA (Certified Public Accountant)\" ? \"CPA\":\n    $json.body.Subject == \"CMA (Certified Management Accountant)\" ? \"CMA\":\n    $json.body.Subject == \"FRM (Financial Risk Manager)\" ? \"FRM\":\n    $json.body.Subject == \"CFA (Chartered Financial Analyst)\" ? \"CFA\":\n    \n    $json.body.Subject}}"
+            },
+            {
+              "name": "intrestedin",
+              "value": "={{ $json.body.Qualification == 'Graduation Completed' ? 'completed_graduation' : $json.body.Qualification == 'Will graduate in 2024' ? 'will_graduate_in_2024':'will_graduate_in_2025_or_later' }}\n\n"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "137865f8-da36-4830-8370-d6118159fee5",
+      "name": "Set1",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 2,
+      "position": [
+        200,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "id": "d4d939ca-5c50-4b33-bde4-4308df518337",
+      "name": "Respond to Webhook",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1,
+      "position": [
+        1120,
+        300
+      ]
+    }
+  ],
+  "pinData": {
+    "Webhook": [
+      {
+        "json": {
+          "headers": {
+            "host": "webhook.miles-api.com",
+            "x-real-ip": "162.158.22.250",
+            "x-forwarded-host": "webhook.miles-api.com",
+            "x-forwarded-server": "webhook.miles-api.com",
+            "x-forwarded-for": "143.110.190.62, 162.158.22.250",
+            "connection": "close",
+            "content-length": "250",
+            "accept-encoding": "gzip",
+            "cf-ray": "84d1980969bb70e6-MRS",
+            "x-forwarded-proto": "https",
+            "user-agent": "python-requests/2.27.1",
+            "accept": "*/*",
+            "content-type": "application/json",
+            "cf-connecting-ip": "143.110.190.62",
+            "cdn-loop": "cloudflare",
+            "cf-ipcountry": "IN"
+          },
+          "params": {},
+          "query": {},
+          "body": {
+            "Name": "Sayan Hazra",
+            "Email": "sayan.hazra@mileseducation.com",
+            "Phone": "7003996450",
+            "Choice": "CPA (Certified Public Accountant)",
+            "Subject": "CPA (Certified Public Accountant)",
+            "Qualification": "Graduation Completed",
+            "Intetrested_in": "Yes"
+          }
+        }
+      }
+    ]
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 1,
+  "updatedAt": "2024-03-26T09:27:17.000Z",
+  "versionId": "a1995fb3-6a9f-4636-bf84-7591dbc7967b"
+}
