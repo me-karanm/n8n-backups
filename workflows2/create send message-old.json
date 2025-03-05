@@ -1,0 +1,198 @@
+{
+  "active": false,
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Supabase",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Supabase": {
+      "main": [
+        [
+          {
+            "node": "Supabase1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2024-03-13T13:52:47.177Z",
+  "id": "KD0qSgmI97kFR9hK",
+  "meta": null,
+  "name": "create send message-old",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "create-send-message",
+        "options": {}
+      },
+      "id": "9a29d1e9-1994-4614-98c5-8daf60624177",
+      "name": "Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        440,
+        320
+      ],
+      "webhookId": "3aaefefd-1b33-4aee-978f-4bf0d66509a8"
+    },
+    {
+      "parameters": {
+        "tableId": "message_status",
+        "fieldsUi": {
+          "fieldValues": [
+            {
+              "fieldId": "send_status",
+              "fieldValue": "true"
+            },
+            {
+              "fieldId": "send_time",
+              "fieldValue": "={{ $now }}"
+            },
+            {
+              "fieldId": "message_id",
+              "fieldValue": "={{ $json.body.message_id }}"
+            },
+            {
+              "fieldId": "root",
+              "fieldValue": "true"
+            },
+            {
+              "fieldId": "campaign_id",
+              "fieldValue": "={{ $json.body.camp_id }}"
+            },
+            {
+              "fieldId": "lead_dump_id",
+              "fieldValue": "={{ $json.body.lead_dump_id ?? null }}"
+            },
+            {
+              "fieldId": "next_flow_id",
+              "fieldValue": "={{ $json.body.next_flow ?? null }}"
+            },
+            {
+              "fieldId": "template_name",
+              "fieldValue": "={{ $json.body.template ?? null }}"
+            }
+          ]
+        }
+      },
+      "id": "99009a4a-ba5d-4728-898d-792eb19403f5",
+      "name": "Supabase",
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        620,
+        320
+      ],
+      "credentials": {
+        "supabaseApi": {
+          "id": "6stEFLC7gtftREcf",
+          "name": "Supabase Campaign manager"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "tableId": "messages_history",
+        "fieldsUi": {
+          "fieldValues": [
+            {
+              "fieldId": "message_status_id",
+              "fieldValue": "={{ $json.id }}"
+            },
+            {
+              "fieldId": "type",
+              "fieldValue": "1"
+            },
+            {
+              "fieldId": "mobile",
+              "fieldValue": "={{ $('Webhook').item.json.body.mobile }}"
+            },
+            {
+              "fieldId": "sender_id",
+              "fieldValue": "={{ $('Webhook').item.json.body.sender_id ?? 917411850463 }}"
+            },
+            {
+              "fieldId": "message",
+              "fieldValue": "={{ $('Webhook').item.json.body.message }}"
+            }
+          ]
+        }
+      },
+      "id": "8071e4d3-9d58-411a-93ee-cec048070783",
+      "name": "Supabase1",
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        780,
+        320
+      ],
+      "credentials": {
+        "supabaseApi": {
+          "id": "6stEFLC7gtftREcf",
+          "name": "Supabase Campaign manager"
+        }
+      }
+    }
+  ],
+  "pinData": {
+    "Webhook": [
+      {
+        "json": {
+          "headers": {
+            "host": "webhook.miles-api.com",
+            "x-real-ip": "172.69.179.138",
+            "x-forwarded-host": "webhook.miles-api.com",
+            "x-forwarded-server": "webhook.miles-api.com",
+            "x-forwarded-for": "34.100.240.130, 172.69.179.138",
+            "connection": "close",
+            "content-length": "420",
+            "accept-encoding": "gzip, br",
+            "cf-ray": "8645b7193e523b8b-BOM",
+            "x-forwarded-proto": "https",
+            "accept": "application/json,text/html,application/xhtml+xml,application/xml,text/*;q=0.9, image/*;q=0.8, */*;q=0.7",
+            "content-type": "application/json",
+            "user-agent": "axios/0.21.4",
+            "sentry-trace": "35c392e59cdf475cb7ee4ed13370e454-85b1c447db8edeee-0",
+            "baggage": "sentry-environment=production,sentry-release=1.1.1,sentry-public_key=1f954e089a054b8e943ae4f4042b2bff,sentry-trace_id=35c392e59cdf475cb7ee4ed13370e454",
+            "cf-connecting-ip": "34.100.240.130",
+            "cdn-loop": "cloudflare",
+            "cf-ipcountry": "IN"
+          },
+          "params": {},
+          "query": {},
+          "body": {
+            "camp_id": 320,
+            "message_id": "wamid.HBgMOTE2MjM4MTMzMjk4FQIAERgSNTc2QUFDNUE2Qjc2QjhFOUM4AA==",
+            "message": "Hey Jithin, We noticed you haven't booked a slot to visit the Miles office yet. Meeting the expert at the Miles office is a crucial first step in your journey to work in the US. CTA: Schedule Office Visit",
+            "mobile": 916238133298,
+            "sender_id": 917338649613,
+            "next_flow": "Mfke1kvGEi1aq2E5",
+            "lead_dump_id": 365678,
+            "template": null
+          }
+        }
+      }
+    ]
+  },
+  "settings": {
+    "executionOrder": "v1",
+    "timezone": "Asia/Calcutta",
+    "saveManualExecutions": true,
+    "callerPolicy": "workflowsFromSameOwner"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 1,
+  "updatedAt": "2024-04-30T11:06:47.000Z",
+  "versionId": "1d1f9cad-e986-4a13-ad0a-faec3f5b39d6"
+}
