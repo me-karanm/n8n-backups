@@ -1,0 +1,75 @@
+{
+  "active": false,
+  "connections": {
+    "When clicking \"Execute Workflow\"": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-02-27T10:12:58.977Z",
+  "id": "hmLSBGVeyLXvyDOe",
+  "meta": null,
+  "name": "meta user object callback url",
+  "nodes": [
+    {
+      "parameters": {
+        "url": "https://graph.facebook.com/debug_token",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": " input_token",
+              "value": "EAAHqZAA8rlV8BOZC7d4ljEZAZAgUQrilrzbb53jX4LrWweSxVkiVmCCuSAybVb2FPEykNHyKYfyUWhcUiSDROYoWvKuZBgC2ZAkvp6NC4zaJxdcX9ZBiyw98RZBRjivMvZBJqBcZBLVYWjm8ZAsMvA0cqQ4QaDsLWnsg4nAfJpBzBWK0W2gWS9LZAVorGbUmOGvuMdqRqLIROVTOHRrUg8Sl9gZDZD"
+            },
+            {
+              "name": "access_token",
+              "value": "{app-access-token}"
+            }
+          ]
+        },
+        "options": {
+          "response": {
+            "response": {
+              "fullResponse": true
+            }
+          }
+        }
+      },
+      "id": "aea7c1d5-40bb-4c95-87c9-18523fb3ea32",
+      "name": "HTTP Request",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        920,
+        560
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "71464ca7-738d-43e5-9554-c5b564a88938",
+      "name": "When clicking \"Execute Workflow\"",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        600,
+        460
+      ]
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 1,
+  "updatedAt": "2025-02-27T13:55:16.000Z",
+  "versionId": "9d06e51c-8815-4422-a3f9-cd2b178bbc08"
+}
