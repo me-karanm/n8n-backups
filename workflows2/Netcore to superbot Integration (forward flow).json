@@ -1,0 +1,169 @@
+{
+  "active": false,
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Set",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Set": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2024-09-18T16:27:43.328Z",
+  "id": "qYdaAcemG1BOw2CS",
+  "meta": null,
+  "name": "Netcore to superbot Integration (forward flow)",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "healthcare-superbot-full-journey",
+        "options": {}
+      },
+      "id": "5d801993-8b9e-4d3b-8ffd-d980a382227c",
+      "name": "Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        760,
+        360
+      ],
+      "webhookId": "0baa5dc4-10f8-4908-92c1-b901c10e95a9"
+    },
+    {
+      "parameters": {
+        "keepOnlySet": true,
+        "values": {
+          "string": [
+            {
+              "name": "webhook_name",
+              "value": "={{ JSON.parse($json[\"body\"][\"data\"])[\"mileseducationcee\"][0][\"webhook_name\"] }}"
+            },
+            {
+              "name": "uuid",
+              "value": "={{ JSON.parse($json[\"body\"][\"data\"])[\"mileseducationcee\"][0][\"event_params\"][\"foreignkey\"] }}"
+            },
+            {
+              "name": "first_name",
+              "value": "={{ JSON.parse($json[\"body\"][\"data\"])[\"mileseducationcee\"][0][\"att_params\"][\"FIRST_NAME\"] }}"
+            },
+            {
+              "name": "phone",
+              "value": "={{ JSON.parse($json[\"body\"][\"data\"])[\"mileseducationcee\"][0][\"att_params\"][\"MOBILE\"] }}"
+            },
+            {
+              "name": "email",
+              "value": "={{ JSON.parse($json[\"body\"][\"data\"])[\"mileseducationcee\"][0][\"att_params\"][\"EMAIL\"] }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "5634d6dd-b26e-405f-be3d-e265ff96008c",
+      "name": "Set",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 2,
+      "position": [
+        980,
+        360
+      ]
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "id": "72e22eaf-26d5-4c20-a59a-921592997915",
+      "name": "Respond to Webhook",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1,
+      "position": [
+        1320,
+        60
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.superbot.one/tel/v2/superbot/gGLWyn7KroZx/campaign/18637/call",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "apiKey",
+              "value": "5f5b147d092c99b863551535c37f5dec"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\"numbers\":[{\"parameters\":{\"name\":\"{{ $json[\"first_name\"] }}\"},\"phone\":\"+91{{ $json[\"phone\"] }}\",\"email\":\"{{ $json[\"email\"] }}\",\"reference_id\":\"{{ $json[\"uuid\"] }}\"}],\"lang\":\"en-IN\"}",
+        "options": {
+          "redirect": {
+            "redirect": {}
+          }
+        }
+      },
+      "id": "c45bc8c8-d3b4-4f55-8319-bd5d652a762f",
+      "name": "HTTP Request",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        1200,
+        360
+      ]
+    }
+  ],
+  "pinData": {
+    "Webhook": [
+      {
+        "json": {
+          "headers": {
+            "host": "webhook.miles-api.com",
+            "x-real-ip": "172.68.245.14",
+            "x-forwarded-host": "webhook.miles-api.com",
+            "x-forwarded-server": "webhook.miles-api.com",
+            "x-forwarded-for": "202.162.242.230, 172.68.245.14",
+            "connection": "close",
+            "content-length": "335",
+            "accept-encoding": "gzip, br",
+            "cf-ray": "8c59ac957acdc978-IAD",
+            "user-agent": "Mozilla/5.0 (compatible; U; AnyEvent-HTTP/2.23; +http://software.schmorp.de/pkg/AnyEvent)",
+            "content-type": "application/x-www-form-urlencoded",
+            "referer": "https://webhook.miles-api.com/webhook/healthcare-superbot-full-journey",
+            "cf-connecting-ip": "202.162.242.230",
+            "cdn-loop": "cloudflare; loops=1",
+            "cf-ipcountry": "IN"
+          },
+          "params": {},
+          "query": {},
+          "body": {
+            "data": "{\"mileseducationcee\":[{\"webhook_name\":\"karan-test-healthcare\",\"event_params\":{\"foreignkey\":\"b69c6b4a-8307-4794-b67c-4479be159c6e\",\"event\":0},\"att_params\":{\"FIRST_NAME\":\"KaranM\",\"MOBILE\":\"7349296479\",\"EMAIL\":\"k@gmail.com\"}}]}"
+          }
+        }
+      }
+    ]
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 1,
+  "updatedAt": "2024-09-24T20:15:02.000Z",
+  "versionId": "bbbd25e7-1c44-4426-a0cb-fa3e372b7af3"
+}
