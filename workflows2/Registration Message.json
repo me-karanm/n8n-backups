@@ -1,0 +1,484 @@
+{
+  "active": false,
+  "connections": {
+    "IF": {
+      "main": [
+        [
+          {
+            "node": "IF1",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "WhatsApp Business Cloud4",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "IF1": {
+      "main": [
+        [
+          {
+            "node": "IF2",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "IF3",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "IF4",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "IF2": {
+      "main": [
+        [
+          {
+            "node": "WhatsApp Business Cloud1",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "WhatsApp Business Cloud",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "IF4": {
+      "main": [
+        [
+          {
+            "node": "WhatsApp Business Cloud",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "IF3": {
+      "main": [
+        [
+          {
+            "node": "IF5",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "IF5": {
+      "main": [
+        [
+          {
+            "node": "WhatsApp Business Cloud2",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "WhatsApp Business Cloud3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Execute Workflow Trigger": {
+      "main": [
+        []
+      ]
+    }
+  },
+  "createdAt": "2024-01-12T12:29:15.076Z",
+  "id": "R64qC5KJybTHznd8",
+  "meta": null,
+  "name": "Registration Message",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "338ced96-34a2-4db5-8e42-58725d7f9e98",
+      "name": "Execute Workflow Trigger",
+      "type": "n8n-nodes-base.executeWorkflowTrigger",
+      "typeVersion": 1,
+      "position": [
+        360,
+        320
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "boolean": [
+            {
+              "value1": "={{ $json.body.url_page_path != null }}",
+              "value2": true
+            }
+          ]
+        }
+      },
+      "id": "1d0adcd3-cc5b-4080-8ce2-2f88056a4942",
+      "name": "IF",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        580,
+        320
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "number": [
+            {
+              "value1": "={{ $json.body.course }}",
+              "operation": "equal",
+              "value2": 9
+            }
+          ]
+        }
+      },
+      "id": "123912a3-12f6-4db8-8e9f-b5f09e61cd3b",
+      "name": "IF1",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        780,
+        100
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "string": [
+            {
+              "value1": "={{ $('Execute Workflow Trigger').item.json.body.coming_from }}",
+              "value2": "website-model"
+            }
+          ]
+        }
+      },
+      "id": "cfeb8771-c3ee-4bc7-bd37-d30958f2c227",
+      "name": "IF2",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        1140,
+        -220
+      ]
+    },
+    {
+      "parameters": {
+        "phoneNumberId": "108019349036743",
+        "recipientPhoneNumber": "={{ $json.body.phone.length <= 10 ? \"91\"+ $json.body.phone : $json.body.phone  }}",
+        "template": "registration_flow_usp_website_12_jan|en",
+        "components": {
+          "component": [
+            {
+              "bodyParameters": {
+                "parameter": [
+                  {
+                    "text": "={{ $json.body.first_name }}"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      },
+      "id": "6f101586-6853-4581-8716-f486a092a397",
+      "name": "WhatsApp Business Cloud",
+      "type": "n8n-nodes-base.whatsApp",
+      "typeVersion": 1,
+      "position": [
+        1500,
+        -100
+      ],
+      "credentials": {
+        "whatsAppApi": {
+          "id": "KHcTD6EUGATb3z0D",
+          "name": "WhatsApp account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "phoneNumberId": "108019349036743",
+        "recipientPhoneNumber": "={{ $json.body.phone.length <= 10 ? \"91\"+ $json.body.phone : $json.body.phone  }}",
+        "template": "registration_flow_event_registration_message_generic_12_jan |en",
+        "components": {
+          "component": [
+            {
+              "bodyParameters": {
+                "parameter": [
+                  {
+                    "text": "={{ $json.body.first_name }}"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      },
+      "id": "ad992e85-c956-42ab-83f7-35e18b17f0af",
+      "name": "WhatsApp Business Cloud1",
+      "type": "n8n-nodes-base.whatsApp",
+      "typeVersion": 1,
+      "position": [
+        1760,
+        -480
+      ],
+      "credentials": {
+        "whatsAppApi": {
+          "id": "KHcTD6EUGATb3z0D",
+          "name": "WhatsApp account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "number": [
+            {
+              "value1": "={{ $json.body.course }}",
+              "operation": "equal",
+              "value2": 2
+            },
+            {
+              "value1": "={{ $json.body.course }}",
+              "operation": "equal",
+              "value2": 3
+            }
+          ]
+        },
+        "combineOperation": "any"
+      },
+      "id": "f3233b6a-eb35-436d-90b2-4108277ea47c",
+      "name": "IF3",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        1140,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "string": [
+            {
+              "value1": "={{ $json.body.intrested_in }}",
+              "value2": "Yes"
+            },
+            {
+              "value1": "={{ $json.body.intrested_in }}",
+              "value2": "Maybe"
+            }
+          ]
+        },
+        "combineOperation": "any"
+      },
+      "id": "1f9631ad-3af2-4113-80f8-e01e2fb1cd2c",
+      "name": "IF4",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        1120,
+        60
+      ]
+    },
+    {
+      "parameters": {
+        "phoneNumberId": "108019349036743",
+        "recipientPhoneNumber": "={{ $json.body.phone.length <= 10 ? \"91\"+ $json.body.phone : $json.body.phone  }}",
+        "template": "registration_flow_cpa_12_jan|en",
+        "components": {
+          "component": [
+            {
+              "bodyParameters": {
+                "parameter": [
+                  {
+                    "text": "={{ $json.body.first_name }}"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      },
+      "id": "da9b6e13-0866-4c55-a12c-fcfb19cc8021",
+      "name": "WhatsApp Business Cloud2",
+      "type": "n8n-nodes-base.whatsApp",
+      "typeVersion": 1,
+      "position": [
+        1500,
+        100
+      ],
+      "credentials": {
+        "whatsAppApi": {
+          "id": "KHcTD6EUGATb3z0D",
+          "name": "WhatsApp account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "phoneNumberId": "108019349036743",
+        "recipientPhoneNumber": "={{ $json.body.phone.length <= 10 ? \"91\"+ $json.body.phone : $json.body.phone  }}",
+        "template": "registration_flow_cma_12_jan|en",
+        "components": {
+          "component": [
+            {
+              "bodyParameters": {
+                "parameter": [
+                  {
+                    "text": "={{ $json.body.first_name }}"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      },
+      "id": "7ab75ce5-c26d-4218-94f2-c671d7e1076e",
+      "name": "WhatsApp Business Cloud3",
+      "type": "n8n-nodes-base.whatsApp",
+      "typeVersion": 1,
+      "position": [
+        1500,
+        420
+      ],
+      "credentials": {
+        "whatsAppApi": {
+          "id": "KHcTD6EUGATb3z0D",
+          "name": "WhatsApp account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "number": [
+            {
+              "value1": "={{ $json.body.course }}",
+              "operation": "equal",
+              "value2": 2
+            }
+          ]
+        }
+      },
+      "id": "348b63da-094a-4d47-9306-63eff8b99b83",
+      "name": "IF5",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        1320,
+        280
+      ]
+    },
+    {
+      "parameters": {
+        "phoneNumberId": "108019349036743",
+        "recipientPhoneNumber": "={{ $json.body.phone.length <= 10 ? \"91\"+ $json.body.phone : $json.body.phone  }}",
+        "template": "registration_flow_event_registration_message_generic_12_jan |en",
+        "components": {
+          "component": [
+            {
+              "bodyParameters": {
+                "parameter": [
+                  {
+                    "text": "={{ $json.body.first_name }}"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      },
+      "id": "1d288f5b-7f1b-4e34-ba32-f58e9316f080",
+      "name": "WhatsApp Business Cloud4",
+      "type": "n8n-nodes-base.whatsApp",
+      "typeVersion": 1,
+      "position": [
+        1760,
+        780
+      ],
+      "credentials": {
+        "whatsAppApi": {
+          "id": "KHcTD6EUGATb3z0D",
+          "name": "WhatsApp account 2"
+        }
+      }
+    }
+  ],
+  "pinData": {
+    "Execute Workflow Trigger": [
+      {
+        "json": {
+          "id": 3,
+          "name": "CMA",
+          "created_at": "2023-08-26T06:42:16.358454+00:00",
+          "isActive": 1,
+          "category": 1,
+          "show_in_dropdown": true,
+          "orderby": 3,
+          "full_form": "Certified Management Accountant",
+          "brochure_url": "https://blcwdqfhupddorxpdcjl.supabase.co/storage/v1/object/public/wa_assets/CMA.pdf",
+          "body": {
+            "id": 270775,
+            "city": "Ernakulam",
+            "json": null,
+            "email": "jithin44445@gmail.com",
+            "phone": "+916238133298",
+            "course": 3,
+            "gcl_id": null,
+            "camp_id": 65,
+            "whatsapp": true,
+            "clevertap": "95b2648189b64f808c26c860153e1de5",
+            "last_name": null,
+            "camp_token": null,
+            "first_name": "Jithin",
+            "push_to_mf": false,
+            "webinar_id": 30,
+            "campaign_id": null,
+            "coming_from": "website-page",
+            "intrested_in": "Yes",
+            "campaign_name": null,
+            "page_full_url": "https://www.mileseducation.com/cma",
+            "sync_to_sheet": false,
+            "url_page_path": "/cma",
+            "english_proficiency": null,
+            "registration_status": false,
+            "register_for_webinar": true,
+            "whatsapp_send_status": false,
+            "education_qualification": null
+          }
+        }
+      }
+    ]
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2024-01-24T22:44:21.000Z",
+  "versionId": "c505b843-6b89-4074-8373-eec0da50af1d"
+}
