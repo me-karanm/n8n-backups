@@ -1,0 +1,302 @@
+{
+  "active": false,
+  "connections": {
+    "Code1": {
+      "main": [
+        [
+          {
+            "node": "Postgres2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Postgres2": {
+      "main": [
+        [
+          {
+            "node": "IF",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code7": {
+      "main": [
+        [
+          {
+            "node": "Split In Batches",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Date & Time2": {
+      "main": [
+        [
+          {
+            "node": "WhatsApp Business Cloud2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "IF": {
+      "main": [
+        [
+          {
+            "node": "Code7",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Split In Batches": {
+      "main": [
+        [
+          {
+            "node": "Date & Time2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "WhatsApp Business Cloud2": {
+      "main": [
+        [
+          {
+            "node": "Split In Batches",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Schedule Trigger2": {
+      "main": [
+        [
+          {
+            "node": "Code1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2024-01-28T15:22:41.968Z",
+  "id": "62zjLcahYBxRzSMB",
+  "meta": null,
+  "name": "Reminder - 2 hours",
+  "nodes": [
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "hours",
+              "hoursInterval": 2
+            }
+          ]
+        }
+      },
+      "id": "e62bbbfc-4a39-4d5e-9ff1-1396ee38c075",
+      "name": "Schedule Trigger2",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.1,
+      "position": [
+        460,
+        820
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "// Loop over input items and add new fields for current date time in IST and current date time + 2 hours in IST\nfor (const item of $input.all()) {\n  const currentDateUTC = new Date();\n  const currentDateIST = new Date(currentDateUTC.getTime() + (5.5 * 60 * 60 * 1000)); // Add 5.5 hours for IST\n  const currentDatePlus2HoursIST = new Date(currentDateIST.getTime() + 2 * 60 * 60 * 1000);\n\n  // Format dates to yyyy-MM-dd hh:mm\n  const formattedCurrentDateIST = formatDate(currentDateIST);\n  const formattedCurrentDatePlus2HoursIST = formatDate(currentDatePlus2HoursIST);\n\n  // Add new fields to the JSON of each item\n  item.json.myNewField = 1;\n  item.json.currentDateTimeIST = formattedCurrentDateIST;\n  item.json.currentDateTimePlus2HoursIST = formattedCurrentDatePlus2HoursIST;\n}\n\nreturn $input.all();\n\n// Function to format date to yyyy-MM-dd hh:mm\nfunction formatDate(date) {\n  const year = date.getFullYear();\n  const month = (date.getMonth() + 1).toString().padStart(2, '0');\n  const day = date.getDate().toString().padStart(2, '0');\n  const hours = date.getHours().toString().padStart(2, '0');\n  const minutes = date.getMinutes().toString().padStart(2, '0');\n\n  return `${year}-${month}-${day} ${hours}:${minutes}`;\n}\n"
+      },
+      "id": "a3484694-5701-4ff6-8349-036c6966e4dd",
+      "name": "Code1",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        640,
+        820
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "executeQuery",
+        "query": "SELECT vo.*,ld.phone,ld.first_name,cl.*,ml.*\nFROM visit_office as vo left join leads_dump as ld on ld.id=vo.leads_dump_id left join course_list as cl on cl.id = ld.course left join miles_locations as ml on ml.location_name = vo.city \nWHERE vo.time_slots  \n      BETWEEN '{{ $input.item.json.currentDateTimeIST }}'::timestamp \n      AND '{{ $input.item.json.currentDateTimePlus2HoursIST }}'::timestamp  and cl.id in (2,3,9);\n-- SELECT vo.*,ld.phone,cl.*,ld.first_name,ml.*\n-- FROM visit_office as vo left join leads_dump as ld on ld.id=vo.leads_dump_id left join course_list as cl on cl.id = ld.course left join miles_locations as ml on ml.location_name = vo.city \n-- WHERE  cl.id in (2,3,9) and ld.phone like '%8547945792' limit 1;\n",
+        "options": {}
+      },
+      "id": "dd815d3f-c19a-4ae4-8976-831e96ad9763",
+      "name": "Postgres2",
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.2,
+      "position": [
+        900,
+        820
+      ],
+      "credentials": {
+        "postgres": {
+          "id": "0EOENO57r9a8GGbk",
+          "name": "Supabase account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "boolean": [
+            {
+              "value1": "={{ $json.success == true }}"
+            }
+          ]
+        }
+      },
+      "id": "1cd86756-ebab-4b5e-bcf6-478b74fca2c4",
+      "name": "IF",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        1120,
+        820
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "// Loop over input items and add a new field called 'myNewField' to the JSON of each one\nfor (const item of $input.all()) {\n    // item.json.m201 = item.json.wa_content;\nitem.json.m202 = item.json?.wa_content.filter(e=>e.id == 'm202');\n    // item.json.m203 = item.json.wa_content.filter(e=>e.id == 'm203');\n}\n\nreturn $input.all();"
+      },
+      "id": "e74f729a-1638-4002-a6ce-ebae15905f53",
+      "name": "Code7",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1360,
+        800
+      ]
+    },
+    {
+      "parameters": {
+        "phoneNumberId": "108019349036743",
+        "recipientPhoneNumber": "={{ $('Split In Batches').item.json.phone }}",
+        "template": "m202_meet_reminder_2hrs_before|en",
+        "components": {
+          "component": [
+            {
+              "bodyParameters": {
+                "parameter": [
+                  {
+                    "text": "={{ $('Split In Batches').item.json.first_name }}"
+                  },
+                  {
+                    "text": "={{ $('Split In Batches').item.json.time_string }}"
+                  },
+                  {
+                    "text": "={{ $('Split In Batches').item.json.sopc_name ?? \" \" }}"
+                  },
+                  {
+                    "text": "={{ $('Split In Batches').item.json.spoc_phone ?? \" \" }}"
+                  }
+                ]
+              }
+            },
+            {
+              "type": "button",
+              "sub_type": "url",
+              "buttonParameters": {
+                "parameter": {
+                  "payload": "={{ $('Split In Batches').item.json.google_location.substring(34) }}"
+                }
+              }
+            },
+            {
+              "type": "header",
+              "headerParameters": {
+                "parameter": [
+                  {
+                    "type": "image",
+                    "imageLink": "https://blcwdqfhupddorxpdcjl.supabase.co/storage/v1/object/public/wa_assets/Whatsapp%20Banners-02.png"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      },
+      "id": "c5ef55eb-d19c-497e-aecc-6800b9009d16",
+      "name": "WhatsApp Business Cloud2",
+      "type": "n8n-nodes-base.whatsApp",
+      "typeVersion": 1,
+      "position": [
+        2160,
+        780
+      ],
+      "credentials": {
+        "whatsAppApi": {
+          "id": "KHcTD6EUGATb3z0D",
+          "name": "Secondary | Marketing Miles Education"
+        }
+      },
+      "continueOnFail": true
+    },
+    {
+      "parameters": {
+        "operation": "formatDate",
+        "date": "={{ $json.time_slots }}",
+        "options": {}
+      },
+      "id": "53e95ce8-0930-4b26-b88f-5f1f9332732e",
+      "name": "Date & Time2",
+      "type": "n8n-nodes-base.dateTime",
+      "typeVersion": 2,
+      "position": [
+        1880,
+        780
+      ]
+    },
+    {
+      "parameters": {
+        "batchSize": 1,
+        "options": {}
+      },
+      "id": "0fea2ba5-5604-4bf5-b3ae-4b41f89a5d7d",
+      "name": "Split In Batches",
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 2,
+      "position": [
+        1580,
+        800
+      ]
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1",
+    "timezone": "Asia/Calcutta",
+    "saveManualExecutions": true,
+    "callerPolicy": "workflowsFromSameOwner"
+  },
+  "staticData": {
+    "node:Schedule Trigger": {
+      "recurrencyRules": []
+    },
+    "node:Schedule Trigger1": {
+      "recurrencyRules": []
+    },
+    "node:Schedule Trigger2": {
+      "recurrencyRules": [
+        14
+      ]
+    }
+  },
+  "tags": [],
+  "triggerCount": 1,
+  "updatedAt": "2025-01-30T12:58:06.000Z",
+  "versionId": "c7653701-1378-444a-9e26-49d7b1609266"
+}
