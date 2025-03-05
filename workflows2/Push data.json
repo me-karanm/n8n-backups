@@ -1,0 +1,630 @@
+{
+  "active": true,
+  "connections": {
+    "When clicking \"Execute Workflow\"": {
+      "main": [
+        [
+          {
+            "node": "Code1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "MySQL1": {
+      "main": [
+        [
+          {
+            "node": "MySQL3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "MySQL": {
+      "main": [
+        [
+          {
+            "node": "MySQL2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "MySQL3": {
+      "main": [
+        [
+          {
+            "node": "MySQL",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "MySQL2": {
+      "main": [
+        [
+          {
+            "node": "Code",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Item Lists": {
+      "main": [
+        [
+          {
+            "node": "Split In Batches",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Split In Batches": {
+      "main": [
+        [
+          {
+            "node": "MySQL1",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Item Lists1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request": {
+      "main": [
+        [
+          {
+            "node": "Wait",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait": {
+      "main": [
+        [
+          {
+            "node": "Set",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code2": {
+      "main": [
+        [
+          {
+            "node": "Item Lists",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Code2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Item Lists1": {
+      "main": [
+        [
+          {
+            "node": "Respond to Webhook",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Set": {
+      "main": [
+        [
+          {
+            "node": "Split In Batches",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code1": {
+      "main": [
+        []
+      ]
+    }
+  },
+  "createdAt": "2024-05-29T15:02:51.254Z",
+  "id": "lDjooCzm6XRbf3pn",
+  "meta": null,
+  "name": "Push data",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "15d29114-dc13-45eb-a6ba-b24a4995f4fa",
+      "name": "When clicking \"Execute Workflow\"",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        -180,
+        -140
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://uspathway.mileseducation.com/create/student",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ $json }}",
+        "options": {}
+      },
+      "id": "c96b7c3a-6d31-47af-9239-bb89cbf49daf",
+      "name": "HTTP Request",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        2280,
+        -60
+      ],
+      "continueOnFail": true
+    },
+    {
+      "parameters": {
+        "operation": "select",
+        "table": {
+          "__rl": true,
+          "value": "miles_enrollments",
+          "mode": "list",
+          "cachedResultName": "miles_enrollments"
+        },
+        "where": {
+          "values": [
+            {
+              "column": "identity",
+              "value": "={{ $json.can_id }}"
+            },
+            {
+              "column": "course",
+              "value": "USP"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "562dcde3-88a5-4fd8-88d6-cb9c113920b1",
+      "name": "MySQL1",
+      "type": "n8n-nodes-base.mySql",
+      "typeVersion": 2.1,
+      "position": [
+        1320,
+        -60
+      ],
+      "credentials": {
+        "mySql": {
+          "id": "UPaGqhcnQd5QQFO3",
+          "name": "MySQL account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "select",
+        "table": {
+          "__rl": true,
+          "value": "miles_purchases",
+          "mode": "list",
+          "cachedResultName": "miles_purchases"
+        },
+        "limit": 1,
+        "where": {
+          "values": [
+            {
+              "column": "identity",
+              "value": "={{ $('MySQL1').item.json.identity }}"
+            },
+            {
+              "column": "name",
+              "value": "USP"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "8d601f6e-4c47-4795-93af-ff4befc0226c",
+      "name": "MySQL",
+      "type": "n8n-nodes-base.mySql",
+      "typeVersion": 2.1,
+      "position": [
+        1760,
+        -60
+      ],
+      "credentials": {
+        "mySql": {
+          "id": "UPaGqhcnQd5QQFO3",
+          "name": "MySQL account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "select",
+        "table": {
+          "__rl": true,
+          "value": "miles_receipts",
+          "mode": "list",
+          "cachedResultName": "miles_receipts"
+        },
+        "where": {
+          "values": [
+            {
+              "column": "identity",
+              "value": "={{ $json.identity }}"
+            },
+            {
+              "column": "course",
+              "value": "USP"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "9adffa4f-5b21-4fb5-949a-dc35ff7daa6c",
+      "name": "MySQL2",
+      "type": "n8n-nodes-base.mySql",
+      "typeVersion": 2.1,
+      "position": [
+        1960,
+        -60
+      ],
+      "credentials": {
+        "mySql": {
+          "id": "UPaGqhcnQd5QQFO3",
+          "name": "MySQL account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "select",
+        "table": {
+          "__rl": true,
+          "value": "miles_mobiles",
+          "mode": "list",
+          "cachedResultName": "miles_mobiles"
+        },
+        "limit": 1,
+        "where": {
+          "values": [
+            {
+              "column": "person_id",
+              "value": "={{ $json.person_id }}"
+            },
+            {
+              "column": "pri_mary",
+              "value": "1"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "a8181893-900e-430a-a5d5-a80500773c5a",
+      "name": "MySQL3",
+      "type": "n8n-nodes-base.mySql",
+      "typeVersion": 2.1,
+      "position": [
+        1560,
+        -60
+      ],
+      "credentials": {
+        "mySql": {
+          "id": "UPaGqhcnQd5QQFO3",
+          "name": "MySQL account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "const mergedJson = {\n    \"params\": {\n        \"email\": $('MySQL1').item.json.can_email,\n        \"phone\": $('MySQL3').item.json.phone_number,\n        \"can_id\": $('MySQL1').item.json.identity,\n        \"enrollment_date\": $('MySQL1').item.json.updated_at,\n      \"enrollment_status\": $('Webhook').item.json.body.enrollment_status ?? \"deferred\",\n    }\n}\n\nmergedJson['params']['payment'] = []; \nitems.forEach((item, index) => {\n  mergedJson['params']['payment'].push(            {\n                \"mode\": item.json.transaction_type,\n                \"txnid\": item.json.transaction_id,\n                \"receipt_no\": item.json.receipt_no,\n                \"amount\": item.json.amount,\n                \"discount\": ($('MySQL').item.json.actual_cost - $('MySQL').item.json.agreed_cost ),\n                \"agreed_cost\": $('MySQL').item.json.agreed_cost,\n                \"cheque_no\": item.json.cheque_no,\n                \"date\": item.json.created_at\n            });\n});\n\n\nreturn [{json: mergedJson}]; \n"
+      },
+      "id": "576a2abc-8b45-4880-847b-97b5d2dfcdb7",
+      "name": "Code",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        2120,
+        -60
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "select",
+        "table": {
+          "__rl": true,
+          "value": "mwb",
+          "mode": "list",
+          "cachedResultName": "mwb"
+        },
+        "where": {
+          "values": [
+            {
+              "column": "identity",
+              "value": "B-98656"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "83d119cb-08e4-4f06-a3ee-67154ac166bf",
+      "name": "MySQL4",
+      "type": "n8n-nodes-base.mySql",
+      "typeVersion": 2.1,
+      "position": [
+        300,
+        -660
+      ],
+      "credentials": {
+        "mySql": {
+          "id": "UPaGqhcnQd5QQFO3",
+          "name": "MySQL account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "// Loop over input items and add a new field called 'myNewField' to the JSON of each one\nfor (const item of $input.all()) {\n  item.json.can_id =   [\n    \"B-784024\"\n]\n;\n}\n\nreturn $input.all();"
+      },
+      "id": "9faa7193-2691-43ce-93d8-5435a2087665",
+      "name": "Code1",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        80,
+        -140
+      ]
+    },
+    {
+      "parameters": {
+        "fieldToSplitOut": "can_id",
+        "options": {}
+      },
+      "id": "22ef266e-bf1a-4882-8213-bdb449e4e2f2",
+      "name": "Item Lists",
+      "type": "n8n-nodes-base.itemLists",
+      "typeVersion": 3,
+      "position": [
+        600,
+        200
+      ]
+    },
+    {
+      "parameters": {
+        "batchSize": 1,
+        "options": {}
+      },
+      "id": "b86a5348-0282-44bb-b934-eea15c063dd3",
+      "name": "Split In Batches",
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 2,
+      "position": [
+        820,
+        200
+      ]
+    },
+    {
+      "parameters": {
+        "unit": "seconds"
+      },
+      "id": "26b8b0c4-d2c4-46ab-89b5-5626fccc54f4",
+      "name": "Wait",
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1,
+      "position": [
+        2500,
+        -60
+      ],
+      "webhookId": "ebc47a85-9cd2-453b-a8dc-01eaa278a756"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "id": "c5ce1194-68d0-4ac2-ab7e-7dc72879b6b9",
+      "name": "Respond to Webhook",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1,
+      "position": [
+        1280,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "push-deferred-data",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "id": "27d9cfcd-1d21-41e7-a243-c40fc3caaf33",
+      "name": "Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        -180,
+        360
+      ],
+      "webhookId": "2c084fd6-f33f-41ee-bfac-31e8b9e12415"
+    },
+    {
+      "parameters": {
+        "jsCode": "// Loop over input items and add a new field called 'myNewField' to the JSON of each one\n// for (const item of $input.all()) {\n//   item.json.can_id =  item.\n// ;\n// }\n\nreturn $input.first().json.body;"
+      },
+      "id": "e7579b90-c7fa-4e6b-adcf-5d4eb2d1ac94",
+      "name": "Code2",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        40,
+        360
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "concatenateItems",
+        "aggregate": "aggregateAllItemData"
+      },
+      "id": "e2d12f42-4c65-4cff-bf19-b7f89ec46773",
+      "name": "Item Lists1",
+      "type": "n8n-nodes-base.itemLists",
+      "typeVersion": 3,
+      "position": [
+        1040,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "keepOnlySet": true,
+        "values": {
+          "string": [
+            {
+              "name": "response",
+              "value": "={{ $('HTTP Request').item.json }}"
+            },
+            {
+              "name": "request",
+              "value": "={{ $('Code').item.json.params }}"
+            }
+          ],
+          "boolean": [
+            {
+              "name": "status",
+              "value": "={{ $json?.success ?? false }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "6b00e5b9-d0ad-4d2a-b583-d22377690ee4",
+      "name": "Set",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 2,
+      "position": [
+        2720,
+        -60
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "select",
+        "table": {
+          "__rl": true,
+          "value": "mwb",
+          "mode": "list",
+          "cachedResultName": "mwb"
+        },
+        "where": {
+          "values": [
+            {
+              "column": "identity",
+              "value": "={{ $json.can_id }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "d379046d-677a-4aea-90cc-53085663114e",
+      "name": "MySQL5",
+      "type": "n8n-nodes-base.mySql",
+      "typeVersion": 2.1,
+      "position": [
+        1400,
+        -240
+      ],
+      "credentials": {
+        "mySql": {
+          "id": "UPaGqhcnQd5QQFO3",
+          "name": "MySQL account"
+        }
+      }
+    }
+  ],
+  "pinData": {
+    "Webhook": [
+      {
+        "json": {
+          "headers": {
+            "host": "webhook.miles-api.com",
+            "x-real-ip": "162.158.162.116",
+            "x-forwarded-host": "webhook.miles-api.com",
+            "x-forwarded-server": "webhook.miles-api.com",
+            "x-forwarded-for": "115.240.189.114, 162.158.162.116",
+            "connection": "close",
+            "content-length": "63",
+            "accept-encoding": "gzip, br",
+            "cf-ray": "8920126c7f725f42-SIN",
+            "x-forwarded-proto": "https",
+            "content-type": "application/json",
+            "user-agent": "PostmanRuntime/7.39.0",
+            "accept": "*/*",
+            "cache-control": "no-cache",
+            "postman-token": "07afbf57-75e5-43e7-8705-4481878af18b",
+            "cf-connecting-ip": "115.240.189.114",
+            "cdn-loop": "cloudflare",
+            "cf-ipcountry": "IN"
+          },
+          "params": {},
+          "query": {},
+          "body": {
+            "enrollment_status": "deferred",
+            "can_id": [
+              "B-817398"
+            ]
+          }
+        }
+      }
+    ]
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 1,
+  "updatedAt": "2024-07-01T11:42:36.000Z",
+  "versionId": "82f444ff-76f2-4d59-8bd0-34f525667859"
+}
