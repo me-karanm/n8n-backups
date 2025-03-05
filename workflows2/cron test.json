@@ -1,0 +1,80 @@
+{
+  "active": true,
+  "connections": {
+    "Schedule Trigger": {
+      "main": [
+        [
+          {
+            "node": "WhatsApp Business Cloud",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2024-07-10T06:37:25.844Z",
+  "id": "e7Qd2oHQFg3U2iCE",
+  "meta": null,
+  "name": "cron test",
+  "nodes": [
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "cronExpression",
+              "expression": "51 12 * * *"
+            }
+          ]
+        }
+      },
+      "id": "dec674c9-f945-4f9b-a36e-da420dba09c2",
+      "name": "Schedule Trigger",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.1,
+      "position": [
+        660,
+        280
+      ]
+    },
+    {
+      "parameters": {
+        "phoneNumberId": "171009622770823",
+        "recipientPhoneNumber": "+919460596406",
+        "template": "testing_karan|en"
+      },
+      "id": "209df3e3-d050-4c33-941d-8b0760879649",
+      "name": "WhatsApp Business Cloud",
+      "type": "n8n-nodes-base.whatsApp",
+      "typeVersion": 1,
+      "position": [
+        840,
+        280
+      ],
+      "credentials": {
+        "whatsAppApi": {
+          "id": "JPvNp2kC4SudtNkr",
+          "name": "WhatsApp account New"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1",
+    "timezone": "Asia/Calcutta",
+    "saveManualExecutions": true,
+    "callerPolicy": "workflowsFromSameOwner"
+  },
+  "staticData": {
+    "node:Schedule Trigger": {
+      "recurrencyRules": [],
+      "recurrenceRules": []
+    }
+  },
+  "tags": [],
+  "triggerCount": 1,
+  "updatedAt": "2024-07-10T07:19:48.000Z",
+  "versionId": "8a217d83-993b-4278-afbd-48850c6f068d"
+}
