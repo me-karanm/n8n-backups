@@ -1,0 +1,228 @@
+{
+  "active": true,
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request1": {
+      "main": [
+        [
+          {
+            "node": "Supabase1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Supabase1": {
+      "main": [
+        [
+          {
+            "node": "Supabase",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2024-01-16T11:38:33.863Z",
+  "id": "YSdkcGkdwcfCmaQF",
+  "meta": null,
+  "name": "Superbot API meet Link",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "3b9ee6f5-3da8-409d-bc02-d9c29d088e8e",
+        "options": {}
+      },
+      "id": "9a46124f-5e53-4cfc-953e-f549387eb259",
+      "name": "Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        240,
+        300
+      ],
+      "webhookId": "3b9ee6f5-3da8-409d-bc02-d9c29d088e8e"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://graph.facebook.com/v17.0/108019349036743/messages",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "whatsAppApi",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"recipient_type\": \"individual\",\n  \"messaging_product\": \"whatsapp\",\n  \"to\": \"{{ $json.body.phone }}\",\n  \"type\": \"interactive\",\n  \"interactive\": {\n    \"type\": \"flow\",\n\n    \"body\": {\n      \"text\": \"Hi,{{ $json.body.name ?? \"\" }} \\nWe are thrilled to see your interest in the *The Miles US Pathway!*\\n\\nWith this unique pathway 100s of Miles alumni are working in the US with salaries of $60,000+ (INR 50 Lakhs+).\\n\\nTalk to our experts at your preferred time to know how you too can live your *American Dream!*\"\n    },\n    \"action\": {\n      \"name\": \"flow\",\n      \"parameters\": {\n        \"flow_message_version\": \"3\",\n        \"flow_token\": \"AQAAAAACS5FpgQ_cAAAAAD0QI3s.\",\n        \"flow_id\": \"393817819765500\",\n        \"flow_cta\": \"Book Your Slot\",\n        \"flow_action\": \"navigate\",\n        \"flow_action_payload\": {\n          \"screen\": \"SIGN_UP\",\n          \"data\": { \n            \"product_name\": \"name\",\n            \"product_description\": \"description\",\n            \"product_price\": 100\n          }\n        }\n      }\n    }\n  }\n}  ",
+        "options": {}
+      },
+      "id": "e00d4330-0c58-4c06-8534-3cfdfec276a0",
+      "name": "HTTP Request",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        940,
+        20
+      ],
+      "credentials": {
+        "whatsAppApi": {
+          "id": "KHcTD6EUGATb3z0D",
+          "name": "WhatsApp account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://graph.facebook.com/v17.0/108019349036743/messages",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "whatsAppApi",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n   \"messaging_product\":\"whatsapp\",\n   \"recipient_type\":\"individual\",\n   \"to\":\"‪‪{{ $json.body.phone ?? $json.body.Phone }}\",\n   \"type\":\"template\",\n   \"template\":{\n      \"name\":\"day_1_master_flow_meet_bookaing_jan_17\",\n      \"language\":{\n         \"code\":\"en\"\n      },\n      \"components\":[\n         {\n            \"type\":\"header\",\n            \"parameters\":[\n               {\n                  \"type\":\"document\",\n                  \"document\":{\n\"link\":\"https://blcwdqfhupddorxpdcjl.supabase.co/storage/v1/object/public/wa_assets/Miles-US-Pathway-Master-Deck_Dec%2012-2023.pdf\",\n\"filename\":\"Miles US-Pathway\"\n                  }\n               }\n            ]\n         },{\n   \"type\":\"body\",\n   \"parameters\":[\n      {\n         \"type\":\"text\",\n         \"text\":\"{{ $json.body.name ?? \"  \" }}\"\n      }\n   ]\n}\n      ]\n   }\n}    ",
+        "options": {}
+      },
+      "id": "ab37475a-2892-4629-957b-fea75bf463b3",
+      "name": "HTTP Request1",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        440,
+        300
+      ],
+      "credentials": {
+        "whatsAppApi": {
+          "id": "KHcTD6EUGATb3z0D",
+          "name": "WhatsApp account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "tableId": "message_status",
+        "fieldsUi": {
+          "fieldValues": [
+            {
+              "fieldId": "message_id",
+              "fieldValue": "={{ $('HTTP Request1').item.json.messages[0].id }}"
+            },
+            {
+              "fieldId": "send_status",
+              "fieldValue": "true"
+            },
+            {
+              "fieldId": "phone",
+              "fieldValue": "={{ $('HTTP Request1').item.json.contacts[0].input }}"
+            },
+            {
+              "fieldId": "counselling_session_id",
+              "fieldValue": "={{ $json.id }}"
+            },
+            {
+              "fieldId": "campaign_id",
+              "fieldValue": "199"
+            },
+            {
+              "fieldId": "next_flow_id",
+              "fieldValue": "k3sw7SqpDOL7bNIC"
+            }
+          ]
+        }
+      },
+      "id": "58daca9b-92c5-4d7d-b877-84830c9d7200",
+      "name": "Supabase",
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        880,
+        300
+      ],
+      "credentials": {
+        "supabaseApi": {
+          "id": "6stEFLC7gtftREcf",
+          "name": "Supabase Campaign manager"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "tableId": "counselling_session",
+        "fieldsUi": {
+          "fieldValues": [
+            {
+              "fieldId": "phone",
+              "fieldValue": "={{ $json.contacts[0].input }}"
+            },
+            {
+              "fieldId": "camp_id",
+              "fieldValue": "199"
+            }
+          ]
+        }
+      },
+      "id": "e1b46905-b135-445f-920b-5ded77fe35be",
+      "name": "Supabase1",
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        640,
+        300
+      ],
+      "credentials": {
+        "supabaseApi": {
+          "id": "6stEFLC7gtftREcf",
+          "name": "Supabase Campaign manager"
+        }
+      }
+    }
+  ],
+  "pinData": {
+    "Webhook": [
+      {
+        "json": {
+          "headers": {
+            "host": "webhook.miles-api.com",
+            "x-real-ip": "172.70.142.126",
+            "x-forwarded-host": "webhook.miles-api.com",
+            "x-forwarded-server": "webhook.miles-api.com",
+            "x-forwarded-for": "35.200.234.171, 172.70.142.126",
+            "connection": "close",
+            "content-length": "22",
+            "accept-encoding": "gzip",
+            "cf-ray": "847d91ae5f63603f-SIN",
+            "x-forwarded-proto": "https",
+            "user-agent": "GuzzleHttp/7",
+            "content-type": "application/json",
+            "cf-connecting-ip": "35.200.234.171",
+            "cdn-loop": "cloudflare",
+            "cf-ipcountry": "IN"
+          },
+          "params": {},
+          "query": {},
+          "body": {
+            "phone": "9866843219"
+          }
+        }
+      }
+    ]
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 1,
+  "updatedAt": "2024-01-19T09:57:54.000Z",
+  "versionId": "10c81e41-8af1-43e5-b1c3-c899286464dd"
+}
