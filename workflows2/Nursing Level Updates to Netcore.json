@@ -1,0 +1,35 @@
+{
+  "active": false,
+  "connections": {},
+  "createdAt": "2025-01-22T12:17:37.400Z",
+  "id": "uRYFRuDEVovGHYQ3",
+  "meta": null,
+  "name": "Nursing Level Updates to Netcore",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "send-nursing-updates",
+        "options": {}
+      },
+      "id": "1ecb1ad0-612a-4d5a-97f4-9d159e1250a6",
+      "name": "Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        700,
+        380
+      ],
+      "webhookId": "49421366-be2d-44b4-b7c1-bd03da7ddbca"
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 1,
+  "updatedAt": "2025-01-23T05:17:36.000Z",
+  "versionId": "3160f0c1-b7fb-4496-a45b-7a99db960070"
+}
