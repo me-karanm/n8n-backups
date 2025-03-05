@@ -1,0 +1,30 @@
+{
+  "active": false,
+  "connections": {},
+  "createdAt": "2025-03-05T06:16:57.313Z",
+  "id": "v8zSEWNp0w8MUxS4",
+  "meta": null,
+  "name": "My workflow 33",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "875a0d2b-5613-402a-befb-208e811516de",
+      "name": "When clicking \"Execute Workflow\"",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        500,
+        360
+      ]
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2025-03-05T06:16:57.313Z",
+  "versionId": "a2ea997d-8a3d-4c1f-b3d2-0a63d3888213"
+}
