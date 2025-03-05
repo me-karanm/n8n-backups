@@ -1,0 +1,239 @@
+{
+  "active": false,
+  "connections": {
+    "When clicking \"Execute Workflow\"": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Sheets": {
+      "main": [
+        [
+          {
+            "node": "Split In Batches",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Split In Batches": {
+      "main": [
+        [
+          {
+            "node": "IF",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "IF": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Split In Batches",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request": {
+      "main": [
+        [
+          {
+            "node": "Wait",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait": {
+      "main": [
+        [
+          {
+            "node": "Split In Batches",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2024-10-02T18:18:01.340Z",
+  "id": "5mhP9HMXrS1ud0AD",
+  "meta": null,
+  "name": "My workflow 13",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "c870079c-23b6-4de1-a60e-b6592bd38f0e",
+      "name": "When clicking \"Execute Workflow\"",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        660,
+        280
+      ]
+    },
+    {
+      "parameters": {
+        "authentication": "serviceAccount",
+        "documentId": {
+          "__rl": true,
+          "value": "https://docs.google.com/spreadsheets/d/1uNGMqXZvDqEqaXCtPF1_FAMGsPjP5jo-FxtSGOAYKDs/edit?usp=sharing",
+          "mode": "url",
+          "__regex": "https:\\/\\/(?:drive|docs)\\.google\\.com(?:\\/.*|)\\/d\\/([0-9a-zA-Z\\-_]+)(?:\\/.*|)"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 428712734,
+          "mode": "list",
+          "cachedResultName": "Ashish",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1uNGMqXZvDqEqaXCtPF1_FAMGsPjP5jo-FxtSGOAYKDs/edit#gid=428712734"
+        },
+        "options": {}
+      },
+      "id": "89731322-eb59-4558-8bd5-c5d74c353053",
+      "name": "Google Sheets",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4,
+      "position": [
+        880,
+        180
+      ],
+      "credentials": {
+        "googleApi": {
+          "id": "aiCprsG1ZRAOjrNn",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "batchSize": 1,
+        "options": {}
+      },
+      "id": "1f37064c-fdf8-4983-b25c-3e16877ef06c",
+      "name": "Split In Batches",
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 2,
+      "position": [
+        1100,
+        140
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "boolean": [
+            {
+              "value1": "={{ $json.user_id.isEmpty() }}",
+              "value2": true
+            }
+          ]
+        }
+      },
+      "id": "1d5a54b1-928b-45e3-833d-10a8b7c18b04",
+      "name": "IF",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        1320,
+        120
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://mfx-prod-154625965269.asia-south1.run.app/users/add-new-user",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MzYsInN0YXR1cyI6dHJ1ZSwiY3JlYXRlZF9hdCI6IjIwMjQtMDktMDZUMTc6NDQ6NDAuMjUzWiIsInVwZGF0ZWRfYXQiOiIyMDI0LTA5LTA2VDE3OjQ0OjQwLjI1M1oiLCJ1c2VySWQiOiJmNzc1NmY3MC00MjA1LTQ2NjItYjY2NS0zZDljNmE2ZGRhMzAiLCJmaXJzdE5hbWUiOiJqaXRoaW4iLCJsYXN0TmFtZSI6Imt1bWFyIiwicm9sZSI6MCwidXNlck5hbWUiOiJqaXRoaW4ua3VtYXJAbWlsZXNlZHVjYXRpb24uY29tIiwiZW1haWwiOiJqaXRoaW4ua3VtYXJAbWlsZXNlZHVjYXRpb24uY29tIiwicGhvbmUiOiI5OTgwNzgzNjA5IiwiY291bnRyeUNvZGUiOiI5MSIsIm1mYUVuYWJsZWQiOmZhbHNlLCJtZmFUeXBlIjpudWxsLCJtZmFTZWNyZXQiOm51bGwsInVzZXJUeXBlIjoxLCJsYXN0TG9naW4iOm51bGwsInNlc3Npb24iOjEwNTksImlhdCI6MTcyODI0NTY2OCwiZXhwIjoxNzI4MzMyMDY4fQ.WOWAvdE0Z0p1hr5GqJ1un3SvrlK5hzc7JFWMtns96U0"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "=\n{\n    \"firstName\": \"{{ $json.firstName }}\",\n    \"lastName\": \"{{ $json.lastName }}\",\n    \"email\": \"{{ $json.email }}\",\n    \"mobile_number\": \"91{{ $json.mobile_number }}\",\n    \"virtual_number\": \"\",\n    \"business_unit\": [\n        1\n    ],\n    \"team\": {{ $json.team }},\n    \"manager\": {{ $json.manager }},\n    \"role\": {{ $json.role }},\n    \"city\": {{ $json.city }},\n    \"employee_id\": \"{{ $json.employee_id }}\",\n    \"programs\": {{ $json.programs }},\n    \"email_credit\": {{ $json.email_credit }},\n    \"phone_credit\": {{ $json.phone_credit }},\n    \"view_email\": {{ $json.view_email }},\n    \"view_phone\": {{ $json.view_phone }},\n  \t\"current_business_unit\": 1\n}",
+        "options": {}
+      },
+      "id": "75959e1e-3a04-4c21-8b7a-251b53c419c3",
+      "name": "HTTP Request",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        1600,
+        240
+      ]
+    },
+    {
+      "parameters": {
+        "unit": "seconds"
+      },
+      "id": "f0b36447-e3d1-4cfd-955b-b8acb890b48f",
+      "name": "Wait",
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1,
+      "position": [
+        1820,
+        240
+      ],
+      "webhookId": "a664957e-f889-4e5c-bcd2-621c91e1dd9b"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://mfx-prod-154625965269.asia-south1.run.app/users/add-new-user",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MzYsInN0YXR1cyI6dHJ1ZSwiY3JlYXRlZF9hdCI6IjIwMjQtMDktMDZUMTc6NDQ6NDAuMjUzWiIsInVwZGF0ZWRfYXQiOiIyMDI0LTA5LTA2VDE3OjQ0OjQwLjI1M1oiLCJ1c2VySWQiOiJmNzc1NmY3MC00MjA1LTQ2NjItYjY2NS0zZDljNmE2ZGRhMzAiLCJmaXJzdE5hbWUiOiJqaXRoaW4iLCJsYXN0TmFtZSI6Imt1bWFyIiwicm9sZSI6MCwidXNlck5hbWUiOiJqaXRoaW4ua3VtYXJAbWlsZXNlZHVjYXRpb24uY29tIiwiZW1haWwiOiJqaXRoaW4ua3VtYXJAbWlsZXNlZHVjYXRpb24uY29tIiwicGhvbmUiOiI5OTgwNzgzNjA5IiwiY291bnRyeUNvZGUiOiI5MSIsIm1mYUVuYWJsZWQiOmZhbHNlLCJtZmFUeXBlIjpudWxsLCJtZmFTZWNyZXQiOm51bGwsInVzZXJUeXBlIjoxLCJsYXN0TG9naW4iOm51bGwsInNlc3Npb24iOjEwNTksImlhdCI6MTcyODI0NTY2OCwiZXhwIjoxNzI4MzMyMDY4fQ.WOWAvdE0Z0p1hr5GqJ1un3SvrlK5hzc7JFWMtns96U0"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "=\n{\n    \"firstName\": \"Google\",\n    \"lastName\": \"test\",\n    \"email\": \"google-test@mileseducation.com\",\n    \"mobile_number\": \"919090905000\",\n    \"virtual_number\": \"\",\n    \"business_unit\": [\n        1\n    ],\n    \"team\": 16,\n    \"manager\":40 ,\n    \"role\": 8,\n    \"city\": 2,\n    \"employee_id\": \"TMPE006\",\n    \"programs\":[1,2,3,4,5,6,7],\n    \"email_credit\": 100,\n    \"phone_credit\": 100,\n    \"view_email\": true,\n    \"view_phone\": true,\n  \t\"current_business_unit\": 1\n}",
+        "options": {}
+      },
+      "id": "52d75675-1678-41d4-9c6c-d7d8d516a2a5",
+      "name": "HTTP Request1",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        840,
+        -60
+      ]
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2024-10-07T13:09:20.000Z",
+  "versionId": "ff85cfd0-f478-481c-9e3c-38d0dc95064c"
+}
