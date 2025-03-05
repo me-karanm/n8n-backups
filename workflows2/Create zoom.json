@@ -1,0 +1,185 @@
+{
+  "active": true,
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "IF",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "IF": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "HTTP Request1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request": {
+      "main": [
+        [
+          {
+            "node": "Supabase1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2024-01-23T11:54:32.465Z",
+  "id": "kap5UxK13GzW1J41",
+  "meta": null,
+  "name": "Create zoom",
+  "nodes": [
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.zoom.us/v2/users/info@mileseducation.com/webinars",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "zoomOAuth2Api",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"agenda\": \"{{ $json.body.website_title }}\",\n  \"duration\": {{ $json.body.duration }},\n    \"approval_type\": 0,\n    \"attendees_and_panelists_reminder_email_notification\": {\n      \"enable\": true,\n      \"type\": 0\n    },\n    \"audio\": \"telephony\",\n    \"auto_recording\": \"cloud\",\n    \"hd_video\": true,\n    \"hd_video_for_attendees\": true,\n    \"host_video\": true,\n    \"panelist_authentication\": true,\n    \"meeting_authentication\": true,\n  \"start_time\": \"{{ $json.body.date_time }}\",\n  \"timezone\": \"Asia/Kolkata\",\n  \"topic\": \"{{ $json.body.webinar_name }}\",\n  \"type\": 5\n}",
+        "options": {}
+      },
+      "id": "514e21bc-af2b-4506-a323-ae851ccde9b8",
+      "name": "HTTP Request",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        920,
+        360
+      ],
+      "credentials": {
+        "zoomOAuth2Api": {
+          "id": "FyaXNpI7PVhEl5wV",
+          "name": "Zoom account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "06525690-2aa0-48a8-b736-7340bf9fa204",
+        "options": {}
+      },
+      "id": "26df3d17-7221-4323-8316-1d2d694cc034",
+      "name": "Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        380,
+        420
+      ],
+      "webhookId": "06525690-2aa0-48a8-b736-7340bf9fa204"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "boolean": [
+            {
+              "value1": "={{ $json.body.isUpdate }}"
+            }
+          ]
+        }
+      },
+      "id": "3d632db7-4b60-4d09-a4c2-9800f81dc3c4",
+      "name": "IF",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        540,
+        420
+      ]
+    },
+    {
+      "parameters": {
+        "method": "PATCH",
+        "url": "=https://api.zoom.us/v2/webinars/ {{ $json.body.webinar_id }}",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "zoomOAuth2Api",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"agenda\": \"{{ $json.body.website_title }}\",\n  \"duration\": {{ $json.body.duration }},\n    \"approval_type\": 0,\n    \"attendees_and_panelists_reminder_email_notification\": {\n      \"enable\": true,\n      \"type\": 0\n    },\n    \"audio\": \"telephony\",\n    \"auto_recording\": \"cloud\",\n    \"hd_video\": true,\n    \"hd_video_for_attendees\": true,\n    \"host_video\": true,\n    \"panelist_authentication\": true,\n    \"meeting_authentication\": true,\n  \"start_time\": \"{{ $json.body.date_time }}\",\n  \"timezone\": \"Asia/Kolkata\",\n  \"topic\": \"{{ $json.body.webinar_name }}\",\n  \"type\": 5\n}",
+        "options": {}
+      },
+      "id": "273e2a10-c06d-43a9-810e-dea337ad6a87",
+      "name": "HTTP Request1",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        920,
+        560
+      ],
+      "credentials": {
+        "zoomOAuth2Api": {
+          "id": "FyaXNpI7PVhEl5wV",
+          "name": "Zoom account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "tableId": "webinar",
+        "matchType": "allFilters",
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "id",
+              "condition": "eq",
+              "keyValue": "={{ $('IF').item.json.body.id }}"
+            }
+          ]
+        },
+        "fieldsUi": {
+          "fieldValues": [
+            {
+              "fieldId": "webinar_id",
+              "fieldValue": "={{ $json.id }}"
+            }
+          ]
+        }
+      },
+      "id": "1fea01cf-a558-4ea0-9665-4f1770221cf2",
+      "name": "Supabase1",
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        1280,
+        360
+      ],
+      "credentials": {
+        "supabaseApi": {
+          "id": "6stEFLC7gtftREcf",
+          "name": "Supabase Campaign manager"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 1,
+  "updatedAt": "2024-01-27T13:41:54.000Z",
+  "versionId": "7ef5f589-4f60-4d38-baaf-c992dc0ec6b7"
+}
