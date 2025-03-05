@@ -1,0 +1,40 @@
+{
+  "active": true,
+  "connections": {},
+  "createdAt": "2025-02-03T09:56:13.932Z",
+  "id": "yfZfrIZGSgB4mnbW",
+  "meta": null,
+  "name": "My workflow 26",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "netcore-batch-upload-status",
+        "responseMode": "lastNode",
+        "responseData": "allEntries",
+        "options": {}
+      },
+      "id": "86eaf159-d026-4c99-9c4b-e907e9bd0560",
+      "name": "Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        820,
+        460
+      ],
+      "webhookId": "0f394216-0dee-4b6e-b0f4-84b0ed6bbe82"
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1",
+    "timezone": "Asia/Calcutta",
+    "saveManualExecutions": true,
+    "callerPolicy": "workflowsFromSameOwner"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 1,
+  "updatedAt": "2025-02-03T13:21:57.000Z",
+  "versionId": "0f1488b4-87af-4139-a9bb-ec194f5481a4"
+}
