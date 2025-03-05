@@ -1,0 +1,389 @@
+{
+  "active": false,
+  "connections": {
+    "Error Trigger": {
+      "main": [
+        [
+          {
+            "node": "IF",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "IF": {
+      "main": [
+        [
+          {
+            "node": "WhatsApp Business Cloud3",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "WhatsApp Business Cloud4",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "WhatsApp Business Cloud5",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "WhatsApp Business Cloud2",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "WhatsApp Business Cloud",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "WhatsApp Business Cloud1",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "WhatsApp Business Cloud6",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2024-01-26T18:59:32.855Z",
+  "id": "JugK3JVukMVLS3ax",
+  "meta": null,
+  "name": "Notify Error",
+  "nodes": [
+    {
+      "parameters": {
+        "phoneNumberId": "108019349036743",
+        "recipientPhoneNumber": "916238133298",
+        "template": "notify_error|en",
+        "components": {
+          "component": [
+            {
+              "bodyParameters": {
+                "parameter": [
+                  {
+                    "text": "= {{ $json.workflow.name }}"
+                  },
+                  {
+                    "text": "=!!!!!!!! {{ $json.execution.error.message }}!!!!!!!!"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      },
+      "id": "7f5310df-2ee5-463d-8f81-b5ebc2473e95",
+      "name": "WhatsApp Business Cloud",
+      "type": "n8n-nodes-base.whatsApp",
+      "typeVersion": 1,
+      "position": [
+        1000,
+        340
+      ],
+      "credentials": {
+        "whatsAppApi": {
+          "id": "KHcTD6EUGATb3z0D",
+          "name": "Secondary | Marketing Miles Education"
+        }
+      }
+    },
+    {
+      "parameters": {},
+      "id": "523d3dbe-3921-45b5-92b3-0207c5dcfade",
+      "name": "Error Trigger",
+      "type": "n8n-nodes-base.errorTrigger",
+      "typeVersion": 1,
+      "position": [
+        160,
+        140
+      ]
+    },
+    {
+      "parameters": {
+        "phoneNumberId": "108019349036743",
+        "recipientPhoneNumber": "919930270910",
+        "template": "notify_error|en",
+        "components": {
+          "component": [
+            {
+              "bodyParameters": {
+                "parameter": [
+                  {
+                    "text": "= {{ $json.workflow.name }}"
+                  },
+                  {
+                    "text": "=!!!!!!!! {{ $json.execution.error.message }}!!!!!!!!"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      },
+      "id": "c88865b7-1eea-4c32-889a-61bc9687dd1b",
+      "name": "WhatsApp Business Cloud1",
+      "type": "n8n-nodes-base.whatsApp",
+      "typeVersion": 1,
+      "position": [
+        1000,
+        480
+      ],
+      "credentials": {
+        "whatsAppApi": {
+          "id": "KHcTD6EUGATb3z0D",
+          "name": "Secondary | Marketing Miles Education"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "phoneNumberId": "108019349036743",
+        "recipientPhoneNumber": "917349296479",
+        "template": "notify_error|en",
+        "components": {
+          "component": [
+            {
+              "bodyParameters": {
+                "parameter": [
+                  {
+                    "text": "= {{ $json.workflow.name }}"
+                  },
+                  {
+                    "text": "=!!!!!!!! {{ $json.execution.error.message }}!!!!!!!!"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      },
+      "id": "b8797cec-2964-4055-a2c2-6009316babd7",
+      "name": "WhatsApp Business Cloud2",
+      "type": "n8n-nodes-base.whatsApp",
+      "typeVersion": 1,
+      "position": [
+        1000,
+        620
+      ],
+      "credentials": {
+        "whatsAppApi": {
+          "id": "KHcTD6EUGATb3z0D",
+          "name": "Secondary | Marketing Miles Education"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "string": [
+            {
+              "value1": "={{ $json.workflow.name }}",
+              "value2": "Website - 1st Form Fill"
+            },
+            {
+              "value1": "={{ $json.execution.error.message }}",
+              "value2": "Cannot read properties of null (reading 'split')"
+            }
+          ]
+        }
+      },
+      "id": "f5e17c35-9357-426b-b524-273986836814",
+      "name": "IF",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        440,
+        60
+      ]
+    },
+    {
+      "parameters": {
+        "phoneNumberId": "108019349036743",
+        "recipientPhoneNumber": "916238133298",
+        "template": "notify_error|en",
+        "components": {
+          "component": [
+            {
+              "bodyParameters": {
+                "parameter": [
+                  {
+                    "text": "= {{ $json.workflow.name }}"
+                  },
+                  {
+                    "text": "=Received WA Lead without Email"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      },
+      "id": "89325efa-077b-470f-8dbf-8693dd5cc6bd",
+      "name": "WhatsApp Business Cloud3",
+      "type": "n8n-nodes-base.whatsApp",
+      "typeVersion": 1,
+      "position": [
+        1000,
+        -400
+      ],
+      "credentials": {
+        "whatsAppApi": {
+          "id": "KHcTD6EUGATb3z0D",
+          "name": "Secondary | Marketing Miles Education"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "phoneNumberId": "108019349036743",
+        "recipientPhoneNumber": "919930270910",
+        "template": "notify_error|en",
+        "components": {
+          "component": [
+            {
+              "bodyParameters": {
+                "parameter": [
+                  {
+                    "text": "= {{ $json.workflow.name }}"
+                  },
+                  {
+                    "text": "=Received WA Lead without Email"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      },
+      "id": "41feea32-cff2-450a-86cf-145a3de5e24e",
+      "name": "WhatsApp Business Cloud4",
+      "type": "n8n-nodes-base.whatsApp",
+      "typeVersion": 1,
+      "position": [
+        1000,
+        -260
+      ],
+      "credentials": {
+        "whatsAppApi": {
+          "id": "KHcTD6EUGATb3z0D",
+          "name": "Secondary | Marketing Miles Education"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "phoneNumberId": "108019349036743",
+        "recipientPhoneNumber": "917349296479",
+        "template": "notify_error|en",
+        "components": {
+          "component": [
+            {
+              "bodyParameters": {
+                "parameter": [
+                  {
+                    "text": "= {{ $json.workflow.name }}"
+                  },
+                  {
+                    "text": "=Received WA Lead without Email"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      },
+      "id": "813c02b3-4160-4271-9c8c-a429056efb11",
+      "name": "WhatsApp Business Cloud5",
+      "type": "n8n-nodes-base.whatsApp",
+      "typeVersion": 1,
+      "position": [
+        1000,
+        -120
+      ],
+      "credentials": {
+        "whatsAppApi": {
+          "id": "KHcTD6EUGATb3z0D",
+          "name": "Secondary | Marketing Miles Education"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "phoneNumberId": "108019349036743",
+        "recipientPhoneNumber": "919460596406",
+        "template": "notify_error|en",
+        "components": {
+          "component": [
+            {
+              "bodyParameters": {
+                "parameter": [
+                  {
+                    "text": "= {{ $json.workflow.name }}"
+                  },
+                  {
+                    "text": "=!!!!!!!! {{ $json.execution.error.message }}!!!!!!!!"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      },
+      "id": "488c7d7a-fffa-45ab-92be-506736a414bf",
+      "name": "WhatsApp Business Cloud6",
+      "type": "n8n-nodes-base.whatsApp",
+      "typeVersion": 1,
+      "position": [
+        1000,
+        760
+      ],
+      "credentials": {
+        "whatsAppApi": {
+          "id": "KHcTD6EUGATb3z0D",
+          "name": "Secondary | Marketing Miles Education"
+        }
+      }
+    }
+  ],
+  "pinData": {
+    "Error Trigger": [
+      {
+        "json": {
+          "execution": {
+            "id": "10668717",
+            "url": "https://webhook.miles-api.com/workflow/ce90Yhny1EbjFpOL/executions/10668717",
+            "error": {
+              "message": "Cannot read properties of null (reading 'split')",
+              "stack": "TypeError: Cannot read properties of null (reading 'split') at getToEmailArray (/usr/local/lib/node_modules/n8n/node_modules/n8n-nodes-base/dist/nodes/Mandrill/GenericFunctions.js:30:17) at Object.execute (/usr/local/lib/node_modules/n8n/node_modules/n8n-nodes-base/dist/nodes/Mandrill/Mandrill.node.js:620:81) at Workflow.runNode (/usr/local/lib/node_modules/n8n/node_modules/n8n-workflow/dist/Workflow.js:649:42) at /usr/local/lib/node_modules/n8n/node_modules/n8n-core/dist/WorkflowExecute.js:631:68 at processTicksAndRejections (node:internal/process/task_queues:95:5)"
+            },
+            "lastNodeExecuted": "Mandrill3",
+            "mode": "webhook"
+          },
+          "workflow": {
+            "id": "ce90Yhny1EbjFpOL",
+            "name": "Website - 1st Form Fill"
+          }
+        }
+      }
+    ]
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2025-02-06T06:01:22.000Z",
+  "versionId": "6992906b-642a-4ed1-a5ac-3bff5417690b"
+}
