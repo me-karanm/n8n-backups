@@ -1,0 +1,785 @@
+{
+  "active": true,
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Switch",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "MySQL": {
+      "main": [
+        [
+          {
+            "node": "MySQL1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "MySQL1": {
+      "main": [
+        [
+          {
+            "node": "Supabase",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Supabase": {
+      "main": [
+        [
+          {
+            "node": "IF",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "IF": {
+      "main": [
+        [
+          {
+            "node": "Supabase1",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        []
+      ]
+    },
+    "Switch": {
+      "main": [
+        [
+          {
+            "node": "MySQL",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "MySQL2",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "MySQL4",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "MySQL2": {
+      "main": [
+        [
+          {
+            "node": "MySQL3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "MySQL3": {
+      "main": [
+        [
+          {
+            "node": "Supabase2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Supabase2": {
+      "main": [
+        [
+          {
+            "node": "IF1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "IF1": {
+      "main": [
+        [
+          {
+            "node": "Supabase3",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        []
+      ]
+    },
+    "MySQL4": {
+      "main": [
+        [
+          {
+            "node": "MySQL5",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "MySQL5": {
+      "main": [
+        [
+          {
+            "node": "Supabase4",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Supabase4": {
+      "main": [
+        [
+          {
+            "node": "IF2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "IF2": {
+      "main": [
+        [
+          {
+            "node": "Supabase5",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        []
+      ]
+    }
+  },
+  "createdAt": "2023-11-10T05:59:53.277Z",
+  "id": "lQuMAKXSLIufdPVN",
+  "meta": null,
+  "name": "superbot register for webinar",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "register-for-webinar",
+        "options": {}
+      },
+      "id": "f09775f9-9e4e-409a-b612-1818c92233c8",
+      "name": "Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        400,
+        440
+      ],
+      "webhookId": "b86d246d-cc5a-40bf-8934-9b2305599302"
+    },
+    {
+      "parameters": {
+        "operation": "select",
+        "table": {
+          "__rl": true,
+          "value": "miles_mobiles",
+          "mode": "list",
+          "cachedResultName": "miles_mobiles"
+        },
+        "returnAll": true,
+        "where": {
+          "values": [
+            {
+              "column": "phone_number",
+              "condition": "LIKE",
+              "value": "=%{{ $json.body.phone }}%"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "f7e5191b-cefd-4f86-b15a-036c651f1a2f",
+      "name": "MySQL",
+      "type": "n8n-nodes-base.mySql",
+      "typeVersion": 2.1,
+      "position": [
+        780,
+        100
+      ],
+      "credentials": {
+        "mySql": {
+          "id": "UPaGqhcnQd5QQFO3",
+          "name": "MySQL account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "select",
+        "table": {
+          "__rl": true,
+          "value": "miles_emails",
+          "mode": "list",
+          "cachedResultName": "miles_emails"
+        },
+        "limit": 1,
+        "where": {
+          "values": [
+            {
+              "column": "person_id",
+              "value": "={{ $json.person_id }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "61ae9242-d1ec-454e-8d91-41f49d6b16f9",
+      "name": "MySQL1",
+      "type": "n8n-nodes-base.mySql",
+      "typeVersion": 2.1,
+      "position": [
+        940,
+        100
+      ],
+      "credentials": {
+        "mySql": {
+          "id": "UPaGqhcnQd5QQFO3",
+          "name": "MySQL account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "get",
+        "tableId": "leads_dump",
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "email",
+              "keyValue": "={{ $json.email }}"
+            },
+            {
+              "keyName": "webinar_id",
+              "keyValue": "27"
+            }
+          ]
+        }
+      },
+      "id": "76d2afa6-ba4d-4f40-ba20-8d672a72b376",
+      "name": "Supabase",
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        1100,
+        100
+      ],
+      "alwaysOutputData": true,
+      "credentials": {
+        "supabaseApi": {
+          "id": "6stEFLC7gtftREcf",
+          "name": "Supabase Campaign manager"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "boolean": [
+            {
+              "value1": "={{ $json.hasOwnProperty('id') }}"
+            }
+          ]
+        }
+      },
+      "id": "b9d4233b-e695-4524-9664-5fcbdc4ba793",
+      "name": "IF",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        1280,
+        100
+      ]
+    },
+    {
+      "parameters": {
+        "tableId": "leads_dump",
+        "fieldsUi": {
+          "fieldValues": [
+            {
+              "fieldId": "first_name",
+              "fieldValue": "={{ $('MySQL1').item.json.person_name }}"
+            },
+            {
+              "fieldId": "phone",
+              "fieldValue": "={{ $('Webhook').item.json.body.phone }}"
+            },
+            {
+              "fieldId": "email",
+              "fieldValue": "={{ $('MySQL1').item.json.email }}"
+            },
+            {
+              "fieldId": "camp_id",
+              "fieldValue": "85"
+            },
+            {
+              "fieldId": "webinar_id",
+              "fieldValue": "27"
+            },
+            {
+              "fieldId": "register_for_webinar",
+              "fieldValue": "true"
+            },
+            {
+              "fieldId": "course",
+              "fieldValue": "9"
+            },
+            {
+              "fieldId": "whatsapp",
+              "fieldValue": "true"
+            }
+          ]
+        }
+      },
+      "id": "e532c815-78b2-4072-a587-eb92da6ab6d2",
+      "name": "Supabase1",
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        1460,
+        -40
+      ],
+      "credentials": {
+        "supabaseApi": {
+          "id": "6stEFLC7gtftREcf",
+          "name": "Supabase Campaign manager"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "mode": "expression",
+        "output": "={{ $json.body.type == 1 ? 1 : $json.body.type == 2 ? 2 : 0  }}"
+      },
+      "id": "148cfd6b-0087-43ef-9631-4d1ce41cef82",
+      "name": "Switch",
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 1,
+      "position": [
+        560,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "select",
+        "table": {
+          "__rl": true,
+          "value": "miles_mobiles",
+          "mode": "list",
+          "cachedResultName": "miles_mobiles"
+        },
+        "returnAll": true,
+        "where": {
+          "values": [
+            {
+              "column": "phone_number",
+              "condition": "LIKE",
+              "value": "=%{{ $json.body.phone }}%"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "6a1d6507-b45d-47fc-ba4f-0baafbaf7232",
+      "name": "MySQL2",
+      "type": "n8n-nodes-base.mySql",
+      "typeVersion": 2.1,
+      "position": [
+        780,
+        280
+      ],
+      "credentials": {
+        "mySql": {
+          "id": "UPaGqhcnQd5QQFO3",
+          "name": "MySQL account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "select",
+        "table": {
+          "__rl": true,
+          "value": "miles_emails",
+          "mode": "list",
+          "cachedResultName": "miles_emails"
+        },
+        "limit": 1,
+        "where": {
+          "values": [
+            {
+              "column": "person_id",
+              "value": "={{ $json.person_id }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "b2a22f4b-276b-4322-a729-2b8cdd9dddf2",
+      "name": "MySQL3",
+      "type": "n8n-nodes-base.mySql",
+      "typeVersion": 2.1,
+      "position": [
+        940,
+        280
+      ],
+      "credentials": {
+        "mySql": {
+          "id": "UPaGqhcnQd5QQFO3",
+          "name": "MySQL account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "get",
+        "tableId": "leads_dump",
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "email",
+              "keyValue": "={{ $json.email }}"
+            },
+            {
+              "keyName": "webinar_id",
+              "keyValue": "29"
+            }
+          ]
+        }
+      },
+      "id": "16ebb1fa-dc37-4107-9c75-24924e024161",
+      "name": "Supabase2",
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        1100,
+        280
+      ],
+      "alwaysOutputData": true,
+      "credentials": {
+        "supabaseApi": {
+          "id": "6stEFLC7gtftREcf",
+          "name": "Supabase Campaign manager"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "boolean": [
+            {
+              "value1": "={{ $json.hasOwnProperty('id') }}"
+            }
+          ]
+        }
+      },
+      "id": "69c1e01d-d40e-4b10-97e4-0d76e249074f",
+      "name": "IF1",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        1280,
+        280
+      ]
+    },
+    {
+      "parameters": {
+        "tableId": "leads_dump",
+        "fieldsUi": {
+          "fieldValues": [
+            {
+              "fieldId": "first_name",
+              "fieldValue": "={{ $('MySQL3').item.json.person_name }}"
+            },
+            {
+              "fieldId": "phone",
+              "fieldValue": "={{ $('Webhook').item.json.body.phone }}"
+            },
+            {
+              "fieldId": "email",
+              "fieldValue": "={{ $('MySQL3').item.json.email }}"
+            },
+            {
+              "fieldId": "camp_id",
+              "fieldValue": "85"
+            },
+            {
+              "fieldId": "webinar_id",
+              "fieldValue": "29"
+            },
+            {
+              "fieldId": "register_for_webinar",
+              "fieldValue": "true"
+            },
+            {
+              "fieldId": "course",
+              "fieldValue": "2"
+            },
+            {
+              "fieldId": "whatsapp",
+              "fieldValue": "true"
+            }
+          ]
+        }
+      },
+      "id": "c8b28743-2380-4ff2-a8fd-75a700a58ccc",
+      "name": "Supabase3",
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        1480,
+        140
+      ],
+      "credentials": {
+        "supabaseApi": {
+          "id": "6stEFLC7gtftREcf",
+          "name": "Supabase Campaign manager"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "select",
+        "table": {
+          "__rl": true,
+          "value": "miles_mobiles",
+          "mode": "list",
+          "cachedResultName": "miles_mobiles"
+        },
+        "returnAll": true,
+        "where": {
+          "values": [
+            {
+              "column": "phone_number",
+              "condition": "LIKE",
+              "value": "=%{{ $json.body.phone }}%"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "a2e105a9-1bfd-4aef-a016-9563da6158dc",
+      "name": "MySQL4",
+      "type": "n8n-nodes-base.mySql",
+      "typeVersion": 2.1,
+      "position": [
+        780,
+        480
+      ],
+      "credentials": {
+        "mySql": {
+          "id": "UPaGqhcnQd5QQFO3",
+          "name": "MySQL account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "select",
+        "table": {
+          "__rl": true,
+          "value": "miles_emails",
+          "mode": "list",
+          "cachedResultName": "miles_emails"
+        },
+        "limit": 1,
+        "where": {
+          "values": [
+            {
+              "column": "person_id",
+              "value": "={{ $json.person_id }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "b0919efd-bb7f-431f-9c38-a498ff2ea19b",
+      "name": "MySQL5",
+      "type": "n8n-nodes-base.mySql",
+      "typeVersion": 2.1,
+      "position": [
+        940,
+        480
+      ],
+      "credentials": {
+        "mySql": {
+          "id": "UPaGqhcnQd5QQFO3",
+          "name": "MySQL account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "get",
+        "tableId": "leads_dump",
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "email",
+              "keyValue": "={{ $json.email }}"
+            },
+            {
+              "keyName": "webinar_id",
+              "keyValue": "28"
+            }
+          ]
+        }
+      },
+      "id": "b6b0b7ca-1f05-4934-be3a-92c49ca280ce",
+      "name": "Supabase4",
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        1100,
+        480
+      ],
+      "alwaysOutputData": true,
+      "credentials": {
+        "supabaseApi": {
+          "id": "6stEFLC7gtftREcf",
+          "name": "Supabase Campaign manager"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "boolean": [
+            {
+              "value1": "={{ $json.hasOwnProperty('id') }}"
+            }
+          ]
+        }
+      },
+      "id": "750dd08a-c78a-4ab1-b889-a97a99e19466",
+      "name": "IF2",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        1280,
+        480
+      ]
+    },
+    {
+      "parameters": {
+        "tableId": "leads_dump",
+        "fieldsUi": {
+          "fieldValues": [
+            {
+              "fieldId": "first_name",
+              "fieldValue": "={{ $('MySQL5').item.json.person_name }}"
+            },
+            {
+              "fieldId": "phone",
+              "fieldValue": "={{ $('Webhook').item.json.body.phone }}"
+            },
+            {
+              "fieldId": "email",
+              "fieldValue": "={{ $('MySQL5').item.json.email }}"
+            },
+            {
+              "fieldId": "camp_id",
+              "fieldValue": "85"
+            },
+            {
+              "fieldId": "webinar_id",
+              "fieldValue": "28"
+            },
+            {
+              "fieldId": "register_for_webinar",
+              "fieldValue": "true"
+            },
+            {
+              "fieldId": "course",
+              "fieldValue": "3"
+            },
+            {
+              "fieldId": "whatsapp",
+              "fieldValue": "true"
+            }
+          ]
+        }
+      },
+      "id": "92eee757-433e-4c5e-b939-a58966187eb6",
+      "name": "Supabase5",
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        1480,
+        340
+      ],
+      "credentials": {
+        "supabaseApi": {
+          "id": "6stEFLC7gtftREcf",
+          "name": "Supabase Campaign manager"
+        }
+      }
+    }
+  ],
+  "pinData": {
+    "Webhook": [
+      {
+        "json": {
+          "headers": {
+            "host": "webhook.miles-api.com",
+            "x-real-ip": "172.69.203.20",
+            "x-forwarded-host": "webhook.miles-api.com",
+            "x-forwarded-server": "webhook.miles-api.com",
+            "x-forwarded-for": "35.200.234.171, 172.69.203.20",
+            "connection": "close",
+            "content-length": "33",
+            "accept-encoding": "gzip",
+            "cf-ray": "8324a806c8ff5526-DEL",
+            "x-forwarded-proto": "https",
+            "user-agent": "GuzzleHttp/7",
+            "content-type": "application/json",
+            "cf-connecting-ip": "35.200.234.171",
+            "cdn-loop": "cloudflare",
+            "cf-ipcountry": "IN"
+          },
+          "params": {},
+          "query": {},
+          "body": {
+            "type": "1",
+            "phone": "9866843219"
+          }
+        }
+      }
+    ]
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 1,
+  "updatedAt": "2023-12-11T09:21:45.000Z",
+  "versionId": "2c990a84-69af-4906-87a3-6ea331e69ba6"
+}
