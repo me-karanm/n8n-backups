@@ -1,0 +1,35 @@
+{
+  "active": true,
+  "connections": {},
+  "createdAt": "2024-01-12T14:49:29.906Z",
+  "id": "rPKuEp6qIX7sbmYH",
+  "meta": null,
+  "name": "Google ads",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "d10fc4e4-ffb4-4e2f-8c82-b27d7569a03e",
+        "options": {}
+      },
+      "id": "d9b85acb-4cf1-42a7-9971-e185671af270",
+      "name": "Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        660,
+        320
+      ],
+      "webhookId": "d10fc4e4-ffb4-4e2f-8c82-b27d7569a03e"
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 1,
+  "updatedAt": "2024-01-12T14:50:51.000Z",
+  "versionId": "966de398-0ea4-4b69-acbb-dc8c9fcd4cf4"
+}
