@@ -1,0 +1,329 @@
+{
+  "active": true,
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "IF",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "IF": {
+      "main": [
+        [
+          {
+            "node": "WhatsApp Business Cloud2",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Mandrill",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "WhatsApp Business Cloud3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2023-10-26T07:39:52.332Z",
+  "id": "OShbxn90mVXgk0Zp",
+  "meta": null,
+  "name": "odoo - send whatsapp",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "send-whatsapp",
+        "options": {}
+      },
+      "id": "451722a5-4266-403b-b21c-ed26f4ab56c7",
+      "name": "Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        400,
+        -40
+      ],
+      "webhookId": "744c36b1-0512-430c-b9d0-93543ad2f1db"
+    },
+    {
+      "parameters": {
+        "phoneNumberId": "108019349036743",
+        "recipientPhoneNumber": "={{ $json.body.number }}",
+        "template": "odoo_message|en",
+        "components": {
+          "component": [
+            {
+              "bodyParameters": {
+                "parameter": [
+                  {
+                    "text": "={{ $json.body.name }}"
+                  },
+                  {
+                    "text": "={{ $json.body.message }}"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      },
+      "id": "77708f11-1c7f-4aa2-9497-5b54fb7a62c5",
+      "name": "WhatsApp Business Cloud",
+      "type": "n8n-nodes-base.whatsApp",
+      "typeVersion": 1,
+      "position": [
+        1520,
+        80
+      ],
+      "credentials": {
+        "whatsAppApi": {
+          "id": "KHcTD6EUGATb3z0D",
+          "name": "Secondary | Marketing Miles Education"
+        }
+      },
+      "continueOnFail": true
+    },
+    {
+      "parameters": {
+        "template": "us-pathway-otp",
+        "fromEmail": "usp@mileseducation.com",
+        "toEmail": "={{ $json.body.email }}",
+        "options": {
+          "subject": "One-time password US Pathway Miles!"
+        },
+        "mergeVarsUi": {
+          "mergeVarsValues": [
+            {
+              "name": "OTP",
+              "content": "={{ $json.body.message.match(/\\d{6}/)[0] }}"
+            },
+            {
+              "name": "NAME",
+              "content": "={{ $json.body.name }}"
+            }
+          ]
+        }
+      },
+      "id": "2f697fbf-9f7e-4f91-b5f6-d94e94c9beea",
+      "name": "Mandrill",
+      "type": "n8n-nodes-base.mandrill",
+      "typeVersion": 1,
+      "position": [
+        1120,
+        240
+      ],
+      "credentials": {
+        "mandrillApi": {
+          "id": "t5XAtcUI45PwVrj0",
+          "name": "Mandrill account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "phoneNumberId": "108019349036743",
+        "recipientPhoneNumber": "={{ $json.body.number }}",
+        "template": "odoo_template|en",
+        "components": {
+          "component": [
+            {
+              "bodyParameters": {
+                "parameter": [
+                  {
+                    "text": "={{ $json.body.name }}"
+                  },
+                  {
+                    "text": "={{ $json.body.code ?? 'xxx' }}"
+                  }
+                ]
+              }
+            },
+            {
+              "type": "header",
+              "headerParameters": {
+                "parameter": [
+                  {
+                    "type": "image",
+                    "imageLink": "https://blcwdqfhupddorxpdcjl.supabase.co/storage/v1/object/public/wa_assets/Accounting Fun-01.jpg"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      },
+      "id": "7d1edd12-4ddd-482b-8b55-415278868853",
+      "name": "WhatsApp Business Cloud1",
+      "type": "n8n-nodes-base.whatsApp",
+      "typeVersion": 1,
+      "position": [
+        960,
+        460
+      ],
+      "credentials": {
+        "whatsAppApi": {
+          "id": "KHcTD6EUGATb3z0D",
+          "name": "Secondary | Marketing Miles Education"
+        }
+      },
+      "continueOnFail": true
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "string": [
+            {
+              "value1": "={{ $json.body?.type ?? \"otp\" }}",
+              "value2": "meeting"
+            }
+          ]
+        }
+      },
+      "id": "bedb1b46-c8fc-4d33-865b-ffaa8938c875",
+      "name": "IF",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        680,
+        -40
+      ]
+    },
+    {
+      "parameters": {
+        "phoneNumberId": "108019349036743",
+        "recipientPhoneNumber": "={{ $json.body.number }}",
+        "template": "usp_meeting_link1|en",
+        "components": {
+          "component": [
+            {
+              "bodyParameters": {
+                "parameter": [
+                  {
+                    "text": "={{ $json.body.name }}"
+                  },
+                  {
+                    "text": "={{ $json.body.link }}"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      },
+      "id": "02e6600d-3e01-4e78-bb4e-df7b930882e8",
+      "name": "WhatsApp Business Cloud2",
+      "type": "n8n-nodes-base.whatsApp",
+      "typeVersion": 1,
+      "position": [
+        1120,
+        -240
+      ],
+      "credentials": {
+        "whatsAppApi": {
+          "id": "KHcTD6EUGATb3z0D",
+          "name": "Secondary | Marketing Miles Education"
+        }
+      },
+      "continueOnFail": true
+    },
+    {
+      "parameters": {
+        "phoneNumberId": "108019349036743",
+        "recipientPhoneNumber": "={{ $json.body.number }}",
+        "template": "auth_verification|en",
+        "components": {
+          "component": [
+            {
+              "bodyParameters": {
+                "parameter": [
+                  {
+                    "text": "={{ $json.body.otp }}"
+                  }
+                ]
+              }
+            },
+            {
+              "type": "button",
+              "sub_type": "url",
+              "buttonParameters": {
+                "parameter": {
+                  "payload": "={{ $json.body.otp }}"
+                }
+              }
+            }
+          ]
+        }
+      },
+      "id": "23e31dbd-42b1-4dc7-a981-f9bf60621425",
+      "name": "WhatsApp Business Cloud3",
+      "type": "n8n-nodes-base.whatsApp",
+      "typeVersion": 1,
+      "position": [
+        1120,
+        -20
+      ],
+      "credentials": {
+        "whatsAppApi": {
+          "id": "KHcTD6EUGATb3z0D",
+          "name": "Secondary | Marketing Miles Education"
+        }
+      },
+      "continueOnFail": true
+    }
+  ],
+  "pinData": {
+    "Webhook": [
+      {
+        "json": {
+          "headers": {
+            "host": "webhook.miles-api.com",
+            "x-real-ip": "172.70.142.237",
+            "x-forwarded-host": "webhook.miles-api.com",
+            "x-forwarded-server": "webhook.miles-api.com",
+            "x-forwarded-for": "34.93.141.96, 172.70.142.237",
+            "connection": "close",
+            "content-length": "270",
+            "accept-encoding": "gzip, br",
+            "cf-ray": "85d7011aabd64a2f-SIN",
+            "x-forwarded-proto": "https",
+            "user-agent": "python-requests/2.25.1",
+            "accept": "*/*",
+            "content-type": "application/json",
+            "cf-connecting-ip": "34.93.141.96",
+            "cdn-loop": "cloudflare",
+            "cf-ipcountry": "IN"
+          },
+          "params": {},
+          "query": {},
+          "body": {
+            "name": "Jithin",
+            "email": "jithinkpraveen@gmail.com",
+            "number": "916238133298",
+            "link": "https://bluebutton.mileseducation.org/bigbluebutton/api/join?meetingID=2e786e44-39f4-11ef-839d-ab031bc363f8&password=PP2xcpxu&fullName=Sobin&checksum=26cfc261ada9d069f907240f9593c8419d13c954",
+            "message": "Welcome to US Pathway Miles! Please use the following one-time password (OTP) to log in securely: 729268.If you did not request this OTP, please contact our support immediately"
+          }
+        }
+      }
+    ]
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 1,
+  "updatedAt": "2025-02-24T09:14:50.000Z",
+  "versionId": "012180b4-8fec-4900-848b-47566d5b2ef9"
+}
