@@ -1,0 +1,126 @@
+{
+  "active": true,
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Supabase",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Supabase": {
+      "main": [
+        [
+          {
+            "node": "Item Lists",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Item Lists": {
+      "main": [
+        [
+          {
+            "node": "Respond to Webhook",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2024-08-28T12:07:11.368Z",
+  "id": "qIxVJicmPp13wWZx",
+  "meta": null,
+  "name": "Get user",
+  "nodes": [
+    {
+      "parameters": {
+        "path": "6f356de6-546f-433b-98b9-22fccb7a6da5",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "id": "b9eff19e-c156-43fe-9599-983d9119319f",
+      "name": "Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        660,
+        280
+      ],
+      "webhookId": "6f356de6-546f-433b-98b9-22fccb7a6da5"
+    },
+    {
+      "parameters": {
+        "operation": "getAll",
+        "tableId": "webinar_registration",
+        "returnAll": true,
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "registration_email",
+              "condition": "eq",
+              "keyValue": "={{ $json.query.email }}"
+            }
+          ]
+        }
+      },
+      "id": "43d9438e-b302-4a3c-bd38-cfcd7a0f3557",
+      "name": "Supabase",
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        880,
+        280
+      ],
+      "credentials": {
+        "supabaseApi": {
+          "id": "6stEFLC7gtftREcf",
+          "name": "Supabase Campaign manager"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "id": "fb9feab4-914a-4b95-a602-a604a61b7284",
+      "name": "Respond to Webhook",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1,
+      "position": [
+        1320,
+        280
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "concatenateItems",
+        "aggregate": "aggregateAllItemData"
+      },
+      "id": "d03adbaf-eee0-4b94-a59a-c4239c6b87f2",
+      "name": "Item Lists",
+      "type": "n8n-nodes-base.itemLists",
+      "typeVersion": 3,
+      "position": [
+        1100,
+        280
+      ]
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 1,
+  "updatedAt": "2024-08-28T12:18:06.000Z",
+  "versionId": "88f1e3bc-4b6b-43c4-b002-6ade4b717ef1"
+}
