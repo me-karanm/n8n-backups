@@ -1,0 +1,487 @@
+{
+  "active": true,
+  "connections": {
+    "HTTP Request": {
+      "main": [
+        [
+          {
+            "node": "Wait",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "MySQL1": {
+      "main": [
+        [
+          {
+            "node": "MySQL3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "MySQL": {
+      "main": [
+        [
+          {
+            "node": "MySQL2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "MySQL2": {
+      "main": [
+        [
+          {
+            "node": "Code",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "MySQL3": {
+      "main": [
+        [
+          {
+            "node": "MySQL",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Item Lists": {
+      "main": [
+        [
+          {
+            "node": "Split In Batches",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Split In Batches": {
+      "main": [
+        [
+          {
+            "node": "MySQL1",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Item Lists1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait": {
+      "main": [
+        [
+          {
+            "node": "Set",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Code2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code2": {
+      "main": [
+        [
+          {
+            "node": "Item Lists",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Item Lists1": {
+      "main": [
+        [
+          {
+            "node": "Respond to Webhook",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Set": {
+      "main": [
+        [
+          {
+            "node": "Split In Batches",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2024-07-26T09:42:24.938Z",
+  "id": "QUjDYPThIz6ch7Z3",
+  "meta": null,
+  "name": "Push payments to ats",
+  "nodes": [
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://uspathway.mileseducation.com/update/student/payment",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ $json }}",
+        "options": {}
+      },
+      "id": "eb1ab350-603d-4e85-82a0-9fc7475c5d14",
+      "name": "HTTP Request",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        920,
+        240
+      ],
+      "continueOnFail": true
+    },
+    {
+      "parameters": {
+        "operation": "select",
+        "table": {
+          "__rl": true,
+          "value": "miles_enrollments",
+          "mode": "list",
+          "cachedResultName": "miles_enrollments"
+        },
+        "where": {
+          "values": [
+            {
+              "column": "identity",
+              "value": "={{ $json.can_id }}"
+            },
+            {
+              "column": "course",
+              "value": "USP"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "34cda50f-a244-40b9-b9ae-d272372ccbb7",
+      "name": "MySQL1",
+      "type": "n8n-nodes-base.mySql",
+      "typeVersion": 2.1,
+      "position": [
+        -80,
+        240
+      ],
+      "credentials": {
+        "mySql": {
+          "id": "UPaGqhcnQd5QQFO3",
+          "name": "MySQL account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "select",
+        "table": {
+          "__rl": true,
+          "value": "miles_purchases",
+          "mode": "list",
+          "cachedResultName": "miles_purchases"
+        },
+        "limit": 1,
+        "where": {
+          "values": [
+            {
+              "column": "identity",
+              "value": "={{ $('MySQL1').item.json.identity }}"
+            },
+            {
+              "column": "name",
+              "value": "USP"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "41f6f67c-a72b-4af9-a895-1956df50cd93",
+      "name": "MySQL",
+      "type": "n8n-nodes-base.mySql",
+      "typeVersion": 2.1,
+      "position": [
+        360,
+        240
+      ],
+      "credentials": {
+        "mySql": {
+          "id": "UPaGqhcnQd5QQFO3",
+          "name": "MySQL account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "select",
+        "table": {
+          "__rl": true,
+          "value": "miles_receipts",
+          "mode": "list",
+          "cachedResultName": "miles_receipts"
+        },
+        "where": {
+          "values": [
+            {
+              "column": "identity",
+              "value": "={{ $json.identity }}"
+            },
+            {
+              "column": "course",
+              "value": "USP"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "8939418b-9e94-4661-b794-b574fd159ccc",
+      "name": "MySQL2",
+      "type": "n8n-nodes-base.mySql",
+      "typeVersion": 2.1,
+      "position": [
+        560,
+        240
+      ],
+      "credentials": {
+        "mySql": {
+          "id": "UPaGqhcnQd5QQFO3",
+          "name": "MySQL account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "select",
+        "table": {
+          "__rl": true,
+          "value": "miles_mobiles",
+          "mode": "list",
+          "cachedResultName": "miles_mobiles"
+        },
+        "limit": 1,
+        "where": {
+          "values": [
+            {
+              "column": "person_id",
+              "value": "={{ $json.person_id }}"
+            },
+            {
+              "column": "pri_mary",
+              "value": "1"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "6e49ae7c-0d4f-4626-976f-c23ec1c04ea1",
+      "name": "MySQL3",
+      "type": "n8n-nodes-base.mySql",
+      "typeVersion": 2.1,
+      "position": [
+        160,
+        240
+      ],
+      "credentials": {
+        "mySql": {
+          "id": "UPaGqhcnQd5QQFO3",
+          "name": "MySQL account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "const mergedJson = {\n    \"params\": {\n        \"can_id\": $('MySQL1').item.json.identity,\n    }\n}\n\nmergedJson['params']['payment'] = []; \nitems.forEach((item, index) => {\n  mergedJson['params']['payment'].push(            {\n                \"mode\": item.json.transaction_type,\n                \"txnid\": item.json.transaction_id,\n                \"receipt_no\": item.json.receipt_no,\n                \"amount\": item.json.amount,\n                \"discount\": ($('MySQL').item.json.actual_cost - $('MySQL').item.json.agreed_cost ),\n                \"agreed_cost\": $('MySQL').item.json.agreed_cost,\n                \"cheque_no\": item.json.cheque_no,\n                \"date\": item.json.created_at\n            });\n});\n\n\nreturn [{json: mergedJson}]; \n"
+      },
+      "id": "b2719190-c783-46b2-8718-46ee8745429e",
+      "name": "Code",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        720,
+        240
+      ]
+    },
+    {
+      "parameters": {
+        "fieldToSplitOut": "can_id",
+        "options": {}
+      },
+      "id": "0918f170-2c61-4ee8-81ac-576a2633f550",
+      "name": "Item Lists",
+      "type": "n8n-nodes-base.itemLists",
+      "typeVersion": 3,
+      "position": [
+        -540,
+        440
+      ]
+    },
+    {
+      "parameters": {
+        "batchSize": 1,
+        "options": {}
+      },
+      "id": "029e84da-e9e1-4c72-884c-f3913b37e463",
+      "name": "Split In Batches",
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 2,
+      "position": [
+        -320,
+        440
+      ]
+    },
+    {
+      "parameters": {
+        "unit": "seconds"
+      },
+      "id": "e32d84b4-f4e5-4d9e-8738-7280b432fb91",
+      "name": "Wait",
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1,
+      "position": [
+        1100,
+        240
+      ],
+      "webhookId": "ebc47a85-9cd2-453b-a8dc-01eaa278a756"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "id": "990ee2a3-c8fc-4e9a-ad7c-77b4eb357ef3",
+      "name": "Respond to Webhook",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1,
+      "position": [
+        140,
+        540
+      ]
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "push-payment-data",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "id": "e484864f-0fa9-490d-8c73-ff9b2998da3b",
+      "name": "Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        -1320,
+        600
+      ],
+      "webhookId": "2c084fd6-f33f-41ee-bfac-31e8b9e12415"
+    },
+    {
+      "parameters": {
+        "jsCode": "// Loop over input items and add a new field called 'myNewField' to the JSON of each one\n// for (const item of $input.all()) {\n//   item.json.can_id =  item.\n// ;\n// }\n\nreturn $input.first().json.body;"
+      },
+      "id": "ccb0a929-4d85-4996-9b9a-38e58a7b7d9d",
+      "name": "Code2",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -1100,
+        600
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "concatenateItems",
+        "aggregate": "aggregateAllItemData"
+      },
+      "id": "6733b77e-a254-4289-9539-35f9819e7836",
+      "name": "Item Lists1",
+      "type": "n8n-nodes-base.itemLists",
+      "typeVersion": 3,
+      "position": [
+        -100,
+        540
+      ]
+    },
+    {
+      "parameters": {
+        "keepOnlySet": true,
+        "values": {
+          "string": [
+            {
+              "name": "response",
+              "value": "={{ $('HTTP Request').item.json }}"
+            },
+            {
+              "name": "request",
+              "value": "={{ $('Code').item.json.params }}"
+            }
+          ],
+          "boolean": [
+            {
+              "name": "status",
+              "value": "={{ $json?.success ?? false }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "c96f0db6-749d-41c5-8618-3873300dc8cd",
+      "name": "Set",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 2,
+      "position": [
+        1320,
+        240
+      ]
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 1,
+  "updatedAt": "2024-07-26T09:49:42.000Z",
+  "versionId": "f3459393-c21d-4ead-ba19-4abc42572a6e"
+}
