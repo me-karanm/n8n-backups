@@ -1,0 +1,172 @@
+{
+  "active": false,
+  "connections": {
+    "When clicking \"Execute Workflow\"": {
+      "main": [
+        [
+          {
+            "node": "Google Sheets",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Split In Batches": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request": {
+      "main": [
+        [
+          {
+            "node": "Wait",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait": {
+      "main": [
+        [
+          {
+            "node": "Split In Batches",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Sheets": {
+      "main": [
+        [
+          {
+            "node": "Split In Batches",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-02-14T04:12:54.290Z",
+  "id": "GnEbSJHMrmiSK0Gh",
+  "meta": null,
+  "name": "re allocate leads",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "b62865f2-6f5c-423b-9edb-c054fa703f71",
+      "name": "When clicking \"Execute Workflow\"",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        100,
+        140
+      ]
+    },
+    {
+      "parameters": {
+        "batchSize": 1,
+        "options": {}
+      },
+      "id": "25c80cec-2b79-4a99-9bbc-9c06b85351ba",
+      "name": "Split In Batches",
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 2,
+      "position": [
+        820,
+        120
+      ]
+    },
+    {
+      "parameters": {
+        "url": "=https://mfx-prod-154625965269.asia-south1.run.app/leads/update-lead-candidate-id/{{ $json.id }}",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "authorization",
+              "value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MzYsInN0YXR1cyI6dHJ1ZSwiY3JlYXRlZF9hdCI6IjIwMjQtMDktMDZUMTc6NDQ6NDAuMjUzWiIsInVwZGF0ZWRfYXQiOiIyMDI0LTA5LTA2VDE3OjQ0OjQwLjI1M1oiLCJ1c2VySWQiOiJmNzc1NmY3MC00MjA1LTQ2NjItYjY2NS0zZDljNmE2ZGRhMzAiLCJmaXJzdE5hbWUiOiJqaXRoaW4iLCJsYXN0TmFtZSI6Imt1bWFyIiwicm9sZSI6MCwidXNlck5hbWUiOiJqaXRoaW4ua3VtYXJAbWlsZXNlZHVjYXRpb24uY29tIiwiZW1haWwiOiJqaXRoaW4ua3VtYXJAbWlsZXNlZHVjYXRpb24uY29tIiwicGhvbmUiOiI5OTgwNzgzNjA5IiwiY291bnRyeUNvZGUiOiI5MSIsIm1mYUVuYWJsZWQiOmZhbHNlLCJtZmFUeXBlIjpudWxsLCJtZmFTZWNyZXQiOm51bGwsInVzZXJUeXBlIjoxLCJsYXN0TG9naW4iOm51bGwsInNlc3Npb24iOjcwOTc3LCJpYXQiOjE3NDExNTM3NzQsImV4cCI6MTc0MTI0MDE3NH0.ronyluHEln32SnUzfi6gRM5wNFT1YC7C956s-9UmINM"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "87b60fc3-c7be-428f-a301-f12445702d22",
+      "name": "HTTP Request",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        1040,
+        100
+      ],
+      "continueOnFail": true
+    },
+    {
+      "parameters": {
+        "amount": 0.4,
+        "unit": "seconds"
+      },
+      "id": "dd6421e5-a912-430d-b7a6-a21e53838ed9",
+      "name": "Wait",
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1,
+      "position": [
+        1260,
+        100
+      ],
+      "webhookId": "fbbbf07f-5bca-46e8-8812-d05c7001ca3f"
+    },
+    {
+      "parameters": {
+        "authentication": "serviceAccount",
+        "documentId": {
+          "__rl": true,
+          "value": "https://docs.google.com/spreadsheets/d/1Oz0rqnKQdmW3xIuwAs1AYTxL-jK-wKxyDdgAX6E3Ws0/edit?usp=sharing",
+          "mode": "url",
+          "__regex": "https:\\/\\/(?:drive|docs)\\.google\\.com(?:\\/.*|)\\/d\\/([0-9a-zA-Z\\-_]+)(?:\\/.*|)"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 419145543,
+          "mode": "list",
+          "cachedResultName": "data-1739849551439",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1Oz0rqnKQdmW3xIuwAs1AYTxL-jK-wKxyDdgAX6E3Ws0/edit#gid=419145543"
+        },
+        "options": {}
+      },
+      "id": "db051775-4151-4111-8c9f-b6872bb4f385",
+      "name": "Google Sheets",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4,
+      "position": [
+        360,
+        0
+      ],
+      "credentials": {
+        "googleApi": {
+          "id": "aiCprsG1ZRAOjrNn",
+          "name": "Google Sheets account"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2025-03-05T05:50:04.000Z",
+  "versionId": "ec1a24a9-9226-402e-aea1-08a4ce057966"
+}
