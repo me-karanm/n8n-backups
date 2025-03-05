@@ -1,0 +1,804 @@
+{
+  "active": true,
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Supabase",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Split In Batches",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "IF": {
+      "main": [
+        [
+          {
+            "node": "IF2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Postgres1": {
+      "main": [
+        [
+          {
+            "node": "IF1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "IF1": {
+      "main": [
+        [
+          {
+            "node": "Postgres2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Postgres4": {
+      "main": [
+        [
+          {
+            "node": "Postgres5",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Postgres5": {
+      "main": [
+        [
+          {
+            "node": "WhatsApp Business Cloud",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "WhatsApp Business Cloud": {
+      "main": [
+        [
+          {
+            "node": "Supabase1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Postgres6": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "IF2": {
+      "main": [
+        [
+          {
+            "node": "Supabase2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Supabase2": {
+      "main": [
+        [
+          {
+            "node": "Postgres6",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Split In Batches": {
+      "main": [
+        [
+          {
+            "node": "Execute Workflow",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Execute Workflow": {
+      "main": [
+        [
+          {
+            "node": "Split In Batches",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-01-23T05:18:09.360Z",
+  "id": "dJnHzZfjMTw5qeNq",
+  "meta": null,
+  "name": "Accounting Dream Superbot",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "accounting-dream-updates",
+        "options": {}
+      },
+      "id": "568f7ed7-fd79-454e-b022-d35add252e35",
+      "name": "Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        120,
+        260
+      ],
+      "webhookId": "d129990d-da3e-4aab-8b4b-9f18a18e768e"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "string": [
+            {
+              "value1": "={{ $('Webhook').item.json.body.status }}",
+              "value2": "answered"
+            }
+          ]
+        }
+      },
+      "id": "563ecd10-6fe5-4457-b68a-8f7f51ab06fa",
+      "name": "IF",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        680,
+        260
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://mfx-prod-154625965269.asia-south1.run.app/enquiries/add",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n\"first_name\":\"{{ $('Webhook').item.json[\"body\"][\"first_name\"] }}\",\n\"last_name\":\"{{ $('Webhook').item.json[\"body\"][\"first_name\"] }}\",\n\"phone\":\"+91{{ $('Webhook').item.json[\"body\"][\"phone\"] }}\",\n\"contact_number\":\"+91{{ $('Webhook').item.json[\"body\"][\"phone\"] }}\",\n\"email\":\"{{ $('Webhook').item.json[\"body\"][\"email\"] }}\",\n\"course_id\":3,\n\"whatsapp_opt_in\":true,\n\"educational_qualification\":null,\n\"campaign_id\":{{ $('Supabase2').item.json[\"mf2_camp_id\"] }},\n\"interested_webinar_id\": {{ $json[\"id\"] }},\n\"register_for_webinar\":true,\n\"coming_from\": \"superbot_camp_{{ $('Webhook').item.json[\"body\"][\"candidate_id\"] }}\"\n}",
+        "options": {}
+      },
+      "id": "75c32f2e-8f6a-4792-b2a2-2947ab02197d",
+      "name": "HTTP Request",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        1720,
+        60
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "select",
+        "schema": {
+          "__rl": true,
+          "mode": "list",
+          "value": "public"
+        },
+        "table": {
+          "__rl": true,
+          "value": "webinar_registration",
+          "mode": "name"
+        },
+        "where": {
+          "values": [
+            {
+              "column": "leadId",
+              "value": "={{ $json.leadId }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "cb2fbecd-21ed-4cb8-a2d2-d1e144721cfc",
+      "name": "Postgres",
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.2,
+      "position": [
+        520,
+        -640
+      ],
+      "credentials": {
+        "postgres": {
+          "id": "VPJUosohtvWNBW4H",
+          "name": "MF Prod (DO NOT USE)"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "select",
+        "schema": {
+          "__rl": true,
+          "mode": "list",
+          "value": "public"
+        },
+        "table": {
+          "__rl": true,
+          "value": "email",
+          "mode": "name"
+        },
+        "where": {
+          "values": [
+            {
+              "column": "email",
+              "value": "={{ $json.result.email }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "35bd35c5-e8f3-465a-a3dc-f2cb4eb8791c",
+      "name": "Postgres1",
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.2,
+      "position": [
+        1120,
+        -500
+      ],
+      "credentials": {
+        "postgres": {
+          "id": "VPJUosohtvWNBW4H",
+          "name": "MF Prod (DO NOT USE)"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "string": [
+            {
+              "value1": "={{ $json.email }}",
+              "operation": "isEmpty"
+            }
+          ]
+        }
+      },
+      "id": "778f6d96-660b-49b6-90f9-d2132c236b36",
+      "name": "IF1",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        1360,
+        -500
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "select",
+        "schema": {
+          "__rl": true,
+          "mode": "list",
+          "value": "public"
+        },
+        "table": {
+          "__rl": true,
+          "value": "phone",
+          "mode": "list",
+          "cachedResultName": "phone"
+        },
+        "where": {
+          "values": [
+            {
+              "column": "phoneNumber",
+              "value": "={{ $('Webhook').item.json.body.phone.slice(3) }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "18d635d5-495b-4b47-a944-704b1e810aff",
+      "name": "Postgres2",
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.2,
+      "position": [
+        1600,
+        -600
+      ],
+      "credentials": {
+        "postgres": {
+          "id": "VPJUosohtvWNBW4H",
+          "name": "MF Prod (DO NOT USE)"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "select",
+        "schema": {
+          "__rl": true,
+          "mode": "list",
+          "value": "public"
+        },
+        "table": {
+          "__rl": true,
+          "value": "lead",
+          "mode": "name"
+        },
+        "where": {
+          "values": [
+            {
+              "column": "id",
+              "value": "={{ $('Webhook').item.json.body.identity }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "2cf4c012-aa85-4ed0-85ba-ad16077e45f2",
+      "name": "Postgres3",
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.2,
+      "position": [
+        880,
+        -620
+      ],
+      "credentials": {
+        "postgres": {
+          "id": "VPJUosohtvWNBW4H",
+          "name": "MF Prod (DO NOT USE)"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "phoneNumberId": "108019349036743",
+        "recipientPhoneNumber": "={{ $('Webhook').item.json.body.phone }}",
+        "template": "webinar_registration_confirmation|en",
+        "components": {
+          "component": [
+            {
+              "bodyParameters": {
+                "parameter": [
+                  {
+                    "text": "={{ $('Webhook').item.json.body.first_name }}"
+                  },
+                  {
+                    "text": "={{ $json.date_string }}"
+                  },
+                  {
+                    "text": "={{ $json.time_string }}"
+                  }
+                ]
+              }
+            },
+            {
+              "type": "button",
+              "sub_type": "url",
+              "buttonParameters": {
+                "parameter": {
+                  "payload": "={{ $('Postgres4').item.json.join_url.slice(33) }}"
+                }
+              }
+            }
+          ]
+        }
+      },
+      "id": "4538ba2f-2d74-4796-9252-961c06502426",
+      "name": "WhatsApp Business Cloud",
+      "type": "n8n-nodes-base.whatsApp",
+      "typeVersion": 1,
+      "position": [
+        560,
+        -420
+      ],
+      "credentials": {
+        "whatsAppApi": {
+          "id": "KHcTD6EUGATb3z0D",
+          "name": "Secondary | Marketing Miles Education"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "select",
+        "schema": {
+          "__rl": true,
+          "mode": "list",
+          "value": "public"
+        },
+        "table": {
+          "__rl": true,
+          "value": "webinar_registration",
+          "mode": "name"
+        },
+        "returnAll": true,
+        "where": {
+          "values": [
+            {
+              "column": "leadId",
+              "value": "={{ $('Postgres3').item.json.id }}"
+            },
+            {
+              "column": "webinarId",
+              "value": "={{ $('Webhook').item.json.body.orientation_session_id }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "825b60fb-77ee-4117-97b0-2162a3355d31",
+      "name": "Postgres4",
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.2,
+      "position": [
+        60,
+        -420
+      ],
+      "credentials": {
+        "postgres": {
+          "id": "VPJUosohtvWNBW4H",
+          "name": "MF Prod (DO NOT USE)"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "select",
+        "schema": {
+          "__rl": true,
+          "mode": "list",
+          "value": "public"
+        },
+        "table": {
+          "__rl": true,
+          "value": "webinar",
+          "mode": "name"
+        },
+        "where": {
+          "values": [
+            {
+              "column": "id",
+              "value": "={{ $('Webhook').item.json.body.orientation_session_id }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "e311966f-b015-45f6-a049-cfa1e47e9026",
+      "name": "Postgres5",
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.2,
+      "position": [
+        300,
+        -420
+      ],
+      "credentials": {
+        "postgres": {
+          "id": "VPJUosohtvWNBW4H",
+          "name": "MF Prod (DO NOT USE)"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "tableId": "conclave_superbot_logger",
+        "fieldsUi": {
+          "fieldValues": [
+            {
+              "fieldId": "first_name",
+              "fieldValue": "={{ $json.body.first_name }}"
+            },
+            {
+              "fieldId": "phone",
+              "fieldValue": "={{ $json.body.phone }}"
+            },
+            {
+              "fieldId": "status",
+              "fieldValue": "={{ $json.body.status }}"
+            },
+            {
+              "fieldId": "campaign_id",
+              "fieldValue": "={{ $json.body.candidate_id }}"
+            },
+            {
+              "fieldId": "email",
+              "fieldValue": "={{ $json.body.email }}"
+            },
+            {
+              "fieldId": "connected_date_time",
+              "fieldValue": "={{ $json.body.connected_date_time }}"
+            },
+            {
+              "fieldId": "orientation_session_id",
+              "fieldValue": "={{ $json.body.orientation_session_id }}"
+            },
+            {
+              "fieldId": "outcome",
+              "fieldValue": "={{ $json.body.outcome }}"
+            },
+            {
+              "fieldId": "disposition",
+              "fieldValue": "={{ $json.body.disposition }}"
+            },
+            {
+              "fieldId": "audience_type",
+              "fieldValue": "={{ $json.body.audience }}"
+            },
+            {
+              "fieldId": "identity",
+              "fieldValue": "={{ $json.body.identity }} {{ $json.body.vertical }}"
+            },
+            {
+              "fieldId": "vertical",
+              "fieldValue": "={{ $json.body.vertical }}"
+            },
+            {
+              "fieldId": "coming_from",
+              "fieldValue": "=accounting_dream_superbot_{{ $json.body.orientation_session_id }}"
+            },
+            {
+              "fieldId": "superbot_campaign_id",
+              "fieldValue": "={{ $json.body.campaign_id }}"
+            }
+          ]
+        }
+      },
+      "id": "292c3899-4afe-42e8-a6e1-bbfe3cac4c85",
+      "name": "Supabase",
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        440,
+        260
+      ],
+      "credentials": {
+        "supabaseApi": {
+          "id": "6stEFLC7gtftREcf",
+          "name": "Supabase Campaign manager"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "tableId": "conclave_superbot_logger",
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "id",
+              "condition": "eq",
+              "keyValue": "={{ $('Supabase').item.json.id }}"
+            }
+          ]
+        },
+        "fieldsUi": {
+          "fieldValues": [
+            {
+              "fieldId": "whatsapp_status",
+              "fieldValue": "={{ $json.messages[0].id }}"
+            }
+          ]
+        }
+      },
+      "id": "fa001ee0-0be0-46d0-a380-a7f617c590de",
+      "name": "Supabase1",
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        840,
+        -420
+      ],
+      "credentials": {
+        "supabaseApi": {
+          "id": "6stEFLC7gtftREcf",
+          "name": "Supabase Campaign manager"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "select",
+        "schema": {
+          "__rl": true,
+          "mode": "list",
+          "value": "public"
+        },
+        "table": {
+          "__rl": true,
+          "value": "webinar",
+          "mode": "list",
+          "cachedResultName": "webinar"
+        },
+        "limit": 1,
+        "where": {
+          "values": [
+            {
+              "column": "courseId",
+              "value": "3"
+            }
+          ]
+        },
+        "sort": {
+          "values": [
+            {
+              "column": "created_at",
+              "direction": "DESC"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "7fb34939-b569-49f5-8c78-5155191313ce",
+      "name": "Postgres6",
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.2,
+      "position": [
+        1480,
+        60
+      ],
+      "credentials": {
+        "postgres": {
+          "id": "VPJUosohtvWNBW4H",
+          "name": "MF Prod (DO NOT USE)"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "string": [
+            {
+              "value1": "={{ $json.disposition }}",
+              "value2": "Interested for CPA or CMA"
+            },
+            {
+              "value1": "={{ $json.disposition }}",
+              "value2": "Interested for USP"
+            },
+            {
+              "value1": "={{ $json.disposition }}",
+              "value2": "Interested to Register for Webinar"
+            }
+          ]
+        },
+        "combineOperation": "any"
+      },
+      "id": "92a8dbe2-0186-418c-8849-09f553e87027",
+      "name": "IF2",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        940,
+        120
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "get",
+        "tableId": "campaign",
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "id",
+              "keyValue": "={{ $('Webhook').item.json.body.candidate_id }}"
+            }
+          ]
+        }
+      },
+      "id": "2aad9620-7e46-48e2-b0d7-0b44ffe13681",
+      "name": "Supabase2",
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        1220,
+        60
+      ],
+      "credentials": {
+        "supabaseApi": {
+          "id": "6stEFLC7gtftREcf",
+          "name": "Supabase Campaign manager"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "workflowId": "0GKSluZaVAkP2tCi"
+      },
+      "id": "462a00c0-4191-45b5-b3e6-e2efbe4138f3",
+      "name": "Execute Workflow",
+      "type": "n8n-nodes-base.executeWorkflow",
+      "typeVersion": 1,
+      "position": [
+        720,
+        540
+      ],
+      "retryOnFail": true,
+      "continueOnFail": true
+    },
+    {
+      "parameters": {
+        "batchSize": 1,
+        "options": {}
+      },
+      "id": "3989aedf-53c6-4566-ac14-4d5fee580786",
+      "name": "Split In Batches",
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 2,
+      "position": [
+        320,
+        540
+      ]
+    }
+  ],
+  "pinData": {
+    "Webhook": [
+      {
+        "json": {
+          "headers": {
+            "host": "callback.miles-api.com",
+            "x-real-ip": "172.71.202.2",
+            "x-forwarded-host": "callback.miles-api.com",
+            "x-forwarded-server": "callback.miles-api.com",
+            "x-forwarded-for": "35.200.234.171, 172.71.202.2",
+            "connection": "close",
+            "content-length": "266",
+            "accept-encoding": "gzip, br",
+            "cf-ray": "8c9aac3d3e9ff480-BOM",
+            "x-forwarded-proto": "https"
+          },
+          "params": {},
+          "query": {},
+          "body": {
+            "vertical": "accounting",
+            "audience": "not-enrolled",
+            "campaign_id": 19734,
+            "status": "answered",
+            "outcome": "disposed",
+            "disposition": "Interested For CPA Or CMA",
+            "connected_date_time": "2025-01-23 15:16:02",
+            "first_name": "Vanshika",
+            "email": "vansi.khandelwal@mileseducation.com",
+            "orientation_session_id": "13",
+            "candidate_id": 1374,
+            "identity": "8466951",
+            "phone": "9513813998"
+          }
+        }
+      }
+    ]
+  },
+  "settings": {
+    "executionOrder": "v1",
+    "timezone": "Asia/Calcutta",
+    "saveManualExecutions": true,
+    "callerPolicy": "workflowsFromSameOwner",
+    "errorWorkflow": "JugK3JVukMVLS3ax"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 1,
+  "updatedAt": "2025-03-04T08:01:27.000Z",
+  "versionId": "15179bf9-4743-489f-8a56-069f794544b1"
+}
