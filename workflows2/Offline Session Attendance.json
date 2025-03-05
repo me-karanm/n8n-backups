@@ -1,0 +1,158 @@
+{
+  "active": true,
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Supabase",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Supabase": {
+      "main": [
+        [
+          {
+            "node": "WhatsApp Business Cloud",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2024-09-19T13:24:22.073Z",
+  "id": "0wowsHdUoeBafGzx",
+  "meta": null,
+  "name": "Offline Session Attendance",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "offline-attendance",
+        "options": {
+          "responseHeaders": {
+            "entries": [
+              {
+                "name": "Access-Control-Allow-Origin",
+                "value": "*"
+              }
+            ]
+          }
+        }
+      },
+      "id": "449f7a00-6f42-4037-9708-2ed01f2620c9",
+      "name": "Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        760,
+        360
+      ],
+      "webhookId": "9effe98b-495f-496d-947e-a6b8b93ef923"
+    },
+    {
+      "parameters": {
+        "tableId": "leads_dump",
+        "fieldsUi": {
+          "fieldValues": [
+            {
+              "fieldId": "first_name",
+              "fieldValue": "={{ $json.body.name }}"
+            },
+            {
+              "fieldId": "email",
+              "fieldValue": "={{ $json.body.email }}"
+            },
+            {
+              "fieldId": "phone",
+              "fieldValue": "={{ $json.body.phone }}"
+            },
+            {
+              "fieldId": "city",
+              "fieldValue": "={{ $json.body.location }}"
+            },
+            {
+              "fieldId": "camp_id",
+              "fieldValue": "1015"
+            },
+            {
+              "fieldId": "education_qualification",
+              "fieldValue": "={{ $json.body.eduDetails }}"
+            },
+            {
+              "fieldId": "attendance_code",
+              "fieldValue": "={{ $json.body.uniqueCode }}"
+            }
+          ]
+        }
+      },
+      "id": "22cc4ffc-dc92-4900-81e0-2d124f6397ee",
+      "name": "Supabase",
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        980,
+        360
+      ],
+      "credentials": {
+        "supabaseApi": {
+          "id": "6stEFLC7gtftREcf",
+          "name": "Supabase Campaign manager"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "phoneNumberId": "171009622770823",
+        "recipientPhoneNumber": "={{ $('Webhook').item.json.body.phone }}",
+        "template": "offline_session_attendace_confirmation|en",
+        "components": {
+          "component": [
+            {
+              "bodyParameters": {
+                "parameter": [
+                  {
+                    "text": "={{ $('Webhook').item.json.body.name }}"
+                  },
+                  {
+                    "text": "={{ $('Webhook').item.json.body.uniqueCode }}"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      },
+      "id": "d4503888-477d-4fe3-8f2a-bc83a95a6ce1",
+      "name": "WhatsApp Business Cloud",
+      "type": "n8n-nodes-base.whatsApp",
+      "typeVersion": 1,
+      "position": [
+        1180,
+        360
+      ],
+      "credentials": {
+        "whatsAppApi": {
+          "id": "JPvNp2kC4SudtNkr",
+          "name": "WhatsApp account New"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1",
+    "timezone": "Asia/Calcutta",
+    "saveManualExecutions": true,
+    "callerPolicy": "workflowsFromSameOwner"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 1,
+  "updatedAt": "2024-09-23T10:28:53.000Z",
+  "versionId": "df757bd5-93df-423e-96b7-df79211cce07"
+}
