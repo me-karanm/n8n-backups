@@ -1,0 +1,403 @@
+{
+  "active": false,
+  "connections": {
+    "When clicking \"Execute Workflow\"": {
+      "main": [
+        [
+          {
+            "node": "Supabase",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Supabase": {
+      "main": [
+        [
+          {
+            "node": "Split In Batches",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Split In Batches": {
+      "main": [
+        [
+          {
+            "node": "Postgres1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Postgres": {
+      "main": [
+        [
+          {
+            "node": "IF8",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Postgres1": {
+      "main": [
+        [
+          {
+            "node": "Postgres",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "IF8": {
+      "main": [
+        [
+          {
+            "node": "Split In Batches",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Postgres2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Postgres2": {
+      "main": [
+        [
+          {
+            "node": "Split In Batches",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2024-11-16T11:38:50.712Z",
+  "id": "FPmDRzYS7TeWxh1L",
+  "meta": null,
+  "name": "My workflow 16",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "d483bee6-6558-4cab-8834-cb510924a3fd",
+      "name": "When clicking \"Execute Workflow\"",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        300,
+        200
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "getAll",
+        "tableId": "mf2_usp_level_update",
+        "returnAll": true,
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "batch",
+              "condition": "eq",
+              "keyValue": "8"
+            }
+          ]
+        }
+      },
+      "id": "da6958a8-df95-40ae-935b-d1c4f7a21094",
+      "name": "Supabase",
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        480,
+        200
+      ],
+      "credentials": {
+        "supabaseApi": {
+          "id": "6stEFLC7gtftREcf",
+          "name": "Supabase Campaign manager"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "batchSize": 1,
+        "options": {}
+      },
+      "id": "bb532d5b-d9cf-47f2-9841-1fee8eeb7e4c",
+      "name": "Split In Batches",
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 2,
+      "position": [
+        680,
+        80
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "select",
+        "schema": {
+          "__rl": true,
+          "mode": "list",
+          "value": "public"
+        },
+        "table": {
+          "__rl": true,
+          "value": "lead_program",
+          "mode": "list",
+          "cachedResultName": "lead_program"
+        },
+        "limit": 1,
+        "where": {
+          "values": [
+            {
+              "column": "programId",
+              "value": "3"
+            },
+            {
+              "column": "leadId",
+              "value": "={{ $json.id }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "038b230a-9187-46ce-8f6f-535e852e8ff4",
+      "name": "Postgres",
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.2,
+      "position": [
+        1320,
+        -20
+      ],
+      "alwaysOutputData": true,
+      "credentials": {
+        "postgres": {
+          "id": "VPJUosohtvWNBW4H",
+          "name": "Postgres account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "select",
+        "schema": {
+          "__rl": true,
+          "mode": "list",
+          "value": "public"
+        },
+        "table": {
+          "__rl": true,
+          "value": "lead",
+          "mode": "list",
+          "cachedResultName": "lead"
+        },
+        "limit": 1,
+        "where": {
+          "values": [
+            {
+              "column": "candidate_id",
+              "value": "={{ $json.candidate_id }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "5b169797-0df6-4a11-bfe8-02c59fae6c78",
+      "name": "Postgres1",
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.2,
+      "position": [
+        1100,
+        -20
+      ],
+      "credentials": {
+        "postgres": {
+          "id": "VPJUosohtvWNBW4H",
+          "name": "Postgres account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "boolean": [
+            {
+              "value1": "={{ $json.hasOwnProperty('id') }}",
+              "value2": true
+            }
+          ]
+        }
+      },
+      "id": "b83fcf46-f04a-4c48-9f63-004deaf1cad3",
+      "name": "IF8",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        1560,
+        -20
+      ]
+    },
+    {
+      "parameters": {
+        "schema": {
+          "__rl": true,
+          "mode": "list",
+          "value": "public"
+        },
+        "table": {
+          "__rl": true,
+          "value": "lead_program",
+          "mode": "list",
+          "cachedResultName": "lead_program"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "status": true,
+            "created_at": "2024-11-16T11:48:19.000Z",
+            "updated_at": "2024-11-16T11:48:20.000Z",
+            "programId": 3,
+            "leadId": "={{ $('Postgres1').item.json.id }}",
+            "levelId": "={{ $('Split In Batches').item.json.level_id }}"
+          },
+          "matchingColumns": [
+            "id"
+          ],
+          "schema": [
+            {
+              "id": "id",
+              "displayName": "id",
+              "required": false,
+              "defaultMatch": true,
+              "display": true,
+              "type": "number",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "status",
+              "displayName": "status",
+              "required": true,
+              "defaultMatch": false,
+              "display": true,
+              "type": "boolean",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "created_by",
+              "displayName": "created_by",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "updated_by",
+              "displayName": "updated_by",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "created_at",
+              "displayName": "created_at",
+              "required": true,
+              "defaultMatch": false,
+              "display": true,
+              "type": "dateTime",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "updated_at",
+              "displayName": "updated_at",
+              "required": true,
+              "defaultMatch": false,
+              "display": true,
+              "type": "dateTime",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "comment",
+              "displayName": "comment",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "programId",
+              "displayName": "programId",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "levelId",
+              "displayName": "levelId",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "leadId",
+              "displayName": "leadId",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "canBeUsedToMatch": true
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "ea12eca6-0922-4478-8b23-3799db6c323a",
+      "name": "Postgres2",
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.2,
+      "position": [
+        1720,
+        140
+      ],
+      "credentials": {
+        "postgres": {
+          "id": "VPJUosohtvWNBW4H",
+          "name": "Postgres account 2"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2024-11-18T06:03:34.000Z",
+  "versionId": "6711b377-a4eb-43ad-be3b-a137fc038558"
+}
