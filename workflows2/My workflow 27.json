@@ -1,0 +1,63 @@
+{
+  "active": false,
+  "connections": {
+    "When clicking \"Execute Workflow\"": {
+      "main": [
+        [
+          {
+            "node": "Postgres",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-02-03T12:44:45.062Z",
+  "id": "yfREQIc5AxlacAFI",
+  "meta": null,
+  "name": "My workflow 27",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "b30a07ad-5f71-4680-9f5d-953ac6f4fe89",
+      "name": "When clicking \"Execute Workflow\"",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        340,
+        460
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "executeQuery",
+        "query": "SELECT\n  \"public\".\"net_enquiry\".\"id\" AS \"id\",\n  \"public\".\"net_enquiry\".\"status\" AS \"status\",\n  \"public\".\"net_enquiry\".\"created_by\" AS \"created_by\",\n  \"public\".\"net_enquiry\".\"updated_by\" AS \"updated_by\",\n  \"public\".\"net_enquiry\".\"created_at\" AS \"created_at\",\n  \"public\".\"net_enquiry\".\"updated_at\" AS \"updated_at\",\n  \"public\".\"net_enquiry\".\"first_name\" AS \"first_name\",\n  \"public\".\"net_enquiry\".\"last_name\" AS \"last_name\",\n  \"public\".\"net_enquiry\".\"phone\" AS \"phone\",\n  \"public\".\"net_enquiry\".\"email\" AS \"email\",\n  \"public\".\"net_enquiry\".\"city\" AS \"city\",\n  \"public\".\"net_enquiry\".\"coming_from\" AS \"coming_from\",\n  \"public\".\"net_enquiry\".\"gcl_id\" AS \"gcl_id\",\n  \"public\".\"net_enquiry\".\"whatsapp_opt_in\" AS \"whatsapp_opt_in\",\n  \"public\".\"net_enquiry\".\"register_for_webinar\" AS \"register_for_webinar\",\n  \"public\".\"net_enquiry\".\"intrested_to_work_in_us\" AS \"intrested_to_work_in_us\",\n  \"public\".\"net_enquiry\".\"page_full_url\" AS \"page_full_url\",\n  \"public\".\"net_enquiry\".\"url_page_path\" AS \"url_page_path\",\n  \"public\".\"net_enquiry\".\"linkedin_url\" AS \"linkedin_url\",\n  \"public\".\"net_enquiry\".\"isFromWelcomeBack\" AS \"isFromWelcomeBack\",\n  \"public\".\"net_enquiry\".\"uuid\" AS \"uuid\",\n  \"public\".\"net_enquiry\".\"program_id\" AS \"program_id\",\n  \"public\".\"net_enquiry\".\"campaign_id\" AS \"campaign_id\",\n  \"public\".\"net_enquiry\".\"educationQualificationId\" AS \"educationQualificationId\",\n  \"public\".\"net_enquiry\".\"leadId\" AS \"leadId\"\nFROM\n  \"public\".\"net_enquiry\"\nWHERE\n  (\"public\".\"net_enquiry\".\"campaign_id\" = 13)\n \n   AND (\n    \"public\".\"net_enquiry\".\"created_at\" >= timestamp with time zone '2025-01-29 00:00:00.000 +03:00'\n  )\n  AND (\n    \"public\".\"net_enquiry\".\"created_at\" < timestamp with time zone '2025-02-01 00:00:00.000 +03:00'\n  )\nORDER BY\n  \"public\".\"net_enquiry\".\"created_at\" DESC",
+        "options": {}
+      },
+      "id": "9cd17257-dbc8-446f-a0ed-cc3f17190431",
+      "name": "Postgres",
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.2,
+      "position": [
+        620,
+        460
+      ],
+      "credentials": {
+        "postgres": {
+          "id": "VPJUosohtvWNBW4H",
+          "name": "MF Prod (DO NOT USE)"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2025-02-04T08:37:56.000Z",
+  "versionId": "d414a299-9b26-4168-a017-d892c69581f3"
+}
