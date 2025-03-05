@@ -1,0 +1,252 @@
+{
+  "active": true,
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Set",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Respond to Webhook",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Supabase": {
+      "main": [
+        [
+          {
+            "node": "Supabase1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Set": {
+      "main": [
+        [
+          {
+            "node": "Supabase",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2023-09-01T13:14:55.090Z",
+  "id": "RfaCCnoZ969RtluR",
+  "meta": null,
+  "name": "linkedin webhook",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "register-linkedin",
+        "options": {
+          "responseHeaders": {
+            "entries": [
+              {
+                "name": "Access-Control-Allow-Headers",
+                "value": "*"
+              },
+              {
+                "name": "Access-Control-Allow-Methods",
+                "value": "*"
+              }
+            ]
+          }
+        }
+      },
+      "id": "2490ef64-f14c-4aa2-936a-e08bae6f30bd",
+      "name": "Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        520,
+        360
+      ],
+      "webhookId": "1633af2a-546b-42c6-864a-c2127de239f0"
+    },
+    {
+      "parameters": {
+        "operation": "get",
+        "tableId": "campaign",
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "uuid",
+              "keyValue": "={{ $json.tk }}"
+            }
+          ]
+        }
+      },
+      "id": "db826043-e15b-4ec2-9b6d-d763db07f74f",
+      "name": "Supabase",
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        940,
+        360
+      ],
+      "credentials": {
+        "supabaseApi": {
+          "id": "6stEFLC7gtftREcf",
+          "name": "Supabase Campaign manager"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "tableId": "leads_dump",
+        "fieldsUi": {
+          "fieldValues": [
+            {
+              "fieldId": "first_name",
+              "fieldValue": "={{ $('Set').item.json.first_name }}"
+            },
+            {
+              "fieldId": "last_name",
+              "fieldValue": "={{ $('Set').item.json.last_name }}"
+            },
+            {
+              "fieldId": "email",
+              "fieldValue": "={{ $('Set').item.json.email }}"
+            },
+            {
+              "fieldId": "phone",
+              "fieldValue": "={{ $('Set').item.json.phone }}"
+            },
+            {
+              "fieldId": "city",
+              "fieldValue": "={{ $('Set').item.json.city }}"
+            },
+            {
+              "fieldId": "course",
+              "fieldValue": "1"
+            },
+            {
+              "fieldId": "register_for_webinar",
+              "fieldValue": "true"
+            },
+            {
+              "fieldId": "whatsapp",
+              "fieldValue": "true"
+            },
+            {
+              "fieldId": "webinar_id",
+              "fieldValue": "=27"
+            },
+            {
+              "fieldId": "camp_id",
+              "fieldValue": "={{ $json.id }}"
+            }
+          ]
+        }
+      },
+      "id": "58bba46b-04df-4ba5-a6a4-b5358c131692",
+      "name": "Supabase1",
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        1160,
+        360
+      ],
+      "credentials": {
+        "supabaseApi": {
+          "id": "6stEFLC7gtftREcf",
+          "name": "Supabase Campaign manager"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "keepOnlySet": true,
+        "values": {
+          "string": [
+            {
+              "name": "first_name",
+              "value": "={{ $json.body.questions__1 }}"
+            },
+            {
+              "name": "last_name",
+              "value": "={{ $json.body.questions__2 }}"
+            },
+            {
+              "name": "email",
+              "value": "={{ $json.body.questions__3 }}"
+            },
+            {
+              "name": "phone",
+              "value": "={{ $json.body.questions__4 }}"
+            },
+            {
+              "name": "city",
+              "value": "={{ $json.body.questions__5 }}"
+            },
+            {
+              "name": "country",
+              "value": "={{ $json.body.questions__6 }}"
+            },
+            {
+              "name": "company",
+              "value": "={{ $json.body.questions__7 }}"
+            },
+            {
+              "name": "tk",
+              "value": "={{ $json.body.tk ?? \"d89a5cb9-4563-438a-9e99-eae43ea5f31d\" }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "cc4b450f-231a-4f1d-bc63-10442aaebe9d",
+      "name": "Set",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 2,
+      "position": [
+        740,
+        360
+      ]
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={\"status\":true}",
+        "options": {
+          "responseHeaders": {
+            "entries": [
+              {
+                "name": "Access-Control-Allow-Origin",
+                "value": "*"
+              }
+            ]
+          }
+        }
+      },
+      "id": "7a8874e7-f9c8-4828-9e0d-4ed43aa4c417",
+      "name": "Respond to Webhook",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1,
+      "position": [
+        820,
+        160
+      ]
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 1,
+  "updatedAt": "2023-12-18T05:49:19.000Z",
+  "versionId": "c35999e6-a6c4-40bf-be9b-f6f26327cbce"
+}
