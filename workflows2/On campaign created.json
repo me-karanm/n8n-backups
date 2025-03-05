@@ -1,0 +1,519 @@
+{
+  "active": true,
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Supabase",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Supabase": {
+      "main": [
+        [
+          {
+            "node": "Postgres",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Postgres": {
+      "main": [
+        [
+          {
+            "node": "Supabase1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-01-21T16:01:03.769Z",
+  "id": "3ra3rK8NPEgecJQa",
+  "meta": null,
+  "name": "On campaign created",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "6644bb62-ed28-4ab7-ad5e-104632f40cc3",
+        "options": {}
+      },
+      "id": "1541f3e6-1158-4d01-90d2-4d7e98c2d39e",
+      "name": "Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        360,
+        300
+      ],
+      "webhookId": "6644bb62-ed28-4ab7-ad5e-104632f40cc3"
+    },
+    {
+      "parameters": {
+        "schema": {
+          "__rl": true,
+          "mode": "list",
+          "value": "public"
+        },
+        "table": {
+          "__rl": true,
+          "value": "campaign",
+          "mode": "name"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "status": true,
+            "is_to_add_lead": "={{ true }}",
+            "is_webinar": "={{ $('Webhook').item.json.body.is_webinar }}",
+            "created_at": "2025-01-23T13:06:39.000Z",
+            "updated_at": "2025-01-23T13:06:41.000Z",
+            "campaign_name": "={{ $('Webhook').item.json.body.campaign_name }}",
+            "uuid": "={{ $('Webhook').item.json.body.uuid }}",
+            "identifier": "={{ $('Webhook').item.json.body.identifier }}",
+            "medium": "={{ $('Webhook').item.json.body.medium }}",
+            "requested_by": "={{ $('Webhook').item.json.body.requested_by }}",
+            "term": "={{ $('Webhook').item.json.body.campaign_term }}",
+            "destination_url": "={{ $('Webhook').item.json.body.destination_url }}",
+            "whatsapp_message": "={{ $('Webhook').item.json.body.whats_app_message }}",
+            "sourceId": "={{ $json.mf2_source }}",
+            "templateId": "={{ $('Webhook').item.json.body.template }}",
+            "owner_id": "={{ $('Webhook').item.json.body.owner_id }}",
+            "owner_email": "={{ $('Webhook').item.json.body.owner_email }}",
+            "platform_campaignId": "={{ $('Webhook').item.json.body.id }}"
+          },
+          "matchingColumns": [
+            "id"
+          ],
+          "schema": [
+            {
+              "id": "id",
+              "displayName": "id",
+              "required": false,
+              "defaultMatch": true,
+              "display": true,
+              "type": "number",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "status",
+              "displayName": "status",
+              "required": true,
+              "defaultMatch": false,
+              "display": true,
+              "type": "boolean",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "created_by",
+              "displayName": "created_by",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "updated_by",
+              "displayName": "updated_by",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "created_at",
+              "displayName": "created_at",
+              "required": true,
+              "defaultMatch": false,
+              "display": true,
+              "type": "dateTime",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "updated_at",
+              "displayName": "updated_at",
+              "required": true,
+              "defaultMatch": false,
+              "display": true,
+              "type": "dateTime",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "campaign_name",
+              "displayName": "campaign_name",
+              "required": true,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "execution_time",
+              "displayName": "execution_time",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "dateTime",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "uuid",
+              "displayName": "uuid",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "replay_flow",
+              "displayName": "replay_flow",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "platform_campaignId",
+              "displayName": "platform_campaignId",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "medium",
+              "displayName": "medium",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "identifier",
+              "displayName": "identifier",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "requested_by",
+              "displayName": "requested_by",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "objective",
+              "displayName": "objective",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "term",
+              "displayName": "term",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "youtube_link",
+              "displayName": "youtube_link",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "destination_url",
+              "displayName": "destination_url",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "whatsapp_message",
+              "displayName": "whatsapp_message",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "is_to_add_lead",
+              "displayName": "is_to_add_lead",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "boolean",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "typeId",
+              "displayName": "typeId",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "sourceId",
+              "displayName": "sourceId",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "templateId",
+              "displayName": "templateId",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "is_webinar",
+              "displayName": "is_webinar",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "boolean",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "owner_email",
+              "displayName": "owner_email",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "owner_id",
+              "displayName": "owner_id",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "a7a62f5c-f59a-445c-a8ff-3963b385fda4",
+      "name": "Postgres",
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.2,
+      "position": [
+        1000,
+        300
+      ],
+      "credentials": {
+        "postgres": {
+          "id": "VPJUosohtvWNBW4H",
+          "name": "MF Prod (DO NOT USE)"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "get",
+        "tableId": "campaign_source",
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "id",
+              "keyValue": "={{ $json.body.source }}"
+            }
+          ]
+        }
+      },
+      "id": "1e6743a4-fe22-49fe-8897-7c732bd1fe89",
+      "name": "Supabase",
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        720,
+        300
+      ],
+      "credentials": {
+        "supabaseApi": {
+          "id": "6stEFLC7gtftREcf",
+          "name": "Supabase Campaign manager"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "tableId": "campaign",
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "id",
+              "condition": "eq",
+              "keyValue": "={{ $('Webhook').item.json.body.id }}"
+            }
+          ]
+        },
+        "fieldsUi": {
+          "fieldValues": [
+            {
+              "fieldId": "mf2_camp_id",
+              "fieldValue": "={{ $json.id }}"
+            }
+          ]
+        }
+      },
+      "id": "b803f653-076b-4af6-beb0-2baa6733dfc1",
+      "name": "Supabase1",
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        1360,
+        300
+      ],
+      "credentials": {
+        "supabaseApi": {
+          "id": "6stEFLC7gtftREcf",
+          "name": "Supabase Campaign manager"
+        }
+      }
+    }
+  ],
+  "pinData": {
+    "Webhook": [
+      {
+        "json": {
+          "headers": {
+            "host": "webhook.miles-api.com",
+            "x-real-ip": "172.69.86.193",
+            "x-forwarded-host": "webhook.miles-api.com",
+            "x-forwarded-server": "webhook.miles-api.com",
+            "x-forwarded-for": "2406:da1a:6b0:f602:fc46:c2c9:8a32:fafb, 172.69.86.193",
+            "connection": "close",
+            "content-length": "821",
+            "cf-ray": "9058d88c9ba03050-BOM",
+            "cf-connecting-ip": "2406:da1a:6b0:f602:fc46:c2c9:8a32:fafb",
+            "accept-encoding": "gzip, br",
+            "cf-pseudo-ipv4": "240.81.65.233",
+            "x-forwarded-proto": "https",
+            "content-type": "application/json",
+            "charsets": "utf-8",
+            "cf-ipcountry": "IN",
+            "accept": "*/*",
+            "cdn-loop": "cloudflare; loops=1",
+            "user-agent": "PostgreSQL 15.1 (Ubuntu 15.1-1.pgdg20.04+1) on aarch64-unknown-linux-gnu, compiled by gcc (Ubuntu 9.4.0-1ubuntu1~20.04.1) 9.4.0, 64-bit"
+          },
+          "params": {},
+          "query": {},
+          "body": {
+            "id": 1355,
+            "tag": null,
+            "type": null,
+            "uuid": "d4d6fc41-aebb-46ae-94a5-99c3cffb9646",
+            "medium": null,
+            "source": 2,
+            "status": 1,
+            "content": null,
+            "webinar": null,
+            "ad_group": null,
+            "audience": null,
+            "owner_id": null,
+            "template": null,
+            "is_repeat": false,
+            "created_at": "2025-01-21T16:57:53.315018+00:00",
+            "identifier": null,
+            "is_webinar": false,
+            "repetition": null,
+            "campaign_id": null,
+            "mf2_camp_id": null,
+            "owner_email": null,
+            "replay_flow": null,
+            "invisible_id": null,
+            "requested_by": null,
+            "youtube_link": null,
+            "campaign_name": "Test",
+            "campaign_term": null,
+            "campaign_type": null,
+            "audience_group": null,
+            "campaign_types": null,
+            "execution_time": null,
+            "destination_url": null,
+            "number_of_leads": 0,
+            "whats_app_message": null,
+            "campaign_objective": null,
+            "campaign_id_platform": null,
+            "outreach_remarketing": null
+          }
+        }
+      }
+    ]
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 1,
+  "updatedAt": "2025-01-23T13:36:34.000Z",
+  "versionId": "dc878cf1-6c12-4591-a81d-212de4b4a7a7"
+}
