@@ -1,0 +1,102 @@
+{
+  "active": true,
+  "connections": {
+    "HTTP Request": {
+      "main": [
+        [
+          {
+            "node": "Gmail",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2023-10-25T20:30:03.879Z",
+  "id": "fvG9Ymd24foqgjdV",
+  "meta": null,
+  "name": "send Email",
+  "nodes": [
+    {
+      "parameters": {
+        "sendTo": "={{ $('Webhook').item.json.body.email }}",
+        "subject": "={{ $('Webhook').item.json.body.report_name }}",
+        "emailType": "html",
+        "message": "=<!DOCTYPE html>\n<html>\n\n<head>\n    <title>Your Report is Ready</title>\n</head>\n\n<body style=\"font-family: Arial, sans-serif; background-color: #f4f4f4; text-align: center; padding: 20px;\">\n    <div style=\"background-color: #fff; border-radius: 8px; padding: 20px; margin: 0 auto; max-width: 500px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);\">\n        <img src=\"https://blcwdqfhupddorxpdcjl.supabase.co/storage/v1/object/public/reports/logo.png\" alt=\"Company Logo\" width=\"100\">\n        <h1>Hello, {{ $('Webhook').item.json.body.reciepient_name }}</h1>\n        <p>Your {{ $('Webhook').item.json.body.report_name }} is now available for download.</p>\n        <a href=\"{{ $('Webhook').item.json.body.url }}\"\n            style=\"background-color: #007BFF; color: #fff; text-decoration: none; padding: 10px 20px; border-radius: 5px; margin-top: 20px; display: inline-block;\">Download Report</a>\n        <p style=\"font-size: 12px; margin-top: 20px; color: #777;\">If you have any questions or need further assistance, please don't hesitate to contact.</p>\n    </div>\n</body>\n\n</html>\n",
+        "options": {
+          "attachmentsUi": {
+            "attachmentsBinary": [
+              {}
+            ]
+          }
+        }
+      },
+      "id": "320333db-6d2f-4e35-ac03-cd5649085d2b",
+      "name": "Gmail",
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2,
+      "position": [
+        840,
+        320
+      ],
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "smJWygPMO0LaGWpe",
+          "name": "Gmail account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "url": "={{ $json.body.url }}",
+        "responseFormat": "file",
+        "options": {}
+      },
+      "name": "HTTP Request",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 1,
+      "position": [
+        600,
+        320
+      ],
+      "id": "61964210-fd56-4893-94a6-7236570540bc"
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "sendemail",
+        "options": {}
+      },
+      "id": "d41bde01-24b9-4d28-9144-c7503e077458",
+      "name": "Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        360,
+        320
+      ],
+      "webhookId": "cf4970d9-e72f-43dc-b799-dd8dc7bddff7"
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 1,
+  "updatedAt": "2023-10-25T21:03:02.000Z",
+  "versionId": "5a6e451a-007f-47a2-abd5-8e4077e34b51"
+}
