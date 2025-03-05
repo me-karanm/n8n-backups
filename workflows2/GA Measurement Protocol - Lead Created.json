@@ -1,0 +1,333 @@
+{
+  "active": false,
+  "connections": {
+    "When clicking \"Execute Workflow\"": {
+      "main": [
+        [
+          {
+            "node": "MySQL1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "MySQL": {
+      "main": [
+        [
+          {
+            "node": "IF",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Split In Batches": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "IF": {
+      "main": [
+        [
+          {
+            "node": "Split In Batches",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request": {
+      "main": [
+        [
+          {
+            "node": "Split In Batches",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "MySQL1": {
+      "main": [
+        [
+          {
+            "node": "Split In Batches1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Split In Batches1": {
+      "main": [
+        [
+          {
+            "node": "Code",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request1": {
+      "main": [
+        [
+          {
+            "node": "Split In Batches1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2024-07-22T13:04:41.860Z",
+  "id": "10sp7QBQwmLWRxWy",
+  "meta": null,
+  "name": "GA Measurement Protocol - Lead Created",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "d08c08ec-55f3-42eb-bb20-64fa33a3159e",
+      "name": "When clicking \"Execute Workflow\"",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        680,
+        420
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "select",
+        "table": {
+          "__rl": true,
+          "value": "miles_net_enquiries",
+          "mode": "list",
+          "cachedResultName": "miles_net_enquiries"
+        },
+        "limit": 3,
+        "where": {
+          "values": [
+            {
+              "column": "ga_session_number",
+              "condition": ">",
+              "value": "0"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "3feb0ef9-440f-4a1d-be4d-fd64e15c0bc8",
+      "name": "MySQL",
+      "type": "n8n-nodes-base.mySql",
+      "typeVersion": 2.1,
+      "position": [
+        920,
+        360
+      ],
+      "credentials": {
+        "mySql": {
+          "id": "UPaGqhcnQd5QQFO3",
+          "name": "MySQL account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://www.google-analytics.com//mp/collect?api_secret=3x92YmhZTqapg4hH-IgaPg&measurement_id=G-0RXXN2DX62 HTTP/1.1",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={   \"client_id\": \"{{ $json[\"client_id\"] }}\",   \"non_personalized_ads\": false,   \"events\": [     {       \"name\": \"test_mp\",       \"params\": {         \"usp_level\": \"m7\"       }     }   ] }",
+        "options": {}
+      },
+      "id": "4cfb13b3-d7a9-4652-bb26-67a99df12a93",
+      "name": "HTTP Request",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        1760,
+        280
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "executeQuery",
+        "query": "SELECT\n  `miles_net_enquiries`.`course` AS `course`,\n  `miles_net_enquiries`.`city` AS `city`,\n  `miles_net_enquiries`.`source` AS `source`,\n  `miles_net_enquiries`.`status` AS `status`,\n  `miles_net_enquiries`.`ga_client_id` AS `ga_client_id`,\n  `miles_net_enquiries`.`ga_session_id` AS `ga_session_id`,\n  `miles_net_enquiries`.`ga_session_number` AS `ga_session_number`,\n  `miles_net_enquiries`.`interested_in` AS `interested_in`,\n  `miles_net_enquiries`.`education_qualification` AS `education_qualification`,\n  `miles_net_enquiries`.`person_id` AS `person_id`,\n  `miles_net_enquiries`.`created_at` AS `created_at`,\n  `Mwb - Person`.`mhp_flag` AS `Mwb - Person__mhp_flag`\nFROM\n  `miles_net_enquiries`\nLEFT JOIN `mwb` AS `Mwb - Person` ON `miles_net_enquiries`.`person_id` = `Mwb - Person`.`person_id`\nWHERE\n  `miles_net_enquiries`.`ga_client_id` IS NOT NULL\n  AND `miles_net_enquiries`.`created_at` >= DATE(NOW(6))\n  AND (\n    `miles_net_enquiries`.`created_at` < DATE(DATE_ADD(NOW(6), INTERVAL 1 day))\n  )",
+        "options": {}
+      },
+      "id": "b4f5457c-8a25-4459-9aa8-547b636b70c7",
+      "name": "MySQL1",
+      "type": "n8n-nodes-base.mySql",
+      "typeVersion": 2.1,
+      "position": [
+        960,
+        680
+      ],
+      "credentials": {
+        "mySql": {
+          "id": "UPaGqhcnQd5QQFO3",
+          "name": "MySQL account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "string": [
+            {
+              "value1": "={{ $json.ga_client_id }}",
+              "operation": "isNotEmpty"
+            }
+          ],
+          "boolean": [
+            {
+              "value1": "={{ $json.invalid_net_enquiry }}",
+              "value2": "={{ false }}"
+            }
+          ]
+        }
+      },
+      "id": "7f2cdb8b-91d8-4a5b-a1ca-9624a18ef3ea",
+      "name": "IF",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        1180,
+        360
+      ]
+    },
+    {
+      "parameters": {
+        "batchSize": 1,
+        "options": {}
+      },
+      "id": "0bb59345-ff44-4f53-8f15-4e65c76c67f9",
+      "name": "Split In Batches",
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 2,
+      "position": [
+        1440,
+        240
+      ]
+    },
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "triggerAtHour": 1,
+              "triggerAtMinute": 3
+            }
+          ]
+        }
+      },
+      "id": "b6210e3f-505a-458a-be2e-c839c0fe4671",
+      "name": "Schedule Trigger",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.1,
+      "position": [
+        520,
+        600
+      ]
+    },
+    {
+      "parameters": {
+        "batchSize": 1,
+        "options": {}
+      },
+      "id": "c2c8a2f1-1715-4c17-b17b-bc1ea5f99a27",
+      "name": "Split In Batches1",
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 2,
+      "position": [
+        1200,
+        600
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://www.google-analytics.com/mp/collect?api_secret=2o9L4e8HQBuPL-cJy46WVw&measurement_id=G-4NS9SVSY3Z HTTP/1.1",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"client_id\": \"{{ $('Split In Batches1').item.json[\"ga_client_id\"] }}\",\n  \"timestamp_micros\": \"{{ $json[\"created_at_epoch_microseconds\"] }}\",\n  \"non_personalized_ads\": false,\n  \"events\": [\n    {\n      \"name\": \"generate_lead\",\n      \"params\": {\n        \"session_id\": \"{{ $('Split In Batches1').item.json[\"ga_session_id\"] }}\",\n        \"session_count\": {{ $('Split In Batches1').item.json[\"ga_session_number\"] }},\n        \"course\": \"{{ $('Split In Batches1').item.json[\"course\"] }}\",\n        \"city\": \"{{ $('Split In Batches1').item.json[\"city\"] }}\",\n        \"interested_in\": \"yes\",\n        \"education_qualification\": \"{{ $('Split In Batches1').item.json[\"education_qualification\"] }}\",\n        \"person_id\": \"{{ $('Split In Batches1').item.json[\"person_id\"] }}\",\n        \"mhp\": {{ $('Split In Batches1').item.json[\"Mwb - Person__mhp_flag\"] }}\n      }\n    }\n  ]\n}\n",
+        "options": {}
+      },
+      "id": "8f3b2d76-010f-4591-9faf-3ab62cf79f4c",
+      "name": "HTTP Request1",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        1840,
+        640
+      ],
+      "continueOnFail": true
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "// Input data;\n\n// Convert 'created_at' to epoch in microseconds\nconst createdAt = $('Split In Batches1').item.json.created_at;\nconst date = new Date(createdAt);\nconst epochMicroseconds = date.getTime() * 1000; // Convert milliseconds to microseconds\nreturn {\n    created_at_epoch_microseconds: epochMicroseconds\n  }\n//console.log(epochMicroseconds);\n"
+      },
+      "id": "6a2bc134-565a-427b-99e2-0484b23de75a",
+      "name": "Code",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1420,
+        560
+      ]
+    },
+    {
+      "parameters": {
+        "values": {
+          "number": [
+            {
+              "name": "created_At_epoch",
+              "value": "={{ $json.created_at_epoch_microseconds }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "601ada4b-c153-477c-b390-69a190b97da5",
+      "name": "Set",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 2,
+      "position": [
+        1900,
+        460
+      ]
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2024-08-08T07:32:09.000Z",
+  "versionId": "4a56a5c2-1376-4f64-89bd-5933ce6297b4"
+}
