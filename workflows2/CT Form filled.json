@@ -1,0 +1,439 @@
+{
+  "active": true,
+  "connections": {
+    "Execute Workflow Trigger": {
+      "main": [
+        [
+          {
+            "node": "Wait",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Supabase": {
+      "main": [
+        [
+          {
+            "node": "Supabase1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Supabase1": {
+      "main": [
+        [
+          {
+            "node": "Supabase2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Supabase2": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request15",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Supabase3": {
+      "main": [
+        [
+          {
+            "node": "MySQL",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait": {
+      "main": [
+        [
+          {
+            "node": "Supabase3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "MySQL": {
+      "main": [
+        [
+          {
+            "node": "Set",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Set": {
+      "main": [
+        [
+          {
+            "node": "Supabase",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2024-02-09T06:37:03.196Z",
+  "id": "2WygpqKdNOFivFvX",
+  "meta": null,
+  "name": "CT Form filled",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "a4ced63b-4bd8-4e01-b247-5052a6293403",
+      "name": "Execute Workflow Trigger",
+      "type": "n8n-nodes-base.executeWorkflowTrigger",
+      "typeVersion": 1,
+      "position": [
+        440,
+        320
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "get",
+        "tableId": "course_list",
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "id",
+              "keyValue": "={{ $('Supabase3').item.json.course }}"
+            }
+          ]
+        }
+      },
+      "id": "3824fb19-bc1a-4075-93f2-c4957c1c53dd",
+      "name": "Supabase",
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        1620,
+        320
+      ],
+      "credentials": {
+        "supabaseApi": {
+          "id": "6stEFLC7gtftREcf",
+          "name": "Supabase Campaign manager"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "get",
+        "tableId": "campaign",
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "id",
+              "keyValue": "={{ $('Execute Workflow Trigger').item.json.body.camp_id }}"
+            }
+          ]
+        }
+      },
+      "id": "74a4ff87-ac57-48b3-890b-d1ac27e23156",
+      "name": "Supabase1",
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        1880,
+        320
+      ],
+      "credentials": {
+        "supabaseApi": {
+          "id": "6stEFLC7gtftREcf",
+          "name": "Supabase Campaign manager"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "get",
+        "tableId": "campaign_source",
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "id",
+              "keyValue": "={{ $json.source }}"
+            }
+          ]
+        }
+      },
+      "id": "3db845a0-9e98-4e7a-aa82-6d9aa2fbe982",
+      "name": "Supabase2",
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        2120,
+        320
+      ],
+      "credentials": {
+        "supabaseApi": {
+          "id": "6stEFLC7gtftREcf",
+          "name": "Supabase Campaign manager"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://in1.api.clevertap.com/1/upload",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "X-CleverTap-Account-Id",
+              "value": "TEST-848-8KW-5W7Z"
+            },
+            {
+              "name": "X-CleverTap-Passcode",
+              "value": "SAE-KWE-USEL"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n    \"d\": [\n        {\n            \"identity\": \"{{ $('Set').item.json.identity }}\",\n            \"type\": \"event\",\n            \"evtName\": \"Form Filled\",\n            \"evtData\": {\n                \"course\": \"{{ $('Supabase').item.json.name }}\",\n                \"work_in_us\":\"{{ $('Execute Workflow Trigger').item.json.body.intrested_in }}\",\n                \"eligible\":\"{{ $('Execute Workflow Trigger').item.json.body.education_qualification }}\",\n                \"page_url\":\"{{ $('Execute Workflow Trigger').item.json.body.page_full_url }}\",\n                \"form_position\":\"main\",\n                \"source\":\"{{ $json.source_name }}\",\n                \"campaign_id\":\"{{ $('Supabase1').item.json.id }}\",\n                \"campaign_name\":\"{{ $('Supabase1').item.json.campaign_name }}\",\n                \"campaign_type\":\"\",\n                \"campaign_medium\":\"\",\n                \"uuid\":\"{{ $('Supabase3').item.json.uuid }}\"\n\n            }\n        }\n    ]\n}  ",
+        "options": {}
+      },
+      "id": "fd1dcf36-7879-4861-bbca-fc69397fcb58",
+      "name": "HTTP Request15",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        2440,
+        400
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://in1.api.clevertap.com/1/upload",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "X-CleverTap-Account-Id",
+              "value": "TEST-848-8KW-5W7Z"
+            },
+            {
+              "name": "X-CleverTap-Passcode",
+              "value": "SAE-KWE-USEL"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"d\": [\n    {\n      \"identity\": \"{{$('Set').item.json.identity}}\",\n      \"type\": \"profile\",\n      \"profileData\": {\n        \"Name\": \"{{ $('Execute Workflow Trigger').item.json.body.first_name }}\",\n        \"Email\": \"{{ $('Execute Workflow Trigger').item.json.body.email }}\",\n        \"Phone\": \"{{ $('Execute Workflow Trigger').item.json.body.phone }}\",\n\"uuid\":\"{{ $('Supabase3').item.json.uuid }}\",\n        \"MSG-email\":true,\n        \"MSG-whatsapp\":true,\n\"Visit_Status\":false\n      }\n    }\n  ]\n}",
+        "options": {}
+      },
+      "id": "ccf1d97e-e64c-4a0e-a646-d875f8d568e0",
+      "name": "HTTP Request",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        2440,
+        140
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "get",
+        "tableId": "leads_dump",
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "id",
+              "keyValue": "={{ $json.body.id }}"
+            }
+          ]
+        }
+      },
+      "id": "64238a6d-0e0d-4191-bf34-1dde80f85f88",
+      "name": "Supabase3",
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        880,
+        320
+      ],
+      "credentials": {
+        "supabaseApi": {
+          "id": "6stEFLC7gtftREcf",
+          "name": "Supabase Campaign manager"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "unit": "seconds"
+      },
+      "id": "b47ec994-e75e-43f3-97a1-acfd7628a5c4",
+      "name": "Wait",
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1,
+      "position": [
+        660,
+        320
+      ],
+      "webhookId": "3f92eb0e-76dc-441d-9c06-9de10b2459b2"
+    },
+    {
+      "parameters": {
+        "operation": "select",
+        "table": {
+          "__rl": true,
+          "value": "miles_net_enquiries",
+          "mode": "list",
+          "cachedResultName": "miles_net_enquiries"
+        },
+        "limit": 1,
+        "where": {
+          "values": [
+            {
+              "column": "ne_id",
+              "value": "={{ $json.unique_id }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "015333cd-975c-4e1d-84a6-0544b92dfe1e",
+      "name": "MySQL",
+      "type": "n8n-nodes-base.mySql",
+      "typeVersion": 2.1,
+      "position": [
+        1080,
+        320
+      ],
+      "credentials": {
+        "mySql": {
+          "id": "UPaGqhcnQd5QQFO3",
+          "name": "MySQL account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "values": {
+          "string": [
+            {
+              "name": "identity",
+              "value": "={{ $json.person_id ?? $('Supabase3').item.json.phone.slice(-10) }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "c1b1914a-f224-4ebd-8e1c-869b8bb12c66",
+      "name": "Set",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 2,
+      "position": [
+        1300,
+        320
+      ]
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "id": "d694ffd8-1b25-4fd2-b16b-b6704b74004a",
+      "name": "HTTP Request1",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        1240,
+        20
+      ]
+    }
+  ],
+  "pinData": {
+    "Execute Workflow Trigger": [
+      {
+        "json": {
+          "headers": {
+            "host": "webhook.miles-api.com",
+            "x-real-ip": "108.162.227.96",
+            "x-forwarded-host": "webhook.miles-api.com",
+            "x-forwarded-server": "webhook.miles-api.com",
+            "x-forwarded-for": "2406:da1a:6b0:f602:fc46:c2c9:8a32:fafb, 108.162.227.96",
+            "connection": "close",
+            "content-length": "677",
+            "accept-encoding": "gzip",
+            "cf-ray": "857cc6defaf044bf-SIN",
+            "x-forwarded-proto": "https",
+            "user-agent": "PostgreSQL 15.1 (Ubuntu 15.1-1.pgdg20.04+1) on aarch64-unknown-linux-gnu, compiled by gcc (Ubuntu 9.4.0-1ubuntu1~20.04.1) 9.4.0, 64-bit",
+            "accept": "*/*",
+            "charsets": "utf-8",
+            "content-type": "application/json",
+            "cf-connecting-ip": "2406:da1a:6b0:f602:fc46:c2c9:8a32:fafb",
+            "cdn-loop": "cloudflare",
+            "cf-pseudo-ipv4": "240.81.65.233",
+            "cf-ipcountry": "IN"
+          },
+          "params": {},
+          "query": {},
+          "body": {
+            "id": 480395,
+            "city": "Delhi",
+            "json": null,
+            "email": "km@gmail.com",
+            "phone": "+919460596406",
+            "course": 9,
+            "gcl_id": null,
+            "camp_id": 65,
+            "whatsapp": true,
+            "clevertap": "aedeb01d09664336a9f143f16dafb519",
+            "last_name": null,
+            "camp_token": null,
+            "first_name": "KaranTest",
+            "push_to_mf": false,
+            "webinar_id": null,
+            "campaign_id": null,
+            "coming_from": "website-page",
+            "intrested_in": "",
+            "campaign_name": null,
+            "page_full_url": "https://ct.mileseducation.com/",
+            "sync_to_sheet": false,
+            "url_page_path": "/",
+            "english_proficiency": null,
+            "registration_status": false,
+            "register_for_webinar": null,
+            "whatsapp_send_status": false,
+            "education_qualification": "completed_graduation"
+          }
+        }
+      }
+    ]
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2024-07-11T14:04:24.000Z",
+  "versionId": "4ca1e46e-346e-4c4c-8e69-73baa949d99c"
+}
