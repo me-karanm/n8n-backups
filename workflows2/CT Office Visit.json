@@ -1,0 +1,381 @@
+{
+  "active": false,
+  "connections": {
+    "Execute Workflow Trigger": {
+      "main": [
+        [
+          {
+            "node": "Wait",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Supabase": {
+      "main": [
+        [
+          {
+            "node": "Supabase1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Supabase1": {
+      "main": [
+        [
+          {
+            "node": "Supabase2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Supabase2": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request15",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Supabase3": {
+      "main": [
+        [
+          {
+            "node": "MySQL",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait": {
+      "main": [
+        [
+          {
+            "node": "Supabase3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "MySQL": {
+      "main": [
+        [
+          {
+            "node": "Set",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Set": {
+      "main": [
+        [
+          {
+            "node": "Supabase",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2024-07-16T10:47:29.883Z",
+  "id": "fP9nMoC1aplFfk2J",
+  "meta": null,
+  "name": "CT Office Visit",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "f2857847-b47e-4e50-b82e-f0c853ee61ac",
+      "name": "Execute Workflow Trigger",
+      "type": "n8n-nodes-base.executeWorkflowTrigger",
+      "typeVersion": 1,
+      "position": [
+        440,
+        320
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "get",
+        "tableId": "course_list",
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "id",
+              "keyValue": "={{ $('Supabase3').item.json.course }}"
+            }
+          ]
+        }
+      },
+      "id": "6f02588b-7e5a-4bf7-828c-c90013e3272b",
+      "name": "Supabase",
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        1620,
+        320
+      ],
+      "credentials": {
+        "supabaseApi": {
+          "id": "6stEFLC7gtftREcf",
+          "name": "Supabase Campaign manager"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "get",
+        "tableId": "campaign",
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "id",
+              "keyValue": "={{ $('Execute Workflow Trigger').item.json.body.camp_id }}"
+            }
+          ]
+        }
+      },
+      "id": "bd235844-6683-4e66-8607-b78232cc1fc1",
+      "name": "Supabase1",
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        1880,
+        320
+      ],
+      "credentials": {
+        "supabaseApi": {
+          "id": "6stEFLC7gtftREcf",
+          "name": "Supabase Campaign manager"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "get",
+        "tableId": "campaign_source",
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "id",
+              "keyValue": "={{ $json.source }}"
+            }
+          ]
+        }
+      },
+      "id": "d2020c20-acb5-4c13-8cb0-1c2a1a324955",
+      "name": "Supabase2",
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        2120,
+        320
+      ],
+      "credentials": {
+        "supabaseApi": {
+          "id": "6stEFLC7gtftREcf",
+          "name": "Supabase Campaign manager"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://in1.api.clevertap.com/1/upload",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "X-CleverTap-Account-Id",
+              "value": "TEST-848-8KW-5W7Z"
+            },
+            {
+              "name": "X-CleverTap-Passcode",
+              "value": "SAE-KWE-USEL"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n    \"d\": [\n        {\n            \"identity\": \"{{ $('Set').item.json.identity }}\",\n            \"type\": \"event\",\n            \"evtName\": \"Form Filled\",\n            \"evtData\": {\n                \"course\": \"{{ $('Supabase').item.json.name }}\",\n                \"work_in_us\":\"{{ $('Execute Workflow Trigger').item.json.body.intrested_in }}\",\n                \"eligible\":\"{{ $('Execute Workflow Trigger').item.json.body.education_qualification }}\",\n                \"page_url\":\"{{ $('Execute Workflow Trigger').item.json.body.page_full_url }}\",\n                \"form_position\":\"main\",\n                \"source\":\"{{ $json.source_name }}\",\n                \"campaign_id\":\"{{ $('Supabase1').item.json.id }}\",\n                \"campaign_name\":\"{{ $('Supabase1').item.json.campaign_name }}\",\n                \"campaign_type\":\"\",\n                \"campaign_medium\":\"\",\n                \"uuid\":\"{{ $('Supabase3').item.json.uuid }}\"\n\n            }\n        }\n    ]\n}  ",
+        "options": {}
+      },
+      "id": "b91b3322-8577-45e4-8ba2-bf73a656a6ff",
+      "name": "HTTP Request15",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        2440,
+        400
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://in1.api.clevertap.com/1/upload",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "X-CleverTap-Account-Id",
+              "value": "TEST-848-8KW-5W7Z"
+            },
+            {
+              "name": "X-CleverTap-Passcode",
+              "value": "SAE-KWE-USEL"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"d\": [\n    {\n      \"identity\": \"{{$('Set').item.json.identity}}\",\n      \"type\": \"profile\",\n      \"profileData\": {\n        \"Name\": \"{{ $('Execute Workflow Trigger').item.json.body.first_name }}\",\n        \"Email\": \"{{ $('Execute Workflow Trigger').item.json.body.email }}\",\n        \"Phone\": \"{{ $('Execute Workflow Trigger').item.json.body.phone }}\",\n\"uuid\":\"{{ $('Supabase3').item.json.uuid }}\",\n        \"MSG-email\":true,\n        \"MSG-whatsapp\":true,\n\"Visit_Status\":false\n      }\n    }\n  ]\n}",
+        "options": {}
+      },
+      "id": "c85a6e8e-a98e-48f3-afe4-e4fb5ddb055f",
+      "name": "HTTP Request",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        2440,
+        140
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "get",
+        "tableId": "leads_dump",
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "id",
+              "keyValue": "={{ $json.body.id }}"
+            }
+          ]
+        }
+      },
+      "id": "62c1e1fd-9c83-4dfd-b175-6eff5b322ab9",
+      "name": "Supabase3",
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        880,
+        320
+      ],
+      "credentials": {
+        "supabaseApi": {
+          "id": "6stEFLC7gtftREcf",
+          "name": "Supabase Campaign manager"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "unit": "seconds"
+      },
+      "id": "29d4460e-a46d-4b02-843f-b78228af4e84",
+      "name": "Wait",
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1,
+      "position": [
+        660,
+        320
+      ],
+      "webhookId": "e31539e5-454d-44e5-b483-cc27ce30aa0f"
+    },
+    {
+      "parameters": {
+        "operation": "select",
+        "table": {
+          "__rl": true,
+          "value": "miles_net_enquiries",
+          "mode": "list",
+          "cachedResultName": "miles_net_enquiries"
+        },
+        "limit": 1,
+        "where": {
+          "values": [
+            {
+              "column": "ne_id",
+              "value": "={{ $json.unique_id }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "882cc77f-1d64-4222-8347-2b2112ab998c",
+      "name": "MySQL",
+      "type": "n8n-nodes-base.mySql",
+      "typeVersion": 2.1,
+      "position": [
+        1080,
+        320
+      ],
+      "credentials": {
+        "mySql": {
+          "id": "UPaGqhcnQd5QQFO3",
+          "name": "MySQL account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "values": {
+          "string": [
+            {
+              "name": "identity",
+              "value": "={{ $json.person_id ?? $('Supabase3').item.json.phone.slice(-10) }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "6017a45c-18b4-4424-a208-a03a5c6e6689",
+      "name": "Set",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 2,
+      "position": [
+        1300,
+        320
+      ]
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "id": "a3407e57-93d5-4e5f-943a-d7a8514af7a0",
+      "name": "HTTP Request1",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        1420,
+        -160
+      ]
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2024-07-17T07:51:51.000Z",
+  "versionId": "922da306-9415-444b-ab5d-6563f7a6aa79"
+}
