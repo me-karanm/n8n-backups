@@ -1,0 +1,128 @@
+{
+  "active": true,
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "WhatsApp Business Cloud",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2024-07-09T14:35:09.705Z",
+  "id": "1P0DnmjpQIfZ7WvQ",
+  "meta": null,
+  "name": "Send OTP (Mobile App)",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "32fb6be2-97d4-4c2e-b300-4f94fa445bf8",
+        "options": {}
+      },
+      "id": "5f46b81c-09d0-4ab9-9908-55a4be696514",
+      "name": "Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        660,
+        280
+      ],
+      "webhookId": "32fb6be2-97d4-4c2e-b300-4f94fa445bf8"
+    },
+    {
+      "parameters": {
+        "phoneNumberId": "108019349036743",
+        "recipientPhoneNumber": "={{ $json.body.phone }}",
+        "template": "test_otp|en",
+        "components": {
+          "component": [
+            {
+              "bodyParameters": {
+                "parameter": [
+                  {
+                    "text": "={{ $json.body.otp }}"
+                  }
+                ]
+              }
+            },
+            {
+              "type": "button",
+              "sub_type": "url",
+              "buttonParameters": {
+                "parameter": {
+                  "payload": "={{ $json.body.otp }}"
+                }
+              }
+            }
+          ]
+        }
+      },
+      "id": "f034f5a0-f6f4-45f5-89a1-3e582cc17e64",
+      "name": "WhatsApp Business Cloud",
+      "type": "n8n-nodes-base.whatsApp",
+      "typeVersion": 1,
+      "position": [
+        880,
+        280
+      ],
+      "credentials": {
+        "whatsAppApi": {
+          "id": "KHcTD6EUGATb3z0D",
+          "name": "WhatsApp account 2"
+        }
+      }
+    }
+  ],
+  "pinData": {
+    "Webhook": [
+      {
+        "json": {
+          "headers": {
+            "host": "webhook.miles-api.com",
+            "x-real-ip": "172.70.93.36",
+            "x-forwarded-host": "webhook.miles-api.com",
+            "x-forwarded-server": "webhook.miles-api.com",
+            "x-forwarded-for": "115.240.189.114, 172.70.93.36",
+            "connection": "close",
+            "content-length": "48",
+            "accept-encoding": "gzip, br",
+            "cf-ray": "8a090b702f394c65-SIN",
+            "x-forwarded-proto": "https",
+            "cf-visitor": "{\"scheme\":\"https\"}",
+            "content-type": "application/json",
+            "authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTEsInN0YXR1cyI6dHJ1ZSwiY3JlYXRlZF9hdCI6IjIwMjQtMDYtMjdUMTE6MjY6NDIuNDQ5WiIsInVwZGF0ZWRfYXQiOiIyMDI0LTA2LTI3VDExOjI2OjQyLjQ0OVoiLCJ1c2VySWQiOiJkOTg2NzU3MS1mNjQxLTQyZmYtYTQyZS0zODIzNmIwNTVhZTMiLCJmaXJzdE5hbWUiOm51bGwsImxhc3ROYW1lIjpudWxsLCJwcm9maWxlUGljdHVyZSI6bnVsbCwicm9sZSI6bnVsbCwidXNlck5hbWUiOm51bGwsImVtYWlsIjpudWxsLCJwaG9uZSI6IjYyMzgxMzMyOTgiLCJjb3VudHJ5Q29kZSI6Iis5MSIsInBhc3N3b3JkSGFzaCI6bnVsbCwibWZhRW5hYmxlZCI6ZmFsc2UsIm1mYVR5cGUiOm51bGwsIm1mYVNlY3JldCI6bnVsbCwidXNlclR5cGUiOjAsImxhc3RMb2dpbiI6bnVsbCwiZ2VuZGVyIjpudWxsLCJsb2NhdGlvbiI6bnVsbCwicGF0aFdheVByb2ZpbGUiOm51bGwsInNlc3Npb24iOjU3LCJpYXQiOjE3MTk1Nzg5ODIsImV4cCI6MTcxOTY2NTM4Mn0.qtr2YF5ADKVSCum5phcESzaFtpG6H2RnKYZVfBsWCYQ",
+            "user-agent": "PostmanRuntime/7.39.0",
+            "accept": "*/*",
+            "cache-control": "no-cache",
+            "postman-token": "20b57bd2-094c-4eb7-baf9-368740e74931",
+            "cf-connecting-ip": "115.240.189.114",
+            "cdn-loop": "cloudflare",
+            "cf-ipcountry": "IN"
+          },
+          "params": {},
+          "query": {},
+          "body": {
+            "phone": "916238133298",
+            "otp": 129684
+          }
+        },
+        "pairedItem": {
+          "item": 0
+        }
+      }
+    ]
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 1,
+  "updatedAt": "2024-07-09T14:38:44.000Z",
+  "versionId": "5e0e72cb-f927-424a-9af6-7af82955281b"
+}
