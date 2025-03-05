@@ -1,0 +1,224 @@
+{
+  "active": false,
+  "connections": {
+    "When clicking \"Execute Workflow\"": {
+      "main": [
+        [
+          {
+            "node": "Postgres",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Split In Batches": {
+      "main": [
+        [
+          {
+            "node": "WhatsApp Business Cloud",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "WhatsApp Business Cloud": {
+      "main": [
+        [
+          {
+            "node": "Supabase",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Postgres": {
+      "main": [
+        [
+          {
+            "node": "Split In Batches",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Supabase": {
+      "main": [
+        [
+          {
+            "node": "Split In Batches",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-01-25T10:20:47.165Z",
+  "id": "VzpuTKklxyXez7wB",
+  "meta": null,
+  "name": "Send webinar reminder - accounting dream",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "20efced9-2bec-4e0b-8fb6-aac8b4a86b29",
+      "name": "When clicking \"Execute Workflow\"",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        200,
+        340
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "executeQuery",
+        "query": "SELECT\n  \"public\".\"webinar_registration\".\"id\" AS \"id\",\n  \"public\".\"webinar_registration\".\"join_url\" AS \"join_url\",\n  \"public\".\"webinar_registration\".\"email\" AS \"email\",\n  \"Lead - LeadId\".\"first_name\" AS \"Lead - LeadId__first_name\",\n  \"Lead - LeadId\".\"uuid\" AS \"Lead - LeadId__uuid\",\n  \"Phone\".\"phoneNumber\" AS \"Phone__phoneNumber\"\nFROM\n  \"public\".\"webinar_registration\"\n \nLEFT JOIN \"public\".\"lead\" AS \"Lead - LeadId\" ON \"public\".\"webinar_registration\".\"leadId\" = \"Lead - LeadId\".\"id\"\n  LEFT JOIN \"public\".\"phone\" AS \"Phone\" ON \"Lead - LeadId\".\"id\" = \"Phone\".\"leadId\"\nWHERE\n  \"public\".\"webinar_registration\".\"webinarId\" = 13\norder by \"public\".\"webinar_registration\".\"created_at\" desc\nLIMIT\n  1048575",
+        "options": {}
+      },
+      "id": "c2f32314-24da-4d8f-843b-438bea967404",
+      "name": "Postgres",
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.2,
+      "position": [
+        460,
+        340
+      ],
+      "credentials": {
+        "postgres": {
+          "id": "VPJUosohtvWNBW4H",
+          "name": "MF Prod (DO NOT USE)"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "batchSize": 40,
+        "options": {}
+      },
+      "id": "cfe26887-d5b2-4bd0-ac2a-b34fbccb250e",
+      "name": "Split In Batches",
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 2,
+      "position": [
+        740,
+        340
+      ]
+    },
+    {
+      "parameters": {
+        "phoneNumberId": "108019349036743",
+        "recipientPhoneNumber": "=+91{{ $json.Phone__phoneNumber }}",
+        "template": "pre_webinar_registered_d_day|en",
+        "components": {
+          "component": [
+            {
+              "bodyParameters": {
+                "parameter": [
+                  {
+                    "text": "={{ $json['Lead - LeadId__first_name'] }}"
+                  },
+                  {
+                    "text": "*NOW!*"
+                  }
+                ]
+              }
+            },
+            {
+              "type": "button",
+              "sub_type": "url",
+              "buttonParameters": {
+                "parameter": {
+                  "payload": "={{ $json.join_url.slice(33) }}"
+                }
+              }
+            }
+          ]
+        }
+      },
+      "id": "41cfb565-f6aa-433e-9f5c-ea5e9326c899",
+      "name": "WhatsApp Business Cloud",
+      "type": "n8n-nodes-base.whatsApp",
+      "typeVersion": 1,
+      "position": [
+        1080,
+        260
+      ],
+      "credentials": {
+        "whatsAppApi": {
+          "id": "KHcTD6EUGATb3z0D",
+          "name": "Secondary | Marketing Miles Education"
+        }
+      },
+      "continueOnFail": true
+    },
+    {
+      "parameters": {
+        "tableId": "message_status",
+        "fieldsUi": {
+          "fieldValues": [
+            {
+              "fieldId": "send_status",
+              "fieldValue": "=true"
+            },
+            {
+              "fieldId": "message_id",
+              "fieldValue": "={{ $json.messages[0].id }}"
+            },
+            {
+              "fieldId": "phone",
+              "fieldValue": "={{ $json.contacts[0].wa_id }}"
+            },
+            {
+              "fieldId": "template_name",
+              "fieldValue": "pre_webinar_registered_d_day_25_jan"
+            },
+            {
+              "fieldId": "campaign_id",
+              "fieldValue": "1348"
+            }
+          ]
+        }
+      },
+      "id": "cdec02cb-ce30-4f6f-baf9-8dce979066cf",
+      "name": "Supabase",
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        1300,
+        260
+      ],
+      "credentials": {
+        "supabaseApi": {
+          "id": "6stEFLC7gtftREcf",
+          "name": "Supabase Campaign manager"
+        }
+      }
+    }
+  ],
+  "pinData": {
+    "When clicking \"Execute Workflow\"": [
+      {
+        "json": {
+          "id": 1115,
+          "join_url": "https://milestalenthub.zoom.us/w/96691503083?tk=Df28C5cX9m82lWCI29_KmJwqQ6mgfP_P-1YANb7yOvk.DQcAAAAWg0M_6xZXOTU1bVVnUlNvLVRhb20xbDlwem5RAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA&uuid=WN_TpLi4W6TT8OKR3jKMXgcpg",
+          "email": "suggala.srimantha@gmail.com",
+          "Lead - LeadId__first_name": "Karan",
+          "Lead - LeadId__uuid": "1db4e1b2-d303-456b-ae20-7140936d11a6",
+          "Phone__phoneNumber": "9460596406"
+        }
+      }
+    ]
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2025-01-25T10:54:01.000Z",
+  "versionId": "781f3681-d06b-4330-9da4-6e7cbea0c905"
+}
