@@ -1,0 +1,361 @@
+{
+  "active": false,
+  "connections": {
+    "When clicking \"Execute Workflow\"": {
+      "main": [
+        [
+          {
+            "node": "Postgres",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Postgres": {
+      "main": [
+        [
+          {
+            "node": "IF",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Split In Batches": {
+      "main": [
+        []
+      ]
+    },
+    "IF": {
+      "main": [
+        [
+          {
+            "node": "Postgres1",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Supabase",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Supabase": {
+      "main": [
+        [
+          {
+            "node": "Supabase1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Postgres1": {
+      "main": [
+        [
+          {
+            "node": "Set",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Supabase1": {
+      "main": [
+        [
+          {
+            "node": "Set",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Set": {
+      "main": [
+        [
+          {
+            "node": "Spreadsheet File",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Spreadsheet File": {
+      "main": [
+        []
+      ]
+    }
+  },
+  "createdAt": "2025-01-22T08:24:54.383Z",
+  "id": "YXsKmObxUAniriFn",
+  "meta": null,
+  "name": "My workflow 23",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "fabb8de2-4de0-4680-9411-e8973c719474",
+      "name": "When clicking \"Execute Workflow\"",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        120,
+        340
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "executeQuery",
+        "query": "SELECT\n  \"public\".\"webinar_registration\".\"created_at\" AS \"created_at\",\n  \"Campaign - CampignId\".\"campaign_name\" AS \"Campaign - CampignId__campaign_name\",\n  \"Campaign - CampignId\".\"sourceId\" AS \"Campaign - CampignId__sourceId\",\n  \"Campaign - CampignId\".\"platform_campaignId\" AS \"Campaign - CampignId__platform_campaignId\",\n\n  \"Lead - LeadId\".\"candidate_id\" AS \"Lead - LeadId__candidate_id\",\n  \"Lead - LeadId\".\"first_name\" AS \"Lead - LeadId__first_name\"\nFROM\n  \"public\".\"webinar_registration\"\n \nLEFT JOIN \"public\".\"campaign\" AS \"Campaign - CampignId\" ON \"public\".\"webinar_registration\".\"campignId\" = \"Campaign - CampignId\".\"id\"\n  LEFT JOIN \"public\".\"lead\" AS \"Lead - LeadId\" ON \"public\".\"webinar_registration\".\"leadId\" = \"Lead - LeadId\".\"id\"\nWHERE\n\"public\".\"webinar_registration\".\"webinarId\" = 12",
+        "options": {}
+      },
+      "id": "78c3b168-a1c6-4ac7-bc5e-e63c8e5d81e8",
+      "name": "Postgres",
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.2,
+      "position": [
+        460,
+        340
+      ],
+      "credentials": {
+        "postgres": {
+          "id": "VPJUosohtvWNBW4H",
+          "name": "MF Prod (DO NOT USE)"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "batchSize": 1,
+        "options": {}
+      },
+      "id": "b1b91439-b8a8-4703-8c6b-b7c526e5e051",
+      "name": "Split In Batches",
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 2,
+      "position": [
+        820,
+        440
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "get",
+        "tableId": "campaign",
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "id",
+              "keyValue": "={{ $('Postgres').item.json['Campaign - CampignId__platform_campaignId'] }}"
+            }
+          ]
+        }
+      },
+      "id": "2c74adfd-038a-43c0-b760-3c3519a3de81",
+      "name": "Supabase",
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        1340,
+        380
+      ],
+      "credentials": {
+        "supabaseApi": {
+          "id": "6stEFLC7gtftREcf",
+          "name": "Supabase Campaign manager"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "string": [
+            {
+              "value1": "={{ $json['Campaign - CampignId__platform_campaignId'] }}",
+              "operation": "isEmpty"
+            }
+          ]
+        }
+      },
+      "id": "53941f50-cf06-4abb-bdd8-7b20349f0687",
+      "name": "IF",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        1080,
+        220
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "select",
+        "schema": {
+          "__rl": true,
+          "mode": "list",
+          "value": "public"
+        },
+        "table": {
+          "__rl": true,
+          "value": "source",
+          "mode": "list",
+          "cachedResultName": "source"
+        },
+        "where": {
+          "values": [
+            {
+              "column": "id",
+              "value": "={{ $json['Campaign - CampignId__sourceId'] }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "64fef79f-84d0-406f-ab23-bc08edd6e8a4",
+      "name": "Postgres1",
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.2,
+      "position": [
+        1320,
+        160
+      ],
+      "credentials": {
+        "postgres": {
+          "id": "VPJUosohtvWNBW4H",
+          "name": "MF Prod (DO NOT USE)"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "get",
+        "tableId": "campaign_source",
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "id",
+              "keyValue": "={{ $json.source }}"
+            }
+          ]
+        }
+      },
+      "id": "c3df0a47-4f30-4b26-8ce7-8be9fea85568",
+      "name": "Supabase1",
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        1560,
+        360
+      ],
+      "credentials": {
+        "supabaseApi": {
+          "id": "6stEFLC7gtftREcf",
+          "name": "Supabase Campaign manager"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "mode": "combine",
+        "mergeByFields": {
+          "values": [
+            {}
+          ]
+        },
+        "joinMode": "keepEverything",
+        "options": {}
+      },
+      "id": "34630b71-98a5-496f-ace1-69a7505a0e9f",
+      "name": "Merge",
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 2.1,
+      "position": [
+        1620,
+        760
+      ]
+    },
+    {
+      "parameters": {
+        "values": {
+          "string": [
+            {
+              "name": "source",
+              "value": "={{ $json.source_name }}"
+            },
+            {
+              "name": "canID",
+              "value": "={{ $('Postgres').item.json['Lead - LeadId__candidate_id'] }}"
+            },
+            {
+              "name": "Name",
+              "value": "={{ $('Postgres').item.json['Lead - LeadId__first_name'] }}"
+            },
+            {
+              "name": "Campaign Name",
+              "value": "={{ $('Postgres').item.json['Campaign - CampignId__campaign_name'] }}"
+            },
+            {
+              "name": "Created At",
+              "value": "={{ $('Postgres').item.json.created_at }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "f1fccf45-b399-4359-99b1-7f19f0f89128",
+      "name": "Set",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 2,
+      "position": [
+        1780,
+        160
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "concatenateItems",
+        "aggregate": "aggregateAllItemData"
+      },
+      "id": "eb5bd40c-842f-43e6-ab9b-a488a48406b6",
+      "name": "Item Lists",
+      "type": "n8n-nodes-base.itemLists",
+      "typeVersion": 3,
+      "position": [
+        1880,
+        760
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "toFile",
+        "fileFormat": "csv",
+        "options": {}
+      },
+      "id": "1d04c476-1c78-4bb0-a8e1-a717078e6da7",
+      "name": "Spreadsheet File",
+      "type": "n8n-nodes-base.spreadsheetFile",
+      "typeVersion": 1,
+      "position": [
+        2000,
+        160
+      ]
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2025-01-22T08:39:45.000Z",
+  "versionId": "33f19545-6e8d-4957-ab61-d3edec907e9f"
+}
