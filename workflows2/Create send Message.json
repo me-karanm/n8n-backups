@@ -1,0 +1,159 @@
+{
+  "active": true,
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Supabase",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Supabase": {
+      "main": [
+        [
+          {
+            "node": "Supabase1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2024-04-30T11:06:37.210Z",
+  "id": "e9fVNVvqRSBGAaBT",
+  "meta": null,
+  "name": "Create send Message",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "create-send-message",
+        "options": {}
+      },
+      "id": "24815ff8-79c6-406d-8e7e-34d8ea3871c7",
+      "name": "Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        260,
+        160
+      ],
+      "webhookId": "3aaefefd-1b33-4aee-978f-4bf0d66509a8"
+    },
+    {
+      "parameters": {
+        "tableId": "message_status",
+        "fieldsUi": {
+          "fieldValues": [
+            {
+              "fieldId": "send_status",
+              "fieldValue": "true"
+            },
+            {
+              "fieldId": "send_time",
+              "fieldValue": "={{ $now }}"
+            },
+            {
+              "fieldId": "message_id",
+              "fieldValue": "={{ $json.body.message_id }}"
+            },
+            {
+              "fieldId": "root",
+              "fieldValue": "true"
+            },
+            {
+              "fieldId": "campaign_id",
+              "fieldValue": "={{ $json.body.camp_id }}"
+            },
+            {
+              "fieldId": "lead_dump_id",
+              "fieldValue": "={{ $json.body.lead_dump_id ?? null }}"
+            },
+            {
+              "fieldId": "next_flow_id",
+              "fieldValue": "={{ $json.body.next_flow ?? null }}"
+            },
+            {
+              "fieldId": "template_name",
+              "fieldValue": "={{ $json.body.template ?? null }}"
+            }
+          ]
+        }
+      },
+      "id": "9a19dde8-d185-42e4-ae6f-0fd90d921932",
+      "name": "Supabase",
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        440,
+        160
+      ],
+      "credentials": {
+        "supabaseApi": {
+          "id": "6stEFLC7gtftREcf",
+          "name": "Supabase Campaign manager"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "tableId": "messages_history",
+        "fieldsUi": {
+          "fieldValues": [
+            {
+              "fieldId": "message_status_id",
+              "fieldValue": "={{ $json.id }}"
+            },
+            {
+              "fieldId": "type",
+              "fieldValue": "1"
+            },
+            {
+              "fieldId": "mobile",
+              "fieldValue": "={{ $('Webhook').item.json.body.mobile }}"
+            },
+            {
+              "fieldId": "sender_id",
+              "fieldValue": "={{ $('Webhook').item.json.body.sender_id ?? 917411850463 }}"
+            },
+            {
+              "fieldId": "message",
+              "fieldValue": "={{ $('Webhook').item.json.body.message }}"
+            }
+          ]
+        }
+      },
+      "id": "af522efd-daa2-4ea2-bfe8-7b2091c203b7",
+      "name": "Supabase1",
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        600,
+        160
+      ],
+      "credentials": {
+        "supabaseApi": {
+          "id": "6stEFLC7gtftREcf",
+          "name": "Supabase Campaign manager"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1",
+    "timezone": "Asia/Calcutta",
+    "saveManualExecutions": true,
+    "callerPolicy": "workflowsFromSameOwner"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 1,
+  "updatedAt": "2024-05-12T16:45:45.000Z",
+  "versionId": "9ab03f53-cd25-4885-9af8-e308348aaa7b"
+}
