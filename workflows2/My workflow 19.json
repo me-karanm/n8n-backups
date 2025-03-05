@@ -1,0 +1,96 @@
+{
+  "active": true,
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Wait",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait": {
+      "main": [
+        [
+          {
+            "node": "Set",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2024-11-28T05:51:35.231Z",
+  "id": "O7gEbFSHwrKYGB5C",
+  "meta": null,
+  "name": "My workflow 19",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "37c3f16e-33dc-4c02-b2d3-05743f3c8de4",
+        "responseMode": "lastNode",
+        "options": {}
+      },
+      "id": "ca987879-7ede-4c96-8afc-d8dc497bb1fe",
+      "name": "Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        480,
+        300
+      ],
+      "webhookId": "37c3f16e-33dc-4c02-b2d3-05743f3c8de4"
+    },
+    {
+      "parameters": {
+        "keepOnlySet": true,
+        "values": {
+          "string": [
+            {
+              "name": "name",
+              "value": "this is the id"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "96513490-dfbd-492d-b28a-916c3e7e9c9f",
+      "name": "Set",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 2,
+      "position": [
+        1120,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "amount": 2,
+        "unit": "seconds"
+      },
+      "id": "235cc152-57d9-4d06-830d-53427677d793",
+      "name": "Wait",
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1,
+      "position": [
+        740,
+        300
+      ],
+      "webhookId": "8a4b87f9-cdbe-48d7-81eb-a79723bc2d6f"
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 1,
+  "updatedAt": "2024-11-28T05:53:20.000Z",
+  "versionId": "bbb3d41c-bf68-4867-8efb-665ab1a4e1a0"
+}
