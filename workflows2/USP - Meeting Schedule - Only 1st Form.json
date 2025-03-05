@@ -1,0 +1,1159 @@
+{
+  "active": true,
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "IF8",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request": {
+      "main": [
+        [
+          {
+            "node": "IF",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "IF": {
+      "main": [
+        [
+          {
+            "node": "IF1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "IF1": {
+      "main": [
+        [
+          {
+            "node": "WhatsApp Business Cloud",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "WhatsApp Business Cloud1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "WhatsApp Business Cloud": {
+      "main": [
+        [
+          {
+            "node": "Wait1",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Wait2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait1": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request1": {
+      "main": [
+        [
+          {
+            "node": "IF2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "IF2": {
+      "main": [
+        [
+          {
+            "node": "WhatsApp Business Cloud2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "IF3": {
+      "main": [
+        [
+          {
+            "node": "Wait",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "IF4",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "IF4": {
+      "main": [
+        [
+          {
+            "node": "Wait",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait2": {
+      "main": [
+        [
+          {
+            "node": "WhatsApp Broucher & Videos| HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait3": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "WhatsApp Business Cloud3": {
+      "main": [
+        [
+          {
+            "node": "Wait4",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait4": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request4",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request2": {
+      "main": [
+        [
+          {
+            "node": "IF5",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "IF5": {
+      "main": [
+        [
+          {
+            "node": "WhatsApp Business Cloud3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request4": {
+      "main": [
+        [
+          {
+            "node": "IF6",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "IF6": {
+      "main": [
+        [
+          {
+            "node": "WhatsApp Business Cloud4",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "WhatsApp Business Cloud2": {
+      "main": [
+        [
+          {
+            "node": "Wait3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Supabase": {
+      "main": [
+        [
+          {
+            "node": "WhatsApp Business Cloud5",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "IF7": {
+      "main": [
+        [
+          {
+            "node": "Supabase",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "IF8": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request3",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "IF3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2024-01-26T09:49:54.019Z",
+  "id": "YWrhHnsLfxz5IeSg",
+  "meta": null,
+  "name": "USP - Meeting Schedule - Only 1st Form",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "38d8386b-0de2-4204-b1cb-168423dbeaa5",
+        "options": {}
+      },
+      "id": "6264d5d6-a084-41b1-9e51-789cb7fa7767",
+      "name": "Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        -280,
+        280
+      ],
+      "webhookId": "38d8386b-0de2-4204-b1cb-168423dbeaa5"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://blcwdqfhupddorxpdcjl.supabase.co/rest/v1/rpc/get_lead_not_booked_visit_by_id",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "ApiKey",
+              "value": " eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJsY3dkcWZodXBkZG9yeHBkY2psIiwicm9sZSI6ImFub24iLCJpYXQiOjE2OTI4NzkxMjgsImV4cCI6MjAwODQ1NTEyOH0.NdAhT3uGNwQahfxxUKM8BGV-gEjuIpl8NKVPpcaSFGM"
+            }
+          ]
+        },
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "data_id",
+              "value": "={{ $json.body.data.id }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "23861795-dfaf-4b9d-999f-3f701657e020",
+      "name": "HTTP Request",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        1200,
+        280
+      ]
+    },
+    {
+      "parameters": {
+        "amount": 5,
+        "unit": "minutes"
+      },
+      "id": "2f5071fa-5937-4dd2-9b72-c6708e812720",
+      "name": "Wait",
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1,
+      "position": [
+        980,
+        280
+      ],
+      "webhookId": "b1d4e211-5dd5-4951-8c56-4b55a21ea101"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "boolean": [
+            {
+              "value1": "={{ $json.exists_in_visit_office }}"
+            }
+          ]
+        }
+      },
+      "id": "4054d253-b494-4508-9dee-1655b3db8018",
+      "name": "IF",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        1440,
+        280
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "number": [
+            {
+              "value1": "={{ $json.campaign_source_details.id }}",
+              "operation": "equal",
+              "value2": 6
+            }
+          ]
+        }
+      },
+      "id": "7e0e93a2-5da6-4b2f-91df-627eef1c41cb",
+      "name": "IF1",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        1680,
+        260
+      ]
+    },
+    {
+      "parameters": {
+        "phoneNumberId": "108019349036743",
+        "recipientPhoneNumber": "={{ $json.lead_details.phone }}",
+        "template": "101_formfill_part1|en",
+        "components": {
+          "component": [
+            {
+              "bodyParameters": {
+                "parameter": [
+                  {
+                    "text": "={{ $json.lead_details.first_name }}"
+                  }
+                ]
+              }
+            },
+            {
+              "type": "button",
+              "sub_type": "url",
+              "buttonParameters": {
+                "parameter": {
+                  "payload": "={{ $json.lead_details.uuid }}"
+                }
+              }
+            },
+            {
+              "type": "header",
+              "headerParameters": {
+                "parameter": [
+                  {
+                    "type": "image",
+                    "imageLink": "https://blcwdqfhupddorxpdcjl.supabase.co/storage/v1/object/public/wa_assets/Whatsapp%20Banners-02.png"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      },
+      "id": "c18b3187-8e1c-4e6d-a068-a1d72e8a849f",
+      "name": "WhatsApp Business Cloud",
+      "type": "n8n-nodes-base.whatsApp",
+      "typeVersion": 1,
+      "position": [
+        2040,
+        80
+      ],
+      "credentials": {
+        "whatsAppApi": {
+          "id": "KHcTD6EUGATb3z0D",
+          "name": "WhatsApp account 2"
+        }
+      },
+      "continueOnFail": true
+    },
+    {
+      "parameters": {
+        "phoneNumberId": "108019349036743",
+        "recipientPhoneNumber": "={{ $json.lead_details.phone }}",
+        "template": "101_formfill_part1|en",
+        "components": {
+          "component": [
+            {
+              "bodyParameters": {
+                "parameter": [
+                  {
+                    "text": "={{ $json.lead_details.first_name }}"
+                  }
+                ]
+              }
+            },
+            {
+              "type": "button",
+              "sub_type": "url",
+              "buttonParameters": {
+                "parameter": {
+                  "payload": "={{ $json.lead_details.uuid }}"
+                }
+              }
+            },
+            {
+              "type": "header",
+              "headerParameters": {
+                "parameter": [
+                  {
+                    "type": "image",
+                    "imageLink": "https://blcwdqfhupddorxpdcjl.supabase.co/storage/v1/object/public/wa_assets/Whatsapp%20Banners-02.png"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      },
+      "id": "5d4838a1-a9a2-4f97-8739-55610edae3fd",
+      "name": "WhatsApp Business Cloud1",
+      "type": "n8n-nodes-base.whatsApp",
+      "typeVersion": 1,
+      "position": [
+        2040,
+        420
+      ],
+      "credentials": {
+        "whatsAppApi": {
+          "id": "KHcTD6EUGATb3z0D",
+          "name": "WhatsApp account 2"
+        }
+      },
+      "continueOnFail": true
+    },
+    {
+      "parameters": {
+        "amount": 15,
+        "unit": "minutes"
+      },
+      "id": "0a8993b6-0460-4a57-8776-463681717b9b",
+      "name": "Wait1",
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1,
+      "position": [
+        2300,
+        80
+      ],
+      "webhookId": "f2636646-a00f-4e8d-ae8c-4eafb45c785e"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://blcwdqfhupddorxpdcjl.supabase.co/rest/v1/rpc/get_lead_not_booked_visit_by_id",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "ApiKey",
+              "value": " eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJsY3dkcWZodXBkZG9yeHBkY2psIiwicm9sZSI6ImFub24iLCJpYXQiOjE2OTI4NzkxMjgsImV4cCI6MjAwODQ1NTEyOH0.NdAhT3uGNwQahfxxUKM8BGV-gEjuIpl8NKVPpcaSFGM"
+            }
+          ]
+        },
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "data_id",
+              "value": "={{ $('Webhook').item.json.body.data.id }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "2cc5e956-7058-403e-ae7f-b9595cd43c7f",
+      "name": "HTTP Request1",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        2540,
+        80
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "boolean": [
+            {
+              "value1": "={{ $json.exists_in_visit_office }}"
+            }
+          ]
+        }
+      },
+      "id": "b4568e4d-a29f-4d31-bb72-95ab5f89297e",
+      "name": "IF2",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        2720,
+        80
+      ]
+    },
+    {
+      "parameters": {
+        "phoneNumberId": "108019349036743",
+        "recipientPhoneNumber": "={{ $json.lead_details.phone }}",
+        "template": "301_1_fail_2_fill_form|en",
+        "components": {
+          "component": [
+            {
+              "bodyParameters": {
+                "parameter": [
+                  {
+                    "text": "={{ $json.lead_details.first_name }}"
+                  }
+                ]
+              }
+            },
+            {
+              "type": "button",
+              "sub_type": "url",
+              "buttonParameters": {
+                "parameter": {
+                  "payload": "={{ $json.lead_details.uuid }}"
+                }
+              }
+            },
+            {
+              "type": "header",
+              "headerParameters": {
+                "parameter": [
+                  {
+                    "type": "image",
+                    "imageLink": "https://blcwdqfhupddorxpdcjl.supabase.co/storage/v1/object/public/wa_assets/Whatsapp%20Banners-02.png"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      },
+      "id": "518f4c76-33aa-468f-8a8b-9f4922788841",
+      "name": "WhatsApp Business Cloud2",
+      "type": "n8n-nodes-base.whatsApp",
+      "typeVersion": 1,
+      "position": [
+        2980,
+        60
+      ],
+      "credentials": {
+        "whatsAppApi": {
+          "id": "KHcTD6EUGATb3z0D",
+          "name": "WhatsApp account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "number": [
+            {
+              "value1": "={{ $json.body.data.course }}",
+              "operation": "equal",
+              "value2": 9
+            }
+          ]
+        },
+        "combineOperation": "any"
+      },
+      "id": "a849e412-55f3-48a3-9443-af61e41239b9",
+      "name": "IF3",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        420,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "string": [
+            {
+              "value1": "={{ $json.body.data.intrested_in }}",
+              "value2": "Yes"
+            },
+            {
+              "value1": "={{ $json.body.data.intrested_in }}",
+              "value2": "Maybe"
+            }
+          ]
+        },
+        "combineOperation": "any"
+      },
+      "id": "24653b17-c04c-4a5e-8a36-d78d4e0e94a8",
+      "name": "IF4",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        660,
+        380
+      ]
+    },
+    {
+      "parameters": {
+        "amount": 20,
+        "unit": "seconds"
+      },
+      "id": "ae9cd447-a022-4c7f-bfc5-15cfe632d8a1",
+      "name": "Wait2",
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1,
+      "position": [
+        2300,
+        -200
+      ],
+      "webhookId": "f2636646-a00f-4e8d-ae8c-4eafb45c785e"
+    },
+    {
+      "parameters": {
+        "amount": 23
+      },
+      "id": "678c92ae-3d83-4f9b-94fc-1680beeee07f",
+      "name": "Wait3",
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1,
+      "position": [
+        3200,
+        320
+      ],
+      "webhookId": "0c73a379-bc63-410c-9bcc-9873e97bc52d"
+    },
+    {
+      "parameters": {
+        "phoneNumberId": "108019349036743",
+        "recipientPhoneNumber": "={{ $json.lead_details.phone }}",
+        "template": "301_3_fail_2_reminder_1|en",
+        "components": {
+          "component": [
+            {
+              "bodyParameters": {
+                "parameter": [
+                  {
+                    "text": "={{ $json.lead_details.first_name }}"
+                  }
+                ]
+              }
+            },
+            {
+              "type": "button",
+              "sub_type": "url",
+              "buttonParameters": {
+                "parameter": {
+                  "payload": "={{ $json.lead_details.uuid }}"
+                }
+              }
+            }
+          ]
+        }
+      },
+      "id": "8eb06e6f-9bf7-440d-8ad7-c7130c45e5d0",
+      "name": "WhatsApp Business Cloud3",
+      "type": "n8n-nodes-base.whatsApp",
+      "typeVersion": 1,
+      "position": [
+        3880,
+        300
+      ],
+      "credentials": {
+        "whatsAppApi": {
+          "id": "KHcTD6EUGATb3z0D",
+          "name": "WhatsApp account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "amount": 23
+      },
+      "id": "87e4cba8-6fcf-41f0-94e3-5c34446a1d32",
+      "name": "Wait4",
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1,
+      "position": [
+        4040,
+        560
+      ],
+      "webhookId": "0c73a379-bc63-410c-9bcc-9873e97bc52d"
+    },
+    {
+      "parameters": {
+        "phoneNumberId": "108019349036743",
+        "recipientPhoneNumber": "={{ $json.lead_details.phone }}",
+        "template": "301_4_fail_2_reminder_2|en",
+        "components": {
+          "component": [
+            {
+              "bodyParameters": {
+                "parameter": [
+                  {
+                    "text": "={{ $json.lead_details.first_name }}"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      },
+      "id": "58603e0e-2b27-42c2-aef7-00558d3afc47",
+      "name": "WhatsApp Business Cloud4",
+      "type": "n8n-nodes-base.whatsApp",
+      "typeVersion": 1,
+      "position": [
+        4700,
+        540
+      ],
+      "credentials": {
+        "whatsAppApi": {
+          "id": "KHcTD6EUGATb3z0D",
+          "name": "WhatsApp account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://blcwdqfhupddorxpdcjl.supabase.co/rest/v1/rpc/get_lead_not_booked_visit_by_id",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "ApiKey",
+              "value": " eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJsY3dkcWZodXBkZG9yeHBkY2psIiwicm9sZSI6ImFub24iLCJpYXQiOjE2OTI4NzkxMjgsImV4cCI6MjAwODQ1NTEyOH0.NdAhT3uGNwQahfxxUKM8BGV-gEjuIpl8NKVPpcaSFGM"
+            }
+          ]
+        },
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "data_id",
+              "value": "={{ $('Webhook').item.json.body.data.id }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "e1d1c155-43f4-433b-903f-b3955ab20dd0",
+      "name": "HTTP Request2",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        3420,
+        320
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "boolean": [
+            {
+              "value1": "={{ $json.exists_in_visit_office }}"
+            }
+          ]
+        }
+      },
+      "id": "402f8e7e-6d8c-4473-b370-ac7d4ddbbf3a",
+      "name": "IF5",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        3660,
+        320
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://blcwdqfhupddorxpdcjl.supabase.co/rest/v1/rpc/get_lead_not_booked_visit_by_id",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "ApiKey",
+              "value": " eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJsY3dkcWZodXBkZG9yeHBkY2psIiwicm9sZSI6ImFub24iLCJpYXQiOjE2OTI4NzkxMjgsImV4cCI6MjAwODQ1NTEyOH0.NdAhT3uGNwQahfxxUKM8BGV-gEjuIpl8NKVPpcaSFGM"
+            }
+          ]
+        },
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "data_id",
+              "value": "={{ $('Webhook').item.json.body.data.id }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "97e6c6fd-820b-4419-918a-f22c626bc2a1",
+      "name": "HTTP Request4",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        4240,
+        560
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "boolean": [
+            {
+              "value1": "={{ $json.exists_in_visit_office }}"
+            }
+          ]
+        }
+      },
+      "id": "a387aa4b-9c67-4422-b04f-a3ea49b5b004",
+      "name": "IF6",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        4480,
+        560
+      ]
+    },
+    {
+      "parameters": {
+        "phoneNumberId": "108019349036743",
+        "recipientPhoneNumber": "={{ $('Webhook').item.json.body.data.phone }}",
+        "template": "100_enquiry_thankyou|en",
+        "components": {
+          "component": [
+            {
+              "bodyParameters": {
+                "parameter": [
+                  {
+                    "text": "={{ $('Webhook').item.json.body.data.first_name }}"
+                  },
+                  {
+                    "text": "={{ $json.name }}"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      },
+      "id": "c0ae3236-fefa-4d73-bc57-a02dace958f1",
+      "name": "WhatsApp Business Cloud5",
+      "type": "n8n-nodes-base.whatsApp",
+      "typeVersion": 1,
+      "position": [
+        520,
+        -140
+      ],
+      "credentials": {
+        "whatsAppApi": {
+          "id": "KHcTD6EUGATb3z0D",
+          "name": "WhatsApp account 2"
+        }
+      },
+      "continueOnFail": true
+    },
+    {
+      "parameters": {
+        "operation": "get",
+        "tableId": "course_list",
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "id",
+              "keyValue": "={{ $json.body.data.course }}"
+            }
+          ]
+        }
+      },
+      "id": "eb677a4a-96e6-4280-89f7-50186f1fd128",
+      "name": "Supabase",
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        340,
+        -140
+      ],
+      "credentials": {
+        "supabaseApi": {
+          "id": "6stEFLC7gtftREcf",
+          "name": "Supabase Campaign manager"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "string": [
+            {
+              "value1": "={{ $json.body.data.coming_from }}",
+              "operation": "notEqual",
+              "value2": "MF"
+            }
+          ]
+        }
+      },
+      "id": "cd50e84c-b79d-4706-bf52-7d09592775bd",
+      "name": "IF7",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        140,
+        -120
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://graph.facebook.com/v17.0/108019349036743/messages",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "whatsAppApi",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n   \"messaging_product\":\"whatsapp\",\n   \"recipient_type\":\"individual\",\n   \"to\":\"‪‪{{ $('Webhook').item.json.body.data.phone }}\",\n   \"type\":\"template\",\n   \"template\":{\n      \"name\":\"201_b_formfill_info\",\n      \"language\":{\n         \"code\":\"en\"\n      },\n      \"components\":[\n         {\n            \"type\":\"header\",\n            \"parameters\":[\n               {\n                  \"type\":\"document\",\n                  \"document\":{\n\"link\":\"https://blcwdqfhupddorxpdcjl.supabase.co/storage/v1/object/public/wa_assets/Miles_USP_Deck.pdf\",\n\"filename\":\"Miles US Pathway\"\n                  }\n               }\n            ]\n         },\n         {\n            \"type\":\"body\",\n            \"parameters\":[\n               {\n                  \"type\":\"text\",\n                  \"text\":\"https://youtu.be/HFKH39U_kE8\"\n               },\n               {\n                  \"type\":\"text\",\n                  \"text\":\"https://youtu.be/io6IWSxru54?si\"\n               },\n               {\n                  \"type\":\"text\",\n                  \"text\":\"https://youtu.be/hNiYbj0ynaY\"\n               },\n               {\n                  \"type\":\"text\",\n                  \"text\":\"https://youtu.be/pmr6j_iOAfY\"\n               },\n               {\n                  \"type\":\"text\",\n                  \"text\":\"https://youtu.be/dE13DlSjXuc\"\n               },\n               {\n                  \"type\":\"text\",\n                  \"text\":\"https://youtu.be/H_6bO1CkI44\"\n               }\n            ]\n         }\n      ]\n   }\n}   ",
+        "options": {}
+      },
+      "id": "f4017155-f7b1-4e99-932c-595febd378d8",
+      "name": "WhatsApp Broucher & Videos| HTTP Request",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        2540,
+        -200
+      ],
+      "credentials": {
+        "whatsAppApi": {
+          "id": "KHcTD6EUGATb3z0D",
+          "name": "WhatsApp account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "content": "## Immediate after form filled\n** Excluding MF Data",
+        "height": 312.22929133858287,
+        "width": 626.2818267716538
+      },
+      "id": "c5de447c-9745-4361-86c6-6ab574d4a5e3",
+      "name": "Sticky Note",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        100,
+        -240
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://webhook.miles-api.com/webhook/613eb4d4-86c5-4296-97ca-fb15f652c2b4",
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "data",
+              "value": "={{ $json.body.data }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "3a947f0d-11b4-484d-bac1-badb556e80a4",
+      "name": "HTTP Request3",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        440,
+        80
+      ],
+      "continueOnFail": true
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "string": [
+            {
+              "value1": "={{ $json.body.data.phone }}",
+              "value2": "+916238133298"
+            },
+            {
+              "value1": "={{ $json.body.data.phone }}",
+              "value2": "+919930270910"
+            },
+            {
+              "value1": "={{ $json.body.data.email }}",
+              "operation": "contains",
+              "value2": "@mileseducation.com"
+            }
+          ]
+        },
+        "combineOperation": "any"
+      },
+      "id": "3a9a483b-3196-436e-a4cc-aa59d275718d",
+      "name": "IF8",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        180,
+        280
+      ]
+    }
+  ],
+  "pinData": {
+    "Webhook": [
+      {
+        "json": {
+          "headers": {
+            "host": "webhook.miles-api.com",
+            "x-real-ip": "162.158.235.168",
+            "x-forwarded-host": "webhook.miles-api.com",
+            "x-forwarded-server": "webhook.miles-api.com",
+            "x-forwarded-for": "34.100.240.130, 162.158.235.168",
+            "connection": "close",
+            "content-length": "609",
+            "accept-encoding": "gzip",
+            "cf-ray": "84b7dc537bed31f9-BOM",
+            "x-forwarded-proto": "https",
+            "accept": "application/json,text/html,application/xhtml+xml,application/xml,text/*;q=0.9, image/*;q=0.8, */*;q=0.7",
+            "content-type": "application/json",
+            "user-agent": "axios/0.21.4",
+            "sentry-trace": "024298c52597400bb63124ed1879714e-b8987eec2e82ba58-0",
+            "baggage": "sentry-environment=production,sentry-release=1.1.1,sentry-public_key=1f954e089a054b8e943ae4f4042b2bff,sentry-trace_id=024298c52597400bb63124ed1879714e",
+            "cf-connecting-ip": "34.100.240.130",
+            "cdn-loop": "cloudflare",
+            "cf-ipcountry": "IN"
+          },
+          "params": {},
+          "query": {},
+          "body": {
+            "data": {
+              "id": 348683,
+              "city": "Ernakulam",
+              "json": null,
+              "email": "jithin@gmail.com",
+              "phone": "+916238133298",
+              "course": 9,
+              "gcl_id": null,
+              "camp_id": 65,
+              "whatsapp": true,
+              "clevertap": null,
+              "last_name": null,
+              "camp_token": null,
+              "first_name": "Jithin",
+              "push_to_mf": false,
+              "webinar_id": null,
+              "campaign_id": null,
+              "coming_from": "website-page",
+              "intrested_in": "",
+              "campaign_name": null,
+              "page_full_url": "https://www.mileseducation.com/",
+              "sync_to_sheet": false,
+              "url_page_path": "/",
+              "english_proficiency": null,
+              "registration_status": false,
+              "register_for_webinar": null,
+              "whatsapp_send_status": false,
+              "education_qualification": "completed_graduation"
+            }
+          }
+        }
+      }
+    ]
+  },
+  "settings": {
+    "executionOrder": "v1",
+    "timezone": "Asia/Calcutta",
+    "saveManualExecutions": true,
+    "callerPolicy": "workflowsFromSameOwner",
+    "errorWorkflow": "JugK3JVukMVLS3ax"
+  },
+  "staticData": null,
+  "tags": [
+    {
+      "createdAt": "2024-01-27T09:19:45.406Z",
+      "updatedAt": "2024-01-27T09:19:45.406Z",
+      "id": "m1hfzqE5cWdHHPKy",
+      "name": "Whatsapp-MasterFlow-USP"
+    }
+  ],
+  "triggerCount": 1,
+  "updatedAt": "2024-01-29T20:24:46.000Z",
+  "versionId": "ec8e9cf6-45af-4d1b-8ef9-2df74e2da79b"
+}
