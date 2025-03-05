@@ -1,0 +1,323 @@
+{
+  "active": true,
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "MySQL",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "MySQL": {
+      "main": [
+        [
+          {
+            "node": "MySQL2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "MySQL1": {
+      "main": [
+        [
+          {
+            "node": "Set",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Set": {
+      "main": [
+        [
+          {
+            "node": "WhatsApp Business Cloud",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "MySQL2": {
+      "main": [
+        [
+          {
+            "node": "MySQL1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2023-12-15T06:42:21.056Z",
+  "id": "kewIxgNZJkVJWyI4",
+  "meta": null,
+  "name": "send-feedback-mf",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "488d6ea3-5c3f-4d48-8428-10d9daf0cc18",
+        "options": {}
+      },
+      "id": "2f7f0f21-3e8a-4bd1-85ee-a59f2a15d0b3",
+      "name": "Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        320,
+        320
+      ],
+      "webhookId": "488d6ea3-5c3f-4d48-8428-10d9daf0cc18"
+    },
+    {
+      "parameters": {
+        "phoneNumberId": "108019349036743",
+        "recipientPhoneNumber": "={{ $json.phone }}",
+        "template": "feedback_aftercall_salesagent_ver1|en",
+        "components": {
+          "component": [
+            {
+              "bodyParameters": {
+                "parameter": [
+                  {
+                    "text": "={{ $json.candidate_name }}"
+                  },
+                  {
+                    "text": "={{ $json.spoc_name }}"
+                  },
+                  {
+                    "text": "={{ $json.course }}"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      },
+      "id": "0ce99e83-cdd8-4172-a52b-377dd8b55219",
+      "name": "WhatsApp Business Cloud",
+      "type": "n8n-nodes-base.whatsApp",
+      "typeVersion": 1,
+      "position": [
+        1420,
+        320
+      ],
+      "credentials": {
+        "whatsAppApi": {
+          "id": "KHcTD6EUGATb3z0D",
+          "name": "WhatsApp account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "select",
+        "table": {
+          "__rl": true,
+          "value": "miles_call_logs",
+          "mode": "list",
+          "cachedResultName": "miles_call_logs"
+        },
+        "limit": 1,
+        "where": {
+          "values": [
+            {
+              "column": "user_id",
+              "value": "=1209"
+            }
+          ]
+        },
+        "sort": {
+          "values": [
+            {
+              "column": "created_at",
+              "direction": "DESC"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "472db613-0137-483c-8365-23c101a5f3f0",
+      "name": "MySQL",
+      "type": "n8n-nodes-base.mySql",
+      "typeVersion": 2.1,
+      "position": [
+        560,
+        320
+      ],
+      "credentials": {
+        "mySql": {
+          "id": "UPaGqhcnQd5QQFO3",
+          "name": "MySQL account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "select",
+        "table": {
+          "__rl": true,
+          "value": "miles_engagements",
+          "mode": "list",
+          "cachedResultName": "miles_engagements"
+        },
+        "limit": 1,
+        "where": {
+          "values": [
+            {
+              "column": "person_id",
+              "value": "={{ $json.person_id }}"
+            },
+            {
+              "column": "type",
+              "value": "call"
+            }
+          ]
+        },
+        "sort": {
+          "values": [
+            {
+              "column": "created_at",
+              "direction": "DESC"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "e82b64e7-d573-43c1-a652-23e11500e1e9",
+      "name": "MySQL1",
+      "type": "n8n-nodes-base.mySql",
+      "typeVersion": 2.1,
+      "position": [
+        1000,
+        320
+      ],
+      "credentials": {
+        "mySql": {
+          "id": "UPaGqhcnQd5QQFO3",
+          "name": "MySQL account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "keepOnlySet": true,
+        "values": {
+          "string": [
+            {
+              "name": "spoc_name",
+              "value": "={{ $json.assigned_spoc_name }}"
+            },
+            {
+              "name": "candidate_name",
+              "value": "={{ $('MySQL2').item.json.person_name }}"
+            },
+            {
+              "name": "course",
+              "value": "={{ $('MySQL2').item.json.courses }}"
+            },
+            {
+              "name": "phone",
+              "value": "={{ \"91\" + $('MySQL').item.json.last_ten_digits.toString() }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "afc1ba2a-0f0d-40fa-a530-4dff004b863a",
+      "name": "Set",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 2,
+      "position": [
+        1200,
+        320
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "select",
+        "table": {
+          "__rl": true,
+          "value": "mwb",
+          "mode": "list",
+          "cachedResultName": "mwb"
+        },
+        "limit": 1,
+        "where": {
+          "values": [
+            {
+              "column": "person_id",
+              "value": "={{ $json.person_id }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "3cc1331d-d8f3-437d-9fe2-96fd4c45ea6e",
+      "name": "MySQL2",
+      "type": "n8n-nodes-base.mySql",
+      "typeVersion": 2.1,
+      "position": [
+        780,
+        320
+      ],
+      "credentials": {
+        "mySql": {
+          "id": "UPaGqhcnQd5QQFO3",
+          "name": "MySQL account"
+        }
+      }
+    }
+  ],
+  "pinData": {
+    "Webhook": [
+      {
+        "json": {
+          "headers": {
+            "host": "webhook.miles-api.com",
+            "x-real-ip": "172.69.166.77",
+            "x-forwarded-host": "webhook.miles-api.com",
+            "x-forwarded-server": "webhook.miles-api.com",
+            "x-forwarded-for": "106.51.85.37, 172.69.166.77",
+            "connection": "close",
+            "content-length": "51",
+            "accept-encoding": "gzip",
+            "cf-ray": "835cdb276ade49ea-SIN",
+            "x-forwarded-proto": "https",
+            "content-type": "application/json",
+            "user-agent": "PostmanRuntime/7.36.0",
+            "accept": "*/*",
+            "cache-control": "no-cache",
+            "postman-token": "7531cdbc-992a-443b-9635-3a41d7b33082",
+            "cf-connecting-ip": "106.51.85.37",
+            "cdn-loop": "cloudflare",
+            "cf-ipcountry": "IN"
+          },
+          "params": {},
+          "query": {},
+          "body": {
+            "user_id": 1209,
+            "phone_no": "6238133298"
+          }
+        }
+      }
+    ]
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 1,
+  "updatedAt": "2023-12-15T10:14:13.000Z",
+  "versionId": "d63f85a9-cc60-4078-be19-bd25d661a489"
+}
