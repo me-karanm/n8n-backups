@@ -1,0 +1,225 @@
+{
+  "active": true,
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Switch",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Switch": {
+      "main": [
+        [
+          {
+            "node": "WhatsApp Business Cloud",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "WhatsApp Business Cloud1",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "WhatsApp Business Cloud2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2024-09-02T07:14:45.188Z",
+  "id": "2yAooJjtFYjMPVRN",
+  "meta": null,
+  "name": "Healthcare Superbot",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "healthcare-superbot",
+        "options": {}
+      },
+      "id": "d1e8c015-47d7-45b2-af7c-509392992298",
+      "name": "Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        260,
+        400
+      ],
+      "webhookId": "cff35ce9-06ca-49eb-8e06-7b16b3e09a17"
+    },
+    {
+      "parameters": {
+        "phoneNumberId": "171009622770823",
+        "recipientPhoneNumber": "={{ $json.body.phone }}",
+        "template": "healthcare_superbot_positive_response|en",
+        "components": {
+          "component": [
+            {
+              "bodyParameters": {
+                "parameter": [
+                  {
+                    "text": "={{ $json.body.name }}"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      },
+      "id": "f5036623-bba5-4c0d-a43d-5cd16ef9c906",
+      "name": "WhatsApp Business Cloud",
+      "type": "n8n-nodes-base.whatsApp",
+      "typeVersion": 1,
+      "position": [
+        920,
+        20
+      ],
+      "credentials": {
+        "whatsAppApi": {
+          "id": "JPvNp2kC4SudtNkr",
+          "name": "WhatsApp account New"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "mode": "expression",
+        "output": "={{ $json[\"body\"][\"disposition\"] == \"INTERESTED TO WORK IN US\" ? 3:\n$json[\"body\"][\"disposition\"] == \"CALLBACK REQUESTED\" ? 0:\n$json[\"body\"][\"disposition\"] == \"CALLBACK NOT REQUESTED\" ? 3:\n$json[\"body\"][\"disposition\"] == \"TO BE REACHED VIA WHATSAPP\" ? 1:\n$json[\"body\"][\"disposition\"] == \"NOT INTERESTED TO WORK IN US\" ? 2 :3\n}}"
+      },
+      "id": "6db79080-0680-4be0-b8cd-4073c8042161",
+      "name": "Switch",
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 1,
+      "position": [
+        480,
+        400
+      ]
+    },
+    {
+      "parameters": {
+        "phoneNumberId": "171009622770823",
+        "recipientPhoneNumber": "={{ $json.body.phone }}",
+        "template": "healthcare_superbot_no_call_response|en",
+        "components": {
+          "component": [
+            {
+              "bodyParameters": {
+                "parameter": [
+                  {
+                    "text": "={{ $json.body.name }}"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      },
+      "id": "cbae09e8-42b6-4a7e-831a-4d50af1d24a9",
+      "name": "WhatsApp Business Cloud1",
+      "type": "n8n-nodes-base.whatsApp",
+      "typeVersion": 1,
+      "position": [
+        920,
+        380
+      ],
+      "credentials": {
+        "whatsAppApi": {
+          "id": "JPvNp2kC4SudtNkr",
+          "name": "WhatsApp account New"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "phoneNumberId": "171009622770823",
+        "recipientPhoneNumber": "={{ $json.body.phone }}",
+        "template": "healthcare_superbot_not_interested|en",
+        "components": {
+          "component": [
+            {
+              "bodyParameters": {
+                "parameter": [
+                  {
+                    "text": "={{ $json.body.name }}"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      },
+      "id": "8b0f99b2-87f2-4e53-b314-e00c9b04a561",
+      "name": "WhatsApp Business Cloud2",
+      "type": "n8n-nodes-base.whatsApp",
+      "typeVersion": 1,
+      "position": [
+        920,
+        640
+      ],
+      "credentials": {
+        "whatsAppApi": {
+          "id": "JPvNp2kC4SudtNkr",
+          "name": "WhatsApp account New"
+        }
+      }
+    }
+  ],
+  "pinData": {
+    "Webhook": [
+      {
+        "json": {
+          "headers": {
+            "host": "webhook.miles-api.com",
+            "x-real-ip": "172.70.92.229",
+            "x-forwarded-host": "webhook.miles-api.com",
+            "x-forwarded-server": "webhook.miles-api.com",
+            "x-forwarded-for": "115.240.189.114, 172.70.92.229",
+            "connection": "close",
+            "content-length": "179",
+            "accept-encoding": "gzip, br",
+            "cf-ray": "8bcc850058c14df8-SIN",
+            "x-forwarded-proto": "https",
+            "cf-visitor": "{\"scheme\":\"https\"}",
+            "content-type": "application/json",
+            "user-agent": "PostmanRuntime/7.41.2",
+            "accept": "*/*",
+            "postman-token": "06ab84fc-32f1-4aa6-94dc-ecc6a1355d3e",
+            "cf-connecting-ip": "115.240.189.114",
+            "cdn-loop": "cloudflare",
+            "cf-ipcountry": "IN"
+          },
+          "params": {},
+          "query": {},
+          "body": {
+            "name": "John Doe",
+            "phone": "+917349296479",
+            "disposition": "NOT INTERESTED TO WORK IN US",
+            "email": "johndoe@example.com",
+            "connected_date": "2024-09-02",
+            "connected_time": "15:00:00"
+          }
+        }
+      }
+    ]
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 1,
+  "updatedAt": "2024-09-18T10:06:28.000Z",
+  "versionId": "6e76d0a9-ba51-4d25-acd8-5764f93d1623"
+}
