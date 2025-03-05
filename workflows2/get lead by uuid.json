@@ -1,0 +1,99 @@
+{
+  "active": true,
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Supabase",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Supabase": {
+      "main": [
+        [
+          {
+            "node": "Respond to Webhook",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2024-07-02T06:57:45.037Z",
+  "id": "TAAesMQoOL0HUyLb",
+  "meta": null,
+  "name": "get lead by uuid",
+  "nodes": [
+    {
+      "parameters": {
+        "path": "7d21526b-8f3e-4515-ac7b-f650b8c7f3e4",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "id": "503dff48-cf82-4702-9fc4-5daa4f870c1f",
+      "name": "Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        160,
+        320
+      ],
+      "webhookId": "7d21526b-8f3e-4515-ac7b-f650b8c7f3e4"
+    },
+    {
+      "parameters": {
+        "operation": "get",
+        "tableId": "leads_dump",
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "uuid",
+              "keyValue": "={{ $json.query.uuid }}"
+            }
+          ]
+        }
+      },
+      "id": "7caea9ec-edc2-4b37-b8c4-e4a95502322c",
+      "name": "Supabase",
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        320,
+        320
+      ],
+      "credentials": {
+        "supabaseApi": {
+          "id": "6stEFLC7gtftREcf",
+          "name": "Supabase Campaign manager"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "id": "ede99f82-8761-41e0-8201-9ebcc3a2cd75",
+      "name": "Respond to Webhook",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1,
+      "position": [
+        480,
+        320
+      ]
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 1,
+  "updatedAt": "2024-07-02T07:20:51.000Z",
+  "versionId": "2a4d2be1-3716-4149-9b02-c697500e5cb3"
+}
