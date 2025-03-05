@@ -1,0 +1,1125 @@
+{
+  "active": false,
+  "connections": {
+    "Postgres1": {
+      "main": [
+        [
+          {
+            "node": "IF",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "IF1": {
+      "main": [
+        [
+          {
+            "node": "IF3",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Wait2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "IF": {
+      "main": [
+        [
+          {
+            "node": "IF1",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "IF2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "IF3": {
+      "main": [
+        [
+          {
+            "node": "Wait",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Wait1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "IF2": {
+      "main": [
+        [
+          {
+            "node": "IF5",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Wait5",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "IF5": {
+      "main": [
+        [
+          {
+            "node": "Wait3",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Wait4",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait": {
+      "main": [
+        [
+          {
+            "node": "Postgres4",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait1": {
+      "main": [
+        [
+          {
+            "node": "Postgres3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait2": {
+      "main": [
+        [
+          {
+            "node": "Postgres",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait3": {
+      "main": [
+        [
+          {
+            "node": "Postgres7",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait4": {
+      "main": [
+        [
+          {
+            "node": "Postgres10",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait5": {
+      "main": [
+        [
+          {
+            "node": "Postgres11",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Execute Workflow Trigger": {
+      "main": [
+        [
+          {
+            "node": "Postgres1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-02-13T06:10:43.437Z",
+  "id": "0GKSluZaVAkP2tCi",
+  "meta": null,
+  "name": "Update Superbot Logger Table",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "17302338-3ad9-498e-ab6a-72c726ba06a6",
+      "name": "Execute Workflow Trigger",
+      "type": "n8n-nodes-base.executeWorkflowTrigger",
+      "typeVersion": 1,
+      "position": [
+        360,
+        380
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "select",
+        "schema": {
+          "__rl": true,
+          "mode": "list",
+          "value": "public"
+        },
+        "table": {
+          "__rl": true,
+          "value": "log_superbot_logger",
+          "mode": "list",
+          "cachedResultName": "log_superbot_logger"
+        },
+        "returnAll": true,
+        "where": {
+          "values": [
+            {
+              "column": "phone",
+              "value": "={{ $json.body.phone }}"
+            }
+          ]
+        },
+        "options": {
+          "outputColumns": [
+            "*"
+          ]
+        }
+      },
+      "id": "5fe6adf0-d5f7-4509-965d-ff5e31227607",
+      "name": "Postgres1",
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.2,
+      "position": [
+        860,
+        380
+      ],
+      "alwaysOutputData": true,
+      "credentials": {
+        "postgres": {
+          "id": "GYaemER0Ps55W8az",
+          "name": "Superbot Logger"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "string": [
+            {
+              "value1": "={{ $json.phone }}",
+              "operation": "isNotEmpty"
+            }
+          ]
+        }
+      },
+      "id": "231a05c4-2a19-4aa6-b657-891d5c9ce6dd",
+      "name": "IF",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        1120,
+        380
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "string": [
+            {
+              "value1": "={{ $('Execute Workflow Trigger').item.json.body.status }}",
+              "value2": "answered"
+            }
+          ]
+        }
+      },
+      "id": "961d5e4e-81f3-4856-866e-c224db236343",
+      "name": "IF1",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        1400,
+        160
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "string": [
+            {
+              "value1": "={{ $('Execute Workflow Trigger').item.json.body.disposition }}",
+              "value2": "Interested to Register for Webinar"
+            },
+            {
+              "value1": "={{ $('Execute Workflow Trigger').item.json.body.disposition }}",
+              "value2": "Interested For CPA Or CMA"
+            },
+            {
+              "value1": "={{ $('Execute Workflow Trigger').item.json.body.disposition }}",
+              "value2": "Interested for CPA or CMA"
+            },
+            {
+              "value1": "={{ $('Execute Workflow Trigger').item.json.body.disposition }}",
+              "value2": "Interested for USP"
+            }
+          ]
+        },
+        "combineOperation": "any"
+      },
+      "id": "b179847b-3296-4622-a5e4-0cd2cc08dc4a",
+      "name": "IF3",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        1900,
+        40
+      ]
+    },
+    {
+      "parameters": {
+        "content": "phone exists or not",
+        "height": 117.53099730458209,
+        "width": 150
+      },
+      "id": "53506962-2358-4d25-a1f9-d3133c84710a",
+      "name": "Sticky Note",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        840,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "content": "call connected or not",
+        "height": 117.53099730458209,
+        "width": 150
+      },
+      "id": "468e4a25-73c0-43fb-953e-a6288bd1b795",
+      "name": "Sticky Note1",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        1080,
+        80
+      ]
+    },
+    {
+      "parameters": {
+        "content": "interested or not",
+        "height": 117.53099730458209,
+        "width": 150
+      },
+      "id": "e5ed7c47-c8fa-44ed-9243-c71eb3b71eb8",
+      "name": "Sticky Note2",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        1560,
+        -40
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "string": [
+            {
+              "value1": "={{ $('Execute Workflow Trigger').item.json.body.status }}",
+              "value2": "answered"
+            }
+          ]
+        }
+      },
+      "id": "8431d3a9-7bf3-4556-baa2-2bdc684d63e9",
+      "name": "IF2",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        1460,
+        860
+      ]
+    },
+    {
+      "parameters": {
+        "content": "call connected or not",
+        "height": 117.53099730458209,
+        "width": 150
+      },
+      "id": "1f07bc78-9155-4ee6-9a17-644a5d99a36e",
+      "name": "Sticky Note3",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        1200,
+        780
+      ]
+    },
+    {
+      "parameters": {
+        "content": "interested or not",
+        "height": 117.53099730458209,
+        "width": 150
+      },
+      "id": "1ae82936-f088-4b8f-8e65-0e5c22460e9e",
+      "name": "Sticky Note4",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        1640,
+        680
+      ]
+    },
+    {
+      "parameters": {
+        "schema": {
+          "__rl": true,
+          "mode": "list",
+          "value": "public"
+        },
+        "table": {
+          "__rl": true,
+          "value": "log_superbot_logger",
+          "mode": "list",
+          "cachedResultName": "log_superbot_logger"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "phone": "={{ $('Execute Workflow Trigger').item.json.body.phone }}",
+            "times_dialled": 1,
+            "times_connected": 1,
+            "times_interested": 1,
+            "last_call_date": "={{ new Date().toISOString() }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "phone",
+              "displayName": "phone",
+              "required": true,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "times_dialled",
+              "displayName": "times_dialled",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "times_connected",
+              "displayName": "times_connected",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "times_interested",
+              "displayName": "times_interested",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "last_call_date",
+              "displayName": "last_call_date",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "dateTime",
+              "canBeUsedToMatch": true
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "a1191c42-819b-46ca-80e0-a04c00edbce2",
+      "name": "Postgres7",
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.2,
+      "position": [
+        2400,
+        540
+      ],
+      "retryOnFail": true,
+      "credentials": {
+        "postgres": {
+          "id": "GYaemER0Ps55W8az",
+          "name": "Superbot Logger"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "schema": {
+          "__rl": true,
+          "mode": "list",
+          "value": "public"
+        },
+        "table": {
+          "__rl": true,
+          "value": "log_superbot_logger",
+          "mode": "list",
+          "cachedResultName": "log_superbot_logger"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "phone": "={{ $('Execute Workflow Trigger').item.json.body.phone }}",
+            "times_dialled": "={{ $json.times_dialled +1}}",
+            "times_connected": "={{ $json.times_connected +1}}",
+            "times_interested": "={{ $json.times_interested }}",
+            "last_call_date": "={{ new Date().toISOString() }}"
+          },
+          "matchingColumns": [
+            "phone"
+          ],
+          "schema": [
+            {
+              "id": "phone",
+              "displayName": "phone",
+              "required": true,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "times_dialled",
+              "displayName": "times_dialled",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "times_connected",
+              "displayName": "times_connected",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "times_interested",
+              "displayName": "times_interested",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "last_call_date",
+              "displayName": "last_call_date",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "dateTime",
+              "canBeUsedToMatch": true
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "14d6e4d0-cb92-4746-a0b8-fb5dd7b9be26",
+      "name": "Postgres3",
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.2,
+      "position": [
+        2320,
+        160
+      ],
+      "retryOnFail": true,
+      "credentials": {
+        "postgres": {
+          "id": "GYaemER0Ps55W8az",
+          "name": "Superbot Logger"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "schema": {
+          "__rl": true,
+          "mode": "list",
+          "value": "public"
+        },
+        "table": {
+          "__rl": true,
+          "value": "log_superbot_logger",
+          "mode": "list",
+          "cachedResultName": "log_superbot_logger"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "phone": "={{ $('Execute Workflow Trigger').item.json.body.phone }}",
+            "times_dialled": "={{ $json.times_dialled+1 }}",
+            "times_connected": "={{ $json.times_connected+1 }}",
+            "times_interested": "={{ $json.times_interested+1 }}",
+            "last_call_date": "={{ new Date().toISOString() }}"
+          },
+          "matchingColumns": [
+            "phone"
+          ],
+          "schema": [
+            {
+              "id": "phone",
+              "displayName": "phone",
+              "required": true,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "times_dialled",
+              "displayName": "times_dialled",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "times_connected",
+              "displayName": "times_connected",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "times_interested",
+              "displayName": "times_interested",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "last_call_date",
+              "displayName": "last_call_date",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "dateTime",
+              "canBeUsedToMatch": true
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "3c43ce6d-79bf-484b-becf-ffe46c0d350d",
+      "name": "Postgres4",
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.2,
+      "position": [
+        2320,
+        -140
+      ],
+      "retryOnFail": true,
+      "credentials": {
+        "postgres": {
+          "id": "GYaemER0Ps55W8az",
+          "name": "Superbot Logger"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "schema": {
+          "__rl": true,
+          "mode": "list",
+          "value": "public"
+        },
+        "table": {
+          "__rl": true,
+          "value": "log_superbot_logger",
+          "mode": "list",
+          "cachedResultName": "log_superbot_logger"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "last_call_date": "={{ new Date().toISOString() }}",
+            "phone": "={{ $('Execute Workflow Trigger').item.json.body.phone }}",
+            "times_dialled": "={{ $json.times_dialled +1}}",
+            "times_connected": "={{ $json.times_connected }}",
+            "times_interested": "={{ $json.times_interested }}"
+          },
+          "matchingColumns": [
+            "phone"
+          ],
+          "schema": [
+            {
+              "id": "phone",
+              "displayName": "phone",
+              "required": true,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "times_dialled",
+              "displayName": "times_dialled",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "times_connected",
+              "displayName": "times_connected",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "times_interested",
+              "displayName": "times_interested",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "last_call_date",
+              "displayName": "last_call_date",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "dateTime",
+              "canBeUsedToMatch": true
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "3f6d80bc-7b0f-453d-872d-185bf06a1814",
+      "name": "Postgres",
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.2,
+      "position": [
+        1920,
+        360
+      ],
+      "retryOnFail": true,
+      "credentials": {
+        "postgres": {
+          "id": "GYaemER0Ps55W8az",
+          "name": "Superbot Logger"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "schema": {
+          "__rl": true,
+          "mode": "list",
+          "value": "public"
+        },
+        "table": {
+          "__rl": true,
+          "value": "log_superbot_logger",
+          "mode": "list",
+          "cachedResultName": "log_superbot_logger"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "phone": "={{ $('Execute Workflow Trigger').item.json.body.phone }}",
+            "times_dialled": 1,
+            "times_connected": 1,
+            "times_interested": 0,
+            "last_call_date": "={{ new Date().toISOString() }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "phone",
+              "displayName": "phone",
+              "required": true,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "times_dialled",
+              "displayName": "times_dialled",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "times_connected",
+              "displayName": "times_connected",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "times_interested",
+              "displayName": "times_interested",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "last_call_date",
+              "displayName": "last_call_date",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "dateTime",
+              "canBeUsedToMatch": true
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "66ad4587-f3ff-4d9d-ae24-3ff30005752a",
+      "name": "Postgres10",
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.2,
+      "position": [
+        2420,
+        860
+      ],
+      "retryOnFail": true,
+      "credentials": {
+        "postgres": {
+          "id": "GYaemER0Ps55W8az",
+          "name": "Superbot Logger"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "schema": {
+          "__rl": true,
+          "mode": "list",
+          "value": "public"
+        },
+        "table": {
+          "__rl": true,
+          "value": "log_superbot_logger",
+          "mode": "list",
+          "cachedResultName": "log_superbot_logger"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "phone": "={{ $('Execute Workflow Trigger').item.json.body.phone }}",
+            "times_dialled": 1,
+            "times_connected": 0,
+            "times_interested": 0,
+            "last_call_date": "={{ new Date().toISOString() }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "phone",
+              "displayName": "phone",
+              "required": true,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "times_dialled",
+              "displayName": "times_dialled",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "times_connected",
+              "displayName": "times_connected",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "times_interested",
+              "displayName": "times_interested",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "last_call_date",
+              "displayName": "last_call_date",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "dateTime",
+              "canBeUsedToMatch": true
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "d6e44baf-8987-4ed7-af27-d59eff942073",
+      "name": "Postgres11",
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.2,
+      "position": [
+        1960,
+        1060
+      ],
+      "retryOnFail": true,
+      "credentials": {
+        "postgres": {
+          "id": "GYaemER0Ps55W8az",
+          "name": "Superbot Logger"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "string": [
+            {
+              "value1": "={{ $('Execute Workflow Trigger').item.json.body.disposition }}",
+              "value2": "Interested to Register for Webinar"
+            },
+            {
+              "value1": "={{ $('Execute Workflow Trigger').item.json.body.disposition }}",
+              "value2": "Interested For CPA Or CMA"
+            },
+            {
+              "value1": "={{ $('Execute Workflow Trigger').item.json.body.disposition }}",
+              "value2": " Interested for CPA or CMA"
+            },
+            {
+              "value1": "={{ $('Execute Workflow Trigger').item.json.body.disposition }}",
+              "value2": " Interested for USP"
+            }
+          ]
+        },
+        "combineOperation": "any"
+      },
+      "id": "0c35f467-feb7-420e-8473-24135e694789",
+      "name": "IF5",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        1960,
+        740
+      ]
+    },
+    {
+      "parameters": {
+        "unit": "seconds"
+      },
+      "id": "d8c414d4-a2bc-49fd-abf3-152fe90bf087",
+      "name": "Wait",
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1,
+      "position": [
+        2120,
+        -60
+      ],
+      "webhookId": "3a75b787-200a-45b8-9ab1-2ee1a2df766d"
+    },
+    {
+      "parameters": {
+        "unit": "seconds"
+      },
+      "id": "b0ac6672-c0ca-4b70-8b69-aa0e06f27489",
+      "name": "Wait1",
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1,
+      "position": [
+        2120,
+        140
+      ],
+      "webhookId": "8baa3bc4-5b77-4c17-b686-1f12f072267e"
+    },
+    {
+      "parameters": {
+        "unit": "seconds"
+      },
+      "id": "d665a5e4-c766-4ee6-9f58-d8698b7633b1",
+      "name": "Wait2",
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1,
+      "position": [
+        1620,
+        260
+      ],
+      "webhookId": "5af7e020-d228-4886-9910-95747db5dc29"
+    },
+    {
+      "parameters": {
+        "unit": "seconds"
+      },
+      "id": "f89c8cda-516c-4dbd-a228-f7a01c6ca272",
+      "name": "Wait3",
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1,
+      "position": [
+        2180,
+        640
+      ],
+      "webhookId": "9e608b75-97d9-45af-982d-5a32c7364493"
+    },
+    {
+      "parameters": {
+        "unit": "seconds"
+      },
+      "id": "af3ad253-7cf4-4a0c-b1a2-f9641c5ad71e",
+      "name": "Wait4",
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1,
+      "position": [
+        2180,
+        840
+      ],
+      "webhookId": "0ef8e061-d8f0-44e5-a51d-a04e3e77cb60"
+    },
+    {
+      "parameters": {
+        "unit": "seconds"
+      },
+      "id": "a18d1752-d817-4f7a-8f7e-95977cfdfbd9",
+      "name": "Wait5",
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1,
+      "position": [
+        1680,
+        960
+      ],
+      "webhookId": "284176ae-5ede-456f-9b4a-ee35780525ef"
+    }
+  ],
+  "pinData": {
+    "Execute Workflow Trigger": [
+      {
+        "json": {
+          "headers": {
+            "host": "webhook.miles-api.com",
+            "x-real-ip": "172.70.218.40",
+            "x-forwarded-host": "webhook.miles-api.com",
+            "x-forwarded-server": "webhook.miles-api.com",
+            "x-forwarded-for": "35.200.234.171, 172.70.218.40",
+            "connection": "close",
+            "content-length": "332",
+            "cf-ray": "911cd9a6da5785ba-BOM",
+            "cf-connecting-ip": "35.200.234.171",
+            "accept-encoding": "gzip, br",
+            "x-forwarded-proto": "https",
+            "content-type": "application/json",
+            "user-agent": "GuzzleHttp/7",
+            "cf-ipcountry": "IN",
+            "cdn-loop": "cloudflare; loops=1"
+          },
+          "params": {},
+          "query": {},
+          "body": {
+            "vertical": "accounting",
+            "audience": "not-enrolled",
+            "campaign_id": 20006,
+            "status": "answered",
+            "outcome": "disposed",
+            "disposition": "Not Interested for CPA Or CMA",
+            "connected_date_time": "2025-02-17 14:30:57",
+            "email": "silvestar.sohtun.02@gmail.com",
+            "orientation_session_id": "24",
+            "candidate_id": "1392",
+            "identity": "",
+            "phone": "9863008459"
+          }
+        }
+      }
+    ]
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2025-03-04T08:31:23.000Z",
+  "versionId": "cb98e953-9a1c-4e69-967e-38b43e9466d4"
+}
