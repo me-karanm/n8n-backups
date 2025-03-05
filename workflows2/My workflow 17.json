@@ -1,0 +1,81 @@
+{
+  "active": true,
+  "connections": {
+    "Code": {
+      "main": [
+        [
+          {
+            "node": "Respond to Webhook1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Webhook": {
+      "main": [
+        []
+      ]
+    }
+  },
+  "createdAt": "2024-11-18T15:52:07.908Z",
+  "id": "WZbQbJiEU36zyDFn",
+  "meta": null,
+  "name": "My workflow 17",
+  "nodes": [
+    {
+      "parameters": {
+        "path": "waba-karan-test",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "id": "ad6cdeb3-d809-419d-8fb6-f02455deb537",
+      "name": "Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        760,
+        360
+      ],
+      "webhookId": "ba922355-570a-4da5-87af-e76d851431ad"
+    },
+    {
+      "parameters": {
+        "language": "python",
+        "pythonCode": "# Main function for the Code node\ndef handle_webhook(data):\n    verify_token = 'karan-test-waba'\n\n    # Extract query parameters from the first input item\n    query = data[0].get('json').get('query')\n    mode = query.get('hub.mode')\n    print(mode)\n    token = query.get('hub.verify_token')\n    print(token)\n    challenge = query.get('hub.challenge')\n    print(challenge)\n\n    # Check verification logic\n    if mode == 'subscribe' and token == verify_token:\n        return [{\"response\": challenge}]  # Correct response\n    else:\n        return [{\"error\": challenge}]  # Unauthorized response\n\n# Fetch input data directly from n8n\ndata = items  # 'items' is the variable n8n provides for input data\n\n# Process the input data\nreturn handle_webhook(data)\n"
+      },
+      "id": "32b59cde-8926-4c10-835e-394752e97d20",
+      "name": "Code",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1000,
+        360
+      ]
+    },
+    {
+      "parameters": {
+        "respondWith": "text",
+        "responseBody": "={{ $json.response }}",
+        "options": {}
+      },
+      "id": "e31a482d-e618-490d-8936-540f63c8627c",
+      "name": "Respond to Webhook1",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1,
+      "position": [
+        1340,
+        360
+      ]
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 1,
+  "updatedAt": "2024-11-18T16:01:18.000Z",
+  "versionId": "66b0478b-ce08-4f46-a236-d151f2d402e9"
+}
