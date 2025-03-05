@@ -1,0 +1,140 @@
+{
+  "active": false,
+  "connections": {
+    "When clicking \"Execute Workflow\"": {
+      "main": [
+        [
+          {
+            "node": "Google Sheets",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Sheets": {
+      "main": [
+        [
+          {
+            "node": "Split In Batches",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Split In Batches": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request": {
+      "main": [
+        [
+          {
+            "node": "Split In Batches",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2024-09-03T07:13:47.657Z",
+  "id": "3dgapxgIpn6yt69y",
+  "meta": null,
+  "name": "Lead Upload MF",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "c114bc0a-b603-456e-bc1f-fe12c196077c",
+      "name": "When clicking \"Execute Workflow\"",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        280,
+        260
+      ]
+    },
+    {
+      "parameters": {
+        "authentication": "serviceAccount",
+        "documentId": {
+          "__rl": true,
+          "value": "https://docs.google.com/spreadsheets/d/1zSw15-A1bco9N8ql49x8BQ_JfyyGkBst9KkKqBEKHCw/edit?usp=sharing",
+          "mode": "url",
+          "__regex": "https:\\/\\/(?:drive|docs)\\.google\\.com(?:\\/.*|)\\/d\\/([0-9a-zA-Z\\-_]+)(?:\\/.*|)"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 821916306,
+          "mode": "list",
+          "cachedResultName": "1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1zSw15-A1bco9N8ql49x8BQ_JfyyGkBst9KkKqBEKHCw/edit#gid=821916306"
+        },
+        "options": {}
+      },
+      "id": "6cd91780-e40b-449b-a0ee-f17e67c12a3c",
+      "name": "Google Sheets",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4,
+      "position": [
+        500,
+        260
+      ],
+      "credentials": {
+        "googleApi": {
+          "id": "aiCprsG1ZRAOjrNn",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "batchSize": 1,
+        "options": {}
+      },
+      "id": "d141fc49-c1bf-4818-a67f-db0e2eb98a18",
+      "name": "Split In Batches",
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 2,
+      "position": [
+        720,
+        260
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://rl303zpb-3000.inc1.devtunnels.ms/enquiries/add",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"first_name\": \"{{ $json['First Name'] }}\",\n  \"last_name\": \"{{ $json['Last Name'] }}\",\n  \"phone\": \"+91{{ $json['Phone Number'] }}\",\n  \"email\": \"{{ $json.Email }}\",\n  \"city\": \"Bangalore\",\n  \"course_id\": {{ $json.Program_id }},\n  \"coming_from\": \"Data Migration\",\n  \"campaign_id\": {{ $json.camp_id }},\n  \"campaign_tk\": null,\n  \"gcl_id\": \"\",\n  \"whatsapp_opt_in\": true,\n  \"register_for_webinar\": true,\n  \"intrested_to_work_in_us\": false,\n  \"page_full_url\": \"\",\n  \"url_page_path\": \"\",\n  \"linked_in_url\": \"\",\n  \"clevertap_id\": \"\",\n  \"education_qualification\": null,\n  \"isFromWelcomeBack\": false,\n  \"level\": {{ $json.level_id }},\n  \"spoc_email\": \"{{ $json['Owner Email'] }}\"\n}",
+        "options": {}
+      },
+      "id": "21b2b4e4-e096-4f93-90f2-5ea15e3b885d",
+      "name": "HTTP Request",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        940,
+        60
+      ]
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2024-09-03T07:56:42.000Z",
+  "versionId": "8cfcc791-7067-45a5-a592-28150c3d649a"
+}
