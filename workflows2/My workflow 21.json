@@ -1,0 +1,35 @@
+{
+  "active": false,
+  "connections": {},
+  "createdAt": "2025-01-06T10:15:18.004Z",
+  "id": "Oz3UCVSIm9ICgj5M",
+  "meta": null,
+  "name": "My workflow 21",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "test-zoom-web-app",
+        "options": {}
+      },
+      "id": "c3192a1e-1e38-4289-915b-83717dfeb2e1",
+      "name": "Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        760,
+        380
+      ],
+      "webhookId": "3bc7dfec-7fb1-4532-94db-20fb95cb52a0"
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2025-01-06T10:15:18.004Z",
+  "versionId": "63240280-6c34-405b-92c6-ad09620dbcca"
+}
