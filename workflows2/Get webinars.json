@@ -1,0 +1,225 @@
+{
+  "active": true,
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Supabase",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Supabase": {
+      "main": [
+        [
+          {
+            "node": "Item Lists",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Item Lists": {
+      "main": [
+        [
+          {
+            "node": "Respond to Webhook",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Supabase1": {
+      "main": [
+        []
+      ]
+    },
+    "IF": {
+      "main": [
+        []
+      ]
+    }
+  },
+  "createdAt": "2024-08-28T11:58:11.653Z",
+  "id": "XwNaJEq5JTbU9Kvc",
+  "meta": null,
+  "name": "Get webinars",
+  "nodes": [
+    {
+      "parameters": {
+        "path": "38f2ed03-8371-4834-84fc-b21dfa213a48",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "id": "ecd9bf33-3051-4775-a714-41e47d57b290",
+      "name": "Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        260,
+        280
+      ],
+      "webhookId": "38f2ed03-8371-4834-84fc-b21dfa213a48"
+    },
+    {
+      "parameters": {
+        "operation": "getAll",
+        "tableId": "webinar",
+        "returnAll": true
+      },
+      "id": "6fb46f9e-85cb-473d-aee4-a3afdf1fd342",
+      "name": "Supabase",
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        1200,
+        280
+      ],
+      "credentials": {
+        "supabaseApi": {
+          "id": "6stEFLC7gtftREcf",
+          "name": "Supabase Campaign manager"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "id": "f1c0e8ed-be58-4aa0-98ea-385bf0328478",
+      "name": "Respond to Webhook",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1,
+      "position": [
+        1920,
+        280
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "811a08f9-b264-4d12-94ca-563ef5e17101",
+      "name": "Merge",
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 2.1,
+      "position": [
+        1200,
+        100
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "concatenateItems",
+        "aggregate": "aggregateAllItemData"
+      },
+      "id": "7320b7af-2ad7-4397-84cb-f2c54edfe233",
+      "name": "Item Lists",
+      "type": "n8n-nodes-base.itemLists",
+      "typeVersion": 3,
+      "position": [
+        1620,
+        280
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "getAll",
+        "tableId": "webinar_registration",
+        "returnAll": true,
+        "matchType": "allFilters",
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "registration_email",
+              "condition": "eq",
+              "keyValue": "={{ $json.query.email }}"
+            }
+          ]
+        }
+      },
+      "id": "7108e09a-dcfd-46d3-b858-6e9d207e0e7f",
+      "name": "Supabase1",
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        860,
+        20
+      ],
+      "credentials": {
+        "supabaseApi": {
+          "id": "6stEFLC7gtftREcf",
+          "name": "Supabase Campaign manager"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "string": [
+            {
+              "value1": "={{ $json?.query }}"
+            }
+          ]
+        }
+      },
+      "id": "4ff26fe2-8967-4cff-bd99-4116cb09523d",
+      "name": "IF",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        560,
+        -100
+      ]
+    }
+  ],
+  "pinData": {
+    "Webhook": [
+      {
+        "json": {
+          "headers": {
+            "host": "webhook.miles-api.com",
+            "x-real-ip": "172.68.154.135",
+            "x-forwarded-host": "webhook.miles-api.com",
+            "x-forwarded-server": "webhook.miles-api.com",
+            "x-forwarded-for": "49.204.70.102, 172.68.154.135",
+            "connection": "close",
+            "accept-encoding": "gzip, br",
+            "cf-ray": "8bcc9cc90b693c0c-BLR",
+            "x-forwarded-proto": "https",
+            "sec-ch-ua-mobile": "?0",
+            "upgrade-insecure-requests": "1",
+            "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36",
+            "accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7",
+            "sec-fetch-site": "none",
+            "sec-fetch-mode": "navigate",
+            "sec-fetch-user": "?1",
+            "sec-fetch-dest": "document",
+            "accept-language": "en-GB,en-US;q=0.9,en;q=0.8",
+            "priority": "u=0, i",
+            "cookie": "cf_clearance=bMrjAWe8zNXP9DmIQFffjo8Ki34Rdpn_HvRgv2ONUe8-1725085305-1.2.1.1-D6cNYi2LFVHA5Atmzr9DQZfcBIqXneimlLIHFznWk99fLfwMyT7Xh2SL736MHUQaSJwjG8GzLPAB.vPYskYY_a5vM5vLrkxaXIEYj3HWRBooWuwf66C3cOLKpWxecz2cYswagLEtCTu9wzpuPtS0aQw2oR8bgvt8sIc1LnVrezCTgnsDnW4bOOHMJEyrg1FIC92AP4L0gte9_dw86v1e50fcEvk3Zg0nMGZ9BkZGl251nISOdcc3wo0mJDi0ARB3ON6Om5oFAUkvNXmetEEQleoirhK8olmHc..FazlL80sD0NKx5G8MZHmMDrAabVPiweqAsozD0c0_jPvofvPXESX4oBLZTWyrR8GizAe4ztb_9Q6lnY.nhd7zH4OAHvsFRYwosQcxLvEzHLdAYslUyw",
+            "cf-connecting-ip": "49.204.70.102",
+            "cdn-loop": "cloudflare",
+            "cf-ipcountry": "IN"
+          },
+          "params": {},
+          "query": {
+            "email": "jithin.kumar@mileseducation.com"
+          },
+          "body": {}
+        }
+      }
+    ]
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 1,
+  "updatedAt": "2024-09-02T10:01:08.000Z",
+  "versionId": "0b46e02e-05d4-43f9-8345-446dc6b31cfb"
+}
