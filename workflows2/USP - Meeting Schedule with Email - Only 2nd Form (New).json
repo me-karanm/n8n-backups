@@ -1,0 +1,4313 @@
+{
+  "active": false,
+  "connections": {
+    "Supabase": {
+      "main": [
+        [
+          {
+            "node": "IF",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Supabase1": {
+      "main": [
+        [
+          {
+            "node": "Wait1",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "IF12",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Date & Time": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request1": {
+      "main": [
+        [
+          {
+            "node": "Supabase3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Supabase3": {
+      "main": [
+        [
+          {
+            "node": "Supabase2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "IF": {
+      "main": [
+        [
+          {
+            "node": "Supabase1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait1": {
+      "main": [
+        [
+          {
+            "node": "Supabase5",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "WhatsApp Business Cloud1": {
+      "main": [
+        [
+          {
+            "node": "Set",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Wait",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request": {
+      "main": [
+        [
+          {
+            "node": "IF14",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Supabase2": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "IF1": {
+      "main": [
+        [
+          {
+            "node": "Date & Time",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "IF2": {
+      "main": [
+        [
+          {
+            "node": "Date & Time1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Date & Time1": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request15",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "IF3": {
+      "main": [
+        [
+          {
+            "node": "IF1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Date & Time2": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request16",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request4": {
+      "main": [
+        [
+          {
+            "node": "Supabase4",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Supabase4": {
+      "main": [
+        [
+          {
+            "node": "Date & Time2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request3": {
+      "main": [
+        [
+          {
+            "node": "Set1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "IF4": {
+      "main": [
+        [
+          {
+            "node": "WhatsApp Business Cloud1",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "WhatsApp Business Cloud",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "WhatsApp Business Cloud": {
+      "main": [
+        [
+          {
+            "node": "Set3",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Wait2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait2": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request5",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request5": {
+      "main": [
+        [
+          {
+            "node": "Set2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Set1": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request6",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Set": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request7",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Set2": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request8",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Set3": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request9",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "IF5": {
+      "main": [
+        [
+          {
+            "node": "IF4",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "WhatsApp Business Cloud3": {
+      "main": [
+        [
+          {
+            "node": "Set5",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Wait3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait3": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request10",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request10": {
+      "main": [
+        [
+          {
+            "node": "Set4",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "WhatsApp Business Cloud4": {
+      "main": [
+        [
+          {
+            "node": "Set7",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request11": {
+      "main": [
+        [
+          {
+            "node": "Set6",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Set4": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request12",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Set5": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request13",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Set6": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request14",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "IF7": {
+      "main": [
+        [
+          {
+            "node": "IF13",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "IF8",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request18": {
+      "main": [
+        [
+          {
+            "node": "Set8",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Set8": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request19",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "WhatsApp Business Cloud5": {
+      "main": [
+        [
+          {
+            "node": "Set9",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "IF8": {
+      "main": [
+        [
+          {
+            "node": "IF9",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "HTTP Request11",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request21": {
+      "main": [
+        [
+          {
+            "node": "Set10",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Set10": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request22",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request23": {
+      "main": [
+        [
+          {
+            "node": "Set11",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "IF9": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request23",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "HTTP Request21",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Set11": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request24",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "WhatsApp Business Cloud6": {
+      "main": [
+        [
+          {
+            "node": "Set12",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Supabase5": {
+      "main": [
+        [
+          {
+            "node": "IF3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "IF12": {
+      "main": [
+        [
+          {
+            "node": "Switch",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "IF7",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Set14": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request28",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Set15": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request30",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Set16": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request32",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Switch": {
+      "main": [
+        [
+          {
+            "node": "CFA",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "FRM",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "IIML",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "IIML": {
+      "main": [
+        [
+          {
+            "node": "Set14",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "CFA": {
+      "main": [
+        [
+          {
+            "node": "Set15",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "FRM": {
+      "main": [
+        [
+          {
+            "node": "Set16",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "IF14": {
+      "main": [
+        [
+          {
+            "node": "Switch1",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "IF11",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Switch1": {
+      "main": [
+        [
+          {
+            "node": "CFA1",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "FRM1",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "IIML1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "CFA1": {
+      "main": [
+        [
+          {
+            "node": "Set17",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "FRM1": {
+      "main": [
+        [
+          {
+            "node": "Set18",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "IIML1": {
+      "main": [
+        [
+          {
+            "node": "Set19",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "IF15": {
+      "main": [
+        [
+          {
+            "node": "IF16",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "IF17",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "IF16": {
+      "main": [
+        [
+          {
+            "node": "WhatsApp Business Cloud5",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "WhatsApp Business Cloud4",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "IF11": {
+      "main": [
+        [
+          {
+            "node": "IF6",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "IF15",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Set9": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request20",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Set7": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request17",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Set12": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request25",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Set13": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request26",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Set17": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request27",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Set18": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request29",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Set19": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request31",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "IF6": {
+      "main": [
+        [
+          {
+            "node": "WhatsApp Business Cloud11",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "WhatsApp Business Cloud8",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "WhatsApp Business Cloud8": {
+      "main": [
+        [
+          {
+            "node": "Set20",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Set20": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request33",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "IF13": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request18",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "HTTP Request21",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "WhatsApp Business Cloud9": {
+      "main": [
+        [
+          {
+            "node": "Set21",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Set21": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request34",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "WhatsApp Business Cloud10": {
+      "main": [
+        [
+          {
+            "node": "Set22",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Set22": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request35",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "IF17": {
+      "main": [
+        [
+          {
+            "node": "WhatsApp Business Cloud10",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "IF18",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "IF18": {
+      "main": [
+        [
+          {
+            "node": "WhatsApp Business Cloud9",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "WhatsApp Business Cloud6",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "WhatsApp Business Cloud11": {
+      "main": [
+        [
+          {
+            "node": "Set13",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Supabase",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request25": {
+      "main": [
+        [
+          {
+            "node": "Mandrill2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request27": {
+      "main": [
+        [
+          {
+            "node": "Mandrill3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request30": {
+      "main": [
+        [
+          {
+            "node": "Mandrill1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2024-05-21T09:37:04.312Z",
+  "id": "K14ovLXUtaMIwvvH",
+  "meta": null,
+  "name": "USP - Meeting Schedule with Email - Only 2nd Form (New)",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "form-2-new",
+        "options": {}
+      },
+      "id": "f29458c2-a4af-4095-8f67-4aae2b18758e",
+      "name": "Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        1200,
+        200
+      ],
+      "webhookId": "2954e271-3929-456b-bb2e-2de5f0b73d47"
+    },
+    {
+      "parameters": {
+        "operation": "get",
+        "tableId": "visit_office",
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "id",
+              "keyValue": "={{ $json.body.id }}"
+            }
+          ]
+        }
+      },
+      "id": "783c12dc-5cb5-42e1-844c-71be5f80e5d6",
+      "name": "Supabase",
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        1420,
+        200
+      ],
+      "credentials": {
+        "supabaseApi": {
+          "id": "6stEFLC7gtftREcf",
+          "name": "Supabase Campaign manager"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "get",
+        "tableId": "leads_dump",
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "id",
+              "keyValue": "={{ $json.leads_dump_id }}"
+            }
+          ]
+        }
+      },
+      "id": "b0a8cc67-5ea9-4cbd-94da-b8985de64964",
+      "name": "Supabase1",
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        1780,
+        180
+      ],
+      "credentials": {
+        "supabaseApi": {
+          "id": "6stEFLC7gtftREcf",
+          "name": "Supabase Campaign manager"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "formatDate",
+        "date": "={{ $('Supabase').item.json.time_slots }}",
+        "format": "X",
+        "options": {}
+      },
+      "id": "052bb66a-5b32-40f5-9957-560dd9c98e03",
+      "name": "Date & Time",
+      "type": "n8n-nodes-base.dateTime",
+      "typeVersion": 2,
+      "position": [
+        3100,
+        440
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://mfcomms.2x2.ninja/api/sendGoogleInviteMiles",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"secret\":\"18b2c162-c0bb-49b1-8f48-21c94a0aabf5\",\n  \"type\": \"{{ $('Supabase').item.json.meeting_type == 1 ? 'office' : 'video' }}\",\n  \"location\":\"{{$('Supabase').item.json.meeting_type == 1 ?  $('Supabase').item.json.city : 'Bangalore' }}\",\n  \"start_time\":{{ $json.formattedDate - 19800 }},\n  \"candidate_email\":\"{{ $('Supabase1').item.json.email }}\",\n  \"mobile_number\":\"{{ $('Supabase1').item.json.phone }}\",\n\"ne_id\":{{ $('Supabase1').item.json.unique_id?.trim() ?? 0 }}\n} ",
+        "options": {}
+      },
+      "id": "b4f87559-6fef-4aee-90de-2f432d4f2c57",
+      "name": "HTTP Request1",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        3260,
+        440
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "tableId": "visit_office",
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "id",
+              "condition": "eq",
+              "keyValue": "={{ $('Supabase').item.json.id }}"
+            }
+          ]
+        },
+        "fieldsUi": {
+          "fieldValues": [
+            {
+              "fieldId": "spoc_phone",
+              "fieldValue": "={{ $json.spoc_phone }}"
+            },
+            {
+              "fieldId": "spoc_gm",
+              "fieldValue": "={{ $json.spoc_gm }}"
+            },
+            {
+              "fieldId": "sopc_name",
+              "fieldValue": "={{ $json.spoc_name }}"
+            },
+            {
+              "fieldId": "flow_started",
+              "fieldValue": "true"
+            }
+          ]
+        }
+      },
+      "id": "ffdac42a-2855-4465-ad4e-1ffd6bf6a5c2",
+      "name": "Supabase3",
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        3420,
+        440
+      ],
+      "credentials": {
+        "supabaseApi": {
+          "id": "6stEFLC7gtftREcf",
+          "name": "Supabase Campaign manager"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "phoneNumberId": "108019349036743",
+        "recipientPhoneNumber": "={{ $('Supabase1').item.json.phone }}",
+        "template": "m102__form_fillup_part_2_1|en",
+        "components": {
+          "component": [
+            {
+              "bodyParameters": {
+                "parameter": [
+                  {
+                    "text": "  "
+                  },
+                  {
+                    "text": "={{ $('Supabase1').item.json.first_name }}"
+                  },
+                  {
+                    "text": "={{ $json.m102[0].course }}"
+                  },
+                  {
+                    "text": "={{new Date($('Supabase').item.json.time_slots).toLocaleString('en-US',{year: 'numeric',month: 'short', day: 'numeric'})}} "
+                  },
+                  {
+                    "text": "={{ $('Supabase').item.json.time_string }}"
+                  },
+                  {
+                    "text": "={{ $('Supabase3').item.json.sopc_name ?? \"TBA\" }}"
+                  },
+                  {
+                    "text": "={{ $json.visit_details.meeting_type == 1 ?$('Supabase2').item.json.address : \"Google Meet\" }}"
+                  }
+                ]
+              }
+            },
+            {
+              "type": "button",
+              "sub_type": "url",
+              "buttonParameters": {
+                "parameter": {
+                  "payload": "={{ $('Supabase2').item.json.google_location.substring(34)}}"
+                }
+              }
+            },
+            {
+              "type": "header",
+              "headerParameters": {
+                "parameter": [
+                  {
+                    "type": "image",
+                    "imageLink": "={{ $json.m102[0].header_url }}"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      },
+      "id": "b48ba384-a58d-4687-85d0-dbe3383b2a7e",
+      "name": "WhatsApp Business Cloud1",
+      "type": "n8n-nodes-base.whatsApp",
+      "typeVersion": 1,
+      "position": [
+        9400,
+        -1960
+      ],
+      "credentials": {
+        "whatsAppApi": {
+          "id": "KHcTD6EUGATb3z0D",
+          "name": "WhatsApp account 2"
+        }
+      },
+      "continueOnFail": true
+    },
+    {
+      "parameters": {
+        "amount": 30,
+        "unit": "seconds"
+      },
+      "id": "a9ef6d0d-c510-4828-807f-1c7207200efa",
+      "name": "Wait",
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1,
+      "position": [
+        9700,
+        -1960
+      ],
+      "webhookId": "5ba8e7b1-a4b3-456e-90ac-dcc6bb27fdb8"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://graph.facebook.com/v17.0/108019349036743/messages",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "whatsAppApi",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "=\n{\n  \"messaging_product\": \"whatsapp\",\n  \"recipient_type\": \"individual\",\n  \"to\": \"{{ $('Supabase1').item.json.phone }}\",\n  \"type\": \"template\",\n  \"template\": {\n      \"name\": \"m103_pre_meet_info_1\",\n      \"language\": {\n          \"code\": \"en\"\n      },\n      \"components\": [\n          {\n              \"type\": \"header\",\n              \"parameters\": [\n                  {\n                      \"type\": \"document\",\n                      \"document\": {\n                          \"link\": \"https://blcwdqfhupddorxpdcjl.supabase.co/storage/v1/object/public/wa_assets/Miles_USP_Deck.pdf\",\n                          \"filename\": \"Miles US Pathway\"\n                      }\n                  }\n              ]\n          },\n          {\n              \"type\": \"body\",\n              \"parameters\": [\n                  {\n                      \"type\": \"text\",\n                      \"text\": \"{{ $('Supabase1').item.json.first_name }}\"\n                  },\n                  {\n                      \"type\": \"text\",\n                      \"text\": \"{{ $('Code6').item.json.m103[0].content.replace(/\\\\n/g, \"\\\\\\\\n\")}}\"\n                  }\n              ]\n          }\n      ]\n  }\n}",
+        "options": {}
+      },
+      "id": "ee16cf3c-3211-452a-9390-f137cc2be33c",
+      "name": "HTTP Request3",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        9840,
+        -1960
+      ],
+      "credentials": {
+        "whatsAppApi": {
+          "id": "KHcTD6EUGATb3z0D",
+          "name": "WhatsApp account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "boolean": [
+            {
+              "value1": "={{ $json.flow_started }}",
+              "operation": "notEqual"
+            }
+          ]
+        }
+      },
+      "id": "7115891a-2add-4c33-8eaa-d23481d78e12",
+      "name": "IF",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        1600,
+        200
+      ]
+    },
+    {
+      "parameters": {
+        "amount": 1.3,
+        "unit": "seconds"
+      },
+      "id": "de5be18f-5344-46fc-9d20-f42cfbb3fabd",
+      "name": "Wait1",
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1,
+      "position": [
+        2200,
+        480
+      ],
+      "webhookId": "889831da-d07e-484f-ab54-0e9e84e5ca0c"
+    },
+    {
+      "parameters": {
+        "operation": "executeQuery",
+        "query": "\nSELECT vo.id as vo_id, vo.* ,ld.phone,cl.* ,ld.first_name,ml.*\nFROM visit_office as vo left join leads_dump as ld on ld.id=vo.leads_dump_id left join course_list as cl on cl.id = ld.course left join miles_locations as ml on ml.location_name = vo.city \nWHERE vo.id= {{ $json.id }};\n\n-- SELECT * from visit_office where id= {{ $json.id }}",
+        "options": {}
+      },
+      "id": "3de6c60c-6104-4d19-96c2-0e19582f576e",
+      "name": "Postgres",
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.2,
+      "position": [
+        8340,
+        -1360
+      ],
+      "credentials": {
+        "postgres": {
+          "id": "0EOENO57r9a8GGbk",
+          "name": "Supabase account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://blcwdqfhupddorxpdcjl.supabase.co/rest/v1/rpc/get_lead_not_booked_visit_by_id",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "ApiKey",
+              "value": " eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJsY3dkcWZodXBkZG9yeHBkY2psIiwicm9sZSI6ImFub24iLCJpYXQiOjE2OTI4NzkxMjgsImV4cCI6MjAwODQ1NTEyOH0.NdAhT3uGNwQahfxxUKM8BGV-gEjuIpl8NKVPpcaSFGM"
+            }
+          ]
+        },
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "data_id",
+              "value": "={{ $('Supabase3').item.json.leads_dump_id }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "9c88ad59-1d44-476e-afae-12ac02cc15c4",
+      "name": "HTTP Request",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        3740,
+        440
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "get",
+        "tableId": "miles_locations",
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "location_name",
+              "keyValue": "={{ $json.city }}"
+            }
+          ]
+        }
+      },
+      "id": "d7287401-f313-488f-b483-0e42a8ac49a5",
+      "name": "Supabase2",
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        3580,
+        440
+      ],
+      "credentials": {
+        "supabaseApi": {
+          "id": "6stEFLC7gtftREcf",
+          "name": "Supabase Campaign manager"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://graph.facebook.com/v17.0/108019349036743/messages",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "whatsAppApi",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "=\n{\n  \"messaging_product\": \"whatsapp\",\n  \"recipient_type\": \"individual\",\n  \"to\": \"{{ $('Supabase1').item.json.phone }}\",\n  \"type\": \"template\",\n  \"template\": {\n      \"name\": \"m103_pre_meet_info\",\n      \"language\": {\n          \"code\": \"en\"\n      },\n      \"components\": [\n          {\n              \"type\": \"header\",\n              \"parameters\": [\n                  {\n                      \"type\": \"document\",\n                      \"document\": {\n                          \"link\": \"{{ $('Code6').item.json.m103[0].header_url }}\",\n                          \"filename\": \"Miles US Pathway\"\n                      }\n                  }\n              ]\n          },\n          {\n              \"type\": \"body\",\n              \"parameters\": [\n                  {\n                      \"type\": \"text\",\n                      \"text\": \"{{ $('Supabase1').item.json.first_name }}\"\n                  },\n                  {\n                      \"type\": \"text\",\n                      \"text\": \"{{$('Code6').item.json.m103[0].content}}\"\n                  }\n              ]\n          }\n      ]\n  }\n}",
+        "options": {}
+      },
+      "id": "d363778c-808f-47e7-9995-6c43fccd7286",
+      "name": "HTTP Request2",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        8340,
+        -1540
+      ],
+      "credentials": {
+        "whatsAppApi": {
+          "id": "KHcTD6EUGATb3z0D",
+          "name": "WhatsApp account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "boolean": [
+            {
+              "value1": "={{ $json.course == 9 || $json.course == 2 || $json.course == 3 || $json.course == 4|| $json.course == 5|| $json.course == 6 }}",
+              "value2": true
+            },
+            {
+              "value1": "={{ $json.unique_id?.isNotEmpty() == true}}",
+              "value2": true
+            }
+          ],
+          "number": [
+            {
+              "value1": "={{ $json.unique_id.length}}",
+              "operation": "largerEqual",
+              "value2": 5
+            }
+          ]
+        }
+      },
+      "id": "fc038dd0-084e-405e-9bda-26de7dcc9d70",
+      "name": "IF1",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        2880,
+        460
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "string": [
+            {
+              "value1": "={{ $json.lead_details.page_full_url }}",
+              "operation": "contains",
+              "value2": "ct.miles"
+            }
+          ]
+        }
+      },
+      "id": "c1c90cca-a45b-4b0b-a540-0f99df577ca2",
+      "name": "IF2",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        8600,
+        -1440
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://in1.api.clevertap.com/1/upload",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "X-CleverTap-Account-Id",
+              "value": "848-R8Z-KW7Z"
+            },
+            {
+              "name": "X-CleverTap-Passcode",
+              "value": "SAE-IQD-GSEL"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n    \"d\": [\n        {\n            \"identity\": \"{{ $('IF2').item.json.lead_details.phone.slice(-10) }}\",\n            \"type\": \"event\",\n            \"evtName\": \"Office Visit\",\n            \"evtData\": {\n                \"visit_city\":\"{{ $('IF2').item.json.visit_details.city }}\",\n                \"visit_time\":\"$D_{{ $json.formattedDate }}\",\n                \"course_form2\": \"{{ $('IF2').item.json.course_details.name }}\",\n                \"eligible_form2\": \"{{ $('IF2').item.json.lead_details.education_qualification }}\",\n                \"work_in_us_form2\": \"{{ $('IF2').item.json.lead_details.intrested_in }}\",\n                \"gm_name\":\"{{ $('HTTP Request1').item.json.spoc_gm }}\",\n                \"spoc_name\":\"{{ $('HTTP Request1').item.json.spoc_name }}\",\n                \"visit_location\":\"Address\",\n                \"met_spoc\": \"no\",\n                \"spoc_phone\":\"{{ $('HTTP Request1').item.json.spoc_phone }}\",\n                \"page_url\":\"{{ $('IF2').item.json.lead_details.page_full_url }}\",\n                \"form_position\":\"main\",\n                \"source\":\"{{ $('IF2').item.json.campaign_source_details.source_name }}\",\n                \"campaign_id\":\"{{ $('IF2').item.json.campaign_details.id }}\",\n                \"campaign_name\":\"{{ $('IF2').item.json.campaign_details.campaign_name }}\",\n                \"campaign_type\":\"\",\n                \"campaign_medium\":\"\",\n                \"time_string\":\"{{ $('IF2').item.json.visit_details.time_string }}\",\n                \"date_string\":\"{{ $('IF2').item.json.visit_details.visit_date_string }}\"\n            }\n        }\n    ]\n}",
+        "options": {}
+      },
+      "id": "a5b38771-0648-46dc-9244-257c3216f7d5",
+      "name": "HTTP Request15",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        8980,
+        -1460
+      ],
+      "continueOnFail": true
+    },
+    {
+      "parameters": {
+        "operation": "formatDate",
+        "date": "={{ $json.visit_details.time_slots }}",
+        "format": "X",
+        "options": {}
+      },
+      "id": "c6af446d-0a6f-43fe-a756-cb8614c39f06",
+      "name": "Date & Time1",
+      "type": "n8n-nodes-base.dateTime",
+      "typeVersion": 2,
+      "position": [
+        8800,
+        -1460
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "string": [
+            {
+              "value1": "={{ $json.page_full_url }}",
+              "operation": "notContains",
+              "value2": "ct.miles"
+            }
+          ]
+        }
+      },
+      "id": "c132adaf-bfe6-4a64-914a-f25c29292fab",
+      "name": "IF3",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        2660,
+        480
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://in1.api.clevertap.com/1/upload",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "X-CleverTap-Account-Id",
+              "value": "848-R8Z-KW7Z"
+            },
+            {
+              "name": "X-CleverTap-Passcode",
+              "value": "SAE-IQD-GSEL"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n    \"d\": [\n        {\n            \"identity\": \"{{ $('HTTP Request4').item.json.lead_details.phone.slice(-10) }}\",\n            \"type\": \"event\",\n            \"evtName\": \"Office Visit\",\n            \"evtData\": {\n                \"visit_city\":\"{{ $('HTTP Request4').item.json.lead_details.city }}\",\n                \"visit_time\":\"$D_{{ $json.formattedDate }}\",\n                \"course_form2\": \"{{ $('HTTP Request4').item.json.course_details.name }}\",\n                \"eligible_form2\": \"{{ $('HTTP Request4').item.json.lead_details.education_qualification }}\",\n                \"work_in_us_form2\": \"{{ $('HTTP Request4').item.json.lead_details.intrested_in }}\",\n                \"gm_name\":\"{{ $('HTTP Request4').item.json.visit_details.spoc_gm }}\",\n                \"spoc_name\":\"{{ $('HTTP Request4').item.json.visit_details.sopc_name}}\",\n                \"visit_location\":\"{{ $('Supabase4').item.json.address }}\",\n                \"visit_location_link\":\"{{ $('Supabase4').item.json.google_location }}\",\n                \"met_spoc\": \"no\",\n                \"spoc_phone\":\"{{ $('HTTP Request4').item.json.visit_details.spoc_phone ?? \"\" }}\",\n                \"page_url\":\"{{ $('HTTP Request4').item.json.lead_details.page_full_url }}\",\n                \"form_position\":\"main\",\n                \"source\":\"{{ $('HTTP Request4').item.json.campaign_source_details.source_name }}\",\n                \"campaign_id\":\"{{$('HTTP Request4').item.json.campaign_details.id }}\",\n                \"campaign_name\":\"{{ $('HTTP Request4').item.json.campaign_details.campaign_name }}\",\n                \"campaign_type\":\"\",\n                \"campaign_medium\":\"\",\n                \"time_string\":\"{{ $('HTTP Request4').item.json.visit_details.time_string }}\",\n                \"date_string\":\"{{ $('HTTP Request4').item.json.visit_details.visit_date_string }}\",\n\"uuid\":\"{{ $('HTTP Request4').item.json.lead_details.uuid }}\"\n            }\n        }\n    ]\n}",
+        "options": {}
+      },
+      "id": "50f23d96-75b1-4260-a8b1-03df6a626745",
+      "name": "HTTP Request16",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        9000,
+        -1240
+      ],
+      "continueOnFail": true
+    },
+    {
+      "parameters": {
+        "operation": "formatDate",
+        "date": "={{ $('HTTP Request4').item.json.visit_details.time_slots }}",
+        "format": "X",
+        "options": {}
+      },
+      "id": "1615b72e-658f-4a89-a69d-d05d7e9c63d9",
+      "name": "Date & Time2",
+      "type": "n8n-nodes-base.dateTime",
+      "typeVersion": 2,
+      "position": [
+        8840,
+        -1240
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://blcwdqfhupddorxpdcjl.supabase.co/rest/v1/rpc/get_lead_not_booked_visit_by_id",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "ApiKey",
+              "value": " eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJsY3dkcWZodXBkZG9yeHBkY2psIiwicm9sZSI6ImFub24iLCJpYXQiOjE2OTI4NzkxMjgsImV4cCI6MjAwODQ1NTEyOH0.NdAhT3uGNwQahfxxUKM8BGV-gEjuIpl8NKVPpcaSFGM"
+            }
+          ]
+        },
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "data_id",
+              "value": "={{ $json.id }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "9725c41a-3d07-4bde-a2db-6c8d3e63c944",
+      "name": "HTTP Request4",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        8520,
+        -1240
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "get",
+        "tableId": "miles_locations",
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "location_name",
+              "keyValue": "={{ $json.visit_details.city }}"
+            }
+          ]
+        }
+      },
+      "id": "4f18d98c-2f46-4def-ba0b-22c5db7fdb7b",
+      "name": "Supabase4",
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        8700,
+        -1240
+      ],
+      "credentials": {
+        "supabaseApi": {
+          "id": "6stEFLC7gtftREcf",
+          "name": "Supabase Campaign manager"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "string": [
+            {
+              "value1": "={{ $json.lead_details.education_qualification }}",
+              "operation": "notContains",
+              "value2": "will_graduate_in_2025_or_later"
+            }
+          ]
+        }
+      },
+      "id": "cac4fc96-3989-4dcf-9cf2-ef832936e7d8",
+      "name": "IF4",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        8980,
+        -1820
+      ]
+    },
+    {
+      "parameters": {
+        "phoneNumberId": "108019349036743",
+        "recipientPhoneNumber": "={{ $('Supabase1').item.json.phone }}",
+        "template": "102_cma|en",
+        "components": {
+          "component": [
+            {
+              "bodyParameters": {
+                "parameter": [
+                  {
+                    "text": "={{ $('Supabase1').item.json.first_name }}"
+                  },
+                  {
+                    "text": "={{new Date($('Supabase').item.json.time_slots).toLocaleString('en-US',{year: 'numeric',month: 'short', day: 'numeric'})}} "
+                  },
+                  {
+                    "text": "={{ $('Supabase').item.json.time_string }}"
+                  },
+                  {
+                    "text": "={{ $('Supabase3').item.json.sopc_name ?? \"TBA\" }}"
+                  },
+                  {
+                    "text": "={{ $json.visit_details.meeting_type == 1 ?$('Supabase2').item.json.address : \"Google Meet\" }}"
+                  }
+                ]
+              }
+            },
+            {
+              "type": "button",
+              "sub_type": "url",
+              "buttonParameters": {
+                "parameter": {
+                  "payload": "={{ $('Supabase2').item.json.google_location.substring(34)}}"
+                }
+              }
+            },
+            {
+              "type": "header",
+              "headerParameters": {
+                "parameter": [
+                  {
+                    "type": "image",
+                    "imageLink": "={{ $json.m102[0].header_url }}"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      },
+      "id": "af0ff229-dc53-4799-ae00-cb3a7b16904d",
+      "name": "WhatsApp Business Cloud",
+      "type": "n8n-nodes-base.whatsApp",
+      "typeVersion": 1,
+      "position": [
+        9340,
+        -1340
+      ],
+      "credentials": {
+        "whatsAppApi": {
+          "id": "KHcTD6EUGATb3z0D",
+          "name": "WhatsApp account 2"
+        }
+      },
+      "continueOnFail": true
+    },
+    {
+      "parameters": {
+        "amount": 30,
+        "unit": "seconds"
+      },
+      "id": "896ec4c8-e6f0-4a84-a8b6-03a542e3d519",
+      "name": "Wait2",
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1,
+      "position": [
+        9640,
+        -1340
+      ],
+      "webhookId": "72e11017-41be-41ee-84a5-63c495d8b1fe"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://graph.facebook.com/v17.0/108019349036743/messages",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "whatsAppApi",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "=\n{\n  \"messaging_product\": \"whatsapp\",\n  \"recipient_type\": \"individual\",\n  \"to\": \"{{ $('Supabase1').item.json.phone }}\",\n  \"type\": \"template\",\n  \"template\": {\n      \"name\": \"103_cma\",\n      \"language\": {\n          \"code\": \"en\"\n      },\n      \"components\": [\n          {\n              \"type\": \"header\",\n              \"parameters\": [\n                  {\n                      \"type\": \"document\",\n                      \"document\": {\n                          \"link\": \"https://blcwdqfhupddorxpdcjl.supabase.co/storage/v1/object/public/wa_assets/Miles_USP_Deck.pdf\",\n                          \"filename\": \"Miles US Pathway\"\n                      }\n                  }\n              ]\n          },\n          {\n              \"type\": \"body\",\n              \"parameters\": [\n                  {\n                      \"type\": \"text\",\n                      \"text\": \"{{ $('Supabase1').item.json.first_name }}\"\n                  }\n              ]\n          }\n      ]\n  }\n}",
+        "options": {}
+      },
+      "id": "e61e6862-c345-4067-92ad-e99be8f4f93a",
+      "name": "HTTP Request5",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        9780,
+        -1340
+      ],
+      "credentials": {
+        "whatsAppApi": {
+          "id": "KHcTD6EUGATb3z0D",
+          "name": "WhatsApp account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "values": {
+          "string": [
+            {
+              "name": "message",
+              "value": "=👋🏻 Hello {{ $('Supabase1').item.json.first_name }}, here's what you need to know before you visit us.\\n\\n{{ $('Code6').item.json.m103[0].content.replace(/\\\\n/g, \"\\\\n\")}}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "83212e5f-3c5c-43b5-bf94-5b317ed27c30",
+      "name": "Set1",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 2,
+      "position": [
+        10060,
+        -2240
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://webhook.miles-api.com/webhook/create-send-message",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n    \"camp_id\":325,\n    \"message_id\":\"{{ $json.messages[0].id }}\",\n    \"message\":\"{{ $json.message }}\",\n    \"mobile\":{{ $json.contacts[0].wa_id }},\n    \"sender_id\":null,\n\"lead_dump_id\":{{ $('IF4').item.json.lead_details.id }}\n}",
+        "options": {}
+      },
+      "id": "cc511def-e7da-4667-829f-d5595772a61f",
+      "name": "HTTP Request6",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        10280,
+        -2240
+      ],
+      "continueOnFail": true
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://webhook.miles-api.com/webhook/create-send-message",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n    \"camp_id\":324,\n    \"message_id\":\"{{ $json.messages[0].id }}\",\n    \"message\":\"{{ $json.message }}\",\n    \"mobile\":{{ $json.contacts[0].wa_id }},\n    \"sender_id\":null,\n\"lead_dump_id\":{{ $('Code6').item.json.lead_details.id }}\n}",
+        "options": {}
+      },
+      "id": "fe048200-0439-437b-b282-f02c5f544267",
+      "name": "HTTP Request7",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        9780,
+        -2140
+      ],
+      "continueOnFail": true
+    },
+    {
+      "parameters": {
+        "values": {
+          "string": [
+            {
+              "name": "message",
+              "value": "=\\n\\nHey {{ $('Supabase1').item.json.first_name }},\\n\\nExciting news! 🎉 Your appointment to chat about the {{ $('IF4').item.json.m102[0].course }} is locked in.\\n\\n🗓 Date: {{new Date($('Supabase').item.json.time_slots).toLocaleString('en-US',{year: 'numeric',month: 'short', day: 'numeric'})}} \\n⏰ Time: {{ $('Supabase').item.json.time_string }}\\n👤 Meeting with: {{ $('Supabase3').item.json.sopc_name ?? \"TBA\" }}\\n📍 Where: {{ $('Code6').item.json.visit_details.meeting_type }}\\n\\n👋 Can't wait to catch up!\\n\\nCTA: Meet Us Here"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "f90b6ef4-9a3e-4410-82d6-65fc8569b081",
+      "name": "Set",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 2,
+      "position": [
+        9580,
+        -2140
+      ]
+    },
+    {
+      "parameters": {
+        "values": {
+          "string": [
+            {
+              "name": "message",
+              "value": "=Hey {{ $('Code6').item.json.lead_details.first_name }}, here's what you need to know before you meet us.\\n\\n1. CMA has only *2 exams* which you pass in the next *9-12 months*\\n\\n2. As a Miles CMA alumni, you'll have *jobs with MNCs in India* \\n\\n3. _#CMAmatlabMiles_ - Miles is the *world's largest CMA course provider* (with majority of its student base in India)"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "67165a55-4ef7-4947-9252-f788effa0eaa",
+      "name": "Set2",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 2,
+      "position": [
+        9960,
+        -1580
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://webhook.miles-api.com/webhook/create-send-message",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n    \"camp_id\":325,\n    \"message_id\":\"{{ $json.messages[0].id }}\",\n    \"message\":\"{{ $json.message }}\",\n    \"mobile\":{{ $json.contacts[0].wa_id }},\n    \"sender_id\":null,\n\"lead_dump_id\":{{ $('Code6').item.json.lead_details.id }}\n}",
+        "options": {}
+      },
+      "id": "249dce5e-e43c-48a6-977d-ebd541224e46",
+      "name": "HTTP Request8",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        10140,
+        -1580
+      ],
+      "continueOnFail": true
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://webhook.miles-api.com/webhook/create-send-message",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n    \"camp_id\":324,\n    \"message_id\":\"{{ $json.messages[0].id }}\",\n    \"message\":\"{{ $json.message }}\",\n    \"mobile\":{{ $json.contacts[0].wa_id }},\n    \"sender_id\":null,\n\"lead_dump_id\":{{ $('Code6').item.json.lead_details.id }}\n}",
+        "options": {}
+      },
+      "id": "14df7f3a-c4c7-4064-b8bd-6663b93301c4",
+      "name": "HTTP Request9",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        9640,
+        -1580
+      ],
+      "continueOnFail": true
+    },
+    {
+      "parameters": {
+        "values": {
+          "string": [
+            {
+              "name": "message",
+              "value": "={{ $('Supabase1').item.json.first_name }}, you are _*currently*_ not eligible for the Miles US Pathway. However, did you know that the US CMA course can help you work in top MNCs in India? \\n\\nWith US CMA, you would be a preferred candidate for the top public accounting firms in the US, once you are eligible for the US pathway!\\n\\nWe’ve scheduled a meeting to discuss the *US CMA Program* and your pathway to the US!\\n\\n🗓 Date: {{new Date($('Supabase').item.json.time_slots).toLocaleString('en-US',{year: 'numeric',month: 'short', day: 'numeric'})}} \\n⏰Time: {{ $('Supabase').item.json.time_string }}\\n👤 Meet: {{ $('Supabase3').item.json.sopc_name ?? \"TBA\" }}\\n📍 Location: {{ $('IF4').item.json.visit_details.meeting_type == 1 ?$('Supabase2').item.json.address : \"Google Meet\" }}\\n\\n👋 _See you soon!_\\n\\nCTA:Meet Us Here"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "e4a5473f-1142-4190-ade5-8ad56941b028",
+      "name": "Set3",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 2,
+      "position": [
+        9480,
+        -1580
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "string": [
+            {
+              "value1": "={{ $json.campaign_source_details.source_name }}",
+              "operation": "notEqual",
+              "value2": "WhatsApp"
+            }
+          ]
+        }
+      },
+      "id": "9d041e3e-3e7c-4631-a020-417ca23314f4",
+      "name": "IF5",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        8720,
+        -1800
+      ]
+    },
+    {
+      "parameters": {
+        "phoneNumberId": "108019349036743",
+        "recipientPhoneNumber": "={{ $('Supabase1').item.json.phone }}",
+        "template": "m102__form_fillup_part_2_1|en",
+        "components": {
+          "component": [
+            {
+              "bodyParameters": {
+                "parameter": [
+                  {
+                    "text": "  "
+                  },
+                  {
+                    "text": "={{ $('Supabase1').item.json.first_name }}"
+                  },
+                  {
+                    "text": "={{ $json.m102[0].course }}"
+                  },
+                  {
+                    "text": "={{new Date($('Supabase').item.json.time_slots).toLocaleString('en-US',{year: 'numeric',month: 'short', day: 'numeric'})}} "
+                  },
+                  {
+                    "text": "={{ $('Supabase').item.json.time_string }}"
+                  },
+                  {
+                    "text": "={{ $('Supabase3').item.json.sopc_name ?? \"TBA\" }}"
+                  },
+                  {
+                    "text": "={{ $json.visit_details.meeting_type == 1 ?$('Supabase2').item.json.address : \"Google Meet\" }}"
+                  }
+                ]
+              }
+            },
+            {
+              "type": "button",
+              "sub_type": "url",
+              "buttonParameters": {
+                "parameter": {
+                  "payload": "={{ $('Supabase2').item.json.google_location.substring(34)}}"
+                }
+              }
+            },
+            {
+              "type": "header",
+              "headerParameters": {
+                "parameter": [
+                  {
+                    "type": "image",
+                    "imageLink": "={{ $json.m102[0].header_url }}"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      },
+      "id": "88272df8-c575-496f-b39e-63baf60818cd",
+      "name": "WhatsApp Business Cloud3",
+      "type": "n8n-nodes-base.whatsApp",
+      "typeVersion": 1,
+      "position": [
+        8300,
+        -1840
+      ],
+      "credentials": {
+        "whatsAppApi": {
+          "id": "KHcTD6EUGATb3z0D",
+          "name": "WhatsApp account 2"
+        }
+      },
+      "continueOnFail": true
+    },
+    {
+      "parameters": {
+        "amount": 30,
+        "unit": "seconds"
+      },
+      "id": "30caedd1-bd3d-4ee0-b064-69f713b85858",
+      "name": "Wait3",
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1,
+      "position": [
+        8600,
+        -1620
+      ],
+      "webhookId": "2a7f77db-6903-4cf6-a326-ce0d9af89ccb"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://graph.facebook.com/v17.0/108019349036743/messages",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "whatsAppApi",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "=\n{\n  \"messaging_product\": \"whatsapp\",\n  \"recipient_type\": \"individual\",\n  \"to\": \"{{ $('Supabase1').item.json.phone }}\",\n  \"type\": \"template\",\n  \"template\": {\n      \"name\": \"m103_pre_meet_info_1\",\n      \"language\": {\n          \"code\": \"en\"\n      },\n      \"components\": [\n          {\n              \"type\": \"header\",\n              \"parameters\": [\n                  {\n                      \"type\": \"document\",\n                      \"document\": {                   \"link\":\"https://blcwdqfhupddorxpdcjl.supabase.co/storage/v1/object/public/wa_assets/Miles_USP_Deck.pdf\",\n\"filename\": \"Miles US Pathway\"\n                      }\n                  }\n              ]\n          },\n          {\n              \"type\": \"body\",\n              \"parameters\": [\n                  {\n                      \"type\": \"text\",\n                      \"text\": \"{{ $('Supabase1').item.json.first_name }}\"\n                  },\n                  {\n                      \"type\": \"text\",\n                      \"text\": \"{{ $('Code6').item.json.m103[0].content.replace(/\\\\n/g, \"\\\\\\\\n\")}}\"\n                  }\n              ]\n          }\n      ]\n  }\n}",
+        "options": {}
+      },
+      "id": "3fceb3f3-ad58-489d-a305-890e22723078",
+      "name": "HTTP Request10",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        8740,
+        -1620
+      ],
+      "credentials": {
+        "whatsAppApi": {
+          "id": "KHcTD6EUGATb3z0D",
+          "name": "WhatsApp account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "phoneNumberId": "171009622770823",
+        "recipientPhoneNumber": "={{ $json.lead_details.phone }}",
+        "template": "201_booking_confirmation|en",
+        "components": {
+          "component": [
+            {
+              "bodyParameters": {
+                "parameter": [
+                  {
+                    "text": "={{ $json.lead_details.first_name }}"
+                  },
+                  {
+                    "text": "={{new Date($('Supabase').item.json.time_slots).toLocaleString('en-US',{year: 'numeric',month: 'short', day: 'numeric'})}} "
+                  },
+                  {
+                    "text": "={{ $('Supabase').item.json.time_string }}"
+                  },
+                  {
+                    "text": "={{ $('Supabase3').item.json.sopc_name ?? \"TBA\" }}"
+                  },
+                  {
+                    "text": "={{ $json.visit_details.meeting_type == 1 ?$('Supabase2').item.json.address : \"Google Meet\" }}"
+                  }
+                ]
+              }
+            },
+            {
+              "type": "button",
+              "sub_type": "url",
+              "buttonParameters": {
+                "parameter": {
+                  "payload": "={{ $('Supabase2').item.json.google_location.substring(34)}}"
+                }
+              }
+            },
+            {
+              "type": "header",
+              "headerParameters": {
+                "parameter": [
+                  {
+                    "type": "image",
+                    "imageLink": "https://blcwdqfhupddorxpdcjl.supabase.co/storage/v1/object/public/wa_assets/201_booking_confirmation.png"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      },
+      "id": "5308bcc2-c144-4ec0-895b-20cb3cbf6301",
+      "name": "WhatsApp Business Cloud4",
+      "type": "n8n-nodes-base.whatsApp",
+      "typeVersion": 1,
+      "position": [
+        5420,
+        -860
+      ],
+      "credentials": {
+        "whatsAppApi": {
+          "id": "JPvNp2kC4SudtNkr",
+          "name": "WhatsApp account New"
+        }
+      },
+      "continueOnFail": true
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://graph.facebook.com/v17.0/171009622770823/messages",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "whatsAppApi",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "=\n{\n  \"messaging_product\": \"whatsapp\",\n  \"recipient_type\": \"individual\",\n  \"to\": \"{{ $('Supabase1').item.json.phone }}\",\n  \"type\": \"template\",\n  \"template\": {\n      \"name\": \"702_post_booking_watch\",\n      \"language\": {\n          \"code\": \"en\"\n      },\n      \"components\": [\n          {\n              \"type\": \"header\",\n              \"parameters\": [\n                  {\n                      \"type\": \"document\",\n                      \"document\": {                   \"link\":\"https://one.mileseducation.us/storage/v1/object/public/wa_assets/B2C-1_USP-Master%20Deck.pdf\",\n\"filename\": \"Miles US Pathway\"\n                      }\n                  }\n              ]\n          },\n          {\n              \"type\": \"body\",\n              \"parameters\": [\n                  {\n                      \"type\": \"text\",\n                      \"text\": \"{{ $('Supabase1').item.json.first_name }}\"\n                  }\n              ]\n          }\n      ]\n  }\n}",
+        "options": {}
+      },
+      "id": "62ba7601-71c5-43c8-8dbf-efd6a88923b0",
+      "name": "HTTP Request11",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        2860,
+        -900
+      ],
+      "credentials": {
+        "whatsAppApi": {
+          "id": "JPvNp2kC4SudtNkr",
+          "name": "WhatsApp account New"
+        }
+      },
+      "continueOnFail": true
+    },
+    {
+      "parameters": {
+        "values": {
+          "string": [
+            {
+              "name": "message",
+              "value": "=👋🏻 Hello {{ $('Supabase1').item.json.first_name }}, here's what you need to know before you visit us.\\n\\n{{ $('Code6').item.json.m103[0].content.replace(/\\\\n/g, \"\\\\n\")}}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "449a8706-a0ed-40bf-9926-62994d5b1e47",
+      "name": "Set4",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 2,
+      "position": [
+        8900,
+        -1620
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://webhook.miles-api.com/webhook/create-send-message",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n    \"camp_id\":325,\n    \"message_id\":\"{{ $json.messages[0].id }}\",\n    \"message\":\"{{ $json.message }}\",\n    \"mobile\":{{ $json.contacts[0].wa_id }},\n    \"sender_id\":null,\n\"lead_dump_id\":{{ $('IF6').item.json.lead_details.id }}\n}",
+        "options": {}
+      },
+      "id": "6218f89e-26d1-4a3b-b58b-58533ac0f123",
+      "name": "HTTP Request12",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        9040,
+        -1620
+      ],
+      "continueOnFail": true
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://webhook.miles-api.com/webhook/create-send-message",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n    \"camp_id\":324,\n    \"message_id\":\"{{ $json.messages[0].id }}\",\n    \"message\":\"{{ $json.message }}\",\n    \"mobile\":{{ $json.contacts[0].wa_id }},\n    \"sender_id\":null,\n\"lead_dump_id\":{{ $('Code6').item.json.lead_details.id }}\n}",
+        "options": {}
+      },
+      "id": "0f6a7b29-c950-44f8-8342-07a4812a9432",
+      "name": "HTTP Request13",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        8680,
+        -1940
+      ],
+      "continueOnFail": true
+    },
+    {
+      "parameters": {
+        "values": {
+          "string": [
+            {
+              "name": "message",
+              "value": "=\\n\\nHey {{ $('Supabase1').item.json.first_name }},\\n\\nExciting news! 🎉 Your appointment to chat about the {{ $('IF6').item.json.m102[0].course }} is locked in.\\n\\n🗓 Date: {{new Date($('Supabase').item.json.time_slots).toLocaleString('en-US',{year: 'numeric',month: 'short', day: 'numeric'})}} \\n⏰ Time: {{ $('Supabase').item.json.time_string }}\\n👤 Meeting with: {{ $('Supabase3').item.json.sopc_name ?? \"TBA\" }}\\n📍 Where: {{ $('Code6').item.json.visit_details.meeting_type }}\\n\\n👋 Can't wait to catch up!\\n\\nCTA: Meet Us Here"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "a05523e6-7e98-4205-9602-ab01af8cb9ce",
+      "name": "Set5",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 2,
+      "position": [
+        8520,
+        -1940
+      ]
+    },
+    {
+      "parameters": {
+        "values": {
+          "string": [
+            {
+              "name": "message",
+              "value": "=702_post_booking_watch"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "ed61717d-516d-4873-9125-b2b92de30610",
+      "name": "Set6",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 2,
+      "position": [
+        3020,
+        -900
+      ],
+      "continueOnFail": true
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://webhook.miles-api.com/webhook/create-send-message",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n    \"camp_id\":325,\n    \"message_id\":\"{{ $json.messages[0].id }}\",\n    \"message\":\"{{ $json.message }}\",\n    \"mobile\":{{ $json.contacts[0].wa_id }},\n    \"sender_id\":917338649613,\n\"lead_dump_id\":{{ $('Supabase1').item.json.id }},\n\"template\":\"702_post_booking_watch\"\n}",
+        "options": {}
+      },
+      "id": "08e7a5c8-0d33-43b5-a914-bbf837d5c727",
+      "name": "HTTP Request14",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        3200,
+        -900
+      ],
+      "continueOnFail": true
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://webhook.miles-api.com/webhook/create-send-message",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n    \"camp_id\":324,\n    \"message_id\":\"{{ $json.messages[0].id }}\",\n    \"message\":\"{{ $json.message }}\",\n    \"mobile\":{{ $json.contacts[0].wa_id }},\n    \"sender_id\":917338649613,\n\"lead_dump_id\":{{ $('Supabase1').item.json.id }},\n\"template\":\"201_booking_confirmation\"\n}",
+        "options": {}
+      },
+      "id": "c3104977-ac64-4495-83dd-58dda5185c0b",
+      "name": "HTTP Request17",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        5900,
+        -860
+      ],
+      "continueOnFail": true
+    },
+    {
+      "parameters": {
+        "values": {
+          "string": [
+            {
+              "name": "message",
+              "value": "=201_booking_confirmation"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "1566bed7-672d-4b3e-8b71-7db6a9782e55",
+      "name": "Set7",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 2,
+      "position": [
+        5640,
+        -860
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://graph.facebook.com/v17.0/171009622770823/messages",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "whatsAppApi",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "=\n{\n  \"messaging_product\": \"whatsapp\",\n  \"recipient_type\": \"individual\",\n  \"to\": \"{{ $('Supabase1').item.json.phone }}\",\n  \"type\": \"template\",\n  \"template\": {\n      \"name\": \"802_post_booking_watch_new\",\n      \"language\": {\n          \"code\": \"en\"\n      },\n      \"components\": [\n          {\n              \"type\": \"header\",\n              \"parameters\": [\n                  {\n                      \"type\": \"document\",\n                      \"document\": {                   \"link\":\"https://one.mileseducation.us/storage/v1/object/public/wa_assets/Miles-CMA_Roadmap_Deck%20(2).pdf\",\n\"filename\": \"Miles US CMA\"\n                      }\n                  }\n              ]\n          },\n          {\n              \"type\": \"body\",\n              \"parameters\": [\n                  {\n                      \"type\": \"text\",\n                      \"text\": \"{{ $('Supabase1').item.json.first_name }}\"\n                  }\n              ]\n          }\n      ]\n  }\n}",
+        "options": {}
+      },
+      "id": "1dace71d-565f-4039-b32c-1324802f07eb",
+      "name": "HTTP Request18",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        2860,
+        -660
+      ],
+      "credentials": {
+        "whatsAppApi": {
+          "id": "JPvNp2kC4SudtNkr",
+          "name": "WhatsApp account New"
+        }
+      },
+      "continueOnFail": true
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "string": [
+            {
+              "value1": "={{ $json.education_qualification }}",
+              "value2": "will_graduate_in_2025_or_later"
+            }
+          ]
+        }
+      },
+      "id": "26eac015-302d-435e-8446-82245144ec6c",
+      "name": "IF7",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        2020,
+        -840
+      ]
+    },
+    {
+      "parameters": {
+        "values": {
+          "string": [
+            {
+              "name": "message",
+              "value": "=802_post_booking_watch_new"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "1b6c3ebd-09ed-46b3-b6a1-3ae6c4d0ed5b",
+      "name": "Set8",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 2,
+      "position": [
+        3020,
+        -660
+      ],
+      "continueOnFail": true
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://webhook.miles-api.com/webhook/create-send-message",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n    \"camp_id\":325,\n    \"message_id\":\"{{ $json.messages[0].id }}\",\n    \"message\":\"{{ $json.message }}\",\n    \"mobile\":{{ $json.contacts[0].wa_id }},\n    \"sender_id\":917338649613,\n\"lead_dump_id\":{{ $('Supabase1').item.json.id }},\n\"template\":\"802_post_booking_watch_new\"\n}",
+        "options": {}
+      },
+      "id": "23953efb-ec5f-44df-a4b6-8190ac84b586",
+      "name": "HTTP Request19",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        3180,
+        -660
+      ],
+      "continueOnFail": true
+    },
+    {
+      "parameters": {
+        "phoneNumberId": "171009622770823",
+        "recipientPhoneNumber": "={{ $json.lead_details.phone }}",
+        "template": "101_booking_confirmation|en",
+        "components": {
+          "component": [
+            {
+              "bodyParameters": {
+                "parameter": [
+                  {
+                    "text": "={{ $json.lead_details.first_name }}"
+                  },
+                  {
+                    "text": "={{new Date($('Supabase').item.json.time_slots).toLocaleString('en-US',{year: 'numeric',month: 'short', day: 'numeric'})}} "
+                  },
+                  {
+                    "text": "={{ $('Supabase').item.json.time_string }}"
+                  },
+                  {
+                    "text": "={{ $('Supabase3').item.json.sopc_name ?? \"TBA\" }}"
+                  },
+                  {
+                    "text": "={{ $json.visit_details.meeting_type == 1 ?$('Supabase2').item.json.address : \"Google Meet\" }}"
+                  }
+                ]
+              }
+            },
+            {
+              "type": "button",
+              "sub_type": "url",
+              "buttonParameters": {
+                "parameter": {
+                  "payload": "={{ $('Supabase2').item.json.google_location.substring(34)}}"
+                }
+              }
+            },
+            {
+              "type": "header",
+              "headerParameters": {
+                "parameter": [
+                  {
+                    "type": "image",
+                    "imageLink": "https://blcwdqfhupddorxpdcjl.supabase.co/storage/v1/object/public/wa_assets/101_booking_confirmation.png"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      },
+      "id": "6c310c85-1442-426c-bc55-01c5c7a1f2c0",
+      "name": "WhatsApp Business Cloud5",
+      "type": "n8n-nodes-base.whatsApp",
+      "typeVersion": 1,
+      "position": [
+        5420,
+        -1140
+      ],
+      "credentials": {
+        "whatsAppApi": {
+          "id": "JPvNp2kC4SudtNkr",
+          "name": "WhatsApp account New"
+        }
+      },
+      "continueOnFail": true
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://webhook.miles-api.com/webhook/create-send-message",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n    \"camp_id\":324,\n    \"message_id\":\"{{ $json.messages[0].id }}\",\n    \"message\":\"{{ $json.message }}\",\n    \"mobile\":{{ $json.contacts[0].wa_id }},\n    \"sender_id\":917338649613,\n\"lead_dump_id\":{{ $('Supabase1').item.json.id }},\n\"template\":\"101_booking_confirmation\"\n}",
+        "options": {}
+      },
+      "id": "362c82db-9346-4678-8a33-b8851dd975b8",
+      "name": "HTTP Request20",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        5900,
+        -1140
+      ],
+      "continueOnFail": true
+    },
+    {
+      "parameters": {
+        "values": {
+          "string": [
+            {
+              "name": "message",
+              "value": "101_booking_confirmation"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "f6d9879b-299d-46cc-a006-846cc81259a7",
+      "name": "Set9",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 2,
+      "position": [
+        5640,
+        -1140
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "string": [
+            {
+              "value1": "={{ $json.intrested_in }}",
+              "value2": "No"
+            }
+          ]
+        }
+      },
+      "id": "4bc029a6-2a31-4383-a4dd-9bd8f783113b",
+      "name": "IF8",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        2200,
+        -1100
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://graph.facebook.com/v17.0/171009622770823/messages",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "whatsAppApi",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "=\n{\n  \"messaging_product\": \"whatsapp\",\n  \"recipient_type\": \"individual\",\n  \"to\": \"{{ $json.phone }}\",\n  \"type\": \"template\",\n  \"template\": {\n      \"name\": \"202_post_booking_watch_new\",\n      \"language\": {\n          \"code\": \"en\"\n      },\n      \"components\": [\n          {\n              \"type\": \"header\",\n              \"parameters\": [\n                  {\n                      \"type\": \"document\",\n                      \"document\": {                   \"link\":\"https://one.mileseducation.us/storage/v1/object/public/wa_assets/Miles-CMA_Roadmap_Deck%20(2).pdf\",\n\"filename\": \"Miles CMA Program\"\n                      }\n                  }\n              ]\n          },\n          {\n              \"type\": \"body\",\n              \"parameters\": [\n                  {\n                      \"type\": \"text\",\n                      \"text\": \"{{ $json.first_name }}\"\n                  }\n              ]\n          }\n      ]\n  }\n}",
+        "options": {}
+      },
+      "id": "4ee5ae6a-096a-44c2-8570-d3dcd0dc5384",
+      "name": "HTTP Request21",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        2860,
+        -1180
+      ],
+      "credentials": {
+        "whatsAppApi": {
+          "id": "JPvNp2kC4SudtNkr",
+          "name": "WhatsApp account New"
+        }
+      },
+      "continueOnFail": true
+    },
+    {
+      "parameters": {
+        "values": {
+          "string": [
+            {
+              "name": "message",
+              "value": "=202_post_booking_watch_new"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "5a742fef-6b55-41da-9d56-3af0fe945874",
+      "name": "Set10",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 2,
+      "position": [
+        3020,
+        -1180
+      ],
+      "continueOnFail": true
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://webhook.miles-api.com/webhook/create-send-message",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n    \"camp_id\":325,\n    \"message_id\":\"{{ $json.messages[0].id }}\",\n    \"message\":\"{{ $json.message }}\",\n    \"mobile\":{{ $json.contacts[0].wa_id }},\n    \"sender_id\":917338649613,\n\"lead_dump_id\":{{ $('Supabase1').item.json.id }},\n\"template\":\"202_post_booking_watch_new\"\n}",
+        "options": {}
+      },
+      "id": "ac2b57df-cd7e-44b7-ac35-0b0bf27c23fd",
+      "name": "HTTP Request22",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        3200,
+        -1180
+      ],
+      "continueOnFail": true
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://graph.facebook.com/v17.0/171009622770823/messages",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "whatsAppApi",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"messaging_product\": \"whatsapp\",\n  \"recipient_type\": \"individual\",\n  \"to\": \"{{ $json.phone }}\",\n  \"type\": \"template\",\n  \"template\": {\n      \"name\": \"102_post_booking_watch_new\",\n      \"language\": {\n          \"code\": \"en\"\n      },\n      \"components\": [\n          {\n              \"type\": \"header\",\n              \"parameters\": [\n                  {\n                      \"type\": \"document\",\n                      \"document\": {                   \"link\":\"https://one.mileseducation.us/storage/v1/object/public/wa_assets/Miles-CPA_Roadmap_Deck-M08.pdf\",\n\"filename\": \"Miles CPA Program\"\n                      }\n                  }\n              ]\n          },\n          {\n              \"type\": \"body\",\n              \"parameters\": [\n                  {\n                      \"type\": \"text\",\n                      \"text\": \"{{ $json.first_name }}\"\n                  }\n              ]\n          }\n      ]\n  }\n}",
+        "options": {}
+      },
+      "id": "c151887e-e6c2-4764-96aa-6bf28f83cb6d",
+      "name": "HTTP Request23",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        2860,
+        -1460
+      ],
+      "credentials": {
+        "whatsAppApi": {
+          "id": "JPvNp2kC4SudtNkr",
+          "name": "WhatsApp account New"
+        }
+      },
+      "continueOnFail": true
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "number": [
+            {
+              "value1": "={{ $json.course }}",
+              "operation": "equal",
+              "value2": 2
+            }
+          ]
+        }
+      },
+      "id": "c1e60475-5f12-4aaa-a7db-08c20ca9c28a",
+      "name": "IF9",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        2560,
+        -1340
+      ]
+    },
+    {
+      "parameters": {
+        "values": {
+          "string": [
+            {
+              "name": "message",
+              "value": "=102_post_booking_watch_new"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "7d4b8c65-2289-42e7-ad02-2706ed87d063",
+      "name": "Set11",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 2,
+      "position": [
+        3020,
+        -1460
+      ],
+      "continueOnFail": true
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://webhook.miles-api.com/webhook/create-send-message",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n    \"camp_id\":325,\n    \"message_id\":\"{{ $json.messages[0].id }}\",\n    \"message\":\"{{ $json.message }}\",\n    \"mobile\":{{ $json.contacts[0].wa_id }},\n    \"sender_id\":917338649613,\n\"lead_dump_id\":{{ $('Supabase1').item.json.id }},\n\"template\":\"102_post_booking_watch_new\"\n}",
+        "options": {}
+      },
+      "id": "397b0f16-6ad3-434c-bebb-a1e19089991a",
+      "name": "HTTP Request24",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        3180,
+        -1460
+      ],
+      "continueOnFail": true
+    },
+    {
+      "parameters": {
+        "phoneNumberId": "171009622770823",
+        "recipientPhoneNumber": "={{ $json.lead_details.phone }}",
+        "template": "701_booking_confirmation|en",
+        "components": {
+          "component": [
+            {
+              "bodyParameters": {
+                "parameter": [
+                  {
+                    "text": "={{ $json.lead_details.first_name }}"
+                  },
+                  {
+                    "text": "={{new Date($('Supabase').item.json.time_slots).toLocaleString('en-US',{year: 'numeric',month: 'short', day: 'numeric'})}} "
+                  },
+                  {
+                    "text": "={{ $('Supabase').item.json.time_string ?? \" \" }}"
+                  },
+                  {
+                    "text": "={{ $('Supabase3').item.json.sopc_name ?? \"TBA\" }}"
+                  },
+                  {
+                    "text": "={{ $json.visit_details.meeting_type == 1 ?$('Supabase2').item.json.address : \"Google Meet\" }}"
+                  }
+                ]
+              }
+            },
+            {
+              "type": "button",
+              "sub_type": "url",
+              "buttonParameters": {
+                "parameter": {
+                  "payload": "={{ $('Supabase2').item.json.google_location.substring(34)}}"
+                }
+              }
+            },
+            {
+              "type": "header",
+              "headerParameters": {
+                "parameter": [
+                  {
+                    "type": "image",
+                    "imageLink": "https://blcwdqfhupddorxpdcjl.supabase.co/storage/v1/object/public/wa_assets/m102_usp.png"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      },
+      "id": "1723b350-e585-4a31-b3e1-1be0c66c88a4",
+      "name": "WhatsApp Business Cloud6",
+      "type": "n8n-nodes-base.whatsApp",
+      "typeVersion": 1,
+      "position": [
+        5440,
+        -60
+      ],
+      "credentials": {
+        "whatsAppApi": {
+          "id": "JPvNp2kC4SudtNkr",
+          "name": "WhatsApp account New"
+        }
+      },
+      "continueOnFail": true
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://webhook.miles-api.com/webhook/create-send-message",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n    \"camp_id\":324,\n    \"message_id\":\"{{ $json.messages[0].id }}\",\n    \"message\":\"{{ $json.message }}\",\n    \"mobile\":{{ $json.contacts[0].wa_id }},\n    \"sender_id\":917338649613,\n\"lead_dump_id\":{{ $('Supabase1').item.json.id }},\n\"template\":\"701_booking_confirmation\"\n}",
+        "options": {}
+      },
+      "id": "68aa5849-7d5a-48f3-a30e-5ba11e6c8887",
+      "name": "HTTP Request25",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        5940,
+        -60
+      ],
+      "continueOnFail": true
+    },
+    {
+      "parameters": {
+        "values": {
+          "string": [
+            {
+              "name": "message",
+              "value": "701_booking_confirmation"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "7aefd71d-98ec-48e0-8afb-0146546f428c",
+      "name": "Set12",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 2,
+      "position": [
+        5700,
+        -60
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://webhook.miles-api.com/webhook/create-send-message",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n    \"camp_id\":324,\n    \"message_id\":\"{{ $json.messages[0].id }}\",\n    \"message\":\"{{ $json.message }}\",\n    \"mobile\":{{ $json.contacts[0].wa_id }},\n    \"sender_id\":917338649613,\n\"lead_dump_id\":{{ $('Supabase1').item.json.id }},\n\"template\":\"801_booking_confirmation_new\"\n}",
+        "options": {}
+      },
+      "id": "40069eed-86ab-41da-9e63-d89e44e476c0",
+      "name": "HTTP Request26",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        5960,
+        200
+      ],
+      "continueOnFail": true
+    },
+    {
+      "parameters": {
+        "values": {
+          "string": [
+            {
+              "name": "message",
+              "value": "801_booking_confirmation_new"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "c7c0ee6e-b5ad-4289-9d0e-f97f631a4b14",
+      "name": "Set13",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 2,
+      "position": [
+        5720,
+        200
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "get",
+        "tableId": "leads_dump",
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "id",
+              "keyValue": "={{ $json.id }}"
+            }
+          ]
+        }
+      },
+      "id": "987feafd-320c-4775-bdc7-b2cccf826b49",
+      "name": "Supabase5",
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        2380,
+        480
+      ],
+      "credentials": {
+        "supabaseApi": {
+          "id": "6stEFLC7gtftREcf",
+          "name": "Supabase Campaign manager"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "boolean": [
+            {
+              "value1": "={{ $json.course == 4 || $json.course == 5 || $json.course == 6 }}",
+              "value2": true
+            }
+          ]
+        }
+      },
+      "id": "dc081683-a258-46f0-afed-78c7a15a3bd1",
+      "name": "IF12",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        1980,
+        -280
+      ]
+    },
+    {
+      "parameters": {
+        "values": {
+          "string": [
+            {
+              "name": "message",
+              "value": "=502_post_booking_watch"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "e742dc41-1743-46e9-9780-b1b66607677c",
+      "name": "Set14",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 2,
+      "position": [
+        3040,
+        -40
+      ],
+      "continueOnFail": true
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://webhook.miles-api.com/webhook/create-send-message",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n    \"camp_id\":325,\n    \"message_id\":\"{{ $json.messages[0].id }}\",\n    \"message\":\"{{ $json.message }}\",\n    \"mobile\":{{ $json.contacts[0].wa_id }},\n    \"sender_id\":917338649613,\n\"lead_dump_id\":{{ $('Supabase1').item.json.id }},\n\"template\":\"502_post_booking_watch\"\n}",
+        "options": {}
+      },
+      "id": "8d31d2af-2f99-46a7-96d0-283e7624720f",
+      "name": "HTTP Request28",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        3220,
+        -40
+      ],
+      "continueOnFail": true
+    },
+    {
+      "parameters": {
+        "values": {
+          "string": [
+            {
+              "name": "message",
+              "value": "=302_post_booking_watch"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "66c56dbd-88e2-4aa2-928a-1489d73e769b",
+      "name": "Set15",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 2,
+      "position": [
+        3040,
+        -400
+      ],
+      "continueOnFail": true
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://webhook.miles-api.com/webhook/create-send-message",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n    \"camp_id\":325,\n    \"message_id\":\"{{ $json.messages[0].id }}\",\n    \"message\":\"{{ $json.message }}\",\n    \"mobile\":{{ $json.contacts[0].wa_id }},\n    \"sender_id\":917338649613,\n\"lead_dump_id\":{{ $('Supabase1').item.json.id }},\n\"template\":\"302_post_booking_watch_new\"\n}",
+        "options": {}
+      },
+      "id": "62aaa855-827c-4795-8c4e-0822240424ed",
+      "name": "HTTP Request30",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        3200,
+        -400
+      ],
+      "continueOnFail": true
+    },
+    {
+      "parameters": {
+        "mode": "expression",
+        "output": "={{ $json.course == 4 ? 0 :$json.course == 5 ? 1 :2 }}"
+      },
+      "id": "8372899c-d1f2-4f1b-ad90-80585af68a45",
+      "name": "Switch",
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 1,
+      "position": [
+        2220,
+        -260
+      ]
+    },
+    {
+      "parameters": {
+        "values": {
+          "string": [
+            {
+              "name": "message",
+              "value": "=402_post_booking_watch"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "3adeb56b-457f-4474-9aa2-4e940ce3d369",
+      "name": "Set16",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 2,
+      "position": [
+        3040,
+        -220
+      ],
+      "continueOnFail": true
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://webhook.miles-api.com/webhook/create-send-message",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n    \"camp_id\":325,\n    \"message_id\":\"{{ $json.messages[0].id }}\",\n    \"message\":\"{{ $json.message }}\",\n    \"mobile\":{{ $json.contacts[0].wa_id }},\n    \"sender_id\":917338649613,\n\"lead_dump_id\":{{ $('Supabase1').item.json.id }},\n\"template\":\"402_post_booking_watch\"\n}",
+        "options": {}
+      },
+      "id": "4eaaf178-1e20-43bf-9fe5-d6637550959e",
+      "name": "HTTP Request32",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        3220,
+        -220
+      ],
+      "continueOnFail": true
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://graph.facebook.com/v17.0/171009622770823/messages",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "whatsAppApi",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "=\n{\n  \"messaging_product\": \"whatsapp\",\n  \"recipient_type\": \"individual\",\n  \"to\": \"{{ $('Supabase1').item.json.phone }}\",\n  \"type\": \"template\",\n  \"template\": {\n      \"name\": \"502_post_booking_watch\",\n      \"language\": {\n          \"code\": \"en\"\n      },\n      \"components\": [\n          {\n              \"type\": \"header\",\n              \"parameters\": [\n                  {\n                      \"type\": \"document\",\n                      \"document\": {                   \"link\":\"https://blcwdqfhupddorxpdcjl.supabase.co/storage/v1/object/public/wa_assets/IIML-Strategic Finance Brochure.pdf\",\n\"filename\": \"IIML - Strategic Finance\"\n                      }\n                  }\n              ]\n          },\n          {\n              \"type\": \"body\",\n              \"parameters\": [\n                  {\n                      \"type\": \"text\",\n                      \"text\": \"{{ $('Supabase1').item.json.first_name }}\"\n                  }\n              ]\n          }\n      ]\n  }\n}",
+        "options": {}
+      },
+      "id": "03593840-ab52-4381-b376-1d212444ba3b",
+      "name": "IIML",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        2880,
+        -40
+      ],
+      "credentials": {
+        "whatsAppApi": {
+          "id": "JPvNp2kC4SudtNkr",
+          "name": "WhatsApp account New"
+        }
+      },
+      "continueOnFail": true
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://graph.facebook.com/v17.0/171009622770823/messages",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "whatsAppApi",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "=\n{\n  \"messaging_product\": \"whatsapp\",\n  \"recipient_type\": \"individual\",\n  \"to\": \"{{ $('Supabase1').item.json.phone }}\",\n  \"type\": \"template\",\n  \"template\": {\n      \"name\": \"302_post_booking_watch\",\n      \"language\": {\n          \"code\": \"en\"\n      },\n      \"components\": [\n          {\n              \"type\": \"header\",\n              \"parameters\": [\n                  {\n                      \"type\": \"document\",\n                      \"document\": {                   \"link\":\"https://blcwdqfhupddorxpdcjl.supabase.co/storage/v1/object/public/wa_assets/CFA.pdf\",\n\"filename\": \"CFA Charter Program\"\n                      }\n                  }\n              ]\n          },\n          {\n              \"type\": \"body\",\n              \"parameters\": [\n                  {\n                      \"type\": \"text\",\n                      \"text\": \"{{ $('Supabase1').item.json.first_name }}\"\n                  }\n              ]\n          }\n      ]\n  }\n}",
+        "options": {}
+      },
+      "id": "0cd3435e-24d8-4e1d-b7d2-58569301d85a",
+      "name": "CFA",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        2880,
+        -400
+      ],
+      "credentials": {
+        "whatsAppApi": {
+          "id": "JPvNp2kC4SudtNkr",
+          "name": "WhatsApp account New"
+        }
+      },
+      "continueOnFail": true
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://graph.facebook.com/v17.0/171009622770823/messages",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "whatsAppApi",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "=\n{\n  \"messaging_product\": \"whatsapp\",\n  \"recipient_type\": \"individual\",\n  \"to\": \"{{ $('Supabase1').item.json.phone }}\",\n  \"type\": \"template\",\n  \"template\": {\n      \"name\": \"402_post_booking_watch\",\n      \"language\": {\n          \"code\": \"en\"\n      },\n      \"components\": [\n          {\n              \"type\": \"header\",\n              \"parameters\": [\n                  {\n                      \"type\": \"document\",\n                      \"document\": {                   \"link\":\"https://blcwdqfhupddorxpdcjl.supabase.co/storage/v1/object/public/wa_assets/FRM.pdf\",\n\"filename\": \"FRM Program\"\n                      }\n                  }\n              ]\n          },\n          {\n              \"type\": \"body\",\n              \"parameters\": [\n                  {\n                      \"type\": \"text\",\n                      \"text\": \"{{ $('Supabase1').item.json.first_name }}\"\n                  }\n              ]\n          }\n      ]\n  }\n}",
+        "options": {}
+      },
+      "id": "ea755389-1a70-4204-89c8-b1470ea2809e",
+      "name": "FRM",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        2880,
+        -220
+      ],
+      "credentials": {
+        "whatsAppApi": {
+          "id": "JPvNp2kC4SudtNkr",
+          "name": "WhatsApp account New"
+        }
+      },
+      "continueOnFail": true
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "boolean": [
+            {
+              "value1": "={{ $json.lead_details.course == 4 || $json.lead_details.course == 5 || $json.lead_details.course == 6 }} ",
+              "value2": true
+            }
+          ],
+          "number": [
+            {
+              "value1": "={{ $json.lead_details.course }}",
+              "operation": "equal",
+              "value2": 4
+            },
+            {
+              "value1": "={{ $json.lead_details.course }}",
+              "operation": "equal",
+              "value2": 5
+            },
+            {
+              "value1": "={{ $json.lead_details.course }}",
+              "operation": "equal",
+              "value2": 6
+            }
+          ]
+        },
+        "combineOperation": "any"
+      },
+      "id": "23d2e7a2-79f1-4c7e-935d-b6d1987a7d6b",
+      "name": "IF14",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        4160,
+        440
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "expression",
+        "output": "={{ $json.lead_details.course == 4 ? 0 : $json.lead_details.course == 5 ? 1 :2 }}"
+      },
+      "id": "e9424860-04c8-40b5-9fc9-191d367a4a46",
+      "name": "Switch1",
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 1,
+      "position": [
+        4760,
+        820
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://webhook.miles-api.com/webhook/create-send-message",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n    \"camp_id\":324,\n    \"message_id\":\"{{ $json.messages[0].id }}\",\n    \"message\":\"{{ $json.message }}\",\n    \"mobile\":{{ $json.contacts[0].wa_id }},\n    \"sender_id\":917338649613,\n\"lead_dump_id\":{{ $('Supabase1').item.json.id }},\n\"template\":\"301_booking_confirmation\"\n}",
+        "options": {}
+      },
+      "id": "c2497c06-cc8d-4eef-b902-bbeb6673e157",
+      "name": "HTTP Request27",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        5980,
+        580
+      ],
+      "continueOnFail": true
+    },
+    {
+      "parameters": {
+        "values": {
+          "string": [
+            {
+              "name": "message",
+              "value": "=301_booking_confirmation"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "d6cdc47b-6779-4836-b2f4-d9c629a60c5b",
+      "name": "Set17",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 2,
+      "position": [
+        5700,
+        580
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://webhook.miles-api.com/webhook/create-send-message",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n    \"camp_id\":324,\n    \"message_id\":\"{{ $json.messages[0].id }}\",\n    \"message\":\"{{ $json.message }}\",\n    \"mobile\":{{ $json.contacts[0].wa_id }},\n    \"sender_id\":917338649613,\n\"lead_dump_id\":{{ $('Supabase1').item.json.id }},\n\"template\":\"401_booking_confirmation\"\n}",
+        "options": {}
+      },
+      "id": "d3fddf25-2d95-41ac-a3b6-9d9df6867e4b",
+      "name": "HTTP Request29",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        5980,
+        780
+      ],
+      "continueOnFail": true
+    },
+    {
+      "parameters": {
+        "values": {
+          "string": [
+            {
+              "name": "message",
+              "value": "401_booking_confirmation"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "f17b60dd-270b-4e80-b4ad-d6f9c0f15186",
+      "name": "Set18",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 2,
+      "position": [
+        5720,
+        780
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://webhook.miles-api.com/webhook/create-send-message",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n    \"camp_id\":324,\n    \"message_id\":\"{{ $json.messages[0].id }}\",\n    \"message\":\"{{ $json.message }}\",\n    \"mobile\":{{ $json.contacts[0].wa_id }},\n    \"sender_id\":917338649613,\n\"lead_dump_id\":{{ $('Supabase1').item.json.id }},\n\"template\":\"501_booking_confirmation\"\n}",
+        "options": {}
+      },
+      "id": "27e2071a-4b64-44f5-9d68-8b3a16aa2f3c",
+      "name": "HTTP Request31",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        5980,
+        960
+      ],
+      "continueOnFail": true
+    },
+    {
+      "parameters": {
+        "values": {
+          "string": [
+            {
+              "name": "message",
+              "value": "501_booking_confirmation"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "753cfab6-13dd-4c86-b79a-4cc4303c7934",
+      "name": "Set19",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 2,
+      "position": [
+        5720,
+        960
+      ]
+    },
+    {
+      "parameters": {
+        "phoneNumberId": "171009622770823",
+        "recipientPhoneNumber": "={{ $json.lead_details.phone }}",
+        "template": "301_booking_confirmation|en",
+        "components": {
+          "component": [
+            {
+              "bodyParameters": {
+                "parameter": [
+                  {
+                    "text": "={{ $json.lead_details.first_name }}"
+                  },
+                  {
+                    "text": "={{new Date($('Supabase').item.json.time_slots).toLocaleString('en-US',{year: 'numeric',month: 'short', day: 'numeric'})}} "
+                  },
+                  {
+                    "text": "={{ $('Supabase').item.json.time_string ?? \" \" }}"
+                  },
+                  {
+                    "text": "={{ $('Supabase3').item.json.sopc_name ?? \"TBA\" }}"
+                  },
+                  {
+                    "text": "={{ $json.visit_details.meeting_type == 1 ?$('Supabase2').item.json.address : \"Google Meet\" }}"
+                  }
+                ]
+              }
+            },
+            {
+              "type": "button",
+              "sub_type": "url",
+              "buttonParameters": {
+                "parameter": {
+                  "payload": "={{ $('Supabase2').item.json.google_location.substring(34)}}"
+                }
+              }
+            },
+            {
+              "type": "header",
+              "headerParameters": {
+                "parameter": [
+                  {
+                    "type": "image",
+                    "imageLink": "https://blcwdqfhupddorxpdcjl.supabase.co/storage/v1/object/public/wa_assets/m102.a_cfa.png"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      },
+      "id": "78ae139d-f361-4ca5-b7a6-11ba95f05fcb",
+      "name": "CFA1",
+      "type": "n8n-nodes-base.whatsApp",
+      "typeVersion": 1,
+      "position": [
+        5480,
+        580
+      ],
+      "credentials": {
+        "whatsAppApi": {
+          "id": "JPvNp2kC4SudtNkr",
+          "name": "WhatsApp account New"
+        }
+      },
+      "continueOnFail": true
+    },
+    {
+      "parameters": {
+        "phoneNumberId": "171009622770823",
+        "recipientPhoneNumber": "={{ $json.lead_details.phone }}",
+        "template": "401_booking_confirmation|en",
+        "components": {
+          "component": [
+            {
+              "bodyParameters": {
+                "parameter": [
+                  {
+                    "text": "={{ $json.lead_details.first_name }}"
+                  },
+                  {
+                    "text": "={{new Date($('Supabase').item.json.time_slots).toLocaleString('en-US',{year: 'numeric',month: 'short', day: 'numeric'})}} "
+                  },
+                  {
+                    "text": "={{ $('Supabase').item.json.time_string ?? \" \" }}"
+                  },
+                  {
+                    "text": "={{ $('Supabase3').item.json.sopc_name ?? \"TBA\" }}"
+                  },
+                  {
+                    "text": "={{ $json.visit_details.meeting_type == 1 ?$('Supabase2').item.json.address : \"Google Meet\" }}"
+                  }
+                ]
+              }
+            },
+            {
+              "type": "button",
+              "sub_type": "url",
+              "buttonParameters": {
+                "parameter": {
+                  "payload": "={{ $('Supabase2').item.json.google_location.substring(34)}}"
+                }
+              }
+            },
+            {
+              "type": "header",
+              "headerParameters": {
+                "parameter": [
+                  {
+                    "type": "image",
+                    "imageLink": "https://blcwdqfhupddorxpdcjl.supabase.co/storage/v1/object/public/wa_assets/m102.a_frm.png"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      },
+      "id": "dafd983b-c997-4d64-b40d-94367e289f30",
+      "name": "FRM1",
+      "type": "n8n-nodes-base.whatsApp",
+      "typeVersion": 1,
+      "position": [
+        5480,
+        780
+      ],
+      "credentials": {
+        "whatsAppApi": {
+          "id": "JPvNp2kC4SudtNkr",
+          "name": "WhatsApp account New"
+        }
+      },
+      "continueOnFail": true
+    },
+    {
+      "parameters": {
+        "phoneNumberId": "171009622770823",
+        "recipientPhoneNumber": "={{ $json.lead_details.phone }}",
+        "template": "501_booking_confirmation|en",
+        "components": {
+          "component": [
+            {
+              "bodyParameters": {
+                "parameter": [
+                  {
+                    "text": "={{ $json.lead_details.first_name }}"
+                  },
+                  {
+                    "text": "={{new Date($('Supabase').item.json.time_slots).toLocaleString('en-US',{year: 'numeric',month: 'short', day: 'numeric'})}} "
+                  },
+                  {
+                    "text": "={{ $('Supabase').item.json.time_string ?? \" \" }}"
+                  },
+                  {
+                    "text": "={{ $('Supabase3').item.json.sopc_name ?? \"TBA\" }}"
+                  },
+                  {
+                    "text": "={{ $json.visit_details.meeting_type == 1 ?$('Supabase2').item.json.address : \"Google Meet\" }}"
+                  }
+                ]
+              }
+            },
+            {
+              "type": "button",
+              "sub_type": "url",
+              "buttonParameters": {
+                "parameter": {
+                  "payload": "={{ $('Supabase2').item.json.google_location.substring(34)}}"
+                }
+              }
+            },
+            {
+              "type": "header",
+              "headerParameters": {
+                "parameter": [
+                  {
+                    "type": "image",
+                    "imageLink": "https://blcwdqfhupddorxpdcjl.supabase.co/storage/v1/object/public/wa_assets/m102.a_IIMLSF.png"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      },
+      "id": "299b0b4b-c4e6-4708-a497-b71010db9962",
+      "name": "IIML1",
+      "type": "n8n-nodes-base.whatsApp",
+      "typeVersion": 1,
+      "position": [
+        5480,
+        960
+      ],
+      "credentials": {
+        "whatsAppApi": {
+          "id": "JPvNp2kC4SudtNkr",
+          "name": "WhatsApp account New"
+        }
+      },
+      "continueOnFail": true
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "string": [
+            {
+              "value1": "={{ $json.lead_details.intrested_in }}",
+              "value2": "No"
+            }
+          ]
+        }
+      },
+      "id": "5d762968-190b-48d8-ad71-4eb30ae1f06e",
+      "name": "IF15",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        4660,
+        -280
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "number": [
+            {
+              "value1": "={{ $json.lead_details.course }}",
+              "operation": "equal",
+              "value2": 2
+            }
+          ]
+        }
+      },
+      "id": "7eaf1d4f-dd41-40e7-aa97-adc4e1293399",
+      "name": "IF16",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        4940,
+        -1060
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "string": [
+            {
+              "value1": "={{ $json.education_qualification }}",
+              "value2": "will_graduate_in_2025_or_later"
+            }
+          ]
+        }
+      },
+      "id": "157bfc9e-45e1-4613-80d5-3824f0d92156",
+      "name": "IF10",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        460,
+        460
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "string": [
+            {
+              "value1": "={{ $json.lead_details.education_qualification }}",
+              "value2": "will_graduate_in_2025_or_later"
+            }
+          ]
+        }
+      },
+      "id": "c8c0ee71-d91a-4106-83cf-803df81d8ed2",
+      "name": "IF11",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        4440,
+        140
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "// Loop over input items and add a new field called 'myNewField' to the JSON of each one\nfor (const item of $input.all()) {\nif ($input.first().json.course_details.id == 3 && ($input.first().json.lead_details.education_qualification != 'completed_graduation')) {\n  item.json.m102 = [item.json?.course_details.wa_content.filter(e=>e.id == 'm102')[0]];\n  item.json.m103 = [item.json?.course_details.wa_content.filter(e=>e.id == 'm103')[0]];\n}else if($input.first().json.course_details.id == 3 && ($input.first().json.lead_details.education_qualification == 'completed_graduation')){\n  item.json.m102 = [item.json?.course_details.wa_content.filter(e=>e.id == 'm102')[1]];\n  item.json.m103 = [item.json?.course_details.wa_content.filter(e=>e.id == 'm103')[1]];\n} else {\n  item.json.m102 = item.json?.course_details.wa_content.filter(e=>e.id == 'm102');\n  item.json.m103 = item.json?.course_details.wa_content.filter(e=>e.id == 'm103');\n}\n}\n\nreturn $input.all();"
+      },
+      "id": "2f5ff0d0-7daa-45e2-85f1-90c5836cb845",
+      "name": "Code",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        4100,
+        -240
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "string": [
+            {
+              "value1": "={{ $json.lead_details.intrested_in }}",
+              "operation": "notEqual",
+              "value2": "No"
+            }
+          ]
+        }
+      },
+      "id": "73cc37b1-040c-4d5d-9a0a-0f0869e20b0f",
+      "name": "IF6",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        4900,
+        260
+      ]
+    },
+    {
+      "parameters": {
+        "phoneNumberId": "171009622770823",
+        "recipientPhoneNumber": "={{ $json.lead_details.phone }}",
+        "template": "201_booking_confirmation|en",
+        "components": {
+          "component": [
+            {
+              "bodyParameters": {
+                "parameter": [
+                  {
+                    "text": "={{ $json.lead_details.first_name }}"
+                  },
+                  {
+                    "text": "={{new Date($('Supabase').item.json.time_slots).toLocaleString('en-US',{year: 'numeric',month: 'short', day: 'numeric'})}} "
+                  },
+                  {
+                    "text": "={{ $('Supabase').item.json?.time_string ?? \" \" }}"
+                  },
+                  {
+                    "text": "={{ $('Supabase3').item.json.sopc_name ?? \"TBA\" }}"
+                  },
+                  {
+                    "text": "={{ $json.visit_details.meeting_type == 1 ?$('Supabase2').item.json.address : \"Google Meet\" }}"
+                  }
+                ]
+              }
+            },
+            {
+              "type": "button",
+              "sub_type": "url",
+              "buttonParameters": {
+                "parameter": {
+                  "payload": "={{ $('Supabase2').item.json.google_location.substring(34)}}"
+                }
+              }
+            },
+            {
+              "type": "header",
+              "headerParameters": {
+                "parameter": [
+                  {
+                    "type": "image",
+                    "imageLink": "https://blcwdqfhupddorxpdcjl.supabase.co/storage/v1/object/public/wa_assets/201_booking_confirmation.png"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      },
+      "id": "49f0c1c9-37bf-44f1-9226-280a81596fcc",
+      "name": "WhatsApp Business Cloud8",
+      "type": "n8n-nodes-base.whatsApp",
+      "typeVersion": 1,
+      "position": [
+        5500,
+        380
+      ],
+      "credentials": {
+        "whatsAppApi": {
+          "id": "JPvNp2kC4SudtNkr",
+          "name": "WhatsApp account New"
+        }
+      },
+      "continueOnFail": true
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://webhook.miles-api.com/webhook/create-send-message",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n    \"camp_id\":324,\n    \"message_id\":\"{{ $json.messages[0].id }}\",\n    \"message\":\"{{ $json.message }}\",\n    \"mobile\":{{ $json.contacts[0].wa_id }},\n    \"sender_id\":917338649613,\n\"lead_dump_id\":{{ $('Supabase1').item.json.id }},\n\"template\":\"201_booking_confirmation\"\n}",
+        "options": {}
+      },
+      "id": "1fce6b11-55b0-4ff7-b441-f6cdc9ff357b",
+      "name": "HTTP Request33",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        6000,
+        380
+      ],
+      "continueOnFail": true
+    },
+    {
+      "parameters": {
+        "values": {
+          "string": [
+            {
+              "name": "message",
+              "value": "201_booking_confirmation"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "e7c791df-9cb5-4df5-bbee-3091b9533370",
+      "name": "Set20",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 2,
+      "position": [
+        5760,
+        380
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "string": [
+            {
+              "value1": "={{ $json.lead_details.intrested_in }}",
+              "operation": "notEqual",
+              "value2": "No"
+            }
+          ]
+        }
+      },
+      "id": "c6e4eacd-538e-4251-9e9c-cee38bbc1d4a",
+      "name": "IF13",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        2400,
+        -740
+      ]
+    },
+    {
+      "parameters": {
+        "phoneNumberId": "171009622770823",
+        "recipientPhoneNumber": "={{ $json.lead_details.phone }}",
+        "template": "usp_cma_booking_confirmation|en",
+        "components": {
+          "component": [
+            {
+              "bodyParameters": {
+                "parameter": [
+                  {
+                    "text": "={{ $json.lead_details.first_name }}"
+                  },
+                  {
+                    "text": "={{new Date($('Supabase').item.json.time_slots).toLocaleString('en-US',{year: 'numeric',month: 'short', day: 'numeric'})}} "
+                  },
+                  {
+                    "text": "={{ $('Supabase').item.json.time_string }}"
+                  },
+                  {
+                    "text": "={{ $('Supabase3').item.json.sopc_name ?? \"TBA\" }}"
+                  },
+                  {
+                    "text": "={{ $json.visit_details.meeting_type == 1 ?$('Supabase2').item.json.address : \"Google Meet\" }}"
+                  }
+                ]
+              }
+            },
+            {
+              "type": "button",
+              "sub_type": "url",
+              "buttonParameters": {
+                "parameter": {
+                  "payload": "={{ $('Supabase2').item.json.google_location.substring(34)}}"
+                }
+              }
+            },
+            {
+              "type": "header",
+              "headerParameters": {
+                "parameter": [
+                  {
+                    "type": "image",
+                    "imageLink": "https://blcwdqfhupddorxpdcjl.supabase.co/storage/v1/object/public/wa_assets/201_booking_confirmation.png"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      },
+      "id": "50598090-6221-4a75-b6c7-c164daf9d3f1",
+      "name": "WhatsApp Business Cloud9",
+      "type": "n8n-nodes-base.whatsApp",
+      "typeVersion": 1,
+      "position": [
+        5420,
+        -340
+      ],
+      "credentials": {
+        "whatsAppApi": {
+          "id": "JPvNp2kC4SudtNkr",
+          "name": "WhatsApp account New"
+        }
+      },
+      "continueOnFail": true
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://webhook.miles-api.com/webhook/create-send-message",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n    \"camp_id\":324,\n    \"message_id\":\"{{ $json.messages[0].id }}\",\n    \"message\":\"{{ $json.message }}\",\n    \"mobile\":{{ $json.contacts[0].wa_id }},\n    \"sender_id\":917338649613,\n\"lead_dump_id\":{{ $('Supabase1').item.json.id }},\n\"template\":\"usp_cma_booking_confirmation\"\n}",
+        "options": {}
+      },
+      "id": "6a574dc5-4300-4aae-ad4b-7a39e9180a06",
+      "name": "HTTP Request34",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        5900,
+        -340
+      ],
+      "continueOnFail": true
+    },
+    {
+      "parameters": {
+        "values": {
+          "string": [
+            {
+              "name": "message",
+              "value": "=usp_cma_booking_confirmation"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "0c88a8fa-a3bd-402b-b93c-97e2dbf98587",
+      "name": "Set21",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 2,
+      "position": [
+        5640,
+        -340
+      ]
+    },
+    {
+      "parameters": {
+        "phoneNumberId": "171009622770823",
+        "recipientPhoneNumber": "={{ $json.lead_details.phone }}",
+        "template": "usp_cpa_booking_confirmation|en",
+        "components": {
+          "component": [
+            {
+              "bodyParameters": {
+                "parameter": [
+                  {
+                    "text": "={{ $json.lead_details.first_name }}"
+                  },
+                  {
+                    "text": "={{new Date($('Supabase').item.json.time_slots).toLocaleString('en-US',{year: 'numeric',month: 'short', day: 'numeric'})}} "
+                  },
+                  {
+                    "text": "={{ $('Supabase').item.json.time_string }}"
+                  },
+                  {
+                    "text": "={{ $('Supabase3').item.json.sopc_name ?? \"TBA\" }}"
+                  },
+                  {
+                    "text": "={{ $json.visit_details.meeting_type == 1 ?$('Supabase2').item.json.address : \"Google Meet\" }}"
+                  }
+                ]
+              }
+            },
+            {
+              "type": "button",
+              "sub_type": "url",
+              "buttonParameters": {
+                "parameter": {
+                  "payload": "={{ $('Supabase2').item.json.google_location.substring(34)}}"
+                }
+              }
+            },
+            {
+              "type": "header",
+              "headerParameters": {
+                "parameter": [
+                  {
+                    "type": "image",
+                    "imageLink": "https://blcwdqfhupddorxpdcjl.supabase.co/storage/v1/object/public/wa_assets/101_booking_confirmation.png"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      },
+      "id": "16423a27-17c3-4a25-b5f4-60d8573e5168",
+      "name": "WhatsApp Business Cloud10",
+      "type": "n8n-nodes-base.whatsApp",
+      "typeVersion": 1,
+      "position": [
+        5420,
+        -620
+      ],
+      "credentials": {
+        "whatsAppApi": {
+          "id": "JPvNp2kC4SudtNkr",
+          "name": "WhatsApp account New"
+        }
+      },
+      "continueOnFail": true
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://webhook.miles-api.com/webhook/create-send-message",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n    \"camp_id\":324,\n    \"message_id\":\"{{ $json.messages[0].id }}\",\n    \"message\":\"{{ $json.message }}\",\n    \"mobile\":{{ $json.contacts[0].wa_id }},\n    \"sender_id\":917338649613,\n\"lead_dump_id\":{{ $('Supabase1').item.json.id }},\n\"template\":\"usp_cpa_booking_confirmation\"\n}",
+        "options": {}
+      },
+      "id": "1c050337-f0a7-4741-8394-02705bcceb42",
+      "name": "HTTP Request35",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        5900,
+        -620
+      ],
+      "continueOnFail": true
+    },
+    {
+      "parameters": {
+        "values": {
+          "string": [
+            {
+              "name": "message",
+              "value": "usp_cpa_booking_confirmation"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "8bda3e9a-ef0c-4438-bb84-b086b3159f23",
+      "name": "Set22",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 2,
+      "position": [
+        5640,
+        -620
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "number": [
+            {
+              "value1": "={{ $json.lead_details.course }}",
+              "operation": "equal",
+              "value2": 2
+            }
+          ]
+        }
+      },
+      "id": "f847ce22-bb8a-4b02-bf16-5246363b335d",
+      "name": "IF17",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        4880,
+        -280
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "number": [
+            {
+              "value1": "={{ $json.lead_details.course }}",
+              "operation": "equal",
+              "value2": 3
+            }
+          ]
+        }
+      },
+      "id": "6ae2d9b0-ef8f-4b62-bdda-9f09315d1002",
+      "name": "IF18",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        5060,
+        -180
+      ]
+    },
+    {
+      "parameters": {
+        "phoneNumberId": "171009622770823",
+        "recipientPhoneNumber": "={{ $json.lead_details.phone }}",
+        "template": "801_booking_confirmation_new|en",
+        "components": {
+          "component": [
+            {
+              "bodyParameters": {
+                "parameter": [
+                  {
+                    "text": "={{new Date($('Supabase').item.json.time_slots).toLocaleString('en-US',{year: 'numeric',month: 'short', day: 'numeric'})}} "
+                  },
+                  {
+                    "text": "={{ $('Supabase').item.json?.time_string ?? \" \" }}"
+                  },
+                  {
+                    "text": "={{ $('Supabase3').item.json.sopc_name ?? \"TBA\" }}"
+                  },
+                  {
+                    "text": "={{ $json.visit_details.meeting_type == 1 ?$('Supabase2').item.json.address : \"Google Meet\" }}"
+                  }
+                ]
+              }
+            },
+            {
+              "type": "button",
+              "sub_type": "url",
+              "buttonParameters": {
+                "parameter": {
+                  "payload": "={{ $('Supabase2').item.json.google_location.substring(34)}}"
+                }
+              }
+            },
+            {
+              "type": "header",
+              "headerParameters": {
+                "parameter": [
+                  {
+                    "type": "image",
+                    "imageLink": "https://blcwdqfhupddorxpdcjl.supabase.co/storage/v1/object/public/wa_assets/201_booking_confirmation.png"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      },
+      "id": "e63eac26-5c35-4b99-8dbe-fafe22e3e51a",
+      "name": "WhatsApp Business Cloud11",
+      "type": "n8n-nodes-base.whatsApp",
+      "typeVersion": 1,
+      "position": [
+        5480,
+        200
+      ],
+      "credentials": {
+        "whatsAppApi": {
+          "id": "JPvNp2kC4SudtNkr",
+          "name": "WhatsApp account New"
+        }
+      },
+      "continueOnFail": true
+    },
+    {
+      "parameters": {
+        "template": "702-post-booking-watch",
+        "fromEmail": "info@mileseducation.com",
+        "toEmail": "={{ $('Switch').item.json.email }}",
+        "options": {},
+        "mergeVarsUi": {
+          "mergeVarsValues": [
+            {
+              "name": "Name",
+              "content": "={{ $('Switch').item.json.first_name }}"
+            }
+          ]
+        }
+      },
+      "id": "f17c7137-be35-4d1d-a36e-2feee8f50220",
+      "name": "Mandrill1",
+      "type": "n8n-nodes-base.mandrill",
+      "typeVersion": 1,
+      "position": [
+        3500,
+        -400
+      ],
+      "credentials": {
+        "mandrillApi": {
+          "id": "t5XAtcUI45PwVrj0",
+          "name": "Mandrill account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "template": "701-booking-confirmation",
+        "fromEmail": "info@mileseducation.com",
+        "toEmail": "={{ $('IF14').item.json.lead_details.email }}",
+        "options": {},
+        "mergeVarsUi": {
+          "mergeVarsValues": [
+            {
+              "name": "=candidate_name",
+              "content": "={{ $('IF14').item.json.lead_details.first_name }}"
+            }
+          ]
+        }
+      },
+      "id": "7bfa45e6-a379-418a-9c3d-179241aa10ee",
+      "name": "Mandrill2",
+      "type": "n8n-nodes-base.mandrill",
+      "typeVersion": 1,
+      "position": [
+        6260,
+        -60
+      ],
+      "credentials": {
+        "mandrillApi": {
+          "id": "t5XAtcUI45PwVrj0",
+          "name": "Mandrill account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "template": "702-post-booking-watch",
+        "fromEmail": "info@mileseducation.com",
+        "toEmail": "={{ $('Switch1').item.json.lead_details.email }}",
+        "options": {},
+        "mergeVarsUi": {
+          "mergeVarsValues": [
+            {
+              "name": "Name",
+              "content": "={{ $('Switch1').item.json.lead_details.first_name }}"
+            },
+            {
+              "name": "Date",
+              "content": "={{ $('Switch1').item.json.visit_details.visit_date }}"
+            },
+            {
+              "name": "Time",
+              "content": "={{ $('Switch1').item.json.visit_details.time_string }}"
+            },
+            {
+              "name": "spoc",
+              "content": "={{ $('Switch1').item.json.visit_details.sopc_name }}"
+            },
+            {
+              "name": "city",
+              "content": "={{ $('Switch1').item.json.visit_details.city }}"
+            }
+          ]
+        }
+      },
+      "id": "8a79a299-8281-4f5f-9f29-83e79580a76c",
+      "name": "Mandrill3",
+      "type": "n8n-nodes-base.mandrill",
+      "typeVersion": 1,
+      "position": [
+        6320,
+        580
+      ],
+      "credentials": {
+        "mandrillApi": {
+          "id": "t5XAtcUI45PwVrj0",
+          "name": "Mandrill account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "id": "3dc1af7c-aa56-4ebe-996e-b3d3f35353be",
+      "name": "Mandrill",
+      "type": "n8n-nodes-base.mandrill",
+      "typeVersion": 1,
+      "position": [
+        6160,
+        -460
+      ],
+      "credentials": {
+        "mandrillApi": {
+          "id": "t5XAtcUI45PwVrj0",
+          "name": "Mandrill account"
+        }
+      }
+    }
+  ],
+  "pinData": {
+    "Webhook": [
+      {
+        "json": {
+          "params": {},
+          "query": {},
+          "body": {
+            "id": 79520,
+            "leads_dump_id": {
+              "id": 79520,
+              "city": "Mumbai",
+              "spoc_gm": null,
+              "sopc_name": null,
+              "status_gm": null,
+              "created_at": "2024-03-21T07:40:40.06164+00:00",
+              "spoc_phone": null,
+              "time_slots": "2024-03-26T13:00:00",
+              "visit_date": "2024-03-26",
+              "status_spoc": null,
+              "time_string": "01:00 PM",
+              "flow_started": null,
+              "meeting_type": 1,
+              "visit_status": null,
+              "leads_dump_id": 653885,
+              "visit_date_string": "2024-03-26"
+            }
+          }
+        }
+      }
+    ]
+  },
+  "settings": {
+    "executionOrder": "v1",
+    "timezone": "Asia/Calcutta",
+    "saveManualExecutions": true,
+    "callerPolicy": "workflowsFromSameOwner",
+    "errorWorkflow": "JugK3JVukMVLS3ax"
+  },
+  "staticData": null,
+  "tags": [
+    {
+      "createdAt": "2024-05-23T06:24:38.410Z",
+      "updatedAt": "2024-05-23T06:24:38.410Z",
+      "id": "sKdaHHEZuTAUSzKn",
+      "name": "testing"
+    }
+  ],
+  "triggerCount": 1,
+  "updatedAt": "2024-06-06T12:35:28.000Z",
+  "versionId": "c633a74d-de9c-4412-8b60-6695a2dbce96"
+}
