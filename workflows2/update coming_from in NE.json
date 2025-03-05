@@ -1,0 +1,468 @@
+{
+  "active": false,
+  "connections": {
+    "When clicking \"Execute Workflow\"": {
+      "main": [
+        [
+          {
+            "node": "Postgres",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Split In Batches": {
+      "main": [
+        [
+          {
+            "node": "Supabase",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Supabase": {
+      "main": [
+        [
+          {
+            "node": "Wait",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Postgres1": {
+      "main": [
+        [
+          {
+            "node": "Split In Batches",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Postgres": {
+      "main": [
+        [
+          {
+            "node": "Split In Batches",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait": {
+      "main": [
+        [
+          {
+            "node": "Postgres1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-02-21T11:07:18.719Z",
+  "id": "6FCzweN6sX4z1qyg",
+  "meta": null,
+  "name": "update coming_from in NE",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "768cec63-0682-4fbc-aea6-858dbd17eba9",
+      "name": "When clicking \"Execute Workflow\"",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        380,
+        400
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "executeQuery",
+        "query": "SELECT\n  \"public\".\"net_enquiry\".\"id\" AS \"id\",\n  \"public\".\"net_enquiry\".\"status\" AS \"status\",\n  \"public\".\"net_enquiry\".\"created_by\" AS \"created_by\",\n  \"public\".\"net_enquiry\".\"updated_by\" AS \"updated_by\",\n  \"public\".\"net_enquiry\".\"created_at\" AS \"created_at\",\n  \"public\".\"net_enquiry\".\"updated_at\" AS \"updated_at\",\n  \"public\".\"net_enquiry\".\"first_name\" AS \"first_name\",\n  \"public\".\"net_enquiry\".\"last_name\" AS \"last_name\",\n  \"public\".\"net_enquiry\".\"phone\" AS \"phone\",\n  \"public\".\"net_enquiry\".\"email\" AS \"email\",\n  \"public\".\"net_enquiry\".\"city\" AS \"city\",\n  \"public\".\"net_enquiry\".\"coming_from\" AS \"coming_from\",\n  \"public\".\"net_enquiry\".\"gcl_id\" AS \"gcl_id\",\n  \"public\".\"net_enquiry\".\"whatsapp_opt_in\" AS \"whatsapp_opt_in\",\n  \"public\".\"net_enquiry\".\"register_for_webinar\" AS \"register_for_webinar\",\n  \"public\".\"net_enquiry\".\"intrested_to_work_in_us\" AS \"intrested_to_work_in_us\",\n  \"public\".\"net_enquiry\".\"page_full_url\" AS \"page_full_url\",\n  \"public\".\"net_enquiry\".\"url_page_path\" AS \"url_page_path\",\n  \"public\".\"net_enquiry\".\"linkedin_url\" AS \"linkedin_url\",\n  \"public\".\"net_enquiry\".\"isFromWelcomeBack\" AS \"isFromWelcomeBack\",\n  \"public\".\"net_enquiry\".\"uuid\" AS \"uuid\",\n  \"public\".\"net_enquiry\".\"program_id\" AS \"program_id\",\n  \"public\".\"net_enquiry\".\"campaign_id\" AS \"campaign_id\",\n  \"public\".\"net_enquiry\".\"educationQualificationId\" AS \"educationQualificationId\",\n  \"public\".\"net_enquiry\".\"leadId\" AS \"leadId\"\nFROM\n  \"public\".\"net_enquiry\"\nWHERE\n  (\n    (\"public\".\"net_enquiry\".\"campaign_id\" = 1383)\n   \n    OR (\"public\".\"net_enquiry\".\"campaign_id\" = 1384)\n    OR (\"public\".\"net_enquiry\".\"campaign_id\" = 1386)\n    OR (\"public\".\"net_enquiry\".\"campaign_id\" = 1387)\n    OR (\"public\".\"net_enquiry\".\"campaign_id\" = 1388)\n    OR (\"public\".\"net_enquiry\".\"campaign_id\" = 1393)\n  )\n \n   AND (\n    \"public\".\"net_enquiry\".\"coming_from\" = 'Manual Data upload'\n  )\nLIMIT\n  1048575",
+        "options": {}
+      },
+      "id": "b9b1d9d4-605a-4cf4-8b5d-4376223bd291",
+      "name": "Postgres",
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.2,
+      "position": [
+        620,
+        400
+      ],
+      "credentials": {
+        "postgres": {
+          "id": "VPJUosohtvWNBW4H",
+          "name": "MF Prod (DO NOT USE)"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "batchSize": 1,
+        "options": {}
+      },
+      "id": "9431d3a4-e121-4bae-b455-f07a7bbd6102",
+      "name": "Split In Batches",
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 2,
+      "position": [
+        880,
+        400
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "get",
+        "tableId": "campaign",
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "mf2_camp_id",
+              "keyValue": "={{ $json.campaign_id }}"
+            }
+          ]
+        }
+      },
+      "id": "47de9859-e169-4de7-b70a-d2bf30c3e85d",
+      "name": "Supabase",
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        1180,
+        260
+      ],
+      "credentials": {
+        "supabaseApi": {
+          "id": "6stEFLC7gtftREcf",
+          "name": "Supabase Campaign manager"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "schema": {
+          "__rl": true,
+          "mode": "list",
+          "value": "public"
+        },
+        "table": {
+          "__rl": true,
+          "value": "net_enquiry",
+          "mode": "list",
+          "cachedResultName": "net_enquiry"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "status": true,
+            "whatsapp_opt_in": true,
+            "register_for_webinar": true,
+            "id": "={{ $('Split In Batches').item.json.id }}",
+            "coming_from": "=superbot_camp_{{ $json.id }}",
+            "campaign_id": "={{ $json.mf2_camp_id }}"
+          },
+          "matchingColumns": [
+            "id"
+          ],
+          "schema": [
+            {
+              "id": "id",
+              "displayName": "id",
+              "required": false,
+              "defaultMatch": true,
+              "display": true,
+              "type": "number",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "status",
+              "displayName": "status",
+              "required": true,
+              "defaultMatch": false,
+              "display": true,
+              "type": "boolean",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "created_by",
+              "displayName": "created_by",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "updated_by",
+              "displayName": "updated_by",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "created_at",
+              "displayName": "created_at",
+              "required": true,
+              "defaultMatch": false,
+              "display": true,
+              "type": "dateTime",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "updated_at",
+              "displayName": "updated_at",
+              "required": true,
+              "defaultMatch": false,
+              "display": true,
+              "type": "dateTime",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "first_name",
+              "displayName": "first_name",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "last_name",
+              "displayName": "last_name",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "phone",
+              "displayName": "phone",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "email",
+              "displayName": "email",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "city",
+              "displayName": "city",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "coming_from",
+              "displayName": "coming_from",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "gcl_id",
+              "displayName": "gcl_id",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "whatsapp_opt_in",
+              "displayName": "whatsapp_opt_in",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "boolean",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "register_for_webinar",
+              "displayName": "register_for_webinar",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "boolean",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "intrested_to_work_in_us",
+              "displayName": "intrested_to_work_in_us",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "boolean",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "page_full_url",
+              "displayName": "page_full_url",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "url_page_path",
+              "displayName": "url_page_path",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "linkedin_url",
+              "displayName": "linkedin_url",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "isFromWelcomeBack",
+              "displayName": "isFromWelcomeBack",
+              "required": true,
+              "defaultMatch": false,
+              "display": true,
+              "type": "boolean",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "uuid",
+              "displayName": "uuid",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "program_id",
+              "displayName": "program_id",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "campaign_id",
+              "displayName": "campaign_id",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "educationQualificationId",
+              "displayName": "educationQualificationId",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "leadId",
+              "displayName": "leadId",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "canBeUsedToMatch": true,
+              "removed": true
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "59cc271b-1381-4abd-abba-9f9c682b3205",
+      "name": "Postgres1",
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.2,
+      "position": [
+        1700,
+        260
+      ],
+      "retryOnFail": true,
+      "credentials": {
+        "postgres": {
+          "id": "VPJUosohtvWNBW4H",
+          "name": "MF Prod (DO NOT USE)"
+        }
+      },
+      "continueOnFail": true
+    },
+    {
+      "parameters": {
+        "unit": "seconds"
+      },
+      "id": "77761bbe-e614-4479-840e-5acdc1330087",
+      "name": "Wait",
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1,
+      "position": [
+        1400,
+        260
+      ],
+      "webhookId": "0212e0ee-db1f-4793-b512-45a5ecc37a95"
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2025-02-21T11:36:18.000Z",
+  "versionId": "bd9dc11b-dc76-47b4-87a6-c566dd2c5631"
+}
