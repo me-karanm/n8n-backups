@@ -1,0 +1,67 @@
+{
+  "active": false,
+  "connections": {
+    "When clicking \"Execute Workflow\"": {
+      "main": [
+        [
+          {
+            "node": "WhatsApp Business Cloud",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2024-01-26T19:03:33.993Z",
+  "id": "0K8DRyDtJMdFjLip",
+  "meta": null,
+  "name": "My workflow 8",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "e0bb5ebc-e75d-4230-b1ec-3cb6d0b00f3d",
+      "name": "When clicking \"Execute Workflow\"",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        820,
+        400
+      ]
+    },
+    {
+      "parameters": {
+        "phoneNumberId": "108019349036743",
+        "recipientPhoneNumber": "77777777777",
+        "template": "master_401_1_the_session_date_is_more_than_the_webinar_date_previous_date|en"
+      },
+      "id": "d2923dd6-e5e1-4522-9bdf-3d5ae92f8824",
+      "name": "WhatsApp Business Cloud",
+      "type": "n8n-nodes-base.whatsApp",
+      "typeVersion": 1,
+      "position": [
+        1200,
+        400
+      ],
+      "credentials": {
+        "whatsAppApi": {
+          "id": "KHcTD6EUGATb3z0D",
+          "name": "WhatsApp account 2"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1",
+    "saveManualExecutions": true,
+    "callerPolicy": "workflowsFromSameOwner",
+    "errorWorkflow": "JugK3JVukMVLS3ax",
+    "timezone": "Asia/Calcutta"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2024-01-26T19:07:54.000Z",
+  "versionId": "b8b10147-14fc-458b-9535-96bac578ce6b"
+}
