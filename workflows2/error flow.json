@@ -1,0 +1,65 @@
+{
+  "active": false,
+  "connections": {
+    "Execute Workflow Trigger": {
+      "main": [
+        [
+          {
+            "node": "WhatsApp Business Cloud",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2023-08-13T08:51:42.684Z",
+  "id": "2eIyPWrc3kUHr6YJ",
+  "meta": null,
+  "name": "error flow",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "c7c4c522-3c1d-4cce-88d7-a396f3a7edc2",
+      "name": "Execute Workflow Trigger",
+      "type": "n8n-nodes-base.executeWorkflowTrigger",
+      "typeVersion": 1,
+      "position": [
+        720,
+        380
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "send",
+        "phoneNumberId": "115484311630426",
+        "recipientPhoneNumber": "916238133298",
+        "textBody": "error-node",
+        "additionalFields": {}
+      },
+      "id": "d7276337-ac5f-404a-b3e8-5601a0e33e2d",
+      "name": "WhatsApp Business Cloud",
+      "type": "n8n-nodes-base.whatsApp",
+      "typeVersion": 1,
+      "position": [
+        940,
+        380
+      ],
+      "credentials": {
+        "whatsAppApi": {
+          "id": "FoPXmnu4lAta3dqt",
+          "name": "WhatsApp account"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2023-08-13T08:52:22.000Z",
+  "versionId": "d878e58b-836a-4326-9ec0-d8c79f70ae49"
+}
