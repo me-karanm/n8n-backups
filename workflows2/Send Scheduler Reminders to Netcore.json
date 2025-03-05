@@ -1,0 +1,35 @@
+{
+  "active": true,
+  "connections": {},
+  "createdAt": "2024-12-11T05:42:34.645Z",
+  "id": "eDEJmFhxoOvY5XXl",
+  "meta": null,
+  "name": "Send Scheduler Reminders to Netcore",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "send-scheduler-activity-to-netcore",
+        "options": {}
+      },
+      "id": "02d8380f-5bdd-4e02-ac78-4eba17fe58a0",
+      "name": "Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        760,
+        360
+      ],
+      "webhookId": "e818b67a-372b-4f32-a1a1-515cc27124c3"
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 1,
+  "updatedAt": "2024-12-11T06:42:09.000Z",
+  "versionId": "55c39b04-34c5-4fa5-acc6-0ec7b59ac3f4"
+}
