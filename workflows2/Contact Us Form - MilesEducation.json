@@ -1,0 +1,259 @@
+{
+  "active": true,
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Supabase1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Supabase1": {
+      "main": [
+        [
+          {
+            "node": "Supabase",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2024-09-05T10:19:25.924Z",
+  "id": "cWL4z60oU05Wmp2T",
+  "meta": null,
+  "name": "Contact Us Form - MilesEducation",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "contact-us",
+        "options": {
+          "responseHeaders": {
+            "entries": [
+              {
+                "name": "Access-Control-Allow-Origin",
+                "value": "*"
+              }
+            ]
+          }
+        }
+      },
+      "id": "38ea1b93-b883-45fa-b7e0-a9eb856f7aaa",
+      "name": "Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        760,
+        360
+      ],
+      "webhookId": "8f1e81e5-d23d-4efd-bd89-78b08eebcc3e"
+    },
+    {
+      "parameters": {
+        "authentication": "serviceAccount",
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "1ZesMJeLimCQDwhkC4jjJYgQYd2hDoFNie4YtPyXk8f8",
+          "mode": "list",
+          "cachedResultName": "Untitled spreadsheet",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1ZesMJeLimCQDwhkC4jjJYgQYd2hDoFNie4YtPyXk8f8/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "mode": "list",
+          "value": ""
+        }
+      },
+      "id": "0394485e-47c7-4d1c-a2a9-d82cc08cb2c4",
+      "name": "Google Sheets",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4,
+      "position": [
+        1140,
+        100
+      ],
+      "credentials": {
+        "googleApi": {
+          "id": "aiCprsG1ZRAOjrNn",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "tableId": "leads_dump",
+        "fieldsUi": {
+          "fieldValues": [
+            {
+              "fieldId": "first_name",
+              "fieldValue": "={{ $('Webhook').item.json.body.name }}"
+            },
+            {
+              "fieldId": "email",
+              "fieldValue": "={{ $('Webhook').item.json.body.email }}"
+            },
+            {
+              "fieldId": "phone",
+              "fieldValue": "={{ $('Webhook').item.json.body.phone }}"
+            },
+            {
+              "fieldId": "city",
+              "fieldValue": "={{ $('Webhook').item.json.body.country }}"
+            },
+            {
+              "fieldId": "course",
+              "fieldValue": "={{ $json.id }}"
+            },
+            {
+              "fieldId": "education_qualification",
+              "fieldValue": "={{ $('Webhook').item.json.body.qualification }}"
+            },
+            {
+              "fieldId": "work_in_us",
+              "fieldValue": "={{ $('Webhook').item.json.body.workInUS }}"
+            },
+            {
+              "fieldId": "ga_session_id",
+              "fieldValue": "={{ $('Webhook').item.json.body.ga_session_id }}"
+            },
+            {
+              "fieldId": "ga_client_id",
+              "fieldValue": "={{ $('Webhook').item.json.body.ga_client_id }}"
+            },
+            {
+              "fieldId": "ga_session_number",
+              "fieldValue": "={{ $('Webhook').item.json.body.ga_session_number }}"
+            },
+            {
+              "fieldId": "page_full_url",
+              "fieldValue": "={{ $('Webhook').item.json.body.page_full_url }}"
+            },
+            {
+              "fieldId": "url_page_path",
+              "fieldValue": "={{ $('Webhook').item.json.body.url_page_path }}"
+            },
+            {
+              "fieldId": "user_track_id",
+              "fieldValue": "={{ $('Webhook').item.json.body.user_track_id }}"
+            },
+            {
+              "fieldId": "camp_id",
+              "fieldValue": "={{ $('Webhook').item.json.body.camp_id }}"
+            }
+          ]
+        }
+      },
+      "id": "b1f7e4c5-1d96-436a-a79b-9f08ee0e08fd",
+      "name": "Supabase",
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        1220,
+        360
+      ],
+      "credentials": {
+        "supabaseApi": {
+          "id": "6stEFLC7gtftREcf",
+          "name": "Supabase Campaign manager"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "get",
+        "tableId": "course_list",
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "name",
+              "keyValue": "={{ $json.body.course }}"
+            }
+          ]
+        }
+      },
+      "id": "0977023b-72c3-41bc-ac04-da74ee1602be",
+      "name": "Supabase1",
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        1000,
+        360
+      ],
+      "credentials": {
+        "supabaseApi": {
+          "id": "6stEFLC7gtftREcf",
+          "name": "Supabase Campaign manager"
+        }
+      }
+    }
+  ],
+  "pinData": {
+    "Webhook": [
+      {
+        "json": {
+          "headers": {
+            "host": "webhook.miles-api.com",
+            "x-real-ip": "108.162.226.172",
+            "x-forwarded-host": "webhook.miles-api.com",
+            "x-forwarded-server": "webhook.miles-api.com",
+            "x-forwarded-for": "2405:201:c013:b1df:40ef:b65f:fa26:e4fd, 108.162.226.172",
+            "connection": "close",
+            "content-length": "526",
+            "cf-ray": "8d2faadc8bcd3d92-SIN",
+            "priority": "u=1, i",
+            "accept-encoding": "gzip, br",
+            "cf-pseudo-ipv4": "245.177.16.243",
+            "x-forwarded-proto": "https",
+            "accept-language": "en-IN,en-GB;q=0.9,en-US;q=0.8,en;q=0.7",
+            "cf-connecting-ip": "2405:201:c013:b1df:40ef:b65f:fa26:e4fd",
+            "referer": "https://www.mileseducation.com/accounting/us-pathway",
+            "cdn-loop": "cloudflare; loops=1",
+            "sec-fetch-dest": "empty",
+            "sec-fetch-mode": "cors",
+            "sec-fetch-site": "cross-site",
+            "access-control-allow-origin": "*",
+            "accept": "*/*",
+            "origin": "https://www.mileseducation.com"
+          },
+          "params": {},
+          "query": {},
+          "body": {
+            "vertical": "accounting",
+            "name": "Sai Theja",
+            "email": "teja.sai35@gmail.com",
+            "phone": "89199 02023",
+            "course": "Miles US Pathway",
+            "qualification": "completed_graduation",
+            "workInUS": "Yes",
+            "connectWhatsApp": true,
+            "connectSMS": false,
+            "country": "null",
+            "camp_id": 65,
+            "gcl_id": null,
+            "ga_client_id": "1100225926.1728462050",
+            "ga_session_id": "1728993518",
+            "ga_session_number": "3",
+            "page_full_url": "https://www.mileseducation.com/accounting/us-pathway",
+            "url_page_path": "/accounting/us-pathway",
+            "user_track_id": "a63152e6-197d-4616-bb88-743772220e59"
+          }
+        }
+      }
+    ]
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 1,
+  "updatedAt": "2024-10-17T12:06:32.000Z",
+  "versionId": "92bf1d79-38e9-4456-9052-8aa1535f1bab"
+}
