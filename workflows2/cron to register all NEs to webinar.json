@@ -1,0 +1,365 @@
+{
+  "active": false,
+  "connections": {
+    "When clicking \"Execute Workflow\"": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Postgres": {
+      "main": [
+        [
+          {
+            "node": "Split In Batches",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Split In Batches": {
+      "main": [
+        [
+          {
+            "node": "Postgres2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Postgres2": {
+      "main": [
+        [
+          {
+            "node": "IF1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "IF1": {
+      "main": [
+        [
+          {
+            "node": "Code",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Split In Batches",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Postgres3": {
+      "main": [
+        [
+          {
+            "node": "Postgres",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request": {
+      "main": [
+        [
+          {
+            "node": "Split In Batches",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code": {
+      "main": [
+        [
+          {
+            "node": "Wait",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request1": {
+      "main": [
+        [
+          {
+            "node": "Postgres3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-02-11T06:56:36.395Z",
+  "id": "rQ1ieKAxsmAOo62d",
+  "meta": null,
+  "name": "cron to register all NEs to webinar",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "1201b8a4-cfd6-4088-beb0-8a1438480469",
+      "name": "When clicking \"Execute Workflow\"",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        -580,
+        380
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "executeQuery",
+        "query": "SELECT\n  \"public\".\"net_enquiry\".\"id\" AS \"id\",\n  \"public\".\"net_enquiry\".\"status\" AS \"status\",\n  \"public\".\"net_enquiry\".\"created_by\" AS \"created_by\",\n  \"public\".\"net_enquiry\".\"updated_by\" AS \"updated_by\",\n  \"public\".\"net_enquiry\".\"created_at\" AS \"created_at\",\n  \"public\".\"net_enquiry\".\"updated_at\" AS \"updated_at\",\n  \"public\".\"net_enquiry\".\"first_name\" AS \"first_name\",\n  \"public\".\"net_enquiry\".\"last_name\" AS \"last_name\",\n  \"public\".\"net_enquiry\".\"phone\" AS \"phone\",\n  \"public\".\"net_enquiry\".\"email\" AS \"email\",\n  \"public\".\"net_enquiry\".\"city\" AS \"city\",\n  \"public\".\"net_enquiry\".\"coming_from\" AS \"coming_from\",\n  \"public\".\"net_enquiry\".\"gcl_id\" AS \"gcl_id\",\n  \"public\".\"net_enquiry\".\"whatsapp_opt_in\" AS \"whatsapp_opt_in\",\n  \"public\".\"net_enquiry\".\"register_for_webinar\" AS \"register_for_webinar\",\n  \"public\".\"net_enquiry\".\"intrested_to_work_in_us\" AS \"intrested_to_work_in_us\",\n  \"public\".\"net_enquiry\".\"page_full_url\" AS \"page_full_url\",\n  \"public\".\"net_enquiry\".\"url_page_path\" AS \"url_page_path\",\n  \"public\".\"net_enquiry\".\"linkedin_url\" AS \"linkedin_url\",\n  \"public\".\"net_enquiry\".\"isFromWelcomeBack\" AS \"isFromWelcomeBack\",\n  \"public\".\"net_enquiry\".\"uuid\" AS \"uuid\",\n  \"public\".\"net_enquiry\".\"program_id\" AS \"program_id\",\n  \"public\".\"net_enquiry\".\"campaign_id\" AS \"campaign_id\",\n  \"public\".\"net_enquiry\".\"educationQualificationId\" AS \"educationQualificationId\",\n  \"public\".\"net_enquiry\".\"leadId\" AS \"leadId\"\nFROM\n  \"public\".\"net_enquiry\"\nWHERE\n  (\n    \"public\".\"net_enquiry\".\"created_at\" >= CAST(NOW() AS date)\n  )\n \n   AND (\n    \"public\".\"net_enquiry\".\"created_at\" < CAST((NOW() + INTERVAL '1 day') AS date)\n  )\nLIMIT\n  1048575",
+        "options": {}
+      },
+      "id": "23fcc45c-1bc7-4d48-a155-af457113d64a",
+      "name": "Postgres",
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.2,
+      "position": [
+        120,
+        380
+      ],
+      "credentials": {
+        "postgres": {
+          "id": "VPJUosohtvWNBW4H",
+          "name": "MF Prod (DO NOT USE)"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "batchSize": 1,
+        "options": {}
+      },
+      "id": "6e39a36d-924c-4703-9daa-8d23b115ffcf",
+      "name": "Split In Batches",
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 2,
+      "position": [
+        340,
+        380
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "select",
+        "schema": {
+          "__rl": true,
+          "mode": "list",
+          "value": "public"
+        },
+        "table": {
+          "__rl": true,
+          "value": "webinar_registration",
+          "mode": "name"
+        },
+        "limit": 1,
+        "where": {
+          "values": [
+            {
+              "column": "leadId",
+              "value": "={{ $json.leadId }}"
+            },
+            {
+              "column": "email",
+              "value": "={{ $json.email }}"
+            }
+          ]
+        },
+        "combineConditions": "OR",
+        "sort": {
+          "values": [
+            {
+              "column": "webinarId",
+              "direction": "DESC"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "98e4771d-95ee-4fbe-8f9c-b6b202fd7ade",
+      "name": "Postgres2",
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.2,
+      "position": [
+        580,
+        240
+      ],
+      "credentials": {
+        "postgres": {
+          "id": "VPJUosohtvWNBW4H",
+          "name": "MF Prod (DO NOT USE)"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "number": [
+            {
+              "value1": "={{ $json.webinarId }}",
+              "operation": "notEqual",
+              "value2": "={{ $('Postgres3').item.json.id }}"
+            }
+          ]
+        }
+      },
+      "id": "c4310874-7535-483e-a009-d69b3b4d4262",
+      "name": "IF1",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        800,
+        240
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://mfx-prod-154625965269.asia-south1.run.app/webinar/add-lead",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "=Bearer {{ $('HTTP Request1').item.json.result.token }}"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n\"lead_id\": {{ $('Split In Batches').item.json[\"leadId\"] }},\n\"campaign_id\": {{ $('Postgres').item.json[\"campaign_id\"] }},\n\"webinar_id\": {{ $('Postgres3').item.json[\"id\"] }}\n}",
+        "options": {}
+      },
+      "id": "5b18ac1e-43df-44a7-abfa-8c29b4441c18",
+      "name": "HTTP Request",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        1520,
+        220
+      ],
+      "retryOnFail": true
+    },
+    {
+      "parameters": {
+        "operation": "executeQuery",
+        "query": "SELECT\n  \"public\".\"webinar\".\"id\" AS \"id\",\n  \"public\".\"webinar\".\"status\" AS \"status\",\n  \"public\".\"webinar\".\"created_by\" AS \"created_by\",\n  \"public\".\"webinar\".\"updated_by\" AS \"updated_by\",\n  \"public\".\"webinar\".\"created_at\" AS \"created_at\",\n  \"public\".\"webinar\".\"updated_at\" AS \"updated_at\",\n  \"public\".\"webinar\".\"webinar_id\" AS \"webinar_id\",\n  \"public\".\"webinar\".\"webinar_name\" AS \"webinar_name\",\n  \"public\".\"webinar\".\"host\" AS \"host\",\n  \"public\".\"webinar\".\"title_on_website\" AS \"title_on_website\",\n  \"public\".\"webinar\".\"date_string\" AS \"date_string\",\n  \"public\".\"webinar\".\"time_string\" AS \"time_string\",\n  \"public\".\"webinar\".\"duration\" AS \"duration\",\n  \"public\".\"webinar\".\"webinar_type\" AS \"webinar_type\",\n  \"public\".\"webinar\".\"courseId\" AS \"courseId\",\n  \"public\".\"webinar\".\"tagline_1\" AS \"tagline_1\",\n  \"public\".\"webinar\".\"tagline_2\" AS \"tagline_2\",\n  \"public\".\"webinar\".\"about\" AS \"about\",\n  \"public\".\"webinar\".\"text_highlight\" AS \"text_highlight\",\n  \"public\".\"webinar\".\"what_you_learn\" AS \"what_you_learn\",\n  \"public\".\"webinar\".\"acc_city_id\" AS \"acc_city_id\",\n  \"public\".\"webinar\".\"isOffline\" AS \"isOffline\",\n  \"public\".\"webinar\".\"card_banner_image\" AS \"card_banner_image\",\n  \"public\".\"webinar\".\"date_time\" AS \"date_time\",\n  \"public\".\"webinar\".\"zoomAccount\" AS \"zoomAccount\"\nFROM\n  \"public\".\"webinar\"\nWHERE\n  (\n    \"public\".\"webinar\".\"date_time\" >= CAST((NOW() + INTERVAL '1 day') AS date)\n  )\n \n   AND (\n    \"public\".\"webinar\".\"date_time\" < CAST((NOW() + INTERVAL '11 day') AS date)\n  )\nLIMIT\n  1048575",
+        "options": {}
+      },
+      "id": "109f8979-3566-43e4-9cd2-d47ea22949a9",
+      "name": "Postgres3",
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.2,
+      "position": [
+        -100,
+        380
+      ],
+      "credentials": {
+        "postgres": {
+          "id": "VPJUosohtvWNBW4H",
+          "name": "MF Prod (DO NOT USE)"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "const minDelay = 1000; // 1 second\nconst maxDelay = 5000; // 5 seconds\n\nconst randomDelay = (Math.floor(Math.random() * (maxDelay - minDelay + 1)) + minDelay)/1122;\n\nconsole.log(`Delaying execution by ${randomDelay}ms`);\n\nawait new Promise(resolve => setTimeout(resolve, randomDelay));\n\nreturn [{ json: { randomDelay } }]; // Correct format for n8n"
+      },
+      "id": "72db3535-1362-4d9b-8e5e-5d6c412b7d1c",
+      "name": "Code",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1080,
+        220
+      ]
+    },
+    {
+      "parameters": {
+        "amount": "={{ $json.randomDelay }}",
+        "unit": "seconds"
+      },
+      "id": "62ccb258-baf2-45be-923a-512babb2ac07",
+      "name": "Wait",
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1,
+      "position": [
+        1300,
+        220
+      ],
+      "webhookId": "60c01b2a-fc60-459d-9d03-8852754cf023"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://mfx-prod-154625965269.asia-south1.run.app/auth/login",
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "email",
+              "value": "jithin.kumar@mileseducation.com"
+            },
+            {
+              "name": "password",
+              "value": "123"
+            }
+          ]
+        },
+        "options": {
+          "redirect": {
+            "redirect": {}
+          }
+        }
+      },
+      "id": "1c090731-5ce4-45bd-ba79-22136d384c21",
+      "name": "HTTP Request1",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        -360,
+        380
+      ]
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2025-02-11T10:55:00.000Z",
+  "versionId": "92a2175a-dc95-41b1-ad14-82e0956de1a7"
+}
