@@ -1,0 +1,58 @@
+{
+  "active": false,
+  "connections": {
+    "Execute Workflow Trigger": {
+      "main": [
+        []
+      ]
+    }
+  },
+  "createdAt": "2024-12-18T19:33:32.498Z",
+  "id": "bUyzm39U7Mu5CS4p",
+  "meta": null,
+  "name": "Trigger Error on Workflow Failure",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "611f18e1-e042-4cb9-ad8b-3d7eea0c0084",
+      "name": "Execute Workflow Trigger",
+      "type": "n8n-nodes-base.executeWorkflowTrigger",
+      "typeVersion": 1,
+      "position": [
+        320,
+        360
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "send",
+        "phoneNumberId": "108019349036743",
+        "recipientPhoneNumber": "+919460596406",
+        "additionalFields": {}
+      },
+      "id": "b99f431a-ba7e-433a-9916-6b0fc62b26de",
+      "name": "WhatsApp Business Cloud",
+      "type": "n8n-nodes-base.whatsApp",
+      "typeVersion": 1,
+      "position": [
+        800,
+        380
+      ],
+      "credentials": {
+        "whatsAppApi": {
+          "id": "KHcTD6EUGATb3z0D",
+          "name": "Secondary | Marketing Miles Education"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2024-12-18T19:37:01.000Z",
+  "versionId": "7ba95993-d07e-4de7-90b9-c1318845fe20"
+}
