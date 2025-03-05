@@ -1,0 +1,139 @@
+{
+  "active": true,
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Supabase",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2023-08-17T11:51:39.349Z",
+  "id": "rcKTgUVMIPVM8Q7E",
+  "meta": null,
+  "name": "update payment details",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "update-payment-details",
+        "options": {}
+      },
+      "id": "1997b09a-8fbd-410f-b9ca-7b70ecadbd20",
+      "name": "Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        580,
+        320
+      ],
+      "webhookId": "5deb80d3-d139-4383-8a5a-cf94306db327"
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "tableId": "webinar_payments",
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "pid",
+              "condition": "eq",
+              "keyValue": "={{ $json.body.pid }}"
+            }
+          ]
+        },
+        "fieldsUi": {
+          "fieldValues": [
+            {
+              "fieldId": "payment_status",
+              "fieldValue": "={{ $json.body.status }}"
+            },
+            {
+              "fieldId": "payment_details",
+              "fieldValue": "={{ $json.body }}"
+            }
+          ]
+        }
+      },
+      "id": "bc807b89-4781-41d1-bc80-646c22e16cf7",
+      "name": "Supabase",
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        800,
+        320
+      ],
+      "credentials": {
+        "supabaseApi": {
+          "id": "6stEFLC7gtftREcf",
+          "name": "Supabase Campaign manager"
+        }
+      }
+    }
+  ],
+  "pinData": {
+    "Webhook": [
+      {
+        "json": {
+          "headers": {
+            "host": "webhook.miles-api.com",
+            "x-real-ip": "172.68.154.132",
+            "x-forwarded-host": "webhook.miles-api.com",
+            "x-forwarded-server": "webhook.miles-api.com",
+            "x-forwarded-for": "49.204.70.102, 172.68.154.132",
+            "connection": "close",
+            "content-length": "777",
+            "accept-encoding": "gzip",
+            "cf-ray": "7f81bb71ffe33c13-BLR",
+            "x-forwarded-proto": "https",
+            "content-type": "application/json",
+            "user-agent": "PostmanRuntime/7.32.3",
+            "accept": "*/*",
+            "postman-token": "07653962-6f52-438c-83b1-2d47c7513665",
+            "cdn-loop": "cloudflare",
+            "cf-connecting-ip": "49.204.70.102",
+            "cf-ipcountry": "IN"
+          },
+          "params": {},
+          "query": {},
+          "body": {
+            "pid": 3,
+            "payment_status": "success",
+            "payment_details": {
+              "id": 9,
+              "title": "Infinix INBOOK",
+              "description": "Infinix Inbook X1 Ci3 10th 8GB...",
+              "price": 1099,
+              "discountPercentage": 11.83,
+              "rating": 4.54,
+              "stock": 96,
+              "brand": "Infinix",
+              "category": "laptops",
+              "thumbnail": "https://i.dummyjson.com/data/products/9/thumbnail.jpg",
+              "images": [
+                "https://i.dummyjson.com/data/products/9/1.jpg",
+                "https://i.dummyjson.com/data/products/9/2.png",
+                "https://i.dummyjson.com/data/products/9/3.png",
+                "https://i.dummyjson.com/data/products/9/4.jpg",
+                "https://i.dummyjson.com/data/products/9/thumbnail.jpg"
+              ]
+            }
+          }
+        }
+      }
+    ]
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 1,
+  "updatedAt": "2023-12-13T12:26:48.000Z",
+  "versionId": "d3a7b956-a113-4eb7-9799-716e1d76c35b"
+}
