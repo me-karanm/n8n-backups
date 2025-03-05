@@ -1,0 +1,192 @@
+{
+  "active": true,
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Set",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Set": {
+      "main": [
+        [
+          {
+            "node": "Set1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Set1": {
+      "main": [
+        [
+          {
+            "node": "Supabase",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2024-01-29T09:58:46.246Z",
+  "id": "9EckDuplmkRZsVXy",
+  "meta": null,
+  "name": "Office Visit Book API",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "767ed5b6-602c-426a-b290-01db00616757",
+        "options": {}
+      },
+      "id": "6b376c7f-965c-45c1-96f2-113485e4480e",
+      "name": "Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        680,
+        360
+      ],
+      "webhookId": "767ed5b6-602c-426a-b290-01db00616757"
+    },
+    {
+      "parameters": {
+        "values": {
+          "string": [
+            {
+              "name": "dateTime",
+              "value": "={{ \n$json.body.time == '11:00 AM' ? '11:00:00' :\n$json.body.time == '12:00 PM' ? '12:00:00' :\n$json.body.time == '1:00 PM' ? '13:00:00' :\n$json.body.time == '2:00 PM' ? '14:00:00' :\n$json.body.time == '3:00 PM' ? '15:00:00' :\n$json.body.time == '4:00 PM' ? '16:00:00' :\n$json.body.time == '5:00 PM' ? '17:00:00' :\n$json.body.time == '6:00 PM' ? '18:00:00' :\n$json.body.time == '7:00 PM' ? '19:00:00' :\n '' }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "c1468e0b-4a1d-4f4e-b025-7a314ae7d4e4",
+      "name": "Set",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 2,
+      "position": [
+        900,
+        360
+      ]
+    },
+    {
+      "parameters": {
+        "values": {
+          "string": [
+            {
+              "name": "dateTime",
+              "value": "={{ $json.body.datetime+' '+$json.dateTime}}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "043112df-fe23-4f31-9675-e41edb3a14f2",
+      "name": "Set1",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 2,
+      "position": [
+        1120,
+        360
+      ]
+    },
+    {
+      "parameters": {
+        "tableId": "visit_office",
+        "fieldsUi": {
+          "fieldValues": [
+            {
+              "fieldId": "leads_dump_id",
+              "fieldValue": "={{ $json.body.lead_dump_id }}"
+            },
+            {
+              "fieldId": "time_string",
+              "fieldValue": "={{ $json.body.time }}"
+            },
+            {
+              "fieldId": "visit_date",
+              "fieldValue": "={{ $json.body.datetime }}"
+            },
+            {
+              "fieldId": "time_slots",
+              "fieldValue": "={{ $json.dateTime }}"
+            },
+            {
+              "fieldId": "city",
+              "fieldValue": "={{ $json.body.city == 'Virtual Meeting' ? \"Bangalore\" :   $json.body.city  }}"
+            },
+            {
+              "fieldId": "meeting_type",
+              "fieldValue": "={{ $json.body.type }}"
+            }
+          ]
+        }
+      },
+      "id": "6c8b5daf-bb7b-4511-a282-73ad316b1191",
+      "name": "Supabase",
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        1320,
+        360
+      ],
+      "credentials": {
+        "supabaseApi": {
+          "id": "6stEFLC7gtftREcf",
+          "name": "Supabase Campaign manager"
+        }
+      }
+    }
+  ],
+  "pinData": {
+    "Webhook": [
+      {
+        "json": {
+          "headers": {
+            "host": "webhook.miles-api.com",
+            "x-real-ip": "172.71.135.14",
+            "x-forwarded-host": "webhook.miles-api.com",
+            "x-forwarded-server": "webhook.miles-api.com",
+            "x-forwarded-for": "159.89.171.7, 172.71.135.14",
+            "connection": "close",
+            "content-length": "111",
+            "accept-encoding": "gzip",
+            "cf-ray": "84d0ffa90e5af140-CDG",
+            "x-forwarded-proto": "https",
+            "user-agent": "python-requests/2.27.1",
+            "accept": "*/*",
+            "content-type": "application/json",
+            "cf-connecting-ip": "159.89.171.7",
+            "cdn-loop": "cloudflare",
+            "cf-ipcountry": "IN"
+          },
+          "params": {},
+          "query": {},
+          "body": {
+            "city": "Virtual Meeting",
+            "time": "6:00 PM",
+            "type": "1",
+            "datetime": "2024-01-30",
+            "lead_dump_id": "363937"
+          }
+        }
+      }
+    ]
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 1,
+  "updatedAt": "2024-01-31T11:52:08.000Z",
+  "versionId": "48d17eff-2de6-4ada-b3b1-5c8bbea3bdeb"
+}
