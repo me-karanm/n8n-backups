@@ -1,0 +1,221 @@
+{
+  "active": false,
+  "connections": {
+    "When clicking \"Execute Workflow\"": {
+      "main": [
+        [
+          {
+            "node": "Google Sheets",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Sheets": {
+      "main": [
+        [
+          {
+            "node": "Split In Batches",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Split In Batches": {
+      "main": [
+        [
+          {
+            "node": "Supabase",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Supabase": {
+      "main": [
+        [
+          {
+            "node": "Wait",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait": {
+      "main": [
+        [
+          {
+            "node": "Split In Batches",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2024-02-13T06:07:31.408Z",
+  "id": "rt1CFueUIKbkztkx",
+  "meta": null,
+  "name": "Lead upload",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "28b1a0ba-85ad-4c85-97e8-56668a1e2717",
+      "name": "When clicking \"Execute Workflow\"",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        660,
+        320
+      ]
+    },
+    {
+      "parameters": {
+        "authentication": "serviceAccount",
+        "documentId": {
+          "__rl": true,
+          "value": "https://docs.google.com/spreadsheets/d/1tvpE9T4RZhw6Q4XUWt_MnjhSyVmRyxCGPTXvXfcTLVQ/edit?usp=sharing",
+          "mode": "url",
+          "__regex": "https:\\/\\/(?:drive|docs)\\.google\\.com(?:\\/.*|)\\/d\\/([0-9a-zA-Z\\-_]+)(?:\\/.*|)"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 1310141786,
+          "mode": "list",
+          "cachedResultName": "auto update only form 1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1tvpE9T4RZhw6Q4XUWt_MnjhSyVmRyxCGPTXvXfcTLVQ/edit#gid=1310141786"
+        },
+        "options": {}
+      },
+      "id": "9fd020bf-44a1-45d3-91ab-fa2ae137b6e1",
+      "name": "Google Sheets",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4,
+      "position": [
+        880,
+        320
+      ],
+      "credentials": {
+        "googleApi": {
+          "id": "aiCprsG1ZRAOjrNn",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "batchSize": 1,
+        "options": {}
+      },
+      "id": "d39a43d5-cd7d-42ca-a6a9-5801208a7730",
+      "name": "Split In Batches",
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 2,
+      "position": [
+        1100,
+        320
+      ]
+    },
+    {
+      "parameters": {
+        "tableId": "leads_dump",
+        "fieldsUi": {
+          "fieldValues": [
+            {
+              "fieldId": "first_name",
+              "fieldValue": "={{ $json.full_me }}"
+            },
+            {
+              "fieldId": "email",
+              "fieldValue": "={{ $json.last_me }}"
+            },
+            {
+              "fieldId": "phone",
+              "fieldValue": "={{ $json['clean phone'] }}"
+            },
+            {
+              "fieldId": "camp_id",
+              "fieldValue": "=158"
+            },
+            {
+              "fieldId": "register_for_webinar",
+              "fieldValue": "true"
+            },
+            {
+              "fieldId": "push_to_mf",
+              "fieldValue": "false"
+            },
+            {
+              "fieldId": "course",
+              "fieldValue": "9"
+            },
+            {
+              "fieldId": "city",
+              "fieldValue": "={{ $json.location }}"
+            },
+            {
+              "fieldId": "whatsapp",
+              "fieldValue": "false"
+            }
+          ]
+        }
+      },
+      "id": "f20a759a-e304-4860-a10c-ff885910d35e",
+      "name": "Supabase",
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        1580,
+        120
+      ],
+      "credentials": {
+        "supabaseApi": {
+          "id": "6stEFLC7gtftREcf",
+          "name": "Supabase Campaign manager"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "url": "=http://apilayer.net/api/validate?access_key=3cca95673cdacb79b494c809edeb8048&number=91{{ $json.phone }}",
+        "options": {}
+      },
+      "id": "7d6a6ea3-ec10-4383-a058-e3b05fc47408",
+      "name": "HTTP Request",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        1280,
+        40
+      ]
+    },
+    {
+      "parameters": {
+        "amount": 2,
+        "unit": "seconds"
+      },
+      "id": "fef54538-7c33-4da0-bcb8-6a16a5929a89",
+      "name": "Wait",
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1,
+      "position": [
+        1800,
+        120
+      ],
+      "webhookId": "c887c970-1d71-466c-9084-51ad725dc74c"
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2024-03-01T19:17:31.000Z",
+  "versionId": "2a4e6dfa-b4f6-40c7-970d-ef199b9c68c0"
+}
