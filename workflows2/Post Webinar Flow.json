@@ -1,0 +1,87 @@
+{
+  "active": false,
+  "connections": {
+    "When clicking \"Execute Workflow\"": {
+      "main": [
+        [
+          {
+            "node": "Postgres",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Postgres": {
+      "main": [
+        [
+          {
+            "node": "Split In Batches",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2024-01-27T12:12:47.823Z",
+  "id": "fSVV0xu91ve3kbvJ",
+  "meta": null,
+  "name": "Post Webinar Flow",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "f2522a93-73ff-4d68-bbf6-489fd47409e6",
+      "name": "When clicking \"Execute Workflow\"",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        240,
+        220
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "executeQuery",
+        "query": "SELECT leads_dump.first_name,leads_dump.phone from webinar_registration left join leads_dump on leads_dump.id = webinar_registration.leads_dump_id where webinar_registration.webinar_id = 33 limit 10;",
+        "options": {}
+      },
+      "id": "108f0176-c1cb-49c0-992b-47df7c04cdbf",
+      "name": "Postgres",
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.2,
+      "position": [
+        480,
+        420
+      ],
+      "credentials": {
+        "postgres": {
+          "id": "0EOENO57r9a8GGbk",
+          "name": "Supabase account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "id": "1b85d96e-b6be-465f-91e0-defd86dd1c13",
+      "name": "Split In Batches",
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 2,
+      "position": [
+        800,
+        420
+      ]
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2024-01-27T13:01:23.000Z",
+  "versionId": "8abc7899-c34a-40ba-b798-de9c87599a8e"
+}
