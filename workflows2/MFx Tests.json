@@ -1,0 +1,586 @@
+{
+  "active": false,
+  "connections": {
+    "When clicking \"Execute Workflow\"": {
+      "main": [
+        [
+          {
+            "node": "Google Sheets1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Sheets": {
+      "main": [
+        [
+          {
+            "node": "Split In Batches",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Split In Batches": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request": {
+      "main": [
+        [
+          {
+            "node": "Wait",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait": {
+      "main": [
+        [
+          {
+            "node": "Split In Batches",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Sheets1": {
+      "main": [
+        [
+          {
+            "node": "Split In Batches2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Split In Batches1": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request1": {
+      "main": [
+        [
+          {
+            "node": "Split In Batches1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Split In Batches2": {
+      "main": [
+        [
+          {
+            "node": "IF",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request2": {
+      "main": [
+        [
+          {
+            "node": "Google Sheets2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Sheets2": {
+      "main": [
+        [
+          {
+            "node": "Split In Batches2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "IF": {
+      "main": [
+        [
+          {
+            "node": "Split In Batches2",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "HTTP Request2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2024-08-27T14:01:02.456Z",
+  "id": "ESdaiBtzxmQpZQ3d",
+  "meta": null,
+  "name": "MFx Tests",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "f47c901d-5465-467b-8c51-660ada096ccf",
+      "name": "When clicking \"Execute Workflow\"",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        360,
+        -100
+      ]
+    },
+    {
+      "parameters": {
+        "authentication": "serviceAccount",
+        "documentId": {
+          "__rl": true,
+          "value": "https://docs.google.com/spreadsheets/d/1LVJpGuBJPwPA-2h2IESGwZQkv97tH5pSYUGBbgjKYiM/edit?usp=sharing",
+          "mode": "url",
+          "__regex": "https:\\/\\/(?:drive|docs)\\.google\\.com(?:\\/.*|)\\/d\\/([0-9a-zA-Z\\-_]+)(?:\\/.*|)"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 1510957757,
+          "mode": "list",
+          "cachedResultName": "Leads",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1LVJpGuBJPwPA-2h2IESGwZQkv97tH5pSYUGBbgjKYiM/edit#gid=1510957757"
+        },
+        "options": {}
+      },
+      "id": "70da3f2a-efbe-4b51-a651-877180939770",
+      "name": "Google Sheets",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4,
+      "position": [
+        860,
+        340
+      ],
+      "credentials": {
+        "googleApi": {
+          "id": "aiCprsG1ZRAOjrNn",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://uat-mfx.miles-api.com/enquiries/add",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n\"first_name\": \"{{ $json.Name }}\",\n\"last_name\": \" \",\n\"phone\":\"{{ $json['phone'] }}\" ,\n\"email\": \"{{ $json['Email id'] }}\",\n\"course_id\":{{ $json['Course Applying To'] }},\n\"coming_from\": \"Data upload\",\n\"campaign_id\":{{ $json['Lead source'] }},\n\"campaign_tk\": \" \",\n\"gcl_id\": \" \",\n\"whatsapp_opt_in\": true,\n\"register_for_webinar\": true,\n\"intrested_to_work_in_us\": true,\n\"page_full_url\": \"string\",\n\"url_page_path\": \"string\",\n\"linked_in_url\": \"string\",\n\"clevertap_id\": \"string\",\n\"isFromWelcomeBack\": false,\n\"level\":{{ $json['Lead Level'] }}\n}",
+        "options": {}
+      },
+      "id": "3fd87728-a21f-4a16-b986-e69fdd5934af",
+      "name": "HTTP Request",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        1460,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "batchSize": 1,
+        "options": {}
+      },
+      "id": "a24c03c6-dc2f-47b5-a06d-9827f4ea111f",
+      "name": "Split In Batches",
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 2,
+      "position": [
+        1080,
+        340
+      ]
+    },
+    {
+      "parameters": {
+        "amount": 4,
+        "unit": "seconds"
+      },
+      "id": "6988749d-9a06-4bdf-9a3f-7cd1559308fe",
+      "name": "Wait",
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1,
+      "position": [
+        1680,
+        300
+      ],
+      "webhookId": "392210bf-850e-4511-b598-2e5563b86718"
+    },
+    {
+      "parameters": {
+        "authentication": "serviceAccount",
+        "documentId": {
+          "__rl": true,
+          "value": "https://docs.google.com/spreadsheets/d/1nJzEM99NSCxT7rak-5_hoDOoyHZVw03_pH0KZczuRSY/edit?usp=sharing",
+          "mode": "url",
+          "__regex": "https:\\/\\/(?:drive|docs)\\.google\\.com(?:\\/.*|)\\/d\\/([0-9a-zA-Z\\-_]+)(?:\\/.*|)"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 176166606,
+          "mode": "list",
+          "cachedResultName": "Copy of Create User 4",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1nJzEM99NSCxT7rak-5_hoDOoyHZVw03_pH0KZczuRSY/edit#gid=176166606"
+        },
+        "options": {}
+      },
+      "id": "53305882-59f8-4d2d-9119-ccb4777b3d1f",
+      "name": "Google Sheets1",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4,
+      "position": [
+        580,
+        -100
+      ],
+      "credentials": {
+        "googleApi": {
+          "id": "aiCprsG1ZRAOjrNn",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "batchSize": 1,
+        "options": {}
+      },
+      "id": "f494d845-437a-4173-b885-b191bd6b2c64",
+      "name": "Split In Batches1",
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 2,
+      "position": [
+        1180,
+        40
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://miles-sso-rg4aetd7ka-el.a.run.app/auth/signup",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"first_name\": \"{{ $json.first_name }}\",\n  \"last_name\": \"{{ $json.last_name }}\",\n  \"password\": \"{{ $json.password }}\",\n  \"email\": \"{{ $json.email }}\",\n  \"phone\": \"{{ $json.phone }}\",\n  \"country_code\": \"{{ $json.country_code }}\",\n  \"profile_picture\": null,\n  \"application_id\": {{ $json.application_id }},\n  \"user_type\": {{ $json.user_type }},\n  \"access\": {},\n  \"role\": 0\n}",
+        "options": {}
+      },
+      "id": "c578caed-48d4-4299-9d0c-aad3bc959196",
+      "name": "HTTP Request1",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        1620,
+        20
+      ]
+    },
+    {
+      "parameters": {
+        "batchSize": 1,
+        "options": {}
+      },
+      "id": "689c778a-788e-41e3-bdd9-92114fd407a9",
+      "name": "Split In Batches2",
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 2,
+      "position": [
+        820,
+        -340
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://rl303zpb-3000.inc1.devtunnels.ms/users/add-new-user",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwic3RhdHVzIjp0cnVlLCJjcmVhdGVkX2F0IjoiMjAyNC0wOS0wMlQxOTo1MTozOC4yOTVaIiwidXBkYXRlZF9hdCI6IjIwMjQtMDktMDJUMTk6NTE6MzguMjk1WiIsInVzZXJJZCI6IjM4NzM2NTU0LTQ0NjMtNDEzMC1iOGEzLTUxMDU3OWE3MWI1YiIsImZpcnN0TmFtZSI6bnVsbCwibGFzdE5hbWUiOm51bGwsInJvbGUiOm51bGwsInVzZXJOYW1lIjoiYWRtaW5AbWlsZXNlZHVjYXRpb24uY29tIiwiZW1haWwiOiJhZG1pbkBtaWxlc2VkdWNhdGlvbi5jb20iLCJwaG9uZSI6IjYyMzgxMzMyOTgiLCJjb3VudHJ5Q29kZSI6IjkxIiwibWZhRW5hYmxlZCI6ZmFsc2UsIm1mYVR5cGUiOm51bGwsIm1mYVNlY3JldCI6bnVsbCwidXNlclR5cGUiOjEsImxhc3RMb2dpbiI6bnVsbCwiYXBwbGljYXRpb25zIjpbeyJpZCI6MSwic3RhdHVzIjp0cnVlLCJjcmVhdGVkX2F0IjoiMjAyNC0wOS0wMlQyMDoxNToyOC43ODNaIiwidXBkYXRlZF9hdCI6IjIwMjQtMDktMDJUMjA6MTU6MjguNzgzWiIsImlzQWN0aXZlIjp0cnVlLCJhcHBsaWNhdGlvbiI6eyJpZCI6MSwic3RhdHVzIjp0cnVlLCJjcmVhdGVkX2F0IjoiMDAwMS0wMS0wMVQxOToxOToyNi45NzVaIiwidXBkYXRlZF9hdCI6IjAwMDEtMDEtMDFUMTk6MTk6MjYuOTc1WiIsImFwcGxpY2F0aW9uX25hbWUiOiJBcHAiLCJhcHBsaWNhdGlvbl9kZXNjcmlwdGlvbiI6IkFwcCIsImFwcGxpY2F0aW9uX3VybCI6Imh0dHA6Ly9sb2NhbGhvc3Q6MzExL2NiP3Rva2VuPSIsImFwcGxpY2F0aW9uX3R5cGUiOiJNb2JpbGUiLCJyZWZyZXNoX3Rva2VuX2xpZmUiOiIzNjVkIiwiYWNjZXNzX3Rva2VuX2xpZmUiOiIxZCIsImlzQWN0aXZlIjp0cnVlLCJpc19kZXZtb2RlIjp0cnVlLCJpc19mcmVlX2FjY2VzcyI6dHJ1ZX19LHsiaWQiOjYsInN0YXR1cyI6dHJ1ZSwiY3JlYXRlZF9hdCI6IjIwMjQtMDktMDJUMjA6MTU6MjguNzgzWiIsInVwZGF0ZWRfYXQiOiIyMDI0LTA5LTAyVDIwOjE1OjI4Ljc4M1oiLCJpc0FjdGl2ZSI6dHJ1ZSwiYXBwbGljYXRpb24iOnsiaWQiOjE0LCJzdGF0dXMiOnRydWUsImNyZWF0ZWRfYXQiOiIwMDAxLTAxLTAxVDA2OjEyOjUyLjQ1NFoiLCJ1cGRhdGVkX2F0IjoiMDAwMS0wMS0wMVQwNjoxMjo1Mi40NTRaIiwiYXBwbGljYXRpb25fbmFtZSI6IkFUU19VQVQiLCJhcHBsaWNhdGlvbl9kZXNjcmlwdGlvbiI6IkFUUyIsImFwcGxpY2F0aW9uX3VybCI6Imh0dHA6Ly9sb2NhbGhvc3Q6LzMxMSIsImFwcGxpY2F0aW9uX3R5cGUiOiJXRUIiLCJyZWZyZXNoX3Rva2VuX2xpZmUiOiIzZCIsImFjY2Vzc190b2tlbl9saWZlIjoiMWQiLCJpc0FjdGl2ZSI6dHJ1ZSwiaXNfZGV2bW9kZSI6dHJ1ZSwiaXNfZnJlZV9hY2Nlc3MiOnRydWV9fSx7ImlkIjoyLCJzdGF0dXMiOnRydWUsImNyZWF0ZWRfYXQiOiIyMDI0LTA5LTAyVDIwOjE1OjI4Ljc4M1oiLCJ1cGRhdGVkX2F0IjoiMjAyNC0wOS0wMlQyMDoxNToyOC43ODNaIiwiaXNBY3RpdmUiOnRydWUsImFwcGxpY2F0aW9uIjp7ImlkIjoyLCJzdGF0dXMiOnRydWUsImNyZWF0ZWRfYXQiOiIwMDAxLTAxLTAxVDA4OjIxOjAzLjc1NVoiLCJ1cGRhdGVkX2F0IjoiMDAwMS0wMS0wMVQwODoyMTowMy43NTVaIiwiYXBwbGljYXRpb25fbmFtZSI6IkFwcCBiYWNrZW5kIiwiYXBwbGljYXRpb25fZGVzY3JpcHRpb24iOiJBcHAgYmFja2VuZCIsImFwcGxpY2F0aW9uX3VybCI6Imh0dHA6Ly9sb2NhbGhvc3Q6MzExL2NiP3Rva2VuPSIsImFwcGxpY2F0aW9uX3R5cGUiOiJXRUIiLCJyZWZyZXNoX3Rva2VuX2xpZmUiOm51bGwsImFjY2Vzc190b2tlbl9saWZlIjoiMWgiLCJpc0FjdGl2ZSI6dHJ1ZSwiaXNfZGV2bW9kZSI6dHJ1ZSwiaXNfZnJlZV9hY2Nlc3MiOnRydWV9fSx7ImlkIjozLCJzdGF0dXMiOnRydWUsImNyZWF0ZWRfYXQiOiIyMDI0LTA5LTAyVDIwOjE1OjI4Ljc4M1oiLCJ1cGRhdGVkX2F0IjoiMjAyNC0wOS0wMlQyMDoxNToyOC43ODNaIiwiaXNBY3RpdmUiOnRydWUsImFwcGxpY2F0aW9uIjp7ImlkIjozLCJzdGF0dXMiOnRydWUsImNyZWF0ZWRfYXQiOiIwMDAxLTAxLTAxVDA1OjQ2OjE4Ljc3MloiLCJ1cGRhdGVkX2F0IjoiMDAwMS0wMS0wMVQwNTo0NjoxOC43NzJaIiwiYXBwbGljYXRpb25fbmFtZSI6Ik1GIiwiYXBwbGljYXRpb25fZGVzY3JpcHRpb24iOiJNRngiLCJhcHBsaWNhdGlvbl91cmwiOiJodHRwOi8vbG9jYWxob3N0OjMyMTEvYXBpL2NiP3Rva2VuPSIsImFwcGxpY2F0aW9uX3R5cGUiOiJXRUIiLCJyZWZyZXNoX3Rva2VuX2xpZmUiOm51bGwsImFjY2Vzc190b2tlbl9saWZlIjpudWxsLCJpc0FjdGl2ZSI6dHJ1ZSwiaXNfZGV2bW9kZSI6dHJ1ZSwiaXNfZnJlZV9hY2Nlc3MiOmZhbHNlfX0seyJpZCI6NCwic3RhdHVzIjp0cnVlLCJjcmVhdGVkX2F0IjoiMjAyNC0wOS0wMlQyMDoxNToyOC43ODNaIiwidXBkYXRlZF9hdCI6IjIwMjQtMDktMDJUMjA6MTU6MjguNzgzWiIsImlzQWN0aXZlIjp0cnVlLCJhcHBsaWNhdGlvbiI6eyJpZCI6NCwic3RhdHVzIjp0cnVlLCJjcmVhdGVkX2F0IjoiMDAwMS0wMS0wMVQxODo0NTozOC41NDlaIiwidXBkYXRlZF9hdCI6IjAwMDEtMDEtMDFUMTg6NDU6MzguNTQ5WiIsImFwcGxpY2F0aW9uX25hbWUiOiJDYWxsaW5nIEFwcCIsImFwcGxpY2F0aW9uX2Rlc2NyaXB0aW9uIjoiQ2FsbGluZyBBcHAiLCJhcHBsaWNhdGlvbl91cmwiOiJodHRwOi9sb2NhbGhvc3Q6MzEyMiIsImFwcGxpY2F0aW9uX3R5cGUiOiJNb2JpbGUiLCJyZWZyZXNoX3Rva2VuX2xpZmUiOm51bGwsImFjY2Vzc190b2tlbl9saWZlIjpudWxsLCJpc0FjdGl2ZSI6dHJ1ZSwiaXNfZGV2bW9kZSI6dHJ1ZSwiaXNfZnJlZV9hY2Nlc3MiOmZhbHNlfX0seyJpZCI6NSwic3RhdHVzIjp0cnVlLCJjcmVhdGVkX2F0IjoiMjAyNC0wOS0wMlQyMDoxNToyOC43ODNaIiwidXBkYXRlZF9hdCI6IjIwMjQtMDktMDJUMjA6MTU6MjguNzgzWiIsImlzQWN0aXZlIjp0cnVlLCJhcHBsaWNhdGlvbiI6eyJpZCI6NSwic3RhdHVzIjp0cnVlLCJjcmVhdGVkX2F0IjoiMDAwMS0wMS0wMVQxMzoxMzowNS40NzJaIiwidXBkYXRlZF9hdCI6IjAwMDEtMDEtMDFUMTM6MTM6MDUuNDcyWiIsImFwcGxpY2F0aW9uX25hbWUiOiJNaWxlcyBNYXN0ZXJjbGFzcyIsImFwcGxpY2F0aW9uX2Rlc2NyaXB0aW9uIjoiTWlsZXMgTWFzdGVyY2xhc3MiLCJhcHBsaWNhdGlvbl91cmwiOiJodHRwOi8vbG9jYWxob3N0OjMyMjEiLCJhcHBsaWNhdGlvbl90eXBlIjoiV0VCIiwicmVmcmVzaF90b2tlbl9saWZlIjpudWxsLCJhY2Nlc3NfdG9rZW5fbGlmZSI6bnVsbCwiaXNBY3RpdmUiOnRydWUsImlzX2Rldm1vZGUiOnRydWUsImlzX2ZyZWVfYWNjZXNzIjp0cnVlfX1dLCJ1c2VyIjpudWxsLCJzZXNzaW9uIjoyMCwiaWF0IjoxNzI1MzEzMDMwLCJleHAiOjE3MjUzOTk0MzB9.cj5oD5L_YLzD7Z9LrOE5F_DYGV2xZUZ_eQNJvpo3v7g"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"firstName\": \"{{ $json.firstName }}\",\n  \"lastName\": \"{{ $json.lastName }}\",\n  \"email\": \"{{ $json.email }}\",\n  \"mobile_number\": \"{{ $json.mobile_number }}\",\n  \"virtual_number\": \"{{ $json.virtual_number }}\",\n  \"business_unit\": {{ $json.business_unit }},\n  \"team\": {{ $json.team }},\n  \"manager\": {{ $json.manager.length > 0 ? $json.manager : \"null\"}},\n  \"role\": {{ $json.role }},\n  \"city\": {{ $json.city }},\n  \"employee_id\": \"{{ $json.employee_id }}\",\n  \"programs\": {{ $json.programs }},\n  \"view_email\": {{ $json.view_email }},\n  \"email_credit\": {{ $json.email_credit }},\n  \"view_phone\": {{ $json.view_phone }},\n  \"phone_credit\": {{ $json.phone_credit }}\n}",
+        "options": {}
+      },
+      "id": "353abc50-bbc5-4cdb-8097-e70344b2286c",
+      "name": "HTTP Request2",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        1360,
+        -360
+      ]
+    },
+    {
+      "parameters": {
+        "authentication": "serviceAccount",
+        "operation": "update",
+        "documentId": {
+          "__rl": true,
+          "value": "https://docs.google.com/spreadsheets/d/1nJzEM99NSCxT7rak-5_hoDOoyHZVw03_pH0KZczuRSY/edit?usp=sharing",
+          "mode": "url",
+          "__regex": "https:\\/\\/(?:drive|docs)\\.google\\.com(?:\\/.*|)\\/d\\/([0-9a-zA-Z\\-_]+)(?:\\/.*|)"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 176166606,
+          "mode": "list",
+          "cachedResultName": "Copy of Create User 4",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1nJzEM99NSCxT7rak-5_hoDOoyHZVw03_pH0KZczuRSY/edit#gid=176166606"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "email": "={{ $json.result.email }}",
+            "user_id": "={{ $json.result.id }}",
+            "uuid": "={{ $json.result.uuid }}"
+          },
+          "matchingColumns": [
+            "email"
+          ],
+          "schema": [
+            {
+              "id": "firstName",
+              "displayName": "firstName",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "lastName",
+              "displayName": "lastName",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "email",
+              "displayName": "email",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "mobile_number",
+              "displayName": "mobile_number",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "virtual_number",
+              "displayName": "virtual_number",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "employee_id",
+              "displayName": "employee_id",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "business_unit",
+              "displayName": "business_unit",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "team",
+              "displayName": "team",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "manager",
+              "displayName": "manager",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "role",
+              "displayName": "role",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "city",
+              "displayName": "city",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "programs",
+              "displayName": "programs",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "view_email",
+              "displayName": "view_email",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "email_credit",
+              "displayName": "email_credit",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "view_phone",
+              "displayName": "view_phone",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "phone_credit",
+              "displayName": "phone_credit",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "user_id",
+              "displayName": "user_id",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "uuid",
+              "displayName": "uuid",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "669fb8fb-8d80-4037-beee-ad64a82eb5f4",
+      "name": "Google Sheets2",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4,
+      "position": [
+        1580,
+        -360
+      ],
+      "credentials": {
+        "googleApi": {
+          "id": "aiCprsG1ZRAOjrNn",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "string": [
+            {
+              "value1": "={{ $json.user_id }}",
+              "operation": "isNotEmpty"
+            }
+          ]
+        }
+      },
+      "id": "e9b23d7b-d522-40e3-9efc-8a326a0f9748",
+      "name": "IF",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        1140,
+        -500
+      ]
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2024-09-07T06:09:32.000Z",
+  "versionId": "fbc03eab-a8e1-4cea-80e5-f5a0e8aa51ff"
+}
