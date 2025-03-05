@@ -1,0 +1,330 @@
+{
+  "active": false,
+  "connections": {
+    "When clicking \"Execute Workflow\"": {
+      "main": [
+        [
+          {
+            "node": "Google Sheets",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Sheets": {
+      "main": [
+        [
+          {
+            "node": "Split In Batches",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Split In Batches": {
+      "main": [
+        [
+          {
+            "node": "Code",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code": {
+      "main": [
+        [
+          {
+            "node": "Wait",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request": {
+      "main": [
+        [
+          {
+            "node": "IF",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "IF": {
+      "main": [
+        [
+          {
+            "node": "WhatsApp Business Cloud",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Split In Batches",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "WhatsApp Business Cloud": {
+      "main": [
+        [
+          {
+            "node": "Split In Batches",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-01-23T13:57:39.753Z",
+  "id": "IZeN1NUVPtnoC7Qs",
+  "meta": null,
+  "name": "Register for webinar mf2.0",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "cee0b1cd-e807-4e0e-950e-7eace5d6c183",
+      "name": "When clicking \"Execute Workflow\"",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        680,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "authentication": "serviceAccount",
+        "documentId": {
+          "__rl": true,
+          "value": "https://docs.google.com/spreadsheets/d/1c_oh6uzK2sLC1feRLj9WjTSHEDvzN3D4ADMKFiuPVb4/edit?gid=451505815#gid=451505815",
+          "mode": "url",
+          "__regex": "https:\\/\\/(?:drive|docs)\\.google\\.com(?:\\/.*|)\\/d\\/([0-9a-zA-Z\\-_]+)(?:\\/.*|)"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 451505815,
+          "mode": "list",
+          "cachedResultName": "WA+email",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1c_oh6uzK2sLC1feRLj9WjTSHEDvzN3D4ADMKFiuPVb4/edit#gid=451505815"
+        },
+        "options": {}
+      },
+      "id": "a5dc6ebc-baaa-4deb-9e62-2b3ae79dd356",
+      "name": "Google Sheets",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4,
+      "position": [
+        900,
+        300
+      ],
+      "credentials": {
+        "googleApi": {
+          "id": "aiCprsG1ZRAOjrNn",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "batchSize": 1,
+        "options": {}
+      },
+      "id": "4f8130b9-f4a5-44a3-a3dd-d62b2abfd01b",
+      "name": "Split In Batches",
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 2,
+      "position": [
+        1080,
+        140
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://mfx-prod-154625965269.asia-south1.run.app/webinar/add-lead",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MzYsInN0YXR1cyI6dHJ1ZSwiY3JlYXRlZF9hdCI6IjIwMjQtMDktMDZUMTc6NDQ6NDAuMjUzWiIsInVwZGF0ZWRfYXQiOiIyMDI0LTA5LTA2VDE3OjQ0OjQwLjI1M1oiLCJ1c2VySWQiOiJmNzc1NmY3MC00MjA1LTQ2NjItYjY2NS0zZDljNmE2ZGRhMzAiLCJmaXJzdE5hbWUiOiJqaXRoaW4iLCJsYXN0TmFtZSI6Imt1bWFyIiwicm9sZSI6MCwidXNlck5hbWUiOiJqaXRoaW4ua3VtYXJAbWlsZXNlZHVjYXRpb24uY29tIiwiZW1haWwiOiJqaXRoaW4ua3VtYXJAbWlsZXNlZHVjYXRpb24uY29tIiwicGhvbmUiOiI5OTgwNzgzNjA5IiwiY291bnRyeUNvZGUiOiI5MSIsIm1mYUVuYWJsZWQiOmZhbHNlLCJtZmFUeXBlIjpudWxsLCJtZmFTZWNyZXQiOm51bGwsInVzZXJUeXBlIjoxLCJsYXN0TG9naW4iOm51bGwsImFwcGxpY2F0aW9ucyI6W3siaWQiOjQxLCJzdGF0dXMiOnRydWUsImNyZWF0ZWRfYXQiOiIyMDI0LTA5LTA2VDE3OjQ0OjQwLjQzM1oiLCJ1cGRhdGVkX2F0IjoiMjAyNC0wOS0wNlQxNzo0NDo0MC40MzNaIiwiaXNBY3RpdmUiOnRydWUsImFwcGxpY2F0aW9uIjp7ImlkIjozLCJzdGF0dXMiOnRydWUsImNyZWF0ZWRfYXQiOiIwMDAxLTAxLTAxVDA1OjQ2OjE4Ljc3MloiLCJ1cGRhdGVkX2F0IjoiMDAwMS0wMS0wMVQwNTo0NjoxOC43NzJaIiwiYXBwbGljYXRpb25fbmFtZSI6Ik1GIiwiYXBwbGljYXRpb25fZGVzY3JpcHRpb24iOiJNRngiLCJhcHBsaWNhdGlvbl91cmwiOiJodHRwOi8vbG9jYWxob3N0OjMyMTEvYXBpL2NiP3Rva2VuPSIsImFwcGxpY2F0aW9uX3R5cGUiOiJXRUIiLCJyZWZyZXNoX3Rva2VuX2xpZmUiOiIyZCIsImFjY2Vzc190b2tlbl9saWZlIjpudWxsLCJpc0FjdGl2ZSI6dHJ1ZSwiaXNfZGV2bW9kZSI6dHJ1ZSwiaXNfZnJlZV9hY2Nlc3MiOmZhbHNlfX1dLCJ1c2VyIjp7ImlkIjozNSwic3RhdHVzIjp0cnVlLCJjcmVhdGVkX2F0IjoiMjAyNC0wOS0wNlQxNzo0NDo0MC4wNjNaIiwidXBkYXRlZF9hdCI6IjIwMjQtMDktMDZUMTc6NDQ6NDAuMDYzWiIsImZpcnN0TmFtZSI6ImppdGhpbiIsImxhc3ROYW1lIjoia3VtYXIiLCJlbWFpbCI6ImppdGhpbi5rdW1hckBtaWxlc2VkdWNhdGlvbi5jb20iLCJwaG9uZSI6Ijk5ODA3ODM2MDkiLCJjb3VudHJ5Q29kZSI6IjkxIiwidXNlclR5cGUiOjEsImxhc3RMb2dpbiI6bnVsbCwiZ2VuZGVyIjpudWxsLCJsb2NhdGlvbiI6bnVsbCwicGF0aFdheVByb2ZpbGUiOm51bGwsImpvYlByZWZlcmVuY2UiOm51bGwsImRldmljZUlkIjpudWxsLCJlbXBsb3llZUlkIjpudWxsfSwic2Vzc2lvbiI6NTU1NDAsImlhdCI6MTczODk5MTgyNCwiZXhwIjoxNzM5MDc4MjI0fQ.xjpl02zVotYnGQ1ModHBvTxVs0PRqEpi8ux8VXj36-U"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n\"lead_id\":{{ $('Split In Batches').item.json[\"leadid\"] }},\n\"campaign_id\": 1368,\n\"webinar_id\":23,\n\"confirmation\": true\n}",
+        "options": {}
+      },
+      "id": "ff23f850-6b92-42aa-a86c-1d8457be7936",
+      "name": "HTTP Request",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        1680,
+        40
+      ],
+      "continueOnFail": true
+    },
+    {
+      "parameters": {
+        "jsCode": "const minDelay = 1000; // 1 second\nconst maxDelay = 5000; // 5 seconds\n\nconst randomDelay = (Math.floor(Math.random() * (maxDelay - minDelay + 1)) + minDelay)/1122;\n\nconsole.log(`Delaying execution by ${randomDelay}ms`);\n\nawait new Promise(resolve => setTimeout(resolve, randomDelay));\n\nreturn [{ json: { randomDelay } }]; // Correct format for n8n\n"
+      },
+      "id": "4a41bea7-ab54-411f-b1d7-d65333aab38b",
+      "name": "Code",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1300,
+        40
+      ]
+    },
+    {
+      "parameters": {
+        "amount": "={{ $json.randomDelay }}",
+        "unit": "seconds"
+      },
+      "id": "fc86b746-e942-49f0-899e-9d68da2ec416",
+      "name": "Wait",
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1,
+      "position": [
+        1480,
+        40
+      ],
+      "webhookId": "6fd37b40-5347-4f93-92ba-81d0043adcc2"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://mfx-prod-154625965269.asia-south1.run.app/webinar/add-lead",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MzYsInN0YXR1cyI6dHJ1ZSwiY3JlYXRlZF9hdCI6IjIwMjQtMDktMDZUMTc6NDQ6NDAuMjUzWiIsInVwZGF0ZWRfYXQiOiIyMDI0LTA5LTA2VDE3OjQ0OjQwLjI1M1oiLCJ1c2VySWQiOiJmNzc1NmY3MC00MjA1LTQ2NjItYjY2NS0zZDljNmE2ZGRhMzAiLCJmaXJzdE5hbWUiOiJqaXRoaW4iLCJsYXN0TmFtZSI6Imt1bWFyIiwicm9sZSI6MCwidXNlck5hbWUiOiJqaXRoaW4ua3VtYXJAbWlsZXNlZHVjYXRpb24uY29tIiwiZW1haWwiOiJqaXRoaW4ua3VtYXJAbWlsZXNlZHVjYXRpb24uY29tIiwicGhvbmUiOiI5OTgwNzgzNjA5IiwiY291bnRyeUNvZGUiOiI5MSIsIm1mYUVuYWJsZWQiOmZhbHNlLCJtZmFUeXBlIjpudWxsLCJtZmFTZWNyZXQiOm51bGwsInVzZXJUeXBlIjoxLCJsYXN0TG9naW4iOm51bGwsImFwcGxpY2F0aW9ucyI6W3siaWQiOjQxLCJzdGF0dXMiOnRydWUsImNyZWF0ZWRfYXQiOiIyMDI0LTA5LTA2VDE3OjQ0OjQwLjQzM1oiLCJ1cGRhdGVkX2F0IjoiMjAyNC0wOS0wNlQxNzo0NDo0MC40MzNaIiwiaXNBY3RpdmUiOnRydWUsImFwcGxpY2F0aW9uIjp7ImlkIjozLCJzdGF0dXMiOnRydWUsImNyZWF0ZWRfYXQiOiIwMDAxLTAxLTAxVDA1OjQ2OjE4Ljc3MloiLCJ1cGRhdGVkX2F0IjoiMDAwMS0wMS0wMVQwNTo0NjoxOC43NzJaIiwiYXBwbGljYXRpb25fbmFtZSI6Ik1GIiwiYXBwbGljYXRpb25fZGVzY3JpcHRpb24iOiJNRngiLCJhcHBsaWNhdGlvbl91cmwiOiJodHRwOi8vbG9jYWxob3N0OjMyMTEvYXBpL2NiP3Rva2VuPSIsImFwcGxpY2F0aW9uX3R5cGUiOiJXRUIiLCJyZWZyZXNoX3Rva2VuX2xpZmUiOiIyZCIsImFjY2Vzc190b2tlbl9saWZlIjpudWxsLCJpc0FjdGl2ZSI6dHJ1ZSwiaXNfZGV2bW9kZSI6dHJ1ZSwiaXNfZnJlZV9hY2Nlc3MiOmZhbHNlfX1dLCJ1c2VyIjp7ImlkIjozNSwic3RhdHVzIjp0cnVlLCJjcmVhdGVkX2F0IjoiMjAyNC0wOS0wNlQxNzo0NDo0MC4wNjNaIiwidXBkYXRlZF9hdCI6IjIwMjQtMDktMDZUMTc6NDQ6NDAuMDYzWiIsImZpcnN0TmFtZSI6ImppdGhpbiIsImxhc3ROYW1lIjoia3VtYXIiLCJlbWFpbCI6ImppdGhpbi5rdW1hckBtaWxlc2VkdWNhdGlvbi5jb20iLCJwaG9uZSI6Ijk5ODA3ODM2MDkiLCJjb3VudHJ5Q29kZSI6IjkxIiwidXNlclR5cGUiOjEsImxhc3RMb2dpbiI6bnVsbCwiZ2VuZGVyIjpudWxsLCJsb2NhdGlvbiI6bnVsbCwicGF0aFdheVByb2ZpbGUiOm51bGwsImpvYlByZWZlcmVuY2UiOm51bGwsImRldmljZUlkIjpudWxsLCJlbXBsb3llZUlkIjpudWxsfSwic2Vzc2lvbiI6NTEzNjEsImlhdCI6MTczODIzNjc1NiwiZXhwIjoxNzM4MzIzMTU2fQ.ud_FIsbzDaqHcqOSUmAN9kRlfWCMRdvtCnk4pnItf_8"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n\"lead_id\":{{ $json.leadId }},\n\"campaign_id\": {{ $json[\"CampignId\"] }},\n\"webinar_id\":23\n}",
+        "options": {}
+      },
+      "id": "a30d1644-ad16-415f-b578-12be87473795",
+      "name": "HTTP Request1",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        2340,
+        680
+      ],
+      "continueOnFail": true
+    },
+    {
+      "parameters": {
+        "content": "just register",
+        "height": 106,
+        "width": 150
+      },
+      "id": "c4772a5b-003a-40b0-844e-df950e41dbab",
+      "name": "Sticky Note",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        2270,
+        640
+      ]
+    },
+    {
+      "parameters": {
+        "content": "register and confirm",
+        "height": 83,
+        "width": 150
+      },
+      "id": "926d58c7-107e-4667-be18-f9d849f21cc9",
+      "name": "Sticky Note1",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        1700,
+        -20
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "string": [
+            {
+              "value1": "={{ $json.error }}",
+              "operation": "isNotEmpty"
+            }
+          ]
+        }
+      },
+      "id": "e2073139-503c-430d-af8d-3fc5d95f69a8",
+      "name": "IF",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        2180,
+        40
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "send",
+        "phoneNumberId": "115484311630426",
+        "recipientPhoneNumber": "919460596406",
+        "textBody": "=This lead is already registered to webinar. \nDetails:\n{{ $('Split In Batches').item.json[\"first_name\"] }}\n{{ $('Split In Batches').item.json[\"leadid\"] }}",
+        "additionalFields": {}
+      },
+      "id": "6329c356-2107-4082-b950-2d7ac23e20f1",
+      "name": "WhatsApp Business Cloud",
+      "type": "n8n-nodes-base.whatsApp",
+      "typeVersion": 1,
+      "position": [
+        2600,
+        -140
+      ],
+      "credentials": {
+        "whatsAppApi": {
+          "id": "FoPXmnu4lAta3dqt",
+          "name": "Miles US Pathway"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2025-02-08T07:18:31.000Z",
+  "versionId": "827710d3-5cf6-4beb-b802-b5dd03ad704f"
+}
