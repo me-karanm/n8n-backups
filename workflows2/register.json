@@ -1,0 +1,1220 @@
+{
+  "active": false,
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "IF4",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Supabase": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Set Allowed Domain": {
+      "main": [
+        [
+          {
+            "node": "Supabase1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Respond to Webhook": {
+      "main": [
+        [
+          {
+            "node": "IF",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "IF": {
+      "main": [
+        [
+          {
+            "node": "Supabase",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Supabase1": {
+      "main": [
+        [
+          {
+            "node": "IF1",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "IF2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "IF1": {
+      "main": [
+        [
+          {
+            "node": "response false",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "IF3",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Set",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "getwebinar": {
+      "main": [
+        [
+          {
+            "node": "Set Allowed Domain",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "IF2": {
+      "main": [
+        [
+          {
+            "node": "Set1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Execute Workflow": {
+      "main": [
+        [
+          {
+            "node": "Respond to Webhook",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Set": {
+      "main": [
+        [
+          {
+            "node": "Execute Workflow",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Set1": {
+      "main": [
+        [
+          {
+            "node": "Execute Workflow1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "IF4": {
+      "main": [
+        [],
+        [
+          {
+            "node": "Supabase3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Supabase3": {
+      "main": [
+        [
+          {
+            "node": "Supabase4",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Supabase4": {
+      "main": [
+        [
+          {
+            "node": "response false1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "IF5": {
+      "main": [
+        [
+          {
+            "node": "getwebinar",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Supabase5",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Supabase5": {
+      "main": [
+        [
+          {
+            "node": "Supabase6",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Supabase6": {
+      "main": [
+        [
+          {
+            "node": "response false2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2023-11-04T04:54:24.554Z",
+  "id": "0zkbe4SPtzoxvwgh",
+  "meta": null,
+  "name": "register",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "register",
+        "responseMode": "responseNode",
+        "options": {
+          "responseHeaders": {
+            "entries": [
+              {
+                "name": "Access-Control-Allow-Headers",
+                "value": "*"
+              },
+              {
+                "name": "Access-Control-Allow-Methods",
+                "value": "*"
+              }
+            ]
+          }
+        }
+      },
+      "id": "4b93906b-05d0-436a-af5b-b4537f02b3bd",
+      "name": "Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        -520,
+        500
+      ],
+      "webhookId": "1a078cc6-8d1e-4407-99df-48688bc50f50"
+    },
+    {
+      "parameters": {
+        "tableId": "zoom_webinar",
+        "fieldsUi": {
+          "fieldValues": [
+            {
+              "fieldId": "first_name",
+              "fieldValue": "={{ $('Webhook').item.json.body.fname ?? $('Webhook').item.json[\"body\"][\"questions__1\"] }}"
+            },
+            {
+              "fieldId": "last_name",
+              "fieldValue": "={{ $('Webhook').item.json.body.lname ?? $('Webhook').item.json[\"body\"][\"questions__2\"] }}"
+            },
+            {
+              "fieldId": "email_id",
+              "fieldValue": "={{ $('Webhook').item.json.body.email ?? $('Webhook').item.json[\"body\"][\"questions__3\"] }}"
+            },
+            {
+              "fieldId": "location",
+              "fieldValue": "={{ $('Webhook').item.json.body.location  ?? $('Webhook').item.json[\"body\"][\"questions__5\"]}}"
+            },
+            {
+              "fieldId": "contact",
+              "fieldValue": "={{ $('Webhook').item.json.body.phone ?? $('Webhook').item.json[\"body\"][\"questions__4\"]}}"
+            },
+            {
+              "fieldId": "join_url",
+              "fieldValue": "={{ $json.join_url }}"
+            },
+            {
+              "fieldId": "zoom_id",
+              "fieldValue": "={{ $json.id }}"
+            },
+            {
+              "fieldId": "camp",
+              "fieldValue": "={{ $('Webhook').item.json.body.camp }}"
+            },
+            {
+              "fieldId": "type",
+              "fieldValue": "={{ $('Webhook').item.json.body.type }}"
+            },
+            {
+              "fieldId": "src",
+              "fieldValue": "={{$('Webhook').item.json.body.src ?? ($('Webhook').item.json[\"body\"].hasOwnProperty('questions__1') ? \"Linkedin\":null)}}"
+            },
+            {
+              "fieldId": "webinar_id",
+              "fieldValue": "={{ $('getwebinar').item.json.id }}"
+            },
+            {
+              "fieldId": "coming_from",
+              "fieldValue": "={{ $('Webhook').item.json.body.comingFrom }}"
+            },
+            {
+              "fieldId": "gcl_id",
+              "fieldValue": "={{ $('Webhook').item.json.body.gcl_id }}"
+            },
+            {
+              "fieldId": "campaign_id",
+              "fieldValue": "={{ $('Webhook').item.json.body.campaign_id }}"
+            },
+            {
+              "fieldId": "campaign_name",
+              "fieldValue": "={{ $('Webhook').item.json.body.campaign_name}}"
+            },
+            {
+              "fieldId": "src_type",
+              "fieldValue": "={{\n$('Webhook').item.json.body.src.includes(\"USP-Website\") ? \"USP-Website\" : \n$('Webhook').item.json.body.src.includes(\"14th_july_lnkdn\") || $('Webhook').item.json.body.src.includes(\"6thAug\") || $('Webhook').item.json.body.src.includes(\"Awrns_cold\") || $('Webhook').item.json.body.src.includes(\"IB_cold\") || $('Webhook').item.json.body.src.includes(\"IB_Retargeting\") || $('Webhook').item.json.body.src.includes(\"new14thJuly_meta\") || $('Webhook').item.json.body.src.includes(\"Newsltr1_cpa\") || $('Webhook').item.json.body.src.includes(\"Newsltr1_US\") || $('Webhook').item.json.body.src.includes(\"test\") || $('Webhook').item.json.body.src.includes(\"website\") || $('Webhook').item.json.body.src.includes(\"Website\") ? \"Miles Website\" : $('Webhook').item.json.body.src.includes(\"discovery\") || $('Webhook').item.json.body.src.includes(\"display1\") || $('Webhook').item.json.body.src.includes(\"Google\") || $('Webhook').item.json.body.src.includes(\"search\") ? \"google-ads\" : $('Webhook').item.json.body.src.includes(\"emails\") ? \"emails\" : $('Webhook').item.json.body.src.includes(\"Facebook-LeadGen\") ? \"fb-leadgen\" : \"Miles Website\"\n}}\n"
+            }
+          ]
+        }
+      },
+      "id": "c43b9706-34d2-4c51-aece-fc9eeacd9519",
+      "name": "Supabase",
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        1740,
+        340
+      ],
+      "credentials": {
+        "supabaseApi": {
+          "id": "srUwRrVQi0jM6c8L",
+          "name": "Supabase account"
+        }
+      },
+      "continueOnFail": true
+    },
+    {
+      "parameters": {
+        "phoneNumberId": "115484311630426",
+        "recipientPhoneNumber": "={{ $json.contact }}",
+        "template": "webinar_thank_you_message|en",
+        "components": {
+          "component": [
+            {
+              "bodyParameters": {
+                "parameter": [
+                  {
+                    "text": "={{ $json.first_name }}"
+                  },
+                  {
+                    "text": "={{ $('getwebinar').item.json.name }}"
+                  },
+                  {
+                    "text": "={{ $('getwebinar').item.json.date }}"
+                  },
+                  {
+                    "text": "={{ $('getwebinar').item.json.time }}"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      },
+      "id": "73f2603a-3c58-4604-a85f-32cea6bee752",
+      "name": "WhatsApp Business Cloud",
+      "type": "n8n-nodes-base.whatsApp",
+      "typeVersion": 1,
+      "position": [
+        1880,
+        580
+      ],
+      "credentials": {
+        "whatsAppApi": {
+          "id": "FoPXmnu4lAta3dqt",
+          "name": "WhatsApp account"
+        }
+      },
+      "continueOnFail": true
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "=https://api.zoom.us/v2/webinars/{{ $('getwebinar').item.json.webinar_id }}/registrants",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "zoomOAuth2Api",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"first_name\": \"{{ $('Webhook').item.json.body.fname ?? $('Webhook').item.json[\"body\"][\"questions__1\"]}}\",\n  \"last_name\": \"{{ $('Webhook').item.json.body.lname ?? $('Webhook').item.json[\"body\"][\"questions__2\"] }}\",\n  \"email\": \"{{ $('Webhook').item.json.body.email ?? $('Webhook').item.json[\"body\"][\"questions__3\"] }}\",\n  \"phone\": \"{{ $('Webhook').item.json.body.phone ?? $('Webhook').item.json[\"body\"][\"questions__4\"] }}\"\n}  ",
+        "options": {}
+      },
+      "id": "957b356d-f09f-41ce-a661-53cfac63db58",
+      "name": "HTTP Request1",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        1160,
+        -160
+      ],
+      "credentials": {
+        "zoomOAuth2Api": {
+          "id": "FyaXNpI7PVhEl5wV",
+          "name": "Zoom account"
+        }
+      },
+      "continueOnFail": true
+    },
+    {
+      "parameters": {
+        "keepOnlySet": true,
+        "values": {
+          "string": [
+            {
+              "name": "allowedDomain",
+              "value": "https://usp.mileseducation.com/"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "f9737cc5-2543-46cb-b03f-98aae04850d1",
+      "name": "Set Allowed Domain",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 1,
+      "position": [
+        360,
+        480
+      ]
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={\n\"status\":{{ !$json.hasOwnProperty('error')}},\n\"message\":\"{{ $json.hasOwnProperty('error') ? \"Thank you for reaching out again. Our Career Counsellor will be in touch with you shortly. Expect to hear from us soon.\" : \"Thank you for registering for the 'Placement Drive to Work in the US'. Please check your inbox for the confirmation email and join from the link provided in the email\" }}\",\n\"message_zoom\":\"{{ $json.hasOwnProperty('error') ? $json[\"error\"][\"message\"] : \"\" }}\"\n}",
+        "options": {
+          "responseHeaders": {
+            "entries": [
+              {
+                "name": "Access-Control-Allow-Origin",
+                "value": "*"
+              }
+            ]
+          }
+        }
+      },
+      "id": "f61cb819-a395-468b-a844-9a40339df73f",
+      "name": "Respond to Webhook",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1,
+      "position": [
+        1420,
+        500
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "boolean": [
+            {
+              "value1": "={{ !$json.hasOwnProperty('error') }}",
+              "value2": true
+            }
+          ]
+        }
+      },
+      "id": "30fe8e8b-f902-4081-95ff-076bad2f9a52",
+      "name": "IF",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        1560,
+        500
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "getAll",
+        "tableId": "zoom_webinar",
+        "returnAll": true,
+        "matchType": "allFilters",
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "email_id",
+              "condition": "eq",
+              "keyValue": "={{ $('Webhook').item.json.body.email ?? $('Webhook').item.json[\"body\"][\"questions__3\"] }}"
+            },
+            {
+              "keyName": "webinar_id",
+              "condition": "eq",
+              "keyValue": "={{ $('getwebinar').item.json.id }}"
+            }
+          ]
+        }
+      },
+      "id": "7ff415f6-539f-4f31-966d-cef7db6c05f7",
+      "name": "Supabase1",
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        520,
+        480
+      ],
+      "alwaysOutputData": true,
+      "credentials": {
+        "supabaseApi": {
+          "id": "srUwRrVQi0jM6c8L",
+          "name": "Supabase account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "boolean": [
+            {
+              "value1": "={{ $('Supabase1').item.json.hasOwnProperty('id')}}",
+              "value2": true
+            },
+            {
+              "value1": "={{ $('Webhook').item.json.body.src == \"USP-Website\" }}"
+            }
+          ]
+        },
+        "combineOperation": "any"
+      },
+      "id": "131e1ccb-760e-48c3-9c47-b85e1d717b8a",
+      "name": "IF1",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        740,
+        480
+      ]
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={\n\"status\":false,\n\"message\":\"Thank you for reaching out again. Our Career Counsellor will be in touch with you shortly. Expect to hear from us soon.\"\n}",
+        "options": {
+          "responseHeaders": {
+            "entries": [
+              {
+                "name": "Access-Control-Allow-Origin",
+                "value": "*"
+              }
+            ]
+          }
+        }
+      },
+      "id": "0995b88d-a27d-4068-acf0-0a1692d33808",
+      "name": "response false",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1,
+      "position": [
+        960,
+        400
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://website-api.mileseducation.com/Createform",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\"form_array\":[{\"fullName\":\"{{ $('Webhook').item.json.body.fname ?? $('Webhook').item.json[\"body\"][\"questions__1\"]}} {{ $('Webhook').item.json.body.lname ?? $('Webhook').item.json[\"body\"][\"questions__2\"]}}\",\"email\":\"{{ $('Webhook').item.json.body.email ?? $('Webhook').item.json[\"body\"][\"questions__3\"]}}\",\"contact\":\"{{ $('Webhook').item.json.body.phone ?? $('Webhook').item.json[\"body\"][\"questions__4\"]}}\",\"comingFrom\":\" {{ $('Webhook').item.json.body.src ?? ($('Webhook').item.json[\"body\"].hasOwnProperty('questions__1') ? \"Linkedin\":null)}} \",\"course\":\"MACC\",\"campaign_name\":\"{{ $('Webhook').item.json.body.camp}}\",\"location\":\"{{ $('Webhook').item.json.body.location}}\"}]}  ",
+        "options": {}
+      },
+      "id": "40b15795-91b4-4a8c-b607-f73fad0bf91a",
+      "name": "MF API1",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        1120,
+        1100
+      ],
+      "continueOnFail": true
+    },
+    {
+      "parameters": {
+        "operation": "get",
+        "tableId": "webinar_list",
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "webinar_id",
+              "keyValue": "={{ $json.webinar_id ?? 84100053326 }}"
+            }
+          ]
+        }
+      },
+      "id": "2e278bc4-2a71-4541-bd5e-4fbab9282a6a",
+      "name": "getwebinar",
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        200,
+        480
+      ],
+      "credentials": {
+        "supabaseApi": {
+          "id": "srUwRrVQi0jM6c8L",
+          "name": "Supabase account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "boolean": [
+            {
+              "value1": "={{ $('Webhook').item.json.body.src  === 'MilesForce'}}"
+            }
+          ]
+        }
+      },
+      "id": "5d43a839-d0e7-4bf2-9561-fe48da29ba89",
+      "name": "IF2",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        760,
+        660
+      ]
+    },
+    {
+      "parameters": {
+        "workflowId": "e953wrH53BK4gHbS"
+      },
+      "id": "b5f63621-48e4-4e4d-aa01-6c3d1ff30d02",
+      "name": "Execute Workflow",
+      "type": "n8n-nodes-base.executeWorkflow",
+      "typeVersion": 1,
+      "position": [
+        1260,
+        500
+      ]
+    },
+    {
+      "parameters": {
+        "values": {
+          "string": [
+            {
+              "name": "webinar_id",
+              "value": "={{ $('getwebinar').item.json.webinar_id }}"
+            },
+            {
+              "name": "first_name",
+              "value": "={{ $('Webhook').item.json.body.fname ?? $('Webhook').item.json[\"body\"][\"questions__1\"]}}"
+            },
+            {
+              "name": "last_name",
+              "value": "={{ $('Webhook').item.json.body.lname ?? $('Webhook').item.json[\"body\"][\"questions__2\"] }}"
+            },
+            {
+              "name": "email",
+              "value": "={{ $('Webhook').item.json.body.email ?? $('Webhook').item.json[\"body\"][\"questions__3\"] }}"
+            },
+            {
+              "name": "phone",
+              "value": "={{ $('Webhook').item.json.body.phone ?? $('Webhook').item.json[\"body\"][\"questions__4\"] }}"
+            },
+            {
+              "name": "src",
+              "value": "={{$('Webhook').item.json.body.src}}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "ce6d11f9-4617-4775-8249-01a495553b3b",
+      "name": "Set",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 2,
+      "position": [
+        1100,
+        500
+      ]
+    },
+    {
+      "parameters": {
+        "values": {
+          "string": [
+            {
+              "name": "fullName",
+              "value": "={{ $('Webhook').item.json.body.fname ?? $('Webhook').item.json[\"body\"][\"questions__1\"]}} {{ $('Webhook').item.json.body.lname ?? $('Webhook').item.json[\"body\"][\"questions__2\"]}}"
+            },
+            {
+              "name": "email",
+              "value": "={{ $('Webhook').item.json.body.email ?? $('Webhook').item.json[\"body\"][\"questions__3\"]}}"
+            },
+            {
+              "name": "contact",
+              "value": "={{ $('Webhook').item.json.body.phone ?? $('Webhook').item.json[\"body\"][\"questions__4\"]}}"
+            },
+            {
+              "name": "comingFrom",
+              "value": "={{ $('Webhook').item.json.body.src ?? ($('Webhook').item.json[\"body\"].hasOwnProperty('questions__1') ? \"Linkedin\":null)}}"
+            },
+            {
+              "name": "campaign_name",
+              "value": "={{ $('Webhook').item.json.body.camp}}"
+            },
+            {
+              "name": "location",
+              "value": "={{ $('Webhook').item.json.body.location}}"
+            },
+            {
+              "name": "course",
+              "value": "={{ $('Webhook').item.json.body.course ?? \"MACC\"}}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "0c260967-5a67-411a-b57b-256747300607",
+      "name": "Set1",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 2,
+      "position": [
+        920,
+        640
+      ]
+    },
+    {
+      "parameters": {
+        "workflowId": "jFa1XeTdv9NfoeWU"
+      },
+      "id": "9067596b-9f4f-4cef-8824-0a861234e23b",
+      "name": "Execute Workflow1",
+      "type": "n8n-nodes-base.executeWorkflow",
+      "typeVersion": 1,
+      "position": [
+        1060,
+        640
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://graph.facebook.com/v17.0/115484311630426/messages",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "whatsAppApi",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n   \"messaging_product\":\"whatsapp\",\n   \"recipient_type\":\"individual\",\n   \"to\":\"{{ $json.contact }}\",\n   \"type\":\"template\",\n   \"template\":{\n      \"name\":\"thank_you_brochure\",\n      \"language\":{\n         \"code\":\"en\"\n      },\n      \"components\":[\n         {\n            \"type\":\"header\",\n            \"parameters\":[\n               {\n                  \"type\":\"document\",\n                  \"document\":{\n                     \"id\":\"1137556967202634\",\n\"filename\":\"Miles US Pathway.pdf\"\n                  }\n               }\n            ]\n         },\n         {\n            \"type\":\"body\",\n            \"parameters\":[\n               {\n                  \"type\":\"text\",\n                  \"text\":\"{{ $json.first_name }}\"\n               },\n               {\n                  \"type\":\"text\",\n                  \"text\":\"{{ $('getwebinar').item.json.name }}\"\n               },\n               {\n                  \"type\":\"text\",\n                  \"text\":\"{{ $('getwebinar').item.json.date }}\"\n               },\n               {\n                  \"type\":\"text\",\n                  \"text\":\"{{ $('getwebinar').item.json.time }}\"\n               }\n            ]\n         }\n      ]\n   }\n}",
+        "options": {}
+      },
+      "id": "f6d3dc05-13cc-4d0c-b610-0d670521d5d6",
+      "name": "HTTP Request",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        1900,
+        340
+      ],
+      "credentials": {
+        "whatsAppApi": {
+          "id": "FoPXmnu4lAta3dqt",
+          "name": "WhatsApp account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://graph.facebook.com/v17.0/115484311630426/messages",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "whatsAppApi",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n   \"messaging_product\":\"whatsapp\",\n   \"recipient_type\":\"individual\",\n   \"to\":\"{{ $('Webhook').item.json.body.phone }}\",\n   \"type\":\"template\",\n   \"template\":{\n      \"name\":\"brochure\",\n      \"language\":{\n         \"code\":\"en\"\n      },\n      \"components\":[\n         {\n            \"type\":\"header\",\n            \"parameters\":[\n               {\n                  \"type\":\"document\",\n                  \"document\":{\n                     \"id\":\"1137556967202634\",\n\"filename\":\"Miles US Pathway.pdf\"\n                  }\n               }\n            ]\n         },\n         {\n            \"type\":\"body\",\n            \"parameters\":[\n               {\n                  \"type\":\"text\",\n                  \"text\":\"{{ $('Webhook').item.json.body.fname }}\"\n               }\n            ]\n         }\n      ]\n   }\n} ",
+        "options": {}
+      },
+      "id": "a747e705-523f-4656-8b2d-a3e897d9feef",
+      "name": "HTTP Request2",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        920,
+        280
+      ],
+      "credentials": {
+        "whatsAppApi": {
+          "id": "FoPXmnu4lAta3dqt",
+          "name": "WhatsApp account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "boolean": [
+            {
+              "value1": "={{ $('Webhook').item.json.body.course == 'FRM'}}",
+              "value2": true
+            },
+            {
+              "value1": "={{ $('Webhook').item.json.body.course == 'CPA'}}",
+              "value2": true
+            },
+            {
+              "value1": "={{ $('Webhook').item.json.body.course == 'CMA'}}",
+              "value2": true
+            },
+            {
+              "value1": "={{ $('Webhook').item.json.body.course == 'XLRI-HR'}}",
+              "value2": true
+            },
+            {
+              "value1": "={{ $('Webhook').item.json.body.course == 'IIMI-BA'}}",
+              "value2": true
+            },
+            {
+              "value1": "={{ $('Webhook').item.json.body.course == 'XLRI-SHRL'}}",
+              "value2": true
+            }
+          ]
+        },
+        "combineOperation": "any"
+      },
+      "id": "83c827cb-525c-4fac-a601-93b6751d3303",
+      "name": "IF3",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        980,
+        120
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://graph.facebook.com/v17.0/108019349036743/messages",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "whatsAppApi",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n   \"messaging_product\":\"whatsapp\",\n   \"recipient_type\":\"individual\",\n   \"to\":\"{{ $('Webhook').item.json.body.phone }}\",\n   \"type\":\"template\",\n   \"template\":{\n      \"name\":\"brochure\",\n      \"language\":{\n         \"code\":\"en\"\n      },\n      \"components\":[\n         {\n            \"type\":\"header\",\n            \"parameters\":[\n               {\n                  \"type\":\"document\",\n                  \"document\":{\n                     \"id\":\"941376533603613\",\n\"filename\":\"Miles US Pathway.pdf\"\n                  }\n               }\n            ]\n         },\n         {\n            \"type\":\"body\",\n            \"parameters\":[\n               {\n                  \"type\":\"text\",\n                  \"text\":\"{{ $('Webhook').item.json.body.fname }}\"\n               }\n            ]\n         }\n      ]\n   }\n} ",
+        "options": {}
+      },
+      "id": "2c13cc34-1f29-45a9-8384-c98480742354",
+      "name": "HTTP Request3",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        920,
+        -60
+      ],
+      "credentials": {
+        "whatsAppApi": {
+          "id": "FoPXmnu4lAta3dqt",
+          "name": "WhatsApp account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "boolean": [
+            {
+              "value1": "={{ $json.body.src == 'MilesForce' }}"
+            }
+          ]
+        }
+      },
+      "id": "40e9dba6-ad0e-440f-a04e-b5bed39965ce",
+      "name": "IF4",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        -260,
+        500
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "get",
+        "tableId": "campaign",
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "id",
+              "keyValue": "24"
+            }
+          ]
+        }
+      },
+      "id": "cce18995-2a92-490e-b8ee-66788e174842",
+      "name": "Supabase3",
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        140,
+        980
+      ],
+      "credentials": {
+        "supabaseApi": {
+          "id": "6stEFLC7gtftREcf",
+          "name": "Supabase Campaign manager"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "tableId": "leads_dump",
+        "fieldsUi": {
+          "fieldValues": [
+            {
+              "fieldId": "first_name",
+              "fieldValue": "={{ $('Webhook').item.json.body.fname }}"
+            },
+            {
+              "fieldId": "last_name",
+              "fieldValue": "={{ $('Webhook').item.json.body.lname }}"
+            },
+            {
+              "fieldId": "phone",
+              "fieldValue": "={{ $('Webhook').item.json.body.phone }}"
+            },
+            {
+              "fieldId": "email",
+              "fieldValue": "={{ $('Webhook').item.json.body.email }}"
+            },
+            {
+              "fieldId": "city",
+              "fieldValue": "={{ $('Webhook').item.json.body.location }}"
+            },
+            {
+              "fieldId": "coming_from",
+              "fieldValue": "MF"
+            },
+            {
+              "fieldId": "camp_id",
+              "fieldValue": "={{ $json.id }}"
+            },
+            {
+              "fieldId": "whatsapp",
+              "fieldValue": "false"
+            },
+            {
+              "fieldId": "register_for_webinar",
+              "fieldValue": "true"
+            },
+            {
+              "fieldId": "webinar_id",
+              "fieldValue": "=23"
+            },
+            {
+              "fieldId": "push_to_mf",
+              "fieldValue": "true"
+            },
+            {
+              "fieldId": "json",
+              "fieldValue": "={{ $('Webhook').item.json.body.course }}"
+            }
+          ]
+        }
+      },
+      "id": "b46950f8-10f8-4cfd-8f68-dbece32b159f",
+      "name": "Supabase4",
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        360,
+        980
+      ],
+      "credentials": {
+        "supabaseApi": {
+          "id": "6stEFLC7gtftREcf",
+          "name": "Supabase Campaign manager"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={\n\"status\":true,\n\"message\":\"\"\n}",
+        "options": {
+          "responseHeaders": {
+            "entries": [
+              {
+                "name": "Access-Control-Allow-Origin",
+                "value": "*"
+              }
+            ]
+          }
+        }
+      },
+      "id": "5de730f6-9180-474c-9d4c-d0e679b97814",
+      "name": "response false1",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1,
+      "position": [
+        640,
+        960
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "boolean": [
+            {
+              "value1": "={{ $json.body.src == \"Facebook-LeadGen\" }}"
+            }
+          ]
+        }
+      },
+      "id": "bc20a6f5-346a-44f3-85d0-b4e062e1aecd",
+      "name": "IF5",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        -20,
+        500
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "get",
+        "tableId": "campaign",
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "id",
+              "keyValue": "26"
+            }
+          ]
+        }
+      },
+      "id": "70f8f57f-d403-4d09-badf-3b82c367ae96",
+      "name": "Supabase5",
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        120,
+        660
+      ],
+      "credentials": {
+        "supabaseApi": {
+          "id": "6stEFLC7gtftREcf",
+          "name": "Supabase Campaign manager"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "tableId": "leads_dump",
+        "fieldsUi": {
+          "fieldValues": [
+            {
+              "fieldId": "first_name",
+              "fieldValue": "={{ $('Webhook').item.json.body.fname }}"
+            },
+            {
+              "fieldId": "last_name",
+              "fieldValue": "={{ $('Webhook').item.json.body.lname }}"
+            },
+            {
+              "fieldId": "phone",
+              "fieldValue": "={{ $('Webhook').item.json.body.phone }}"
+            },
+            {
+              "fieldId": "email",
+              "fieldValue": "={{ $('Webhook').item.json.body.email }}"
+            },
+            {
+              "fieldId": "city",
+              "fieldValue": "={{ $('Webhook').item.json.body.location }}"
+            },
+            {
+              "fieldId": "coming_from",
+              "fieldValue": "MF"
+            },
+            {
+              "fieldId": "camp_id",
+              "fieldValue": "={{ $json.id }}"
+            },
+            {
+              "fieldId": "whatsapp",
+              "fieldValue": "true"
+            },
+            {
+              "fieldId": "register_for_webinar",
+              "fieldValue": "true"
+            },
+            {
+              "fieldId": "webinar_id",
+              "fieldValue": "={{ $json.webinar }}"
+            },
+            {
+              "fieldId": "push_to_mf",
+              "fieldValue": "true"
+            }
+          ]
+        }
+      },
+      "id": "c1ed269c-210a-49a8-bdaa-007b566de0db",
+      "name": "Supabase6",
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        340,
+        660
+      ],
+      "credentials": {
+        "supabaseApi": {
+          "id": "6stEFLC7gtftREcf",
+          "name": "Supabase Campaign manager"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={\n\"status\":true,\n\"message\":\"\"\n}",
+        "options": {
+          "responseHeaders": {
+            "entries": [
+              {
+                "name": "Access-Control-Allow-Origin",
+                "value": "*"
+              }
+            ]
+          }
+        }
+      },
+      "id": "a00eeb34-6f8e-4cb3-b0e0-07a242066393",
+      "name": "response false2",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1,
+      "position": [
+        540,
+        660
+      ]
+    }
+  ],
+  "pinData": {
+    "Webhook": [
+      {
+        "json": {
+          "headers": {
+            "host": "webhook.miles-api.com",
+            "x-real-ip": "172.70.142.188",
+            "x-forwarded-host": "webhook.miles-api.com",
+            "x-forwarded-server": "webhook.miles-api.com",
+            "x-forwarded-for": "103.87.102.76, 172.70.142.188",
+            "connection": "close",
+            "content-length": "373",
+            "accept-encoding": "gzip",
+            "cf-ray": "8097e50c4ba54a08-SIN",
+            "x-forwarded-proto": "https",
+            "accept": "application/json, text/plain, */*",
+            "content-type": "application/json",
+            "sec-ch-ua-mobile": "?0",
+            "x-access-token": "null",
+            "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/116.0.0.0 Safari/537.36",
+            "origin": "https://mileseducation.com",
+            "sec-fetch-site": "cross-site",
+            "sec-fetch-mode": "cors",
+            "sec-fetch-dest": "empty",
+            "referer": "https://mileseducation.com/",
+            "accept-language": "en-GB,en-US;q=0.9,en;q=0.8",
+            "cdn-loop": "cloudflare",
+            "cf-connecting-ip": "103.87.102.76",
+            "cf-ipcountry": "IN"
+          },
+          "params": {},
+          "query": {},
+          "body": {
+            "fname": "Jithin kumar",
+            "lname": "",
+            "email": "jithin@gmail.com",
+            "phone": "+916238133298",
+            "src": "MilesForce",
+            "course": [
+              "USP",
+              "CPA",
+              "CMA"
+            ],
+            "location": "Delhi, India",
+            "comingFrom": "MF",
+            "type": "",
+            "camp": "search_Delhi",
+            "campaign_id": "N/A",
+            "campaign_name": "search_Delhi",
+            "gcl_id": "CjwKCAjwjaWoBhAmEiwAXz8DBc8rP9kukY6NMjjbDpd6-yUuk86KGC8yaBS72vb2VYSPgHCZjlheKBoCnEEQAvD_BwE",
+            "whatsapp": true
+          }
+        }
+      }
+    ]
+  },
+  "settings": {
+    "executionOrder": "v1",
+    "timezone": "Asia/Calcutta",
+    "saveManualExecutions": true,
+    "callerPolicy": "workflowsFromSameOwner",
+    "executionTimeout": 30,
+    "errorWorkflow": "2eIyPWrc3kUHr6YJ"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2023-11-04T04:59:08.000Z",
+  "versionId": "5fc7c69f-9b57-45a4-825a-1b5559735825"
+}
