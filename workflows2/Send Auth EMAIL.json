@@ -1,0 +1,87 @@
+{
+  "active": true,
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Mandrill",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2024-08-06T12:37:37.747Z",
+  "id": "esYvxQb1mZKNvi3m",
+  "meta": null,
+  "name": "Send Auth EMAIL",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "send-otp-email",
+        "options": {}
+      },
+      "id": "bf410ac2-23a1-47a3-a1d4-e45fcf23df84",
+      "name": "Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        660,
+        280
+      ],
+      "webhookId": "9b403bc9-7aa5-4e73-b165-defb9b4befd5"
+    },
+    {
+      "parameters": {
+        "template": "miles-sso-otp",
+        "fromEmail": "sso-miles@mileseducation.com",
+        "toEmail": "={{ $json.body.email }}",
+        "options": {
+          "subject": "=One-time password {{ $json.body.app }}"
+        },
+        "mergeVarsUi": {
+          "mergeVarsValues": [
+            {
+              "name": "OTP",
+              "content": "={{ $json.body.otp }}"
+            },
+            {
+              "name": "NAME",
+              "content": "={{ $json.body.name }}"
+            },
+            {
+              "name": "APP",
+              "content": "={{ $json.body.app }}"
+            }
+          ]
+        }
+      },
+      "id": "bca00753-3a90-47ab-8f3f-331cafc9dbd5",
+      "name": "Mandrill",
+      "type": "n8n-nodes-base.mandrill",
+      "typeVersion": 1,
+      "position": [
+        840,
+        280
+      ],
+      "credentials": {
+        "mandrillApi": {
+          "id": "t5XAtcUI45PwVrj0",
+          "name": "Mandrill account"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 1,
+  "updatedAt": "2024-08-06T12:54:18.000Z",
+  "versionId": "43786a5e-5082-48aa-8c0c-8e8827c4a609"
+}
