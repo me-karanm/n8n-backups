@@ -1,0 +1,132 @@
+{
+  "active": false,
+  "connections": {
+    "When clicking \"Execute Workflow\"": {
+      "main": [
+        [
+          {
+            "node": "Postgres",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Postgres": {
+      "main": [
+        [
+          {
+            "node": "Split In Batches",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Split In Batches": {
+      "main": [
+        [
+          {
+            "node": "WhatsApp Business Cloud",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-01-25T13:12:07.798Z",
+  "id": "JTnLznlyrx16SfnZ",
+  "meta": null,
+  "name": "webinar attended",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "0f925f6a-4f7b-4bca-bf16-d015ab1792fb",
+      "name": "When clicking \"Execute Workflow\"",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        360,
+        320
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "executeQuery",
+        "query": "SELECT\n  \"public\".\"webinar_registration\".\"id\" AS \"id\",\n  \"public\".\"webinar_registration\".\"created_at\" AS \"created_at\",\n  \"public\".\"webinar_registration\".\"leadId\" AS \"leadId\",\n  \"public\".\"webinar_registration\".\"joined_at\" AS \"joined_at\",\n  \"public\".\"webinar_registration\".\"left_time\" AS \"left_time\",\n  \"public\".\"webinar_registration\".\"webinar_status\" AS \"webinar_status\",\n  \"public\".\"webinar_registration\".\"in_session\" AS \"in_session\",\n  \"Lead - LeadId\".\"first_name\" AS \"Lead - LeadId__first_name\",\n  \"Lead - LeadId\".\"candidate_id\" AS \"Lead - LeadId__candidate_id\",\n  \"Lead - LeadId\".\"uuid\" AS \"Lead - LeadId__uuid\",\n  \"Phone\".\"phoneNumber\" AS \"Phone__phoneNumber\",\n  \"Email\".\"email\" AS \"Email__email\"\nFROM\n  \"public\".\"webinar_registration\"\n \nLEFT JOIN \"public\".\"lead\" AS \"Lead - LeadId\" ON \"public\".\"webinar_registration\".\"leadId\" = \"Lead - LeadId\".\"id\"\n  LEFT JOIN \"public\".\"phone\" AS \"Phone\" ON \"Lead - LeadId\".\"id\" = \"Phone\".\"leadId\"\n  LEFT JOIN \"public\".\"email\" AS \"Email\" ON \"Lead - LeadId\".\"id\" = \"Email\".\"leadId\"\nWHERE\n  (\n    \"public\".\"webinar_registration\".\"webinar_status\" = CAST('1' AS \"webinar_registration_webinar_status_enum\")\n  )\n \n   AND (\n    \"public\".\"webinar_registration\".\"joined_at\" IS NOT NULL\n  )\nLIMIT\n  1048575",
+        "options": {}
+      },
+      "id": "c5d5e823-2b0b-4334-8b46-96cebc88c7ae",
+      "name": "Postgres",
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.2,
+      "position": [
+        600,
+        320
+      ],
+      "credentials": {
+        "postgres": {
+          "id": "VPJUosohtvWNBW4H",
+          "name": "MF Prod (DO NOT USE)"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "id": "b610ecee-a956-413a-a7c6-8cac2c852b35",
+      "name": "Split In Batches",
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 2,
+      "position": [
+        860,
+        320
+      ]
+    },
+    {
+      "parameters": {
+        "phoneNumberId": "108019349036743",
+        "recipientPhoneNumber": "=+919460596406",
+        "template": "post_webinar_attendees|en",
+        "components": {
+          "component": [
+            {
+              "bodyParameters": {
+                "parameter": [
+                  {
+                    "text": "karan"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      },
+      "id": "f2359021-1cfd-4bda-ac2d-7aa4242874e8",
+      "name": "WhatsApp Business Cloud",
+      "type": "n8n-nodes-base.whatsApp",
+      "typeVersion": 1,
+      "position": [
+        1160,
+        220
+      ],
+      "credentials": {
+        "whatsAppApi": {
+          "id": "KHcTD6EUGATb3z0D",
+          "name": "Secondary | Marketing Miles Education"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2025-01-25T14:27:38.000Z",
+  "versionId": "5996a8fa-80fb-4f75-ab44-03a8b46e54aa"
+}
