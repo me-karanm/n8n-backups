@@ -1,0 +1,51 @@
+{
+  "active": false,
+  "connections": {
+    "When clicking \"Execute Workflow\"": {
+      "main": [
+        []
+      ]
+    }
+  },
+  "createdAt": "2025-01-24T12:52:48.410Z",
+  "id": "ALkkLG0Zh8ehdyz1",
+  "meta": null,
+  "name": "My workflow 25",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "20d8049c-eb13-4ca4-bca0-e4be254554f8",
+      "name": "When clicking \"Execute Workflow\"",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        440,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "options": {
+          "headerRow": true
+        }
+      },
+      "id": "dd981c5c-63b7-4ed0-9023-2b3683e459b9",
+      "name": "Spreadsheet File",
+      "type": "n8n-nodes-base.spreadsheetFile",
+      "typeVersion": 1,
+      "position": [
+        720,
+        180
+      ]
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2025-01-24T12:53:52.000Z",
+  "versionId": "12c1c73a-9c26-49cc-8943-dcec293c1556"
+}
