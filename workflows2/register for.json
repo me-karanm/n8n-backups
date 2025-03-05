@@ -1,0 +1,266 @@
+{
+  "active": false,
+  "connections": {
+    "When clicking \"Execute Workflow\"": {
+      "main": [
+        [
+          {
+            "node": "Google Sheets",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Sheets": {
+      "main": [
+        [
+          {
+            "node": "Split In Batches",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Split In Batches": {
+      "main": [
+        [
+          {
+            "node": "MySQL",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "MySQL": {
+      "main": [
+        [
+          {
+            "node": "MySQL1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "MySQL1": {
+      "main": [
+        [
+          {
+            "node": "MySQL2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2023-10-07T12:06:55.690Z",
+  "id": "6PnvqvKzUxV3RiXi",
+  "meta": null,
+  "name": "register for",
+  "nodes": [
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "=https://api.zoom.us/v2/webinars/{{ $json.webinar_id }}/registrants",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "zoomOAuth2Api",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"first_name\": \"{{ $json.first_name }}\",\n  \"last_name\": \"{{ $json.last_name }}\",\n  \"email\": \"{{ $json.email }}\",\n  \"phone\": \"{{ $json.phone }}\"\n}",
+        "options": {}
+      },
+      "id": "16510eec-a79c-44dd-b1d6-b3ee6b526656",
+      "name": "HTTP Request1",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        1800,
+        180
+      ],
+      "credentials": {
+        "zoomOAuth2Api": {
+          "id": "FyaXNpI7PVhEl5wV",
+          "name": "Zoom account"
+        }
+      },
+      "continueOnFail": true
+    },
+    {
+      "parameters": {},
+      "id": "57074ffc-29b1-444d-a948-4c6e32f26029",
+      "name": "When clicking \"Execute Workflow\"",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        580,
+        360
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "select",
+        "table": {
+          "__rl": true,
+          "value": "miles_mobiles",
+          "mode": "list",
+          "cachedResultName": "miles_mobiles"
+        },
+        "limit": 1,
+        "where": {
+          "values": [
+            {
+              "column": "phone_number",
+              "condition": "LIKE",
+              "value": "=%{{ $json['Mobile Numbers'] }}%"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "27246a93-8061-407b-b81f-9c235669c3b8",
+      "name": "MySQL",
+      "type": "n8n-nodes-base.mySql",
+      "typeVersion": 2.1,
+      "position": [
+        1340,
+        -40
+      ],
+      "credentials": {
+        "mySql": {
+          "id": "UPaGqhcnQd5QQFO3",
+          "name": "MySQL account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "authentication": "serviceAccount",
+        "documentId": {
+          "__rl": true,
+          "value": "https://docs.google.com/spreadsheets/d/1dNcT6NmW5Yulzu1lQ9t1A2AMIy1Shy4N4haHv1q9NCI/edit?usp=sharing",
+          "mode": "url",
+          "__regex": "https:\\/\\/(?:drive|docs)\\.google\\.com(?:\\/.*|)\\/d\\/([0-9a-zA-Z\\-_]+)(?:\\/.*|)"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 700051523,
+          "mode": "list",
+          "cachedResultName": "Sheet1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1dNcT6NmW5Yulzu1lQ9t1A2AMIy1Shy4N4haHv1q9NCI/edit#gid=700051523"
+        },
+        "options": {}
+      },
+      "id": "705973f1-88ff-4d14-ac40-78c795a1e5e4",
+      "name": "Google Sheets",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4,
+      "position": [
+        800,
+        360
+      ],
+      "credentials": {
+        "googleApi": {
+          "id": "aiCprsG1ZRAOjrNn",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "batchSize": 1,
+        "options": {}
+      },
+      "id": "e59ba011-4b4d-4385-800f-42945c05c7f4",
+      "name": "Split In Batches",
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 2,
+      "position": [
+        1060,
+        140
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "select",
+        "table": {
+          "__rl": true,
+          "value": "miles_emails",
+          "mode": "list",
+          "cachedResultName": "miles_emails"
+        },
+        "limit": 1,
+        "where": {
+          "values": [
+            {
+              "column": "person_id",
+              "value": "={{ $json.person_id }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "bb76117f-bbef-4be0-ba1e-e612db1add0d",
+      "name": "MySQL1",
+      "type": "n8n-nodes-base.mySql",
+      "typeVersion": 2.1,
+      "position": [
+        1560,
+        -40
+      ],
+      "credentials": {
+        "mySql": {
+          "id": "UPaGqhcnQd5QQFO3",
+          "name": "MySQL account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "select",
+        "table": {
+          "__rl": true,
+          "value": "mwb",
+          "mode": "list",
+          "cachedResultName": "mwb"
+        },
+        "limit": 1,
+        "where": {
+          "values": [
+            {
+              "column": "person_id",
+              "value": "={{ $json.person_id }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "49a6abb5-0013-4677-bd6b-e89127b0e467",
+      "name": "MySQL2",
+      "type": "n8n-nodes-base.mySql",
+      "typeVersion": 2.1,
+      "position": [
+        1800,
+        -40
+      ],
+      "credentials": {
+        "mySql": {
+          "id": "UPaGqhcnQd5QQFO3",
+          "name": "MySQL account"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2023-10-07T14:48:28.000Z",
+  "versionId": "a5838abd-c21e-483c-8233-6df57f0e98bd"
+}
