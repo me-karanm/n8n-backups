@@ -1,0 +1,388 @@
+{
+  "active": true,
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "IF",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Switch": {
+      "main": [
+        [
+          {
+            "node": "MySQL",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Switch1",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Supabase2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Switch1": {
+      "main": [
+        [
+          {
+            "node": "Supabase",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Supabase1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "MySQL": {
+      "main": [
+        [
+          {
+            "node": "Supabase3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "IF": {
+      "main": [
+        [
+          {
+            "node": "Switch",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2024-01-10T12:15:07.501Z",
+  "id": "vHOsQIzg4m00wjOz",
+  "meta": null,
+  "name": "Real time data from MF",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "update-mwb",
+        "options": {}
+      },
+      "id": "0d3984f9-891e-4217-8ac2-399ff1d83a58",
+      "name": "Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        180,
+        340
+      ],
+      "webhookId": "dc4f4748-f305-4c52-93d4-1aaf3f44d5ce"
+    },
+    {
+      "parameters": {
+        "mode": "expression",
+        "output": "={{ $json.body.event == 'New Mwb lead added' ? 0 : $json.body.event == 'M level changed' ? 1 : $json.body.event == 'U level changed' ? 1 :  $json.body.event == 'M,U levels changed' ? 2 : $json.body.event == 'Enrollment Added' ? 3 : 4 }}"
+      },
+      "id": "4f751284-089f-489e-8461-ca2b66bee098",
+      "name": "Switch",
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 1,
+      "position": [
+        800,
+        320
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "select",
+        "table": {
+          "__rl": true,
+          "value": "mwb",
+          "mode": "list",
+          "cachedResultName": "mwb"
+        },
+        "limit": 1,
+        "where": {
+          "values": [
+            {
+              "column": "person_id",
+              "value": "={{ $json.body.personID }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "03222699-1cd5-4315-b061-f8f661b45838",
+      "name": "MySQL",
+      "type": "n8n-nodes-base.mySql",
+      "typeVersion": 2.1,
+      "position": [
+        1080,
+        120
+      ],
+      "credentials": {
+        "mySql": {
+          "id": "UPaGqhcnQd5QQFO3",
+          "name": "MySQL account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "mode": "expression",
+        "output": "={{ $json.body.event == 'U level changed' ? 0 : 1 }}"
+      },
+      "id": "441fe482-9dff-492f-a115-2dc0d82e4a3d",
+      "name": "Switch1",
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 1,
+      "position": [
+        1280,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "tableId": "mwb",
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "person_id",
+              "condition": "eq",
+              "keyValue": "={{ $json.body.personID }}"
+            }
+          ]
+        },
+        "fieldsUi": {
+          "fieldValues": [
+            {
+              "fieldId": "iiml_level",
+              "fieldValue": "={{ $json.body['u-level'] }}"
+            }
+          ]
+        }
+      },
+      "id": "88894e56-0e19-45fc-9ff4-c3aa49d07a2c",
+      "name": "Supabase",
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        1700,
+        100
+      ],
+      "credentials": {
+        "supabaseApi": {
+          "id": "6stEFLC7gtftREcf",
+          "name": "Supabase Campaign manager"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "tableId": "mwb",
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "person_id",
+              "condition": "eq",
+              "keyValue": "={{ $json.body.personID }}"
+            }
+          ]
+        },
+        "fieldsUi": {
+          "fieldValues": [
+            {
+              "fieldId": "level",
+              "fieldValue": "={{ $json.body['m-level'] }}"
+            }
+          ]
+        }
+      },
+      "id": "8c09567e-59a9-4a2e-9c9d-1111419dd67f",
+      "name": "Supabase1",
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        1700,
+        280
+      ],
+      "credentials": {
+        "supabaseApi": {
+          "id": "6stEFLC7gtftREcf",
+          "name": "Supabase Campaign manager"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "tableId": "mwb",
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "person_id",
+              "condition": "eq",
+              "keyValue": "={{ $json.body.personID }}"
+            }
+          ]
+        },
+        "fieldsUi": {
+          "fieldValues": [
+            {
+              "fieldId": "iiml_level",
+              "fieldValue": "={{ $json.body['u-level'] }}"
+            },
+            {
+              "fieldId": "level",
+              "fieldValue": "={{ $json.body['m-level'] }}"
+            }
+          ]
+        }
+      },
+      "id": "c6726232-c507-4aa5-befb-8ada18dbcc1f",
+      "name": "Supabase2",
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        1700,
+        480
+      ],
+      "credentials": {
+        "supabaseApi": {
+          "id": "6stEFLC7gtftREcf",
+          "name": "Supabase Campaign manager"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "tableId": "mwb",
+        "dataToSend": "autoMapInputData"
+      },
+      "id": "931d01ff-1ed5-4f06-b257-4e0cf3de14f7",
+      "name": "Supabase3",
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        1280,
+        120
+      ],
+      "credentials": {
+        "supabaseApi": {
+          "id": "6stEFLC7gtftREcf",
+          "name": "Supabase Campaign manager"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "string": [
+            {
+              "value1": "={{ $json.body.event }}",
+              "operation": "notEqual",
+              "value2": "Lead assigned to SR"
+            }
+          ]
+        }
+      },
+      "id": "1f75e5f6-cbfa-43a7-84e8-5b2144f4cc14",
+      "name": "IF",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        400,
+        340
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "http://34.100.163.6:5678/webhook/update-id-ct",
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "person_id",
+              "value": "={{ $json.person_id }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "5d8984f8-64e5-4f01-ad4c-49b437ceb988",
+      "name": "HTTP Request",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        1320,
+        -140
+      ]
+    }
+  ],
+  "pinData": {
+    "Webhook": [
+      {
+        "json": {
+          "headers": {
+            "host": "webhook.miles-api.com",
+            "x-real-ip": "172.70.143.75",
+            "x-forwarded-host": "webhook.miles-api.com",
+            "x-forwarded-server": "webhook.miles-api.com",
+            "x-forwarded-for": "43.204.38.255, 172.70.143.75",
+            "connection": "close",
+            "content-length": "79",
+            "accept-encoding": "gzip",
+            "cf-ray": "8498932e6a946017-SIN",
+            "x-forwarded-proto": "https",
+            "accept": "*/*",
+            "user-agent": "Thunder Client (https://www.thunderclient.com)",
+            "content-type": "application/json",
+            "cf-connecting-ip": "43.204.38.255",
+            "cdn-loop": "cloudflare",
+            "cf-ipcountry": "IN"
+          },
+          "params": {},
+          "query": {},
+          "body": {
+            "personID": 3179282,
+            "m-level": "M3",
+            "u-level": "U3",
+            "event": "New Mwb lead added"
+          }
+        }
+      }
+    ]
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 1,
+  "updatedAt": "2024-02-09T14:37:25.000Z",
+  "versionId": "d7f8ca4b-babc-41c9-b2a8-bfeb40adc032"
+}
