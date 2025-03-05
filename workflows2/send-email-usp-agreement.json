@@ -1,0 +1,188 @@
+{
+  "active": true,
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "SendGrid",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2023-12-13T13:05:57.123Z",
+  "id": "V6QVFo2QPfiowBg2",
+  "meta": null,
+  "name": "send-email-usp-agreement",
+  "nodes": [
+    {
+      "parameters": {
+        "resource": "mail",
+        "fromEmail": "USP@mileseducation.com",
+        "fromName": "Miles Education",
+        "toEmail": "={{ $json.body.email }}",
+        "dynamicTemplate": true,
+        "templateId": "d-71fbd1fe60d74b548388f842b888353d",
+        "dynamicTemplateFields": {
+          "fields": [
+            {
+              "key": "email_body",
+              "value": "={{ $json.body.email_body ?? \"\" }}"
+            },
+            {
+              "key": "email",
+              "value": "={{ $json.body.email }}"
+            },
+            {
+              "key": "bridgecourse_required",
+              "value": "={{ $json.body.bridgecourse_required }}"
+            },
+            {
+              "key": "iim_indore_prerequisite",
+              "value": "={{ $json.body.iim_indore_prerequisite }}"
+            },
+            {
+              "key": "eligibility_status",
+              "value": "={{ $json.body.eligibility_status }}"
+            },
+            {
+              "key": "us_bachelors_equivalency",
+              "value": "={{ $json.body.us_bachelors_equivalency }}"
+            },
+            {
+              "key": "diploma",
+              "value": "={{ $json.body.diploma }}"
+            },
+            {
+              "key": "certification",
+              "value": "={{ $json.body.certification }}"
+            },
+            {
+              "key": "masters",
+              "value": "={{ $json.body.masters }}"
+            },
+            {
+              "key": "bachelors",
+              "value": "={{ $json.body.bachelors }}"
+            },
+            {
+              "key": "location",
+              "value": "={{ $json.body.location }}"
+            },
+            {
+              "key": "mobile",
+              "value": "={{ $json.body.mobile }}"
+            },
+            {
+              "key": "full_name",
+              "value": "={{ $json.body.full_name }}"
+            },
+            {
+              "key": "eligibility_code",
+              "value": "={{ $json.body.eligibility_code }}"
+            },
+            {
+              "key": "total_credits",
+              "value": "={{ $json.body.credit_score }}"
+            }
+          ]
+        },
+        "additionalFields": {
+          "ccEmail": "={{$json.body.cc.filter(Boolean).toString().replaceAll('[','').replaceAll(']','')}}"
+        }
+      },
+      "id": "3436d33d-8719-48b3-bd88-3c4c0f864ae2",
+      "name": "SendGrid",
+      "type": "n8n-nodes-base.sendGrid",
+      "typeVersion": 1,
+      "position": [
+        680,
+        360
+      ],
+      "credentials": {
+        "sendGridApi": {
+          "id": "BgV74vJ3Lo1j4vsq",
+          "name": "SendGrid account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "send-us-eligibility",
+        "options": {}
+      },
+      "id": "21f34e98-6502-4f9e-b5de-ac598f6bd157",
+      "name": "Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        340,
+        360
+      ],
+      "webhookId": "82d04e90-e6b0-47f8-9966-6dae25c73057"
+    }
+  ],
+  "pinData": {
+    "Webhook": [
+      {
+        "json": {
+          "headers": {
+            "host": "webhook.miles-api.com",
+            "x-real-ip": "172.68.154.135",
+            "x-forwarded-host": "webhook.miles-api.com",
+            "x-forwarded-server": "webhook.miles-api.com",
+            "x-forwarded-for": "49.204.70.102, 172.68.154.135",
+            "connection": "close",
+            "content-length": "1926",
+            "accept-encoding": "gzip",
+            "cf-ray": "8397a35cc8a93c06-BLR",
+            "x-forwarded-proto": "https",
+            "user-agent": "python-requests/2.25.1",
+            "accept": "*/*",
+            "content-type": "application/json",
+            "cf-connecting-ip": "49.204.70.102",
+            "cdn-loop": "cloudflare",
+            "cf-ipcountry": "IN"
+          },
+          "params": {},
+          "query": {},
+          "body": {
+            "email": "sarath.vc@mileseducation.com",
+            "remarks": null,
+            "bridgecourse_required": null,
+            "iim_indore_prerequisite": null,
+            "eligibility_status": "Eligible",
+            "us_bachelors_equivalency": null,
+            "diploma": null,
+            "certification": false,
+            "masters": false,
+            "bachelors": "Bachelor of Commerce",
+            "location": "Ahammedabad",
+            "mobile": "21345678",
+            "full_name": "Bhnajadh",
+            "eligibility_code": "USP/A/23/12/1",
+            "spoc": false,
+            "email_body": "<div> Hi <b> Bhnajadh </b> , <br> <br> Greetings from Miles Education! <br> <br> I'm glad to inform you that you are <b>eligible for Miles US Pathway as your 3-year India Bachelors’ </b> (from a NAAC A University with 1st division) <b>will be treated as equivalent to a 4-year US Bachelors’.</b> <br> <br> You will be eligible for <b> </b> intake. <br> <br> Please get in touch with <b>Administrator</b> | <b>admin@example.com</b> | <b></b> - for enrollment procedures and further details. <br> <br> Looking forward to your journey. <br> <br> Best Regards, <br> <b> </b> </div> ",
+            "credit_score": 90,
+            "cc": [
+              "admin@example.com",
+              false
+            ]
+          }
+        }
+      }
+    ]
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 1,
+  "updatedAt": "2023-12-22T10:36:58.000Z",
+  "versionId": "91f58648-20f0-46c9-85e6-af2c1dfeea1b"
+}
