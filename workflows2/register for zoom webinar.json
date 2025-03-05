@@ -1,0 +1,18 @@
+{
+  "active": false,
+  "connections": {},
+  "createdAt": "2024-09-28T12:07:24.309Z",
+  "id": "8Pt905DyRarwtUNb",
+  "meta": null,
+  "name": "register for zoom webinar",
+  "nodes": [],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2024-09-28T12:07:24.309Z",
+  "versionId": "924a5967-4772-4b44-84b7-35a0d597de16"
+}
