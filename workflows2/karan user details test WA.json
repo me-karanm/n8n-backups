@@ -1,0 +1,146 @@
+{
+  "active": true,
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Code",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code": {
+      "main": [
+        [
+          {
+            "node": "Respond to Webhook1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2024-11-18T15:09:56.826Z",
+  "id": "iVTRFKAiHuXZa2XP",
+  "meta": null,
+  "name": "karan user details test WA",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "waba-karan-test",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "id": "c5783e56-8b38-48c8-886f-45175432a293",
+      "name": "Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        700,
+        360
+      ],
+      "webhookId": "457b3e4a-56eb-4da3-8b6a-2792a3e23c84"
+    },
+    {
+      "parameters": {
+        "options": {
+          "responseHeaders": {
+            "entries": [
+              {
+                "name": "hub.challenge",
+                "value": "={{ $json.query['hub.challenge'] }}"
+              },
+              {
+                "name": "=hub.verify_token",
+                "value": "={{ $json.query['hub.verify_token'] }}"
+              }
+            ]
+          }
+        }
+      },
+      "id": "f6282ae4-bfd3-48e8-9c9f-a44556f5ad50",
+      "name": "Respond to Webhook",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1,
+      "position": [
+        1060,
+        160
+      ]
+    },
+    {
+      "parameters": {
+        "language": "python",
+        "pythonCode": "# Main function for the Code node\ndef handle_webhook(data):\n    verify_token = 'karan-test'\n\n    # Extract query parameters from the first input item\n    query = data[0].get('json').get('query')\n    mode = query.get('hub.mode')\n    print(mode)\n    token = query.get('hub.verify_token')\n    print(token)\n    challenge = query.get('hub.challenge')\n    print(challenge)\n\n    # Check verification logic\n    if mode == 'subscribe' and token == verify_token:\n        return [{\"response\": challenge}]  # Correct response\n    else:\n        return [{\"error\": challenge}]  # Unauthorized response\n\n# Fetch input data directly from n8n\ndata = items  # 'items' is the variable n8n provides for input data\n\n# Process the input data\nreturn handle_webhook(data)\n"
+      },
+      "id": "c58d49bd-bb1d-4b3a-bb3f-f7ee25ec349f",
+      "name": "Code",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1080,
+        380
+      ]
+    },
+    {
+      "parameters": {
+        "respondWith": "text",
+        "responseBody": "={{ $json.response }}",
+        "options": {}
+      },
+      "id": "c99d2416-b72f-4a1e-a8e6-6a02fdcea7c8",
+      "name": "Respond to Webhook1",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1,
+      "position": [
+        1420,
+        380
+      ]
+    }
+  ],
+  "pinData": {
+    "Webhook": [
+      {
+        "json": {
+          "headers": {
+            "host": "webhook.miles-api.com",
+            "x-real-ip": "162.158.42.231",
+            "x-forwarded-host": "webhook.miles-api.com",
+            "x-forwarded-server": "webhook.miles-api.com",
+            "x-forwarded-for": "2a03:2880:ff:f::face:b00c, 162.158.42.231",
+            "connection": "close",
+            "cf-ray": "8e490895bf47ded9-SEA",
+            "user-agent": "facebookplatform/1.0 (+http://developers.facebook.com)",
+            "accept-encoding": "gzip, br",
+            "cf-pseudo-ipv4": "240.252.220.28",
+            "x-forwarded-proto": "https",
+            "accept": "*/*",
+            "cf-connecting-ip": "2a03:2880:ff:f::face:b00c",
+            "cf-visitor": "{\"scheme\":\"https\"}",
+            "cf-ipcountry": "US",
+            "cdn-loop": "cloudflare; loops=1"
+          },
+          "params": {},
+          "query": {
+            "hub.mode": "subscribe",
+            "hub.challenge": "495805657",
+            "hub.verify_token": "karan-test"
+          },
+          "body": {}
+        }
+      }
+    ]
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 1,
+  "updatedAt": "2025-03-05T10:23:50.000Z",
+  "versionId": "8c4a0f9f-80a3-441f-b72d-78fb70493b1a"
+}
