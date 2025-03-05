@@ -1,0 +1,38 @@
+{
+  "active": false,
+  "connections": {},
+  "createdAt": "2024-03-15T09:36:55.922Z",
+  "id": "qoNCx3yXAADGwR3Z",
+  "meta": null,
+  "name": "failed to fill form 2 cron",
+  "nodes": [
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "cronExpression"
+            }
+          ]
+        }
+      },
+      "id": "8eec9d87-5bb3-4d60-9267-fc1c851334b0",
+      "name": "Schedule Trigger",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.1,
+      "position": [
+        500,
+        320
+      ]
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2024-03-15T10:07:50.000Z",
+  "versionId": "e990cc44-5b09-48ff-9c6a-8dbeec027c59"
+}
