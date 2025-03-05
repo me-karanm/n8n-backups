@@ -1,0 +1,35 @@
+{
+  "active": true,
+  "connections": {},
+  "createdAt": "2024-01-17T13:19:10.780Z",
+  "id": "FOwUN3ToGgPaCp9v",
+  "meta": null,
+  "name": "My workflow 7",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "create-chat",
+        "options": {}
+      },
+      "id": "3aed89ed-2eda-4ac6-9d0c-6241df2969b0",
+      "name": "Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        600,
+        320
+      ],
+      "webhookId": "107531e6-8a5c-4bb1-80ad-389947c2924f"
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 1,
+  "updatedAt": "2024-01-17T13:19:10.000Z",
+  "versionId": "083c6e1f-5bf1-461d-848d-bff54603a238"
+}
