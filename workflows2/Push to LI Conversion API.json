@@ -1,0 +1,201 @@
+{
+  "active": false,
+  "connections": {
+    "When clicking \"Execute Workflow\"": {
+      "main": [
+        [
+          {
+            "node": "MySQL",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "MySQL": {
+      "main": [
+        [
+          {
+            "node": "Split In Batches",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Split In Batches": {
+      "main": [
+        [
+          {
+            "node": "Crypto",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Crypto": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request": {
+      "main": [
+        [
+          {
+            "node": "Wait",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait": {
+      "main": [
+        [
+          {
+            "node": "Split In Batches",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2024-07-02T13:43:28.084Z",
+  "id": "xQc7FFQ5AeHjMZQ7",
+  "meta": null,
+  "name": "Push to LI Conversion API",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "a351afd2-b985-4583-9337-13a0f3569bcc",
+      "name": "When clicking \"Execute Workflow\"",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        420,
+        280
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "select",
+        "table": {
+          "__rl": true,
+          "value": "miles_usp_upgraded",
+          "mode": "list",
+          "cachedResultName": "miles_usp_upgraded"
+        },
+        "returnAll": true,
+        "options": {}
+      },
+      "id": "a1342ba9-69af-4f2f-b78b-03c7adceb650",
+      "name": "MySQL",
+      "type": "n8n-nodes-base.mySql",
+      "typeVersion": 2.1,
+      "position": [
+        640,
+        280
+      ],
+      "credentials": {
+        "mySql": {
+          "id": "UPaGqhcnQd5QQFO3",
+          "name": "MySQL account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.linkedin.com/rest/conversionEvents",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "Bearer AQWPBv3NLrB7rcZ8THAqsIQ4NcnV6ef5kHOEqZdsQzilcZmBFqK3GDK1A5tTYe-REl6VTK53lTaWNvqoolbcBPJcL49exE7So_-qYZSlfFaruRd0X5ubsf_zFuJkWvqRiVRDI3hN8Qz7OX05feEX56VLFSuDI_sjq9WPPirswq_Z3HcPmDa0kzarMNsnt5NzuvUrGpYa0OVx01DV10o7GFAmiSdRcUAES5yMlsvmz8nEzdKI_6wJrZoFoWXDrpD9eJJ8wgcdooOfgN69M1QSI_f4-hG7udKReNOCgIoN9EX1eG0QRhvHsIu_JodYJCEXXoKv3l57NsQXpHuxnLcyuYl__vNNrA"
+            },
+            {
+              "name": "LinkedIn-Version",
+              "value": "202401"
+            },
+            {
+              "name": "X-Restli-Protocol-Version",
+              "value": "2.0.0"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n      \"conversion\": \"urn:lla:llaPartnerConversion:16845572\",\n      \"conversionHappenedAt\": 1719214307000,\n       \"user\": {\n           \"userIds\": [ {\n               \"idType\": \"SHA256_EMAIL\",\n               \"idValue\": \"{{ $json.data }}\"\n               } ],\n          \"userInfo\": {\n               \t\"firstName\": \"test\",\n                \"lastName\": \"01\"\n         }\n     },\n     \"eventId\" : \"16845572\"\n}",
+        "options": {}
+      },
+      "id": "42b4dc9a-5575-4d33-a65e-f9ec53c62038",
+      "name": "HTTP Request",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        1320,
+        160
+      ]
+    },
+    {
+      "parameters": {
+        "type": "SHA256",
+        "value": "={{ $('MySQL').item.json.emails ?? \" \" }}"
+      },
+      "id": "860d719d-4e3f-472e-9f51-6077309b0624",
+      "name": "Crypto",
+      "type": "n8n-nodes-base.crypto",
+      "typeVersion": 1,
+      "position": [
+        1160,
+        160
+      ]
+    },
+    {
+      "parameters": {
+        "batchSize": 5,
+        "options": {}
+      },
+      "id": "1442ffe4-ffce-496f-8bd9-5b2d0a79709f",
+      "name": "Split In Batches",
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 2,
+      "position": [
+        860,
+        280
+      ]
+    },
+    {
+      "parameters": {
+        "unit": "seconds"
+      },
+      "id": "c5a9d416-bf45-461c-b022-5b80bf1b4501",
+      "name": "Wait",
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1,
+      "position": [
+        1540,
+        160
+      ],
+      "webhookId": "c8ca2ed3-20dc-4a33-944f-9b444872fde8"
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2024-07-02T14:04:57.000Z",
+  "versionId": "60bb4ec7-d454-458c-a588-fcae173e6985"
+}
