@@ -1,0 +1,34 @@
+{
+  "active": false,
+  "connections": {},
+  "createdAt": "2024-01-29T12:52:33.331Z",
+  "id": "AEGKwg816safKzmF",
+  "meta": null,
+  "name": "ZAP LEADS FB",
+  "nodes": [
+    {
+      "parameters": {
+        "path": "capture-fb",
+        "options": {}
+      },
+      "id": "c28ce1f1-5cef-482c-b6b1-5c40f074270c",
+      "name": "Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        600,
+        320
+      ],
+      "webhookId": "7861bd3e-3c4c-4a56-8d0c-4c8db542b773"
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2024-01-29T12:52:48.000Z",
+  "versionId": "194d9927-6335-4ff4-867f-65292e721205"
+}
