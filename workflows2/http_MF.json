@@ -1,0 +1,244 @@
+{
+  "active": false,
+  "connections": {
+    "Execute Workflow Trigger": {
+      "main": [
+        []
+      ]
+    },
+    "IF": {
+      "main": [
+        [
+          {
+            "node": "MF API1",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request": {
+      "main": [
+        [
+          {
+            "node": "MF API",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "IF1": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2023-08-12T06:27:37.773Z",
+  "id": "jFa1XeTdv9NfoeWU",
+  "meta": null,
+  "name": "http_MF",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "561e457e-adba-4e17-a325-63a9a91eccd3",
+      "name": "Execute Workflow Trigger",
+      "type": "n8n-nodes-base.executeWorkflowTrigger",
+      "typeVersion": 1,
+      "position": [
+        740,
+        520
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://website-api.mileseducation.com/Createform",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\"form_array\":[{\"push_source\":\"n8n\",\"fullName\":\"{{ $json.fullName }}\",\"email\":\"{{ $json.email ?? \"\" }}\",\"contact\":\"{{ $json.contact }}\",\"comingFrom\":\"{{ $json.comingFrom }}\",\"course\":\"{{ $json.course ?? '' }}\",\"campaign_name\":\"{{ $json.campaign_name }}\",\"location\":\"{{ $json.location }}\",\"platform_campaign_id\":\"{{ $json.platform_campaign_id }}\",\"campaign_id\":\"{{ $json.campaign_id }}\",\"campaign_details\":\"{{ $json.campaign_details }}\",\"education_qualification\":\"{{ $json.education_qualification?.trim() ?? null }}\",\"english_proficiency\":\"{{ $json.english_proficiency }}\",\"marketing_type\":\"{{ $json[\"outreach-remarketing\"] }}\",\"interested_in\":\"{{ $json.body.intrested_in }}\",\"ga_client_id\":\"{{ $('Execute Workflow Trigger').item.json.body.ga_client_id }}\", \"ga_session_id\": \"{{ $('Execute Workflow Trigger').item.json.body.ga_session_id }}\",\"ga_session_number\": \"{{ $('Execute Workflow Trigger').item.json.body.ga_session_number }}\"\n}]}    ",
+        "options": {}
+      },
+      "id": "c600e926-2957-4c48-9568-d1cdb2165d84",
+      "name": "MF API1",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        1480,
+        320
+      ],
+      "continueOnFail": true
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "boolean": [
+            {
+              "value1": "={{ $json.body.city == null}}"
+            }
+          ]
+        }
+      },
+      "id": "a523ce3c-5bb9-4d02-a0a1-6d93fbfda31a",
+      "name": "IF",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        1200,
+        520
+      ]
+    },
+    {
+      "parameters": {
+        "url": "=http://apilayer.net/api/validate?access_key=3cca95673cdacb79b494c809edeb8048&number={{ $json.contact }}",
+        "options": {}
+      },
+      "id": "4d1c852b-eb00-4c28-97bc-87df189875b8",
+      "name": "HTTP Request",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        1480,
+        620
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://website-api.mileseducation.com/Createform",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\"form_array\":[{\"push_source\":\"n8n\",\"fullName\":\"{{ $('IF').item.json.fullName }}\",\"email\":\"{{ $('IF').item.json.email ?? \"\" }}\",\"contact\":\"{{ $('IF').item.json.contact }}\",\"comingFrom\":\"{{ $('IF').item.json.comingFrom }}\",\"course\":\"{{ $('IF').item.json.course ?? '' }}\",\"campaign_name\":\"{{ $('IF').item.json.campaign_name }}\",\"location\":\"{{ $json.location }}\",\"platform_campaign_id\":\"{{ $('IF').item.json.platform_campaign_id }}\",\"campaign_id\":\"{{ $('IF').item.json.campaign_id }}\",\"campaign_details\":\"{{ $('IF').item.json.campaign_details }}\",\"education_qualification\":\"{{ $('IF').item.json.education_qualification?.trim() ?? null }}\",\"english_proficiency\":\"{{ $('IF').item.json.english_proficiency }}\",\"marketing_type\":\"{{ $('IF').item.json[\"outreach-remarketing\"] }}\",\"interested_in\":\"{{ $('IF').item.json.body.intrested_in }}\",\"ga_client_id\":\"{{ $('Execute Workflow Trigger').item.json.body.ga_client_id }}\", \"ga_session_id\": \"{{ $('Execute Workflow Trigger').item.json.body.ga_session_id }}\",\"ga_session_number\": \"{{ $('Execute Workflow Trigger').item.json.body.ga_session_number }}\"}]}",
+        "options": {}
+      },
+      "id": "c5a35705-039c-4c66-8d07-bbb303d2cd21",
+      "name": "MF API",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        1700,
+        620
+      ],
+      "continueOnFail": true
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "boolean": [
+            {
+              "value1": "={{ $json.body.course == 6 || $json.body.course == 7 || $json.body.course == 8 || $json.body.course == 10 }}",
+              "value2": true
+            }
+          ]
+        }
+      },
+      "id": "ace0cc71-8290-4c5c-b8ca-9e4f343d3b42",
+      "name": "IF1",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        1220,
+        940
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://mfx-prod-154625965269.asia-south1.run.app/enquiries/add",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"first_name\": \"{{ $json.fullName }}\",\n  \"last_name\": \"\",\n  \"phone\": \"{{ $json.contact }}\",\n  \"email\": \"{{ $json.email }}\",\n  \"city\": \"{{ $json.location }}\",\n  \"course_id\": {{ $json[\"body\"][\"course\"] == 10 ? 10 :$json[\"body\"][\"course\"] == 6 ? 7 : $json[\"body\"][\"course\"] == 7 ? 8 : $json[\"body\"][\"course\"] == 8 ?11 : 11 }},\n  \"coming_from\": \"Website\",\n  \"campaign_id\":17,\n  \"campaign_tk\": null,\n  \"gcl_id\": \"\",\n  \"whatsapp_opt_in\": true,\n  \"register_for_webinar\": true,\n  \"intrested_to_work_in_us\": false,\n  \"page_full_url\": \"\",\n  \"url_page_path\": \"\",\n  \"linked_in_url\": \"\",\n  \"clevertap_id\": \"\",\n  \"education_qualification\": null,\n  \"isFromWelcomeBack\": false\n}",
+        "options": {}
+      },
+      "id": "6e552883-9df5-4301-83c6-a23c79672967",
+      "name": "HTTP Request1",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        1620,
+        920
+      ]
+    }
+  ],
+  "pinData": {
+    "Execute Workflow Trigger": [
+      {
+        "json": {
+          "id": 24,
+          "created_at": "2023-10-20T10:12:57.934527+00:00",
+          "source_name": "Website",
+          "course": "Work in US",
+          "fullName": "sdfghj",
+          "email": "kmandalam@gmail.com",
+          "contact": "+917349296479",
+          "comingFrom": "Chat",
+          "campaign_name": "Live Chat (Website)",
+          "location": "",
+          "campaign_id": 66,
+          "platform_campaign_id": null,
+          "campaign_details": "",
+          "english_proficiency": null,
+          "education_qualification": "completed_graduation ",
+          "body": {
+            "id": 639549,
+            "city": null,
+            "json": null,
+            "email": "jithin.kumar@mileseducation.com",
+            "phone": "+916238133298",
+            "course": 10,
+            "gcl_id": null,
+            "camp_id": 66,
+            "whatsapp": true,
+            "clevertap": null,
+            "last_name": null,
+            "camp_token": null,
+            "first_name": "Karan",
+            "push_to_mf": false,
+            "webinar_id": 74,
+            "campaign_id": null,
+            "coming_from": null,
+            "intrested_in": "Yes",
+            "campaign_name": null,
+            "page_full_url": null,
+            "sync_to_sheet": false,
+            "url_page_path": null,
+            "english_proficiency": null,
+            "registration_status": false,
+            "register_for_webinar": true,
+            "whatsapp_send_status": false,
+            "education_qualification": "completed_graduation",
+            "ga_client_id": null,
+            "ga_session_id": null,
+            "ga_session_number": null
+          },
+          "outreach-remarketing": "Outreach"
+        }
+      }
+    ]
+  },
+  "settings": {
+    "executionOrder": "v1",
+    "timezone": "Asia/Calcutta",
+    "saveManualExecutions": true,
+    "callerPolicy": "workflowsFromSameOwner",
+    "executionTimeout": 30
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2024-10-16T08:13:51.000Z",
+  "versionId": "ef729d05-7198-4e10-bb3c-908f564aacd7"
+}
