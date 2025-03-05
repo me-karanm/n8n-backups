@@ -1,0 +1,85 @@
+{
+  "active": false,
+  "connections": {
+    "Execute Workflow Trigger": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2023-08-12T06:14:37.541Z",
+  "id": "e953wrH53BK4gHbS",
+  "meta": null,
+  "name": "http_zoom",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "059309e3-4874-471b-a8bc-c28c67f3e7da",
+      "name": "Execute Workflow Trigger",
+      "type": "n8n-nodes-base.executeWorkflowTrigger",
+      "typeVersion": 1,
+      "position": [
+        780,
+        380
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "=https://api.zoom.us/v2/webinars/{{ $json.webinar_id }}/registrants",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "zoomOAuth2Api",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"first_name\": \"{{ $json.first_name }}\",\n  \"last_name\": \"{{ $json.last_name }}\",\n  \"email\": \"{{ $json.email }}\",\n  \"phone\": \"{{ $json.phone }}\"\n}",
+        "options": {}
+      },
+      "id": "4f445010-b7a0-45fb-9e42-7c05694ca65d",
+      "name": "HTTP Request1",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        1020,
+        380
+      ],
+      "credentials": {
+        "zoomOAuth2Api": {
+          "id": "FyaXNpI7PVhEl5wV",
+          "name": "Zoom account"
+        }
+      },
+      "continueOnFail": true
+    }
+  ],
+  "pinData": {
+    "Execute Workflow Trigger": [
+      {
+        "json": {
+          "webinar_id": 87361050576,
+          "first_name": "Jithin test 1",
+          "last_name": "NA",
+          "email": "jithintest74@gmail.com",
+          "phone": "+916238133298"
+        }
+      }
+    ]
+  },
+  "settings": {
+    "executionOrder": "v1",
+    "timezone": "Asia/Calcutta",
+    "saveManualExecutions": true,
+    "callerPolicy": "workflowsFromSameOwner",
+    "executionTimeout": 30
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2023-08-25T11:07:22.000Z",
+  "versionId": "4ca27f26-48d4-4802-a97c-58f86dfd5dce"
+}
