@@ -1,0 +1,35 @@
+{
+  "active": true,
+  "connections": {},
+  "createdAt": "2024-03-13T12:14:05.460Z",
+  "id": "SWqVqfTSeWB4ZGzJ",
+  "meta": null,
+  "name": "meta flow api",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "meta-flow-data",
+        "options": {}
+      },
+      "id": "b04ecca1-e7a2-475d-beb8-ced658adc7fc",
+      "name": "Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        480,
+        280
+      ],
+      "webhookId": "5164299e-9962-4e3a-a8dc-0650523dd264"
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 1,
+  "updatedAt": "2024-03-13T13:01:11.000Z",
+  "versionId": "9ba44e54-e8c0-4133-b16b-4ea0041b2f8b"
+}
