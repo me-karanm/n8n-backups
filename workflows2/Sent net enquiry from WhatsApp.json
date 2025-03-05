@@ -1,0 +1,35 @@
+{
+  "active": true,
+  "connections": {},
+  "createdAt": "2025-02-04T12:14:49.790Z",
+  "id": "hlspTTqeHVQR2OZl",
+  "meta": null,
+  "name": "Sent net enquiry from WhatsApp",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "send-ne-from-whatsapp",
+        "options": {}
+      },
+      "id": "c1b2bede-31c5-42f6-9abc-ea22cde4bb98",
+      "name": "Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        880,
+        460
+      ],
+      "webhookId": "7b3c1d66-2046-4e32-9fd2-8684be519991"
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 1,
+  "updatedAt": "2025-02-04T12:16:26.000Z",
+  "versionId": "c843f684-a5d5-45a7-8dae-4c113768bd62"
+}
