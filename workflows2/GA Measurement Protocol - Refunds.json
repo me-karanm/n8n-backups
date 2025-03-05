@@ -1,0 +1,372 @@
+{
+  "active": true,
+  "connections": {
+    "MySQL": {
+      "main": [
+        [
+          {
+            "node": "IF",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Split In Batches": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "IF": {
+      "main": [
+        [
+          {
+            "node": "Split In Batches",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request": {
+      "main": [
+        [
+          {
+            "node": "Split In Batches",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "MySQL1": {
+      "main": [
+        [
+          {
+            "node": "IF1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Split In Batches1": {
+      "main": [
+        [
+          {
+            "node": "Code",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "IF1": {
+      "main": [
+        [
+          {
+            "node": "Split In Batches1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request1": {
+      "main": [
+        [
+          {
+            "node": "Split In Batches1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Schedule Trigger": {
+      "main": [
+        [
+          {
+            "node": "MySQL1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2024-08-07T12:01:12.765Z",
+  "id": "xpKPII0C1DPJ52s2",
+  "meta": null,
+  "name": "GA Measurement Protocol - Refunds",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "2548c4ab-5440-4d73-87d5-d99a4fb9a78b",
+      "name": "When clicking \"Execute Workflow\"",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        700,
+        360
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "select",
+        "table": {
+          "__rl": true,
+          "value": "miles_net_enquiries",
+          "mode": "list",
+          "cachedResultName": "miles_net_enquiries"
+        },
+        "limit": 3,
+        "where": {
+          "values": [
+            {
+              "column": "ga_session_number",
+              "condition": ">",
+              "value": "0"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "d3f632fc-e823-44ce-8b8e-3b1170a7b59d",
+      "name": "MySQL",
+      "type": "n8n-nodes-base.mySql",
+      "typeVersion": 2.1,
+      "position": [
+        1140,
+        100
+      ],
+      "credentials": {
+        "mySql": {
+          "id": "UPaGqhcnQd5QQFO3",
+          "name": "MySQL account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://www.google-analytics.com//mp/collect?api_secret=3x92YmhZTqapg4hH-IgaPg&measurement_id=G-0RXXN2DX62 HTTP/1.1",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={   \"client_id\": \"{{ $json[\"client_id\"] }}\",   \"non_personalized_ads\": false,   \"events\": [     {       \"name\": \"test_mp\",       \"params\": {         \"usp_level\": \"m7\"       }     }   ] }",
+        "options": {}
+      },
+      "id": "f1c68668-4bfe-47cc-a375-f47ad71b44b6",
+      "name": "HTTP Request",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        1980,
+        20
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "executeQuery",
+        "query": "SELECT\n  `miles_receipts`.`id` AS `id`,\n  `miles_receipts`.`receipt_no` AS `receipt_no`,\n  `miles_receipts`.`receipt_date` AS `receipt_date`,\n  `miles_receipts`.`transaction_id` AS `transaction_id`,\n  `miles_receipts`.`amount` AS `amount`,\n  `miles_receipts`.`person_id` AS `person_id`,\n  `Miles Enrollments - Enrollment`.`course` AS `Miles Enrollments - Enrollment__course`,\n  `Miles Net Enquiries - Person`.`ga_client_id` AS `Miles Net Enquiries - Person__ga_client_id`,\n  `Miles Net Enquiries - Person`.`ga_session_id` AS `Miles Net Enquiries - Person__ga_session_id`,\n  `Miles Net Enquiries - Person`.`ga_session_number` AS `Miles Net Enquiries - Person__ga_session_number`,\n  `Miles Enrollments - Enrollment`.`enrollment_date` AS `Miles Enrollments - Enrollment__enrollment_date`,\n  `miles_receipts`.`deposit_date` AS `deposit_date`,\n  DATE(`miles_receipts`.`created_at`) AS `created_at`\nFROM\n  `miles_receipts`\nLEFT JOIN `miles_net_enquiries` AS `Miles Net Enquiries - Person` \n  ON `miles_receipts`.`person_id` = `Miles Net Enquiries - Person`.`person_id`\nLEFT JOIN `miles_enrollments` AS `Miles Enrollments - Enrollment` \n  ON `miles_receipts`.`enrollment_id` = `Miles Enrollments - Enrollment`.`id`\nWHERE\n  (`miles_receipts`.`transaction_type` = 'Fee Refund' OR `miles_receipts`.`transaction_type` = 'REFUND')\n  AND DATE(`miles_receipts`.`updated_at`) = CURDATE()\nGROUP BY\n  `miles_receipts`.`id`,\n  `miles_receipts`.`receipt_no`,\n  `miles_receipts`.`receipt_date`,\n  `miles_receipts`.`transaction_id`,\n  `miles_receipts`.`amount`,\n  `miles_receipts`.`person_id`,\n  `Miles Enrollments - Enrollment`.`course`,\n  `Miles Net Enquiries - Person`.`ga_client_id`,\n  `Miles Net Enquiries - Person`.`ga_session_id`,\n  `Miles Net Enquiries - Person`.`ga_session_number`,\n  `Miles Enrollments - Enrollment`.`enrollment_date`,\n  `miles_receipts`.`deposit_date`,\n  DATE(`miles_receipts`.`created_at`)\nORDER BY\n  `miles_receipts`.`id` ASC,\n  `miles_receipts`.`receipt_no` ASC,\n  `miles_receipts`.`receipt_date` ASC,\n  `miles_receipts`.`transaction_id` ASC,\n  `miles_receipts`.`amount` ASC,\n  `miles_receipts`.`person_id` ASC,\n  `Miles Enrollments - Enrollment`.`course` ASC,\n  `Miles Net Enquiries - Person`.`ga_client_id` ASC,\n  `Miles Net Enquiries - Person`.`ga_session_id` ASC,\n  `Miles Net Enquiries - Person`.`ga_session_number` ASC,\n  `Miles Enrollments - Enrollment`.`enrollment_date` ASC,\n  `miles_receipts`.`deposit_date` ASC,\n  DATE(`miles_receipts`.`created_at`) ASC\nLIMIT\n  1048575;",
+        "options": {}
+      },
+      "id": "e1fdfc05-e06e-4b31-98e8-44c2ff8cc3e8",
+      "name": "MySQL1",
+      "type": "n8n-nodes-base.mySql",
+      "typeVersion": 2.1,
+      "position": [
+        960,
+        680
+      ],
+      "credentials": {
+        "mySql": {
+          "id": "UPaGqhcnQd5QQFO3",
+          "name": "MySQL account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "string": [
+            {
+              "value1": "={{ $json.ga_client_id }}",
+              "operation": "isNotEmpty"
+            }
+          ],
+          "boolean": [
+            {
+              "value1": "={{ $json.invalid_net_enquiry }}",
+              "value2": "={{ false }}"
+            }
+          ]
+        }
+      },
+      "id": "b2e46058-e0db-4d02-b4fe-0fd74dcab02a",
+      "name": "IF",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        1400,
+        100
+      ]
+    },
+    {
+      "parameters": {
+        "batchSize": 1,
+        "options": {}
+      },
+      "id": "4e0d2549-93e5-4b78-87e1-949f47652ce4",
+      "name": "Split In Batches",
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 2,
+      "position": [
+        1660,
+        -20
+      ]
+    },
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "triggerAtHour": 23,
+              "triggerAtMinute": 3
+            }
+          ]
+        }
+      },
+      "id": "3fe3a2bd-1ee7-42df-9fc1-d1aa890add5c",
+      "name": "Schedule Trigger",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.1,
+      "position": [
+        520,
+        600
+      ]
+    },
+    {
+      "parameters": {
+        "batchSize": 1,
+        "options": {}
+      },
+      "id": "43438905-0162-477d-bc71-0815b13b597a",
+      "name": "Split In Batches1",
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 2,
+      "position": [
+        1420,
+        600
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://www.google-analytics.com/mp/collect?api_secret=2o9L4e8HQBuPL-cJy46WVw&measurement_id=G-4NS9SVSY3Z HTTP/1.1",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n                \"client_id\": \"{{ $('Split In Batches1').item.json[\"Miles Net Enquiries - Person__ga_client_id\"] }}\",\n                \"non_personalized_ads\": false,\n                \"events\": [\n                    {\n                        \"name\": \"refund\",\n                        \"params\": {\n                        \"value\": \"{{ ($('Split In Batches1').item.json[\"amount\"])/1000 }}\",\n                        \"currency\": \"INR\",\n                        \"transaction_id\": \"{{ $('Split In Batches1').item.json[\"receipt_no\"] }}\",\n                        \"items\":[\n                            {\n                                \"item_id\": \"{{ $('Split In Batches1').item.json[\"id\"] }}\" ,\n\"coupon\":\"{{ $('Split In Batches1').item.json[\"Miles Enrollments - Enrollment__course\"] }}\"                       \n}\n                        ]\n                        }\n                    }\n                ]\n            }",
+        "options": {}
+      },
+      "id": "b542e064-a4cf-4067-9a5b-2ee750046a9a",
+      "name": "HTTP Request1",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        2060,
+        640
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "// Input data;\n\n// Convert 'created_at' to epoch in microseconds\nconst receipt_date = $('Split In Batches1').item.json.receipt_date;\nconst deposit_date = $('Split In Batches1').item.json.deposit_date;\nconst created_at = $('Split In Batches1').item.json.created_at;\n\nconst ReceiptDate = new Date(receipt_date);\nconst DepositDate = new Date(deposit_date);\nconst CreatedAt = new Date(created_at);\n\nconst epochMicrosecondsReceipt = ReceiptDate.getTime() * 1000;\nconst epochMicrosecondsDepost = DepositDate.getTime()*1000;// Convert milliseconds to microseconds\nconst epochCreatedAt = CreatedAt.getTime()*1000;\n\nreturn {\n    receipt_date_epoch_microseconds: epochMicrosecondsReceipt,\n  depost_date_epoch_microseconds:\n    epochMicrosecondsDepost,\n  created_at_epoch_microseconds:\nepochCreatedAt\n  \n  }\n//console.log(epochMicroseconds);\n"
+      },
+      "id": "187560f5-c782-4e62-adb8-e01f66427a4e",
+      "name": "Code",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1700,
+        520
+      ]
+    },
+    {
+      "parameters": {
+        "values": {
+          "number": [
+            {
+              "name": "created_At_epoch",
+              "value": "={{ $json.created_at_epoch_microseconds }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "3b795651-bc8c-43de-9bdb-f132447d9ddd",
+      "name": "Set",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 2,
+      "position": [
+        2120,
+        200
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "string": [
+            {
+              "value1": "={{ $json['Miles Net Enquiries - Person__ga_client_id'] }}",
+              "operation": "isNotEmpty"
+            }
+          ]
+        }
+      },
+      "id": "9249d3c9-9739-425f-ba32-9c321b1624c7",
+      "name": "IF1",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        1180,
+        680
+      ]
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1",
+    "timezone": "Asia/Calcutta",
+    "saveManualExecutions": true,
+    "callerPolicy": "workflowsFromSameOwner",
+    "errorWorkflow": "2eIyPWrc3kUHr6YJ"
+  },
+  "staticData": {
+    "node:Schedule Trigger": {
+      "recurrencyRules": [],
+      "recurrenceRules": []
+    }
+  },
+  "tags": [],
+  "triggerCount": 1,
+  "updatedAt": "2024-08-22T05:19:33.000Z",
+  "versionId": "9b9d9f5d-3624-4745-bd6b-8560b0841891"
+}
