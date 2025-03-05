@@ -1,0 +1,1570 @@
+{
+  "active": false,
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Respond to Webhook",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "When clicking \"Execute Workflow\"": {
+      "main": [
+        [
+          {
+            "node": "Google Sheets2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Sheets": {
+      "main": [
+        [
+          {
+            "node": "Split In Batches",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Split In Batches": {
+      "main": [
+        [
+          {
+            "node": "IF",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Supabase": {
+      "main": [
+        [
+          {
+            "node": "Wait",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait": {
+      "main": [
+        [
+          {
+            "node": "Split In Batches",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Date & Time": {
+      "main": [
+        [
+          {
+            "node": "WhatsApp Business Cloud1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Supabase2": {
+      "main": [
+        [
+          {
+            "node": "Supabase4",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Supabase3": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Supabase1": {
+      "main": [
+        [
+          {
+            "node": "Split In Batches1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Split In Batches1": {
+      "main": [
+        [
+          {
+            "node": "Supabase2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Supabase4": {
+      "main": [
+        [
+          {
+            "node": "Supabase5",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Supabase5": {
+      "main": [
+        [
+          {
+            "node": "Supabase3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request": {
+      "main": [
+        [
+          {
+            "node": "Split In Batches1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Sheets1": {
+      "main": [
+        [
+          {
+            "node": "Split In Batches2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Split In Batches2": {
+      "main": [
+        [
+          {
+            "node": "MySQL1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "MySQL1": {
+      "main": [
+        [
+          {
+            "node": "Supabase7",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "IF": {
+      "main": [
+        [
+          {
+            "node": "Supabase",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Split In Batches",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Sheets2": {
+      "main": [
+        [
+          {
+            "node": "Split In Batches3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Split In Batches3": {
+      "main": [
+        [
+          {
+            "node": "IF1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Supabase8": {
+      "main": [
+        [
+          {
+            "node": "Wait1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait1": {
+      "main": [
+        [
+          {
+            "node": "Split In Batches3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "IF1": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request1",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Split In Batches3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Sheets3": {
+      "main": [
+        [
+          {
+            "node": "Split In Batches4",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Split In Batches4": {
+      "main": [
+        [
+          {
+            "node": "MySQL",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Supabase9": {
+      "main": [
+        [
+          {
+            "node": "Wait2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait2": {
+      "main": [
+        [
+          {
+            "node": "Split In Batches4",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "MySQL": {
+      "main": [
+        [
+          {
+            "node": "MySQL2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "MySQL2": {
+      "main": [
+        [
+          {
+            "node": "MySQL3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "MySQL3": {
+      "main": [
+        [
+          {
+            "node": "Supabase9",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "IF2": {
+      "main": [
+        [
+          {
+            "node": "WhatsApp Business Cloud",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "IF3": {
+      "main": [
+        [
+          {
+            "node": "Set",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Set": {
+      "main": [
+        [
+          {
+            "node": "WhatsApp Business Cloud2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request1": {
+      "main": [
+        [
+          {
+            "node": "Supabase8",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2023-12-29T18:00:10.806Z",
+  "id": "pdDWa3nxwjv0dUkx",
+  "meta": null,
+  "name": "workshop/lead push",
+  "nodes": [
+    {
+      "parameters": {
+        "template": "test-unlayer",
+        "fromEmail": "test@mileseducation.com",
+        "toEmail": "mandalam.karan@mileseducation.com",
+        "options": {}
+      },
+      "id": "8b3d7361-c286-4047-9055-90d0953139fe",
+      "name": "Mandrill",
+      "type": "n8n-nodes-base.mandrill",
+      "typeVersion": 1,
+      "position": [
+        1980,
+        720
+      ],
+      "credentials": {
+        "mandrillApi": {
+          "id": "t5XAtcUI45PwVrj0",
+          "name": "Mandrill account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "meta-flow-api",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "id": "86f414ff-ec89-4d9d-a4d1-fa7797268bee",
+      "name": "Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        1380,
+        740
+      ],
+      "webhookId": "c75f33c1-f880-4abb-a0d4-de55bacd2600",
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "respondWith": "text",
+        "responseBody": "={{ $json.body.encrypted_aes_key }}",
+        "options": {}
+      },
+      "id": "15109299-aa91-4eb0-9e8e-e52be1bb0deb",
+      "name": "Respond to Webhook",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1,
+      "position": [
+        1780,
+        720
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "b5515f16-2fbc-4d2c-b221-cc7451f237fa",
+      "name": "When clicking \"Execute Workflow\"",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        380,
+        -1220
+      ]
+    },
+    {
+      "parameters": {
+        "authentication": "serviceAccount",
+        "documentId": {
+          "__rl": true,
+          "value": "https://docs.google.com/spreadsheets/d/1tvpE9T4RZhw6Q4XUWt_MnjhSyVmRyxCGPTXvXfcTLVQ/edit#gid=1310141786",
+          "mode": "url",
+          "__regex": "https:\\/\\/(?:drive|docs)\\.google\\.com(?:\\/.*|)\\/d\\/([0-9a-zA-Z\\-_]+)(?:\\/.*|)"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 1310141786,
+          "mode": "list",
+          "cachedResultName": "auto update only form 1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1tvpE9T4RZhw6Q4XUWt_MnjhSyVmRyxCGPTXvXfcTLVQ/edit#gid=1310141786"
+        },
+        "options": {}
+      },
+      "id": "3ac70f62-a385-4b72-b818-8d05f65505db",
+      "name": "Google Sheets",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4,
+      "position": [
+        1680,
+        240
+      ],
+      "credentials": {
+        "googleApi": {
+          "id": "aiCprsG1ZRAOjrNn",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "batchSize": 1,
+        "options": {}
+      },
+      "id": "5823d586-8690-488d-9775-5a2ffcc4e4ed",
+      "name": "Split In Batches",
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 2,
+      "position": [
+        1920,
+        240
+      ]
+    },
+    {
+      "parameters": {
+        "tableId": "leads_dump",
+        "fieldsUi": {
+          "fieldValues": [
+            {
+              "fieldId": "first_name",
+              "fieldValue": "={{ $json['First name'] }}"
+            },
+            {
+              "fieldId": "phone",
+              "fieldValue": "={{ $json['Phone number'] }}"
+            },
+            {
+              "fieldId": "register_for_webinar",
+              "fieldValue": "1"
+            },
+            {
+              "fieldId": "push_to_mf",
+              "fieldValue": "0"
+            },
+            {
+              "fieldId": "camp_id",
+              "fieldValue": "={{ $json.camp_id }}"
+            },
+            {
+              "fieldId": "course",
+              "fieldValue": "9"
+            },
+            {
+              "fieldId": "whatsapp",
+              "fieldValue": "1"
+            }
+          ]
+        }
+      },
+      "id": "8d90ff36-b3cf-42f4-aad4-07dd54339915",
+      "name": "Supabase",
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        2420,
+        120
+      ],
+      "credentials": {
+        "supabaseApi": {
+          "id": "6stEFLC7gtftREcf",
+          "name": "Supabase Campaign manager"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "amount": 1.5,
+        "unit": "seconds"
+      },
+      "id": "955c19cc-f2c6-4628-937d-4cdf14886e58",
+      "name": "Wait",
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1,
+      "position": [
+        2660,
+        120
+      ],
+      "webhookId": "1dfbf47d-a16c-40b4-91d2-3763a4caec5d"
+    },
+    {
+      "parameters": {
+        "operation": "getAll",
+        "tableId": "leads_dump",
+        "returnAll": true,
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "us_visa_orientation_session",
+              "condition": "gt",
+              "keyValue": "0"
+            }
+          ]
+        }
+      },
+      "id": "628129af-a58b-44bb-950f-7f1448ce36db",
+      "name": "Supabase1",
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        2500,
+        480
+      ],
+      "credentials": {
+        "supabaseApi": {
+          "id": "6stEFLC7gtftREcf",
+          "name": "Supabase Campaign manager"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "phoneNumberId": "171009622770823",
+        "recipientPhoneNumber": "={{ $('IF1').item.json.lead_details.phone }}",
+        "template": "marquee_booking_confirmation|en",
+        "components": {
+          "component": [
+            {
+              "bodyParameters": {
+                "parameter": [
+                  {
+                    "text": "={{ $('IF1').item.json.lead_details.first_name }}"
+                  },
+                  {
+                    "text": "={{ $json.formattedDate }}"
+                  },
+                  {
+                    "text": "={{ $('Supabase3').item.json.address }}"
+                  }
+                ]
+              }
+            },
+            {
+              "type": "button",
+              "sub_type": "url",
+              "buttonParameters": {
+                "parameter": {
+                  "payload": "={{ $('Supabase3').item.json.google_location.slice(34) }}"
+                }
+              }
+            }
+          ]
+        }
+      },
+      "id": "ca54316a-1dd3-4c3a-9f5e-b273f76d2ce3",
+      "name": "WhatsApp Business Cloud1",
+      "type": "n8n-nodes-base.whatsApp",
+      "typeVersion": 1,
+      "position": [
+        3260,
+        -20
+      ],
+      "credentials": {
+        "whatsAppApi": {
+          "id": "JPvNp2kC4SudtNkr",
+          "name": "Primary | Marketing Miles Education"
+        }
+      },
+      "continueOnFail": true
+    },
+    {
+      "parameters": {
+        "operation": "formatDate",
+        "date": "={{ $('Supabase2').item.json.event_date }}",
+        "format": "custom",
+        "customFormat": "MMMM DD",
+        "options": {}
+      },
+      "id": "da40f0d9-a026-4e08-989c-e5519e014e0f",
+      "name": "Date & Time",
+      "type": "n8n-nodes-base.dateTime",
+      "typeVersion": 2,
+      "position": [
+        2920,
+        -20
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://cma-api.mileseducation.com/registerLiveSessionWhatsapp",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n\"live_webinar_id\" :195,\n\"city\" : \"{{ \n$json.location_name == 'Ahmedabad' ? 1 :  \n$json.location_name == 'Bangalore' ? 2: \n$json.location_name == 'Chennai' ? 3 :\n$json.location_name == 'Delhi' ? 4:\n$json.location_name == 'Kochi' ? 5:\n$json.location_name == 'Hyderabad' ? 7:\n$json.location_name == 'Mumbai' ? 8:9  }}\",\n\"phone_no\" : \"{{ $('Split In Batches1').item.json.phone }}\",\n\"is_enrolled\" : 0,\n\"source\" : \"{{ $('Supabase5').item.json.source_name }}\",\n\"user_name\" :\"{{ $('Split In Batches1').item.json.first_name }}\",\n\"email_id\" :\"{{ $('Split In Batches1').item.json.email }}\",\n\"canid\" :\"\"\n}",
+        "options": {}
+      },
+      "id": "9b15f456-4b2a-4526-903b-7d10034b1262",
+      "name": "HTTP Request",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        3720,
+        360
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "get",
+        "tableId": "us_visa_orientation_session",
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "id",
+              "keyValue": "={{ $json.us_visa_orientation_session }}"
+            }
+          ]
+        }
+      },
+      "id": "9642dcf1-7dfa-4520-bb2f-154732f3c042",
+      "name": "Supabase2",
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        2940,
+        360
+      ],
+      "credentials": {
+        "supabaseApi": {
+          "id": "6stEFLC7gtftREcf",
+          "name": "Supabase Campaign manager"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "get",
+        "tableId": "miles_locations",
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "id",
+              "keyValue": "={{ $('Supabase2').item.json.city }}"
+            }
+          ]
+        }
+      },
+      "id": "017b8910-3c2a-448f-bf3a-9d9a63599a41",
+      "name": "Supabase3",
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        3520,
+        360
+      ],
+      "credentials": {
+        "supabaseApi": {
+          "id": "6stEFLC7gtftREcf",
+          "name": "Supabase Campaign manager"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "batchSize": 1,
+        "options": {}
+      },
+      "id": "43b5ace8-692e-4dae-ba53-14890c64758f",
+      "name": "Split In Batches1",
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 2,
+      "position": [
+        2720,
+        480
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "get",
+        "tableId": "campaign",
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "id",
+              "keyValue": "={{ $('Split In Batches1').item.json.camp_id }}"
+            }
+          ]
+        }
+      },
+      "id": "e8a8e481-92ac-4a4b-b7e0-fd183dcf6667",
+      "name": "Supabase4",
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        3140,
+        360
+      ],
+      "credentials": {
+        "supabaseApi": {
+          "id": "6stEFLC7gtftREcf",
+          "name": "Supabase Campaign manager"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "get",
+        "tableId": "campaign_source",
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "id",
+              "keyValue": "={{ $json.source }}"
+            }
+          ]
+        }
+      },
+      "id": "2f5427a4-53e0-455e-b89a-017acff99d3b",
+      "name": "Supabase5",
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        3320,
+        360
+      ],
+      "credentials": {
+        "supabaseApi": {
+          "id": "6stEFLC7gtftREcf",
+          "name": "Supabase Campaign manager"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "authentication": "serviceAccount",
+        "documentId": {
+          "__rl": true,
+          "value": "https://docs.google.com/spreadsheets/d/1NpcyjahMyBKvlSu-IDcqFm9bKl6nD7b-s8t6-OHj8Wg/edit?usp=sharing",
+          "mode": "url",
+          "__regex": "https:\\/\\/(?:drive|docs)\\.google\\.com(?:\\/.*|)\\/d\\/([0-9a-zA-Z\\-_]+)(?:\\/.*|)"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Sheet1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1NpcyjahMyBKvlSu-IDcqFm9bKl6nD7b-s8t6-OHj8Wg/edit#gid=0"
+        },
+        "options": {}
+      },
+      "id": "d00fb1c4-0b88-467f-b7fb-cf6b29d8a811",
+      "name": "Google Sheets1",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4,
+      "position": [
+        2540,
+        980
+      ],
+      "credentials": {
+        "googleApi": {
+          "id": "aiCprsG1ZRAOjrNn",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "batchSize": 1,
+        "options": {}
+      },
+      "id": "56e94fa8-04f9-42da-adde-ca15984389ba",
+      "name": "Split In Batches2",
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 2,
+      "position": [
+        3040,
+        940
+      ]
+    },
+    {
+      "parameters": {
+        "tableId": "leads_dump",
+        "fieldsUi": {
+          "fieldValues": [
+            {
+              "fieldId": "first_name",
+              "fieldValue": "={{ $json.Name }}"
+            },
+            {
+              "fieldId": "phone",
+              "fieldValue": "={{ $json['Phone Number'] }}"
+            },
+            {
+              "fieldId": "register_for_webinar",
+              "fieldValue": "0"
+            },
+            {
+              "fieldId": "push_to_mf",
+              "fieldValue": "0"
+            },
+            {
+              "fieldId": "camp_id",
+              "fieldValue": "405"
+            },
+            {
+              "fieldId": "course",
+              "fieldValue": "9"
+            },
+            {
+              "fieldId": "whatsapp",
+              "fieldValue": "1"
+            }
+          ]
+        }
+      },
+      "id": "54d9666e-2066-432c-a4d8-d1e459d185df",
+      "name": "Supabase6",
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        4600,
+        780
+      ],
+      "credentials": {
+        "supabaseApi": {
+          "id": "6stEFLC7gtftREcf",
+          "name": "Supabase Campaign manager"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "select",
+        "table": {
+          "__rl": true,
+          "value": "miles_emails",
+          "mode": "list",
+          "cachedResultName": "miles_emails"
+        },
+        "limit": 1,
+        "where": {
+          "values": [
+            {
+              "column": "can_id",
+              "value": "={{ $json.Identity }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "a1ad6820-67a3-4a39-8dbd-582a88f87e09",
+      "name": "MySQL1",
+      "type": "n8n-nodes-base.mySql",
+      "typeVersion": 2.1,
+      "position": [
+        4020,
+        800
+      ],
+      "credentials": {
+        "mySql": {
+          "id": "UPaGqhcnQd5QQFO3",
+          "name": "MySQL account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "tableId": "leads_dump",
+        "fieldsUi": {
+          "fieldValues": [
+            {
+              "fieldId": "first_name",
+              "fieldValue": "={{ $json.person_name }}"
+            },
+            {
+              "fieldId": "phone",
+              "fieldValue": "={{ $('Split In Batches2').item.json['Phone Number'] }}"
+            },
+            {
+              "fieldId": "email",
+              "fieldValue": "={{ $json.email }}"
+            },
+            {
+              "fieldId": "course",
+              "fieldValue": "9"
+            },
+            {
+              "fieldId": "camp_id",
+              "fieldValue": "405"
+            },
+            {
+              "fieldId": "us_visa_orientation_session",
+              "fieldValue": "=1"
+            }
+          ]
+        }
+      },
+      "id": "0ac2a502-2238-4bd0-9175-6588ffb0cd12",
+      "name": "Supabase7",
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        4220,
+        800
+      ],
+      "credentials": {
+        "supabaseApi": {
+          "id": "6stEFLC7gtftREcf",
+          "name": "Supabase Campaign manager"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "string": [
+            {
+              "value1": "={{ $json['upload status'] }}",
+              "operation": "notEqual",
+              "value2": "Yes"
+            }
+          ]
+        }
+      },
+      "id": "a9a5da15-e092-457f-a08f-8960e380c9d0",
+      "name": "IF",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        2140,
+        140
+      ]
+    },
+    {
+      "parameters": {
+        "authentication": "serviceAccount",
+        "documentId": {
+          "__rl": true,
+          "value": "https://docs.google.com/spreadsheets/d/1XzG3RnL1HXf2QF-PURUUo5BvWLjr8uT7zdNDbu6QXKo/edit?usp=sharing",
+          "mode": "url",
+          "__regex": "https:\\/\\/(?:drive|docs)\\.google\\.com(?:\\/.*|)\\/d\\/([0-9a-zA-Z\\-_]+)(?:\\/.*|)"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 456849106,
+          "mode": "list",
+          "cachedResultName": "Master Sheet",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1XzG3RnL1HXf2QF-PURUUo5BvWLjr8uT7zdNDbu6QXKo/edit#gid=456849106"
+        },
+        "options": {}
+      },
+      "id": "f4bfe3cb-8cce-483a-a69d-8a215547f4bd",
+      "name": "Google Sheets2",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4,
+      "position": [
+        720,
+        -1220
+      ],
+      "credentials": {
+        "googleApi": {
+          "id": "aiCprsG1ZRAOjrNn",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "batchSize": 1,
+        "options": {}
+      },
+      "id": "42b97981-5f20-45ec-8301-f2530971e91c",
+      "name": "Split In Batches3",
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 2,
+      "position": [
+        1060,
+        -1260
+      ]
+    },
+    {
+      "parameters": {
+        "tableId": "leads_dump",
+        "fieldsUi": {
+          "fieldValues": [
+            {
+              "fieldId": "first_name",
+              "fieldValue": "={{ $('Split In Batches3').item.json.Name }}"
+            },
+            {
+              "fieldId": "register_for_webinar",
+              "fieldValue": "1"
+            },
+            {
+              "fieldId": "push_to_mf",
+              "fieldValue": "0"
+            },
+            {
+              "fieldId": "camp_id",
+              "fieldValue": "={{ $('Split In Batches3').item.json.camp_id }}"
+            },
+            {
+              "fieldId": "course",
+              "fieldValue": "9"
+            },
+            {
+              "fieldId": "whatsapp",
+              "fieldValue": "1"
+            },
+            {
+              "fieldId": "email",
+              "fieldValue": "={{ $('Split In Batches3').item.json.email }}"
+            },
+            {
+              "fieldId": "phone",
+              "fieldValue": "={{ $('Split In Batches3').item.json.Phone_number }}"
+            },
+            {
+              "fieldId": "city",
+              "fieldValue": "={{ $json.location }}"
+            }
+          ]
+        }
+      },
+      "id": "b110817a-1e8d-4122-aa7c-8e7f6e69da45",
+      "name": "Supabase8",
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        2200,
+        -1300
+      ],
+      "retryOnFail": true,
+      "credentials": {
+        "supabaseApi": {
+          "id": "6stEFLC7gtftREcf",
+          "name": "Supabase Campaign manager"
+        }
+      },
+      "continueOnFail": true
+    },
+    {
+      "parameters": {
+        "amount": 1.5,
+        "unit": "seconds"
+      },
+      "id": "f9e22435-6fbc-4d19-96a2-55e2a81568ad",
+      "name": "Wait1",
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1,
+      "position": [
+        2400,
+        -1040
+      ],
+      "webhookId": "1dfbf47d-a16c-40b4-91d2-3763a4caec5d"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "string": [
+            {
+              "value1": "={{ $json['upload status'] }}",
+              "operation": "notEqual",
+              "value2": "Yes"
+            }
+          ]
+        }
+      },
+      "id": "4feab9b4-d5ba-405c-a111-73b2f0ca966d",
+      "name": "IF1",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        1760,
+        -1480
+      ]
+    },
+    {
+      "parameters": {
+        "authentication": "serviceAccount",
+        "documentId": {
+          "__rl": true,
+          "value": "https://docs.google.com/spreadsheets/d/1UOTmVhGUDUPenGzlH2pQVWzTBNv4n56mi0kCnoDr9Gg/edit?usp=sharing",
+          "mode": "url",
+          "__regex": "https:\\/\\/(?:drive|docs)\\.google\\.com(?:\\/.*|)\\/d\\/([0-9a-zA-Z\\-_]+)(?:\\/.*|)"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Sheet1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1UOTmVhGUDUPenGzlH2pQVWzTBNv4n56mi0kCnoDr9Gg/edit#gid=0"
+        },
+        "options": {}
+      },
+      "id": "25f91733-0a48-4486-99ce-e87260c9b958",
+      "name": "Google Sheets3",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4,
+      "position": [
+        1800,
+        -260
+      ],
+      "credentials": {
+        "googleApi": {
+          "id": "aiCprsG1ZRAOjrNn",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "batchSize": 1,
+        "options": {}
+      },
+      "id": "aedec620-e5dc-4f1b-b320-4d110fe26d0d",
+      "name": "Split In Batches4",
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 2,
+      "position": [
+        2040,
+        -260
+      ]
+    },
+    {
+      "parameters": {
+        "tableId": "leads_dump",
+        "fieldsUi": {
+          "fieldValues": [
+            {
+              "fieldId": "first_name",
+              "fieldValue": "={{ $('MySQL').item.json.person_name }}"
+            },
+            {
+              "fieldId": "register_for_webinar",
+              "fieldValue": "1"
+            },
+            {
+              "fieldId": "push_to_mf",
+              "fieldValue": "1"
+            },
+            {
+              "fieldId": "camp_id",
+              "fieldValue": "=814"
+            },
+            {
+              "fieldId": "course",
+              "fieldValue": "2"
+            },
+            {
+              "fieldId": "whatsapp",
+              "fieldValue": "1"
+            },
+            {
+              "fieldId": "email",
+              "fieldValue": "={{ $json.email }}"
+            },
+            {
+              "fieldId": "phone",
+              "fieldValue": "={{ $('MySQL2').item.json.phone_number }}"
+            }
+          ]
+        }
+      },
+      "id": "a05609ee-6bc0-4d2a-b810-8d2e8e8bf1a7",
+      "name": "Supabase9",
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        3120,
+        -500
+      ],
+      "credentials": {
+        "supabaseApi": {
+          "id": "6stEFLC7gtftREcf",
+          "name": "Supabase Campaign manager"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "amount": 0.1,
+        "unit": "seconds"
+      },
+      "id": "aa734868-eddf-4edc-aa18-eac856e71878",
+      "name": "Wait2",
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1,
+      "position": [
+        3620,
+        -400
+      ],
+      "webhookId": "1dfbf47d-a16c-40b4-91d2-3763a4caec5d"
+    },
+    {
+      "parameters": {
+        "operation": "select",
+        "table": {
+          "__rl": true,
+          "value": "mwb",
+          "mode": "list",
+          "cachedResultName": "mwb"
+        },
+        "limit": 1,
+        "where": {
+          "values": [
+            {
+              "column": "identity",
+              "value": "={{ $json['Cand id'] }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "afa4cb49-a99d-47f8-8547-eed1b460efff",
+      "name": "MySQL",
+      "type": "n8n-nodes-base.mySql",
+      "typeVersion": 2.1,
+      "position": [
+        2320,
+        -520
+      ],
+      "credentials": {
+        "mySql": {
+          "id": "UPaGqhcnQd5QQFO3",
+          "name": "MySQL account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "select",
+        "table": {
+          "__rl": true,
+          "value": "miles_mobiles",
+          "mode": "list",
+          "cachedResultName": "miles_mobiles"
+        },
+        "limit": 1,
+        "where": {
+          "values": [
+            {
+              "column": "person_id",
+              "value": "={{ $json.person_id }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "a832a2fe-9331-4071-a023-196237e47338",
+      "name": "MySQL2",
+      "type": "n8n-nodes-base.mySql",
+      "typeVersion": 2.1,
+      "position": [
+        2540,
+        -520
+      ],
+      "credentials": {
+        "mySql": {
+          "id": "UPaGqhcnQd5QQFO3",
+          "name": "MySQL account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "select",
+        "table": {
+          "__rl": true,
+          "value": "miles_emails",
+          "mode": "list",
+          "cachedResultName": "miles_emails"
+        },
+        "limit": 1,
+        "where": {
+          "values": [
+            {
+              "column": "can_id",
+              "value": "={{ $('MySQL').item.json.can_id }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "cbf765b4-0ec5-497c-809a-287e3146a7fc",
+      "name": "MySQL3",
+      "type": "n8n-nodes-base.mySql",
+      "typeVersion": 2.1,
+      "position": [
+        2760,
+        -520
+      ],
+      "credentials": {
+        "mySql": {
+          "id": "UPaGqhcnQd5QQFO3",
+          "name": "MySQL account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "string": [
+            {
+              "value1": "={{ $json.first_name }}",
+              "value2": "Done"
+            },
+            {
+              "value1": "={{ $json.email }}",
+              "value2": "Done"
+            }
+          ]
+        }
+      },
+      "id": "a48c72d1-e610-4b3e-b639-71c7817972da",
+      "name": "IF2",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        2680,
+        -1300
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "send",
+        "phoneNumberId": "171009622770823",
+        "recipientPhoneNumber": "={{ $('Wait1').item.json.phone }}",
+        "textBody": "Hi,All uploads Completed. ",
+        "additionalFields": {}
+      },
+      "id": "f10e17bc-99ff-48aa-b291-377e838d69bc",
+      "name": "WhatsApp Business Cloud",
+      "type": "n8n-nodes-base.whatsApp",
+      "typeVersion": 1,
+      "position": [
+        2880,
+        -1400
+      ],
+      "credentials": {
+        "whatsAppApi": {
+          "id": "JPvNp2kC4SudtNkr",
+          "name": "Primary | Marketing Miles Education"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "send",
+        "phoneNumberId": "171009622770823",
+        "recipientPhoneNumber": "={{ $json.phone }}",
+        "textBody": "Hi,uploads started.",
+        "additionalFields": {}
+      },
+      "id": "a385a095-282d-41d3-9c49-db6576d53d7c",
+      "name": "WhatsApp Business Cloud2",
+      "type": "n8n-nodes-base.whatsApp",
+      "typeVersion": 1,
+      "position": [
+        1460,
+        -1600
+      ],
+      "credentials": {
+        "whatsAppApi": {
+          "id": "JPvNp2kC4SudtNkr",
+          "name": "Primary | Marketing Miles Education"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "string": [
+            {
+              "value1": "={{ $json.Name }}",
+              "value2": "start"
+            },
+            {
+              "value1": "={{ $json.email }}",
+              "value2": "start"
+            }
+          ]
+        }
+      },
+      "id": "3ddc62a7-6e0c-4a3c-8a72-1ee3387b6f34",
+      "name": "IF3",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        1020,
+        -1480
+      ]
+    },
+    {
+      "parameters": {
+        "values": {
+          "number": [
+            {
+              "name": "phone",
+              "value": "={{ $json.Phone_number }}"
+            }
+          ],
+          "string": [
+            {
+              "name": "first_name",
+              "value": "={{ $json.Name }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "64dd922a-afa0-43f1-8287-93f103709c1f",
+      "name": "Set",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 2,
+      "position": [
+        1240,
+        -1580
+      ]
+    },
+    {
+      "parameters": {
+        "url": "=http://apilayer.net/api/validate?access_key=3cca95673cdacb79b494c809edeb8048&number=  {{ $json.Phone_number }}",
+        "options": {}
+      },
+      "id": "d408302e-aec3-4271-bb1d-d3dffb79b163",
+      "name": "HTTP Request1",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        1980,
+        -1480
+      ],
+      "retryOnFail": true
+    }
+  ],
+  "pinData": {
+    "Webhook": [
+      {
+        "json": {
+          "headers": {
+            "host": "webhook.miles-api.com",
+            "x-real-ip": "172.71.142.73",
+            "x-forwarded-host": "webhook.miles-api.com",
+            "x-forwarded-server": "webhook.miles-api.com",
+            "x-forwarded-for": "2a03:2880:2ff:7::face:b00c, 172.71.142.73",
+            "connection": "close",
+            "content-length": "711",
+            "accept-encoding": "gzip, br",
+            "cf-ray": "867dc1ad0d50c49d-SEA",
+            "x-forwarded-proto": "https",
+            "accept": "*/*",
+            "user-agent": "Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 5.1)",
+            "content-type": "application/json",
+            "x-hub-signature": "sha256=10dfbb5ecc3e23f98bae865c54d5cfc7910cd541fbbd225008fbbfc2925808f8",
+            "x-hub-signature-256": "sha256=fe438da79ae821a07c6c98222f7e938769d14f3d3f6c55e02f6cdc15244d9a43",
+            "cf-connecting-ip": "2a03:2880:2ff:7::face:b00c",
+            "cdn-loop": "cloudflare",
+            "cf-pseudo-ipv4": "251.191.47.246",
+            "cf-ipcountry": "US"
+          },
+          "params": {},
+          "query": {},
+          "body": {
+            "encrypted_flow_data": "KAYk1sJ66OGHq3rk9Nn2ny2KCIlGgxP/TK+7eKmO6sstvhFL48qnzuVD36A9+xFM3aMEggTljx+s0AmG6wKzHBzikXwbceMmNuQahOFt8GdX9D9aZtiDMU2hlWxmEdhUPLfitHbUmOmZ35msBZSQHOJ3MEJjmokQC24GPBk6mGZQmFmbpq872kSBKHXSocdPUfxotMYU+e+nHJJn7/l84TN/xAP3WaskIDotn1Wd4pzKDANcTTv9QspetcuyVdPJznybHVY=",
+            "encrypted_aes_key": "YdKSClIBFvCJmOVGSolQkjYGRo58c/ow87IHn0NVzJN6b6xRsHpdSgcOi+BrVLjYpe9xui5UaRzuj3cINR7ww/ix3RleY65RDo1zsQtpg+agg6a3tnfCqjfh7AJNBaojfMlN9bL6EwiQti2IrmrDIyZhWS7kvyo9oMbbFF7OY81dvl0YPzc3ImeeC8t6c49RDL2FTxnl0hYQM2oMcwTfflFIoC+92kdjPZjjAiP54h+SK9o7V/KSZy41ojGHPwSg7S9KHVEDcp+zowzse+F/M5sm/r/1EZ+j3rrj2VyLJfQWtz9pRcyF80HYrck8Cx74+MNRpuUA/x6V0tOwamXDdw==",
+            "initial_vector": "jfTma90GdU5KMHhveSJDsg=="
+          }
+        }
+      }
+    ]
+  },
+  "settings": {
+    "executionOrder": "v1",
+    "timezone": "Asia/Calcutta",
+    "saveManualExecutions": true,
+    "callerPolicy": "workflowsFromSameOwner",
+    "saveExecutionProgress": true
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 1,
+  "updatedAt": "2025-03-04T07:31:03.000Z",
+  "versionId": "baeb4360-b267-40a0-9ff1-40d0e206123f"
+}
