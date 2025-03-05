@@ -1,0 +1,65 @@
+{
+  "active": false,
+  "connections": {
+    "When clicking \"Execute Workflow\"": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2024-11-22T13:39:44.401Z",
+  "id": "VcFp6rPE69JVJ7ho",
+  "meta": null,
+  "name": "My workflow 18",
+  "nodes": [
+    {
+      "parameters": {
+        "url": "=https://api.zoom.us/v2/webinars/81327006894/registrants",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "zoomOAuth2Api",
+        "options": {}
+      },
+      "id": "4a328589-90a8-4acc-9946-6fae95baa9df",
+      "name": "HTTP Request1",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        640,
+        340
+      ],
+      "credentials": {
+        "zoomOAuth2Api": {
+          "id": "FyaXNpI7PVhEl5wV",
+          "name": "Zoom account"
+        }
+      },
+      "continueOnFail": true
+    },
+    {
+      "parameters": {},
+      "id": "32ad5128-1668-44bd-a63f-12469522818d",
+      "name": "When clicking \"Execute Workflow\"",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        280,
+        340
+      ]
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2024-11-22T13:39:44.401Z",
+  "versionId": "44c4ca3d-bbcd-45cd-bbfd-6d912970ab11"
+}
