@@ -1,0 +1,162 @@
+{
+  "active": false,
+  "connections": {
+    "When clicking \"Execute Workflow\"": {
+      "main": [
+        [
+          {
+            "node": "Postgres",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Postgres": {
+      "main": [
+        [
+          {
+            "node": "Split In Batches",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Split In Batches": {
+      "main": [
+        [
+          {
+            "node": "Postgres1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-01-16T16:11:09.971Z",
+  "id": "0hGc8iW0CsEPqzq0",
+  "meta": null,
+  "name": "My workflow 22",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "aeef9391-7ba4-4a75-9f80-8104a5b50c12",
+      "name": "When clicking \"Execute Workflow\"",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        680,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "select",
+        "schema": {
+          "__rl": true,
+          "mode": "list",
+          "value": "public"
+        },
+        "table": {
+          "__rl": true,
+          "value": "lead_program",
+          "mode": "list",
+          "cachedResultName": "lead_program"
+        },
+        "returnAll": true,
+        "where": {
+          "values": [
+            {
+              "column": "levelId",
+              "value": "10"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "73b464b6-c66d-4dc4-9c07-754b5740d340",
+      "name": "Postgres",
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.2,
+      "position": [
+        860,
+        -20
+      ],
+      "credentials": {
+        "postgres": {
+          "id": "VPJUosohtvWNBW4H",
+          "name": "Postgres account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "batchSize": 8000,
+        "options": {}
+      },
+      "id": "627df42a-39c5-4e5d-857f-c58eb97343b3",
+      "name": "Split In Batches",
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 2,
+      "position": [
+        1080,
+        -180
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "select",
+        "schema": {
+          "__rl": true,
+          "mode": "list",
+          "value": "public"
+        },
+        "table": {
+          "__rl": true,
+          "value": "purchase",
+          "mode": "list",
+          "cachedResultName": "purchase"
+        },
+        "returnAll": true,
+        "where": {
+          "values": [
+            {
+              "column": "lead_id",
+              "value": "={{ $json.leadId }}"
+            },
+            {
+              "column": "program_id",
+              "value": "={{ $json.programId }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "57a13d2a-4435-468f-90f5-4aecee0514ef",
+      "name": "Postgres1",
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.2,
+      "position": [
+        1300,
+        -180
+      ],
+      "credentials": {
+        "postgres": {
+          "id": "VPJUosohtvWNBW4H",
+          "name": "Postgres account 2"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2025-01-16T16:11:09.971Z",
+  "versionId": "7e8c91d8-3b02-47f1-8d3f-7a9e28890477"
+}
