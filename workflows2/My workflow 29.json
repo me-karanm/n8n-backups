@@ -1,0 +1,85 @@
+{
+  "active": false,
+  "connections": {
+    "When clicking \"Execute Workflow\"": {
+      "main": [
+        [
+          {
+            "node": "Postgres",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-02-07T09:53:33.286Z",
+  "id": "KfWVOYkid5id8lCq",
+  "meta": null,
+  "name": "My workflow 29",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "63f4cc40-7b48-4594-b6d5-9d740eab2bef",
+      "name": "When clicking \"Execute Workflow\"",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        400,
+        440
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "select",
+        "schema": {
+          "__rl": true,
+          "mode": "list",
+          "value": "public"
+        },
+        "table": {
+          "__rl": true,
+          "value": "net_enquiry",
+          "mode": "name"
+        },
+        "returnAll": true,
+        "where": {
+          "values": [
+            {
+              "column": "register_for_webinar",
+              "value": "true"
+            },
+            {
+              "column": "created_at",
+              "condition": ">"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "7ef97bda-7a2a-42e8-93a1-6ed105034206",
+      "name": "Postgres",
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.2,
+      "position": [
+        620,
+        440
+      ],
+      "credentials": {
+        "postgres": {
+          "id": "VPJUosohtvWNBW4H",
+          "name": "MF Prod (DO NOT USE)"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2025-02-07T09:54:17.000Z",
+  "versionId": "8e6c6abb-13f6-4f68-8f2f-1c2f1a505a43"
+}
