@@ -1,0 +1,457 @@
+{
+  "active": true,
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "IF1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "MySQL": {
+      "main": [
+        [
+          {
+            "node": "IF2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "MySQL1": {
+      "main": [
+        [
+          {
+            "node": "IF3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Merge": {
+      "main": [
+        [
+          {
+            "node": "IF4",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "MySQL2": {
+      "main": [
+        [
+          {
+            "node": "Respond to Webhook1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "IF1": {
+      "main": [
+        [
+          {
+            "node": "MySQL",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "IF2": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "MySQL2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "IF3": {
+      "main": [
+        [
+          {
+            "node": "Respond to Webhook",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "MySQL2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "IF4": {
+      "main": [
+        [
+          {
+            "node": "MySQL1",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Respond to Webhook",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2023-12-19T14:35:48.217Z",
+  "id": "71DpyWIZ0DPf2UDi",
+  "meta": null,
+  "name": "get-mf-lead data by (email/phone)",
+  "nodes": [
+    {
+      "parameters": {
+        "authentication": "headerAuth",
+        "httpMethod": "POST",
+        "path": "get-mf-student",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "id": "3143c301-d2fb-4201-bf8f-78e24643a268",
+      "name": "Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        300,
+        320
+      ],
+      "webhookId": "0c2ced3f-2bae-43ee-8ae8-72bdad16057b",
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "2id1b1Dy9dyNwVhy",
+          "name": "Header Auth account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "select",
+        "table": {
+          "__rl": true,
+          "value": "miles_mobiles",
+          "mode": "list",
+          "cachedResultName": "miles_mobiles"
+        },
+        "limit": 1,
+        "where": {
+          "values": [
+            {
+              "column": "phone_number",
+              "condition": "LIKE",
+              "value": "=%{{ $json.body.phone.replace('+','')}}%"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "c0d0bce7-f337-4c85-a842-9f812bb988d9",
+      "name": "MySQL",
+      "type": "n8n-nodes-base.mySql",
+      "typeVersion": 2.1,
+      "position": [
+        700,
+        300
+      ],
+      "credentials": {
+        "mySql": {
+          "id": "UPaGqhcnQd5QQFO3",
+          "name": "MySQL account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "select",
+        "table": {
+          "__rl": true,
+          "value": "miles_emails",
+          "mode": "list",
+          "cachedResultName": "miles_emails"
+        },
+        "limit": 1,
+        "where": {
+          "values": [
+            {
+              "column": "email",
+              "value": "={{ $('Webhook').item.json.body.email }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "db1034d4-6dd8-476e-bc91-edc40e5dd1e6",
+      "name": "MySQL1",
+      "type": "n8n-nodes-base.mySql",
+      "typeVersion": 2.1,
+      "position": [
+        1620,
+        380
+      ],
+      "credentials": {
+        "mySql": {
+          "id": "UPaGqhcnQd5QQFO3",
+          "name": "MySQL account"
+        }
+      }
+    },
+    {
+      "parameters": {},
+      "id": "3931b1a6-1d2e-4888-8db1-4956d5755626",
+      "name": "Merge",
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 2.1,
+      "position": [
+        1200,
+        400
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "boolean": [
+            {
+              "value1": "={{ $json.success == true }}"
+            }
+          ]
+        }
+      },
+      "id": "f8e47eaf-cf1a-405a-8a63-1bc8c8325305",
+      "name": "IF",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        2740,
+        680
+      ]
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "{\n\"success\":false\n}",
+        "options": {
+          "responseCode": 201
+        }
+      },
+      "id": "3d590d63-9347-4018-afce-e0308b1d410b",
+      "name": "Respond to Webhook",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1,
+      "position": [
+        2180,
+        480
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "select",
+        "table": {
+          "__rl": true,
+          "value": "mwb",
+          "mode": "list",
+          "cachedResultName": "mwb"
+        },
+        "limit": 1,
+        "where": {
+          "values": [
+            {
+              "column": "person_id",
+              "value": "={{ $json.person_id }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "139f7fe8-8063-467c-8dc7-855df6a470a5",
+      "name": "MySQL2",
+      "type": "n8n-nodes-base.mySql",
+      "typeVersion": 2.1,
+      "position": [
+        2160,
+        320
+      ],
+      "credentials": {
+        "mySql": {
+          "id": "UPaGqhcnQd5QQFO3",
+          "name": "MySQL account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "id": "6616db63-db4a-4989-b33b-9a523df9bab3",
+      "name": "Respond to Webhook1",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1,
+      "position": [
+        2380,
+        320
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "boolean": [
+            {
+              "value1": "={{ $json.body.phone != null }}",
+              "value2": true
+            },
+            {
+              "value1": "={{ $json.body.phone != false }}",
+              "value2": true
+            }
+          ]
+        }
+      },
+      "id": "f04c3276-3b00-4f1f-93d4-e226c627cc2c",
+      "name": "IF1",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        500,
+        320
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "boolean": [
+            {
+              "value1": "={{ $json.success }}",
+              "value2": true
+            }
+          ]
+        }
+      },
+      "id": "e83dcbd5-8f85-43b9-9978-70d52acaebf3",
+      "name": "IF2",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        900,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "boolean": [
+            {
+              "value1": "={{ $json.success }}",
+              "value2": true
+            }
+          ]
+        }
+      },
+      "id": "b9d39b86-16b4-4a31-8ebc-ecd6604f5124",
+      "name": "IF3",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        1820,
+        380
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "boolean": [
+            {
+              "value1": "={{ $('Webhook').item.json.body.email != false }}",
+              "value2": true
+            },
+            {
+              "value1": "={{ $('Webhook').item.json.body.email != null }}",
+              "value2": true
+            }
+          ]
+        }
+      },
+      "id": "ab561bb0-94f2-4dd3-8602-6e335a75b712",
+      "name": "IF4",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        1380,
+        400
+      ]
+    }
+  ],
+  "pinData": {
+    "Webhook": [
+      {
+        "json": {
+          "headers": {
+            "host": "webhook.miles-api.com",
+            "x-real-ip": "172.70.142.132",
+            "x-forwarded-host": "webhook.miles-api.com",
+            "x-forwarded-server": "webhook.miles-api.com",
+            "x-forwarded-for": "34.93.141.96, 172.70.142.132",
+            "connection": "close",
+            "content-length": "50",
+            "accept-encoding": "gzip",
+            "cf-ray": "83f8e02a3de7466d-SIN",
+            "x-forwarded-proto": "https",
+            "user-agent": "python-requests/2.25.1",
+            "accept": "*/*",
+            "content-type": "application/json",
+            "auth": "66pvlFMLqf70BIf2C5VJ5mqEllG78VP8siXFuqh2v41br9uGMqQhz11KztkuiMTF",
+            "cf-connecting-ip": "34.93.141.96",
+            "cdn-loop": "cloudflare",
+            "cf-ipcountry": "IN"
+          },
+          "params": {},
+          "query": {},
+          "body": {
+            "email": "xyz@gmail.com",
+            "phone": "98765678987"
+          }
+        }
+      }
+    ]
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 1,
+  "updatedAt": "2024-01-03T05:41:03.000Z",
+  "versionId": "1585b6d2-1772-40f3-89b2-e643c7a86d36"
+}
