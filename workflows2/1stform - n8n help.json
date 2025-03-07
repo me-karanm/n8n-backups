@@ -1,0 +1,831 @@
+{
+  "active": false,
+  "connections": {
+    "IF2": {
+      "main": [
+        [
+          {
+            "node": "Code1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code1": {
+      "main": [
+        [
+          {
+            "node": "IF5",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "IF5": {
+      "main": [
+        [],
+        [
+          {
+            "node": "Set7",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Set7": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request9",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "IF2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Switch": {
+      "main": [
+        [],
+        [
+          {
+            "node": "Mandrill3",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Mandrill5",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "IF3": {
+      "main": [
+        [
+          {
+            "node": "WhatsApp Business Cloud10",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "WhatsApp Business Cloud12",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "WhatsApp Business Cloud14",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "WhatsApp Business Cloud11",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "WhatsApp Business Cloud13",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "WhatsApp Business Cloud15",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request9": {
+      "main": [
+        [
+          {
+            "node": "IF4",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "IF4": {
+      "main": [
+        [],
+        [
+          {
+            "node": "Switch",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Wait3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait3": {
+      "main": [
+        [
+          {
+            "node": "IF3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-03-06T07:50:10.030Z",
+  "id": "LmAfEpxRBcg0NW0l",
+  "meta": null,
+  "name": "1stform - n8n help",
+  "nodes": [
+    {
+      "parameters": {
+        "conditions": {
+          "string": [
+            {
+              "value1": "={{ $json.body.data.page_full_url }}",
+              "operation": "notContains",
+              "value2": "ct.miles"
+            },
+            {
+              "value1": "={{ $json.body.data.coming_from }}",
+              "operation": "notEqual",
+              "value2": "MF"
+            }
+          ],
+          "boolean": [
+            {
+              "value1": "={{ $json.body.data.whatsapp }}",
+              "value2": true
+            }
+          ]
+        }
+      },
+      "id": "422900dd-bfd2-4390-ae03-87a239906857",
+      "name": "IF2",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        1460,
+        -1000
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "for (const item of $input.all()) {\n  var emailList = ['jithin@miles.com','info@mileseducation.com'];\n  if (emailList.includes(item.json.body.data.email)) {\n    item.json.is_UAT = true;\n  } else {\n    item.json.is_UAT = false;\n    // item.json.is_UAT = true;\n  }\n}\n\nreturn $input.all();\n"
+      },
+      "id": "69d9ff4e-17df-42a2-a878-8516687c6414",
+      "name": "Code1",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1660,
+        -1020
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "boolean": [
+            {
+              "value1": "={{ $json.is_UAT }}",
+              "value2": true
+            }
+          ]
+        }
+      },
+      "id": "bb8fb2fe-ce0f-4f08-b2b7-daecde0668b5",
+      "name": "IF5",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        1920,
+        -1020
+      ]
+    },
+    {
+      "parameters": {
+        "values": {
+          "number": [
+            {
+              "name": "delay1_time",
+              "value": 10
+            },
+            {
+              "name": "delay2_time",
+              "value": 5
+            },
+            {
+              "name": "delay3_time",
+              "value": 1
+            },
+            {
+              "name": "delay4_time",
+              "value": 1
+            },
+            {
+              "name": "delay5_time",
+              "value": 10
+            }
+          ],
+          "string": [
+            {
+              "name": "delay1_unit",
+              "value": "minutes"
+            },
+            {
+              "name": "delay2_unit",
+              "value": "minutes"
+            },
+            {
+              "name": "delay3_unit",
+              "value": "days"
+            },
+            {
+              "name": "delay4_unit",
+              "value": "days"
+            },
+            {
+              "name": "delay5_unit",
+              "value": "days"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "915d0849-b25b-4d80-9da2-b95cc74668e8",
+      "name": "Set7",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 2,
+      "position": [
+        2360,
+        -1000
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://blcwdqfhupddorxpdcjl.supabase.co/rest/v1/rpc/get_lead_not_booked_visit_by_id",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "ApiKey",
+              "value": " eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJsY3dkcWZodXBkZG9yeHBkY2psIiwicm9sZSI6ImFub24iLCJpYXQiOjE2OTI4NzkxMjgsImV4cCI6MjAwODQ1NTEyOH0.NdAhT3uGNwQahfxxUKM8BGV-gEjuIpl8NKVPpcaSFGM"
+            }
+          ]
+        },
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "data_id",
+              "value": "={{ $json.body.data.id }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "0ed3aa49-a04d-4f6e-8772-56386ac407fd",
+      "name": "HTTP Request9",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        2780,
+        -1020
+      ]
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "5b31e36d-ae38-485b-b2d2-48032d9ad249",
+        "options": {}
+      },
+      "id": "08cab7f5-759f-4af6-9034-181690bf75a3",
+      "name": "Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        1200,
+        -1000
+      ],
+      "webhookId": "5b31e36d-ae38-485b-b2d2-48032d9ad249"
+    },
+    {
+      "parameters": {
+        "template": "cpa-first-email",
+        "fromEmail": "info@mileseducation.com",
+        "toEmail": "={{ $('Webhook').item.json.body.data.email }}",
+        "options": {
+          "fromName": "Miles Education",
+          "subject": "Your CPA Journey – Exciting Updates Inside!"
+        },
+        "mergeVarsUi": {
+          "mergeVarsValues": [
+            {
+              "name": "FNAME",
+              "content": "={{ $('Webhook').item.json.body.data.first_name }}"
+            }
+          ]
+        }
+      },
+      "id": "097f7531-23a3-4210-b192-118964cd96a7",
+      "name": "Mandrill3",
+      "type": "n8n-nodes-base.mandrill",
+      "typeVersion": 1,
+      "position": [
+        5120,
+        -1340
+      ],
+      "credentials": {
+        "mandrillApi": {
+          "id": "t5XAtcUI45PwVrj0",
+          "name": "Mandrill account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "value1": "={{ $('Webhook').item.json.body.data.course }}",
+        "rules": {
+          "rules": [
+            {
+              "operation": "equal",
+              "value2": 9
+            },
+            {
+              "operation": "equal",
+              "value2": 2,
+              "output": 1
+            },
+            {
+              "operation": "equal",
+              "value2": 3,
+              "output": 2
+            },
+            {
+              "operation": "equal",
+              "value2": 12,
+              "output": 3
+            }
+          ]
+        }
+      },
+      "id": "fdb2042a-fbf7-461a-b8b4-798a269c816e",
+      "name": "Switch",
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 1,
+      "position": [
+        4220,
+        -1140
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "string": [
+            {
+              "value1": "={{ $('Webhook').item.json.body.data.email }}",
+              "operation": "isEmpty"
+            }
+          ]
+        }
+      },
+      "id": "c44896da-5ab5-4a6e-a7eb-9a72ec88a5ab",
+      "name": "IF3",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        4800,
+        320
+      ]
+    },
+    {
+      "parameters": {
+        "phoneNumberId": "171009622770823",
+        "recipientPhoneNumber": "+917349296479",
+        "template": "lead_received_confirmation|en",
+        "components": {
+          "component": [
+            {
+              "bodyParameters": {
+                "parameter": [
+                  {
+                    "text": "WhatsApp"
+                  },
+                  {
+                    "text": "={{ $('Webhook').item.json.body.data.first_name }}"
+                  },
+                  {
+                    "text": "={{ $('Webhook').item.json.body.data.phone }}"
+                  },
+                  {
+                    "text": "NULL"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      },
+      "id": "c70549f9-6a00-4526-b851-5f0bf8b5e35c",
+      "name": "WhatsApp Business Cloud10",
+      "type": "n8n-nodes-base.whatsApp",
+      "typeVersion": 1,
+      "position": [
+        6320,
+        140
+      ],
+      "webhookId": "ddf337b5-4fc8-4cd6-a879-e071d6917704",
+      "credentials": {
+        "whatsAppApi": {
+          "id": "JPvNp2kC4SudtNkr",
+          "name": "Primary | Marketing Miles Education"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "phoneNumberId": "171009622770823",
+        "recipientPhoneNumber": "+917349296479",
+        "template": "lead_received_confirmation|en",
+        "components": {
+          "component": [
+            {
+              "bodyParameters": {
+                "parameter": [
+                  {
+                    "text": "Form Fill"
+                  },
+                  {
+                    "text": "={{ $('Webhook').item.json.body.data.first_name }}"
+                  },
+                  {
+                    "text": "={{ $('Webhook').item.json.body.data.phone }}"
+                  },
+                  {
+                    "text": "={{ $('Webhook').item.json.body.data.email }}  {{ $('Webhook').item.json.body.data.coming_from }}  {{ $('Webhook').item.json.body.data.camp_id }}"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      },
+      "id": "263014f7-faae-46d7-a4ab-506d7c4b9fdf",
+      "name": "WhatsApp Business Cloud11",
+      "type": "n8n-nodes-base.whatsApp",
+      "typeVersion": 1,
+      "position": [
+        6320,
+        440
+      ],
+      "webhookId": "88a9b9bb-7383-47f7-aed2-31fe0d31d5bf",
+      "retryOnFail": true,
+      "credentials": {
+        "whatsAppApi": {
+          "id": "JPvNp2kC4SudtNkr",
+          "name": "Primary | Marketing Miles Education"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "phoneNumberId": "171009622770823",
+        "recipientPhoneNumber": "+919930270910",
+        "template": "lead_received_confirmation|en",
+        "components": {
+          "component": [
+            {
+              "bodyParameters": {
+                "parameter": [
+                  {
+                    "text": "WhatsApp"
+                  },
+                  {
+                    "text": "={{ $('Webhook').item.json.body.data.first_name }}"
+                  },
+                  {
+                    "text": "={{ $('Webhook').item.json.body.data.phone }}"
+                  },
+                  {
+                    "text": "NULL"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      },
+      "id": "b24a3c30-c4fe-4c80-bb17-38ffea4f6b64",
+      "name": "WhatsApp Business Cloud12",
+      "type": "n8n-nodes-base.whatsApp",
+      "typeVersion": 1,
+      "position": [
+        6320,
+        0
+      ],
+      "webhookId": "e36ebcea-1d22-4b55-8845-e94e34542a5c",
+      "credentials": {
+        "whatsAppApi": {
+          "id": "JPvNp2kC4SudtNkr",
+          "name": "Primary | Marketing Miles Education"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "phoneNumberId": "171009622770823",
+        "recipientPhoneNumber": "+919930270910",
+        "template": "lead_received_confirmation|en",
+        "components": {
+          "component": [
+            {
+              "bodyParameters": {
+                "parameter": [
+                  {
+                    "text": "Form Fill"
+                  },
+                  {
+                    "text": "={{ $('Webhook').item.json.body.data.first_name }}"
+                  },
+                  {
+                    "text": "={{ $('Webhook').item.json.body.data.phone }}"
+                  },
+                  {
+                    "text": "={{ $('Webhook').item.json.body.data.email }}  {{ $('Webhook').item.json.body.data.coming_from }}  {{ $('Webhook').item.json.body.data.camp_id }}"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      },
+      "id": "d825fb11-9b38-4c69-8ab5-a3dc9ffac92a",
+      "name": "WhatsApp Business Cloud13",
+      "type": "n8n-nodes-base.whatsApp",
+      "typeVersion": 1,
+      "position": [
+        6320,
+        580
+      ],
+      "webhookId": "5c98a783-0f96-4820-9404-8790a37e9701",
+      "retryOnFail": true,
+      "credentials": {
+        "whatsAppApi": {
+          "id": "JPvNp2kC4SudtNkr",
+          "name": "Primary | Marketing Miles Education"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "phoneNumberId": "171009622770823",
+        "recipientPhoneNumber": "+916238133298",
+        "template": "lead_received_confirmation|en",
+        "components": {
+          "component": [
+            {
+              "bodyParameters": {
+                "parameter": [
+                  {
+                    "text": "WhatsApp"
+                  },
+                  {
+                    "text": "={{ $('Webhook').item.json.body.data.first_name }}"
+                  },
+                  {
+                    "text": "={{ $('Webhook').item.json.body.data.phone }}"
+                  },
+                  {
+                    "text": "NULL"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      },
+      "id": "2f3024bf-0f5f-49bc-a345-7ffc3b78af56",
+      "name": "WhatsApp Business Cloud14",
+      "type": "n8n-nodes-base.whatsApp",
+      "typeVersion": 1,
+      "position": [
+        6320,
+        -180
+      ],
+      "webhookId": "83007f05-1725-4634-bb5b-6e26599a760d",
+      "credentials": {
+        "whatsAppApi": {
+          "id": "JPvNp2kC4SudtNkr",
+          "name": "Primary | Marketing Miles Education"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "phoneNumberId": "171009622770823",
+        "recipientPhoneNumber": "+916238133298",
+        "template": "lead_received_confirmation|en",
+        "components": {
+          "component": [
+            {
+              "bodyParameters": {
+                "parameter": [
+                  {
+                    "text": "Form Fill"
+                  },
+                  {
+                    "text": "={{ $('Webhook').item.json.body.data.first_name }}"
+                  },
+                  {
+                    "text": "={{ $('Webhook').item.json.body.data.phone }}"
+                  },
+                  {
+                    "text": "={{ $('Webhook').item.json.body.data.email }}  {{ $('Webhook').item.json.body.data.coming_from }}  {{ $('Webhook').item.json.body.data.camp_id }}"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      },
+      "id": "aafd3175-98da-4a50-85e6-ad8c1fca7e84",
+      "name": "WhatsApp Business Cloud15",
+      "type": "n8n-nodes-base.whatsApp",
+      "typeVersion": 1,
+      "position": [
+        6320,
+        720
+      ],
+      "webhookId": "0d5b3db6-2129-4734-a638-f38d40e2efc1",
+      "retryOnFail": true,
+      "credentials": {
+        "whatsAppApi": {
+          "id": "JPvNp2kC4SudtNkr",
+          "name": "Primary | Marketing Miles Education"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "string": [
+            {
+              "value1": "={{ $('Webhook').item.json.body.data.email }}",
+              "operation": "isEmpty"
+            },
+            {
+              "value1": "={{ $('Webhook').item.json.body.data.phone }}",
+              "value2": "+919460596406"
+            }
+          ]
+        }
+      },
+      "id": "b1aadced-fe83-4b80-b5c2-a731c026394c",
+      "name": "IF4",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        2980,
+        -1020
+      ]
+    },
+    {
+      "parameters": {
+        "template": "cma-first-email",
+        "fromEmail": "info@mileseducation.com",
+        "toEmail": "={{ $('Webhook').item.json.body.data.email }}",
+        "options": {
+          "fromName": "Miles Education",
+          "subject": "Your CMA Journey – Exciting Updates Inside!"
+        },
+        "mergeVarsUi": {
+          "mergeVarsValues": [
+            {
+              "name": "FNAME",
+              "content": "={{ $('Webhook').item.json.body.data.first_name }}"
+            }
+          ]
+        }
+      },
+      "id": "46353fce-aeda-4493-99f5-80e4a52fa88f",
+      "name": "Mandrill5",
+      "type": "n8n-nodes-base.mandrill",
+      "typeVersion": 1,
+      "position": [
+        5120,
+        -780
+      ],
+      "credentials": {
+        "mandrillApi": {
+          "id": "t5XAtcUI45PwVrj0",
+          "name": "Mandrill account"
+        }
+      }
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        3200,
+        -920
+      ],
+      "id": "c030434f-2c01-43a6-9d15-6bfe037ccb86",
+      "name": "Wait3",
+      "webhookId": "1bd4bbd9-6766-480a-90ba-c9b838e69341"
+    }
+  ],
+  "pinData": {
+    "Webhook": [
+      {
+        "json": {
+          "headers": {
+            "accept": "application/json,text/html,application/xhtml+xml,application/xml,text/*;q=0.9, image/*;q=0.8, */*;q=0.7",
+            "content-type": "application/json",
+            "user-agent": "axios/0.21.4",
+            "content-length": "636",
+            "sentry-trace": "06aa6f44f8ab462db8ac72f03f262065-96d7dca78f90cff3-0",
+            "baggage": "sentry-environment=production,sentry-release=1.1.1,sentry-public_key=1f954e089a054b8e943ae4f4042b2bff,sentry-trace_id=06aa6f44f8ab462db8ac72f03f262065",
+            "host": "34.100.240.130:5678",
+            "connection": "close"
+          },
+          "params": {},
+          "query": {},
+          "body": {
+            "data": {
+              "id": 1487472,
+              "city": "Kota",
+              "json": null,
+              "email": "mandalam.karan@mileseducation.com",
+              "phone": "+917349296479",
+              "course": 3,
+              "gcl_id": null,
+              "camp_id": 65,
+              "whatsapp": true,
+              "clevertap": null,
+              "last_name": null,
+              "camp_token": null,
+              "first_name": "Karan",
+              "push_to_mf": false,
+              "webinar_id": null,
+              "campaign_id": null,
+              "coming_from": "website-page",
+              "intrested_in": "Maybe",
+              "campaign_name": null,
+              "page_full_url": "https://www.mileseducation.com/",
+              "sync_to_sheet": false,
+              "url_page_path": "/",
+              "english_proficiency": null,
+              "registration_status": false,
+              "register_for_webinar": null,
+              "whatsapp_send_status": false,
+              "education_qualification": "will_graduate_in_2025_or_later"
+            }
+          }
+        }
+      }
+    ]
+  },
+  "settings": {
+    "executionOrder": "v1",
+    "timezone": "Asia/Calcutta",
+    "saveManualExecutions": true,
+    "callerPolicy": "workflowsFromSameOwner",
+    "errorWorkflow": "JugK3JVukMVLS3ax"
+  },
+  "staticData": null,
+  "tags": [
+    {
+      "createdAt": "2024-01-27T09:19:45.406Z",
+      "updatedAt": "2024-01-27T09:19:45.406Z",
+      "id": "m1hfzqE5cWdHHPKy",
+      "name": "Whatsapp-MasterFlow-USP"
+    }
+  ],
+  "triggerCount": 1,
+  "updatedAt": "2025-03-06T07:50:48.000Z",
+  "versionId": "0dd2e066-e442-4a4e-ad78-bee7e52cc08b"
+}
