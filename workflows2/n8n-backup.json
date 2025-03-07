@@ -529,11 +529,14 @@
   ],
   "pinData": {},
   "settings": {
-    "executionOrder": "v1"
+    "executionOrder": "v1",
+    "timezone": "Asia/Kolkata",
+    "callerPolicy": "workflowsFromSameOwner",
+    "errorWorkflow": "JugK3JVukMVLS3ax"
   },
   "staticData": null,
   "tags": [],
   "triggerCount": 0,
-  "updatedAt": "2025-03-05T12:04:33.000Z",
-  "versionId": "e2ddc5e0-5936-4d77-b712-8bbb1474ca07"
+  "updatedAt": "2025-03-07T06:29:14.000Z",
+  "versionId": "e50b4e61-d2c4-4ce4-81c0-fb12414285c1"
 }
