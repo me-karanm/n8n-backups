@@ -28,7 +28,7 @@
             "index": 0
           },
           {
-            "node": "WhatsApp Business Cloud3",
+            "node": "WhatsApp Business Cloud4",
             "type": "main",
             "index": 0
           }
@@ -38,7 +38,9 @@
   },
   "createdAt": "2023-10-26T07:39:52.332Z",
   "id": "OShbxn90mVXgk0Zp",
-  "meta": null,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
   "name": "odoo - send whatsapp",
   "nodes": [
     {
@@ -87,6 +89,7 @@
         1520,
         80
       ],
+      "webhookId": "2d2d379c-0d65-4968-9f9b-7387debce96d",
       "credentials": {
         "whatsAppApi": {
           "id": "KHcTD6EUGATb3z0D",
@@ -172,6 +175,7 @@
         960,
         460
       ],
+      "webhookId": "cc8c7a10-a027-43c1-8423-4caaa66ba2d8",
       "credentials": {
         "whatsAppApi": {
           "id": "KHcTD6EUGATb3z0D",
@@ -230,6 +234,7 @@
         1120,
         -240
       ],
+      "webhookId": "8118d2ac-a2b9-48e3-89ef-5ffb0bf80b2c",
       "credentials": {
         "whatsAppApi": {
           "id": "KHcTD6EUGATb3z0D",
@@ -242,7 +247,7 @@
       "parameters": {
         "phoneNumberId": "108019349036743",
         "recipientPhoneNumber": "={{ $json.body.number }}",
-        "template": "auth_verification|en",
+        "template": "auth_verification_1|en",
         "components": {
           "component": [
             {
@@ -271,9 +276,10 @@
       "type": "n8n-nodes-base.whatsApp",
       "typeVersion": 1,
       "position": [
-        1120,
-        -20
+        1460,
+        -60
       ],
+      "webhookId": "215e09a1-3523-4591-99cf-ff045c25a038",
       "credentials": {
         "whatsAppApi": {
           "id": "KHcTD6EUGATb3z0D",
@@ -281,6 +287,50 @@
         }
       },
       "continueOnFail": true
+    },
+    {
+      "parameters": {
+        "phoneNumberId": "108019349036743",
+        "recipientPhoneNumber": "={{ $('Webhook').item.json.body.number }}",
+        "template": "auth_verification_1|en",
+        "components": {
+          "component": [
+            {
+              "bodyParameters": {
+                "parameter": [
+                  {
+                    "text": "={{ $('Webhook').item.json.body.otp }}"
+                  }
+                ]
+              }
+            },
+            {
+              "type": "button",
+              "sub_type": "url",
+              "buttonParameters": {
+                "parameter": {
+                  "payload": "={{ $('Webhook').item.json.body.otp }}"
+                }
+              }
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.whatsApp",
+      "typeVersion": 1,
+      "position": [
+        1180,
+        -40
+      ],
+      "id": "f3822255-b4d9-47ba-bfa7-8329e0957fc5",
+      "name": "WhatsApp Business Cloud4",
+      "webhookId": "2fb29218-7fef-41c3-8467-44d12c2c8fd0",
+      "credentials": {
+        "whatsAppApi": {
+          "id": "KHcTD6EUGATb3z0D",
+          "name": "Secondary | Marketing Miles Education"
+        }
+      }
     }
   ],
   "pinData": {
@@ -309,6 +359,7 @@
           "query": {},
           "body": {
             "name": "Jithin",
+            "otp": 32323,
             "email": "jithinkpraveen@gmail.com",
             "number": "916238133298",
             "link": "https://bluebutton.mileseducation.org/bigbluebutton/api/join?meetingID=2e786e44-39f4-11ef-839d-ab031bc363f8&password=PP2xcpxu&fullName=Sobin&checksum=26cfc261ada9d069f907240f9593c8419d13c954",
@@ -324,6 +375,6 @@
   "staticData": null,
   "tags": [],
   "triggerCount": 1,
-  "updatedAt": "2025-02-24T09:14:50.000Z",
-  "versionId": "012180b4-8fec-4900-848b-47566d5b2ef9"
+  "updatedAt": "2025-03-07T06:27:19.000Z",
+  "versionId": "3172909e-4559-4066-9190-019ab4070748"
 }
