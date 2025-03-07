@@ -23,12 +23,23 @@
         ],
         [
           {
-            "node": "WhatsApp Business Cloud",
+            "node": "Mandrill",
             "type": "main",
             "index": 0
           },
           {
-            "node": "Mandrill",
+            "node": "WhatsApp Business Cloud3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "WhatsApp Business Cloud3": {
+      "main": [
+        [
+          {
+            "node": "WhatsApp Business Cloud",
             "type": "main",
             "index": 0
           }
@@ -38,7 +49,9 @@
   },
   "createdAt": "2025-01-06T06:44:40.312Z",
   "id": "wuMyP84RWsWwOKuF",
-  "meta": null,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
   "name": "odoo - send whatsapp(HC)",
   "nodes": [
     {
@@ -90,9 +103,10 @@
       "type": "n8n-nodes-base.whatsApp",
       "typeVersion": 1,
       "position": [
-        940,
+        1400,
         -20
       ],
+      "webhookId": "86f884ab-43fc-4bca-afa9-c80fb12ca500",
       "credentials": {
         "whatsAppApi": {
           "id": "KHcTD6EUGATb3z0D",
@@ -127,7 +141,7 @@
       "type": "n8n-nodes-base.mandrill",
       "typeVersion": 1,
       "position": [
-        940,
+        1160,
         200
       ],
       "credentials": {
@@ -178,6 +192,7 @@
         960,
         460
       ],
+      "webhookId": "ee428456-4430-4ee9-9e43-92419d7b060f",
       "credentials": {
         "whatsAppApi": {
           "id": "KHcTD6EUGATb3z0D",
@@ -233,9 +248,10 @@
       "type": "n8n-nodes-base.whatsApp",
       "typeVersion": 1,
       "position": [
-        940,
+        1160,
         -220
       ],
+      "webhookId": "e7036d2c-2831-49d1-a2d0-273ecf85ccce",
       "credentials": {
         "whatsAppApi": {
           "id": "KHcTD6EUGATb3z0D",
@@ -243,6 +259,45 @@
         }
       },
       "continueOnFail": true
+    },
+    {
+      "parameters": {
+        "phoneNumberId": "108019349036743",
+        "template": "auth_verification_1|en",
+        "components": {
+          "component": [
+            {
+              "bodyParameters": {
+                "parameter": [
+                  {}
+                ]
+              }
+            },
+            {
+              "type": "button",
+              "sub_type": "url",
+              "buttonParameters": {
+                "parameter": {}
+              }
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.whatsApp",
+      "typeVersion": 1,
+      "position": [
+        900,
+        60
+      ],
+      "id": "98e3bce6-9423-4d90-b6ec-208e08e42fb8",
+      "name": "WhatsApp Business Cloud3",
+      "webhookId": "1e483875-b8bb-4639-8147-3f64e7871132",
+      "credentials": {
+        "whatsAppApi": {
+          "id": "KHcTD6EUGATb3z0D",
+          "name": "Secondary | Marketing Miles Education"
+        }
+      }
     }
   ],
   "pinData": {
@@ -288,6 +343,6 @@
   "staticData": null,
   "tags": [],
   "triggerCount": 1,
-  "updatedAt": "2025-01-29T06:58:25.000Z",
-  "versionId": "8e47fef5-1451-46c7-81fc-be063fa53a4a"
+  "updatedAt": "2025-03-07T06:29:41.000Z",
+  "versionId": "05540beb-3a10-4166-b84b-3bfad55ae95c"
 }
