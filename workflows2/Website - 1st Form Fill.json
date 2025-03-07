@@ -14,13 +14,7 @@
     },
     "Set6": {
       "main": [
-        [
-          {
-            "node": "Merge2",
-            "type": "main",
-            "index": 0
-          }
-        ]
+        []
       ]
     },
     "Code1": {
@@ -36,13 +30,7 @@
     },
     "IF5": {
       "main": [
-        [
-          {
-            "node": "Set6",
-            "type": "main",
-            "index": 0
-          }
-        ],
+        [],
         [
           {
             "node": "Set7",
@@ -54,27 +42,10 @@
     },
     "Merge2": {
       "main": [
-        [
-          {
-            "node": "Wait1",
-            "type": "main",
-            "index": 0
-          }
-        ]
+        []
       ]
     },
     "Set7": {
-      "main": [
-        [
-          {
-            "node": "Merge2",
-            "type": "main",
-            "index": 1
-          }
-        ]
-      ]
-    },
-    "Wait1": {
       "main": [
         [
           {
@@ -83,6 +54,11 @@
             "index": 0
           }
         ]
+      ]
+    },
+    "Wait1": {
+      "main": [
+        []
       ]
     },
     "Set8": {
@@ -304,11 +280,6 @@
         [
           {
             "node": "IF2",
-            "type": "main",
-            "index": 0
-          },
-          {
-            "node": "IF3",
             "type": "main",
             "index": 0
           }
@@ -690,6 +661,22 @@
             "node": "Switch",
             "type": "main",
             "index": 0
+          },
+          {
+            "node": "Wait3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait3": {
+      "main": [
+        [
+          {
+            "node": "IF3",
+            "type": "main",
+            "index": 0
           }
         ]
       ]
@@ -738,7 +725,7 @@
           "number": [
             {
               "name": "delay1_time",
-              "value": "10"
+              "value": 10
             },
             {
               "name": "delay2_time",
@@ -787,9 +774,11 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 2,
       "position": [
-        2140,
-        -1180
-      ]
+        2300,
+        -1800
+      ],
+      "alwaysOutputData": true,
+      "disabled": true
     },
     {
       "parameters": {
@@ -835,9 +824,10 @@
       "type": "n8n-nodes-base.merge",
       "typeVersion": 2.1,
       "position": [
-        2380,
-        -1020
-      ]
+        2540,
+        -1840
+      ],
+      "disabled": true
     },
     {
       "parameters": {
@@ -845,7 +835,7 @@
           "number": [
             {
               "name": "delay1_time",
-              "value": "10"
+              "value": 10
             },
             {
               "name": "delay2_time",
@@ -894,8 +884,8 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 2,
       "position": [
-        2160,
-        -880
+        2360,
+        -1000
       ]
     },
     {
@@ -908,8 +898,8 @@
       "type": "n8n-nodes-base.wait",
       "typeVersion": 1,
       "position": [
-        2600,
-        -1020
+        2760,
+        -1960
       ],
       "webhookId": "9b6cccbd-4859-4cbc-a8c8-967ec9c1028b",
       "disabled": true
@@ -929,8 +919,8 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 1,
       "position": [
-        3860,
-        500
+        5440,
+        2560
       ]
     },
     {
@@ -1044,6 +1034,7 @@
         4820,
         -2100
       ],
+      "webhookId": "8faa7a63-36c2-4008-af47-e1f66e68aa8b",
       "credentials": {
         "whatsAppApi": {
           "id": "JPvNp2kC4SudtNkr",
@@ -1068,8 +1059,8 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 1,
       "position": [
-        6320,
-        1360
+        7900,
+        3420
       ]
     },
     {
@@ -1088,8 +1079,8 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 1,
       "position": [
-        6480,
-        1260
+        8060,
+        3320
       ]
     },
     {
@@ -1109,8 +1100,8 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 1,
       "position": [
-        6660,
-        1200
+        8240,
+        3260
       ]
     },
     {
@@ -1127,8 +1118,8 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.1,
       "position": [
-        5780,
-        1160
+        7360,
+        3220
       ],
       "continueOnFail": true
     },
@@ -1149,8 +1140,8 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 2,
       "position": [
-        5600,
-        1160
+        7180,
+        3220
       ]
     },
     {
@@ -1188,9 +1179,10 @@
       "type": "n8n-nodes-base.whatsApp",
       "typeVersion": 1,
       "position": [
-        5420,
-        1160
+        7000,
+        3220
       ],
+      "webhookId": "32c2b6d2-e364-47af-8f7a-adc391df7532",
       "credentials": {
         "whatsAppApi": {
           "id": "JPvNp2kC4SudtNkr",
@@ -1282,6 +1274,7 @@
         4940,
         -1040
       ],
+      "webhookId": "283c0a65-a736-4ac2-b58e-e61e52ee012d",
       "credentials": {
         "whatsAppApi": {
           "id": "JPvNp2kC4SudtNkr",
@@ -1373,6 +1366,7 @@
         4920,
         -1560
       ],
+      "webhookId": "46be6b72-47b6-4a47-a68a-7bc9ffc63175",
       "credentials": {
         "whatsAppApi": {
           "id": "JPvNp2kC4SudtNkr",
@@ -1398,8 +1392,8 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 1,
       "position": [
-        6180,
-        1500
+        7760,
+        3560
       ]
     },
     {
@@ -1429,8 +1423,8 @@
       "type": "n8n-nodes-base.switch",
       "typeVersion": 1,
       "position": [
-        4760,
-        420
+        6340,
+        2480
       ]
     },
     {
@@ -1447,8 +1441,8 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.1,
       "position": [
-        5340,
-        640
+        6920,
+        2700
       ],
       "continueOnFail": true
     },
@@ -1469,8 +1463,8 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 2,
       "position": [
-        5180,
-        640
+        6760,
+        2700
       ]
     },
     {
@@ -1487,8 +1481,8 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.1,
       "position": [
-        5320,
-        220
+        6920,
+        2260
       ],
       "continueOnFail": true
     },
@@ -1509,8 +1503,8 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 2,
       "position": [
-        5160,
-        220
+        6760,
+        2260
       ]
     },
     {
@@ -1527,8 +1521,8 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.1,
       "position": [
-        5320,
-        420
+        6900,
+        2480
       ],
       "continueOnFail": true
     },
@@ -1549,8 +1543,8 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 2,
       "position": [
-        5160,
-        420
+        6740,
+        2480
       ]
     },
     {
@@ -1577,9 +1571,10 @@
       "type": "n8n-nodes-base.whatsApp",
       "typeVersion": 1,
       "position": [
-        5000,
-        220
+        6600,
+        2260
       ],
+      "webhookId": "465fe8ff-67ed-4fe9-a3f9-9759e0f3432e",
       "credentials": {
         "whatsAppApi": {
           "id": "JPvNp2kC4SudtNkr",
@@ -1611,9 +1606,10 @@
       "type": "n8n-nodes-base.whatsApp",
       "typeVersion": 1,
       "position": [
-        5000,
-        420
+        6580,
+        2480
       ],
+      "webhookId": "5cdbb740-8142-4f7b-ac23-a159291f91f1",
       "credentials": {
         "whatsAppApi": {
           "id": "JPvNp2kC4SudtNkr",
@@ -1656,9 +1652,10 @@
       "type": "n8n-nodes-base.whatsApp",
       "typeVersion": 1,
       "position": [
-        5020,
-        640
+        6600,
+        2700
       ],
+      "webhookId": "bf8f33bf-808c-41c8-a1cd-907666ff809c",
       "credentials": {
         "whatsAppApi": {
           "id": "JPvNp2kC4SudtNkr",
@@ -2047,6 +2044,7 @@
         4100,
         -3060
       ],
+      "webhookId": "aafdb97d-e07b-4423-b7eb-5520db4fd847",
       "credentials": {
         "whatsAppApi": {
           "id": "JPvNp2kC4SudtNkr",
@@ -2092,6 +2090,7 @@
         4100,
         -3260
       ],
+      "webhookId": "de1c4945-46c7-4009-9d8b-3df2c4e986f5",
       "credentials": {
         "whatsAppApi": {
           "id": "JPvNp2kC4SudtNkr",
@@ -2217,6 +2216,7 @@
         3440,
         -3400
       ],
+      "webhookId": "56f4d849-ac24-40e0-b0e6-3deeb8b44854",
       "credentials": {
         "whatsAppApi": {
           "id": "JPvNp2kC4SudtNkr",
@@ -2282,8 +2282,8 @@
       "type": "n8n-nodes-base.supabase",
       "typeVersion": 1,
       "position": [
-        6860,
-        540
+        8440,
+        2600
       ],
       "credentials": {
         "supabaseApi": {
@@ -2329,8 +2329,8 @@
       "type": "n8n-nodes-base.supabase",
       "typeVersion": 1,
       "position": [
-        7080,
-        540
+        8660,
+        2600
       ],
       "credentials": {
         "supabaseApi": {
@@ -2362,8 +2362,8 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.1,
       "position": [
-        7300,
-        540
+        8880,
+        2600
       ]
     },
     {
@@ -2376,8 +2376,8 @@
       "type": "n8n-nodes-base.wait",
       "typeVersion": 1,
       "position": [
-        6180,
-        540
+        7760,
+        2600
       ],
       "webhookId": "b3bfefd8-d72b-4a34-b594-4a8d59a5a121"
     },
@@ -2405,9 +2405,10 @@
       "type": "n8n-nodes-base.whatsApp",
       "typeVersion": 1,
       "position": [
-        6660,
-        540
+        8240,
+        2600
       ],
+      "webhookId": "6c9c37c3-7795-47a9-ad37-5839892c2179",
       "credentials": {
         "whatsAppApi": {
           "id": "JPvNp2kC4SudtNkr",
@@ -2436,8 +2437,8 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 2,
       "position": [
-        6400,
-        540
+        7980,
+        2600
       ]
     },
     {
@@ -2475,8 +2476,8 @@
       "type": "n8n-nodes-base.mandrill",
       "typeVersion": 1,
       "position": [
-        6120,
-        1160
+        7700,
+        3220
       ],
       "credentials": {
         "mandrillApi": {
@@ -2540,7 +2541,7 @@
       "type": "n8n-nodes-base.mandrill",
       "typeVersion": 1,
       "position": [
-        4900,
+        5120,
         -1340
       ],
       "credentials": {
@@ -2634,6 +2635,7 @@
         4960,
         -480
       ],
+      "webhookId": "f497c76a-65ad-4ea2-8e1a-a6654eba37a6",
       "credentials": {
         "whatsAppApi": {
           "id": "JPvNp2kC4SudtNkr",
@@ -2673,7 +2675,7 @@
       "type": "n8n-nodes-base.switch",
       "typeVersion": 1,
       "position": [
-        4000,
+        4220,
         -1140
       ]
     },
@@ -2714,7 +2716,7 @@
         "conditions": {
           "string": [
             {
-              "value1": "={{ $json.body.data.email }}",
+              "value1": "={{ $('Webhook').item.json.body.data.email }}",
               "operation": "isEmpty"
             }
           ]
@@ -2725,8 +2727,8 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 1,
       "position": [
-        1780,
-        20
+        4800,
+        320
       ]
     },
     {
@@ -2742,9 +2744,10 @@
       "type": "n8n-nodes-base.whatsApp",
       "typeVersion": 1,
       "position": [
-        5580,
-        2140
+        7160,
+        4200
       ],
+      "webhookId": "d71d4ff2-47e1-43bd-861b-381bfbc807ae",
       "credentials": {
         "whatsAppApi": {
           "id": "JPvNp2kC4SudtNkr",
@@ -2785,9 +2788,10 @@
       "type": "n8n-nodes-base.whatsApp",
       "typeVersion": 1,
       "position": [
-        2380,
-        -140
+        6320,
+        140
       ],
+      "webhookId": "a89927d8-51ff-4410-a936-3c975867e605",
       "credentials": {
         "whatsAppApi": {
           "id": "JPvNp2kC4SudtNkr",
@@ -2828,9 +2832,11 @@
       "type": "n8n-nodes-base.whatsApp",
       "typeVersion": 1,
       "position": [
-        2380,
-        160
+        6320,
+        440
       ],
+      "webhookId": "09d28582-8611-4a3a-88f8-9d4c81e7b874",
+      "retryOnFail": true,
       "credentials": {
         "whatsAppApi": {
           "id": "JPvNp2kC4SudtNkr",
@@ -2871,9 +2877,10 @@
       "type": "n8n-nodes-base.whatsApp",
       "typeVersion": 1,
       "position": [
-        2380,
-        -280
+        6320,
+        0
       ],
+      "webhookId": "b80be83c-6d13-45b8-aad9-a895c51ab959",
       "credentials": {
         "whatsAppApi": {
           "id": "JPvNp2kC4SudtNkr",
@@ -2914,9 +2921,11 @@
       "type": "n8n-nodes-base.whatsApp",
       "typeVersion": 1,
       "position": [
-        2380,
-        300
+        6320,
+        580
       ],
+      "webhookId": "41886536-74b3-468f-9fb5-3e4cb8c115da",
+      "retryOnFail": true,
       "credentials": {
         "whatsAppApi": {
           "id": "JPvNp2kC4SudtNkr",
@@ -2957,9 +2966,10 @@
       "type": "n8n-nodes-base.whatsApp",
       "typeVersion": 1,
       "position": [
-        2380,
-        -460
+        6320,
+        -180
       ],
+      "webhookId": "b5125ca7-fa47-43be-9a3b-c069008f6238",
       "credentials": {
         "whatsAppApi": {
           "id": "JPvNp2kC4SudtNkr",
@@ -3000,9 +3010,11 @@
       "type": "n8n-nodes-base.whatsApp",
       "typeVersion": 1,
       "position": [
-        2380,
-        440
+        6320,
+        720
       ],
+      "webhookId": "f108a335-1469-4539-bbfa-d2e3b384fc12",
+      "retryOnFail": true,
       "credentials": {
         "whatsAppApi": {
           "id": "JPvNp2kC4SudtNkr",
@@ -3037,7 +3049,8 @@
     {
       "parameters": {
         "source": "url",
-        "workflowUrl": "http://34.93.97.0:5678/workflow/GbArpuZRcgZUbGfr"
+        "workflowUrl": "http://34.93.97.0:5678/workflow/GbArpuZRcgZUbGfr",
+        "options": {}
       },
       "id": "171a1db4-08bc-4866-8886-bee8be7d7e48",
       "name": "Execute Workflow",
@@ -3129,7 +3142,7 @@
       "type": "n8n-nodes-base.mandrill",
       "typeVersion": 1,
       "position": [
-        4900,
+        5120,
         -780
       ],
       "credentials": {
@@ -3138,6 +3151,18 @@
           "name": "Mandrill account"
         }
       }
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        3200,
+        -920
+      ],
+      "id": "24557518-6bfa-4b05-bf70-9021dc4bd637",
+      "name": "Wait3",
+      "webhookId": "566e7749-95fe-4e52-a1f6-1ab170311f4d"
     }
   ],
   "pinData": {
@@ -3208,6 +3233,6 @@
     }
   ],
   "triggerCount": 1,
-  "updatedAt": "2025-02-27T06:57:28.000Z",
-  "versionId": "bff2bbeb-7bd6-42ef-b612-7eeb078ac768"
+  "updatedAt": "2025-03-06T07:49:57.000Z",
+  "versionId": "30f3e585-787d-479a-923d-24eb69430840"
 }
