@@ -1,0 +1,119 @@
+{
+  "active": false,
+  "connections": {
+    "When clicking ‘Test workflow’": {
+      "main": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "When chat message received": {
+      "main": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-03-06T06:40:34.658Z",
+  "id": "bPiiaMXXtRq9j4fA",
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "test agent",
+  "nodes": [
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        -200,
+        -100
+      ],
+      "id": "2a72395b-2f45-4029-a51e-b9a8b10de59a",
+      "name": "When clicking ‘Test workflow’"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.chatTrigger",
+      "typeVersion": 1.1,
+      "position": [
+        20,
+        -100
+      ],
+      "id": "d732f6bd-6e93-417b-a4a4-d6ae35cf6634",
+      "name": "When chat message received",
+      "webhookId": "0cc1316d-b9dc-4751-acc8-37799fb3908b"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "You are an ultimate agent that has access to certain tools.\nYou are task is to select approriate tools and agents to complete the user's task or query.\nTools:\n- calculator: perform calculations.\n- writer: Writes details blog or an article in a specified manner.\n- researcher: Provides in-depth researched content \n",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 1.8,
+      "position": [
+        240,
+        -100
+      ],
+      "id": "9ba6d066-a5be-46d8-90ef-8b8f15063fb9",
+      "name": "AI Agent"
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "mode": "list",
+          "value": "gpt-4o-mini"
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.2,
+      "position": [
+        80,
+        100
+      ],
+      "id": "5ca55cea-6af7-45b4-aeb6-da443d74186e",
+      "name": "OpenAI Chat Model",
+      "credentials": {
+        "openAiApi": {
+          "id": "1YuTLSipCtFhGnPD",
+          "name": "OpenAi account"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2025-03-06T10:44:33.000Z",
+  "versionId": "8fa74834-7ea6-4e0e-8da3-2b4a4e8e610c"
+}
