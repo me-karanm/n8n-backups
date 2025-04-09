@@ -1,0 +1,215 @@
+{
+  "active": false,
+  "connections": {
+    "When clicking ‘Test workflow’": {
+      "main": [
+        [
+          {
+            "node": "Supabase",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Loop Over Items": {
+      "main": [
+        [],
+        [
+          {
+            "node": "HTTP Request12",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Supabase": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request12": {
+      "main": [
+        [
+          {
+            "node": "Supabase1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Supabase1": {
+      "main": [
+        [
+          {
+            "node": "Wait",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-04-05T09:09:50.868Z",
+  "id": "kq1dsGFAy0Ab1njZ",
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "upload Data",
+  "nodes": [
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        -360,
+        -160
+      ],
+      "id": "037cf7b4-075d-4dd4-abf1-e2495af005e3",
+      "name": "When clicking ‘Test workflow’"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [
+        120,
+        -160
+      ],
+      "id": "64f1c841-c56d-467c-8bee-1f5bbde04c1c",
+      "name": "Loop Over Items"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://mfx-prod-154625965269.asia-south1.run.app/enquiries/add",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n\"first_name\": \"{{ $json.name }}\",\n\"last_name\": \"\",\n\"phone\": \"{{ $json.phone }}\",\n\"email\": null,\n\"course_id\":1,\n\"coming_from\": \"\",\n\"campaign_id\":{{ $json.camp_id }},\n\"campaign_tk\": \"\",\n\"gcl_id\": \"\",\n\"whatsapp_opt_in\": true,\n\"register_for_webinar\": false,\n\"intrested_to_work_in_us\": true,\n\"page_full_url\": \"\",\n\"url_page_path\": \"\",\n\"linked_in_url\": \"\",\n\"clevertap_id\": \"\",\n\"isFromWelcomeBack\": false,\n\"level\":null,\n\"city_id\":{{ $json.city_id }}\n} ",
+        "options": {}
+      },
+      "id": "7f67266c-621f-43f3-9294-48ba41910400",
+      "name": "HTTP Request12",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        420,
+        -340
+      ],
+      "retryOnFail": true,
+      "continueOnFail": true
+    },
+    {
+      "parameters": {
+        "operation": "getAll",
+        "tableId": "data_upload_5_april",
+        "returnAll": true,
+        "matchType": "allFilters",
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "upload_status",
+              "condition": "eq",
+              "keyValue": "false"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        -140,
+        -160
+      ],
+      "id": "ead6b787-0225-45e4-a579-a3ecd90d41db",
+      "name": "Supabase",
+      "credentials": {
+        "supabaseApi": {
+          "id": "6stEFLC7gtftREcf",
+          "name": "Supabase Campaign manager"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "tableId": "data_upload_5_april",
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "id",
+              "condition": "eq",
+              "keyValue": "={{ $('Loop Over Items').item.json.id }}"
+            }
+          ]
+        },
+        "fieldsUi": {
+          "fieldValues": [
+            {
+              "fieldId": "upload_status",
+              "fieldValue": "true"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        640,
+        -340
+      ],
+      "id": "7580e965-af87-468a-84a5-064df891616c",
+      "name": "Supabase1",
+      "credentials": {
+        "supabaseApi": {
+          "id": "6stEFLC7gtftREcf",
+          "name": "Supabase Campaign manager"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "amount": 2.5
+      },
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        860,
+        -340
+      ],
+      "id": "715134f5-23aa-46aa-9d9f-1e366fd4c233",
+      "name": "Wait",
+      "webhookId": "a391b2e3-30cb-4e30-9351-62dbaa0ca680"
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2025-04-05T09:53:37.000Z",
+  "versionId": "8aa2dad6-c8fd-423d-b963-f9840ecff3d8"
+}
