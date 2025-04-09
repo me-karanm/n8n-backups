@@ -1,0 +1,327 @@
+{
+  "active": false,
+  "connections": {
+    "When clicking ‘Test workflow’": {
+      "main": [
+        [
+          {
+            "node": "Postgres",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Postgres": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request": {
+      "main": [
+        [
+          {
+            "node": "Markdown",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Basic LLM Chain": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Loop Over Items": {
+      "main": [
+        [],
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Basic LLM Chain",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields2": {
+      "main": [
+        [
+          {
+            "node": "Basic LLM Chain",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Structured Output Parser": {
+      "ai_outputParser": [
+        [
+          {
+            "node": "Basic LLM Chain",
+            "type": "ai_outputParser",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Markdown": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-04-01T17:46:34.344Z",
+  "id": "chN5BcaNfnaAvSr7",
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "Update News",
+  "nodes": [
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        0,
+        0
+      ],
+      "id": "634557cb-178c-4be5-a841-339249a7f151",
+      "name": "When clicking ‘Test workflow’"
+    },
+    {
+      "parameters": {
+        "operation": "select",
+        "schema": {
+          "__rl": true,
+          "mode": "list",
+          "value": "public"
+        },
+        "table": {
+          "__rl": true,
+          "value": "event_newsdata",
+          "mode": "list",
+          "cachedResultName": "event_newsdata"
+        },
+        "returnAll": true,
+        "options": {}
+      },
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.5,
+      "position": [
+        240,
+        0
+      ],
+      "id": "8544e059-909c-40bc-b235-77aa841abf8f",
+      "name": "Postgres",
+      "credentials": {
+        "postgres": {
+          "id": "iOOTVit15R9PSjWX",
+          "name": "Milesone-Production(DO NOT TOUCH)"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "mode": "raw",
+        "jsonOutput": "={{ $('Postgres').first().json.toJsonString() }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        540,
+        0
+      ],
+      "id": "4039c2e7-15d0-4cef-973d-7b9384625efc",
+      "name": "Edit Fields"
+    },
+    {
+      "parameters": {
+        "url": "={{ $json.article_url }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        1100,
+        20
+      ],
+      "id": "b4662f97-c138-4d4c-abae-cc404e46c90d",
+      "name": "HTTP Request",
+      "retryOnFail": true,
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "={{ $json.data }}",
+        "hasOutputParser": true
+      },
+      "type": "@n8n/n8n-nodes-langchain.chainLlm",
+      "typeVersion": 1.5,
+      "position": [
+        2080,
+        20
+      ],
+      "id": "0eda6dcc-d7cd-4f72-9946-0b19eca00fc1",
+      "name": "Basic LLM Chain",
+      "retryOnFail": true,
+      "alwaysOutputData": true,
+      "maxTries": 5
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        2560,
+        20
+      ],
+      "id": "14671710-21ab-42d1-8153-54a2fa9d7fce",
+      "name": "Edit Fields1"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [
+        760,
+        0
+      ],
+      "id": "3289a7ad-3e1a-4da0-a3d3-f34a4d2aaa98",
+      "name": "Loop Over Items"
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "value": "gpt-4o-mini",
+          "mode": "list",
+          "cachedResultName": "gpt-4o-mini"
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.2,
+      "position": [
+        2040,
+        320
+      ],
+      "id": "28750977-c7c5-4589-a539-00e871bdd162",
+      "name": "OpenAI Chat Model",
+      "credentials": {
+        "openAiApi": {
+          "id": "1YuTLSipCtFhGnPD",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "39101d6a-1ad3-4841-955c-a858ccd6cf93",
+              "name": "data",
+              "value": "={{ $json.data }} {{ $('Loop Over Items').first().json.toJsonString() }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        1720,
+        20
+      ],
+      "id": "5e78501e-7eda-4073-8d6e-6ba35034572a",
+      "name": "Edit Fields2"
+    },
+    {
+      "parameters": {
+        "jsonSchemaExample": "{\n  \"id\": \"{{generate UUIDv4}}\",\n  \"source\": \"{{extract domain-based source from article_url, e.g., 'Accounting Today'}}\",\n  \"title\": \"{{string, 75–100 characters, clear and concise headline}}\",\n  \"description\": \"{{string, 550–600 characters, expanded summary of article}}\",\n  \"likes\": \"{{random number between 10 and 1000}}\",\n  \"article_url\": \"{{valid article URL string}}\",\n  \"featured\": \"{{true if highly significant, otherwise false}}\",\n  \"image_url\": \"{{valid image URL string (ideally 16:9 ratio)}}\",\n  \"published_at\": \"{{ISO timestamp, same as news_start_date}}\",\n  \"content\": \"{{string, 550–600 characters, detailed insights and takeaways}}\",\n  \"mini_description\": \"{{string, 190–210 characters, concise summary}}\",\n  \"category_id\": \"{{must be one UUID from the predefined category list}}\",\n  \"trending\": \"{{true if gaining traction, else false}}\",\n  \"processed_image_url\": \"{{must match image_url unless post-processed}}\",\n  \"news_start_date\": \"{{ISO timestamp, time of content generation}}\",\n  \"news_end_date\": \"{{ISO timestamp, based on relevance: +3/+30/+90 days}}\",\n  \"active\": \"{{true if article is still relevant, else false}}\"\n}\n"
+      },
+      "type": "@n8n/n8n-nodes-langchain.outputParserStructured",
+      "typeVersion": 1.2,
+      "position": [
+        2380,
+        320
+      ],
+      "id": "ecd12e49-82c3-4480-a792-15fa3d620f5b",
+      "name": "Structured Output Parser"
+    },
+    {
+      "parameters": {
+        "html": "={{ $json.data }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.markdown",
+      "typeVersion": 1,
+      "position": [
+        1420,
+        20
+      ],
+      "id": "2324e352-2762-48ec-9a6d-c6eaffe7ffa8",
+      "name": "Markdown",
+      "retryOnFail": true
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2025-04-02T07:45:34.000Z",
+  "versionId": "d06b1703-769b-4d33-91f7-b826e4f72d10"
+}
