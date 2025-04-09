@@ -1,0 +1,714 @@
+{
+  "active": false,
+  "connections": {
+    "getContent": {
+      "main": [
+        [
+          {
+            "node": "Markdown",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Chat Model1": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "summarizeArticles",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Markdown": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "summarizeArticles": {
+      "main": [
+        [
+          {
+            "node": "setFields1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "setFields1": {
+      "main": [
+        [
+          {
+            "node": "postgres milesone",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields": {
+      "main": [
+        [
+          {
+            "node": "summarizeArticles",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Postgres1": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "postgres milesone": {
+      "main": [
+        []
+      ]
+    },
+    "Loop Over Items": {
+      "main": [
+        [],
+        [
+          {
+            "node": "Edit Fields1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields1": {
+      "main": [
+        [
+          {
+            "node": "If",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields2",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields2": {
+      "main": [
+        [
+          {
+            "node": "getContent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Structured Output Parser1": {
+      "ai_outputParser": [
+        [
+          {
+            "node": "summarizeArticles",
+            "type": "ai_outputParser",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Schedule Trigger": {
+      "main": [
+        [
+          {
+            "node": "Postgres1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-04-02T07:46:07.751Z",
+  "id": "TPux8qTZKLGCZfbD",
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "Update News 2",
+  "nodes": [
+    {
+      "parameters": {
+        "url": "={{ $json[''][''].article_url }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        1380,
+        -220
+      ],
+      "id": "989a2fce-07df-41fc-b3bb-11b40b7adf70",
+      "name": "getContent",
+      "onError": "continueErrorOutput"
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "value": "openai/gpt-4o-mini",
+          "mode": "list",
+          "cachedResultName": "openai/gpt-4o-mini"
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.2,
+      "position": [
+        2100,
+        200
+      ],
+      "id": "aa45ae96-bd81-4f1f-b772-9ffdf62e0d3c",
+      "name": "OpenAI Chat Model1",
+      "credentials": {
+        "openAiApi": {
+          "id": "gMimpnq5xUYwijxb",
+          "name": "Miles AI/ML - Analytics Account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "html": "={{ $json.data }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.markdown",
+      "typeVersion": 1,
+      "position": [
+        1660,
+        -240
+      ],
+      "id": "1c17d251-5f62-4e77-8cb6-82b745f922aa",
+      "name": "Markdown",
+      "retryOnFail": true,
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "={{ $json['data 2'] }} {{ $json.data }}",
+        "hasOutputParser": true,
+        "messages": {
+          "messageValues": [
+            {
+              "message": "  You are an intelligent **news-generation agent**, responsible for writing original news articles in the style of professional media organizations such as **CNBC, Bloomberg, Economic Times, and Reuters**. You will receive records of articles (with `\"active\": false`) and must determine if they should be updated and reactivated, or left unchanged.  ---  ### 🧭 **Evaluation Workflow**  | Step | Task | |------|------| | **1. Assess Article Relevance** | Evaluate the article fields: `title`, `mini_description`, `description`, `content`, and `category`. \n\n **2. If Article is Still Relevant** | Write a **fresh original news piece** in the tone of major news media. set `active: true`. Recalculate `featured`, `trending`, `likes`, and date fields. \n\n**3. If Article is Not Relevant / No Change** | **Return the entire input object as-is**, but **ensure `active: false`**. Do not rewrite or alter any field. \n\n **4. If Category is Invalid or Missing** | Skip the article.\n\n  ---  ### 📝 **Writing Style Requirements**  - Write **original news articles**, not summaries or paraphrases. - Adopt the **professional editorial tone** of Bloomberg, CNBC, Reuters, or Economic Times. - Prioritize:   - **Strong, newsworthy headlines**   - **Sharp mini-descriptions**   - **Detailed descriptions and analytical content**  ---  \n\n### 📐 **Field-by-Field Schema**  | Field | Rules | \n\n#### 2. \"title\" (string, required) - Range of Max  100 characters and  Min 75 characters. - Should strictly follow character limi, can not exceed 100 characters. Must clearly convey the **main topic** of the article.  \n\n#### 3. \"mini_description\" (string, required) - Range of  Max 200 characters and minimum of 180 characters, Should strictly follow character limit, can not exceed 200 characters. - A quick insight of the key message. Write it as if you are writing it for a news channel  \n\n#### 4. \"description_content\" (string, required) -  Rage of- Max 600 characters and minimum of 550 characters,  s Should strictly follow character limit, can not exceed 600 characters.   - Include insights, details, and article takeaways. As if you are writing it for a news channel.  \n\n#### 5. \"content\" (string, required) - - Range of  550 characters to 600 characters, strictly follows the guideline  - A synopsis of what has happened, all insights, details, and takeaways, write it as a news article, as if you are writing it for a news channel.  \n\n#### 6. \"category\" (string, required, MUST be UUID) Select one category and assign its **UUID** from the list below: \n1. Tech in Accounting\nUUID: 02236360-cf24-4649-adb9-72ed6df8ba44\nDefinition: News and updates on how emerging technologies—such as AI, automation, blockchain, or accounting software—are transforming accounting practices, tools, and workflows.\n\n2. Markets & Investments\nUUID: 18decbe9-a05f-49d7-8168-184b48fa579f\nDefinition: Articles covering stock markets, financial instruments, investment trends, capital flows, portfolio management, and analysis of economic indicators affecting investments.\n\n3. Business & Economy\nUUID: 3a5092c7-d75e-4d8c-ac23-47a990418ac7\nDefinition: Broader insights on business environments, economic policy, GDP trends, fiscal updates, business regulations, and news that affect enterprises at national or global levels.\n\n4. Accounting Trivia\nUUID: 786be833-f9d0-4461-9f14-5f6f00ef0cff\nDefinition: Light-hearted or lesser-known facts, historical milestones, fun facts, and quirky insights about the accounting world, its people, or practices.\n\n5. Accounting License\nUUID: ac86a35f-d3ba-4a68-bd13-c9fc0c1732fa\nDefinition: Content related to accounting certifications and licensure—such as CPA, CMA, ACCA—including updates, requirements, exam formats, and continuing education.\n\n6. The Accounting Profession\nUUID: b35ecea3-66a4-4181-93a3-0755c4730c3f\nDefinition: Articles focused on the state and evolution of the accounting profession, including ethics, work culture, demographics, leadership, and recognition in the industry.\n\n7. Valuation, Mergers and Acquisition\nUUID: dbf056a4-bc34-4590-b76e-3a324d894ec5\nDefinition: Coverage of company valuations, business deals, M&A activity, IPOs, and financial advisory services surrounding corporate restructuring and asset analysis.\n\n8. Hiring & Firing\nUUID: f4efb5f2-b845-4e12-978f-53114cc92007\nDefinition: News related to recruitment, layoffs, workforce changes, hiring trends, job cuts, and employment policies within accounting firms or related industries.\n\nCarefully categorise the news based on the category definition given\n\n\n❗ **Return only the UUID. Do NOT return the name or number.** If article doesn't fit into a category fits, discard the articl, return empty jason for all fileds.\n\n#### 7. \"article_url\", \"image_url\", \"processed_image_url\" (string, required) - \"article_url\" → Valid link to article - \"image_url\" → Valid image link (ideally 16:9) - \"processed_image_url\" → Must match \"image_url\" unless modified  \n\n#### 8. \"likes\" (number, required) - Always return a random number between **10 and 1000**  \n\n#### 9. \"featured\" and \"trending\" (boolean, required)\n\n\"featured\": true if the article is highly significant\n\n\"trending\": true if gaining traction quickly\n\nFor an article:\n\n\"featured\" can be true, \"trending\" must be false\n\n\"featured\" can be false, \"trending\" can be true\n\n\"featured\" can be false, \"trending\" can be false\n\nboth \"featured\": true, \"trending\": true together is not allowed\n\n⚠️ Classification must be strict — assign true only if the article clearly meets the criteria.\n\n#### 10. \"news_start_date\"  \"null\" \n\n#### 11. \"news_end_date\" - \"null\" \n\n#### 12. . \"published_at\" - \"null\" \n\n#### 13. \"active\" (boolean, required) - Always \"true\"  \n\n#### 14. \"source\"(string, required)  - based on the \"article_url\" \"\"source\" determine determine the source of the news, for example \"Accounting Today\" \n\n--- Important Output Rules: \n1. Respond with only a clean JSON array. Do not wrap the response in any object or include extra fields like \"output\" or \"response\". \n2. Do not use markdown formatting, triple backticks (```), or any language tag like `json`. \n3. The output must begin with \"[\" and end with \"]\". \n4. Each item in the array must follow the exact schema provided. "
+            }
+          ]
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.chainLlm",
+      "typeVersion": 1.5,
+      "position": [
+        2160,
+        -160
+      ],
+      "id": "d1829a1c-5f39-415a-9cd1-01dcd9f5ba79",
+      "name": "summarizeArticles",
+      "retryOnFail": true,
+      "maxTries": 4,
+      "alwaysOutputData": true,
+      "executeOnce": false,
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "mode": "raw",
+        "jsonOutput": "={{ $json.output }}\n",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        2660,
+        -160
+      ],
+      "id": "43831775-3b5f-495b-83c4-b3b73563586c",
+      "name": "setFields1",
+      "retryOnFail": true,
+      "alwaysOutputData": false,
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "b79c0c8a-7201-4e88-a004-bc16f31b3500",
+              "name": "data",
+              "value": "={{ $json.data }}",
+              "type": "string"
+            },
+            {
+              "id": "bc06f4c4-de50-411a-bb80-4177994d9f10",
+              "name": "data 2",
+              "value": "={{ $('Edit Fields2').first().json}}",
+              "type": "object"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        1920,
+        -220
+      ],
+      "id": "ac554499-4569-45bd-9665-f38eae4f7787",
+      "name": "Edit Fields",
+      "retryOnFail": true
+    },
+    {
+      "parameters": {
+        "operation": "select",
+        "schema": {
+          "__rl": true,
+          "value": "public",
+          "mode": "list",
+          "cachedResultName": "public"
+        },
+        "table": {
+          "__rl": true,
+          "value": "event_newsdata",
+          "mode": "list",
+          "cachedResultName": "event_newsdata"
+        },
+        "returnAll": true,
+        "options": {}
+      },
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.5,
+      "position": [
+        -420,
+        -220
+      ],
+      "id": "14668fee-0b67-4cb1-8246-d867baf60645",
+      "name": "Postgres1",
+      "alwaysOutputData": true,
+      "retryOnFail": true,
+      "credentials": {
+        "postgres": {
+          "id": "iOOTVit15R9PSjWX",
+          "name": "Milesone-Production(DO NOT TOUCH)"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "schema": {
+          "__rl": true,
+          "value": "public",
+          "mode": "list",
+          "cachedResultName": "public"
+        },
+        "table": {
+          "__rl": true,
+          "value": "event_newsdata",
+          "mode": "list",
+          "cachedResultName": "event_newsdata"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "featured": "={{ $json.featured }}",
+            "trending": "={{ $json.trending }}",
+            "active": "={{ $json.active }}",
+            "likes": "={{ $json.likes }}",
+            "id": "={{ $json.id }}",
+            "source": "={{ $json.source }}",
+            "title": "={{ $json.title }}",
+            "description": "={{ $json.description }}",
+            "article_url": "={{ $json.article_url }}",
+            "image_url": "={{ $json.image_url }}",
+            "news_start_date": "={{ $now }}",
+            "news_end_date": "={{ $now.plus(10,'days') }}",
+            "category_id": "={{ $json.category_id }}",
+            "content": "={{ $json.content }}",
+            "published_at": "={{ $json.published_at }}",
+            "mini_description": "={{ $json.mini_description }}",
+            "processed_image_url": "={{ $json.processed_image_url }}"
+          },
+          "matchingColumns": [
+            "id"
+          ],
+          "schema": [
+            {
+              "id": "id",
+              "displayName": "id",
+              "required": true,
+              "defaultMatch": true,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "source",
+              "displayName": "source",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "title",
+              "displayName": "title",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "description",
+              "displayName": "description",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "likes",
+              "displayName": "likes",
+              "required": true,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "article_url",
+              "displayName": "article_url",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "featured",
+              "displayName": "featured",
+              "required": true,
+              "defaultMatch": false,
+              "display": true,
+              "type": "boolean",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "image_url",
+              "displayName": "image_url",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "published_at",
+              "displayName": "published_at",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "dateTime",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "content",
+              "displayName": "content",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "mini_description",
+              "displayName": "mini_description",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "trending",
+              "displayName": "trending",
+              "required": true,
+              "defaultMatch": false,
+              "display": true,
+              "type": "boolean",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "processed_image_url",
+              "displayName": "processed_image_url",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "news_start_date",
+              "displayName": "news_start_date",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "dateTime",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "news_end_date",
+              "displayName": "news_end_date",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "dateTime",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "active",
+              "displayName": "active",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "boolean",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "uploaded_image",
+              "displayName": "uploaded_image",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "category_id",
+              "displayName": "category_id",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.5,
+      "position": [
+        3040,
+        -160
+      ],
+      "id": "1373c89a-2013-4333-acdb-330e065c164e",
+      "name": "postgres milesone",
+      "retryOnFail": true,
+      "credentials": {
+        "postgres": {
+          "id": "iOOTVit15R9PSjWX",
+          "name": "Milesone-Production(DO NOT TOUCH)"
+        }
+      },
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [
+        -100,
+        -220
+      ],
+      "id": "6b118dfc-152f-480e-aef4-16f5d38cea3f",
+      "name": "Loop Over Items",
+      "retryOnFail": true,
+      "alwaysOutputData": true
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "400f543d-9505-4607-b279-f39e43c653b2",
+              "name": "",
+              "value": "={{ $('Loop Over Items').first().json.toJsonString() }}",
+              "type": "object"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        240,
+        -200
+      ],
+      "id": "a8ff665c-905f-470e-bca3-d20d405b749d",
+      "name": "Edit Fields1"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "a08d6a68-65f4-4346-b795-5176951e15e6",
+              "leftValue": "={{ $json[''].active }}",
+              "rightValue": false,
+              "operator": {
+                "type": "boolean",
+                "operation": "equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        520,
+        -200
+      ],
+      "id": "a7ae7677-eed2-4f99-8e89-6ed6b0766d7c",
+      "name": "If"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "2362c1e1-4026-4cdc-9382-260992248674",
+              "name": "",
+              "value": "={{ $('If').first().json.toJsonString() }}",
+              "type": "object"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        840,
+        -220
+      ],
+      "id": "a11a0132-a9cb-4cd0-b426-37f5d75cb793",
+      "name": "Edit Fields2",
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "schemaType": "manual",
+        "inputSchema": "\n  {\n    \"source\": \"Accountancy Today\",\n    \"title\": \"Five trends that will redefine finance and accounting in 2025\",\n    \"description\": \"Key trends set to reshape finance and accounting in 2025 include AI integration, sustainability-focused reporting, and blockchain adoption. Other areas include workforce evolution with hybrid models and increased regulatory scrutiny. These changes are expected to drive innovation, enhance transparency, and offer new growth opportunities for firms ready to adapt to the evolving landscape.\",\n    \"likes\": 0,\n    \"article_url\": \"https://www.accountingtoday.com/list/five-trends-that-will-redefine-finance-and-accounting-in-2025\",\n    \"featured\": false,\n    \"image_url\": \"https://gaper.io/wp-content/uploads/2024/12/accounting-industry_-Trends-min.png\",\n    \"published_at\": \"\",\n    \"content\": null,\n    \"mini_description\": \"Key trends set to reshape finance and accounting in 2025 include AI integration, sustainability-focused reporting, and blockchain adoption.\",\n    \"trending\": true,\n    \"processed_image_url\": \"https://storage.googleapis.com/miles-usp-bed/processed_images/9dca0172-8af9-4064-9f5c-9c5357063e3b_processed.jpg\",\n    \"news_start_date\": \"\",\n    \"news_end_date\": \"\",\n    \"active\": false,\n    \"uploaded_image\": \"\",\n    \"category_id\": \"3a5092c7-d75e-4d8c-ac23-47a990418ac7\"\n  }"
+      },
+      "type": "@n8n/n8n-nodes-langchain.outputParserStructured",
+      "typeVersion": 1.2,
+      "position": [
+        2400,
+        200
+      ],
+      "id": "1908ce0d-f53d-4553-ad0b-55abe7297517",
+      "name": "Structured Output Parser1"
+    },
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "triggerAtHour": 8
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        -700,
+        -220
+      ],
+      "id": "d07173a6-f7ab-49cd-9727-f9a4629c0d30",
+      "name": "Schedule Trigger"
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1",
+    "timezone": "Asia/Kolkata",
+    "callerPolicy": "workflowsFromSameOwner"
+  },
+  "staticData": {
+    "node:Schedule Trigger": {
+      "recurrenceRules": []
+    }
+  },
+  "tags": [],
+  "triggerCount": 1,
+  "updatedAt": "2025-04-09T17:54:21.000Z",
+  "versionId": "5fa97d98-aa25-414d-a5da-82640bbe097e"
+}
