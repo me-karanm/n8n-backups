@@ -61,45 +61,6 @@
     },
     {
       "parameters": {
-        "phoneNumberId": "108019349036743",
-        "recipientPhoneNumber": "={{ $json.body.number }}",
-        "template": "odoo_message|en",
-        "components": {
-          "component": [
-            {
-              "bodyParameters": {
-                "parameter": [
-                  {
-                    "text": "={{ $json.body.name }}"
-                  },
-                  {
-                    "text": "={{ $json.body.message }}"
-                  }
-                ]
-              }
-            }
-          ]
-        }
-      },
-      "id": "77708f11-1c7f-4aa2-9497-5b54fb7a62c5",
-      "name": "WhatsApp Business Cloud",
-      "type": "n8n-nodes-base.whatsApp",
-      "typeVersion": 1,
-      "position": [
-        1520,
-        80
-      ],
-      "webhookId": "2d2d379c-0d65-4968-9f9b-7387debce96d",
-      "credentials": {
-        "whatsAppApi": {
-          "id": "KHcTD6EUGATb3z0D",
-          "name": "Secondary | Marketing Miles Education"
-        }
-      },
-      "continueOnFail": true
-    },
-    {
-      "parameters": {
         "template": "us-pathway-otp",
         "fromEmail": "usp@mileseducation.com",
         "toEmail": "={{ $json.body.email }}",
@@ -124,8 +85,8 @@
       "type": "n8n-nodes-base.mandrill",
       "typeVersion": 1,
       "position": [
-        1120,
-        240
+        1100,
+        20
       ],
       "credentials": {
         "mandrillApi": {
@@ -133,56 +94,6 @@
           "name": "Mandrill account"
         }
       }
-    },
-    {
-      "parameters": {
-        "phoneNumberId": "108019349036743",
-        "recipientPhoneNumber": "={{ $json.body.number }}",
-        "template": "odoo_template|en",
-        "components": {
-          "component": [
-            {
-              "bodyParameters": {
-                "parameter": [
-                  {
-                    "text": "={{ $json.body.name }}"
-                  },
-                  {
-                    "text": "={{ $json.body.code ?? 'xxx' }}"
-                  }
-                ]
-              }
-            },
-            {
-              "type": "header",
-              "headerParameters": {
-                "parameter": [
-                  {
-                    "type": "image",
-                    "imageLink": "https://blcwdqfhupddorxpdcjl.supabase.co/storage/v1/object/public/wa_assets/Accounting Fun-01.jpg"
-                  }
-                ]
-              }
-            }
-          ]
-        }
-      },
-      "id": "7d1edd12-4ddd-482b-8b55-415278868853",
-      "name": "WhatsApp Business Cloud1",
-      "type": "n8n-nodes-base.whatsApp",
-      "typeVersion": 1,
-      "position": [
-        960,
-        460
-      ],
-      "webhookId": "cc8c7a10-a027-43c1-8423-4caaa66ba2d8",
-      "credentials": {
-        "whatsAppApi": {
-          "id": "KHcTD6EUGATb3z0D",
-          "name": "Secondary | Marketing Miles Education"
-        }
-      },
-      "continueOnFail": true
     },
     {
       "parameters": {
@@ -246,7 +157,7 @@
     {
       "parameters": {
         "phoneNumberId": "108019349036743",
-        "recipientPhoneNumber": "={{ $json.body.number }}",
+        "recipientPhoneNumber": "={{ $('Webhook').first().json.body.number }}",
         "template": "auth_verification_1|en",
         "components": {
           "component": [
@@ -254,7 +165,7 @@
               "bodyParameters": {
                 "parameter": [
                   {
-                    "text": "={{ $json.body.otp }}"
+                    "text": "={{ $('Webhook').first().json.body.otp }}"
                   }
                 ]
               }
@@ -264,52 +175,7 @@
               "sub_type": "url",
               "buttonParameters": {
                 "parameter": {
-                  "payload": "={{ $json.body.otp }}"
-                }
-              }
-            }
-          ]
-        }
-      },
-      "id": "23e31dbd-42b1-4dc7-a981-f9bf60621425",
-      "name": "WhatsApp Business Cloud3",
-      "type": "n8n-nodes-base.whatsApp",
-      "typeVersion": 1,
-      "position": [
-        1460,
-        -60
-      ],
-      "webhookId": "215e09a1-3523-4591-99cf-ff045c25a038",
-      "credentials": {
-        "whatsAppApi": {
-          "id": "KHcTD6EUGATb3z0D",
-          "name": "Secondary | Marketing Miles Education"
-        }
-      },
-      "continueOnFail": true
-    },
-    {
-      "parameters": {
-        "phoneNumberId": "108019349036743",
-        "recipientPhoneNumber": "={{ $('Webhook').item.json.body.number }}",
-        "template": "auth_verification_1|en",
-        "components": {
-          "component": [
-            {
-              "bodyParameters": {
-                "parameter": [
-                  {
-                    "text": "={{ $('Webhook').item.json.body.otp }}"
-                  }
-                ]
-              }
-            },
-            {
-              "type": "button",
-              "sub_type": "url",
-              "buttonParameters": {
-                "parameter": {
-                  "payload": "={{ $('Webhook').item.json.body.otp }}"
+                  "payload": "={{ $('Webhook').first().json.body.otp }}"
                 }
               }
             }
@@ -319,18 +185,20 @@
       "type": "n8n-nodes-base.whatsApp",
       "typeVersion": 1,
       "position": [
-        1180,
-        -40
+        1100,
+        220
       ],
       "id": "f3822255-b4d9-47ba-bfa7-8329e0957fc5",
       "name": "WhatsApp Business Cloud4",
       "webhookId": "2fb29218-7fef-41c3-8467-44d12c2c8fd0",
+      "retryOnFail": false,
       "credentials": {
         "whatsAppApi": {
           "id": "KHcTD6EUGATb3z0D",
           "name": "Secondary | Marketing Miles Education"
         }
-      }
+      },
+      "onError": "continueRegularOutput"
     }
   ],
   "pinData": {
@@ -375,6 +243,6 @@
   "staticData": null,
   "tags": [],
   "triggerCount": 1,
-  "updatedAt": "2025-03-07T06:27:19.000Z",
-  "versionId": "3172909e-4559-4066-9190-019ab4070748"
+  "updatedAt": "2025-03-07T07:13:50.000Z",
+  "versionId": "4067fe49-2830-44b8-a28f-67dc5f43882f"
 }
