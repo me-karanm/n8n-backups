@@ -1,0 +1,1568 @@
+{
+  "active": false,
+  "connections": {
+    "Supabase": {
+      "main": [
+        [
+          {
+            "node": "IF",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Supabase1": {
+      "main": [
+        [
+          {
+            "node": "IF20",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Wait4",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Date & Time": {
+      "main": [
+        [
+          {
+            "node": "Supabase3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Supabase",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Supabase3": {
+      "main": [
+        [
+          {
+            "node": "Supabase2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "IF": {
+      "main": [
+        [
+          {
+            "node": "Supabase1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait1": {
+      "main": [
+        [
+          {
+            "node": "Supabase5",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request": {
+      "main": [
+        [
+          {
+            "node": "IF22",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Supabase2": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "IF1": {
+      "main": [
+        [
+          {
+            "node": "Date & Time",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "IF3": {
+      "main": [
+        [
+          {
+            "node": "IF1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "WhatsApp Business Cloud4": {
+      "main": [
+        [
+          {
+            "node": "Set7",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "WhatsApp Business Cloud5": {
+      "main": [
+        [
+          {
+            "node": "Set9",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Supabase5": {
+      "main": [
+        [
+          {
+            "node": "IF21",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Set9": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request20",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Set7": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request17",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Set12": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request25",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "WhatsApp Business Cloud6": {
+      "main": [
+        [
+          {
+            "node": "Set12",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "IF20": {
+      "main": [
+        [
+          {
+            "node": "Wait1",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Set24",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Set24": {
+      "main": [
+        [
+          {
+            "node": "Wait1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "IF21": {
+      "main": [
+        [
+          {
+            "node": "IF3",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Set25",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Set25": {
+      "main": [
+        [
+          {
+            "node": "IF3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "IF22": {
+      "main": [
+        [
+          {
+            "node": "Switch2",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Set26",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Set26": {
+      "main": [
+        [
+          {
+            "node": "Switch2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "EA": {
+      "main": [
+        [
+          {
+            "node": "Set29",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Set29": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request37",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Switch2": {
+      "main": [
+        [
+          {
+            "node": "WhatsApp Business Cloud6",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Mandrill",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "WhatsApp Business Cloud5",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Mandrill5",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "WhatsApp Business Cloud4",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Mandrill4",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait4": {
+      "main": [
+        [
+          {
+            "node": "Set30",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Set30": {
+      "main": [
+        []
+      ]
+    }
+  },
+  "createdAt": "2025-03-07T12:27:59.945Z",
+  "id": "GhPsfUls0X7FIkaQ",
+  "meta": null,
+  "name": "n8n support - form 2 filled",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "25566d1e-05c5-4f8b-ae3f-015389641917",
+        "options": {}
+      },
+      "id": "1391986d-309b-4f6e-9406-095d51013da5",
+      "name": "Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        0,
+        440
+      ],
+      "webhookId": "25566d1e-05c5-4f8b-ae3f-015389641917"
+    },
+    {
+      "parameters": {
+        "operation": "get",
+        "tableId": "visit_office",
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "id",
+              "keyValue": "={{ $json.body.id }}"
+            }
+          ]
+        }
+      },
+      "id": "e2cc59bf-6cf2-42a2-92d0-19f247d3e22d",
+      "name": "Supabase",
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        220,
+        440
+      ],
+      "credentials": {
+        "supabaseApi": {
+          "id": "6stEFLC7gtftREcf",
+          "name": "Supabase Campaign manager"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "get",
+        "tableId": "leads_dump",
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "id",
+              "keyValue": "={{ $json.leads_dump_id }}"
+            }
+          ]
+        }
+      },
+      "id": "6e8988ec-c297-4318-9001-cf15e7bbc035",
+      "name": "Supabase1",
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        580,
+        420
+      ],
+      "credentials": {
+        "supabaseApi": {
+          "id": "6stEFLC7gtftREcf",
+          "name": "Supabase Campaign manager"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "formatDate",
+        "date": "={{ $('Supabase').item.json.time_slots }}",
+        "format": "X",
+        "options": {}
+      },
+      "id": "7d3927eb-ef12-4053-b45f-33a785d4d666",
+      "name": "Date & Time",
+      "type": "n8n-nodes-base.dateTime",
+      "typeVersion": 2,
+      "position": [
+        3100,
+        440
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "tableId": "visit_office",
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "id",
+              "condition": "eq",
+              "keyValue": "={{ $('Supabase').item.json.id }}"
+            }
+          ]
+        },
+        "fieldsUi": {
+          "fieldValues": [
+            {
+              "fieldId": "spoc_phone",
+              "fieldValue": "={{ $json.spoc_phone }}"
+            },
+            {
+              "fieldId": "spoc_gm",
+              "fieldValue": "={{ $json.spoc_gm }}"
+            },
+            {
+              "fieldId": "sopc_name",
+              "fieldValue": "={{ $json.spoc_name }}"
+            },
+            {
+              "fieldId": "flow_started",
+              "fieldValue": "true"
+            }
+          ]
+        }
+      },
+      "id": "13fb8b83-61f1-4534-9d0c-97920d16ff4d",
+      "name": "Supabase3",
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        3420,
+        440
+      ],
+      "credentials": {
+        "supabaseApi": {
+          "id": "6stEFLC7gtftREcf",
+          "name": "Supabase Campaign manager"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "boolean": [
+            {
+              "value1": "={{ $json.flow_started }}",
+              "operation": "notEqual"
+            }
+          ]
+        }
+      },
+      "id": "da6f0042-db24-435c-86c5-de30d86989ef",
+      "name": "IF",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        400,
+        440
+      ]
+    },
+    {
+      "parameters": {
+        "amount": 1.3,
+        "unit": "seconds"
+      },
+      "id": "add71ee1-9a2a-447b-9b43-ecf630efcde9",
+      "name": "Wait1",
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1,
+      "position": [
+        1680,
+        380
+      ],
+      "webhookId": "32772c55-d733-4ad7-944c-22e33dd1123f"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://one.mileseducation.us/functions/v1/get-lead-status",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "authorization",
+              "value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJsY3dkcWZodXBkZG9yeHBkY2psIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTY5Mjg3OTEyOCwiZXhwIjoyMDA4NDU1MTI4fQ._Hzr82vWuBEVve1E5TwQG89sezurTyajUAy35XgiS7s"
+            }
+          ]
+        },
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "dataId",
+              "value": "={{ $('Supabase3').item.json.leads_dump_id }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "2e966c53-9ca9-493c-bb35-31ab192ff248",
+      "name": "HTTP Request",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        3740,
+        440
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "get",
+        "tableId": "miles_locations",
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "location_name",
+              "keyValue": "={{ $json.city != \"Choose City\" ? $json.city: \"Virtual\" }}"
+            }
+          ]
+        }
+      },
+      "id": "de3588cb-67e7-451e-bc0e-5bc5944b35a9",
+      "name": "Supabase2",
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        3580,
+        440
+      ],
+      "credentials": {
+        "supabaseApi": {
+          "id": "6stEFLC7gtftREcf",
+          "name": "Supabase Campaign manager"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "boolean": [
+            {
+              "value1": "={{ $json.course == 9 || $json.course == 2 || $json.course == 3 || $json.course == 12 }}",
+              "value2": true
+            }
+          ]
+        }
+      },
+      "id": "04323003-4d15-4e11-ad42-c9051be6f8ef",
+      "name": "IF1",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        2880,
+        460
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "string": [
+            {
+              "value1": "={{ $json.page_full_url }}",
+              "operation": "notContains",
+              "value2": "ct.miles"
+            }
+          ]
+        }
+      },
+      "id": "54857200-276d-4122-9621-d862c1b8d085",
+      "name": "IF3",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        2660,
+        480
+      ]
+    },
+    {
+      "parameters": {
+        "phoneNumberId": "171009622770823",
+        "recipientPhoneNumber": "={{ $json.lead_details.phone }}",
+        "template": "cma_visit_scheduled_util|en",
+        "components": {
+          "component": [
+            {
+              "bodyParameters": {
+                "parameter": [
+                  {
+                    "text": "={{ $json.lead_details.first_name }}"
+                  },
+                  {
+                    "text": "={{new Date($('Supabase').first().json.time_slots).toLocaleString('en-US',{year: 'numeric',month: 'short', day: 'numeric'})}} "
+                  },
+                  {
+                    "text": "={{ $('Supabase').first().json.time_string }}"
+                  },
+                  {
+                    "text": "={{ $json.visit_details.sopc_name ? $json.visit_details.sopc_name : \"TBA\"}}"
+                  },
+                  {
+                    "text": "={{ $json.visit_details.meeting_type == 1 ?$('Supabase2').first().json.address : \"Google Meet\" }}"
+                  }
+                ]
+              }
+            },
+            {
+              "type": "button",
+              "sub_type": "url",
+              "buttonParameters": {
+                "parameter": {
+                  "payload": "={{ $('Supabase2').first().json.google_location.substring(34)}}"
+                }
+              }
+            },
+            {
+              "type": "header",
+              "headerParameters": {
+                "parameter": [
+                  {
+                    "type": "image",
+                    "imageLink": "https://one.mileseducation.us/storage/v1/object/public/wa_assets/CMA%20Banner%2005-01%20(1).jpg"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      },
+      "id": "d3a27aec-b2f9-4355-acc4-97560d4b7ec7",
+      "name": "WhatsApp Business Cloud4",
+      "type": "n8n-nodes-base.whatsApp",
+      "typeVersion": 1,
+      "position": [
+        5880,
+        200
+      ],
+      "webhookId": "af552ce1-443a-4bcb-b3eb-bd4a18016479",
+      "credentials": {
+        "whatsAppApi": {
+          "id": "JPvNp2kC4SudtNkr",
+          "name": "Primary | Marketing Miles Education"
+        }
+      },
+      "continueOnFail": true
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://webhook.miles-api.com/webhook/create-send-message",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n    \"camp_id\":324,\n    \"message_id\":\"{{ $json.messages[0].id }}\",\n    \"message\":\"{{ $json.message }}\",\n    \"mobile\":{{ $json.contacts[0].wa_id }},\n    \"sender_id\":917338649613,\n\"lead_dump_id\":{{ $('Supabase1').item.json.id }},\n\"template\":\"201_booking_confirmation\"\n}",
+        "options": {}
+      },
+      "id": "f16683b3-2d50-416a-80f6-1a85d74fd708",
+      "name": "HTTP Request17",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        6360,
+        200
+      ],
+      "continueOnFail": true
+    },
+    {
+      "parameters": {
+        "values": {
+          "string": [
+            {
+              "name": "message",
+              "value": "=201_booking_confirmation"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "006e5920-30f2-4c21-b4fa-012ca4627ab5",
+      "name": "Set7",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 2,
+      "position": [
+        6100,
+        200
+      ]
+    },
+    {
+      "parameters": {
+        "phoneNumberId": "171009622770823",
+        "recipientPhoneNumber": "={{ $json.lead_details.phone }}",
+        "template": "cpa_visit_scheduled_util|en",
+        "components": {
+          "component": [
+            {
+              "bodyParameters": {
+                "parameter": [
+                  {
+                    "text": "={{ $json.lead_details.first_name }}"
+                  },
+                  {
+                    "text": "={{new Date($('Supabase').first().json.time_slots).toLocaleString('en-US',{year: 'numeric',month: 'short', day: 'numeric'})}} "
+                  },
+                  {
+                    "text": "={{ $('Supabase').first().json.time_string }}"
+                  },
+                  {
+                    "text": "={{ $json.visit_details.sopc_name ? $json.visit_details.sopc_name : \"TBA\"}}"
+                  },
+                  {
+                    "text": "={{ $json.visit_details.meeting_type == 1 ?$('Supabase2').first().json.address : \"Google Meet\" }}"
+                  }
+                ]
+              }
+            },
+            {
+              "type": "button",
+              "sub_type": "url",
+              "buttonParameters": {
+                "parameter": {
+                  "payload": "={{ $('Supabase2').first().json.google_location.substring(34)}}"
+                }
+              }
+            },
+            {
+              "type": "header",
+              "headerParameters": {
+                "parameter": [
+                  {
+                    "type": "image",
+                    "imageLink": "https://one.mileseducation.us/storage/v1/object/public/wa_assets/CPA%20Banner%2005-01%20(1).jpg"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      },
+      "id": "fc0f31b6-95dd-4431-893e-fb0ab67d5ab3",
+      "name": "WhatsApp Business Cloud5",
+      "type": "n8n-nodes-base.whatsApp",
+      "typeVersion": 1,
+      "position": [
+        5840,
+        -80
+      ],
+      "webhookId": "bba93587-daf5-40c1-9807-12cf408189ee",
+      "credentials": {
+        "whatsAppApi": {
+          "id": "JPvNp2kC4SudtNkr",
+          "name": "Primary | Marketing Miles Education"
+        }
+      },
+      "continueOnFail": true
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://webhook.miles-api.com/webhook/create-send-message",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n    \"camp_id\":324,\n    \"message_id\":\"{{ $json.messages[0].id }}\",\n    \"message\":\"{{ $json.message }}\",\n    \"mobile\":{{ $json.contacts[0].wa_id }},\n    \"sender_id\":917338649613,\n\"lead_dump_id\":{{ $('Supabase1').item.json.id }},\n\"template\":\"101_booking_confirmation\"\n}",
+        "options": {}
+      },
+      "id": "f32fb471-0b50-41a9-aa48-f79de8cb8c70",
+      "name": "HTTP Request20",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        6320,
+        -80
+      ],
+      "continueOnFail": true
+    },
+    {
+      "parameters": {
+        "values": {
+          "string": [
+            {
+              "name": "message",
+              "value": "101_booking_confirmation"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "939dfeaf-7c26-444b-9810-042b7e1a7159",
+      "name": "Set9",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 2,
+      "position": [
+        6060,
+        -80
+      ]
+    },
+    {
+      "parameters": {
+        "phoneNumberId": "171009622770823",
+        "recipientPhoneNumber": "={{ $json.lead_details.phone }}",
+        "template": "usp_visit_scheduled_util|en",
+        "components": {
+          "component": [
+            {
+              "bodyParameters": {
+                "parameter": [
+                  {
+                    "text": "={{ $json.lead_details.first_name }}"
+                  },
+                  {
+                    "text": "={{new Date($('Supabase').first().json.time_slots).toLocaleString('en-US',{year: 'numeric',month: 'short', day: 'numeric'})}} "
+                  },
+                  {
+                    "text": "={{ $('Supabase').first().json.time_string ?? \" \" }}"
+                  },
+                  {
+                    "text": "={{ $json.visit_details.sopc_name?$json.visit_details.sopc_name : \"TBA\"}}"
+                  },
+                  {
+                    "text": "={{ $json.visit_details.meeting_type == 1 ?$('Supabase2').first().json.address : \"Google Meet\" }}"
+                  }
+                ]
+              }
+            },
+            {
+              "type": "button",
+              "sub_type": "url",
+              "buttonParameters": {
+                "parameter": {
+                  "payload": "={{ $('Supabase2').first().json.google_location.substring(34)}}"
+                }
+              }
+            },
+            {
+              "type": "header",
+              "headerParameters": {
+                "parameter": [
+                  {
+                    "type": "image",
+                    "imageLink": "https://one.mileseducation.us/storage/v1/object/public/wa_assets/USP-5-100%20(1).jpg"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      },
+      "id": "9a185f7a-829a-410e-9346-ab75c871a693",
+      "name": "WhatsApp Business Cloud6",
+      "type": "n8n-nodes-base.whatsApp",
+      "typeVersion": 1,
+      "position": [
+        5820,
+        -540
+      ],
+      "webhookId": "794114a6-5de9-4928-9794-960a2f6ca901",
+      "credentials": {
+        "whatsAppApi": {
+          "id": "JPvNp2kC4SudtNkr",
+          "name": "Primary | Marketing Miles Education"
+        }
+      },
+      "continueOnFail": true
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://webhook.miles-api.com/webhook/create-send-message",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n    \"camp_id\":324,\n    \"message_id\":\"{{ $json.messages[0].id }}\",\n    \"message\":\"{{ $json.message }}\",\n    \"mobile\":{{ $json.contacts[0].wa_id }},\n    \"sender_id\":917338649613,\n\"lead_dump_id\":{{ $('Supabase1').item.json.id }},\n\"template\":\"701_booking_confirmation\"\n}",
+        "options": {}
+      },
+      "id": "5554d769-2e34-493f-82e2-5407b1977780",
+      "name": "HTTP Request25",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        6340,
+        -540
+      ],
+      "alwaysOutputData": true,
+      "continueOnFail": true
+    },
+    {
+      "parameters": {
+        "values": {
+          "string": [
+            {
+              "name": "message",
+              "value": "701_booking_confirmation"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "8d7ef234-33c8-4654-82b3-92a1a6e2963f",
+      "name": "Set12",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 2,
+      "position": [
+        6100,
+        -540
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "get",
+        "tableId": "leads_dump",
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "id",
+              "keyValue": "={{ $json.id }}"
+            }
+          ]
+        }
+      },
+      "id": "ef8a9345-befd-4474-839c-f320000d26fc",
+      "name": "Supabase5",
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        1860,
+        380
+      ],
+      "credentials": {
+        "supabaseApi": {
+          "id": "6stEFLC7gtftREcf",
+          "name": "Supabase Campaign manager"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "string": [
+            {
+              "value1": "={{ $json.first_name }}",
+              "operation": "isNotEmpty"
+            }
+          ]
+        }
+      },
+      "id": "6c863162-da30-4cfa-ab11-81cc677c10ec",
+      "name": "IF20",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        1100,
+        380
+      ]
+    },
+    {
+      "parameters": {
+        "values": {
+          "string": [
+            {
+              "name": "first_name",
+              "value": "there"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "33f5cc52-15cc-484b-b552-95f8671aaccc",
+      "name": "Set24",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 2,
+      "position": [
+        1440,
+        660
+      ]
+    },
+    {
+      "parameters": {
+        "values": {
+          "string": [
+            {
+              "name": "first_name",
+              "value": "there"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "59790083-bbfd-496e-8a77-38b265f1cdd1",
+      "name": "Set25",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 2,
+      "position": [
+        2300,
+        720
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "string": [
+            {
+              "value1": "={{ $json.first_name }}",
+              "operation": "isNotEmpty"
+            }
+          ]
+        }
+      },
+      "id": "2cc862f3-1c99-4b5f-adb6-72463462ad25",
+      "name": "IF21",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        2080,
+        420
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "string": [
+            {
+              "value1": "={{ $json.lead_details.id }}",
+              "operation": "isNotEmpty"
+            }
+          ]
+        }
+      },
+      "id": "3cbd6197-e77c-4d7a-bd2c-f7c6aef1f45f",
+      "name": "IF22",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        3960,
+        440
+      ]
+    },
+    {
+      "parameters": {
+        "values": {
+          "string": [
+            {
+              "name": "={{ $('HTTP Request').item.json.lead_details.first_name }}",
+              "value": "there"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "d45158f3-e275-4dff-bec0-3d783fbe0a81",
+      "name": "Set26",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 2,
+      "position": [
+        4140,
+        560
+      ]
+    },
+    {
+      "parameters": {
+        "template": "usp-officevisit-t",
+        "fromEmail": "info@mileseducation.com",
+        "toEmail": "={{ $('Supabase1').first().json.email }}",
+        "options": {
+          "subject": "Your Meeting for the Miles US Pathway is Set! 🎉"
+        },
+        "mergeVarsUi": {
+          "mergeVarsValues": [
+            {
+              "name": "FNAME",
+              "content": "={{ $('Supabase1').first().json.first_name }}"
+            },
+            {
+              "name": "DATE",
+              "content": "={{ $('Supabase3').first().json.visit_date_string }}"
+            },
+            {
+              "name": "TIME",
+              "content": "={{ $('Supabase3').first().json.time_string }}"
+            },
+            {
+              "name": "SPOC",
+              "content": "={{ $('Supabase').first().json.sopc_name? $('Supabase').first().json.sopc_name : \"TBA\" }}"
+            },
+            {
+              "name": "LOCATION",
+              "content": "={{ $('Supabase').first().json.city }}"
+            }
+          ]
+        }
+      },
+      "id": "be86e5a5-1a80-4c44-9359-a120b0875747",
+      "name": "Mandrill",
+      "type": "n8n-nodes-base.mandrill",
+      "typeVersion": 1,
+      "position": [
+        5820,
+        -720
+      ],
+      "credentials": {
+        "mandrillApi": {
+          "id": "t5XAtcUI45PwVrj0",
+          "name": "Mandrill account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "template": "cma-office-visit-t",
+        "fromEmail": "info@mileseducation.com",
+        "toEmail": "={{ $('Supabase1').first().json.email }}",
+        "options": {
+          "subject": "It’s Official! Your CMA Meeting is Set! 🎉📅"
+        },
+        "mergeVarsUi": {
+          "mergeVarsValues": [
+            {
+              "name": "FNAME",
+              "content": "={{ $('Supabase1').first().json.first_name }}"
+            },
+            {
+              "name": "DATE",
+              "content": "={{ $('Supabase3').first().json.visit_date_string }}"
+            },
+            {
+              "name": "TIME",
+              "content": "={{ $('Supabase3').first().json.time_string }}"
+            },
+            {
+              "name": "SPOC",
+              "content": "={{ $('Supabase').first().json.sopc_name? $('Supabase').item.json.sopc_name : \"TBA\" }}"
+            },
+            {
+              "name": "LOCATION",
+              "content": "={{ $('Supabase').first().json.city }}"
+            }
+          ]
+        }
+      },
+      "id": "476c24d9-181d-460b-8fc9-c653568e5195",
+      "name": "Mandrill4",
+      "type": "n8n-nodes-base.mandrill",
+      "typeVersion": 1,
+      "position": [
+        5880,
+        420
+      ],
+      "credentials": {
+        "mandrillApi": {
+          "id": "t5XAtcUI45PwVrj0",
+          "name": "Mandrill account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "template": "cpa-office-visit-t",
+        "fromEmail": "info@mileseducation.com",
+        "toEmail": "={{ $('Supabase1').first().json.email }}",
+        "options": {
+          "subject": "It’s Official! Your CPA Meeting is Set! 🎉📅"
+        },
+        "mergeVarsUi": {
+          "mergeVarsValues": [
+            {
+              "name": "FNAME",
+              "content": "={{ $('Supabase1').first().json.first_name }}"
+            },
+            {
+              "name": "DATE",
+              "content": "={{ $('Supabase3').first().json.visit_date_string }}"
+            },
+            {
+              "name": "TIME",
+              "content": "={{ $('Supabase3').first().json.time_string }}"
+            },
+            {
+              "name": "SPOC",
+              "content": "={{ $('Supabase').first().json.sopc_name? $('Supabase').first().json.sopc_name : \"TBA\" }}"
+            },
+            {
+              "name": "LOCATION",
+              "content": "={{ $('Supabase').first().json.city }}"
+            }
+          ]
+        }
+      },
+      "id": "12c4adac-d960-4520-89a1-b6a1f1ea634f",
+      "name": "Mandrill5",
+      "type": "n8n-nodes-base.mandrill",
+      "typeVersion": 1,
+      "position": [
+        5840,
+        -260
+      ],
+      "credentials": {
+        "mandrillApi": {
+          "id": "t5XAtcUI45PwVrj0",
+          "name": "Mandrill account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "values": {
+          "string": [
+            {
+              "name": "message",
+              "value": "=301_booking_confirmation"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "eefb50f2-b427-495f-8228-8d98a524612b",
+      "name": "Set29",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 2,
+      "position": [
+        6160,
+        680
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://webhook.miles-api.com/webhook/create-send-message",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n    \"camp_id\":324,\n    \"message_id\":\"{{ $json.messages[0].id }}\",\n    \"message\":\"{{ $json.message }}\",\n    \"mobile\":{{ $json.contacts[0].wa_id }},\n    \"sender_id\":917338649613,\n\"lead_dump_id\":{{ $('Supabase1').item.json.id }},\n\"template\":\"301_booking_confirmation\"\n}",
+        "options": {}
+      },
+      "id": "6b5e994d-1cb6-4eb9-b11d-8afbaa9a906c",
+      "name": "HTTP Request37",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        6420,
+        680
+      ],
+      "continueOnFail": true
+    },
+    {
+      "parameters": {
+        "phoneNumberId": "171009622770823",
+        "recipientPhoneNumber": "={{ $json.lead_details.phone }}",
+        "template": "ea_visit_scheduled_util|en",
+        "components": {
+          "component": [
+            {
+              "bodyParameters": {
+                "parameter": [
+                  {
+                    "text": "={{ $json.lead_details.first_name }}"
+                  },
+                  {
+                    "text": "={{new Date($('Supabase').item.json.time_slots).toLocaleString('en-US',{year: 'numeric',month: 'short', day: 'numeric'})}} "
+                  },
+                  {
+                    "text": "={{ $('Supabase').item.json.time_string ?? \" \" }}"
+                  },
+                  {
+                    "text": "={{ $json.visit_details.sopc_name ? $json.visit_details.sopc_name : \"TBA\"}}"
+                  },
+                  {
+                    "text": "={{ $json.visit_details.meeting_type == 1 ?$('Supabase2').item.json.address : \"Google Meet\" }}"
+                  }
+                ]
+              }
+            },
+            {
+              "type": "button",
+              "sub_type": "url",
+              "buttonParameters": {
+                "parameter": {
+                  "payload": "={{ $('Supabase2').item.json.google_location.substring(34)}}"
+                }
+              }
+            },
+            {
+              "type": "header",
+              "headerParameters": {
+                "parameter": [
+                  {
+                    "type": "image",
+                    "imageLink": "https://one.mileseducation.us/storage/v1/object/public/wa_assets/CPA%20Banner%2005-01%20(1).jpg"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      },
+      "id": "1b80e556-31ff-4174-bc43-dfd73d375782",
+      "name": "EA",
+      "type": "n8n-nodes-base.whatsApp",
+      "typeVersion": 1,
+      "position": [
+        5860,
+        680
+      ],
+      "webhookId": "15ca5654-1ef7-497f-bb79-2a0c7e9c9c84",
+      "credentials": {
+        "whatsAppApi": {
+          "id": "JPvNp2kC4SudtNkr",
+          "name": "Primary | Marketing Miles Education"
+        }
+      },
+      "continueOnFail": true
+    },
+    {
+      "parameters": {
+        "value1": "={{ $('Supabase1').first().json.course }}",
+        "rules": {
+          "rules": [
+            {
+              "operation": "equal",
+              "value2": 9
+            },
+            {
+              "operation": "equal",
+              "value2": 2,
+              "output": 1
+            },
+            {
+              "operation": "equal",
+              "value2": 3,
+              "output": 2
+            },
+            {
+              "operation": "equal",
+              "value2": 12,
+              "output": 3
+            }
+          ]
+        }
+      },
+      "id": "b56d05fc-7a75-4734-a797-9ef0a8a8e3e4",
+      "name": "Switch2",
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 1,
+      "position": [
+        4700,
+        80
+      ]
+    },
+    {
+      "parameters": {
+        "template": "ea-office-visit-t",
+        "fromEmail": "info@mileseducation.com",
+        "toEmail": "={{ $('Supabase1').item.json.email }}",
+        "options": {
+          "subject": "It’s Official! Your EA Meeting is Set! 🎉📅"
+        },
+        "mergeVarsUi": {
+          "mergeVarsValues": [
+            {
+              "name": "FNAME",
+              "content": "={{ $('Supabase1').item.json.first_name }}"
+            },
+            {
+              "name": "DATE",
+              "content": "={{ $('Supabase3').item.json.visit_date_string }}"
+            },
+            {
+              "name": "TIME",
+              "content": "={{ $('Supabase3').item.json.time_string }}"
+            },
+            {
+              "name": "SPOC",
+              "content": "={{ $('Supabase').item.json.sopc_name? $('Supabase').item.json.sopc_name : \"TBA\" }}"
+            },
+            {
+              "name": "LOCATION",
+              "content": "={{ $('Supabase').item.json.city }}"
+            }
+          ]
+        }
+      },
+      "id": "89bd084d-40db-4997-b62e-57e5eb3bd106",
+      "name": "Mandrill6",
+      "type": "n8n-nodes-base.mandrill",
+      "typeVersion": 1,
+      "position": [
+        5860,
+        900
+      ],
+      "credentials": {
+        "mandrillApi": {
+          "id": "t5XAtcUI45PwVrj0",
+          "name": "Mandrill account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "amount": 2,
+        "unit": "seconds"
+      },
+      "id": "d5225bc9-101c-4798-b84a-16acc49210c5",
+      "name": "Wait4",
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1,
+      "position": [
+        800,
+        640
+      ],
+      "webhookId": "f81393ff-5847-4f27-9d34-985002782206"
+    },
+    {
+      "parameters": {
+        "values": {
+          "string": [
+            {
+              "name": "visit_date",
+              "value": "={{ $('Supabase').item.json.visit_date_string }}"
+            },
+            {
+              "name": "visit_time",
+              "value": "={{ $('Supabase').item.json.time_string }}"
+            },
+            {
+              "name": "city",
+              "value": "={{ $('Supabase').item.json.city }}"
+            },
+            {
+              "name": "time_slot",
+              "value": "={{ $('Supabase').item.json.time_slots }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "bd34cf01-111a-4cbc-bab9-6abfb22b4056",
+      "name": "Set30",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 2,
+      "position": [
+        1000,
+        1020
+      ]
+    }
+  ],
+  "pinData": {
+    "Webhook": [
+      {
+        "json": {
+          "headers": {
+            "host": "webhook.miles-api.com",
+            "x-real-ip": "162.158.227.194",
+            "x-forwarded-host": "webhook.miles-api.com",
+            "x-forwarded-server": "webhook.miles-api.com",
+            "x-forwarded-for": "2406:da1a:6b0:f602:fc46:c2c9:8a32:fafb, 162.158.227.194",
+            "connection": "close",
+            "content-length": "39",
+            "cf-ray": "8dd30464ceea31c4-BOM",
+            "content-type": "application/json",
+            "accept-encoding": "gzip, br",
+            "cf-pseudo-ipv4": "240.81.65.233",
+            "x-forwarded-proto": "https",
+            "charsets": "utf-8",
+            "cf-connecting-ip": "2406:da1a:6b0:f602:fc46:c2c9:8a32:fafb",
+            "accept": "*/*",
+            "cdn-loop": "cloudflare; loops=1",
+            "user-agent": "PostgreSQL 15.1 (Ubuntu 15.1-1.pgdg20.04+1) on aarch64-unknown-linux-gnu, compiled by gcc (Ubuntu 9.4.0-1ubuntu1~20.04.1) 9.4.0, 64-bit"
+          },
+          "params": {},
+          "query": {},
+          "body": {
+            "id": 156434,
+            "leads_dump_id": 156434
+          }
+        }
+      }
+    ]
+  },
+  "settings": {
+    "executionOrder": "v1",
+    "timezone": "Asia/Calcutta",
+    "saveManualExecutions": true,
+    "callerPolicy": "workflowsFromSameOwner",
+    "errorWorkflow": "JugK3JVukMVLS3ax",
+    "saveDataErrorExecution": "all",
+    "saveDataSuccessExecution": "all",
+    "saveExecutionProgress": true
+  },
+  "staticData": null,
+  "tags": [
+    {
+      "createdAt": "2024-01-27T09:19:45.406Z",
+      "updatedAt": "2024-01-27T09:19:45.406Z",
+      "id": "m1hfzqE5cWdHHPKy",
+      "name": "Whatsapp-MasterFlow-USP"
+    }
+  ],
+  "triggerCount": 1,
+  "updatedAt": "2025-03-07T12:28:35.000Z",
+  "versionId": "1639e4a3-3e39-4263-8be2-ac5b94cd6f34"
+}
