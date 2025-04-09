@@ -1,0 +1,609 @@
+{
+  "active": true,
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenRouter Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Simple Memory": {
+      "ai_memory": [
+        []
+      ]
+    },
+    "Supabase Fetch Email Templates": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Supabase Fetch WA Templates": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Postgres Read - Lead": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Postgres Read - Phone": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Postgres Read - Email": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "WhatsApp Business Cloud": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Mandrill": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Postgres read - webinar table": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI Agent": {
+      "main": [
+        []
+      ]
+    },
+    "Postgres - Webinar Registration": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-04-08T10:06:55.878Z",
+  "id": "HFIKNaiMjP7w1rJg",
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "WhatsApp Messages - AI",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "send-outgoing-whatsapp",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        -300,
+        0
+      ],
+      "id": "3db45478-e8e0-4560-8b24-f864d1f967ff",
+      "name": "Webhook",
+      "webhookId": "52b001a3-f94b-4e34-86f7-25b9238b1a33"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "={{ $json.body }}",
+        "options": {
+          "systemMessage": "You are an intelligent agent embedded within our real-time communication workflow. Your primary responsibility is to process incoming event data and determine the appropriate communication template along with the corresponding variable mappings. \n\nInput:\n- You will receive a JSON payload that includes:\n  - \"user_id\": Identifier for the user.\n  - \"event_name\": Descriptive name of the event.\n  - \"event_params\": An object containing key-value pairs with additional parameters.\n  - \"channel\": an array of channels on which the message nedds to be sent out. \n\nTask:\n1. Parse and validate the input data.\n2. Based on the \"event_name\" and provided parameters, determine which communication template is needed.\n3. Retrieve any additional information from the Postgres database (if applicable) to ensure the full context for mapping.\n4. Construct a response JSON that includes:\n   - \"template_id\": The identifier for the communication template (e.g., email or WhatsApp template).\n   - \"variables\": An object mapping each placeholder (e.g., {{firstName}}, {{actionDetail}}) in the selected template to the correct value derived from event parameters and supplemental data.\n   - \"channels\": The channel on which the message is being sent (WhatsApp/Email)\n5. Ensure that no required variable is missing; if a variable cannot be populated, indicate the error clearly in your response.\n6. If any errors are encountered during processing (e.g., missing critical data), return a structured error response with an appropriate message.\n\nAvailable Tools:\n- SQL querying capabilities to fetch templates and user data from a Postgres database.\n- Logging utilities to record events, processing outcomes, and errors.\n- HTTP dispatch functionalities if further external calls are required.\n- WhatsApp Web node\n- Mandrill Email node\n\nConstraints:\n- Your output must be deterministic and accurate to ensure that every variable in the communication template is correctly populated.\n- Operate in real time and maintain high reliability and low latency.\n- Follow the workflow design provided by n8n and ensure that your output is structured to integrate seamlessly into the subsequent nodes (e.g., template merging, messaging dispatch).\n\nOutput Example:\n{\n  \"template_id\": \"email_karan_testing\",\n\"channel\":\"whatsapp\",\n  \"variables\": {\n    \"firstName\": \"Karan\",\n    \"actionDetail\": \"testing completed\",\n    \"timestamp\": \"2025-04-08T12:34:56Z\"\n  }\n}\n\nYour goal is to ensure the end-to-end communication message is ready for dispatch without further intervention. Execute your logic carefully to handle both standard and edge cases.\n",
+          "returnIntermediateSteps": true
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 1.8,
+      "position": [
+        0,
+        0
+      ],
+      "id": "90588dda-bbd4-498e-9f45-18a524200281",
+      "name": "AI Agent",
+      "retryOnFail": true
+    },
+    {
+      "parameters": {
+        "model": "mistralai/mistral-large-2411",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenRouter",
+      "typeVersion": 1,
+      "position": [
+        -300,
+        380
+      ],
+      "id": "8056c7ad-26f1-4b4f-ba31-9aac1c963efa",
+      "name": "OpenRouter Chat Model",
+      "credentials": {
+        "openRouterApi": {
+          "id": "7JUQlMKIiSlGnibP",
+          "name": "Miles AI/ML - Analytics Account - Open Router"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "sessionIdType": "customKey",
+        "sessionKey": "={{ $json.body.event_id }}"
+      },
+      "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
+      "typeVersion": 1.3,
+      "position": [
+        20,
+        300
+      ],
+      "id": "71a944bc-2d66-42fb-8376-2a7ecfe0a822",
+      "name": "Simple Memory"
+    },
+    {
+      "parameters": {
+        "operation": "getAll",
+        "tableId": "email_templates",
+        "limit": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Limit', ``, 'number') }}"
+      },
+      "type": "n8n-nodes-base.supabaseTool",
+      "typeVersion": 1,
+      "position": [
+        720,
+        260
+      ],
+      "id": "2c089922-99a3-4c8c-88a3-5890dc074012",
+      "name": "Supabase Fetch Email Templates",
+      "credentials": {
+        "supabaseApi": {
+          "id": "6stEFLC7gtftREcf",
+          "name": "Supabase Campaign manager"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "getAll",
+        "tableId": "whatsapp_templates",
+        "limit": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Limit', ``, 'number') }}"
+      },
+      "type": "n8n-nodes-base.supabaseTool",
+      "typeVersion": 1,
+      "position": [
+        700,
+        460
+      ],
+      "id": "255bfe86-37a3-4a52-84c7-7c715ccfab35",
+      "name": "Supabase Fetch WA Templates",
+      "credentials": {
+        "supabaseApi": {
+          "id": "6stEFLC7gtftREcf",
+          "name": "Supabase Campaign manager"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "descriptionType": "manual",
+        "toolDescription": "This tool is only to fetch data from Milesforce. The Agent can use this tool to fetch details from the lead table. ",
+        "operation": "select",
+        "schema": {
+          "__rl": true,
+          "mode": "list",
+          "value": "public"
+        },
+        "table": {
+          "__rl": true,
+          "value": "lead",
+          "mode": "name"
+        },
+        "returnAll": true,
+        "where": {
+          "values": [
+            {
+              "column": "id",
+              "value": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Value', ``, 'string') }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.postgresTool",
+      "typeVersion": 2.5,
+      "position": [
+        180,
+        620
+      ],
+      "id": "d74cd0a4-eb4c-47e4-baa5-50646660d461",
+      "name": "Postgres Read - Lead",
+      "credentials": {
+        "postgres": {
+          "id": "UlHvqQraJFrdqkr2",
+          "name": "MF Prod Read"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "descriptionType": "manual",
+        "toolDescription": "This tool is only to fetch data from Milesforce. The Agent can use this tool to fetch details from the phone table. ",
+        "operation": "select",
+        "schema": {
+          "__rl": true,
+          "mode": "list",
+          "value": "public"
+        },
+        "table": {
+          "__rl": true,
+          "value": "=phone",
+          "mode": "name"
+        },
+        "returnAll": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Return_All', ``, 'boolean') }}",
+        "where": {
+          "values": [
+            {
+              "column": "leadId",
+              "value": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Value', ``, 'string') }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.postgresTool",
+      "typeVersion": 2.5,
+      "position": [
+        300,
+        780
+      ],
+      "id": "62cefe77-b12e-4d77-b865-e2446333e3b9",
+      "name": "Postgres Read - Phone",
+      "credentials": {
+        "postgres": {
+          "id": "UlHvqQraJFrdqkr2",
+          "name": "MF Prod Read"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "descriptionType": "manual",
+        "toolDescription": "This tool is only to fetch data from Milesforce. The Agent can use this tool to fetch details from the phone table. ",
+        "operation": "select",
+        "schema": {
+          "__rl": true,
+          "mode": "list",
+          "value": "public"
+        },
+        "table": {
+          "__rl": true,
+          "value": "=phone",
+          "mode": "name"
+        },
+        "returnAll": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Return_All', ``, 'boolean') }}",
+        "where": {
+          "values": [
+            {
+              "column": "leadId",
+              "value": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Value', ``, 'string') }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.postgresTool",
+      "typeVersion": 2.5,
+      "position": [
+        80,
+        820
+      ],
+      "id": "ad2e09d7-a194-4029-8856-164c4b2b2045",
+      "name": "Postgres Read - Email",
+      "credentials": {
+        "postgres": {
+          "id": "UlHvqQraJFrdqkr2",
+          "name": "MF Prod Read"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "descriptionType": "manual",
+        "toolDescription": "Access WhatsApp API and send ",
+        "phoneNumberId": "={{ $fromAI(\"phone_associated\",\"the number through which the message should be sent\") }}",
+        "recipientPhoneNumber": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Recipient_s_Phone_Number', `Add the phone number of the lead fetched`, 'string') }}",
+        "template": "={{ $fromAI(\"template_name\",\"template name that has to be sent with the number\") }}"
+      },
+      "type": "n8n-nodes-base.whatsAppTool",
+      "typeVersion": 1,
+      "position": [
+        1140,
+        160
+      ],
+      "id": "cc214603-1ce9-4e49-aaf4-865bf88009ca",
+      "name": "WhatsApp Business Cloud",
+      "webhookId": "cb7a9a93-25e2-4234-a43c-51788c293cf9",
+      "credentials": {
+        "whatsAppApi": {
+          "id": "KHcTD6EUGATb3z0D",
+          "name": "Secondary | Marketing Miles Education"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "template": "={{ $fromAI(\"email_template_name\",\"this is the name of the email template that eneeds to be sent\") }}",
+        "fromEmail": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('From_Email', ``, 'string') }}",
+        "toEmail": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('To_Email', ``, 'string') }}",
+        "jsonParameters": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('JSON_Parameters', ``, 'boolean') }}",
+        "options": {},
+        "mergeVarsJson": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Merge_Vars', ``, 'json') }}",
+        "metadataJson": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Metadata', ``, 'json') }}",
+        "attachmentsJson": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Attachments', ``, 'json') }}",
+        "headersJson": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Headers', ``, 'json') }}"
+      },
+      "type": "n8n-nodes-base.mandrillTool",
+      "typeVersion": 1,
+      "position": [
+        1280,
+        40
+      ],
+      "id": "e9278adb-8c42-418c-95ee-a276c7b03e54",
+      "name": "Mandrill",
+      "credentials": {
+        "mandrillApi": {
+          "id": "t5XAtcUI45PwVrj0",
+          "name": "Mandrill account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "select",
+        "schema": {
+          "__rl": true,
+          "mode": "list",
+          "value": "public"
+        },
+        "table": {
+          "__rl": true,
+          "value": "webinar",
+          "mode": "name"
+        },
+        "returnAll": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Return_All', `Fetch the upcoming webinars based on the course_id passed in the webhook. `, 'boolean') }}",
+        "limit": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Limit', ``, 'number') }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.postgresTool",
+      "typeVersion": 2.5,
+      "position": [
+        440,
+        620
+      ],
+      "id": "d268a804-8b15-445b-a3ad-9c14f9e97acc",
+      "name": "Postgres read - webinar table",
+      "credentials": {
+        "postgres": {
+          "id": "UlHvqQraJFrdqkr2",
+          "name": "MF Prod Read"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "select",
+        "schema": {
+          "__rl": true,
+          "mode": "list",
+          "value": "public"
+        },
+        "table": {
+          "__rl": true,
+          "value": "webinar_registration",
+          "mode": "name"
+        },
+        "returnAll": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Return_All', ``, 'boolean') }}",
+        "where": {
+          "values": [
+            {
+              "column": "leadId",
+              "value": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Value', ``, 'string') }}"
+            },
+            {
+              "column": "webinarId",
+              "value": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Value', ``, 'string') }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.postgresTool",
+      "typeVersion": 2.5,
+      "position": [
+        620,
+        700
+      ],
+      "id": "a6d9a069-8c96-41c8-825d-6fdebb10ec6f",
+      "name": "Postgres - Webinar Registration",
+      "credentials": {
+        "postgres": {
+          "id": "UlHvqQraJFrdqkr2",
+          "name": "MF Prod Read"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "toolDescription": "This node formats the json to be sent to meta graph api to send whatsapp message based on template. \nOnce the template and variable mapping is finalized, construct a valid JSON payload according to the Facebook Graph API for WhatsApp. Ensure the structure dynamically matches the template's schema (headers, buttons, variable count/type). Your output must be valid JSON ready for sending via HTTP POST to the API endpoint.",
+        "method": "POST",
+        "url": "https://graph.facebook.com/v18.0/171009622770823/messages",
+        "sendHeaders": true,
+        "parametersHeaders": {
+          "values": [
+            {
+              "name": "Authorization",
+              "valueProvider": "fieldValue",
+              "value": "Bearer EAAERpNdf2aYBO9sU1QltjB6ZCQZArH5MwBZCZCNsiUgH0sT4mihs6TNa6xMCDqEQ6ncUy5B3qCfXH5tbCiBC5RnvZAeYwqArMJRthWGdbUHJaBdS4PBS9gkJ6o0uGZBEA73ubwkFMkQSWI7kVEywwZBH8bmLEaL3KHm5eo2QxWbLwz4KRxtENrk0QfDPrZA5NTVU"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "model"
+      },
+      "type": "@n8n/n8n-nodes-langchain.toolHttpRequest",
+      "typeVersion": 1.1,
+      "position": [
+        1020,
+        220
+      ],
+      "id": "5db8b835-4c70-4335-86d7-ac5ed3c4358c",
+      "name": "HTTP Request"
+    }
+  ],
+  "pinData": {
+    "Webhook": [
+      {
+        "json": {
+          "headers": {
+            "host": "webhook.miles-api.com",
+            "x-real-ip": "162.158.111.206",
+            "x-forwarded-host": "webhook.miles-api.com",
+            "x-forwarded-server": "webhook.miles-api.com",
+            "x-forwarded-for": "49.204.70.102, 162.158.111.206",
+            "connection": "close",
+            "content-length": "113",
+            "cf-ray": "92d0fe5fbff73683-FRA",
+            "cf-ipcountry": "IN",
+            "accept-encoding": "gzip, br",
+            "origin": "https://hoppscotch.io",
+            "x-forwarded-proto": "https",
+            "priority": "u=1, i",
+            "referer": "https://hoppscotch.io/",
+            "cf-visitor": "{\"scheme\":\"https\"}",
+            "sec-fetch-dest": "empty",
+            "sec-fetch-mode": "cors",
+            "cf-connecting-ip": "49.204.70.102",
+            "cdn-loop": "cloudflare; loops=1",
+            "sec-fetch-site": "cross-site",
+            "sec-ch-ua-platform": "\"macOS\"",
+            "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36",
+            "accept": "application/json, text/plain, */*",
+            "sec-ch-ua": "\"Brave\";v=\"135\", \"Not-A.Brand\";v=\"8\", \"Chromium\";v=\"135\"",
+            "content-type": "application/json",
+            "sec-ch-ua-mobile": "?0",
+            "sec-gpc": "1",
+            "accept-language": "en-US,en;q=0.8"
+          },
+          "params": {},
+          "query": {},
+          "body": {
+            "event_id": "12dfg",
+            "leadId": 78711,
+            "event_name": "webinar_confirmation",
+            "channels": [
+              "whatsapp",
+              "emai"
+            ],
+            "event_params": {
+              "course_id": "2",
+              "join url": "https://zoom.us/w/94628813289?tk=hfj6Wtmc6RD95yg62U88i95rg4lxtDguDYp9gpiREMg.DQcAAAAWCFEZ6RZGRF80c1pTlFDVzlWM3A2SX2OV3AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA&uuid=WN_d1XxoZxYQuuCC2Xl8ScpJQ"
+            },
+            "event_context": "This event indicates that a new user has signed up for the webinar. The event name 'webinar_confirmation' provides context only. The correct communication template might not necessarily be named 'webinar_confirmation' – it could be a variation such as 'webinar_confirmation_success', 'webinar_registration', or another related template based on additional internal business rules."
+          },
+          "webhookUrl": "https://webhook.miles-api.com/webhook/send-outgoing-whatsapp",
+          "executionMode": "production"
+        }
+      }
+    ]
+  },
+  "settings": {
+    "executionOrder": "v1",
+    "timezone": "Asia/Kolkata",
+    "callerPolicy": "workflowsFromSameOwner",
+    "errorWorkflow": "JugK3JVukMVLS3ax"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 1,
+  "updatedAt": "2025-04-09T11:00:42.000Z",
+  "versionId": "ca24d210-e281-4f1c-9cb3-6af1dcd289b9"
+}
