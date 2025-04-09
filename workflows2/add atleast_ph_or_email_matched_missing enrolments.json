@@ -1,0 +1,919 @@
+{
+  "active": false,
+  "connections": {
+    "When clicking ‘Test workflow’": {
+      "main": [
+        [
+          {
+            "node": "Supabase2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Sheets": {
+      "main": [
+        []
+      ]
+    },
+    "Loop Over Items": {
+      "main": [
+        [],
+        [
+          {
+            "node": "Wait",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Supabase": {
+      "main": [
+        []
+      ]
+    },
+    "Postgres": {
+      "main": [
+        [
+          {
+            "node": "Supabase1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Supabase1": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait": {
+      "main": [
+        [
+          {
+            "node": "Postgres",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Supabase2": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-04-02T08:22:00.244Z",
+  "id": "df9PaQQhTOtwT9SH",
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "add atleast_ph_or_email_matched_missing enrolments",
+  "nodes": [
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        -760,
+        -360
+      ],
+      "id": "f0433321-46bc-4283-a0e6-fa8aedf6d452",
+      "name": "When clicking ‘Test workflow’"
+    },
+    {
+      "parameters": {
+        "authentication": "serviceAccount",
+        "documentId": {
+          "__rl": true,
+          "value": "https://docs.google.com/spreadsheets/d/1jxgLvjEvU1-IH3UR67kyYpASDPSkFRgqjWElqS-4itY/edit?gid=44603151#gid=44603151",
+          "mode": "url"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 707127141,
+          "mode": "list",
+          "cachedResultName": "output_s1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1jxgLvjEvU1-IH3UR67kyYpASDPSkFRgqjWElqS-4itY/edit#gid=707127141"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        -400,
+        380
+      ],
+      "id": "4030323c-58cd-4751-a261-e381e132f1c9",
+      "name": "Google Sheets",
+      "credentials": {
+        "googleApi": {
+          "id": "aiCprsG1ZRAOjrNn",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [
+        -240,
+        -360
+      ],
+      "id": "a48b2dea-7ec6-49b6-aa74-c50152426bf8",
+      "name": "Loop Over Items"
+    },
+    {
+      "parameters": {
+        "schema": {
+          "__rl": true,
+          "mode": "list",
+          "value": "public"
+        },
+        "table": {
+          "__rl": true,
+          "value": "enrolment",
+          "mode": "name"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "status": true,
+            "is_active": true,
+            "candidate_category": "2",
+            "program_id": "={{ $json.course_id }}",
+            "enrolment_type": "1",
+            "date_of_enrolment": "={{ $json.date_of_enrollment }}",
+            "accept_status": "3",
+            "accepted_at": "={{ $json.date_of_enrollment }}",
+            "agreed_amount": "={{ $json.agreed_cost }}",
+            "actual_amount": "={{ $json.actual_cost }}",
+            "leadId": "={{ $json.leadId_new }}",
+            "program_mode_id": "={{ $json.program_mode_id == 0 ? null : $json.program_mode_id}}",
+            "enrolledById": 58
+          },
+          "matchingColumns": [
+            "id"
+          ],
+          "schema": [
+            {
+              "id": "id",
+              "displayName": "id",
+              "required": false,
+              "defaultMatch": true,
+              "display": true,
+              "type": "number",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "status",
+              "displayName": "status",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "boolean",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "created_by",
+              "displayName": "created_by",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "updated_by",
+              "displayName": "updated_by",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "created_at",
+              "displayName": "created_at",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "dateTime",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "updated_at",
+              "displayName": "updated_at",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "dateTime",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "candidate_category",
+              "displayName": "candidate_category",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "options",
+              "canBeUsedToMatch": true,
+              "options": [
+                {
+                  "name": "1",
+                  "value": "1"
+                },
+                {
+                  "name": "2",
+                  "value": "2"
+                }
+              ]
+            },
+            {
+              "id": "uuid",
+              "displayName": "uuid",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "enrolment_type",
+              "displayName": "enrolment_type",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "options",
+              "canBeUsedToMatch": true,
+              "options": [
+                {
+                  "name": "1",
+                  "value": "1"
+                },
+                {
+                  "name": "2",
+                  "value": "2"
+                },
+                {
+                  "name": "3",
+                  "value": "3"
+                }
+              ]
+            },
+            {
+              "id": "program_mode_id",
+              "displayName": "program_mode_id",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "program_id",
+              "displayName": "program_id",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "is_discount",
+              "displayName": "is_discount",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "boolean",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "reason_for_discount",
+              "displayName": "reason_for_discount",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "date_of_enrolment",
+              "displayName": "date_of_enrolment",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "dateTime",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "is_active",
+              "displayName": "is_active",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "boolean",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "accept_status",
+              "displayName": "accept_status",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "options",
+              "canBeUsedToMatch": true,
+              "options": [
+                {
+                  "name": "1",
+                  "value": "1"
+                },
+                {
+                  "name": "2",
+                  "value": "2"
+                },
+                {
+                  "name": "3",
+                  "value": "3"
+                },
+                {
+                  "name": "4",
+                  "value": "4"
+                },
+                {
+                  "name": "5",
+                  "value": "5"
+                }
+              ]
+            },
+            {
+              "id": "accepted_at",
+              "displayName": "accepted_at",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "dateTime",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "agreed_amount",
+              "displayName": "agreed_amount",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "actual_amount",
+              "displayName": "actual_amount",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "is_loan",
+              "displayName": "is_loan",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "boolean",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "loan_id",
+              "displayName": "loan_id",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "referalId",
+              "displayName": "referalId",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "leadId",
+              "displayName": "leadId",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "batchId",
+              "displayName": "batchId",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "shippingAddressId",
+              "displayName": "shippingAddressId",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "billingAddressId",
+              "displayName": "billingAddressId",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "enrolledById",
+              "displayName": "enrolledById",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "srSpocId",
+              "displayName": "srSpocId",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "purchase_id",
+              "displayName": "purchase_id",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "loan_tenur_id",
+              "displayName": "loan_tenur_id",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "is_same_address",
+              "displayName": "is_same_address",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "boolean",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "isDefaulter",
+              "displayName": "isDefaulter",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "boolean",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "defaulter_date",
+              "displayName": "defaulter_date",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "dateTime",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "is_whatsapp",
+              "displayName": "is_whatsapp",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "boolean",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "lms_access",
+              "displayName": "lms_access",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "boolean",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "is_book",
+              "displayName": "is_book",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "boolean",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "is_evaluation",
+              "displayName": "is_evaluation",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "boolean",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "is_cr_connect",
+              "displayName": "is_cr_connect",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "boolean",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "comment",
+              "displayName": "comment",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "ima_membership",
+              "displayName": "ima_membership",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "program_level_id",
+              "displayName": "program_level_id",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "program_part_id",
+              "displayName": "program_part_id",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "agreed_date",
+              "displayName": "agreed_date",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "dateTime",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "can_edit",
+              "displayName": "can_edit",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "boolean",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "ef_status",
+              "displayName": "ef_status",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "options",
+              "canBeUsedToMatch": true,
+              "options": [
+                {
+                  "name": "0",
+                  "value": "0"
+                },
+                {
+                  "name": "1",
+                  "value": "1"
+                }
+              ],
+              "removed": true
+            },
+            {
+              "id": "loan_table_id",
+              "displayName": "loan_table_id",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "avanse_loan_table_id",
+              "displayName": "avanse_loan_table_id",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "draft_type",
+              "displayName": "draft_type",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "options",
+              "canBeUsedToMatch": true,
+              "options": [
+                {
+                  "name": "system_draft",
+                  "value": "system_draft"
+                },
+                {
+                  "name": "manual_draft",
+                  "value": "manual_draft"
+                },
+                {
+                  "name": "final",
+                  "value": "final"
+                }
+              ],
+              "removed": true
+            },
+            {
+              "id": "lms_access_released",
+              "displayName": "lms_access_released",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "boolean",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "date_of_lms_access_released",
+              "displayName": "date_of_lms_access_released",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "dateTime",
+              "canBeUsedToMatch": true,
+              "removed": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.5,
+      "position": [
+        480,
+        -180
+      ],
+      "id": "addd8d8f-c1e0-4456-ba48-533ef382ec16",
+      "name": "Postgres",
+      "credentials": {
+        "postgres": {
+          "id": "VPJUosohtvWNBW4H",
+          "name": "MF Prod (DO NOT USE)"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "tableId": "enrolment_MF2_pushes",
+        "fieldsUi": {
+          "fieldValues": [
+            {
+              "fieldId": "identity",
+              "fieldValue": "={{ $json.identity }}"
+            },
+            {
+              "fieldId": "person_name",
+              "fieldValue": "={{ $json.person_name }}"
+            },
+            {
+              "fieldId": "course",
+              "fieldValue": "={{ $json.course }}"
+            },
+            {
+              "fieldId": "course_id",
+              "fieldValue": "={{ $json.course_id }}"
+            },
+            {
+              "fieldId": "can_email",
+              "fieldValue": "={{ $json.can_email }}"
+            },
+            {
+              "fieldId": "date_of_enrollment",
+              "fieldValue": "={{ $json.date_of_enrollment }}"
+            },
+            {
+              "fieldId": "agreed_cost",
+              "fieldValue": "={{ $json.agreed_cost }}"
+            },
+            {
+              "fieldId": "actual_cost",
+              "fieldValue": "={{ $json.actual_cost }}"
+            },
+            {
+              "fieldId": "amount_paid",
+              "fieldValue": "={{ $json.amount_paid }}"
+            },
+            {
+              "fieldId": "Can_id",
+              "fieldValue": "={{ $json.Can_id }}"
+            },
+            {
+              "fieldId": "program_mode_id",
+              "fieldValue": "={{ $json.program_mode_id }}"
+            },
+            {
+              "fieldId": "leadId_new",
+              "fieldValue": "={{ $json.leadId_new }}"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        160,
+        460
+      ],
+      "id": "8905b623-17c7-4606-9a01-4546d05b0bc6",
+      "name": "Supabase",
+      "retryOnFail": true,
+      "credentials": {
+        "supabaseApi": {
+          "id": "6stEFLC7gtftREcf",
+          "name": "Supabase Campaign manager"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "tableId": "enrolment_MF2_pushes",
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "id",
+              "condition": "eq",
+              "keyValue": "={{ $('Loop Over Items').item.json.id }}"
+            }
+          ]
+        },
+        "fieldsUi": {
+          "fieldValues": [
+            {
+              "fieldId": "sent_to_MF",
+              "fieldValue": "={{ $json.id }}"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        700,
+        -180
+      ],
+      "id": "7aca0e3e-f273-4bb3-ba9b-720302558a82",
+      "name": "Supabase1",
+      "credentials": {
+        "supabaseApi": {
+          "id": "6stEFLC7gtftREcf",
+          "name": "Supabase Campaign manager"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "amount": 1
+      },
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        200,
+        -260
+      ],
+      "id": "d7cd61fd-bc95-4300-80ff-d73dba7200a2",
+      "name": "Wait",
+      "webhookId": "83297c52-d99b-4a85-9bf4-b8519dbb6fc3"
+    },
+    {
+      "parameters": {
+        "operation": "getAll",
+        "tableId": "enrolment_MF2_pushes",
+        "returnAll": true,
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "sent_to_MF",
+              "condition": "is",
+              "keyValue": "NULL"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        -520,
+        -360
+      ],
+      "id": "c1f74698-f7ca-434f-8bb2-0ad1bc8182db",
+      "name": "Supabase2",
+      "credentials": {
+        "supabaseApi": {
+          "id": "6stEFLC7gtftREcf",
+          "name": "Supabase Campaign manager"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2025-04-02T13:18:12.000Z",
+  "versionId": "6a8c2f51-1119-4bc2-9392-fbb24febc291"
+}
