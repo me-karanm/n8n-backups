@@ -116,8 +116,8 @@
         "filtersUI": {
           "values": [
             {
-              "lookupColumn": "Lead Created Date",
-              "lookupValue": "26-Apr-21"
+              "lookupColumn": "Marker",
+              "lookupValue": "1"
             }
           ]
         },
@@ -184,8 +184,8 @@
       "name": "Postgres",
       "credentials": {
         "postgres": {
-          "id": "uywFr5gFlyaiszBw",
-          "name": "MF 2.0 Preprod "
+          "id": "VPJUosohtvWNBW4H",
+          "name": "MF Prod (DO NOT USE)"
         }
       }
     },
@@ -238,8 +238,7 @@
             "email": "={{ $('Loop Over Items').first().json.Email }}",
             "program_id": "={{ $('Loop Over Items').first().json.course }}",
             "campaign_id": "={{ $('Sort').first().json.id }}",
-            "ne_type": "NE",
-            "leadId": 63
+            "leadId": "={{ $('Loop Over Items').first().json.leadId }}"
           },
           "matchingColumns": [
             "id"
@@ -486,25 +485,6 @@
               "display": true,
               "type": "number",
               "canBeUsedToMatch": true
-            },
-            {
-              "id": "ne_type",
-              "displayName": "ne_type",
-              "required": false,
-              "defaultMatch": false,
-              "display": true,
-              "type": "options",
-              "canBeUsedToMatch": true,
-              "options": [
-                {
-                  "name": "NE",
-                  "value": "NE"
-                },
-                {
-                  "name": "MHP",
-                  "value": "MHP"
-                }
-              ]
             }
           ],
           "attemptToConvertTypes": false,
@@ -522,8 +502,8 @@
       "name": "Postgres1",
       "credentials": {
         "postgres": {
-          "id": "uywFr5gFlyaiszBw",
-          "name": "MF 2.0 Preprod "
+          "id": "VPJUosohtvWNBW4H",
+          "name": "MF Prod (DO NOT USE)"
         }
       }
     }
@@ -535,6 +515,6 @@
   "staticData": null,
   "tags": [],
   "triggerCount": 0,
-  "updatedAt": "2025-03-07T06:27:56.000Z",
-  "versionId": "0957383d-c147-44c7-9a83-a190629f6780"
+  "updatedAt": "2025-03-07T11:20:31.000Z",
+  "versionId": "e2fdfd90-a2ab-438c-9509-6896ec2a5ad4"
 }
