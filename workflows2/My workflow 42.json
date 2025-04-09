@@ -1,0 +1,66 @@
+{
+  "active": false,
+  "connections": {
+    "When clicking ‘Test workflow’": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-03-24T10:45:32.532Z",
+  "id": "2bh891XdMTgKL3iK",
+  "meta": null,
+  "name": "My workflow 42",
+  "nodes": [
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        0,
+        0
+      ],
+      "id": "72567231-6c5b-404d-9e5e-bda4e1dac2f2",
+      "name": "When clicking ‘Test workflow’"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://send-to-mfx-datalake-marketing-automation-v1-873095923275.asia-south1.run.app",
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "test",
+              "value": "kaarn"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        220,
+        0
+      ],
+      "id": "0bce6114-551c-4ec7-9fd8-1290ae8aa0e4",
+      "name": "HTTP Request"
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2025-03-24T10:45:32.532Z",
+  "versionId": "914daaf6-a0cd-49f6-93de-e1c339c234b6"
+}
