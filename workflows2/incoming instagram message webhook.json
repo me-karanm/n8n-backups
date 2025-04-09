@@ -1,0 +1,90 @@
+{
+  "active": true,
+  "connections": {
+    "Webhook": {
+      "main": [
+        []
+      ]
+    }
+  },
+  "createdAt": "2025-03-28T12:23:37.090Z",
+  "id": "DEMGredrylztzJ1J",
+  "meta": null,
+  "name": "incoming instagram message webhook",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "instagram-webhook",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        0,
+        0
+      ],
+      "id": "4c6cc9d6-11f8-48d4-ab6f-9df99a7f6f73",
+      "name": "Webhook",
+      "webhookId": "a747b8b4-f9a4-4c2c-8df7-1a6a31255847"
+    },
+    {
+      "parameters": {
+        "respondWith": "text",
+        "responseBody": "={{ $json.query['hub.challenge'] }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.1,
+      "position": [
+        220,
+        0
+      ],
+      "id": "b373c956-fdd4-498b-bf6d-759a0877c8e0",
+      "name": "Respond to Webhook"
+    }
+  ],
+  "pinData": {
+    "Webhook": [
+      {
+        "json": {
+          "headers": {
+            "host": "webhook.miles-api.com",
+            "x-real-ip": "162.158.216.108",
+            "x-forwarded-host": "webhook.miles-api.com",
+            "x-forwarded-server": "webhook.miles-api.com",
+            "x-forwarded-for": "2a03:2880:31ff:4c::, 162.158.216.108",
+            "connection": "close",
+            "cf-ray": "92771f03c86da387-LHR",
+            "cf-connecting-ip": "2a03:2880:31ff:4c::",
+            "accept-encoding": "gzip, br",
+            "cf-pseudo-ipv4": "245.171.18.150",
+            "x-forwarded-proto": "https",
+            "user-agent": "facebookplatform/1.0 (+http://developers.facebook.com)",
+            "accept": "*/*",
+            "cf-ipcountry": "IE",
+            "cdn-loop": "cloudflare; loops=1"
+          },
+          "params": {},
+          "query": {
+            "hub.mode": "subscribe",
+            "hub.challenge": "1431758697",
+            "hub.verify_token": "669a5705-37c2-4aec-9c38-a01d212deb34"
+          },
+          "body": {},
+          "webhookUrl": "https://webhook.miles-api.com/webhook/instagram-webhook",
+          "executionMode": "production"
+        }
+      }
+    ]
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 1,
+  "updatedAt": "2025-03-28T12:30:00.000Z",
+  "versionId": "8a6d954a-d0db-459f-af5c-aa6965633c6b"
+}
