@@ -1,0 +1,203 @@
+{
+  "active": false,
+  "connections": {
+    "When clicking ‘Test workflow’": {
+      "main": [
+        [
+          {
+            "node": "Supabase",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Supabase": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Loop Over Items": {
+      "main": [
+        [],
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request": {
+      "main": [
+        [
+          {
+            "node": "Supabase1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Supabase1": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-04-03T06:25:02.865Z",
+  "id": "W7hTLsKYBZwUmclV",
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "Update U level",
+  "nodes": [
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        0,
+        0
+      ],
+      "id": "33817559-9218-40a7-ab6b-6bc415fc482c",
+      "name": "When clicking ‘Test workflow’"
+    },
+    {
+      "parameters": {
+        "operation": "getAll",
+        "tableId": "usp_level_update",
+        "returnAll": true,
+        "matchType": "allFilters",
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "update_status",
+              "condition": "is",
+              "keyValue": "null"
+            },
+            {
+              "keyName": "new_level_id",
+              "condition": "gte",
+              "keyValue": "0"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        220,
+        0
+      ],
+      "id": "a7b3c13d-adaa-4bc0-a5f0-6f07611bf260",
+      "name": "Supabase",
+      "credentials": {
+        "supabaseApi": {
+          "id": "6stEFLC7gtftREcf",
+          "name": "Supabase Campaign manager"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [
+        420,
+        -280
+      ],
+      "id": "a6a1c5a1-b199-49ae-a4c7-de498649cc55",
+      "name": "Loop Over Items"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://mfx-prod-154625965269.asia-south1.run.app/callbacks/program-level-update",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "authorization",
+              "value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MzYsInN0YXR1cyI6dHJ1ZSwiY3JlYXRlZF9hdCI6IjIwMjQtMDktMDZUMTc6NDQ6NDAuMjUzWiIsInVwZGF0ZWRfYXQiOiIyMDI0LTA5LTA2VDE3OjQ0OjQwLjI1M1oiLCJ1c2VySWQiOiJmNzc1NmY3MC00MjA1LTQ2NjItYjY2NS0zZDljNmE2ZGRhMzAiLCJmaXJzdE5hbWUiOiJqaXRoaW4iLCJsYXN0TmFtZSI6Imt1bWFyIiwicm9sZSI6MCwidXNlck5hbWUiOiJqaXRoaW4ua3VtYXJAbWlsZXNlZHVjYXRpb24uY29tIiwiZW1haWwiOiJqaXRoaW4ua3VtYXJAbWlsZXNlZHVjYXRpb24uY29tIiwicGhvbmUiOiI5OTgwNzgzNjA5IiwiY291bnRyeUNvZGUiOiI5MSIsIm1mYUVuYWJsZWQiOmZhbHNlLCJtZmFUeXBlIjpudWxsLCJtZmFTZWNyZXQiOm51bGwsInVzZXJUeXBlIjoxLCJsYXN0TG9naW4iOm51bGwsInNlc3Npb24iOjg3NjEwLCJpYXQiOjE3NDM2NjIwMTEsImV4cCI6MTc0Mzc0ODQxMX0.OVqMuhd8iZHnldR_tglJk_Hws0C3QLnpaZx-_qxBVEQ"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"lead_id\":{{ $('Supabase').item.json['lead ID'] }},\n  \"program_id\":3,\n  \"level_id\":{{ $('Supabase').item.json.new_level_id }}\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        740,
+        -260
+      ],
+      "id": "95f493d7-b7b0-487a-899f-5ae7e9e62b6b",
+      "name": "HTTP Request",
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "tableId": "usp_level_update",
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "id",
+              "condition": "eq",
+              "keyValue": "={{ $('Supabase').item.json.id }}"
+            }
+          ]
+        },
+        "fieldsUi": {
+          "fieldValues": [
+            {
+              "fieldId": "update_status",
+              "fieldValue": "true"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        960,
+        -260
+      ],
+      "id": "75fd2241-5fb5-4bc8-a176-606a3b8039ee",
+      "name": "Supabase1",
+      "credentials": {
+        "supabaseApi": {
+          "id": "6stEFLC7gtftREcf",
+          "name": "Supabase Campaign manager"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2025-04-03T06:56:02.000Z",
+  "versionId": "11a212db-43ca-4d6e-b453-345b5fef278d"
+}
