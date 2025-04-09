@@ -1,0 +1,200 @@
+{
+  "active": false,
+  "connections": {
+    "When clicking ‘Test workflow’": {
+      "main": [
+        [
+          {
+            "node": "GitHub",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "GitHub": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Loop Over Items": {
+      "main": [
+        [],
+        [
+          {
+            "node": "GitHub1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "GitHub1": {
+      "main": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenRouter Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-03-27T15:21:55.599Z",
+  "id": "XuOWR1clKoLapOVx",
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "My workflow 47",
+  "nodes": [
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        -620,
+        -280
+      ],
+      "id": "9209a83a-ceec-482c-b0ef-50a9159de275",
+      "name": "When clicking ‘Test workflow’"
+    },
+    {
+      "parameters": {
+        "resource": "file",
+        "operation": "list",
+        "owner": {
+          "__rl": true,
+          "value": "me-karanm",
+          "mode": "name"
+        },
+        "repository": {
+          "__rl": true,
+          "value": "n8n-backups",
+          "mode": "name"
+        },
+        "filePath": "workflows2"
+      },
+      "type": "n8n-nodes-base.github",
+      "typeVersion": 1,
+      "position": [
+        -400,
+        -280
+      ],
+      "id": "cb68314a-dfed-4e58-9752-f50fcc761fdd",
+      "name": "GitHub",
+      "credentials": {
+        "githubApi": {
+          "id": "WTJPtu7diBl0eInN",
+          "name": "karan's github"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [
+        -180,
+        -280
+      ],
+      "id": "ab67b39d-8d46-4354-8c1c-dc90565eb768",
+      "name": "Loop Over Items"
+    },
+    {
+      "parameters": {
+        "resource": "file",
+        "operation": "get",
+        "owner": {
+          "__rl": true,
+          "value": "me-karanm",
+          "mode": "name"
+        },
+        "repository": {
+          "__rl": true,
+          "value": "n8n-backups",
+          "mode": "name"
+        },
+        "filePath": "={{ $json.path }}",
+        "asBinaryProperty": false,
+        "additionalParameters": {}
+      },
+      "type": "n8n-nodes-base.github",
+      "typeVersion": 1,
+      "position": [
+        140,
+        -160
+      ],
+      "id": "cab94fdd-eb96-4aa1-847d-fb320730976f",
+      "name": "GitHub1",
+      "credentials": {
+        "githubApi": {
+          "id": "WTJPtu7diBl0eInN",
+          "name": "karan's github"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 1.8,
+      "position": [
+        440,
+        -160
+      ],
+      "id": "3db71156-d284-44fb-8cad-b0eea5946220",
+      "name": "AI Agent"
+    },
+    {
+      "parameters": {
+        "model": "anthropic/claude-3.7-sonnet:thinking",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenRouter",
+      "typeVersion": 1,
+      "position": [
+        340,
+        100
+      ],
+      "id": "c2267465-0eba-4e73-a4de-b1faa79066dd",
+      "name": "OpenRouter Chat Model",
+      "credentials": {
+        "openRouterApi": {
+          "id": "ZE1PPZaN2o0t1Ijy",
+          "name": "OpenRouter account"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2025-03-27T15:28:29.000Z",
+  "versionId": "c754859c-3f70-4531-a02e-1e546e3fbd6f"
+}
