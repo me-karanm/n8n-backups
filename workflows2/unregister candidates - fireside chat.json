@@ -1,0 +1,166 @@
+{
+  "active": false,
+  "connections": {
+    "When clicking ‘Test workflow’": {
+      "main": [
+        [
+          {
+            "node": "Google Sheets",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Sheets": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Loop Over Items": {
+      "main": [
+        [],
+        [
+          {
+            "node": "Postgres",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Postgres": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-03-21T08:03:44.503Z",
+  "id": "RuKLfGJHq5sKtL0b",
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "unregister candidates - fireside chat",
+  "nodes": [
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        -600,
+        -340
+      ],
+      "id": "fcd372b6-58b3-4d84-8ec9-5d1e38d928c4",
+      "name": "When clicking ‘Test workflow’"
+    },
+    {
+      "parameters": {
+        "authentication": "serviceAccount",
+        "documentId": {
+          "__rl": true,
+          "value": "https://docs.google.com/spreadsheets/d/1g-Ak5WApL8z8cRNf-U_W_J-dkj0vpEjUMw4dJC9lxJA/edit?gid=0#gid=0",
+          "mode": "url"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Sheet1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1g-Ak5WApL8z8cRNf-U_W_J-dkj0vpEjUMw4dJC9lxJA/edit#gid=0"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        -380,
+        -340
+      ],
+      "id": "b714fcd8-7c63-4183-9cb3-29b2712807a1",
+      "name": "Google Sheets",
+      "credentials": {
+        "googleApi": {
+          "id": "aiCprsG1ZRAOjrNn",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "deleteTable",
+        "schema": {
+          "__rl": true,
+          "mode": "list",
+          "value": "public"
+        },
+        "table": {
+          "__rl": true,
+          "value": "webinar_registration",
+          "mode": "name"
+        },
+        "deleteCommand": "delete",
+        "where": {
+          "values": [
+            {
+              "column": "leadId",
+              "value": "={{ $json.leadId }}"
+            },
+            {
+              "column": "webinarId",
+              "value": "=32"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.5,
+      "position": [
+        360,
+        -180
+      ],
+      "id": "f7a51a83-75ac-4f3c-a513-9feaa243a318",
+      "name": "Postgres",
+      "credentials": {
+        "postgres": {
+          "id": "VPJUosohtvWNBW4H",
+          "name": "MF Prod (DO NOT USE)"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [
+        -160,
+        -340
+      ],
+      "id": "41f77a26-8d46-474f-9b0c-d9791dcc3cb5",
+      "name": "Loop Over Items"
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2025-04-04T06:05:59.000Z",
+  "versionId": "c6e83313-8c84-4ffd-b679-19bf96878d82"
+}
