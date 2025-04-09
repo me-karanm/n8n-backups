@@ -1,0 +1,370 @@
+{
+  "active": false,
+  "connections": {
+    "When clicking ‘Test workflow’": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Postgres": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request1": {
+      "main": [
+        [
+          {
+            "node": "Postgres",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Loop Over Items": {
+      "main": [
+        [],
+        [
+          {
+            "node": "Postgres1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "HTTP Request2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request": {
+      "main": [
+        [
+          {
+            "node": "Wait",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request2": {
+      "main": [
+        [
+          {
+            "node": "Wait1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait": {
+      "main": [
+        []
+      ]
+    },
+    "Wait1": {
+      "main": [
+        []
+      ]
+    }
+  },
+  "createdAt": "2025-04-02T13:22:03.518Z",
+  "id": "MH6U8eeZzeARTZ5c",
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "send whatsapp confirmation to fireside chat",
+  "nodes": [
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        -700,
+        -360
+      ],
+      "id": "30f7d221-fe69-41c8-afa3-9819e0f6e094",
+      "name": "When clicking ‘Test workflow’"
+    },
+    {
+      "parameters": {
+        "operation": "select",
+        "schema": {
+          "__rl": true,
+          "mode": "list",
+          "value": "public"
+        },
+        "table": {
+          "__rl": true,
+          "value": "webinar_registration",
+          "mode": "name"
+        },
+        "returnAll": true,
+        "where": {
+          "values": [
+            {
+              "column": "webinarId",
+              "value": "29"
+            },
+            {
+              "column": "webinarId",
+              "value": "30"
+            }
+          ]
+        },
+        "combineConditions": "OR",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.5,
+      "position": [
+        -200,
+        -360
+      ],
+      "id": "117cc205-3258-46c3-a6df-0591685aed71",
+      "name": "Postgres",
+      "credentials": {
+        "postgres": {
+          "id": "VPJUosohtvWNBW4H",
+          "name": "MF Prod (DO NOT USE)"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://mfx-prod-154625965269.asia-south1.run.app/auth/login",
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "email",
+              "value": "jithin.kumar@mileseducation.com"
+            },
+            {
+              "name": "password",
+              "value": "123"
+            }
+          ]
+        },
+        "options": {
+          "redirect": {
+            "redirect": {}
+          }
+        }
+      },
+      "id": "c5cd3fe6-c461-48b2-9622-46c43b99bfd7",
+      "name": "HTTP Request1",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        -440,
+        -360
+      ]
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [
+        20,
+        -360
+      ],
+      "id": "b2a03973-e26f-42e9-8f93-91ce9cbfbdac",
+      "name": "Loop Over Items"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://mfx-prod-154625965269.asia-south1.run.app/webinar/send-whatsapp-message",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "=Bearer  {{ $('HTTP Request1').item.json.result.token }}"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n    \"leadId\": {{ $json.leadId }},\n    \"webinarTime\": \"03:00 PM\",\n    \"webinarDate\": \"April 6, 2025\",\n    \"templateId\": 83,\n    \"webinarId\": 29\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        780,
+        -400
+      ],
+      "id": "0b40b00a-3f2f-406b-9006-7e23dca44dcb",
+      "name": "HTTP Request"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "8d00fc8e-79da-4a3c-a2fd-dc0fdc53d3fe",
+              "leftValue": "={{ $json.webinarId }}",
+              "rightValue": 29,
+              "operator": {
+                "type": "number",
+                "operation": "equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        460,
+        -260
+      ],
+      "id": "21e5637a-d836-4c06-b7d7-a9fb6360c4b8",
+      "name": "If"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://mfx-prod-154625965269.asia-south1.run.app/webinar/send-whatsapp-message",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "=Bearer  {{ $('HTTP Request1').item.json.result.token }}"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n    \"leadId\": {{ $json.leadId }},\n    \"webinarTime\": \"06:00 PM\",\n    \"webinarDate\": \"April 6, 2025\",\n    \"templateId\": 83,\n    \"webinarId\": 30\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        800,
+        -160
+      ],
+      "id": "b6526f0e-ad36-4284-a3e6-0118c9fe1d4c",
+      "name": "HTTP Request2"
+    },
+    {
+      "parameters": {
+        "amount": 1
+      },
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        1000,
+        -400
+      ],
+      "id": "8c82d610-a4df-41a4-8424-63432f72270d",
+      "name": "Wait",
+      "webhookId": "6f039876-5717-49df-9a9b-4f1abff00a1f"
+    },
+    {
+      "parameters": {
+        "amount": 1
+      },
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        1020,
+        -160
+      ],
+      "id": "b4c5b471-4e08-4ea8-85ca-de739c557ada",
+      "name": "Wait1",
+      "webhookId": "ae270e33-b6bf-4db8-ace9-2ade85ad5ec7"
+    },
+    {
+      "parameters": {
+        "operation": "select",
+        "schema": {
+          "__rl": true,
+          "mode": "list",
+          "value": "public"
+        },
+        "table": {
+          "__rl": true,
+          "value": "message",
+          "mode": "name"
+        },
+        "where": {
+          "values": [
+            {
+              "column": "lead_id",
+              "value": "={{ $json.leadId }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.5,
+      "position": [
+        220,
+        -280
+      ],
+      "id": "0f317844-fa28-4e44-9469-d93da298e7e5",
+      "name": "Postgres1",
+      "credentials": {
+        "postgres": {
+          "id": "VPJUosohtvWNBW4H",
+          "name": "MF Prod (DO NOT USE)"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2025-04-02T15:07:01.000Z",
+  "versionId": "505dc98f-e723-4b76-98f7-0991002e9edf"
+}
