@@ -1,0 +1,35 @@
+{
+  "active": true,
+  "connections": {},
+  "createdAt": "2025-03-11T07:33:02.801Z",
+  "id": "O84rX7XpjnvbGUBV",
+  "meta": null,
+  "name": "wati test new msg",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "wati-trigger",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        0,
+        0
+      ],
+      "id": "81e6cde2-d2e8-4e35-9b8f-619e7c36cb16",
+      "name": "Webhook",
+      "webhookId": "5f08eccd-bb9b-4f5a-9cbb-54d228c86962"
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 1,
+  "updatedAt": "2025-03-11T08:08:07.000Z",
+  "versionId": "2e658012-bab6-4aea-9ced-374a189e3b72"
+}
