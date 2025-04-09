@@ -282,6 +282,21 @@
             "node": "IF2",
             "type": "main",
             "index": 0
+          },
+          {
+            "node": "IF3",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "If1",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "If2",
+            "type": "main",
+            "index": 0
           }
         ]
       ]
@@ -587,7 +602,13 @@
     },
     "Switch": {
       "main": [
-        [],
+        [
+          {
+            "node": "Mandrill1",
+            "type": "main",
+            "index": 0
+          }
+        ],
         [
           {
             "node": "Mandrill3",
@@ -658,12 +679,7 @@
         [],
         [
           {
-            "node": "Switch",
-            "type": "main",
-            "index": 0
-          },
-          {
-            "node": "Wait3",
+            "node": "If",
             "type": "main",
             "index": 0
           }
@@ -672,9 +688,36 @@
     },
     "Wait3": {
       "main": [
+        []
+      ]
+    },
+    "If": {
+      "main": [
         [
           {
-            "node": "IF3",
+            "node": "Switch",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If1": {
+      "main": [
+        [
+          {
+            "node": "WhatsApp Business Cloud16",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If2": {
+      "main": [
+        [
+          {
+            "node": "WhatsApp Business Cloud17",
             "type": "main",
             "index": 0
           }
@@ -700,12 +743,6 @@
               "value1": "={{ $json.body.data.coming_from }}",
               "operation": "notEqual",
               "value2": "MF"
-            }
-          ],
-          "boolean": [
-            {
-              "value1": "={{ $json.body.data.whatsapp }}",
-              "value2": true
             }
           ]
         }
@@ -1204,8 +1241,8 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.1,
       "position": [
-        5260,
-        -1040
+        5580,
+        -1100
       ],
       "continueOnFail": true
     },
@@ -1226,8 +1263,8 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 2,
       "position": [
-        5100,
-        -1040
+        5420,
+        -1100
       ]
     },
     {
@@ -1271,8 +1308,8 @@
       "type": "n8n-nodes-base.whatsApp",
       "typeVersion": 1,
       "position": [
-        4940,
-        -1040
+        5260,
+        -1100
       ],
       "webhookId": "283c0a65-a736-4ac2-b58e-e61e52ee012d",
       "credentials": {
@@ -2488,9 +2525,9 @@
     },
     {
       "parameters": {
-        "template": "usp-office-visit-t-10-mins",
+        "template": "usp-first-email",
         "fromEmail": "info@mileseducation.com",
-        "toEmail": "={{ $('Webhook').item.json.body.data.email }}",
+        "toEmail": "={{ $('Webhook').first().json.body.data.email }}",
         "options": {
           "subject": "Huge Demand for Accountants in the USA—Are You Ready?"
         },
@@ -2498,7 +2535,7 @@
           "mergeVarsValues": [
             {
               "name": "FNAME",
-              "content": "={{ $('Webhook').item.json.body.data.first_name }}"
+              "content": "={{ $('Webhook').first().json.body.data.first_name }}"
             }
           ]
         }
@@ -2522,7 +2559,7 @@
       "parameters": {
         "template": "cpa-first-email",
         "fromEmail": "info@mileseducation.com",
-        "toEmail": "={{ $('Webhook').item.json.body.data.email }}",
+        "toEmail": "={{ $('Webhook').first().json.body.data.email }}",
         "options": {
           "fromName": "Miles Education",
           "subject": "Your CPA Journey – Exciting Updates Inside!"
@@ -2531,7 +2568,7 @@
           "mergeVarsValues": [
             {
               "name": "FNAME",
-              "content": "={{ $('Webhook').item.json.body.data.first_name }}"
+              "content": "={{ $('Webhook').first().json.body.data.first_name }}"
             }
           ]
         }
@@ -2541,7 +2578,7 @@
       "type": "n8n-nodes-base.mandrill",
       "typeVersion": 1,
       "position": [
-        5120,
+        5340,
         -1340
       ],
       "credentials": {
@@ -2675,7 +2712,7 @@
       "type": "n8n-nodes-base.switch",
       "typeVersion": 1,
       "position": [
-        4220,
+        4440,
         -1140
       ]
     },
@@ -2727,8 +2764,8 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 1,
       "position": [
-        4800,
-        320
+        1780,
+        860
       ]
     },
     {
@@ -2769,10 +2806,10 @@
                     "text": "WhatsApp"
                   },
                   {
-                    "text": "={{ $('Webhook').item.json.body.data.first_name }}"
+                    "text": "={{ $('Webhook').first().json.body.data.first_name }}"
                   },
                   {
-                    "text": "={{ $('Webhook').item.json.body.data.phone }}"
+                    "text": "={{ $('Webhook').first().json.body.data.phone }}"
                   },
                   {
                     "text": "NULL"
@@ -2788,8 +2825,8 @@
       "type": "n8n-nodes-base.whatsApp",
       "typeVersion": 1,
       "position": [
-        6320,
-        140
+        3300,
+        680
       ],
       "webhookId": "a89927d8-51ff-4410-a936-3c975867e605",
       "credentials": {
@@ -2813,13 +2850,13 @@
                     "text": "Form Fill"
                   },
                   {
-                    "text": "={{ $('Webhook').item.json.body.data.first_name }}"
+                    "text": "={{ $('Webhook').first().json.body.data.first_name }}"
                   },
                   {
-                    "text": "={{ $('Webhook').item.json.body.data.phone }}"
+                    "text": "={{ $('Webhook').first().json.body.data.phone }}"
                   },
                   {
-                    "text": "={{ $('Webhook').item.json.body.data.email }}  {{ $('Webhook').item.json.body.data.coming_from }}  {{ $('Webhook').item.json.body.data.camp_id }}"
+                    "text": "={{ $('Webhook').first().json.body.data.email }}  {{ $('Webhook').first().json.body.data.coming_from }}  {{ $('Webhook').first().json.body.data.camp_id }}"
                   }
                 ]
               }
@@ -2832,8 +2869,8 @@
       "type": "n8n-nodes-base.whatsApp",
       "typeVersion": 1,
       "position": [
-        6320,
-        440
+        3300,
+        980
       ],
       "webhookId": "09d28582-8611-4a3a-88f8-9d4c81e7b874",
       "retryOnFail": true,
@@ -2858,10 +2895,10 @@
                     "text": "WhatsApp"
                   },
                   {
-                    "text": "={{ $('Webhook').item.json.body.data.first_name }}"
+                    "text": "={{ $('Webhook').first().json.body.data.first_name }}"
                   },
                   {
-                    "text": "={{ $('Webhook').item.json.body.data.phone }}"
+                    "text": "={{ $('Webhook').first().json.body.data.phone }}"
                   },
                   {
                     "text": "NULL"
@@ -2877,8 +2914,8 @@
       "type": "n8n-nodes-base.whatsApp",
       "typeVersion": 1,
       "position": [
-        6320,
-        0
+        3260,
+        500
       ],
       "webhookId": "b80be83c-6d13-45b8-aad9-a895c51ab959",
       "credentials": {
@@ -2902,13 +2939,13 @@
                     "text": "Form Fill"
                   },
                   {
-                    "text": "={{ $('Webhook').item.json.body.data.first_name }}"
+                    "text": "={{ $('Webhook').first().json.body.data.first_name }}"
                   },
                   {
-                    "text": "={{ $('Webhook').item.json.body.data.phone }}"
+                    "text": "={{ $('Webhook').first().json.body.data.phone }}"
                   },
                   {
-                    "text": "={{ $('Webhook').item.json.body.data.email }}  {{ $('Webhook').item.json.body.data.coming_from }}  {{ $('Webhook').item.json.body.data.camp_id }}"
+                    "text": "={{ $('Webhook').first().json.body.data.email }}  {{ $('Webhook').first().json.body.data.coming_from }}  {{ $('Webhook').first().json.body.data.camp_id }}"
                   }
                 ]
               }
@@ -2921,8 +2958,8 @@
       "type": "n8n-nodes-base.whatsApp",
       "typeVersion": 1,
       "position": [
-        6320,
-        580
+        3300,
+        1120
       ],
       "webhookId": "41886536-74b3-468f-9fb5-3e4cb8c115da",
       "retryOnFail": true,
@@ -2947,10 +2984,10 @@
                     "text": "WhatsApp"
                   },
                   {
-                    "text": "={{ $('Webhook').item.json.body.data.first_name }}"
+                    "text": "={{ $('Webhook').first().json.body.data.first_name }}"
                   },
                   {
-                    "text": "={{ $('Webhook').item.json.body.data.phone }}"
+                    "text": "={{ $('Webhook').first().json.body.data.phone }}"
                   },
                   {
                     "text": "NULL"
@@ -2966,8 +3003,8 @@
       "type": "n8n-nodes-base.whatsApp",
       "typeVersion": 1,
       "position": [
-        6320,
-        -180
+        3260,
+        320
       ],
       "webhookId": "b5125ca7-fa47-43be-9a3b-c069008f6238",
       "credentials": {
@@ -2991,13 +3028,13 @@
                     "text": "Form Fill"
                   },
                   {
-                    "text": "={{ $('Webhook').item.json.body.data.first_name }}"
+                    "text": "={{ $('Webhook').first().json.body.data.first_name }}"
                   },
                   {
-                    "text": "={{ $('Webhook').item.json.body.data.phone }}"
+                    "text": "={{ $('Webhook').first().json.body.data.phone }}"
                   },
                   {
-                    "text": "={{ $('Webhook').item.json.body.data.email }}  {{ $('Webhook').item.json.body.data.coming_from }}  {{ $('Webhook').item.json.body.data.camp_id }}"
+                    "text": "={{ $('Webhook').first().json.body.data.email }}  {{ $('Webhook').first().json.body.data.coming_from }}  {{ $('Webhook').first().json.body.data.camp_id }}"
                   }
                 ]
               }
@@ -3010,8 +3047,8 @@
       "type": "n8n-nodes-base.whatsApp",
       "typeVersion": 1,
       "position": [
-        6320,
-        720
+        3300,
+        1260
       ],
       "webhookId": "f108a335-1469-4539-bbfa-d2e3b384fc12",
       "retryOnFail": true,
@@ -3123,7 +3160,7 @@
       "parameters": {
         "template": "cma-first-email",
         "fromEmail": "info@mileseducation.com",
-        "toEmail": "={{ $('Webhook').item.json.body.data.email }}",
+        "toEmail": "={{ $('Webhook').first().json.body.data.email }}",
         "options": {
           "fromName": "Miles Education",
           "subject": "Your CMA Journey – Exciting Updates Inside!"
@@ -3132,7 +3169,7 @@
           "mergeVarsValues": [
             {
               "name": "FNAME",
-              "content": "={{ $('Webhook').item.json.body.data.first_name }}"
+              "content": "={{ $('Webhook').first().json.body.data.first_name }}"
             }
           ]
         }
@@ -3142,7 +3179,7 @@
       "type": "n8n-nodes-base.mandrill",
       "typeVersion": 1,
       "position": [
-        5120,
+        5340,
         -780
       ],
       "credentials": {
@@ -3157,12 +3194,220 @@
       "type": "n8n-nodes-base.wait",
       "typeVersion": 1.1,
       "position": [
-        3200,
+        3420,
         -920
       ],
       "id": "24557518-6bfa-4b05-bf70-9021dc4bd637",
       "name": "Wait3",
       "webhookId": "566e7749-95fe-4e52-a1f6-1ab170311f4d"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "d2d2bdea-5dff-4b00-9e90-e1e84d796c3a",
+              "leftValue": "={{ $('Webhook').first().json.body.data.email }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "exists",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        3720,
+        -1160
+      ],
+      "id": "36208ea7-63a3-44cf-aa14-fe40f18763f4",
+      "name": "If"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "12b14c06-b981-4fdf-89f8-151ea53ea41e",
+              "leftValue": "={{ $json.body.data.course }}",
+              "rightValue": 6,
+              "operator": {
+                "type": "number",
+                "operation": "equals"
+              }
+            },
+            {
+              "id": "35fcd174-6a6f-4295-a0da-76f3c0c9284d",
+              "leftValue": "={{ $json.body.data.course }}",
+              "rightValue": 7,
+              "operator": {
+                "type": "number",
+                "operation": "equals"
+              }
+            },
+            {
+              "id": "49a3069d-68a5-482c-89f5-4ead858acfcd",
+              "leftValue": "={{ $json.body.data.course }}",
+              "rightValue": 17,
+              "operator": {
+                "type": "number",
+                "operation": "equals"
+              }
+            }
+          ],
+          "combinator": "or"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        1980,
+        -260
+      ],
+      "id": "51d28145-5cbb-4f53-944f-2e803e68b3a1",
+      "name": "If1"
+    },
+    {
+      "parameters": {
+        "phoneNumberId": "171009622770823",
+        "recipientPhoneNumber": "+917349740193",
+        "template": "lead_received_confirmation|en",
+        "components": {
+          "component": [
+            {
+              "bodyParameters": {
+                "parameter": [
+                  {
+                    "text": "Form Fill"
+                  },
+                  {
+                    "text": "={{ $('Webhook').first().json.body.data.first_name }}"
+                  },
+                  {
+                    "text": "={{ $('Webhook').first().json.body.data.phone }}"
+                  },
+                  {
+                    "text": "={{ $('Webhook').first().json.body.data.email }}  {{ $('Webhook').first().json.body.data.coming_from }}  {{ $('Webhook').first().json.body.data.camp_id }}"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      },
+      "id": "3d80bc30-4780-4856-8c65-e6e73dc4e9e8",
+      "name": "WhatsApp Business Cloud16",
+      "type": "n8n-nodes-base.whatsApp",
+      "typeVersion": 1,
+      "position": [
+        2560,
+        -320
+      ],
+      "webhookId": "09d28582-8611-4a3a-88f8-9d4c81e7b874",
+      "retryOnFail": true,
+      "credentials": {
+        "whatsAppApi": {
+          "id": "JPvNp2kC4SudtNkr",
+          "name": "Primary | Marketing Miles Education"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "6769045c-1fc6-4c23-a4cd-6b6a36787b85",
+              "leftValue": "={{ $json.body.data.page_full_url }}",
+              "rightValue": "https://www.mileseducation.com/payment",
+              "operator": {
+                "type": "string",
+                "operation": "contains"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        1960,
+        180
+      ],
+      "id": "a5a0b193-bbd6-46ed-86e6-ff19640ed33b",
+      "name": "If2"
+    },
+    {
+      "parameters": {
+        "phoneNumberId": "171009622770823",
+        "recipientPhoneNumber": "+918770823235",
+        "template": "lead_received_confirmation|en",
+        "components": {
+          "component": [
+            {
+              "bodyParameters": {
+                "parameter": [
+                  {
+                    "text": "Form Fill - Payment Page"
+                  },
+                  {
+                    "text": "={{ $('Webhook').first().json.body.data.first_name }}"
+                  },
+                  {
+                    "text": "={{ $('Webhook').first().json.body.data.phone }}"
+                  },
+                  {
+                    "text": "={{ $('Webhook').first().json.body.data.email }}  {{ $('Webhook').first().json.body.data.coming_from }}  {{ $('Webhook').first().json.body.data.camp_id }}"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      },
+      "id": "8ce53787-bafd-4350-9bd7-bcc500ef903c",
+      "name": "WhatsApp Business Cloud17",
+      "type": "n8n-nodes-base.whatsApp",
+      "typeVersion": 1,
+      "position": [
+        2420,
+        100
+      ],
+      "webhookId": "09d28582-8611-4a3a-88f8-9d4c81e7b874",
+      "retryOnFail": true,
+      "credentials": {
+        "whatsAppApi": {
+          "id": "JPvNp2kC4SudtNkr",
+          "name": "Primary | Marketing Miles Education"
+        }
+      }
     }
   ],
   "pinData": {
@@ -3233,6 +3478,6 @@
     }
   ],
   "triggerCount": 1,
-  "updatedAt": "2025-03-06T07:49:57.000Z",
-  "versionId": "30f3e585-787d-479a-923d-24eb69430840"
+  "updatedAt": "2025-04-02T06:43:18.000Z",
+  "versionId": "ea0fb518-3c67-4e67-8382-8f6d9307d4d2"
 }
