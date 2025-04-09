@@ -257,7 +257,7 @@
     {
       "parameters": {
         "phoneNumberId": "108019349036743",
-        "recipientPhoneNumber": "={{ $('Webhook').item.json.body.number }}",
+        "recipientPhoneNumber": "={{ $('Webhook').first().json.body.number }}",
         "template": "auth_verification_1|en",
         "components": {
           "component": [
@@ -265,7 +265,7 @@
               "bodyParameters": {
                 "parameter": [
                   {
-                    "text": "={{ $('Webhook').item.json.body.otp }}"
+                    "text": "={{ $('Webhook').first().json.body.otp }}"
                   }
                 ]
               }
@@ -275,7 +275,7 @@
               "sub_type": "url",
               "buttonParameters": {
                 "parameter": {
-                  "payload": "={{ $('Webhook').item.json.body.otp }}"
+                  "payload": "={{ $('Webhook').first().json.body.otp }}"
                 }
               }
             }
@@ -296,7 +296,8 @@
           "id": "KHcTD6EUGATb3z0D",
           "name": "Secondary | Marketing Miles Education"
         }
-      }
+      },
+      "onError": "continueRegularOutput"
     }
   ],
   "pinData": {
@@ -342,6 +343,6 @@
   "staticData": null,
   "tags": [],
   "triggerCount": 1,
-  "updatedAt": "2025-03-07T06:28:39.000Z",
-  "versionId": "2bf59ac0-4910-4a18-8934-97f33d2eb5ba"
+  "updatedAt": "2025-03-12T04:49:50.000Z",
+  "versionId": "c15ab899-3dbb-4976-accf-5d6762777250"
 }
