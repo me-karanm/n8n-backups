@@ -1,0 +1,251 @@
+{
+  "active": false,
+  "connections": {
+    "HTTP Request": {
+      "main": [
+        [
+          {
+            "node": "Wait",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request1",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "HTTP Request2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-03-19T07:42:09.112Z",
+  "id": "8Pk53w6C0EMjTpMj",
+  "meta": null,
+  "name": "milesone trigger",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "milesone-trigger",
+        "options": {
+          "responseData": "posted success"
+        }
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        -540,
+        -260
+      ],
+      "id": "ed23456d-213a-4dc6-81c1-f5c985d8f85c",
+      "name": "Webhook",
+      "webhookId": "ba3afc4a-4f43-4f83-9e8a-53b7f3e04e61"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "http://api.netcoresmartech.com/apiv2",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "type",
+              "value": "=contact"
+            },
+            {
+              "name": "activity",
+              "value": "add"
+            },
+            {
+              "name": "apikey",
+              "value": "8b61610ee5bc044df4a95a7d87c6e436"
+            }
+          ]
+        },
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Content-Type",
+              "value": "application/jsonapplication/x-www-form-urlencoded"
+            }
+          ]
+        },
+        "sendBody": true,
+        "contentType": "form-urlencoded",
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "data",
+              "value": "={\n\"UUID\": \"{{$json.body.identity}}\",\n\"EMAIL\": \"{{$json.body.activity_params.to[0].email}}\",\n\"FIRSTNAME\": \"Megha\",\n\"LAST_NAME\": \"\"\n}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "69d7800b-3ef0-4833-80b9-46ee147b2e4a",
+      "name": "HTTP Request",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        -260,
+        -260
+      ]
+    },
+    {
+      "parameters": {
+        "unit": "seconds"
+      },
+      "id": "cd1bf321-8da1-46e0-afc7-a3f02eafb1e3",
+      "name": "Wait",
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1,
+      "position": [
+        -20,
+        -260
+      ],
+      "webhookId": "70e8bc89-9264-4362-a5fb-64fa13f526b3"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api2.netcoresmartech.com/v1/activity/upload",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            },
+            {
+              "name": "Authorization",
+              "value": "Bearer 9fe318e8ece9299a6945bea578bad979"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "=[\n    {\n        \"asset_id\": \"94096610e24f57452252e0abe2fff176\",\n        \"activity_name\": \"{{$('Webhook').item.json.body.activity_name}}\",\n        \"timestamp\": \"{{ new Date().toISOString()\n }}\",\n        \"identity\": \"{{$('Webhook').item.json.body.identity }}\",\n        \"activity_source\": \"app\",\n        \"activity_params\": {\n                \"lead_email\": \"{{$('Webhook').item.json.body.activity_params.to[0].email}}\",\n                \"spoc_email\": \"{{$('Webhook').item.json.body.activity_params.cc[0].email}}\",\n                \"subject\": \"{{ $('Webhook').item.json.body.activity_params.subject }}\"\n \n        }\n    }\n]\n",
+        "options": {}
+      },
+      "id": "eb7126bb-a3bf-4d2c-92e6-0166b1313ec3",
+      "name": "HTTP Request1",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        240,
+        -260
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.netcoresmartech.com/v4/campaign/test",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "api-key",
+              "value": "9fe318e8ece9299a6945bea578bad979"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"test_campaign_details\": [\n    {\n      \"channel\": \"email\",\n      \"campaign_id\": 349,\n      \"test_user_details\": {\n        \"email_ids\": [\n          \"{{ $('Webhook').item.json.body.activity_params.cc[0].email }}\"\n        ]\n      }\n    }\n  ]\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        260,
+        0
+      ],
+      "id": "37574ecd-8e06-444c-a51c-9428b7687c38",
+      "name": "HTTP Request2"
+    }
+  ],
+  "pinData": {
+    "Webhook": [
+      {
+        "json": {
+          "headers": {
+            "host": "webhook.miles-api.com",
+            "x-real-ip": "162.158.106.82",
+            "x-forwarded-host": "webhook.miles-api.com",
+            "x-forwarded-server": "webhook.miles-api.com",
+            "x-forwarded-for": "115.240.189.114, 162.158.106.82",
+            "connection": "close",
+            "content-length": "635",
+            "cf-ray": "922b65133e5e7979-SIN",
+            "cf-ipcountry": "IN",
+            "accept-encoding": "gzip, br",
+            "postman-token": "470ddfa1-d06c-47f5-ba78-e985b7bcb9d3",
+            "x-forwarded-proto": "https",
+            "cache-control": "no-cache",
+            "accept": "*/*",
+            "user-agent": "PostmanRuntime/7.42.0",
+            "authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NTksInN0YXR1cyI6dHJ1ZSwiY3JlYXRlZF9hdCI6IjIwMjQtMDktMTZUMDU6MzI6MTEuMDc5WiIsInVwZGF0ZWRfYXQiOiIyMDI1LTAzLTEwVDA1OjU0OjUzLjU4MFoiLCJ1c2VySWQiOiJiYjllNzNlNi1kZDJjLTQ4ODAtOWNhNS03NDUwMDI4MjEyMjYiLCJmaXJzdE5hbWUiOiJQcmV0dGhpIiwibGFzdE5hbWUiOiJrIiwicm9sZSI6bnVsbCwidXNlck5hbWUiOm51bGwsImVtYWlsIjoiZ3BwcmVldGhpbUBnbWFpbC5jb20iLCJwaG9uZSI6IjkwMTkzMjExMzQiLCJjb3VudHJ5Q29kZSI6Iis5MSIsIm1mYUVuYWJsZWQiOmZhbHNlLCJtZmFUeXBlIjpudWxsLCJtZmFTZWNyZXQiOm51bGwsInVzZXJUeXBlIjowLCJsYXN0TG9naW4iOm51bGwsInNlc3Npb24iOjc3MTUyLCJpYXQiOjE3NDIzNjM3NjUsImV4cCI6MTc0MjQ1MDE2NX0.BoBRzyTiOWDZvminl9JPujki0IED8dDIZoNLr_lHU6Y",
+            "cf-connecting-ip": "115.240.189.114",
+            "cdn-loop": "cloudflare; loops=1",
+            "content-type": "application/json"
+          },
+          "params": {},
+          "query": {},
+          "body": {
+            "activity_name": "lms_ticket_created_spoc",
+            "timestamp": "2025-03-19T07:50:18.090251+00:00",
+            "identity": "47619388-f341-485f-9374-4dbf178d7049",
+            "activity_source": "app",
+            "activity_params": {
+              "to": [
+                {
+                  "email": "meghasree.sengupta@mileseducation.com"
+                }
+              ],
+              "cc": [
+                {
+                  "email": "sohan.biswas@mileseducation.com"
+                }
+              ],
+              "subject": "Candidate LMS Access Request",
+              "html": "<p>Hi Sr SPOC,</p><p>Pretthi k is trying to access the CPA/CMA LMS account.</p><p><strong>Phone:</strong> 9019321134</p><p><strong>Email:</strong> gppreethim@gmail.com</p><p>Best regards,</p><p>LMS Support Team</p>"
+            }
+          },
+          "webhookUrl": "https://webhook.miles-api.com/webhook/milesone-trigger",
+          "executionMode": "production"
+        }
+      }
+    ]
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 1,
+  "updatedAt": "2025-03-24T05:21:18.000Z",
+  "versionId": "1be4e519-0716-44bc-8da8-b50cb6071d51"
+}
