@@ -1,0 +1,162 @@
+{
+  "active": true,
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "If",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If": {
+      "main": [
+        [
+          {
+            "node": "Respond to Webhook",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Respond to Webhook1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-03-18T13:13:42.458Z",
+  "id": "qhbnaLT0TswwtMqL",
+  "meta": null,
+  "name": "redirect to milesone app",
+  "nodes": [
+    {
+      "parameters": {
+        "path": "open-playstore",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        -260,
+        -180
+      ],
+      "id": "309220ec-c690-4534-9bb1-4b2b84dcc654",
+      "name": "Webhook",
+      "webhookId": "21f4735a-04a8-4b6d-be7a-9a999ddd6067"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "260ef2e0-50bc-448c-bca3-92655541668f",
+              "leftValue": "={{ $json.headers[\"user-agent\"] }}",
+              "rightValue": "iPhone",
+              "operator": {
+                "type": "string",
+                "operation": "contains"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        -40,
+        -180
+      ],
+      "id": "a179a392-b47a-47de-a7e1-c5a785ca3290",
+      "name": "If"
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "{\n  \"url\": \"https://apps.apple.com/in/app/miles-one/id6504799221\"\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.1,
+      "position": [
+        180,
+        -280
+      ],
+      "id": "28e9a76b-c84b-45bc-8d8c-46755681c3d9",
+      "name": "Respond to Webhook"
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "{\n  \"url\":\"https://play.google.com/store/apps/details?id=com.miles.one\"\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.1,
+      "position": [
+        200,
+        -140
+      ],
+      "id": "545cc19b-449b-41b4-bd6c-84f95423311f",
+      "name": "Respond to Webhook1"
+    }
+  ],
+  "pinData": {
+    "Webhook": [
+      {
+        "json": {
+          "headers": {
+            "host": "webhook.miles-api.com",
+            "x-real-ip": "162.158.190.81",
+            "x-forwarded-host": "webhook.miles-api.com",
+            "x-forwarded-server": "webhook.miles-api.com",
+            "x-forwarded-for": "2409:40c4:30ac:e03e:ec2e:c91d:6f1f:8969, 162.158.190.81",
+            "connection": "close",
+            "cf-ray": "922af7a8b82f5ce4-SIN",
+            "cf-connecting-ip": "2409:40c4:30ac:e03e:ec2e:c91d:6f1f:8969",
+            "accept-encoding": "gzip, br",
+            "cf-pseudo-ipv4": "252.118.65.129",
+            "x-forwarded-proto": "https",
+            "priority": "u=0, i",
+            "accept-language": "en-IN,en;q=0.9",
+            "cf-ipcountry": "IN",
+            "sec-fetch-mode": "navigate",
+            "cdn-loop": "cloudflare; loops=1",
+            "sec-fetch-site": "none",
+            "accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
+            "user-agent": "Mozilla/5.0 (iPhone; CPU iPhone OS 18_3_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.3 Mobile/15E148 Safari/604.1",
+            "sec-fetch-dest": "document"
+          },
+          "params": {},
+          "query": {},
+          "body": {},
+          "webhookUrl": "https://webhook.miles-api.com/webhook/open-playstore",
+          "executionMode": "production"
+        }
+      }
+    ]
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 1,
+  "updatedAt": "2025-03-24T10:36:30.000Z",
+  "versionId": "629e3a8d-c241-4202-b15b-2484244390b1"
+}
