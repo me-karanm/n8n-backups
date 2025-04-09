@@ -1,26 +1,9 @@
 {
   "active": false,
   "connections": {
-    "When clicking \"Execute Workflow\"": {
-      "main": [
-        [
-          {
-            "node": "HTTP Request1",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
     "Postgres": {
       "main": [
-        [
-          {
-            "node": "Split In Batches",
-            "type": "main",
-            "index": 0
-          }
-        ]
+        []
       ]
     },
     "Split In Batches": {
@@ -28,6 +11,13 @@
         [
           {
             "node": "Postgres2",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "WhatsApp Business Cloud",
             "type": "main",
             "index": 0
           }
@@ -39,6 +29,13 @@
         [
           {
             "node": "IF1",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Split In Batches",
             "type": "main",
             "index": 0
           }
@@ -67,7 +64,7 @@
       "main": [
         [
           {
-            "node": "Postgres",
+            "node": "Postgres1",
             "type": "main",
             "index": 0
           }
@@ -76,6 +73,13 @@
     },
     "HTTP Request": {
       "main": [
+        [
+          {
+            "node": "Split In Batches",
+            "type": "main",
+            "index": 0
+          }
+        ],
         [
           {
             "node": "Split In Batches",
@@ -117,28 +121,175 @@
           }
         ]
       ]
+    },
+    "When clicking ‘Test workflow’": {
+      "main": [
+        [
+          {
+            "node": "Postgres4",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Postgres1": {
+      "main": [
+        [
+          {
+            "node": "Split In Batches",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request2": {
+      "main": [
+        [
+          {
+            "node": "Postgres5",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Schedule Trigger1": {
+      "main": [
+        []
+      ]
+    },
+    "Postgres5": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Loop Over Items": {
+      "main": [
+        [],
+        [
+          {
+            "node": "Postgres6",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Postgres4": {
+      "main": [
+        [
+          {
+            "node": "Code1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Postgres6": {
+      "main": [
+        [
+          {
+            "node": "Postgres7",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Postgres7": {
+      "main": [
+        [
+          {
+            "node": "If",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code1": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code2": {
+      "main": [
+        [
+          {
+            "node": "Wait1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait1": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If": {
+      "main": [
+        [],
+        []
+      ]
+    },
+    "Loop Over Items1": {
+      "main": [
+        [],
+        [
+          {
+            "node": "Code2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
     }
   },
   "createdAt": "2025-02-11T06:56:36.395Z",
   "id": "rQ1ieKAxsmAOo62d",
-  "meta": null,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
   "name": "cron to register all NEs to webinar",
   "nodes": [
     {
-      "parameters": {},
-      "id": "1201b8a4-cfd6-4088-beb0-8a1438480469",
-      "name": "When clicking \"Execute Workflow\"",
-      "type": "n8n-nodes-base.manualTrigger",
-      "typeVersion": 1,
-      "position": [
-        -580,
-        380
-      ]
-    },
-    {
       "parameters": {
         "operation": "executeQuery",
-        "query": "SELECT\n  \"public\".\"net_enquiry\".\"id\" AS \"id\",\n  \"public\".\"net_enquiry\".\"status\" AS \"status\",\n  \"public\".\"net_enquiry\".\"created_by\" AS \"created_by\",\n  \"public\".\"net_enquiry\".\"updated_by\" AS \"updated_by\",\n  \"public\".\"net_enquiry\".\"created_at\" AS \"created_at\",\n  \"public\".\"net_enquiry\".\"updated_at\" AS \"updated_at\",\n  \"public\".\"net_enquiry\".\"first_name\" AS \"first_name\",\n  \"public\".\"net_enquiry\".\"last_name\" AS \"last_name\",\n  \"public\".\"net_enquiry\".\"phone\" AS \"phone\",\n  \"public\".\"net_enquiry\".\"email\" AS \"email\",\n  \"public\".\"net_enquiry\".\"city\" AS \"city\",\n  \"public\".\"net_enquiry\".\"coming_from\" AS \"coming_from\",\n  \"public\".\"net_enquiry\".\"gcl_id\" AS \"gcl_id\",\n  \"public\".\"net_enquiry\".\"whatsapp_opt_in\" AS \"whatsapp_opt_in\",\n  \"public\".\"net_enquiry\".\"register_for_webinar\" AS \"register_for_webinar\",\n  \"public\".\"net_enquiry\".\"intrested_to_work_in_us\" AS \"intrested_to_work_in_us\",\n  \"public\".\"net_enquiry\".\"page_full_url\" AS \"page_full_url\",\n  \"public\".\"net_enquiry\".\"url_page_path\" AS \"url_page_path\",\n  \"public\".\"net_enquiry\".\"linkedin_url\" AS \"linkedin_url\",\n  \"public\".\"net_enquiry\".\"isFromWelcomeBack\" AS \"isFromWelcomeBack\",\n  \"public\".\"net_enquiry\".\"uuid\" AS \"uuid\",\n  \"public\".\"net_enquiry\".\"program_id\" AS \"program_id\",\n  \"public\".\"net_enquiry\".\"campaign_id\" AS \"campaign_id\",\n  \"public\".\"net_enquiry\".\"educationQualificationId\" AS \"educationQualificationId\",\n  \"public\".\"net_enquiry\".\"leadId\" AS \"leadId\"\nFROM\n  \"public\".\"net_enquiry\"\nWHERE\n  (\n    \"public\".\"net_enquiry\".\"created_at\" >= CAST(NOW() AS date)\n  )\n \n   AND (\n    \"public\".\"net_enquiry\".\"created_at\" < CAST((NOW() + INTERVAL '1 day') AS date)\n  )\nLIMIT\n  1048575",
+        "query": "SELECT\n  \"public\".\"net_enquiry\".\"id\" AS \"id\",\n  \"public\".\"net_enquiry\".\"status\" AS \"status\",\n  \"public\".\"net_enquiry\".\"created_by\" AS \"created_by\",\n  \"public\".\"net_enquiry\".\"updated_by\" AS \"updated_by\",\n  \"public\".\"net_enquiry\".\"created_at\" AS \"created_at\",\n  \"public\".\"net_enquiry\".\"updated_at\" AS \"updated_at\",\n  \"public\".\"net_enquiry\".\"first_name\" AS \"first_name\",\n  \"public\".\"net_enquiry\".\"last_name\" AS \"last_name\",\n  \"public\".\"net_enquiry\".\"phone\" AS \"phone\",\n  \"public\".\"net_enquiry\".\"email\" AS \"email\",\n  \"public\".\"net_enquiry\".\"city\" AS \"city\",\n  \"public\".\"net_enquiry\".\"coming_from\" AS \"coming_from\",\n  \"public\".\"net_enquiry\".\"gcl_id\" AS \"gcl_id\",\n  \"public\".\"net_enquiry\".\"whatsapp_opt_in\" AS \"whatsapp_opt_in\",\n  \"public\".\"net_enquiry\".\"register_for_webinar\" AS \"register_for_webinar\",\n  \"public\".\"net_enquiry\".\"intrested_to_work_in_us\" AS \"intrested_to_work_in_us\",\n  \"public\".\"net_enquiry\".\"page_full_url\" AS \"page_full_url\",\n  \"public\".\"net_enquiry\".\"url_page_path\" AS \"url_page_path\",\n  \"public\".\"net_enquiry\".\"linkedin_url\" AS \"linkedin_url\",\n  \"public\".\"net_enquiry\".\"isFromWelcomeBack\" AS \"isFromWelcomeBack\",\n  \"public\".\"net_enquiry\".\"uuid\" AS \"uuid\",\n  \"public\".\"net_enquiry\".\"program_id\" AS \"program_id\",\n  \"public\".\"net_enquiry\".\"campaign_id\" AS \"campaign_id\",\n  \"public\".\"net_enquiry\".\"educationQualificationId\" AS \"educationQualificationId\",\n  \"public\".\"net_enquiry\".\"leadId\" AS \"leadId\",\n  \"public\".\"net_enquiry\".\"country_code\" AS \"country_code\",\n  \"public\".\"net_enquiry\".\"ne_type\" AS \"ne_type\"\nFROM\n  \"public\".\"net_enquiry\"\nWHERE\n  (\n    \"public\".\"net_enquiry\".\"created_at\" >= timestamp with time zone '2025-03-26 00:00:00.000 +03:00'\n  )\n \n   AND (\n    \"public\".\"net_enquiry\".\"created_at\" < timestamp with time zone '2025-03-27 00:00:00.000 +03:00'\n  )\nORDER BY\n  \"public\".\"net_enquiry\".\"created_at\" DESC\nLIMIT\n  1048575",
         "options": {}
       },
       "id": "23fcc45c-1bc7-4d48-a155-af457113d64a",
@@ -146,8 +297,8 @@
       "type": "n8n-nodes-base.postgres",
       "typeVersion": 2.2,
       "position": [
-        120,
-        380
+        100,
+        860
       ],
       "credentials": {
         "postgres": {
@@ -215,12 +366,14 @@
         580,
         240
       ],
+      "alwaysOutputData": true,
       "credentials": {
         "postgres": {
           "id": "VPJUosohtvWNBW4H",
           "name": "MF Prod (DO NOT USE)"
         }
-      }
+      },
+      "onError": "continueErrorOutput"
     },
     {
       "parameters": {
@@ -239,8 +392,8 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 1,
       "position": [
-        800,
-        240
+        820,
+        220
       ]
     },
     {
@@ -266,15 +419,16 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.1,
       "position": [
-        1520,
-        220
+        1580,
+        200
       ],
-      "retryOnFail": true
+      "retryOnFail": true,
+      "onError": "continueErrorOutput"
     },
     {
       "parameters": {
         "operation": "executeQuery",
-        "query": "SELECT\n  \"public\".\"webinar\".\"id\" AS \"id\",\n  \"public\".\"webinar\".\"status\" AS \"status\",\n  \"public\".\"webinar\".\"created_by\" AS \"created_by\",\n  \"public\".\"webinar\".\"updated_by\" AS \"updated_by\",\n  \"public\".\"webinar\".\"created_at\" AS \"created_at\",\n  \"public\".\"webinar\".\"updated_at\" AS \"updated_at\",\n  \"public\".\"webinar\".\"webinar_id\" AS \"webinar_id\",\n  \"public\".\"webinar\".\"webinar_name\" AS \"webinar_name\",\n  \"public\".\"webinar\".\"host\" AS \"host\",\n  \"public\".\"webinar\".\"title_on_website\" AS \"title_on_website\",\n  \"public\".\"webinar\".\"date_string\" AS \"date_string\",\n  \"public\".\"webinar\".\"time_string\" AS \"time_string\",\n  \"public\".\"webinar\".\"duration\" AS \"duration\",\n  \"public\".\"webinar\".\"webinar_type\" AS \"webinar_type\",\n  \"public\".\"webinar\".\"courseId\" AS \"courseId\",\n  \"public\".\"webinar\".\"tagline_1\" AS \"tagline_1\",\n  \"public\".\"webinar\".\"tagline_2\" AS \"tagline_2\",\n  \"public\".\"webinar\".\"about\" AS \"about\",\n  \"public\".\"webinar\".\"text_highlight\" AS \"text_highlight\",\n  \"public\".\"webinar\".\"what_you_learn\" AS \"what_you_learn\",\n  \"public\".\"webinar\".\"acc_city_id\" AS \"acc_city_id\",\n  \"public\".\"webinar\".\"isOffline\" AS \"isOffline\",\n  \"public\".\"webinar\".\"card_banner_image\" AS \"card_banner_image\",\n  \"public\".\"webinar\".\"date_time\" AS \"date_time\",\n  \"public\".\"webinar\".\"zoomAccount\" AS \"zoomAccount\"\nFROM\n  \"public\".\"webinar\"\nWHERE\n  (\n    \"public\".\"webinar\".\"date_time\" >= CAST((NOW() + INTERVAL '1 day') AS date)\n  )\n \n   AND (\n    \"public\".\"webinar\".\"date_time\" < CAST((NOW() + INTERVAL '11 day') AS date)\n  )\nLIMIT\n  1048575",
+        "query": "SELECT\n  \"public\".\"webinar\".\"id\" AS \"id\",\n  \"public\".\"webinar\".\"status\" AS \"status\",\n  \"public\".\"webinar\".\"created_by\" AS \"created_by\",\n  \"public\".\"webinar\".\"updated_by\" AS \"updated_by\",\n  \"public\".\"webinar\".\"created_at\" AS \"created_at\",\n  \"public\".\"webinar\".\"updated_at\" AS \"updated_at\",\n  \"public\".\"webinar\".\"webinar_id\" AS \"webinar_id\",\n  \"public\".\"webinar\".\"webinar_name\" AS \"webinar_name\",\n  \"public\".\"webinar\".\"host\" AS \"host\",\n  \"public\".\"webinar\".\"title_on_website\" AS \"title_on_website\",\n  \"public\".\"webinar\".\"date_string\" AS \"date_string\",\n  \"public\".\"webinar\".\"time_string\" AS \"time_string\",\n  \"public\".\"webinar\".\"duration\" AS \"duration\",\n  \"public\".\"webinar\".\"webinar_type\" AS \"webinar_type\",\n  \"public\".\"webinar\".\"courseId\" AS \"courseId\",\n  \"public\".\"webinar\".\"tagline_1\" AS \"tagline_1\",\n  \"public\".\"webinar\".\"tagline_2\" AS \"tagline_2\",\n  \"public\".\"webinar\".\"about\" AS \"about\",\n  \"public\".\"webinar\".\"text_highlight\" AS \"text_highlight\",\n  \"public\".\"webinar\".\"what_you_learn\" AS \"what_you_learn\",\n  \"public\".\"webinar\".\"acc_city_id\" AS \"acc_city_id\",\n  \"public\".\"webinar\".\"isOffline\" AS \"isOffline\",\n  \"public\".\"webinar\".\"card_banner_image\" AS \"card_banner_image\",\n  \"public\".\"webinar\".\"date_time\" AS \"date_time\",\n  \"public\".\"webinar\".\"zoomAccount\" AS \"zoomAccount\"\nFROM\n  \"public\".\"webinar\"\nWHERE\n  (\n    \"public\".\"webinar\".\"date_time\" >= CAST((NOW() + INTERVAL '1 day') AS date)\n  )\n \n   AND (\n    \"public\".\"webinar\".\"date_time\" < CAST((NOW() + INTERVAL '14 day') AS date)\n  )",
         "options": {}
       },
       "id": "109f8979-3566-43e4-9cd2-d47ea22949a9",
@@ -282,8 +436,8 @@
       "type": "n8n-nodes-base.postgres",
       "typeVersion": 2.2,
       "position": [
-        -100,
-        380
+        -260,
+        420
       ],
       "credentials": {
         "postgres": {
@@ -302,7 +456,7 @@
       "typeVersion": 2,
       "position": [
         1080,
-        220
+        200
       ]
     },
     {
@@ -316,7 +470,7 @@
       "typeVersion": 1,
       "position": [
         1300,
-        220
+        200
       ],
       "webhookId": "60c01b2a-fc60-459d-9d03-8852754cf023"
     },
@@ -348,18 +502,424 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.1,
       "position": [
-        -360,
-        380
+        -520,
+        420
       ]
+    },
+    {
+      "parameters": {
+        "operation": "send",
+        "phoneNumberId": "108019349036743",
+        "recipientPhoneNumber": "+917349296479",
+        "textBody": "Run is finished for the day's NE. ",
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-base.whatsApp",
+      "typeVersion": 1,
+      "position": [
+        720,
+        600
+      ],
+      "id": "dc6c532e-626e-4421-80ad-ac7deafa88c3",
+      "name": "WhatsApp Business Cloud",
+      "webhookId": "8ce61640-b042-4630-b42c-f3b881acee07",
+      "credentials": {
+        "whatsAppApi": {
+          "id": "KHcTD6EUGATb3z0D",
+          "name": "Secondary | Marketing Miles Education"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "executeQuery",
+        "query": "SELECT\n  \"public\".\"net_enquiry\".\"id\" AS \"id\",\n  \"public\".\"net_enquiry\".\"status\" AS \"status\",\n  \"public\".\"net_enquiry\".\"created_by\" AS \"created_by\",\n  \"public\".\"net_enquiry\".\"updated_by\" AS \"updated_by\",\n  \"public\".\"net_enquiry\".\"created_at\" AS \"created_at\",\n  \"public\".\"net_enquiry\".\"updated_at\" AS \"updated_at\",\n  \"public\".\"net_enquiry\".\"first_name\" AS \"first_name\",\n  \"public\".\"net_enquiry\".\"last_name\" AS \"last_name\",\n  \"public\".\"net_enquiry\".\"phone\" AS \"phone\",\n  \"public\".\"net_enquiry\".\"email\" AS \"email\",\n  \"public\".\"net_enquiry\".\"city\" AS \"city\",\n  \"public\".\"net_enquiry\".\"coming_from\" AS \"coming_from\",\n  \"public\".\"net_enquiry\".\"gcl_id\" AS \"gcl_id\",\n  \"public\".\"net_enquiry\".\"whatsapp_opt_in\" AS \"whatsapp_opt_in\",\n  \"public\".\"net_enquiry\".\"register_for_webinar\" AS \"register_for_webinar\",\n  \"public\".\"net_enquiry\".\"intrested_to_work_in_us\" AS \"intrested_to_work_in_us\",\n  \"public\".\"net_enquiry\".\"page_full_url\" AS \"page_full_url\",\n  \"public\".\"net_enquiry\".\"url_page_path\" AS \"url_page_path\",\n  \"public\".\"net_enquiry\".\"linkedin_url\" AS \"linkedin_url\",\n  \"public\".\"net_enquiry\".\"isFromWelcomeBack\" AS \"isFromWelcomeBack\",\n  \"public\".\"net_enquiry\".\"uuid\" AS \"uuid\",\n  \"public\".\"net_enquiry\".\"program_id\" AS \"program_id\",\n  \"public\".\"net_enquiry\".\"campaign_id\" AS \"campaign_id\",\n  \"public\".\"net_enquiry\".\"educationQualificationId\" AS \"educationQualificationId\",\n  \"public\".\"net_enquiry\".\"leadId\" AS \"leadId\",\n  \"public\".\"net_enquiry\".\"country_code\" AS \"country_code\",\n  \"public\".\"net_enquiry\".\"ne_type\" AS \"ne_type\"\nFROM\n  \"public\".\"net_enquiry\"\nWHERE\n  (\n    \"public\".\"net_enquiry\".\"created_at\" >= CAST(\n      CAST((NOW() + INTERVAL '-1 day') AS date) AS timestamptz\n    )\n  )\n \n   AND (\n    \"public\".\"net_enquiry\".\"created_at\" < CAST(CAST(NOW() AS date) AS timestamptz)\n  )\nLIMIT\n  1048575",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.5,
+      "position": [
+        40,
+        260
+      ],
+      "id": "0f3f950e-809e-43f0-b9c1-bd98ea80c150",
+      "name": "Postgres1",
+      "credentials": {
+        "postgres": {
+          "id": "YggRcuz4xJlqGOHM",
+          "name": "TELEPHONY (PROD)"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "content": "NEs received yesterday"
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        60,
+        140
+      ],
+      "typeVersion": 1,
+      "id": "e9deb18f-ee97-4fbd-8e19-5694db4035f1",
+      "name": "Sticky Note"
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        -680,
+        1620
+      ],
+      "id": "935955be-6904-4d28-970d-2c0cb94582af",
+      "name": "When clicking ‘Test workflow’"
+    },
+    {
+      "parameters": {
+        "content": "dynamic date range\n"
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        -80,
+        780
+      ],
+      "typeVersion": 1,
+      "id": "4d8176d0-865c-4820-bdba-57383dc5584b",
+      "name": "Sticky Note1"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://mfx-prod-154625965269.asia-south1.run.app/auth/login",
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "email",
+              "value": "jithin.kumar@mileseducation.com"
+            },
+            {
+              "name": "password",
+              "value": "123"
+            }
+          ]
+        },
+        "options": {
+          "redirect": {
+            "redirect": {}
+          }
+        }
+      },
+      "id": "c0fe34b3-1304-4a62-8172-02b8a8137a42",
+      "name": "HTTP Request2",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        360,
+        1620
+      ]
+    },
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "triggerAtHour": 23,
+              "triggerAtMinute": 3
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        -420,
+        1040
+      ],
+      "id": "9c2853ba-02b8-457f-8ff9-b41c98e73d3a",
+      "name": "Schedule Trigger1"
+    },
+    {
+      "parameters": {
+        "operation": "executeQuery",
+        "query": "SELECT\n  \"public\".\"net_enquiry\".\"id\" AS \"id\",\n  \"public\".\"net_enquiry\".\"status\" AS \"status\",\n  \"public\".\"net_enquiry\".\"created_by\" AS \"created_by\",\n  \"public\".\"net_enquiry\".\"updated_by\" AS \"updated_by\",\n  \"public\".\"net_enquiry\".\"created_at\" AS \"created_at\",\n  \"public\".\"net_enquiry\".\"updated_at\" AS \"updated_at\",\n  \"public\".\"net_enquiry\".\"first_name\" AS \"first_name\",\n  \"public\".\"net_enquiry\".\"last_name\" AS \"last_name\",\n  \"public\".\"net_enquiry\".\"phone\" AS \"phone\",\n  \"public\".\"net_enquiry\".\"email\" AS \"email\",\n  \"public\".\"net_enquiry\".\"city\" AS \"city\",\n  \"public\".\"net_enquiry\".\"coming_from\" AS \"coming_from\",\n  \"public\".\"net_enquiry\".\"gcl_id\" AS \"gcl_id\",\n  \"public\".\"net_enquiry\".\"whatsapp_opt_in\" AS \"whatsapp_opt_in\",\n  \"public\".\"net_enquiry\".\"register_for_webinar\" AS \"register_for_webinar\",\n  \"public\".\"net_enquiry\".\"intrested_to_work_in_us\" AS \"intrested_to_work_in_us\",\n  \"public\".\"net_enquiry\".\"page_full_url\" AS \"page_full_url\",\n  \"public\".\"net_enquiry\".\"url_page_path\" AS \"url_page_path\",\n  \"public\".\"net_enquiry\".\"linkedin_url\" AS \"linkedin_url\",\n  \"public\".\"net_enquiry\".\"isFromWelcomeBack\" AS \"isFromWelcomeBack\",\n  \"public\".\"net_enquiry\".\"uuid\" AS \"uuid\",\n  \"public\".\"net_enquiry\".\"program_id\" AS \"program_id\",\n  \"public\".\"net_enquiry\".\"campaign_id\" AS \"campaign_id\",\n  \"public\".\"net_enquiry\".\"educationQualificationId\" AS \"educationQualificationId\",\n  \"public\".\"net_enquiry\".\"leadId\" AS \"leadId\",\n  \"public\".\"net_enquiry\".\"country_code\" AS \"country_code\",\n  \"public\".\"net_enquiry\".\"ne_type\" AS \"ne_type\"\nFROM\n  \"public\".\"net_enquiry\"\nWHERE\n  (\n    \"public\".\"net_enquiry\".\"created_at\" >= CAST(\n      CAST((NOW() + INTERVAL '-1 day') AS date) AS timestamptz\n    )\n  )\n \n   AND (\n    \"public\".\"net_enquiry\".\"created_at\" < CAST(CAST(NOW() AS date) AS timestamptz)\n  )\norder by \"public\".\"net_enquiry\".\"created_at\" desc",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.5,
+      "position": [
+        620,
+        1620
+      ],
+      "id": "77f52bda-eacd-43f9-afe7-62554d048fac",
+      "name": "Postgres5",
+      "executeOnce": true,
+      "credentials": {
+        "postgres": {
+          "id": "VPJUosohtvWNBW4H",
+          "name": "MF Prod (DO NOT USE)"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "content": "NEs received yesterday"
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        60,
+        1500
+      ],
+      "typeVersion": 1,
+      "id": "f004172b-31ca-4f58-8d90-18b8a10b107c",
+      "name": "Sticky Note2"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [
+        1020,
+        1620
+      ],
+      "id": "c4f5c56f-91d0-4595-9139-c36711a53af2",
+      "name": "Loop Over Items"
+    },
+    {
+      "parameters": {
+        "operation": "executeQuery",
+        "query": "SELECT\n  \"public\".\"webinar\".\"id\" AS \"id\",\n  \"public\".\"webinar\".\"status\" AS \"status\",\n  \"public\".\"webinar\".\"created_by\" AS \"created_by\",\n  \"public\".\"webinar\".\"updated_by\" AS \"updated_by\",\n  \"public\".\"webinar\".\"created_at\" AS \"created_at\",\n  \"public\".\"webinar\".\"updated_at\" AS \"updated_at\",\n  \"public\".\"webinar\".\"webinar_id\" AS \"webinar_id\",\n  \"public\".\"webinar\".\"webinar_name\" AS \"webinar_name\",\n  \"public\".\"webinar\".\"host\" AS \"host\",\n  \"public\".\"webinar\".\"title_on_website\" AS \"title_on_website\",\n  \"public\".\"webinar\".\"date_string\" AS \"date_string\",\n  \"public\".\"webinar\".\"time_string\" AS \"time_string\",\n  \"public\".\"webinar\".\"duration\" AS \"duration\",\n  \"public\".\"webinar\".\"webinar_type\" AS \"webinar_type\",\n  \"public\".\"webinar\".\"courseId\" AS \"courseId\",\n  \"public\".\"webinar\".\"tagline_1\" AS \"tagline_1\",\n  \"public\".\"webinar\".\"tagline_2\" AS \"tagline_2\",\n  \"public\".\"webinar\".\"about\" AS \"about\",\n  \"public\".\"webinar\".\"text_highlight\" AS \"text_highlight\",\n  \"public\".\"webinar\".\"what_you_learn\" AS \"what_you_learn\",\n  \"public\".\"webinar\".\"acc_city_id\" AS \"acc_city_id\",\n  \"public\".\"webinar\".\"isOffline\" AS \"isOffline\",\n  \"public\".\"webinar\".\"card_banner_image\" AS \"card_banner_image\",\n  \"public\".\"webinar\".\"date_time\" AS \"date_time\",\n  \"public\".\"webinar\".\"zoomAccount\" AS \"zoomAccount\"\nFROM\n  \"public\".\"webinar\"\nWHERE\n  (\n    \"public\".\"webinar\".\"date_time\" >= CAST((NOW() + INTERVAL '1 day') AS date)\n  )\n \n   AND (\n    \"public\".\"webinar\".\"date_time\" < CAST((NOW() + INTERVAL '14 day') AS date)\n  )",
+        "options": {}
+      },
+      "id": "e4a055d7-ff5d-49b1-be49-fc30eb8ce760",
+      "name": "Postgres4",
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.2,
+      "position": [
+        -420,
+        1620
+      ],
+      "credentials": {
+        "postgres": {
+          "id": "VPJUosohtvWNBW4H",
+          "name": "MF Prod (DO NOT USE)"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "executeQuery",
+        "query": "SELECT\n  \"public\".\"lead\".\"id\" AS \"id\",\n  \"public\".\"lead\".\"candidate_id\" AS \"candidate_id\",\n  \"public\".\"lead\".\"first_name\" AS \"first_name\",\n  \"Phone\".\"phoneNumber\" AS \"Phone__phoneNumber\",\n  \"Phone\".\"countryCode\" AS \"Phone__countryCode\",\n  \"Email\".\"email\" AS \"Email__email\"\nFROM\n  \"public\".\"lead\"\nLEFT JOIN \"public\".\"phone\" AS \"Phone\" ON \"public\".\"lead\".\"id\" = \"Phone\".\"leadId\"\nLEFT JOIN \"public\".\"email\" AS \"Email\" ON \"public\".\"lead\".\"id\" = \"Email\".\"leadId\"\nLEFT JOIN \"public\".\"user\" AS \"User - SpocId\" ON \"public\".\"lead\".\"spocId\" = \"User - SpocId\".\"id\"\nWHERE\n  \"Phone\".\"phoneNumber\" = '{{ $json.phone }}'\n  OR \"Email\".\"email\" = '{{ $json.email }}'\n",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.5,
+      "position": [
+        1340,
+        1920
+      ],
+      "id": "28e80073-94da-4dda-a287-5b4279a9ecf6",
+      "name": "Postgres6",
+      "credentials": {
+        "postgres": {
+          "id": "VPJUosohtvWNBW4H",
+          "name": "MF Prod (DO NOT USE)"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "select",
+        "schema": {
+          "__rl": true,
+          "mode": "list",
+          "value": "public"
+        },
+        "table": {
+          "__rl": true,
+          "value": "webinar_registration",
+          "mode": "name"
+        },
+        "returnAll": true,
+        "where": {
+          "values": [
+            {
+              "column": "leadId",
+              "value": "={{ $json.id }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.5,
+      "position": [
+        1600,
+        1920
+      ],
+      "id": "1b59c6e4-ee05-4d90-b628-76479368a630",
+      "name": "Postgres7",
+      "credentials": {
+        "postgres": {
+          "id": "VPJUosohtvWNBW4H",
+          "name": "MF Prod (DO NOT USE)"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "// Output: [{ json: { ids: [34, 35, 36] } }]\n\nconst ids = items.map(item => item.json.id);\n\nreturn [\n  {\n    json: {\n      ids: ids\n    }\n  }\n];\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -200,
+        1620
+      ],
+      "id": "77b596e6-c802-4f6c-8e5a-4ad11b3abb14",
+      "name": "Code1"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "3cab5edd-2649-4ae7-b9c9-f3e6fd9897e2",
+              "leftValue": "={{ $('Edit Fields').item.json.upcoming_webinars }}",
+              "rightValue": "={{ $json.webinarId }}",
+              "operator": {
+                "type": "array",
+                "operation": "notContains",
+                "rightType": "any"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        1820,
+        1920
+      ],
+      "id": "f944b362-0a11-441b-b906-0508a52b4d5a",
+      "name": "If"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "9d783a2f-d5fb-422d-8db5-5c53406c443a",
+              "name": "upcoming_webinars",
+              "value": "={{ $json.ids }}",
+              "type": "array"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        20,
+        1620
+      ],
+      "id": "01db9f5f-c62d-4b9f-9231-8aaea9ed45d8",
+      "name": "Edit Fields"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://mfx-prod-154625965269.asia-south1.run.app/webinar/add-lead",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "=Bearer {{ $('HTTP Request2').first().json.result.token }}"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n\"lead_id\": {{ $('Loop Over Items1').item.json.leadId }} ,\n\"campaign_id\": {{ $('Loop Over Items1').item.json.campignId }},\n\"webinar_id\": \n}",
+        "options": {}
+      },
+      "id": "b23c078e-a429-43ab-843b-3507a4a26aa5",
+      "name": "HTTP Request3",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        3400,
+        1340
+      ],
+      "retryOnFail": true,
+      "onError": "continueErrorOutput"
+    },
+    {
+      "parameters": {
+        "jsCode": "const minDelay = 1000; // 1 second\nconst maxDelay = 5000; // 5 seconds\n\nconst randomDelay = (Math.floor(Math.random() * (maxDelay - minDelay + 1)) + minDelay)/1122;\n\nconsole.log(`Delaying execution by ${randomDelay}ms`);\n\nawait new Promise(resolve => setTimeout(resolve, randomDelay));\n\nreturn [{ json: { randomDelay } }]; // Correct format for n8n"
+      },
+      "id": "463ee313-61c9-41f8-8454-3fdf55922207",
+      "name": "Code2",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        2900,
+        1340
+      ]
+    },
+    {
+      "parameters": {
+        "amount": "={{ $json.randomDelay }}",
+        "unit": "seconds"
+      },
+      "id": "96cb5c75-3a65-4674-892e-9e3cacdc871f",
+      "name": "Wait1",
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1,
+      "position": [
+        3120,
+        1340
+      ],
+      "webhookId": "60c01b2a-fc60-459d-9d03-8852754cf023"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [
+        2460,
+        1180
+      ],
+      "id": "1cabb8f4-ad39-4e30-a48b-93f40d3119c2",
+      "name": "Loop Over Items1"
     }
   ],
   "pinData": {},
   "settings": {
-    "executionOrder": "v1"
+    "executionOrder": "v1",
+    "timezone": "Asia/Kolkata",
+    "callerPolicy": "workflowsFromSameOwner",
+    "errorWorkflow": "JugK3JVukMVLS3ax"
   },
   "staticData": null,
   "tags": [],
   "triggerCount": 0,
-  "updatedAt": "2025-02-11T10:55:00.000Z",
-  "versionId": "92a2175a-dc95-41b1-ad14-82e0956de1a7"
+  "updatedAt": "2025-04-07T13:53:44.000Z",
+  "versionId": "f8bce88f-15a3-4e2a-9770-7cef0d5bce67"
 }
