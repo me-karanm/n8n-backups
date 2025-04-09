@@ -1,0 +1,231 @@
+{
+  "active": true,
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Code",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields": {
+      "main": [
+        [
+          {
+            "node": "Code1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code1": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields1": {
+      "main": [
+        [
+          {
+            "node": "Respond to Webhook",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-03-17T08:35:35.117Z",
+  "id": "qfPNdamcEzlWb5fr",
+  "meta": null,
+  "name": "whatsapp tracking workflow for WATI",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "wati-inv-tracking",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        0,
+        0
+      ],
+      "id": "6fe8ce9f-128a-465a-bbc7-508e391892a6",
+      "name": "Webhook",
+      "webhookId": "3100e46b-3965-4877-8268-7b3f18c6fb70"
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={\n\"tokenId\": \"{{ $json.tokenId.isEmpty() == true ? \"abc\" : $json.tokenId}}\",\n\"campaignId\": {{ $json.campaignId == 0 ? 357 : $json.campaignId }},\n\"originalMessage\": \"{{ $json.originalMessage }}\",\n\"courseId\": {{ $json.course_id == 0 ? 1:  $json.course_id}}\n} ",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.1,
+      "position": [
+        1100,
+        0
+      ],
+      "id": "77df7d65-3e59-4b71-b589-d49d78e6bb0c",
+      "name": "Respond to Webhook"
+    },
+    {
+      "parameters": {
+        "jsCode": "function retrieveAndDecodeWhatsAppMessage(msg) {\n  const extractedData = extractHiddenData(msg);\n  return [{\n    tokenId: extractedData.tokenId,\n    campaignId: extractedData.campaignId,\n    originalMessage: msg.replace(/[\\u200B\\u200C\\u200D]/g, \"\"),\n  }];\n}\n\nfunction extractHiddenData(message) {\n  const hiddenPart = message.replace(/[^\\u200B\\u200C\\u200D]/g, \"\");\n  const parts = hiddenPart.split(\"\\u200D\");\n  if (parts.length < 3) {\n    return { tokenId: 0, campaignId: null };\n  }\n  return { campaignId: parts[0].length, tokenId: decodeUUID(parts[1]) };\n}\n\nfunction decodeUUID(hiddenUUID) {\n  if (!hiddenUUID) return null;\n  const binaryUUID = hiddenUUID.replace(/\\u200B/g, \"0\").replace(/\\u200C/g, \"1\");\n  let hexUUID = \"\";\n  for (let i = 0; i < binaryUUID.length; i += 4) {\n    hexUUID += parseInt(binaryUUID.substr(i, 4), 2).toString(16);\n  }\n  return `${hexUUID.slice(0, 8)}-${hexUUID.slice(8, 12)}-${hexUUID.slice(12, 16)}-${hexUUID.slice(16, 20)}-${hexUUID.slice(20)}`;\n}\n\nreturn retrieveAndDecodeWhatsAppMessage($input.first().json.body.message);"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        220,
+        0
+      ],
+      "id": "b59a75d6-0ddd-45bb-8f67-096863fce3a7",
+      "name": "Code"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "cac8a121-93f8-4669-9b07-1774a12e1cba",
+              "name": "tokenId",
+              "value": "={{ $json.tokenId }}",
+              "type": "string"
+            },
+            {
+              "id": "0d7a3e05-a79b-4ad4-baae-86eff768e7eb",
+              "name": "campaignId",
+              "value": "={{ $json.campaignId }}",
+              "type": "number"
+            },
+            {
+              "id": "b358442d-2111-4d79-a2fa-d2b9f08cf091",
+              "name": "originalMessage",
+              "value": "={{ $json.originalMessage }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        440,
+        0
+      ],
+      "id": "db6f25eb-6164-47d6-bf7e-ccd34846d38e",
+      "name": "Edit Fields"
+    },
+    {
+      "parameters": {
+        "jsCode": "return items.map(({ json }) => {\n  const input = $json.originalMessage || '';\n  const str = input.toLowerCase();\n\n  let course_id = 0;\n  if (str.includes('cpa')) {\n    course_id = 1;\n  } else if (str.includes('cma')) {\n    course_id = 2;\n  } else if (str.includes('us pathway')) {\n    course_id = 3;\n  }\n\n  return {\n    json: {\n      ...json,\n      course_id,\n    }\n  };\n});\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        660,
+        0
+      ],
+      "id": "0ed6014f-e3df-4cfb-aa41-09d6da809595",
+      "name": "Code1"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "f92b71bf-4fcf-4921-afaf-8fbae87aedb1",
+              "name": "course_id",
+              "value": "={{ $json.course_id }}",
+              "type": "number"
+            }
+          ]
+        },
+        "includeOtherFields": true,
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        880,
+        0
+      ],
+      "id": "b435ee85-ba8f-4d38-9a8b-5143776d992f",
+      "name": "Edit Fields1"
+    }
+  ],
+  "pinData": {
+    "Webhook": [
+      {
+        "json": {
+          "headers": {
+            "host": "webhook.miles-api.com",
+            "x-real-ip": "172.71.144.13",
+            "x-forwarded-host": "webhook.miles-api.com",
+            "x-forwarded-server": "webhook.miles-api.com",
+            "x-forwarded-for": "49.204.70.102, 172.71.144.13",
+            "connection": "close",
+            "content-length": "4767",
+            "cf-ray": "921c0fdc1f36d9de-FRA",
+            "cf-ipcountry": "IN",
+            "accept-encoding": "gzip, br",
+            "priority": "u=1, i",
+            "x-forwarded-proto": "https",
+            "accept-language": "en-GB,en-US;q=0.9,en;q=0.8",
+            "referer": "http://localhost:7777/accounting/us-cpa",
+            "sec-fetch-dest": "empty",
+            "sec-fetch-mode": "cors",
+            "cf-connecting-ip": "49.204.70.102",
+            "cdn-loop": "cloudflare; loops=1",
+            "sec-fetch-site": "cross-site",
+            "user-agent": "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Mobile Safari/537.36",
+            "content-type": "application/json",
+            "sec-ch-ua-mobile": "?1",
+            "accept": "*/*"
+          },
+          "params": {},
+          "query": {},
+          "body": {
+            "message": "​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​‍‌‌‌‌​​‌​‌‌​‌‌​​​‌‌‌‌​​‌‌​‌​‌​​‌​‌‌​‌​​‌‌‌​‌​​​‌​​‌​​‌‌​​‌​​‌​‌​‌‌​​‌​‌​​​​‌​​‌‌‌‌‌​​​‌​​‌​‌‌‌​‌​‌‌‌‌​‌‌‌​‌‌‌​​​​‌‌‌‌‌‌‌‌‌​​​​​​​‍Hi Miles Team! I'm interested in the US CPA program."
+          },
+          "webhookUrl": "https://webhook.miles-api.com/webhook/3100e46b-3965-4877-8268-7b3f18c6fb70",
+          "executionMode": "production"
+        }
+      }
+    ]
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 1,
+  "updatedAt": "2025-04-09T10:43:33.000Z",
+  "versionId": "7c403b5b-f65a-42c0-bd69-960552a1c826"
+}
