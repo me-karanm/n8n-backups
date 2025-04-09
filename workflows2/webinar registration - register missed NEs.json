@@ -1,0 +1,231 @@
+{
+  "active": false,
+  "connections": {
+    "When clicking ‘Test workflow’": {
+      "main": [
+        [
+          {
+            "node": "Postgres",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Postgres": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If": {
+      "main": [
+        [
+          {
+            "node": "Postgres1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Loop Over Items": {
+      "main": [
+        [],
+        [
+          {
+            "node": "If",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Postgres1": {
+      "main": [
+        [
+          {
+            "node": "If1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-03-28T10:41:18.615Z",
+  "id": "plhnYVBfhbmf2IS3",
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "webinar registration - register missed NEs",
+  "nodes": [
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        -720,
+        -340
+      ],
+      "id": "fdd8ea63-bffa-4c84-bbc2-8b9f83cf4fee",
+      "name": "When clicking ‘Test workflow’"
+    },
+    {
+      "parameters": {
+        "operation": "executeQuery",
+        "query": "SELECT\n  \"public\".\"net_enquiry\".\"id\" AS \"id\",\n  \"public\".\"net_enquiry\".\"status\" AS \"status\",\n  \"public\".\"net_enquiry\".\"created_by\" AS \"created_by\",\n  \"public\".\"net_enquiry\".\"updated_by\" AS \"updated_by\",\n  \"public\".\"net_enquiry\".\"created_at\" AS \"created_at\",\n  \"public\".\"net_enquiry\".\"updated_at\" AS \"updated_at\",\n  \"public\".\"net_enquiry\".\"first_name\" AS \"first_name\",\n  \"public\".\"net_enquiry\".\"last_name\" AS \"last_name\",\n  \"public\".\"net_enquiry\".\"phone\" AS \"phone\",\n  \"public\".\"net_enquiry\".\"email\" AS \"email\",\n  \"public\".\"net_enquiry\".\"city\" AS \"city\",\n  \"public\".\"net_enquiry\".\"coming_from\" AS \"coming_from\",\n  \"public\".\"net_enquiry\".\"gcl_id\" AS \"gcl_id\",\n  \"public\".\"net_enquiry\".\"whatsapp_opt_in\" AS \"whatsapp_opt_in\",\n  \"public\".\"net_enquiry\".\"register_for_webinar\" AS \"register_for_webinar\",\n  \"public\".\"net_enquiry\".\"intrested_to_work_in_us\" AS \"intrested_to_work_in_us\",\n  \"public\".\"net_enquiry\".\"page_full_url\" AS \"page_full_url\",\n  \"public\".\"net_enquiry\".\"url_page_path\" AS \"url_page_path\",\n  \"public\".\"net_enquiry\".\"linkedin_url\" AS \"linkedin_url\",\n  \"public\".\"net_enquiry\".\"isFromWelcomeBack\" AS \"isFromWelcomeBack\",\n  \"public\".\"net_enquiry\".\"uuid\" AS \"uuid\",\n  \"public\".\"net_enquiry\".\"program_id\" AS \"program_id\",\n  \"public\".\"net_enquiry\".\"campaign_id\" AS \"campaign_id\",\n  \"public\".\"net_enquiry\".\"educationQualificationId\" AS \"educationQualificationId\",\n  \"public\".\"net_enquiry\".\"leadId\" AS \"leadId\",\n  \"public\".\"net_enquiry\".\"country_code\" AS \"country_code\",\n  \"public\".\"net_enquiry\".\"ne_type\" AS \"ne_type\"\nFROM\n  \"public\".\"net_enquiry\"\nWHERE\n  \"public\".\"net_enquiry\".\"created_at\" >= timestamp with time zone '2025-02-25 00:00:00.000 +03:00'\nORDER BY\n  \"public\".\"net_enquiry\".\"created_at\" DESC\nlimit 100",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.5,
+      "position": [
+        -500,
+        -340
+      ],
+      "id": "5094b56a-a5ea-4707-bd2e-c6f83414a773",
+      "name": "Postgres",
+      "credentials": {
+        "postgres": {
+          "id": "VPJUosohtvWNBW4H",
+          "name": "MF Prod (DO NOT USE)"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "37de554e-5de7-4151-ae6c-d994427a77d8",
+              "leftValue": "={{ $json.leadId }}",
+              "rightValue": "",
+              "operator": {
+                "type": "number",
+                "operation": "exists",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        -60,
+        -240
+      ],
+      "id": "c91271ae-e119-4e80-b067-f526d7ffcba3",
+      "name": "If"
+    },
+    {
+      "parameters": {
+        "operation": "select",
+        "schema": {
+          "__rl": true,
+          "mode": "list",
+          "value": "public"
+        },
+        "table": {
+          "__rl": true,
+          "value": "webinar_registration",
+          "mode": "name"
+        },
+        "returnAll": true,
+        "where": {
+          "values": [
+            {
+              "column": "leadId",
+              "value": "={{ $json.leadId }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.5,
+      "position": [
+        240,
+        -400
+      ],
+      "id": "880d0882-1a58-4c96-a351-53abc6eb7612",
+      "name": "Postgres1",
+      "alwaysOutputData": true,
+      "credentials": {
+        "postgres": {
+          "id": "VPJUosohtvWNBW4H",
+          "name": "MF Prod (DO NOT USE)"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [
+        -280,
+        -340
+      ],
+      "id": "8f75f76f-be3e-4cc3-8f86-2ab0f444e682",
+      "name": "Loop Over Items"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "5675635a-763f-41fd-853b-c55e5050530a",
+              "leftValue": "",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "equals",
+                "name": "filter.operator.equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        460,
+        -400
+      ],
+      "id": "2473eb8f-273f-47fd-a5c9-fa20ce4a7538",
+      "name": "If1"
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2025-03-28T10:51:53.000Z",
+  "versionId": "e4b41c0e-7b96-4f37-beba-b096231a2708"
+}
