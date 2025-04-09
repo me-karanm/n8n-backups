@@ -1,5 +1,5 @@
 {
-  "active": false,
+  "active": true,
   "connections": {
     "n8n": {
       "main": [
@@ -231,7 +231,7 @@
       "credentials": {
         "githubApi": {
           "id": "WTJPtu7diBl0eInN",
-          "name": "GitHub account"
+          "name": "karan's github"
         }
       },
       "continueOnFail": true
@@ -319,7 +319,7 @@
       "credentials": {
         "githubApi": {
           "id": "WTJPtu7diBl0eInN",
-          "name": "GitHub account"
+          "name": "karan's github"
         }
       }
     },
@@ -344,7 +344,7 @@
       "credentials": {
         "githubApi": {
           "id": "WTJPtu7diBl0eInN",
-          "name": "GitHub account"
+          "name": "karan's github"
         }
       },
       "onError": "continueErrorOutput"
@@ -530,13 +530,13 @@
   "pinData": {},
   "settings": {
     "executionOrder": "v1",
-    "timezone": "Asia/Kolkata",
+    "timezone": "Asia/Kathmandu",
     "callerPolicy": "workflowsFromSameOwner",
     "errorWorkflow": "JugK3JVukMVLS3ax"
   },
   "staticData": null,
   "tags": [],
-  "triggerCount": 0,
-  "updatedAt": "2025-03-07T06:29:14.000Z",
-  "versionId": "e50b4e61-d2c4-4ce4-81c0-fb12414285c1"
+  "triggerCount": 1,
+  "updatedAt": "2025-03-27T15:27:27.000Z",
+  "versionId": "3da2c8f8-8d17-45a4-91a6-b45f0e8f6463"
 }
