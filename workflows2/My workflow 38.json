@@ -1,0 +1,84 @@
+{
+  "active": false,
+  "connections": {
+    "When clicking ‘Test workflow’": {
+      "main": [
+        [
+          {
+            "node": "Supabase",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-03-12T07:28:55.882Z",
+  "id": "H1vQBHVkkY1FGZFW",
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "My workflow 38",
+  "nodes": [
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        -220,
+        -80
+      ],
+      "id": "79b44b5b-269c-4770-9e3b-1513de428d73",
+      "name": "When clicking ‘Test workflow’"
+    },
+    {
+      "parameters": {
+        "operation": "getAll",
+        "tableId": "leads_dump",
+        "returnAll": true,
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "course",
+              "condition": "eq",
+              "keyValue": "6"
+            },
+            {
+              "keyName": "course",
+              "condition": "eq",
+              "keyValue": "7"
+            },
+            {
+              "keyName": "course",
+              "condition": "eq",
+              "keyValue": "17"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        0,
+        -80
+      ],
+      "id": "928ed083-fd38-4601-b36d-a30b4aaac6e8",
+      "name": "Supabase",
+      "credentials": {
+        "supabaseApi": {
+          "id": "6stEFLC7gtftREcf",
+          "name": "Supabase Campaign manager"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2025-03-12T07:28:55.882Z",
+  "versionId": "c2542386-a8f6-4ae2-a9ef-39fe926cf545"
+}
