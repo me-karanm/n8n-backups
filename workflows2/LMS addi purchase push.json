@@ -1,0 +1,235 @@
+{
+  "active": false,
+  "connections": {
+    "When clicking ‘Test workflow’": {
+      "main": [
+        [
+          {
+            "node": "Supabase",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Sheets": {
+      "main": [
+        []
+      ]
+    },
+    "Loop Over Items": {
+      "main": [
+        [],
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request": {
+      "main": [
+        [
+          {
+            "node": "Supabase1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Supabase": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Supabase1": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-03-19T13:19:17.423Z",
+  "id": "MXIhyxYLBkITDyvX",
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "LMS addi purchase push",
+  "nodes": [
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        40,
+        -60
+      ],
+      "id": "81c8a02b-28e3-42f0-95db-f9c5e69e90e4",
+      "name": "When clicking ‘Test workflow’"
+    },
+    {
+      "parameters": {
+        "authentication": "serviceAccount",
+        "documentId": {
+          "__rl": true,
+          "value": "https://docs.google.com/spreadsheets/d/1ltlCweNtQj9VsyRMpeE7jz6YcrfU_xIlH8WU83EthVo/edit?gid=309252938#gid=309252938",
+          "mode": "url"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 309252938,
+          "mode": "list",
+          "cachedResultName": "mf_additionalpurchases_19",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1ltlCweNtQj9VsyRMpeE7jz6YcrfU_xIlH8WU83EthVo/edit#gid=309252938"
+        },
+        "filtersUI": {
+          "values": [
+            {}
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        180,
+        -320
+      ],
+      "id": "04d45b66-a24a-43e1-a70e-47151e0a25b1",
+      "name": "Google Sheets",
+      "credentials": {
+        "googleApi": {
+          "id": "aiCprsG1ZRAOjrNn",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [
+        500,
+        -60
+      ],
+      "id": "cec095ad-ad4a-4f4d-a07d-45b22211ada3",
+      "name": "Loop Over Items"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://fw23n8v5-3000.inc1.devtunnels.ms/purchase/add-additional-purchase-transaction",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n   \"lead_id\":{{ $json.leadId }},\n   \"transaction_id\":\"{{$json.transactionId }}\",\n   \"amount\":{{ $json.amount }},\n   \"paymentType\":\"{{ $json.paymentType }}\",\n   \"mr_date\":\"{{ $json.mrVrDate }}\",\n   \"material_id\":{{ $json.MF_material }}\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        760,
+        -40
+      ],
+      "id": "8c0b6595-1711-424c-bcbe-3ee42c959f93",
+      "name": "HTTP Request",
+      "alwaysOutputData": true,
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "operation": "getAll",
+        "tableId": "additinal_purchase_migration",
+        "returnAll": true,
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "valid",
+              "condition": "eq",
+              "keyValue": "true"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        240,
+        -60
+      ],
+      "id": "420e1272-aa51-4447-8a3b-0ef8b8dd79bc",
+      "name": "Supabase",
+      "credentials": {
+        "supabaseApi": {
+          "id": "6stEFLC7gtftREcf",
+          "name": "Supabase Campaign manager"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "tableId": "additinal_purchase_migration",
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "id",
+              "condition": "eq",
+              "keyValue": "={{ $('Loop Over Items').item.json.id }}"
+            }
+          ]
+        },
+        "fieldsUi": {
+          "fieldValues": [
+            {
+              "fieldId": "processed",
+              "fieldValue": "true"
+            },
+            {
+              "fieldId": "response",
+              "fieldValue": "={{$json}}"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        960,
+        -40
+      ],
+      "id": "c38af6ff-024b-4852-b91c-2374434b5529",
+      "name": "Supabase1",
+      "credentials": {
+        "supabaseApi": {
+          "id": "6stEFLC7gtftREcf",
+          "name": "Supabase Campaign manager"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2025-03-20T11:49:45.000Z",
+  "versionId": "432598a3-5e24-4050-a447-410cb08138d5"
+}
