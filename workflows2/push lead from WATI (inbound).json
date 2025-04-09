@@ -1,0 +1,77 @@
+{
+  "active": true,
+  "connections": {},
+  "createdAt": "2025-03-25T12:33:22.445Z",
+  "id": "nt6rPRTOOXvdz3Go",
+  "meta": null,
+  "name": "push lead from WATI (inbound)",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "lead-routing",
+        "responseMode": "lastNode",
+        "responseData": "noData",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        -780,
+        -400
+      ],
+      "id": "5a592098-148b-48f0-95c8-4a2345d4ae2e",
+      "name": "Webhook",
+      "webhookId": "43b155d6-7a2e-4d3c-b140-ec8cff69cacf"
+    }
+  ],
+  "pinData": {
+    "Webhook": [
+      {
+        "json": {
+          "headers": {
+            "host": "webhook.miles-api.com",
+            "x-real-ip": "172.70.92.171",
+            "x-forwarded-host": "webhook.miles-api.com",
+            "x-forwarded-server": "webhook.miles-api.com",
+            "x-forwarded-for": "35.240.216.56, 172.70.92.171",
+            "connection": "close",
+            "content-length": "119",
+            "cf-ray": "92647edf3bbb4c0b-SIN",
+            "cf-connecting-ip": "35.240.216.56",
+            "accept-encoding": "gzip, br",
+            "x-forwarded-proto": "https",
+            "content-type": "application/json; charset=UTF-8",
+            "tracestate": "dd=s:0;p:e7589c032dc76c09",
+            "cf-ipcountry": "SG",
+            "traceparent": "00-85d4f50c9f92bb1eca09501301827c1d-e7589c032dc76c09-00",
+            "cdn-loop": "cloudflare; loops=1",
+            "x-datadog-tags": "_dd.p.tid=85d4f50c9f92bb1e",
+            "x-datadog-sampling-priority": "0",
+            "x-datadog-parent-id": "16670245558178769929",
+            "x-datadog-trace-id": "14558255313011768349"
+          },
+          "params": {},
+          "query": {},
+          "body": {
+            "name": "Karan M",
+            "phone": "917349296479",
+            "email": "kmandalam@gmail.com",
+            "campaignId": "1402",
+            "course": "Miles US Pathway"
+          },
+          "webhookUrl": "https://webhook.miles-api.com/webhook/lead-routing",
+          "executionMode": "production"
+        }
+      }
+    ]
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 1,
+  "updatedAt": "2025-03-26T06:28:21.000Z",
+  "versionId": "6f4eb780-56d9-43e9-bf3c-4b043527cec1"
+}
