@@ -371,13 +371,7 @@
     },
     "WhatsApp Business Cloud4": {
       "main": [
-        [
-          {
-            "node": "Set7",
-            "type": "main",
-            "index": 0
-          }
-        ]
+        []
       ]
     },
     "HTTP Request11": {
@@ -466,13 +460,7 @@
     },
     "WhatsApp Business Cloud5": {
       "main": [
-        [
-          {
-            "node": "Set9",
-            "type": "main",
-            "index": 0
-          }
-        ]
+        []
       ]
     },
     "IF8": {
@@ -967,13 +955,7 @@
     },
     "WhatsApp Business Cloud6": {
       "main": [
-        [
-          {
-            "node": "Set12",
-            "type": "main",
-            "index": 0
-          }
-        ]
+        []
       ]
     },
     "IF19": {
@@ -1175,36 +1157,36 @@
       "main": [
         [
           {
-            "node": "WhatsApp Business Cloud6",
+            "node": "Mandrill",
             "type": "main",
             "index": 0
           },
           {
-            "node": "Mandrill",
+            "node": "HTTP Request38",
             "type": "main",
             "index": 0
           }
         ],
         [
-          {
-            "node": "WhatsApp Business Cloud5",
-            "type": "main",
-            "index": 0
-          },
           {
             "node": "Mandrill5",
             "type": "main",
             "index": 0
+          },
+          {
+            "node": "HTTP Request39",
+            "type": "main",
+            "index": 0
           }
         ],
         [
           {
-            "node": "WhatsApp Business Cloud4",
+            "node": "Mandrill4",
             "type": "main",
             "index": 0
           },
           {
-            "node": "Mandrill4",
+            "node": "HTTP Request40",
             "type": "main",
             "index": 0
           }
@@ -1225,6 +1207,44 @@
     "Set30": {
       "main": [
         []
+      ]
+    },
+    "HTTP Request1": {
+      "main": [
+        []
+      ]
+    },
+    "HTTP Request38": {
+      "main": [
+        [
+          {
+            "node": "Set12",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request39": {
+      "main": [
+        [
+          {
+            "node": "Set9",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request40": {
+      "main": [
+        [
+          {
+            "node": "Set7",
+            "type": "main",
+            "index": 0
+          }
+        ]
       ]
     }
   },
@@ -1319,24 +1339,6 @@
       "position": [
         3100,
         440
-      ]
-    },
-    {
-      "parameters": {
-        "method": "POST",
-        "url": "https://mfcomms.2x2.ninja/api/sendGoogleInviteMiles",
-        "sendBody": true,
-        "specifyBody": "json",
-        "jsonBody": "={\n  \"secret\":\"18b2c162-c0bb-49b1-8f48-21c94a0aabf5\",\n  \"type\": \"{{ $('Supabase').item.json.meeting_type == 1 ? 'office' : 'video' }}\",\n  \"location\":\"{{$('Supabase').item.json.meeting_type == 1 ?  $('Supabase').item.json.city : 'Bangalore' }}\",\n  \"start_time\":{{ $json.formattedDate - 19800 }},\n  \"candidate_email\":\"{{ $('Supabase1').item.json.email }}\",\n  \"mobile_number\":\"{{ $('Supabase1').item.json.phone }}\"\n} ",
-        "options": {}
-      },
-      "id": "c6e35af7-b54a-4a08-8475-2cc19cd1f9b4",
-      "name": "HTTP Request1",
-      "type": "n8n-nodes-base.httpRequest",
-      "typeVersion": 4.1,
-      "position": [
-        3260,
-        740
       ]
     },
     {
@@ -1453,6 +1455,7 @@
         9740,
         3020
       ],
+      "webhookId": "17f0ccbe-0706-45fa-9d8e-fffb3c052622",
       "credentials": {
         "whatsAppApi": {
           "id": "KHcTD6EUGATb3z0D",
@@ -1944,6 +1947,7 @@
         9680,
         3640
       ],
+      "webhookId": "726f6558-2049-4ef1-b72c-a508554a3f68",
       "credentials": {
         "whatsAppApi": {
           "id": "KHcTD6EUGATb3z0D",
@@ -2239,6 +2243,7 @@
         8640,
         3140
       ],
+      "webhookId": "424628b0-7f1d-47c2-97c1-da7afcddbd6d",
       "credentials": {
         "whatsAppApi": {
           "id": "KHcTD6EUGATb3z0D",
@@ -2302,16 +2307,16 @@
                     "text": "={{ $json.lead_details.first_name }}"
                   },
                   {
-                    "text": "={{new Date($('Supabase').item.json.time_slots).toLocaleString('en-US',{year: 'numeric',month: 'short', day: 'numeric'})}} "
+                    "text": "={{new Date($('Supabase').first().json.time_slots).toLocaleString('en-US',{year: 'numeric',month: 'short', day: 'numeric'})}} "
                   },
                   {
-                    "text": "={{ $('Supabase').item.json.time_string }}"
+                    "text": "={{ $('Supabase').first().json.time_string }}"
                   },
                   {
                     "text": "={{ $json.visit_details.sopc_name ? $json.visit_details.sopc_name : \"TBA\"}}"
                   },
                   {
-                    "text": "={{ $json.visit_details.meeting_type == 1 ?$('Supabase2').item.json.address : \"Google Meet\" }}"
+                    "text": "={{ $json.visit_details.meeting_type == 1 ?$('Supabase2').first().json.address : \"Google Meet\" }}"
                   }
                 ]
               }
@@ -2321,7 +2326,7 @@
               "sub_type": "url",
               "buttonParameters": {
                 "parameter": {
-                  "payload": "={{ $('Supabase2').item.json.google_location.substring(34)}}"
+                  "payload": "={{ $('Supabase2').first().json.google_location.substring(34)?$('Supabase2').first().json.google_location.substring(34) : \"Google Meet Link\" }}"
                 }
               }
             },
@@ -2344,9 +2349,10 @@
       "type": "n8n-nodes-base.whatsApp",
       "typeVersion": 1,
       "position": [
-        5880,
-        200
+        7640,
+        320
       ],
+      "webhookId": "8f0c71ce-6dab-4cad-aa03-9a0a27fbe29d",
       "credentials": {
         "whatsAppApi": {
           "id": "JPvNp2kC4SudtNkr",
@@ -2517,8 +2523,8 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.1,
       "position": [
-        6360,
-        200
+        6700,
+        500
       ],
       "continueOnFail": true
     },
@@ -2539,8 +2545,8 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 2,
       "position": [
-        6100,
-        200
+        6440,
+        500
       ]
     },
     {
@@ -2645,16 +2651,16 @@
                     "text": "={{ $json.lead_details.first_name }}"
                   },
                   {
-                    "text": "={{new Date($('Supabase').item.json.time_slots).toLocaleString('en-US',{year: 'numeric',month: 'short', day: 'numeric'})}} "
+                    "text": "={{new Date($('Supabase').first().json.time_slots).toLocaleString('en-US',{year: 'numeric',month: 'short', day: 'numeric'})}} "
                   },
                   {
-                    "text": "={{ $('Supabase').item.json.time_string }}"
+                    "text": "={{ $('Supabase').first().json.time_string }}"
                   },
                   {
                     "text": "={{ $json.visit_details.sopc_name ? $json.visit_details.sopc_name : \"TBA\"}}"
                   },
                   {
-                    "text": "={{ $json.visit_details.meeting_type == 1 ?$('Supabase2').item.json.address : \"Google Meet\" }}"
+                    "text": "={{ $json.visit_details.meeting_type == 1 ?$('Supabase2').first().json.address : \"Google Meet\" }}"
                   }
                 ]
               }
@@ -2664,7 +2670,7 @@
               "sub_type": "url",
               "buttonParameters": {
                 "parameter": {
-                  "payload": "={{ $('Supabase2').item.json.google_location.substring(34)}}"
+                  "payload": "={{ $('Supabase2').first().json.google_location.substring(34)?$('Supabase2').first().json.google_location.substring(34) : \"Google Meet Link\" }}"
                 }
               }
             },
@@ -2687,9 +2693,10 @@
       "type": "n8n-nodes-base.whatsApp",
       "typeVersion": 1,
       "position": [
-        5840,
-        -80
+        7620,
+        120
       ],
+      "webhookId": "4805589b-47a1-4633-8627-49cb5be605cd",
       "credentials": {
         "whatsAppApi": {
           "id": "JPvNp2kC4SudtNkr",
@@ -2712,8 +2719,8 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.1,
       "position": [
-        6320,
-        -80
+        6620,
+        40
       ],
       "continueOnFail": true
     },
@@ -2734,8 +2741,8 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 2,
       "position": [
-        6060,
-        -80
+        6360,
+        40
       ]
     },
     {
@@ -2929,7 +2936,7 @@
                     "text": "={{ $json.lead_details.first_name }}"
                   },
                   {
-                    "text": "={{new Date($('Supabase').item.json.time_slots).toLocaleString('en-US',{year: 'numeric',month: 'short', day: 'numeric'})}} "
+                    "text": "={{new Date($('Supabase').first().json.time_slots).toLocaleString('en-US',{year: 'numeric',month: 'short', day: 'numeric'})}} "
                   },
                   {
                     "text": "={{ $('Supabase').item.json.time_string ?? \" \" }}"
@@ -2948,7 +2955,7 @@
               "sub_type": "url",
               "buttonParameters": {
                 "parameter": {
-                  "payload": "={{ $('Supabase2').item.json.google_location.substring(34)}}"
+                  "payload": "={{ $('Supabase2').item.json.google_location.substring(34)?$('Supabase2').item.json.google_location.substring(34) : \"Google Meet Link\" }}"
                 }
               }
             },
@@ -2971,9 +2978,10 @@
       "type": "n8n-nodes-base.whatsApp",
       "typeVersion": 1,
       "position": [
-        5820,
-        -540
+        5860,
+        -1000
       ],
+      "webhookId": "afd57c20-3db7-453d-b7af-33e0506f937c",
       "credentials": {
         "whatsAppApi": {
           "id": "JPvNp2kC4SudtNkr",
@@ -2996,8 +3004,8 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.1,
       "position": [
-        6340,
-        -540
+        6580,
+        -680
       ],
       "alwaysOutputData": true,
       "continueOnFail": true
@@ -3019,8 +3027,8 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 2,
       "position": [
-        6100,
-        -540
+        6340,
+        -680
       ]
     },
     {
@@ -3546,6 +3554,7 @@
         7860,
         4600
       ],
+      "webhookId": "e502f48e-75d5-4bdd-8c37-1c6fb51713a4",
       "credentials": {
         "whatsAppApi": {
           "id": "JPvNp2kC4SudtNkr",
@@ -3613,6 +3622,7 @@
         7060,
         2080
       ],
+      "webhookId": "f1a1ec53-d66d-4027-9bd0-09e4e4bc8fbe",
       "credentials": {
         "whatsAppApi": {
           "id": "JPvNp2kC4SudtNkr",
@@ -3680,6 +3690,7 @@
         7060,
         2260
       ],
+      "webhookId": "c3e7799e-2c8a-471e-a04d-76f0b5968415",
       "credentials": {
         "whatsAppApi": {
           "id": "JPvNp2kC4SudtNkr",
@@ -3727,26 +3738,6 @@
       "position": [
         5920,
         2000
-      ]
-    },
-    {
-      "parameters": {
-        "conditions": {
-          "string": [
-            {
-              "value1": "={{ $json.education_qualification }}",
-              "value2": "will_graduate_in_2025_or_later"
-            }
-          ]
-        }
-      },
-      "id": "dce1e9a9-eaef-4328-baa1-ca70f6a4d062",
-      "name": "IF10",
-      "type": "n8n-nodes-base.if",
-      "typeVersion": 1,
-      "position": [
-        460,
-        1440
       ]
     },
     {
@@ -3862,6 +3853,7 @@
         6500,
         2900
       ],
+      "webhookId": "542c11fd-1148-4b1a-bb11-b604cbef305b",
       "credentials": {
         "whatsAppApi": {
           "id": "JPvNp2kC4SudtNkr",
@@ -3990,6 +3982,7 @@
         5000,
         3260
       ],
+      "webhookId": "2d027fc0-5f3e-4aa1-b9f9-7c922d974321",
       "credentials": {
         "whatsAppApi": {
           "id": "JPvNp2kC4SudtNkr",
@@ -4097,6 +4090,7 @@
         5000,
         2980
       ],
+      "webhookId": "8f3b439f-e578-4d4f-a9d8-c6f47703a817",
       "credentials": {
         "whatsAppApi": {
           "id": "JPvNp2kC4SudtNkr",
@@ -4243,6 +4237,7 @@
         6480,
         2720
       ],
+      "webhookId": "3bf3c003-1273-46e1-ac86-8f9f65728aeb",
       "credentials": {
         "whatsAppApi": {
           "id": "JPvNp2kC4SudtNkr",
@@ -4310,6 +4305,7 @@
         7060,
         1880
       ],
+      "webhookId": "47a03439-2d21-4faf-a0cd-559521b0f40f",
       "credentials": {
         "whatsAppApi": {
           "id": "JPvNp2kC4SudtNkr",
@@ -4332,6 +4328,7 @@
         7460,
         4260
       ],
+      "webhookId": "4402d463-3cc6-47c0-a389-f62d351c62e5",
       "credentials": {
         "whatsAppApi": {
           "id": "JPvNp2kC4SudtNkr",
@@ -4341,7 +4338,8 @@
     },
     {
       "parameters": {
-        "workflowId": "fP9nMoC1aplFfk2J"
+        "workflowId": "fP9nMoC1aplFfk2J",
+        "options": {}
       },
       "id": "2e04b7d0-fa4f-42dc-9221-9cd2116ad51e",
       "name": "Execute Workflow",
@@ -4630,7 +4628,7 @@
       "parameters": {
         "template": "usp-officevisit-t",
         "fromEmail": "info@mileseducation.com",
-        "toEmail": "={{ $('Supabase1').item.json.email }}",
+        "toEmail": "={{ $('Supabase1').first().json.email }}",
         "options": {
           "subject": "Your Meeting for the Miles US Pathway is Set! 🎉"
         },
@@ -4638,23 +4636,23 @@
           "mergeVarsValues": [
             {
               "name": "FNAME",
-              "content": "={{ $('Supabase1').item.json.first_name }}"
+              "content": "={{ $('Supabase1').first().json.first_name }}"
             },
             {
               "name": "DATE",
-              "content": "={{ $('Supabase3').item.json.visit_date_string }}"
+              "content": "={{ $('Supabase3').first().json.visit_date_string }}"
             },
             {
               "name": "TIME",
-              "content": "={{ $('Supabase3').item.json.time_string }}"
+              "content": "={{ $('Supabase3').first().json.time_string }}"
             },
             {
               "name": "SPOC",
-              "content": "={{ $('Supabase').item.json.sopc_name? $('Supabase').item.json.sopc_name : \"TBA\" }}"
+              "content": "={{ $('Supabase').first().json.sopc_name? $('Supabase').first().json.sopc_name : \"TBA\" }}"
             },
             {
               "name": "LOCATION",
-              "content": "={{ $('Supabase').item.json.city }}"
+              "content": "={{ $('Supabase').first().json.city }}"
             }
           ]
         }
@@ -4664,8 +4662,8 @@
       "type": "n8n-nodes-base.mandrill",
       "typeVersion": 1,
       "position": [
-        5820,
-        -720
+        5860,
+        -1180
       ],
       "credentials": {
         "mandrillApi": {
@@ -4822,7 +4820,7 @@
       "parameters": {
         "template": "cma-office-visit-t",
         "fromEmail": "info@mileseducation.com",
-        "toEmail": "={{ $('Supabase1').item.json.email }}",
+        "toEmail": "={{ $('Supabase1').first().json.email }}",
         "options": {
           "subject": "It’s Official! Your CMA Meeting is Set! 🎉📅"
         },
@@ -4830,23 +4828,23 @@
           "mergeVarsValues": [
             {
               "name": "FNAME",
-              "content": "={{ $('Supabase1').item.json.first_name }}"
+              "content": "={{ $('Supabase1').first().json.first_name }}"
             },
             {
               "name": "DATE",
-              "content": "={{ $('Supabase3').item.json.visit_date_string }}"
+              "content": "={{ $('Supabase3').first().json.visit_date_string }}"
             },
             {
               "name": "TIME",
-              "content": "={{ $('Supabase3').item.json.time_string }}"
+              "content": "={{ $('Supabase3').first().json.time_string }}"
             },
             {
               "name": "SPOC",
-              "content": "={{ $('Supabase').item.json.sopc_name? $('Supabase').item.json.sopc_name : \"TBA\" }}"
+              "content": "={{ $('Supabase').first().json.sopc_name? $('Supabase').item.json.sopc_name : \"TBA\" }}"
             },
             {
               "name": "LOCATION",
-              "content": "={{ $('Supabase').item.json.city }}"
+              "content": "={{ $('Supabase').first().json.city }}"
             }
           ]
         }
@@ -4856,8 +4854,8 @@
       "type": "n8n-nodes-base.mandrill",
       "typeVersion": 1,
       "position": [
-        5880,
-        420
+        6220,
+        760
       ],
       "credentials": {
         "mandrillApi": {
@@ -4870,7 +4868,7 @@
       "parameters": {
         "template": "cpa-office-visit-t",
         "fromEmail": "info@mileseducation.com",
-        "toEmail": "={{ $('Supabase1').item.json.email }}",
+        "toEmail": "={{ $('Supabase1').first().json.email }}",
         "options": {
           "subject": "It’s Official! Your CPA Meeting is Set! 🎉📅"
         },
@@ -4878,23 +4876,23 @@
           "mergeVarsValues": [
             {
               "name": "FNAME",
-              "content": "={{ $('Supabase1').item.json.first_name }}"
+              "content": "={{ $('Supabase1').first().json.first_name }}"
             },
             {
               "name": "DATE",
-              "content": "={{ $('Supabase3').item.json.visit_date_string }}"
+              "content": "={{ $('Supabase3').first().json.visit_date_string }}"
             },
             {
               "name": "TIME",
-              "content": "={{ $('Supabase3').item.json.time_string }}"
+              "content": "={{ $('Supabase3').first().json.time_string }}"
             },
             {
               "name": "SPOC",
-              "content": "={{ $('Supabase').item.json.sopc_name? $('Supabase').item.json.sopc_name : \"TBA\" }}"
+              "content": "={{ $('Supabase').first().json.sopc_name? $('Supabase').first().json.sopc_name : \"TBA\" }}"
             },
             {
               "name": "LOCATION",
-              "content": "={{ $('Supabase').item.json.city }}"
+              "content": "={{ $('Supabase').first().json.city }}"
             }
           ]
         }
@@ -4904,8 +4902,8 @@
       "type": "n8n-nodes-base.mandrill",
       "typeVersion": 1,
       "position": [
-        5840,
-        -260
+        6140,
+        -160
       ],
       "credentials": {
         "mandrillApi": {
@@ -4931,8 +4929,8 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 2,
       "position": [
-        6160,
-        680
+        6420,
+        1400
       ]
     },
     {
@@ -4949,8 +4947,8 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.1,
       "position": [
-        6420,
-        680
+        6680,
+        1400
       ],
       "continueOnFail": true
     },
@@ -5010,9 +5008,10 @@
       "type": "n8n-nodes-base.whatsApp",
       "typeVersion": 1,
       "position": [
-        5860,
-        680
+        6120,
+        1400
       ],
+      "webhookId": "f4ce4309-e71c-4e41-864b-98e5db7365c3",
       "credentials": {
         "whatsAppApi": {
           "id": "JPvNp2kC4SudtNkr",
@@ -5023,17 +5022,17 @@
     },
     {
       "parameters": {
-        "value1": "={{ $('Supabase1').item.json.course }}",
+        "value1": "={{ $('Supabase1').first().json.course }}",
         "rules": {
           "rules": [
             {
               "operation": "equal",
-              "value2": 9
+              "value2": 9,
+              "output": 1
             },
             {
               "operation": "equal",
-              "value2": 2,
-              "output": 1
+              "value2": 2
             },
             {
               "operation": "equal",
@@ -5095,8 +5094,8 @@
       "type": "n8n-nodes-base.mandrill",
       "typeVersion": 1,
       "position": [
-        5860,
-        900
+        6120,
+        1620
       ],
       "credentials": {
         "mandrillApi": {
@@ -5104,19 +5103,6 @@
           "name": "Mandrill account"
         }
       }
-    },
-    {
-      "parameters": {
-        "workflowId": "wLCrp5Mga1Yq6GJK"
-      },
-      "id": "2dba9a9e-6baa-4c2e-96bc-9e22485b925f",
-      "name": "Execute Workflow1",
-      "type": "n8n-nodes-base.executeWorkflow",
-      "typeVersion": 1,
-      "position": [
-        1620,
-        1040
-      ]
     },
     {
       "parameters": {
@@ -5165,6 +5151,153 @@
         1000,
         1020
       ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://live-mt-server.wati.io/413503/api/v1/sendTemplateMessage",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "whatsappNumber",
+              "value": "={{ $json.lead_details.phone }}"
+            }
+          ]
+        },
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiIyMGExYWJlMy1iMmZjLTQ3MzctYWNkOC1lZjAwZDQ4OTcyNDYiLCJ1bmlxdWVfbmFtZSI6Im1hbmRhbGFtLmthcmFuQG1pbGVzZWR1Y2F0aW9uLmNvbSIsIm5hbWVpZCI6Im1hbmRhbGFtLmthcmFuQG1pbGVzZWR1Y2F0aW9uLmNvbSIsImVtYWlsIjoibWFuZGFsYW0ua2FyYW5AbWlsZXNlZHVjYXRpb24uY29tIiwiYXV0aF90aW1lIjoiMDMvMDUvMjAyNSAxMDo0MjozMSIsInRlbmFudF9pZCI6IjQxMzUwMyIsImRiX25hbWUiOiJtdC1wcm9kLVRlbmFudHMiLCJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3JvbGUiOiJBRE1JTklTVFJBVE9SIiwiZXhwIjoyNTM0MDIzMDA4MDAsImlzcyI6IkNsYXJlX0FJIiwiYXVkIjoiQ2xhcmVfQUkifQ.sIA_CkHsNQvlcvn9G0dAUQ95PYIKXtQH38338UX092E"
+            },
+            {
+              "name": "content-type",
+              "value": "application/json-patch+json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "{\n\"template_name\": \"karan_test\",\n\"broadcast_name\": \"form2_filled\",\n  \"parameters\": [\n    {\n      \"name\": \"name\",\n      \"value\": \"karan\"\n    }\n  ]\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        7120,
+        -600
+      ],
+      "id": "d0085663-1944-4125-9e7d-232598300291",
+      "name": "HTTP Request1"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://graph.facebook.com/v18.0/171009622770823/messages",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "Bearer EAAERpNdf2aYBO9sU1QltjB6ZCQZArH5MwBZCZCNsiUgH0sT4mihs6TNa6xMCDqEQ6ncUy5B3qCfXH5tbCiBC5RnvZAeYwqArMJRthWGdbUHJaBdS4PBS9gkJ6o0uGZBEA73ubwkFMkQSWI7kVEywwZBH8bmLEaL3KHm5eo2QxWbLwz4KRxtENrk0QfDPrZA5NTVU"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"messaging_product\": \"whatsapp\",\n  \"to\": \"{{ $json.lead_details.phone }}\",\n  \"type\": \"template\",\n  \"template\": {\n    \"name\": \"usp_visit_scheduled_util\",\n    \"language\": {\n      \"code\": \"en\"\n    },\n    \"components\": [\n      {\n        \"type\": \"header\",\n        \"parameters\": [\n          {\n            \"type\": \"image\",\n            \"image\": {\n              \"link\": \"https://scontent.whatsapp.net/v/t61.29466-34/461675697_1540551243272282_4929056334898682070_n.jpg?ccb=1-7&_nc_sid=8b1bef&_nc_ohc=DYdAiDIQNSIQ7kNvwGBGCKz&_nc_oc=Adl6xuHQ69c82WpTbjSOsspKbYDJaECgufNXABItd-grgJ_HRa2_F_gh9fjzmFc-Ndo&_nc_zt=3&_nc_ht=scontent.whatsapp.net&edm=AH51TzQEAAAA&_nc_gid=K-LaCr2pPEMhboUuDDRutQ&oh=01_Q5AaIWptWrVwyEqXY7rA4SYidZdK0yDuD1K9yFNAe_I00yHG&oe=681CDFCC\"\n            }\n          }\n        ]\n      },\n      {\n        \"type\": \"body\",\n        \"parameters\": [\n          { \"type\": \"text\", \"text\": \"{{ $json.lead_details.first_name }}\" },\n          { \"type\": \"text\", \"text\": \"{{ $json.visit_details.visit_date??$json.visit_details.time_slots.toDateTime().format('dd LLL,yyyy') }}\" },\n          { \"type\": \"text\", \"text\": \"{{ $json.visit_details.time_string }}??{{ $json.visit_details.time_slots.toDateTime().format(\"t\") }}\" },\n          { \"type\": \"text\", \"text\": \"{{ $json.visit_details.sopc_name ??\"TBA\"}}\" },\n          { \"type\": \"text\", \"text\": \"{{ $json.visit_details.city??\"TBA\" }}\" }\n        ]\n      },\n      {\n        \"type\": \"button\",\n        \"sub_type\": \"url\",\n        \"index\": 0,\n        \"parameters\": [\n          {\n            \"type\": \"text\",\n            \"text\": \"{{ $('Supabase2').item.json.google_location.slice(34).length == 0 ? \"meeting-link\": $('Supabase2').item.json.google_location.slice(34)}}\"\n          }\n        ]\n      }\n    ]\n  }\n}\n",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        6080,
+        -680
+      ],
+      "id": "0d9d16f0-323f-4c14-8678-5cb5beb32d30",
+      "name": "HTTP Request38"
+    },
+    {
+      "parameters": {
+        "content": "WATI"
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        6980,
+        -720
+      ],
+      "typeVersion": 1,
+      "id": "213cf295-a87c-4443-81c9-786c6710166b",
+      "name": "Sticky Note"
+    },
+    {
+      "parameters": {
+        "content": "EA"
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        5880,
+        1400
+      ],
+      "typeVersion": 1,
+      "id": "2f16e2f3-de52-4b31-9b13-ee7854e8cf46",
+      "name": "Sticky Note1"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://graph.facebook.com/v18.0/171009622770823/messages",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "Bearer EAAERpNdf2aYBO9sU1QltjB6ZCQZArH5MwBZCZCNsiUgH0sT4mihs6TNa6xMCDqEQ6ncUy5B3qCfXH5tbCiBC5RnvZAeYwqArMJRthWGdbUHJaBdS4PBS9gkJ6o0uGZBEA73ubwkFMkQSWI7kVEywwZBH8bmLEaL3KHm5eo2QxWbLwz4KRxtENrk0QfDPrZA5NTVU"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"messaging_product\": \"whatsapp\",\n  \"to\": \"{{ $json.lead_details.phone }}\",\n  \"type\": \"template\",\n  \"template\": {\n    \"name\": \"cpa_visit_scheduled_util\",\n    \"language\": {\n      \"code\": \"en\"\n    },\n    \"components\": [\n      {\n        \"type\": \"header\",\n        \"parameters\": [\n          {\n            \"type\": \"image\",\n            \"image\": {\n              \"link\": \"https://scontent.whatsapp.net/v/t61.29466-34/463481360_1057558392720226_5109202015809624973_n.png?ccb=1-7&_nc_sid=8b1bef&_nc_ohc=4wL6cAVpzOkQ7kNvwGTV0cY&_nc_oc=Adl0JrOOIyFbK_69KXLLJ7Zk5FiN08tW9y5IcOE2Bp-llqyv0LHeEDoZ0We-htFDT-c&_nc_zt=3&_nc_ht=scontent.whatsapp.net&edm=AH51TzQEAAAA&_nc_gid=Pwz7DmZfSoU0Xeqxb9R_kw&oh=01_Q5AaIUrszHrmPz0OjkPh3_88mk6NLOblurRVE5_wEsxzpGrJ&oe=681D03FA\"\n            }\n          }\n        ]\n      },\n      {\n        \"type\": \"body\",\n        \"parameters\": [\n          { \"type\": \"text\", \"text\": \"{{ $json.lead_details.first_name }}\" },\n          { \"type\": \"text\", \"text\": \"{{ $json.visit_details.visit_date??$json.visit_details.time_slots.toDateTime().format('dd LLL,yyyy') }}\" },\n          { \"type\": \"text\", \"text\": \"{{ $json.visit_details.time_string }}??{{ $json.visit_details.time_slots.toDateTime().format(\"t\") }}\" },\n          { \"type\": \"text\", \"text\": \"{{ $json.visit_details.sopc_name ??\"TBA\"}}\" },\n          { \"type\": \"text\", \"text\": \"{{ $json.visit_details.city??\"TBA\" }}\" }\n        ]\n      },\n      {\n        \"type\": \"button\",\n        \"sub_type\": \"url\",\n        \"index\": 0,\n        \"parameters\": [\n          {\n            \"type\": \"text\",\n            \"text\": \"{{ $('Supabase2').item.json.google_location.slice(34).length == 0 ? \"meeting-link\": $('Supabase2').item.json.google_location.slice(34)}}\"\n          }\n        ]\n      }\n    ]\n  }\n}\n",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        6140,
+        40
+      ],
+      "id": "b020b895-105e-4c4a-a252-87bc17589c2c",
+      "name": "HTTP Request39"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://graph.facebook.com/v18.0/171009622770823/messages",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "Bearer EAAERpNdf2aYBO9sU1QltjB6ZCQZArH5MwBZCZCNsiUgH0sT4mihs6TNa6xMCDqEQ6ncUy5B3qCfXH5tbCiBC5RnvZAeYwqArMJRthWGdbUHJaBdS4PBS9gkJ6o0uGZBEA73ubwkFMkQSWI7kVEywwZBH8bmLEaL3KHm5eo2QxWbLwz4KRxtENrk0QfDPrZA5NTVU"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"messaging_product\": \"whatsapp\",\n  \"to\": \"{{ $json.lead_details.phone }}\",\n  \"type\": \"template\",\n  \"template\": {\n    \"name\": \"cma_visit_scheduled_util\",\n    \"language\": {\n      \"code\": \"en\"\n    },\n    \"components\": [\n      {\n        \"type\": \"header\",\n        \"parameters\": [\n          {\n            \"type\": \"image\",\n            \"image\": {\n              \"link\": \"https://scontent.whatsapp.net/v/t61.29466-34/420470271_1089496886191261_8902019765406651603_n.png?ccb=1-7&_nc_sid=8b1bef&_nc_ohc=S_heSh0NgosQ7kNvwE74qLy&_nc_oc=AdkwQGepzxcNleEPnYYMvyoRcStV77Yw1gw2Dw-PzDpm7g5gG5KfuWVQa-WAGZC3JK0&_nc_zt=3&_nc_ht=scontent.whatsapp.net&edm=AH51TzQEAAAA&_nc_gid=sSfTC1iSasm9v7Ob4yLeCw&oh=01_Q5AaITEh3BW4NVs3VvvN6CVTpB7e4npfIMErEaDJG5SFe2A_&oe=681CE5A1\"\n            }\n          }\n        ]\n      },\n      {\n        \"type\": \"body\",\n        \"parameters\": [\n          { \"type\": \"text\", \"text\": \"{{ $json.lead_details.first_name }}\" },\n          { \"type\": \"text\", \"text\": \"{{ $json.visit_details.visit_date??$json.visit_details.time_slots.toDateTime().format('dd LLL,yyyy') }}\" },\n          { \"type\": \"text\", \"text\": \"{{ $json.visit_details.time_string }}??{{ $json.visit_details.time_slots.toDateTime().format(\"t\") }}\" },\n          { \"type\": \"text\", \"text\": \"{{ $json.visit_details.sopc_name ??\"TBA\"}}\" },\n          { \"type\": \"text\", \"text\": \"{{ $json.visit_details.city??\"TBA\" }}\" }\n        ]\n      },\n      {\n        \"type\": \"button\",\n        \"sub_type\": \"url\",\n        \"index\": 0,\n        \"parameters\": [\n          {\n            \"type\": \"text\",\n            \"text\": \"{{ $('Supabase2').item.json.google_location.slice(34).length == 0 ? \"meeting-link\": $('Supabase2').item.json.google_location.slice(34)}}\"\n          }\n        ]\n      }\n    ]\n  }\n}\n",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        6200,
+        500
+      ],
+      "id": "cca3db7f-7840-42ff-8854-7e2c5c376a16",
+      "name": "HTTP Request40"
     }
   ],
   "pinData": {
@@ -5198,73 +5331,6 @@
           }
         }
       }
-    ],
-    "Execute Workflow1": [
-      {
-        "json": {
-          "id": 1499304,
-          "created_at": "2025-02-07T05:39:29.225772+00:00",
-          "first_name": "suniyo-test",
-          "last_name": null,
-          "phone": "+918792915673",
-          "email": "gauri.kasautyar@gmail.com",
-          "city": "Virtual Meeting",
-          "course": 9,
-          "coming_from": "website-page",
-          "camp_id": 65,
-          "campaign_id": null,
-          "campaign_name": null,
-          "gcl_id": null,
-          "whatsapp": true,
-          "sync_to_sheet": false,
-          "camp_token": null,
-          "register_for_webinar": null,
-          "lead_id": null,
-          "registration_status": true,
-          "webinar_id": null,
-          "job_preference": null,
-          "push_to_mf": true,
-          "whatsapp_send_status": true,
-          "person_id": null,
-          "mf_response": null,
-          "whatsapp_template": null,
-          "retry": null,
-          "intrested_in": "Yes",
-          "page_full_url": "https://www.mileseducation.com/accounting/us-pathway",
-          "url_page_path": "/accounting/us-pathway",
-          "user_track_id": "beeda321-8245-4233-8cc7-5f319fd5b53c",
-          "json": null,
-          "work_in_us": null,
-          "linkedin_url": null,
-          "unique_id": " ",
-          "clevertap": null,
-          "education_qualification": "completed_graduation",
-          "english_proficiency": null,
-          "uuid": "81b05000-d031-4642-98c3-7b4d5214161b",
-          "old_lead_id": null,
-          "isFromWelcomeBack": false,
-          "message_id": null,
-          "updateAt": null,
-          "us_visa_orientation_session": null,
-          "website_id": null,
-          "utm_campaign": null,
-          "utm_source": null,
-          "utm_medium": null,
-          "utm_term": null,
-          "utm_content": null,
-          "sms": false,
-          "ga_session_id": "1738906404",
-          "ga_session_number": "1",
-          "ga_client_id": null,
-          "attendance_code": null,
-          "visit_date": "2025-02-08 ",
-          "visit_time": "2:00 PM",
-          "time_slot": "2025-02-08T14:00:00"
-        },
-        "pairedItem": {
-          "item": 0
-        }
-      }
     ]
   },
   "settings": {
@@ -5287,6 +5353,6 @@
     }
   ],
   "triggerCount": 1,
-  "updatedAt": "2025-02-26T12:00:05.000Z",
-  "versionId": "ea009a25-0211-4b5c-8da5-7bd4f63c880f"
+  "updatedAt": "2025-04-08T20:26:42.000Z",
+  "versionId": "15b1c9a6-6ac0-47e9-b27f-60ef606cb564"
 }
