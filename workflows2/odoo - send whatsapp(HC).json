@@ -37,13 +37,7 @@
     },
     "WhatsApp Business Cloud3": {
       "main": [
-        [
-          {
-            "node": "WhatsApp Business Cloud",
-            "type": "main",
-            "index": 0
-          }
-        ]
+        []
       ]
     }
   },
@@ -263,13 +257,16 @@
     {
       "parameters": {
         "phoneNumberId": "108019349036743",
+        "recipientPhoneNumber": "={{ $('Webhook').first().json.body.number }}",
         "template": "auth_verification_1|en",
         "components": {
           "component": [
             {
               "bodyParameters": {
                 "parameter": [
-                  {}
+                  {
+                    "text": "={{ $('Webhook').first().json.body.otp }}"
+                  }
                 ]
               }
             },
@@ -277,7 +274,9 @@
               "type": "button",
               "sub_type": "url",
               "buttonParameters": {
-                "parameter": {}
+                "parameter": {
+                  "payload": "={{ $('Webhook').first().json.body.otp }}"
+                }
               }
             }
           ]
@@ -286,8 +285,8 @@
       "type": "n8n-nodes-base.whatsApp",
       "typeVersion": 1,
       "position": [
-        900,
-        60
+        1080,
+        0
       ],
       "id": "98e3bce6-9423-4d90-b6ec-208e08e42fb8",
       "name": "WhatsApp Business Cloud3",
@@ -297,7 +296,8 @@
           "id": "KHcTD6EUGATb3z0D",
           "name": "Secondary | Marketing Miles Education"
         }
-      }
+      },
+      "onError": "continueRegularOutput"
     }
   ],
   "pinData": {
@@ -330,7 +330,7 @@
             "number": "916238133298",
             "message": "Welcome to US Pathway Miles! Please use the following one-time password (OTP) to log in securely: 856065.If you did not request this OTP, please contact our support immediately",
             "otp": "856065",
-            "type": "meeting",
+            "type": "otp",
             "link": false
           }
         }
@@ -343,6 +343,6 @@
   "staticData": null,
   "tags": [],
   "triggerCount": 1,
-  "updatedAt": "2025-03-07T06:29:41.000Z",
-  "versionId": "05540beb-3a10-4166-b84b-3bfad55ae95c"
+  "updatedAt": "2025-03-12T04:49:00.000Z",
+  "versionId": "3f732096-37ff-4285-89f9-040532595f30"
 }
