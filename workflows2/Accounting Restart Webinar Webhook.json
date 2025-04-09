@@ -1,0 +1,403 @@
+{
+  "active": true,
+  "connections": {
+    "If": {
+      "main": [
+        [
+          {
+            "node": "WhatsApp Business Cloud",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "If1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "WhatsApp Business Cloud": {
+      "main": [
+        [
+          {
+            "node": "If1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If1": {
+      "main": [
+        [],
+        [
+          {
+            "node": "If3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If3": {
+      "main": [
+        [
+          {
+            "node": "WhatsApp Business Cloud1",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "WhatsApp Business Cloud2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "When clicking ‘Test workflow’": {
+      "main": [
+        [
+          {
+            "node": "If",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-03-26T07:47:34.074Z",
+  "id": "PaksUXGmewBg3fGR",
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "Accounting Restart Webinar Webhook",
+  "nodes": [
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "64b232e1-b7d3-42a3-b908-93c256e13d72",
+              "leftValue": "={{ $json.body.interested_to_register }}",
+              "rightValue": "yes",
+              "operator": {
+                "type": "string",
+                "operation": "equals",
+                "name": "filter.operator.equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        -1660,
+        -440
+      ],
+      "id": "f7ed8e62-11f9-4149-b553-33b8f3e52f08",
+      "name": "If"
+    },
+    {
+      "parameters": {
+        "phoneNumberId": "171009622770823",
+        "recipientPhoneNumber": "=91{{ $('When clicking ‘Test workflow’').first().json.body.phone }}",
+        "template": "cpa_restart_registration_confirmation|en",
+        "components": {
+          "component": [
+            {
+              "bodyParameters": {
+                "parameter": [
+                  {
+                    "text": "={{ $('When clicking ‘Test workflow’').first().json.body.name }}"
+                  },
+                  {
+                    "text": "={{ $('When clicking ‘Test workflow’').first().json.body.course_name }}"
+                  },
+                  {
+                    "text": "={{ $('When clicking ‘Test workflow’').first().json.body.webinar_date }}"
+                  },
+                  {
+                    "text": "={{ $('When clicking ‘Test workflow’').first().json.body.webinar_time }}"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.whatsApp",
+      "typeVersion": 1,
+      "position": [
+        -1440,
+        -640
+      ],
+      "id": "2c87439d-4c11-4634-bb9a-1767e9874e1e",
+      "name": "WhatsApp Business Cloud",
+      "webhookId": "ab1b3706-0639-4602-a6ce-5f6b2b465934",
+      "retryOnFail": true,
+      "credentials": {
+        "whatsAppApi": {
+          "id": "JPvNp2kC4SudtNkr",
+          "name": "Primary | Marketing Miles Education"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "e244119f-68fd-4a5b-83ba-7eb34cbadb9d",
+              "leftValue": "={{ $('When clicking ‘Test workflow’').first().json.body.evaluation_status_correct }}",
+              "rightValue": "yes",
+              "operator": {
+                "type": "string",
+                "operation": "equals",
+                "name": "filter.operator.equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        -1220,
+        -420
+      ],
+      "id": "a8014bc5-68ba-4a0d-846a-190082d81e22",
+      "name": "If1"
+    },
+    {
+      "parameters": {
+        "phoneNumberId": "171009622770823",
+        "recipientPhoneNumber": "=91{{ $('When clicking ‘Test workflow’').first().json.body.phone }}",
+        "template": "cpa_incorrect_eval|en"
+      },
+      "type": "n8n-nodes-base.whatsApp",
+      "typeVersion": 1,
+      "position": [
+        -780,
+        -540
+      ],
+      "id": "de2a7816-9676-4931-ba61-dde67867adf2",
+      "name": "WhatsApp Business Cloud1",
+      "webhookId": "4cec012e-3879-439d-8a8d-9f07880ded13",
+      "retryOnFail": true,
+      "credentials": {
+        "whatsAppApi": {
+          "id": "JPvNp2kC4SudtNkr",
+          "name": "Primary | Marketing Miles Education"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "caea49f0-5a2d-417f-924f-9378b50d51f8",
+              "leftValue": "={{ $('When clicking ‘Test workflow’').first().json.body.course_name }}",
+              "rightValue": "CPA",
+              "operator": {
+                "type": "string",
+                "operation": "equals",
+                "name": "filter.operator.equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        -980,
+        -320
+      ],
+      "id": "f7306b41-9cd6-4107-8766-a6e131d823bf",
+      "name": "If3"
+    },
+    {
+      "parameters": {
+        "phoneNumberId": "171009622770823",
+        "recipientPhoneNumber": "=91{{ $('When clicking ‘Test workflow’').first().json.body.phone }}",
+        "template": "cma_incorrect_eval|en"
+      },
+      "type": "n8n-nodes-base.whatsApp",
+      "typeVersion": 1,
+      "position": [
+        -780,
+        -260
+      ],
+      "id": "408cddb3-6f84-46a9-900b-25121f52e5d9",
+      "name": "WhatsApp Business Cloud2",
+      "webhookId": "fdcced0b-0825-46b7-aa94-581070fc0d8e",
+      "credentials": {
+        "whatsAppApi": {
+          "id": "JPvNp2kC4SudtNkr",
+          "name": "Primary | Marketing Miles Education"
+        }
+      }
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        -1920,
+        -440
+      ],
+      "id": "d9472431-3294-4db1-b964-8eb163d2efa0",
+      "name": "When clicking ‘Test workflow’"
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "accounting-restart-webinar",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        -1680,
+        -720
+      ],
+      "id": "16957dc7-d8c6-4c75-994b-41cb82495a86",
+      "name": "Webhook",
+      "webhookId": "2b4f19b1-f8cd-45de-a20e-488aa4537d0d",
+      "disabled": true
+    }
+  ],
+  "pinData": {
+    "When clicking ‘Test workflow’": [
+      {
+        "json": {
+          "headers": {
+            "host": "webhook.miles-api.com",
+            "x-real-ip": "172.69.179.59",
+            "x-forwarded-host": "webhook.miles-api.com",
+            "x-forwarded-server": "webhook.miles-api.com",
+            "x-forwarded-for": "35.200.234.171, 172.69.179.59",
+            "connection": "close",
+            "content-length": "356",
+            "cf-ray": "926de455df663d54-BOM",
+            "cf-ipcountry": "IN",
+            "accept-encoding": "gzip, br",
+            "user-agent": "axios/1.8.1",
+            "x-forwarded-proto": "https",
+            "content-type": "application/json",
+            "accept": "application/json, text/plain, */*",
+            "cf-connecting-ip": "35.200.234.171",
+            "cdn-loop": "cloudflare; loops=1"
+          },
+          "params": {},
+          "query": {},
+          "body": {
+            "vertical": "accounting",
+            "campaign_id": 19734,
+            "status": "answered",
+            "outcome": "disposed",
+            "disposition": "INTERESTED TO REGISTER",
+            "webinar_date": "23/04/2025",
+            "name": "Karan",
+            "email": "k@gm.com",
+            "camp_id": "13",
+            "can_id": "K 8466951",
+            "phone": "7349296479",
+            "webinar_time": "5:00 PM",
+            "course_name": "CPA",
+            "evaluation_status_correct": "no",
+            "interested_to_register": "no"
+          },
+          "webhookUrl": "https://webhook.miles-api.com/webhook/accounting-restart-webinar",
+          "executionMode": "production"
+        }
+      }
+    ],
+    "Webhook": [
+      {
+        "json": {
+          "headers": {
+            "host": "webhook.miles-api.com",
+            "x-real-ip": "172.69.179.59",
+            "x-forwarded-host": "webhook.miles-api.com",
+            "x-forwarded-server": "webhook.miles-api.com",
+            "x-forwarded-for": "35.200.234.171, 172.69.179.59",
+            "connection": "close",
+            "content-length": "356",
+            "cf-ray": "926de455df663d54-BOM",
+            "cf-ipcountry": "IN",
+            "accept-encoding": "gzip, br",
+            "user-agent": "axios/1.8.1",
+            "x-forwarded-proto": "https",
+            "content-type": "application/json",
+            "accept": "application/json, text/plain, */*",
+            "cf-connecting-ip": "35.200.234.171",
+            "cdn-loop": "cloudflare; loops=1"
+          },
+          "params": {},
+          "query": {},
+          "body": {
+            "vertical": "accounting",
+            "campaign_id": 19734,
+            "status": "answered",
+            "outcome": "disposed",
+            "disposition": "INTERESTED TO REGISTER",
+            "webinar_date": "23/04/2025",
+            "name": "Karan",
+            "email": "k@gm.com",
+            "camp_id": "13",
+            "can_id": "K 8466951",
+            "phone": "7349296479",
+            "webinar_time": "5:00 PM",
+            "course_name": "CPA",
+            "evaluation_status_correct": "yes",
+            "interested_to_register": "yes"
+          },
+          "webhookUrl": "https://webhook.miles-api.com/webhook/accounting-restart-webinar",
+          "executionMode": "production"
+        }
+      }
+    ]
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2025-03-27T12:32:54.000Z",
+  "versionId": "667fa323-d110-4372-be76-b13564c02b3d"
+}
