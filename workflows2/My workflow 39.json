@@ -1,0 +1,140 @@
+{
+  "active": false,
+  "connections": {
+    "OpenRouter Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Basic LLM Chain",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "When chat message received": {
+      "main": [
+        [
+          {
+            "node": "Basic LLM Chain",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "When clicking ‘Test workflow’": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-03-15T17:01:13.748Z",
+  "id": "WRE64wWvJai7CGCz",
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "My workflow 39",
+  "nodes": [
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        -400,
+        -80
+      ],
+      "id": "e0b5ae5d-6e2f-42c7-b100-dd13e098ed81",
+      "name": "When clicking ‘Test workflow’"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.chatTrigger",
+      "typeVersion": 1.1,
+      "position": [
+        220,
+        -80
+      ],
+      "id": "87ef3381-ea65-401c-b88c-01cab9dab8e7",
+      "name": "When chat message received",
+      "webhookId": "4287b506-3c80-4608-9594-3a811b9ea577"
+    },
+    {
+      "parameters": {},
+      "type": "@n8n/n8n-nodes-langchain.chainLlm",
+      "typeVersion": 1.5,
+      "position": [
+        440,
+        -80
+      ],
+      "id": "8da9f85c-90b2-4bd8-b3a6-88027b86fc13",
+      "name": "Basic LLM Chain"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenRouter",
+      "typeVersion": 1,
+      "position": [
+        660,
+        -80
+      ],
+      "id": "1fd77ab5-d20c-4086-b44b-0a8b22352eac",
+      "name": "OpenRouter Chat Model",
+      "credentials": {
+        "openRouterApi": {
+          "id": "ZE1PPZaN2o0t1Ijy",
+          "name": "OpenRouter account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.piapi.ai/api/v1/task",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "x-api-key"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "{\n  \"model\": \"luma\",\n  \"task_type\": \"video_generation\",\n  \"input\": {\n    \"prompt\": \"Fly fishing\",\n    \"key_frames\": {\n      \"frame0\": {\n        \"type\": \"laborum ad\",\n        \"url\": \"https://glaring-fishery.com/\",\n        \"id\": \"XFT5J9GBfGDm_iqe4z3oU\"\n      },\n      \"frame1\": {\n        \"type\": \"do ex dolor ea\",\n        \"url\": \"https://hungry-oil.org/\"\n      }\n    },\n    \"model_name\": \"ray-v1\",\n    \"duration\": 5,\n    \"aspect_ratio\": \"9:16\"\n  },\n  \"config\": {\n    \"webhook_config\": {\n      \"endpoint\": \"\",\n      \"secret\": \"\"\n    },\n    \"service_mode\": \"\"\n  }\n}",
+        "options": {
+          "redirect": {
+            "redirect": {}
+          }
+        }
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        -180,
+        -80
+      ],
+      "id": "b1db0e68-0272-4921-8218-d40376b59856",
+      "name": "HTTP Request"
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2025-03-15T17:01:13.748Z",
+  "versionId": "f3958e49-060f-4496-b4f6-c689fbf4dd30"
+}
