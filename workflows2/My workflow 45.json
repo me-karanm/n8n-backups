@@ -1,0 +1,283 @@
+{
+  "active": false,
+  "connections": {
+    "When clicking ‘Test workflow’": {
+      "main": [
+        [
+          {
+            "node": "MySQL",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "MySQL": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Loop Over Items": {
+      "main": [
+        [],
+        [
+          {
+            "node": "Postgres",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Postgres": {
+      "main": [
+        [
+          {
+            "node": "If",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Edit Fields1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields1": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-03-27T07:06:38.641Z",
+  "id": "EleVn6Mkwkp1PA3D",
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "My workflow 45",
+  "nodes": [
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        -900,
+        -260
+      ],
+      "id": "82b23547-558b-4d9f-9cea-b6e267390b48",
+      "name": "When clicking ‘Test workflow’"
+    },
+    {
+      "parameters": {
+        "operation": "executeQuery",
+        "query": "SELECT\n  `source`.`course+can` AS `course+can`,\n  `source`.`can_email` AS `can_email`,\n  `source`.`person_name` AS `person_name`,\n  `source`.`identity` AS `identity`,\n  `source`.`count` AS `count`\nFROM\n  (\n    SELECT\n      `source`.`course+can` AS `course+can`,\n      `source`.`can_email` AS `can_email`,\n      `source`.`person_name` AS `person_name`,\n      `source`.`identity` AS `identity`,\n      COUNT(*) AS `count`\n    FROM\n      (\n        SELECT\n          `miles_enrollments`.`identity` AS `identity`,\n          `miles_enrollments`.`person_name` AS `person_name`,\n          `miles_enrollments`.`can_email` AS `can_email`,\n          `miles_enrollments`.`course` AS `course`,\n          CONCAT(\n            `miles_enrollments`.`identity`,\n            `miles_enrollments`.`course`\n          ) AS `course+can`\n        FROM\n          `miles_enrollments`\n      ) AS `source`\n   \nGROUP BY\n      `source`.`course+can`,\n      `source`.`can_email`,\n      `source`.`person_name`,\n      `source`.`identity`\n   \nORDER BY\n      `count` DESC,\n      `source`.`course+can` ASC,\n      `source`.`can_email` ASC,\n      `source`.`person_name` ASC,\n      `source`.`identity` ASC\n  ) AS `source`\nWHERE\n  `source`.`count` > 1\nLIMIT\n  1048575",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.mySql",
+      "typeVersion": 2.4,
+      "position": [
+        -680,
+        -260
+      ],
+      "id": "7eb78686-16ff-414e-aead-802575f4457c",
+      "name": "MySQL",
+      "credentials": {
+        "mySql": {
+          "id": "96bsjT5YoCp3ecuu",
+          "name": "old mf prod"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "select",
+        "schema": {
+          "__rl": true,
+          "mode": "list",
+          "value": "public"
+        },
+        "table": {
+          "__rl": true,
+          "value": "lead",
+          "mode": "name"
+        },
+        "returnAll": true,
+        "where": {
+          "values": [
+            {
+              "column": "candidate_id",
+              "value": "={{ $json.identity }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.5,
+      "position": [
+        -140,
+        -100
+      ],
+      "id": "6c75e7a0-ae28-40da-b651-a5e7d6f90776",
+      "name": "Postgres",
+      "credentials": {
+        "postgres": {
+          "id": "VPJUosohtvWNBW4H",
+          "name": "MF Prod (DO NOT USE)"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [
+        -460,
+        -260
+      ],
+      "id": "a222e2b6-c1ab-4b55-a3fc-de3190d7c5d4",
+      "name": "Loop Over Items"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "9a3f578c-1b9f-47ef-8f86-073c89371e9f",
+              "leftValue": "={{ $json.id }}",
+              "rightValue": "",
+              "operator": {
+                "type": "number",
+                "operation": "exists",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        80,
+        -100
+      ],
+      "id": "cccf2561-b2b6-40f6-a421-f81727125be8",
+      "name": "If"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "3a3a2e4f-7099-40e2-aec0-58b9b24a128c",
+              "name": "canId",
+              "value": "={{ $json.candidate_id }}",
+              "type": "string"
+            },
+            {
+              "id": "8fc10f6e-d743-404b-8ea8-01ba9fb01024",
+              "name": "present",
+              "value": "yes",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        320,
+        -180
+      ],
+      "id": "dee39f6b-f1dd-4bc8-b285-6e3fea07dfce",
+      "name": "Edit Fields"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "3a3a2e4f-7099-40e2-aec0-58b9b24a128c",
+              "name": "canId",
+              "value": "={{ $json.candidate_id }}",
+              "type": "string"
+            },
+            {
+              "id": "8fc10f6e-d743-404b-8ea8-01ba9fb01024",
+              "name": "present",
+              "value": "no",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        340,
+        20
+      ],
+      "id": "4536201a-c385-4d09-8be4-92c2c677960f",
+      "name": "Edit Fields1"
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2025-03-27T07:14:08.000Z",
+  "versionId": "815e2d58-fc8f-40f1-b031-eb5808f2dc04"
+}
