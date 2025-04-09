@@ -1,0 +1,821 @@
+{
+  "active": true,
+  "connections": {
+    "RSS Feeds": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Loop Over Items": {
+      "main": [
+        [
+          {
+            "node": "If",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "RSS Read",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "RSS Read": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "getContent": {
+      "main": [
+        [
+          {
+            "node": "Markdown",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Loop Over Items2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Chat Model1": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "summarizeArticles",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Markdown": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields Final",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "summarizeArticles": {
+      "main": [
+        [
+          {
+            "node": "setFields1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "setFields1": {
+      "main": [
+        [
+          {
+            "node": "postgres milesone",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Structured Output Parser": {
+      "ai_outputParser": [
+        [
+          {
+            "node": "summarizeArticles",
+            "type": "ai_outputParser",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Postgres1": {
+      "main": [
+        [
+          {
+            "node": "If1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If1": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields1",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Loop Over Items2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Loop Over Items2": {
+      "main": [
+        [],
+        [
+          {
+            "node": "Postgres1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "postgres milesone": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields1": {
+      "main": [
+        [
+          {
+            "node": "getContent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Schedule Trigger": {
+      "main": [
+        [
+          {
+            "node": "RSS Feeds",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields Final": {
+      "main": [
+        [
+          {
+            "node": "summarizeArticles",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-03-24T12:36:20.682Z",
+  "id": "VyKENRR8nQdZ00c7",
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "News Functional",
+  "nodes": [
+    {
+      "parameters": {
+        "jsCode": "return[\n//{ \"json\": { \"feed\": \"https://www.accountingtoday.com/feed?rss=true\" } },\n  { \"json\": { \"feed\": \"https://rss.app/feeds/FslWBTOXY1yHGg8z.xml\" } },\n//{ \"json\": { \"feed\": \"https://rss.app/feeds/t2xt2qr66l2y7Niw.xml\" } },\n { \"json\": { \"feed\":  \"https://rss.app/feeds/PYDi77HY9iSEQ0Pe.xml\"} },\n]"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -1220,
+        120
+      ],
+      "id": "83c44044-b27e-41f9-9655-264044d8caa6",
+      "name": "RSS Feeds"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [
+        -1000,
+        120
+      ],
+      "id": "6a1ed599-9a87-40a6-85e7-8c0d374e916e",
+      "name": "Loop Over Items",
+      "retryOnFail": true
+    },
+    {
+      "parameters": {
+        "url": "={{ $json.feed }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.rssFeedRead",
+      "typeVersion": 1.1,
+      "position": [
+        -780,
+        160
+      ],
+      "id": "8e821289-86d3-465b-a9ce-924d8c079dd1",
+      "name": "RSS Read",
+      "retryOnFail": true,
+      "maxTries": 4,
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "loose",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "aabfdeff-d854-4ea8-9446-a77fae3c589e",
+              "leftValue": "={{ $('RSS Read').first().json.pubDate }}",
+              "rightValue": "={{ DateTime.now().minus({ days: 7 }) }}",
+              "operator": {
+                "type": "dateTime",
+                "operation": "afterOrEquals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "looseTypeValidation": true,
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        -820,
+        -100
+      ],
+      "id": "dee0311e-aac3-40ac-9100-dbfa0d713460",
+      "name": "If"
+    },
+    {
+      "parameters": {
+        "url": "={{ $json[''].link }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        300,
+        -200
+      ],
+      "id": "c2c7bae6-ea1c-4c14-9686-b7b98cacdf22",
+      "name": "getContent",
+      "retryOnFail": true,
+      "onError": "continueErrorOutput"
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "value": "gpt-4o-mini",
+          "mode": "list",
+          "cachedResultName": "gpt-4o-mini"
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.2,
+      "position": [
+        900,
+        240
+      ],
+      "id": "2ef86c27-57b9-4fce-8edb-56c2646c35a2",
+      "name": "OpenAI Chat Model1",
+      "credentials": {
+        "openAiApi": {
+          "id": "gMimpnq5xUYwijxb",
+          "name": "Miles AI/ML - Analytics Account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "html": "={{ $json.data }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.markdown",
+      "typeVersion": 1,
+      "position": [
+        480,
+        -200
+      ],
+      "id": "cbfea657-c559-4663-a280-ecaf99f1ede6",
+      "name": "Markdown",
+      "retryOnFail": true
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "={{ $json.data }} {{ $json[''][''].creator }} {{ $json[''][''].enclosure }}{{ $json[''][''].link }}",
+        "hasOutputParser": true,
+        "messages": {
+          "messageValues": [
+            {
+              "message": "You are a highly efficient news agent assistant. Your task is to analyze a news article, and all associated content and links, then write fresh articles based on it, write as if you are are news agen from CNBC, INSHORTS, etc. Generate structured JSON using the following strict schema.  ---  ### 🧠 **Field-by-Field Specification**  \n\n#### 1. 1. \"id\" (string, required) Must strictly follow UUID version 4 format: xxxxxxxx-xxxx-4xxx-[8|9|a|b]xxx-xxxxxxxxxxxx. Use only hexadecimal characters (0-9, a-f). Must be parsable by UUID libraries in standard SQL/NoSQL databases.  \n\n#### 2. \"title\" (string, required) - Range of Max  100 characters and  Min 75 characters. - Should strictly follow character limi, can not exceed 100 characters. Must clearly convey the **main topic** of the article.  \n\n#### 3. \"mini_description\" (string, required) - Range of  Max 200 characters and minimum of 180 characters, Should strictly follow character limit, can not exceed 200 characters. - A quick insight of the key message. Write it as if you are writing it for a news channel  \n\n#### 4. \"description_content\" (string, required) -  Rage of- Max 600 characters and minimum of 550 characters,  s Should strictly follow character limit, can not exceed 600 characters.   - Include insights, details, and article takeaways. As if you are writing it for a news channel.  \n\n#### 5. \"content\" (string, required) - - Range of  550 characters to 600 characters, strictly follows the guideline  - A synopsis of what has happened, all insights, details, and takeaways, write it as a news article, as if you are writing it for a news channel.  \n\n#### 6. \"category\" (string, required, MUST be UUID) Select one category and assign its **UUID** from the list below: \n1. Tech in Accounting\nUUID: 02236360-cf24-4649-adb9-72ed6df8ba44\nDefinition: News and updates on how emerging technologies—such as AI, automation, blockchain, or accounting software—are transforming accounting practices, tools, and workflows.\n\n2. Markets & Investments\nUUID: 18decbe9-a05f-49d7-8168-184b48fa579f\nDefinition: Articles covering stock markets, financial instruments, investment trends, capital flows, portfolio management, and analysis of economic indicators affecting investments.\n\n3. Business & Economy\nUUID: 3a5092c7-d75e-4d8c-ac23-47a990418ac7\nDefinition: Broader insights on business environments, economic policy, GDP trends, fiscal updates, business regulations, and news that affect enterprises at national or global levels.\n\n4. Accounting Trivia\nUUID: 786be833-f9d0-4461-9f14-5f6f00ef0cff\nDefinition: Light-hearted or lesser-known facts, historical milestones, fun facts, and quirky insights about the accounting world, its people, or practices.\n\n5. Accounting License\nUUID: ac86a35f-d3ba-4a68-bd13-c9fc0c1732fa\nDefinition: Content related to accounting certifications and licensure—such as CPA, CMA, ACCA—including updates, requirements, exam formats, and continuing education.\n\n6. The Accounting Profession\nUUID: b35ecea3-66a4-4181-93a3-0755c4730c3f\nDefinition: Articles focused on the state and evolution of the accounting profession, including ethics, work culture, demographics, leadership, and recognition in the industry.\n\n7. Valuation, Mergers and Acquisition\nUUID: dbf056a4-bc34-4590-b76e-3a324d894ec5\nDefinition: Coverage of company valuations, business deals, M&A activity, IPOs, and financial advisory services surrounding corporate restructuring and asset analysis.\n\n8. Hiring & Firing\nUUID: f4efb5f2-b845-4e12-978f-53114cc92007\nDefinition: News related to recruitment, layoffs, workforce changes, hiring trends, job cuts, and employment policies within accounting firms or related industries.\n\nCarefully categorise the news based on the category definition given\n\n\n❗ **Return only the UUID. Do NOT return the name or number.** If article doesn't fit into a category fits, discard the articl, return empty jason for all fileds.\n\n#### 7. \"article_url\", \"image_url\", \"processed_image_url\" (string, required) - \"article_url\" → Valid link to article - \"image_url\" → Valid image link (ideally 16:9) - \"processed_image_url\" → Must match \"image_url\" unless modified  \n\n#### 8. \"likes\" (number, required) - Always return a random number between **10 and 1000**  \n\n#### 9. \"featured\" and \"trending\" (boolean, required)\n\n\"featured\": true if the article is highly significant\n\n\"trending\": true if gaining traction quickly\n\nFor an article:\n\n\"featured\" can be true, \"trending\" must be false\n\n\"featured\" can be false, \"trending\" can be true\n\n\"featured\" can be false, \"trending\" can be false\n\nboth \"featured\": true, \"trending\": true together is not allowed\n\n⚠️ Classification must be strict — assign true only if the article clearly meets the criteria.\n\n#### 10. \"news_start_date\"  \"null\" \n\n#### 11. \"news_end_date\" - \"null\" \n\n#### 12. . \"published_at\" - \"null\" \n\n#### 13. \"active\" (boolean, required) - Always \"true\"  \n\n#### 14. \"source\"(string, required)  - based on the \"article_url\" domain determine the source of the news, for example \"Accounting Today\" \n\n---  ✅ You must return a **valid JSON object**, with correct types and UUID format. No undefined fields. No fallback category names or numbers. Follow the format exactly."
+            }
+          ]
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.chainLlm",
+      "typeVersion": 1.5,
+      "position": [
+        940,
+        -80
+      ],
+      "id": "90113f9d-65b5-43c2-9389-b61eb3ca79de",
+      "name": "summarizeArticles",
+      "retryOnFail": true,
+      "maxTries": 5,
+      "alwaysOutputData": true,
+      "executeOnce": false,
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "mode": "raw",
+        "jsonOutput": "= {{ $json.output[0] }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        1440,
+        -80
+      ],
+      "id": "37317e5f-d315-428e-b206-e718a44c7fc0",
+      "name": "setFields1",
+      "retryOnFail": true,
+      "alwaysOutputData": false,
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "jsonSchemaExample": "[\n  {\n    \"id\": \"42101325-3b53-4947-9605-866dc393dc59\",\n    \"source\": \"Accountancy Today\",\n    \"title\": \"Five trends that will redefine finance and accounting in 2025\",\n    \"description\": \"Key trends set to reshape finance and accounting in 2025 include AI integration, sustainability-focused reporting, and blockchain adoption. Other areas include workforce evolution with hybrid models and increased regulatory scrutiny. These changes are expected to drive innovation, enhance transparency, and offer new growth opportunities for firms ready to adapt to the evolving landscape.\",\n    \"likes\": 0,\n    \"article_url\": \"https://www.accountingtoday.com/list/five-trends-that-will-redefine-finance-and-accounting-in-2025\",\n    \"featured\": false,\n    \"image_url\": \"https://gaper.io/wp-content/uploads/2024/12/accounting-industry_-Trends-min.png\",\n    \"published_at\": \"2025-02-11T10:45:06.081Z\",\n    \"content\": null,\n    \"mini_description\": \"Key trends set to reshape finance and accounting in 2025 include AI integration, sustainability-focused reporting, and blockchain adoption.\",\n    \"trending\": true,\n    \"processed_image_url\": \"https://storage.googleapis.com/miles-usp-bed/processed_images/9dca0172-8af9-4064-9f5c-9c5357063e3b_processed.jpg\",\n    \"news_start_date\": \"2025-01-15T10:47:30.000Z\",\n    \"news_end_date\": \"2025-03-06T07:08:23.000Z\",\n    \"active\": false,\n    \"uploaded_image\": \"\",\n    \"category_id\": \"3a5092c7-d75e-4d8c-ac23-47a990418ac7\"\n  },\n  {\n    \"id\": \"d87e2c8e-d118-498b-93b4-229d37e7cdaa\",\n    \"source\": \"The Economist\",\n    \"title\": \"China Debates the Implications of a Second Trump Presidency—Revolutionary or Rude?\",\n    \"description\": \"Chinese experts are grappling with the potential ramifications of a second Trump presidency, oscillating between labeling it a threat or an opportunity for international dynamics.\",\n    \"likes\": 763,\n    \"article_url\": \"https://www.economist.com/international/2025/04/01/china-debates-whether-trump-is-a-revolutionary-or-just-rude\",\n    \"featured\": true,\n    \"image_url\": \"https://www.economist.com/content-assets/images/20250405_IRD000.jpg\",\n    \"published_at\": \"2025-04-02T13:09:26.000Z\",\n    \"content\": \"In an examination of the looming second Trump presidency, experts from China express confusion over whether his return signifies a radical change in U.S. foreign policy or merely a continuation of his abrasive approach. Amidst geopolitical tensions, they question if Trump's leadership could disrupt established alliances or present new avenues for negotiation.\",\n    \"mini_description\": \"Chinese authorities are divided over whether Donald Trump's second term poses a genuine threat to global stability or if it’s merely an intense, rude repeat of his first.\",\n    \"trending\": true,\n    \"processed_image_url\": \"https://www.economist.com/content-assets/images/20250405_IRD000.jpg\",\n    \"news_start_date\": \"2025-04-02T13:09:26.000Z\",\n    \"news_end_date\": \"2025-05-02T13:09:26.000Z\",\n    \"active\": true,\n    \"uploaded_image\": null,\n    \"category_id\": \"b35ecea3-66a4-4181-93a3-0755c4730c3f\"\n  },\n  {\n    \"id\": \"b7c0ac0b-6fd0-4a1f-8ddf-a87ebe7ec59e\",\n    \"source\": \"Reuters\",\n    \"title\": \"Brace! Risks stack up for the global economy in 2025\",\n    \"description\": \"The global economy is bracing for a challenging 2025, marked by escalating geopolitical tensions, inflationary concerns, and evolving technological risks. Economists advise businesses and governments to prioritise resilience through innovation, fiscal responsibility, and international cooperation to mitigate these mounting pressures. Financial markets are closing 2024 with volatility, driven by geopolitical and economic issues, creating uncertainty for early 2025.\",\n    \"likes\": 0,\n    \"article_url\": \"https://www.reuters.com/markets/brace-risks-stack-up-global-economy-2025-2024-12-23/\",\n    \"featured\": false,\n    \"image_url\": \"https://www.reuters.com/resizer/v2/Z2KNRIBELZJZVCARGRE6K7DC54.jpg?auth=631c7f433a7a4bbcc171dd70e4148c96678cd741bc49bc3601c45d1a73ebe7b4&width=1080&quality=80\",\n    \"published_at\": \"2025-02-11T08:22:40.153Z\",\n    \"content\": null,\n    \"mini_description\": \"Financial markets are closing 2024 with volatility, driven by geopolitical and economic issues, creating uncertainty for early 2025.\",\n    \"trending\": true,\n    \"processed_image_url\": \"https://storage.googleapis.com/miles-usp-bed/processed_images/6291ae95-f461-40e7-ba95-5197bac3f1a9_processed.jpg\",\n    \"news_start_date\": \"2024-12-23T07:11:42.000Z\",\n    \"news_end_date\": \"2025-03-06T07:08:23.000Z\",\n    \"active\": false,\n    \"uploaded_image\": \"\",\n    \"category_id\": \"18decbe9-a05f-49d7-8168-184b48fa579f\"\n  },\n  {\n    \"id\": \"2a8dd35c-2f11-4007-8f19-5c81c1d70542\",\n    \"source\": \"Bloomberg\",\n    \"title\": \"Xiaomi Shares Fall After Reports of Deadly SU7 Car Crash\",\n    \"description\": \"Xiaomi’s shares fell after local media reported that one of its SU7 electric vehicles was involved in a fatal crash in Anhui, China, on March 29, resulting in three deaths. The incident, which occurred while the vehicle was operating in an automated mode, has sparked renewed safety concerns over Xiaomi’s EV technology. The company is cooperating with authorities as investigations continue. The setback has added to investor unease amid broader market volatility.\",\n    \"likes\": 0,\n    \"article_url\": \"https://www.bloomberg.com/news/articles/2025-04-01/xiaomi-shares-fall-after-su7-car-crash-local-media-says-3-dead?srnd=homepage-asia\",\n    \"featured\": false,\n    \"image_url\": \"https://assets.bwbx.io/images/users/iqjWHBFdfxIU/iMqiJi3FXQdc/v0/2000x1334.webp\",\n    \"published_at\": \"2025-04-01T07:46:45.893Z\",\n    \"content\": null,\n    \"mini_description\": \"Xiaomi shares dropped after local media reported a fatal crash in Anhui on March 29 involving its SU7 EV, resulting in three deaths. The incident raises safety concerns; investigations are underway.\",\n    \"trending\": false,\n    \"processed_image_url\": \"https://storage.googleapis.com/miles-usp-bed/processed_images/7704ec3b-62c0-4b06-821b-9415d04da6fd_processed.jpg\",\n    \"news_start_date\": \"2025-04-01T07:46:30.000Z\",\n    \"news_end_date\": \"2025-04-15T18:30:00.000Z\",\n    \"active\": false,\n    \"uploaded_image\": \"\",\n    \"category_id\": \"18decbe9-a05f-49d7-8168-184b48fa579f\"\n  }\n]"
+      },
+      "type": "@n8n/n8n-nodes-langchain.outputParserStructured",
+      "typeVersion": 1.2,
+      "position": [
+        1120,
+        240
+      ],
+      "id": "1a268bfc-6c1a-4c58-a6b5-f90f8fa3beb3",
+      "name": "Structured Output Parser"
+    },
+    {
+      "parameters": {
+        "operation": "select",
+        "schema": {
+          "__rl": true,
+          "value": "public",
+          "mode": "list",
+          "cachedResultName": "public"
+        },
+        "table": {
+          "__rl": true,
+          "value": "event_newsdata",
+          "mode": "list",
+          "cachedResultName": "event_newsdata"
+        },
+        "returnAll": true,
+        "where": {
+          "values": [
+            {
+              "column": "article_url",
+              "value": "={{ $json.link }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.5,
+      "position": [
+        -300,
+        -180
+      ],
+      "id": "ba79047e-6146-44dc-8392-f6e821c5b798",
+      "name": "Postgres1",
+      "alwaysOutputData": true,
+      "credentials": {
+        "postgres": {
+          "id": "iOOTVit15R9PSjWX",
+          "name": "Milesone-Production(DO NOT TOUCH)"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "ef9782db-5544-46bd-b1d3-c781aa3761a6",
+              "leftValue": "={{ $json.isEmpty() }}",
+              "rightValue": "",
+              "operator": {
+                "type": "boolean",
+                "operation": "true",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        -120,
+        -180
+      ],
+      "id": "3c227057-e26f-41af-97f7-8d4219d1f87e",
+      "name": "If1"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [
+        -560,
+        -220
+      ],
+      "id": "d1b423b7-d3c0-471a-a7ac-e900e5bc278b",
+      "name": "Loop Over Items2"
+    },
+    {
+      "parameters": {
+        "schema": {
+          "__rl": true,
+          "value": "public",
+          "mode": "list",
+          "cachedResultName": "public"
+        },
+        "table": {
+          "__rl": true,
+          "value": "event_newsdata",
+          "mode": "list",
+          "cachedResultName": "event_newsdata"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "featured": "={{ $json.featured }}",
+            "trending": "={{ $json.trending }}",
+            "active": "={{ $json.active }}",
+            "likes": "={{ $json.likes }}",
+            "id": "={{ $json.id }}",
+            "source": "={{ $json.source }}",
+            "title": "={{ $json.title }}",
+            "description": "={{ $json.content }}",
+            "article_url": "={{ $json.article_url }}",
+            "image_url": "={{ $json.image_url }}",
+            "news_start_date": "={{ $now}}",
+            "news_end_date": "={{ $now.plus(10,'days') }}",
+            "category_id": "={{ $json.category_id }}",
+            "content": "={{ $json.description }}",
+            "published_at": "={{ $now}}",
+            "mini_description": "={{ $json.mini_description }}",
+            "processed_image_url": "={{ $json.processed_image_url }}"
+          },
+          "matchingColumns": [
+            "id"
+          ],
+          "schema": [
+            {
+              "id": "id",
+              "displayName": "id",
+              "required": true,
+              "defaultMatch": true,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "source",
+              "displayName": "source",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "title",
+              "displayName": "title",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "description",
+              "displayName": "description",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "likes",
+              "displayName": "likes",
+              "required": true,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "article_url",
+              "displayName": "article_url",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "featured",
+              "displayName": "featured",
+              "required": true,
+              "defaultMatch": false,
+              "display": true,
+              "type": "boolean",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "image_url",
+              "displayName": "image_url",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "published_at",
+              "displayName": "published_at",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "dateTime",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "content",
+              "displayName": "content",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "mini_description",
+              "displayName": "mini_description",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "trending",
+              "displayName": "trending",
+              "required": true,
+              "defaultMatch": false,
+              "display": true,
+              "type": "boolean",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "processed_image_url",
+              "displayName": "processed_image_url",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "news_start_date",
+              "displayName": "news_start_date",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "dateTime",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "news_end_date",
+              "displayName": "news_end_date",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "dateTime",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "active",
+              "displayName": "active",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "boolean",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "uploaded_image",
+              "displayName": "uploaded_image",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "category_id",
+              "displayName": "category_id",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.5,
+      "position": [
+        1780,
+        -80
+      ],
+      "id": "c3ca15dc-b725-47cf-aac1-864e0aad80a6",
+      "name": "postgres milesone",
+      "retryOnFail": true,
+      "credentials": {
+        "postgres": {
+          "id": "iOOTVit15R9PSjWX",
+          "name": "Milesone-Production(DO NOT TOUCH)"
+        }
+      },
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "38361bd7-34c9-4249-b9b1-fa6488f8dc75",
+              "name": "",
+              "value": "={{ $('Loop Over Items2').first().json.toJsonString() }}",
+              "type": "object"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        100,
+        -200
+      ],
+      "id": "43e79af8-fc82-4266-8c1c-97661174da68",
+      "name": "Edit Fields1",
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "hours",
+              "hoursInterval": 12
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        -1500,
+        120
+      ],
+      "id": "5d68a7bf-3d99-4a8b-8c45-7bd02457a458",
+      "name": "Schedule Trigger"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "76afccb1-f76e-47c3-9859-3222a9d487a7",
+              "name": "data",
+              "value": "={{ $json.data }} ",
+              "type": "object"
+            },
+            {
+              "id": "642517e7-5afd-4873-b1e8-41558a19867c",
+              "name": "",
+              "value": "={{ $('Edit Fields1').first().json}}",
+              "type": "object"
+            }
+          ]
+        },
+        "options": {
+          "ignoreConversionErrors": true
+        }
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        700,
+        -200
+      ],
+      "id": "b4aa3019-ec53-440a-b6ac-9aca346ed42d",
+      "name": "Edit Fields Final",
+      "retryOnFail": true,
+      "onError": "continueRegularOutput"
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1",
+    "timezone": "Asia/Kolkata",
+    "callerPolicy": "workflowsFromSameOwner"
+  },
+  "staticData": {
+    "node:Schedule Trigger": {
+      "recurrenceRules": [
+        0
+      ]
+    }
+  },
+  "tags": [],
+  "triggerCount": 1,
+  "updatedAt": "2025-04-08T09:38:33.000Z",
+  "versionId": "6d299b8a-8538-47e9-8e18-3eaf6cc594b2"
+}
