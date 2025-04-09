@@ -49,7 +49,7 @@
       "main": [
         [
           {
-            "node": "Postgres",
+            "node": "Code1",
             "type": "main",
             "index": 0
           }
@@ -94,6 +94,17 @@
         [
           {
             "node": "Supabase",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code1": {
+      "main": [
+        [
+          {
+            "node": "Postgres",
             "type": "main",
             "index": 0
           }
@@ -153,7 +164,7 @@
     {
       "parameters": {
         "operation": "executeQuery",
-        "query": "SELECT\n  \"public\".\"lead\".\"id\" AS \"id\",\n  \"public\".\"lead\".\"updated_by\" AS \"updated_by\",\n  \"public\".\"lead\".\"created_at\" AS \"created_at\",\n  \"public\".\"lead\".\"candidate_id\" AS \"candidate_id\",\n  \"public\".\"lead\".\"first_name\" AS \"first_name\",\n  \"public\".\"lead\".\"last_name\" AS \"last_name\",\n  \"public\".\"lead\".\"city\" AS \"city\",\n  \"public\".\"lead\".\"intrested_to_work_in_us\" AS \"intrested_to_work_in_us\",\n  \"public\".\"lead\".\"call_status\" AS \"call_status\",\n  \"public\".\"lead\".\"last_call_date\" AS \"last_call_date\",\n  \"public\".\"lead\".\"spocId\" AS \"spocId\",\n  \"public\".\"lead\".\"srSpocId\" AS \"srSpocId\",\n  \"public\".\"lead\".\"created_by\" AS \"created_by\",\n  \"public\".\"lead\".\"uuid\" AS \"uuid\",\n  \"public\".\"lead\".\"graduation_year\" AS \"graduation_year\",\n  \"public\".\"lead\".\"followup_date\" AS \"followup_date\",\n  \"public\".\"lead\".\"re_enquiry_date\" AS \"re_enquiry_date\",\n  \"Phone\".\"phoneNumber\" AS \"Phone__phoneNumber\",\n  \"Phone\".\"countryCode\" AS \"Phone__countryCode\",\n  \"Email\".\"email\" AS \"Email__email\",\n  \"User - SpocId\".\"firstName\" AS \"User - SpocId__firstName\",\n  \"User - SpocId\".\"official_number\" AS \"User - SpocId__official_number\",\n  \"User - SpocId\".\"employee_id\" AS \"User - SpocId__employee_id\"\nFROM\n  \"public\".\"lead\"\nLEFT JOIN \"public\".\"phone\" AS \"Phone\" ON \"public\".\"lead\".\"id\" = \"Phone\".\"leadId\"\n  LEFT JOIN \"public\".\"email\" AS \"Email\" ON \"public\".\"lead\".\"id\" = \"Email\".\"leadId\"\n  LEFT JOIN \"public\".\"user\" AS \"User - SpocId\" ON \"public\".\"lead\".\"spocId\" = \"User - SpocId\".\"id\"\nwhere \"Phone\".\"phoneNumber\" = '{{ $('Supabase').item.json.phone.slice(3) }}'",
+        "query": "SELECT\n  \"public\".\"lead\".\"id\" AS \"id\",\n  \"public\".\"lead\".\"updated_by\" AS \"updated_by\",\n  \"public\".\"lead\".\"created_at\" AS \"created_at\",\n  \"public\".\"lead\".\"candidate_id\" AS \"candidate_id\",\n  \"public\".\"lead\".\"first_name\" AS \"first_name\",\n  \"public\".\"lead\".\"last_name\" AS \"last_name\",\n  \"public\".\"lead\".\"city\" AS \"city\",\n  \"public\".\"lead\".\"intrested_to_work_in_us\" AS \"intrested_to_work_in_us\",\n  \"public\".\"lead\".\"call_status\" AS \"call_status\",\n  \"public\".\"lead\".\"last_call_date\" AS \"last_call_date\",\n  \"public\".\"lead\".\"spocId\" AS \"spocId\",\n  \"public\".\"lead\".\"srSpocId\" AS \"srSpocId\",\n  \"public\".\"lead\".\"created_by\" AS \"created_by\",\n  \"public\".\"lead\".\"uuid\" AS \"uuid\",\n  \"public\".\"lead\".\"graduation_year\" AS \"graduation_year\",\n  \"public\".\"lead\".\"followup_date\" AS \"followup_date\",\n  \"public\".\"lead\".\"re_enquiry_date\" AS \"re_enquiry_date\",\n  \"Phone\".\"phoneNumber\" AS \"Phone__phoneNumber\",\n  \"Phone\".\"countryCode\" AS \"Phone__countryCode\",\n  \"Email\".\"email\" AS \"Email__email\",\n  \"User - SpocId\".\"firstName\" AS \"User - SpocId__firstName\",\n  \"User - SpocId\".\"official_number\" AS \"User - SpocId__official_number\",\n  \"User - SpocId\".\"employee_id\" AS \"User - SpocId__employee_id\"\nFROM\n  \"public\".\"lead\"\nLEFT JOIN \"public\".\"phone\" AS \"Phone\" ON \"public\".\"lead\".\"id\" = \"Phone\".\"leadId\"\n  LEFT JOIN \"public\".\"email\" AS \"Email\" ON \"public\".\"lead\".\"id\" = \"Email\".\"leadId\"\n  LEFT JOIN \"public\".\"user\" AS \"User - SpocId\" ON \"public\".\"lead\".\"spocId\" = \"User - SpocId\".\"id\"\nwhere \"Phone\".\"phoneNumber\" = '{{ $json.normalizedPhoneNumber.slice(3) }}'",
         "options": {}
       },
       "id": "2264d470-9cb2-4ac6-b688-e7eed282bd04",
@@ -161,7 +172,7 @@
       "type": "n8n-nodes-base.postgres",
       "typeVersion": 2.2,
       "position": [
-        800,
+        1080,
         0
       ],
       "credentials": {
@@ -186,7 +197,7 @@
         },
         "sendBody": true,
         "specifyBody": "json",
-        "jsonBody": "={\n  \"visit_date\": \"{{ $('Webhook').item.json[\"body\"][\"visit_date_string\"].slice(0,10)}}\",\n  \"schedule\": {{ $('Webhook').item.json[\"body\"][\"city\"]==\"Virtual Meeting\" ?1:2 }},\n  \"visit_status\": 1,\n  \"lead\": {{ $('Postgres').item.json[\"id\"] }},\n  \"visit_city\": {{ $('Postgres1').item.json[\"id\"]??2 }},\n  \"spoc\": {{ $('Postgres').item.json[\"spocId\"] }},\n  \"source\": 1,\n  \"gm_approvel\": true\n}",
+        "jsonBody": "={\n  \"visit_date\": \"{{ $('Webhook').item.json.body.time_slots }}\",\n  \"schedule\": {{ $('Webhook').item.json[\"body\"][\"city\"]==\"Virtual Meeting\" ?1:2 }},\n  \"visit_status\": 1,\n  \"lead\": {{ $('Postgres').item.json[\"id\"] }},\n  \"visit_city\": {{ $('Postgres1').item.json[\"id\"]??2 }},\n  \"spoc\": {{ $('Postgres').item.json[\"spocId\"] }},\n  \"source\": 1,\n  \"gm_approvel\": true\n}",
         "options": {}
       },
       "id": "ab03c2b3-4813-46de-88d1-6d811faa78e2",
@@ -194,7 +205,7 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.1,
       "position": [
-        1480,
+        1760,
         0
       ],
       "retryOnFail": true,
@@ -209,7 +220,7 @@
       "type": "n8n-nodes-base.itemLists",
       "typeVersion": 3,
       "position": [
-        1020,
+        1300,
         0
       ]
     },
@@ -227,7 +238,7 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.1,
       "position": [
-        1240,
+        1520,
         0
       ]
     },
@@ -277,7 +288,7 @@
           "values": [
             {
               "column": "city",
-              "value": "={{ $('Webhook').item.json.body.city }}"
+              "value": "={{ $('Webhook').first().json.body.city }}"
             }
           ]
         },
@@ -307,7 +318,7 @@
           "conditions": [
             {
               "keyName": "id",
-              "keyValue": "={{ $json.camp_id }}"
+              "keyValue": "={{ $json.camp_id?? 65 }}"
             }
           ]
         }
@@ -369,6 +380,19 @@
         0
       ],
       "webhookId": "e8cf5c85-5423-4633-a807-e570a916e87f"
+    },
+    {
+      "parameters": {
+        "jsCode": "const number = $('Supabase').first().json.phone;  // Fetch single input number\nconst cleanNumber = number.toString().replace(/\\D/g, '');\n\nlet normalizedNumber;\n\nif (cleanNumber.startsWith('+91') && cleanNumber.length === 13) {\n    normalizedNumber = cleanNumber;\n} else if (cleanNumber.startsWith('91') && cleanNumber.length === 12) {\n    normalizedNumber = '+91' + cleanNumber.slice(2);\n} else if (cleanNumber.length === 10) {\n    normalizedNumber = '+91' + cleanNumber;\n} else {\n    normalizedNumber = '+' + cleanNumber;\n}\n\nreturn [{ json: { normalizedPhoneNumber: normalizedNumber } }];"
+      },
+      "id": "478b08ad-d8df-4915-94cf-21a425eb63c0",
+      "name": "Code1",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        820,
+        0
+      ]
     }
   ],
   "pinData": {
@@ -398,21 +422,21 @@
           "params": {},
           "query": {},
           "body": {
-            "id": 157791,
-            "city": "Virtual Meeting",
+            "id": 159095,
+            "city": "Ahmedabad",
             "spoc_gm": null,
             "spoc_name": null,
             "status_gm": null,
-            "created_at": "2025-03-04T05:25:47.500561+00:00",
+            "created_at": "2025-03-26T11:00:36.39713+00:00",
             "spoc_phone": null,
-            "time_slots": "2025-03-05T18:00:00",
+            "time_slots": "2025-03-27T15:00:00",
             "visit_date": null,
             "status_spoc": null,
             "flow_started": null,
-            "meeting_type": 0,
+            "meeting_type": 1,
             "visit_status": null,
-            "leads_dump_id": 1509708,
-            "visit_date_string": "2025-03-05 "
+            "leads_dump_id": 660947,
+            "visit_date_string": "2025-03-27 "
           }
         }
       }
@@ -429,6 +453,6 @@
   "staticData": null,
   "tags": [],
   "triggerCount": 1,
-  "updatedAt": "2025-03-04T06:14:49.000Z",
-  "versionId": "d70dedad-35cb-4927-96d1-44cf53e4a643"
+  "updatedAt": "2025-04-02T10:09:26.000Z",
+  "versionId": "76fe0daa-ba12-4218-a52a-e4a8c8e4b13d"
 }
