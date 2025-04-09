@@ -1,0 +1,34 @@
+{
+  "active": false,
+  "connections": {},
+  "createdAt": "2025-03-24T07:32:15.470Z",
+  "id": "VCSjE6qkb5EVP6SY",
+  "meta": null,
+  "name": "My workflow 41",
+  "nodes": [
+    {
+      "parameters": {
+        "path": "8e3a6299-8cdc-4458-897d-3f666b2eb121",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        -380,
+        -60
+      ],
+      "id": "fb6628e0-7b36-4027-b63b-f083d7717f51",
+      "name": "Webhook",
+      "webhookId": "8e3a6299-8cdc-4458-897d-3f666b2eb121"
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2025-03-24T07:32:15.470Z",
+  "versionId": "b316708c-c69f-4118-b61a-b60aa6bd70ae"
+}
