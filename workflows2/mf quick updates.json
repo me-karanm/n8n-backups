@@ -5,7 +5,7 @@
       "main": [
         [
           {
-            "node": "Postgres1",
+            "node": "Postgres2",
             "type": "main",
             "index": 0
           }
@@ -17,6 +17,17 @@
         [
           {
             "node": "Postgres",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Postgres2": {
+      "main": [
+        [
+          {
+            "node": "Postgres3",
             "type": "main",
             "index": 0
           }
@@ -36,8 +47,8 @@
       "type": "n8n-nodes-base.manualTrigger",
       "typeVersion": 1,
       "position": [
-        -1140,
-        -460
+        -1220,
+        -160
       ],
       "id": "60df61b6-a053-492a-9900-038da6b359d7",
       "name": "When clicking ‘Test workflow’"
@@ -391,6 +402,276 @@
           "name": "MF Prod (DO NOT USE)"
         }
       }
+    },
+    {
+      "parameters": {
+        "operation": "select",
+        "schema": {
+          "__rl": true,
+          "mode": "list",
+          "value": "public"
+        },
+        "table": {
+          "__rl": true,
+          "value": "phone",
+          "mode": "name"
+        },
+        "returnAll": true,
+        "where": {
+          "values": [
+            {
+              "column": "leadId",
+              "value": "154083"
+            },
+            {
+              "column": "phoneNumber",
+              "value": "9973055099"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.6,
+      "position": [
+        -980,
+        -160
+      ],
+      "id": "f1308324-dd42-424f-90a9-99ca34e07c7d",
+      "name": "Postgres2",
+      "credentials": {
+        "postgres": {
+          "id": "VPJUosohtvWNBW4H",
+          "name": "MF Prod (DO NOT USE)"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "schema": {
+          "__rl": true,
+          "mode": "list",
+          "value": "public"
+        },
+        "table": {
+          "__rl": true,
+          "value": "phone",
+          "mode": "name"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "id": "={{ $json.id }}"
+          },
+          "matchingColumns": [
+            "id"
+          ],
+          "schema": [
+            {
+              "id": "id",
+              "displayName": "id",
+              "required": false,
+              "defaultMatch": true,
+              "display": true,
+              "type": "number",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "status",
+              "displayName": "status",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "boolean",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "created_by",
+              "displayName": "created_by",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "updated_by",
+              "displayName": "updated_by",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "created_at",
+              "displayName": "created_at",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "dateTime",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "updated_at",
+              "displayName": "updated_at",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "dateTime",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "countryCode",
+              "displayName": "countryCode",
+              "required": true,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "phoneNumber",
+              "displayName": "phoneNumber",
+              "required": true,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "isActive",
+              "displayName": "isActive",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "boolean",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "isWhatsAppNumber",
+              "displayName": "isWhatsAppNumber",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "boolean",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "isPrimary",
+              "displayName": "isPrimary",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "boolean",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "maskedPhoneNo",
+              "displayName": "maskedPhoneNo",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "phoneType",
+              "displayName": "phoneType",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "options",
+              "canBeUsedToMatch": true,
+              "options": [
+                {
+                  "name": "1",
+                  "value": "1"
+                },
+                {
+                  "name": "2",
+                  "value": "2"
+                },
+                {
+                  "name": "3",
+                  "value": "3"
+                }
+              ],
+              "removed": true
+            },
+            {
+              "id": "contact_removal_request_date",
+              "displayName": "contact_removal_request_date",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "reason_for_delete",
+              "displayName": "reason_for_delete",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "mode_of_communication",
+              "displayName": "mode_of_communication",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "leadId",
+              "displayName": "leadId",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "canBeUsedToMatch": true,
+              "removed": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.6,
+      "position": [
+        -760,
+        -160
+      ],
+      "id": "cdbe2b21-a146-4a2f-bfb1-c6dd220b7b28",
+      "name": "Postgres3",
+      "credentials": {
+        "postgres": {
+          "id": "VPJUosohtvWNBW4H",
+          "name": "MF Prod (DO NOT USE)"
+        }
+      }
     }
   ],
   "pinData": {
@@ -406,6 +687,6 @@
   "staticData": null,
   "tags": [],
   "triggerCount": 0,
-  "updatedAt": "2025-03-20T10:27:23.000Z",
-  "versionId": "7adac78b-5140-4af6-8906-4daa0561be5a"
+  "updatedAt": "2025-04-14T10:08:45.000Z",
+  "versionId": "bfc199ef-0189-4ea7-aace-008414b73593"
 }
