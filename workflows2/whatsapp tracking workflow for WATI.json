@@ -49,6 +49,28 @@
       "main": [
         [
           {
+            "node": "Supabase",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Supabase": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields2": {
+      "main": [
+        [
+          {
             "node": "Respond to Webhook",
             "type": "main",
             "index": 0
@@ -59,7 +81,9 @@
   },
   "createdAt": "2025-03-17T08:35:35.117Z",
   "id": "qfPNdamcEzlWb5fr",
-  "meta": null,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
   "name": "whatsapp tracking workflow for WATI",
   "nodes": [
     {
@@ -82,13 +106,13 @@
     {
       "parameters": {
         "respondWith": "json",
-        "responseBody": "={\n\"tokenId\": \"{{ $json.tokenId.isEmpty() == true ? \"abc\" : $json.tokenId}}\",\n\"campaignId\": {{ $json.campaignId == 0 ? 357 : $json.campaignId }},\n\"originalMessage\": \"{{ $json.originalMessage }}\",\n\"courseId\": {{ $json.course_id == 0 ? 1:  $json.course_id}}\n} ",
+        "responseBody": "=\n{\n\"campaignId\":  {{ $json.campaignId }},\n\"campaignName\": \"{{ $json.campaignName }}\",\n\"tokenId\": \"{{ $json.tokenId }}\",\n\"originalMessage\": \"{{ $json.originalMessage }}\",\n\"courseId\": {{ $json.courseId }}\n}",
         "options": {}
       },
       "type": "n8n-nodes-base.respondToWebhook",
       "typeVersion": 1.1,
       "position": [
-        1100,
+        1540,
         0
       ],
       "id": "77df7d65-3e59-4b71-b589-d49d78e6bb0c",
@@ -114,19 +138,19 @@
             {
               "id": "cac8a121-93f8-4669-9b07-1774a12e1cba",
               "name": "tokenId",
-              "value": "={{ $json.tokenId }}",
+              "value": "={{ $json.tokenId ?? \"abc\" }}",
               "type": "string"
             },
             {
               "id": "0d7a3e05-a79b-4ad4-baae-86eff768e7eb",
               "name": "campaignId",
-              "value": "={{ $json.campaignId }}",
+              "value": "={{ $json.campaignId ?? 357 }}",
               "type": "number"
             },
             {
               "id": "b358442d-2111-4d79-a2fa-d2b9f08cf091",
               "name": "originalMessage",
-              "value": "={{ $json.originalMessage }}",
+              "value": "={{ $json.originalMessage ?? \"Hi\" }}",
               "type": "string"
             }
           ]
@@ -144,7 +168,7 @@
     },
     {
       "parameters": {
-        "jsCode": "return items.map(({ json }) => {\n  const input = $json.originalMessage || '';\n  const str = input.toLowerCase();\n\n  let course_id = 0;\n  if (str.includes('cpa')) {\n    course_id = 1;\n  } else if (str.includes('cma')) {\n    course_id = 2;\n  } else if (str.includes('us pathway')) {\n    course_id = 3;\n  }\n\n  return {\n    json: {\n      ...json,\n      course_id,\n    }\n  };\n});\n"
+        "jsCode": "return items.map(({ json }) => {\n  const input = $json.originalMessage || '';\n  const str = input.toLowerCase();\n\n  let course_id = 1;\n  if (str.includes('cpa')) {\n    course_id = 1;\n  } else if (str.includes('cma')) {\n    course_id = 2;\n  } else if (str.includes('us pathway')) {\n    course_id = 3;\n  }\n\n  return {\n    json: {\n      ...json,\n      course_id,\n    }\n  };\n});\n"
       },
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
@@ -178,6 +202,81 @@
       ],
       "id": "b435ee85-ba8f-4d38-9a8b-5143776d992f",
       "name": "Edit Fields1"
+    },
+    {
+      "parameters": {
+        "operation": "get",
+        "tableId": "campaign",
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "id",
+              "keyValue": "={{ $json.campaignId }}"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        1100,
+        0
+      ],
+      "id": "a2f0e2f4-894c-4a5b-9276-a8ad9873d9d7",
+      "name": "Supabase",
+      "credentials": {
+        "supabaseApi": {
+          "id": "6stEFLC7gtftREcf",
+          "name": "Supabase Campaign manager"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "04f712a9-793d-406a-af4e-5a6e1cea3e2c",
+              "name": "campaignId",
+              "value": "={{ $json.mf2_camp_id }}",
+              "type": "number"
+            },
+            {
+              "id": "9e3bd1aa-caca-44cd-b514-5f700e809baa",
+              "name": "campaignName",
+              "value": "={{ $json.campaign_name }}",
+              "type": "string"
+            },
+            {
+              "id": "db77c9ea-c76f-4cb4-8fa0-67c75eb53684",
+              "name": "tokenId",
+              "value": "={{ $json.uuid }}",
+              "type": "string"
+            },
+            {
+              "id": "24f8d4d0-fa0a-4619-bd45-a40a836676cd",
+              "name": "originalMessage",
+              "value": "={{ $('Edit Fields1').item.json.originalMessage }}",
+              "type": "string"
+            },
+            {
+              "id": "968b0302-5d24-4b3b-bc57-b3b9be4edea3",
+              "name": "courseId",
+              "value": "={{ $('Edit Fields1').item.json.course_id }}",
+              "type": "number"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        1320,
+        0
+      ],
+      "id": "88d40c79-f52e-4b17-8ed8-b71d1124aa9b",
+      "name": "Edit Fields2"
     }
   ],
   "pinData": {
@@ -186,35 +285,33 @@
         "json": {
           "headers": {
             "host": "webhook.miles-api.com",
-            "x-real-ip": "172.71.144.13",
+            "x-real-ip": "172.69.166.37",
             "x-forwarded-host": "webhook.miles-api.com",
             "x-forwarded-server": "webhook.miles-api.com",
-            "x-forwarded-for": "49.204.70.102, 172.71.144.13",
+            "x-forwarded-for": "34.87.65.170, 172.69.166.37",
             "connection": "close",
-            "content-length": "4767",
-            "cf-ray": "921c0fdc1f36d9de-FRA",
-            "cf-ipcountry": "IN",
+            "content-length": "5178",
+            "cf-ray": "930111af99c7469d-SIN",
+            "cf-connecting-ip": "34.87.65.170",
             "accept-encoding": "gzip, br",
-            "priority": "u=1, i",
             "x-forwarded-proto": "https",
-            "accept-language": "en-GB,en-US;q=0.9,en;q=0.8",
-            "referer": "http://localhost:7777/accounting/us-cpa",
-            "sec-fetch-dest": "empty",
-            "sec-fetch-mode": "cors",
-            "cf-connecting-ip": "49.204.70.102",
+            "content-type": "application/json; charset=UTF-8",
+            "tracestate": "dd=s:0;p:bd5246d9bf11b676",
+            "cf-visitor": "{\"scheme\":\"https\"}",
+            "traceparent": "00-f31758a7a57b8b6923d1feeb73404edd-bd5246d9bf11b676-00",
+            "x-datadog-tags": "_dd.p.tid=f31758a7a57b8b69",
             "cdn-loop": "cloudflare; loops=1",
-            "sec-fetch-site": "cross-site",
-            "user-agent": "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Mobile Safari/537.36",
-            "content-type": "application/json",
-            "sec-ch-ua-mobile": "?1",
-            "accept": "*/*"
+            "cf-ipcountry": "SG",
+            "x-datadog-sampling-priority": "0",
+            "x-datadog-parent-id": "13642044122286110326",
+            "x-datadog-trace-id": "2581124348664368861"
           },
           "params": {},
           "query": {},
           "body": {
-            "message": "​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​‍‌‌‌‌​​‌​‌‌​‌‌​​​‌‌‌‌​​‌‌​‌​‌​​‌​‌‌​‌​​‌‌‌​‌​​​‌​​‌​​‌‌​​‌​​‌​‌​‌‌​​‌​‌​​​​‌​​‌‌‌‌‌​​​‌​​‌​‌‌‌​‌​‌‌‌‌​‌‌‌​‌‌‌​​​​‌‌‌‌‌‌‌‌‌​​​​​​​‍Hi Miles Team! I'm interested in the US CPA program."
+            "message": "Hello,​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​‍‌‌​‌​​‌‌​​‌​‌​‌​​‌‌‌‌‌​‌​‌‌‌​‌‌​‌‌‌‌‌‌​​‌​​‌​‌​‌​‌​​​‌‌‌​​‌‌​‌​‌‌​‌‌‌​‌​​​‌​‌‌‌​​‌​‌​​​‌​​​‌‌​​​​‌​‌​‌​‌​​‌‌​​​​‌​​‌‌​​​‌‌‌​‌‌​‌‍ I have a question about Miles' Courses."
           },
-          "webhookUrl": "https://webhook.miles-api.com/webhook/3100e46b-3965-4877-8268-7b3f18c6fb70",
+          "webhookUrl": "https://webhook.miles-api.com/webhook/wati-inv-tracking",
           "executionMode": "production"
         }
       }
@@ -226,6 +323,6 @@
   "staticData": null,
   "tags": [],
   "triggerCount": 1,
-  "updatedAt": "2025-04-09T10:43:33.000Z",
-  "versionId": "7c403b5b-f65a-42c0-bd69-960552a1c826"
+  "updatedAt": "2025-04-14T06:39:58.000Z",
+  "versionId": "bea78b10-b280-4ae3-b6e7-0a0d017c1aa4"
 }
