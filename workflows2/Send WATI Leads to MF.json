@@ -1,0 +1,166 @@
+{
+  "active": true,
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Code",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request1": {
+      "main": [
+        [
+          {
+            "node": "Respond to Webhook",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Respond to Webhook",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-04-10T07:07:42.563Z",
+  "id": "GugY1eeS6jEFva3j",
+  "meta": null,
+  "name": "Send WATI Leads to MF",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "send-to-mf-basic-details",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        -540,
+        -440
+      ],
+      "id": "705ad629-bc9d-4541-9c5a-c703495e0b64",
+      "name": "Webhook",
+      "webhookId": "c6137179-18f2-4325-8a84-181fb2ab8555"
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={\n\"ne_id\": \"{{ $json.result.id }}\"\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.1,
+      "position": [
+        400,
+        -180
+      ],
+      "id": "d8eb3771-0ae3-4d15-9c46-42e8217fc6ab",
+      "name": "Respond to Webhook"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://mfx-prod-154625965269.asia-south1.run.app/enquiries/add",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n\"first_name\":\"{{ $json.body.name }}\",\n\"last_name\":\" \",\n\"phone\":\"+{{ $json.body.phone }}\",\n\"contact_number\":\"+{{ $json.body.phone }}\",\n\"email\":\"\",\n\"course_id\": {{ $json.mappedValue }},\n\"whatsapp_opt_in\":true,\n\"educational_qualification\":null,\n\"campaign_id\":{{ $json.body.campaignID.toNumber() }},\n\"register_for_webinar\":true,\n\"coming_from\": \"wati_{{ $json.body.campaignID.toNumber() }}\"\n}",
+        "options": {}
+      },
+      "id": "adff0cec-da3f-4338-b46c-48939fab4602",
+      "name": "HTTP Request1",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        80,
+        -380
+      ],
+      "retryOnFail": true,
+      "alwaysOutputData": true,
+      "onError": "continueErrorOutput"
+    },
+    {
+      "parameters": {
+        "jsCode": "return items.map(({ json }) => {\n  const input = $json.originalMessage || '';\n  const str = input.toLowerCase();\n\n  let mappedValue = 1;\n  if (str.includes('cpa')) {\n    mappedValue = 1;\n  } else if (str.includes('cma')) {\n    mappedValue = 2;\n  } else if (str.includes('us pathway')) {\n    mappedValue = 3;\n  }\n\n  return {\n    json: {\n      ...json,\n      mappedValue,\n    }\n  };\n});\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -140,
+        -200
+      ],
+      "id": "b76362c8-4a2b-4828-bc60-d2d6c7815440",
+      "name": "Code"
+    }
+  ],
+  "pinData": {
+    "Webhook": [
+      {
+        "json": {
+          "headers": {
+            "host": "webhook.miles-api.com",
+            "x-real-ip": "162.158.108.142",
+            "x-forwarded-host": "webhook.miles-api.com",
+            "x-forwarded-server": "webhook.miles-api.com",
+            "x-forwarded-for": "34.142.224.227, 162.158.108.142",
+            "connection": "close",
+            "content-length": "97",
+            "cf-ray": "92e08d330d42fce0-SIN",
+            "cf-connecting-ip": "34.142.224.227",
+            "accept-encoding": "gzip, br",
+            "x-forwarded-proto": "https",
+            "content-type": "application/json; charset=UTF-8",
+            "tracestate": "dd=s:0;p:8690420184394423",
+            "cf-visitor": "{\"scheme\":\"https\"}",
+            "traceparent": "00-24e3b8cd12b3c33d826830ff487e5cd3-8690420184394423-00",
+            "x-datadog-tags": "_dd.p.tid=24e3b8cd12b3c33d",
+            "cdn-loop": "cloudflare; loops=1",
+            "cf-ipcountry": "SG",
+            "x-datadog-sampling-priority": "0",
+            "x-datadog-parent-id": "9696322572009423907",
+            "x-datadog-trace-id": "9396814495499574483"
+          },
+          "params": {},
+          "query": {},
+          "body": {
+            "name": "karan",
+            "originalMessage": "this is CPA message",
+            "phone": "1234567890",
+            "campaignID": "1234"
+          },
+          "webhookUrl": "https://webhook.miles-api.com/webhook/send-to-mf",
+          "executionMode": "production"
+        }
+      }
+    ]
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 1,
+  "updatedAt": "2025-04-11T11:56:10.000Z",
+  "versionId": "95156972-b8d1-4b4f-9127-fedc906312c2"
+}
