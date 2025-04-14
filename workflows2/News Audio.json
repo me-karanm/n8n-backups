@@ -1,11 +1,775 @@
 {
   "active": false,
-  "connections": {},
+  "connections": {
+    "getContent": {
+      "main": [
+        [
+          {
+            "node": "Markdown",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Markdown": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields": {
+      "main": [
+        [
+          {
+            "node": "summarizeArticles",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Postgres1": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Loop Over Items": {
+      "main": [
+        [],
+        [
+          {
+            "node": "Edit Fields1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields1": {
+      "main": [
+        [
+          {
+            "node": "If",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields2",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields2": {
+      "main": [
+        [
+          {
+            "node": "getContent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Schedule Trigger": {
+      "main": [
+        [
+          {
+            "node": "Postgres1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI": {
+      "main": [
+        [
+          {
+            "node": "Code",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "summarizeArticles": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "summarizeArticles",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields3": {
+      "main": [
+        [
+          {
+            "node": "OpenAI",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Structured Output Parser": {
+      "ai_outputParser": [
+        [
+          {
+            "node": "summarizeArticles",
+            "type": "ai_outputParser",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code": {
+      "main": [
+        [
+          {
+            "node": "postgres milesone",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
   "createdAt": "2025-04-09T17:37:22.912Z",
   "id": "RQC8fWYPew4m7JW8",
-  "meta": null,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
   "name": "News Audio",
-  "nodes": [],
+  "nodes": [
+    {
+      "parameters": {
+        "url": "={{ $json[''][''].article_url }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        -280,
+        20
+      ],
+      "id": "56c6b595-b597-42d9-b35e-41ddbd81a594",
+      "name": "getContent",
+      "onError": "continueErrorOutput"
+    },
+    {
+      "parameters": {
+        "html": "={{ $json.data }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.markdown",
+      "typeVersion": 1,
+      "position": [
+        0,
+        0
+      ],
+      "id": "a9964107-9a68-47ff-8fd7-e2c76df6ba56",
+      "name": "Markdown",
+      "retryOnFail": true,
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "b79c0c8a-7201-4e88-a004-bc16f31b3500",
+              "name": "data",
+              "value": "={{ $json.data }}",
+              "type": "string"
+            },
+            {
+              "id": "bc06f4c4-de50-411a-bb80-4177994d9f10",
+              "name": "data 2",
+              "value": "={{ $('Edit Fields2').first().json}}",
+              "type": "object"
+            },
+            {
+              "id": "2ffb968d-28d8-4127-9276-2b2d31c92478",
+              "name": "id",
+              "value": "={{ $('Edit Fields2').item.json[\"\"][\"\"].id }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        260,
+        20
+      ],
+      "id": "a760fe40-9559-49bc-a766-f4d4a83176c5",
+      "name": "Edit Fields",
+      "retryOnFail": true
+    },
+    {
+      "parameters": {
+        "operation": "select",
+        "schema": {
+          "__rl": true,
+          "value": "public",
+          "mode": "list",
+          "cachedResultName": "public"
+        },
+        "table": {
+          "__rl": true,
+          "value": "event_newsdata",
+          "mode": "list",
+          "cachedResultName": "event_newsdata"
+        },
+        "returnAll": true,
+        "options": {}
+      },
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.5,
+      "position": [
+        -2080,
+        20
+      ],
+      "id": "e50ce9b3-dbb4-493c-8d18-07fafe682365",
+      "name": "Postgres1",
+      "alwaysOutputData": true,
+      "retryOnFail": true,
+      "credentials": {
+        "postgres": {
+          "id": "iOOTVit15R9PSjWX",
+          "name": "Milesone-Production(DO NOT TOUCH)"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "schema": {
+          "__rl": true,
+          "value": "public",
+          "mode": "list",
+          "cachedResultName": "public"
+        },
+        "table": {
+          "__rl": true,
+          "value": "event_newsdata",
+          "mode": "list",
+          "cachedResultName": "event_newsdata"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "featured": "={{ $('Edit Fields').item.json['data 2'][''][''].featured }}",
+            "trending": "={{ $('Edit Fields').item.json['data 2'][''][''].trending }}",
+            "active": true,
+            "id": "={{ $('Edit Fields').item.json['data 2'][''][''].id }}",
+            "audio": "={{ $('Code') }}",
+            "bulletin": "={{ $('summarizeArticles').item.json.output[0] }}",
+            "likes": 0
+          },
+          "matchingColumns": [
+            "id"
+          ],
+          "schema": [
+            {
+              "id": "id",
+              "displayName": "id",
+              "required": true,
+              "defaultMatch": true,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "source",
+              "displayName": "source",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "title",
+              "displayName": "title",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "description",
+              "displayName": "description",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "likes",
+              "displayName": "likes",
+              "required": true,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "article_url",
+              "displayName": "article_url",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "featured",
+              "displayName": "featured",
+              "required": true,
+              "defaultMatch": false,
+              "display": true,
+              "type": "boolean",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "image_url",
+              "displayName": "image_url",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "published_at",
+              "displayName": "published_at",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "dateTime",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "content",
+              "displayName": "content",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "mini_description",
+              "displayName": "mini_description",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "trending",
+              "displayName": "trending",
+              "required": true,
+              "defaultMatch": false,
+              "display": true,
+              "type": "boolean",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "processed_image_url",
+              "displayName": "processed_image_url",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "news_start_date",
+              "displayName": "news_start_date",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "dateTime",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "news_end_date",
+              "displayName": "news_end_date",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "dateTime",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "active",
+              "displayName": "active",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "boolean",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "uploaded_image",
+              "displayName": "uploaded_image",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "category_id",
+              "displayName": "category_id",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "audio",
+              "displayName": "audio",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "bulletin",
+              "displayName": "bulletin",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.5,
+      "position": [
+        2560,
+        80
+      ],
+      "id": "cf8f9124-073a-454b-a921-e105e232cb8f",
+      "name": "postgres milesone",
+      "retryOnFail": true,
+      "credentials": {
+        "postgres": {
+          "id": "iOOTVit15R9PSjWX",
+          "name": "Milesone-Production(DO NOT TOUCH)"
+        }
+      },
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [
+        -1760,
+        20
+      ],
+      "id": "35906c6b-f618-48b5-beab-a531ae0d409e",
+      "name": "Loop Over Items",
+      "retryOnFail": true,
+      "alwaysOutputData": true
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "400f543d-9505-4607-b279-f39e43c653b2",
+              "name": "",
+              "value": "={{ $('Loop Over Items').first().json.toJsonString() }}",
+              "type": "object"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -1420,
+        40
+      ],
+      "id": "b404cd68-9d4e-4b38-9cf2-c08aa6f8bdb0",
+      "name": "Edit Fields1"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "a08d6a68-65f4-4346-b795-5176951e15e6",
+              "leftValue": "={{ $json[''].active }}",
+              "rightValue": true,
+              "operator": {
+                "type": "boolean",
+                "operation": "equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        -1140,
+        40
+      ],
+      "id": "87560f98-d5c3-418b-a866-fce818af4864",
+      "name": "If"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "2362c1e1-4026-4cdc-9382-260992248674",
+              "name": "",
+              "value": "={{ $('If').first().json.toJsonString() }}",
+              "type": "object"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -820,
+        20
+      ],
+      "id": "d487fffc-660d-409f-9eda-c235685d8a84",
+      "name": "Edit Fields2",
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "triggerAtHour": 8
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        -2360,
+        20
+      ],
+      "id": "bcc5f1ee-db63-4d89-848b-3f02df6896c5",
+      "name": "Schedule Trigger"
+    },
+    {
+      "parameters": {
+        "resource": "audio",
+        "model": "=gpt-4o-mini-tts",
+        "input": "={{ $json.output }}",
+        "voice": "=coral",
+        "options": {
+          "response_format": "mp3"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.openAi",
+      "typeVersion": 1.8,
+      "position": [
+        1740,
+        60
+      ],
+      "id": "c1f04ec4-b74b-4eb8-8b5b-1eeb4463e22e",
+      "name": "OpenAI",
+      "credentials": {
+        "openAiApi": {
+          "id": "ZD83SOWo0kbWe8pu",
+          "name": "CTO Office - Open AI Account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "={{ $json.data }} {{ $json['data 2'][''][''].source }} {{ $json['data 2'][''][''].title }} {{ $json['data 2'][''][''].description }}",
+        "hasOutputParser": true,
+        "messages": {
+          "messageValues": [
+            {
+              "message": "You are an expert news anchor and professional scriptwriter.\n\nGiven a news article, your task is to:\n\nWrite a full news bulletin script (30 to 40 seconds long) as if it's being read on-air by a news anchor for a digital news platform.\n\nStart the script directly with the story — avoid generic openings like \"Good evening\" or salutations.\n\nUse natural transitions and engaging language to keep the listener's attention.\n\nEmphasize the narrative by marking implicit voice modulation and emotional tone for each section, using a \"tone\" key in your output. For example: \"tone\": \"confident\", \"tone\": \"cautious\", \"tone\": \"reassuring\", etc.\n\nStructure your final output as a JSON object with two fields:\n\n\"toneScript\": an array where each paragraph of the script is paired with its narrative tone.\n\n\nDo not include literal markers like \"[pause]\" or formatting syntax like asterisks or brackets in the final narration text."
+            }
+          ]
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.chainLlm",
+      "typeVersion": 1.5,
+      "position": [
+        660,
+        40
+      ],
+      "id": "02044cb5-6646-4608-a0cf-521df9d1953a",
+      "name": "summarizeArticles",
+      "retryOnFail": true,
+      "maxTries": 5,
+      "alwaysOutputData": true,
+      "executeOnce": false,
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "mode": "list",
+          "value": "gpt-4o-mini"
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.2,
+      "position": [
+        640,
+        240
+      ],
+      "id": "b5c2e141-da9e-4b6c-8834-e05878924915",
+      "name": "OpenAI Chat Model",
+      "credentials": {
+        "openAiApi": {
+          "id": "gMimpnq5xUYwijxb",
+          "name": "Miles AI/ML - Analytics Account - Open Router"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "42e5b0b8-91e6-4775-ac44-4bbf9d55627e",
+              "name": "output",
+              "value": "={{ $json.output }}",
+              "type": "string"
+            },
+            {
+              "id": "84004fd9-cf3f-478b-bf36-3bc363c72bc9",
+              "name": "File Name",
+              "value": "={{ $('Edit Fields').item.json['data 2'][''][''].id }}.mps",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        1280,
+        40
+      ],
+      "id": "ff413862-56a4-4f4f-9535-98f58a6aaffb",
+      "name": "Edit Fields3"
+    },
+    {
+      "parameters": {
+        "jsonSchemaExample": "[\n  {\n    \"tone\": \"cautious\",\n    \"text\": \"Japan's Nikkei index has taken a notable tumble, falling 3.1% to settle at 32,010.93. This drop mirrors the recent downturn experienced on Wall Street amid growing concerns about economic growth.\"\n  },\n  {\n    \"tone\": \"informative\",\n    \"text\": \"The broader Topix index also felt the impact, losing 3% to reach 2,360.32, following a sharp sell-off in the S&P 500.\"\n  },\n  {\n    \"tone\": \"alarmed\",\n    \"text\": \"Investors are particularly concerned about the state of technology stocks, which led the decline—Advantest plummeted by 9%, while SoftBank Group saw a significant decrease of nearly 6%.\"\n  },\n  {\n    \"tone\": \"analytical\",\n    \"text\": \"With tariff negotiations still looming, analysts are closely monitoring these developments, signaling potential future instability in the markets.\"\n  }\n]\n"
+      },
+      "type": "@n8n/n8n-nodes-langchain.outputParserStructured",
+      "typeVersion": 1.2,
+      "position": [
+        960,
+        300
+      ],
+      "id": "cbd03ef1-eed1-41ce-b274-72621a9ab055",
+      "name": "Structured Output Parser"
+    },
+    {
+      "parameters": {
+        "jsCode": "return items.map(item => {\n  const binaryData = item.binary.data;\n  const baseName = $('Edit Fields').first().json[\"data 2\"][\"\"][\"\"].id;\n\n  return {\n    json: {\n      filename: `audio_${baseName}.mp3`,\n      mimeType: binaryData.mimeType,\n      data: binaryData.data // base64-encoded audio\n    }\n  };\n});"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        2120,
+        60
+      ],
+      "id": "483f85a6-4f01-4d70-b60f-6bc0efa0f188",
+      "name": "Code"
+    }
+  ],
   "pinData": {},
   "settings": {
     "executionOrder": "v1"
@@ -13,6 +777,6 @@
   "staticData": null,
   "tags": [],
   "triggerCount": 0,
-  "updatedAt": "2025-04-09T17:37:22.912Z",
-  "versionId": "882b3a43-69e8-492f-8dae-c06b04f7690f"
+  "updatedAt": "2025-04-10T13:01:20.000Z",
+  "versionId": "019e3d0d-1c7c-4c3e-9893-7857e8b1b840"
 }
