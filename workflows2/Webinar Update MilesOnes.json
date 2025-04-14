@@ -1,0 +1,141 @@
+{
+  "active": false,
+  "connections": {
+    "Postgres Trigger": {
+      "main": [
+        [
+          {
+            "node": "If",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Postgres",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-04-10T13:17:57.234Z",
+  "id": "h213xpKLGWyLw1UX",
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "Webinar Update MilesOnes",
+  "nodes": [
+    {
+      "parameters": {
+        "schema": {
+          "__rl": true,
+          "mode": "list",
+          "value": "public"
+        },
+        "tableName": {
+          "__rl": true,
+          "value": "event_newsdata",
+          "mode": "list",
+          "cachedResultName": "event_newsdata"
+        },
+        "additionalFields": {},
+        "options": {}
+      },
+      "type": "n8n-nodes-base.postgresTrigger",
+      "typeVersion": 1,
+      "position": [
+        0,
+        0
+      ],
+      "id": "cc439bd9-6052-4b2e-8102-adfc754dd1b1",
+      "name": "Postgres Trigger",
+      "credentials": {
+        "postgres": {
+          "id": "iOOTVit15R9PSjWX",
+          "name": "Milesone-Production(DO NOT TOUCH)"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "e6164072-653f-4610-b9a6-e66b3a3787d5",
+              "leftValue": "",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "equals",
+                "name": "filter.operator.equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        380,
+        80
+      ],
+      "id": "40d7fe8a-0e5d-40e3-b0a4-85f70cdefc2c",
+      "name": "If"
+    },
+    {
+      "parameters": {
+        "operation": "select",
+        "schema": {
+          "__rl": true,
+          "mode": "list",
+          "value": "public"
+        },
+        "table": {
+          "__rl": true,
+          "value": "event_webinarinfo",
+          "mode": "list",
+          "cachedResultName": "event_webinarinfo"
+        },
+        "where": {
+          "values": [
+            {
+              "column": "webinar_name"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.5,
+      "position": [
+        380,
+        -220
+      ],
+      "id": "b27ebe69-979c-4caa-8aed-0b9bf6e2cb17",
+      "name": "Postgres",
+      "credentials": {
+        "postgres": {
+          "id": "iOOTVit15R9PSjWX",
+          "name": "Milesone-Production(DO NOT TOUCH)"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 1,
+  "updatedAt": "2025-04-11T06:32:08.000Z",
+  "versionId": "fd05110a-2fef-41bd-ac57-b09f2a448d81"
+}
