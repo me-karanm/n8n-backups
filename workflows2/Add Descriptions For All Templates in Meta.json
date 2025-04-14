@@ -1,0 +1,238 @@
+{
+  "active": false,
+  "connections": {
+    "When clicking ‘Test workflow’": {
+      "main": [
+        [
+          {
+            "node": "Supabase",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Supabase": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Loop Over Items": {
+      "main": [
+        [],
+        [
+          {
+            "node": "Basic LLM Chain",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenRouter Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Basic LLM Chain",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Basic LLM Chain": {
+      "main": [
+        [
+          {
+            "node": "Supabase1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Structured Output Parser": {
+      "ai_outputParser": [
+        [
+          {
+            "node": "Basic LLM Chain",
+            "type": "ai_outputParser",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Supabase1": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-04-14T12:48:11.591Z",
+  "id": "ID5BZ4AdixIgz4Hi",
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "Add Descriptions For All Templates in Meta",
+  "nodes": [
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        -240,
+        -100
+      ],
+      "id": "f11a5646-658a-4d66-9664-d339ad382dd1",
+      "name": "When clicking ‘Test workflow’"
+    },
+    {
+      "parameters": {
+        "operation": "getAll",
+        "tableId": "whatsapp_templates",
+        "returnAll": true,
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "template_description",
+              "condition": "is",
+              "keyValue": "null"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        -20,
+        -100
+      ],
+      "id": "8c81d5b3-1273-49a6-87c2-6f65cfa10d34",
+      "name": "Supabase",
+      "credentials": {
+        "supabaseApi": {
+          "id": "6stEFLC7gtftREcf",
+          "name": "Supabase Campaign manager"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [
+        200,
+        -100
+      ],
+      "id": "d396bd0d-518e-475a-8aa4-72b39c9b364d",
+      "name": "Loop Over Items"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=Consider the json input from the previous node to generate a summary of the input. \nContext: the json is the json structure of a whatsapp template that is acceptable for Meta. It might contain, text, buttons, headers, and samples for all avaiable components. \n\nYour job is to understnad the context and generate a summary of the template that has informationr regarding what the template might be used for, what are the components. \nKeep in mind that WhatsApp messages failed to send if there are any missing components, so ensure the description is detailed enough for a model/human to understand what params should be passed mandatorily, and in what format. \n\n\nThis is the input template json as string\n{{ $json.toJsonString() }}",
+        "hasOutputParser": true
+      },
+      "type": "@n8n/n8n-nodes-langchain.chainLlm",
+      "typeVersion": 1.6,
+      "position": [
+        520,
+        100
+      ],
+      "id": "b83efbd1-7aa1-423d-bb5b-4cc3553a66a2",
+      "name": "Basic LLM Chain"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenRouter",
+      "typeVersion": 1,
+      "position": [
+        540,
+        360
+      ],
+      "id": "b46a93c7-5da8-4f71-8f22-f67103045bf4",
+      "name": "OpenRouter Chat Model",
+      "credentials": {
+        "openRouterApi": {
+          "id": "7JUQlMKIiSlGnibP",
+          "name": "Miles AI/ML - Analytics Account - Open Router"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "tableId": "whatsapp_templates",
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "wa_template_name",
+              "condition": "eq",
+              "keyValue": "={{ $json.output.template_name }}"
+            }
+          ]
+        },
+        "fieldsUi": {
+          "fieldValues": [
+            {
+              "fieldId": "template_description",
+              "fieldValue": "={{ $json.output.template_description }}"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        900,
+        100
+      ],
+      "id": "e0a0fec9-9e77-4f3c-a9d2-5ca5c89ee072",
+      "name": "Supabase1",
+      "credentials": {
+        "supabaseApi": {
+          "id": "6stEFLC7gtftREcf",
+          "name": "Supabase Campaign manager"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsonSchemaExample": "{\n  \"template_name\": \"name of the template for which the description has been generated\",\n  \"template_description\": \"Detailed description as mentioned\"\n}"
+      },
+      "type": "@n8n/n8n-nodes-langchain.outputParserStructured",
+      "typeVersion": 1.2,
+      "position": [
+        680,
+        360
+      ],
+      "id": "4f8c8627-0a10-43c4-bca5-26bc915b3168",
+      "name": "Structured Output Parser"
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2025-04-14T13:08:56.000Z",
+  "versionId": "adaa0b63-ebe9-4506-a525-233de9278c9f"
+}
