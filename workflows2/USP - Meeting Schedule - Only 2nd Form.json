@@ -1,5 +1,5 @@
 {
-  "active": true,
+  "active": false,
   "connections": {
     "Supabase": {
       "main": [
@@ -625,6 +625,6 @@
     }
   ],
   "triggerCount": 1,
-  "updatedAt": "2024-01-28T17:28:19.000Z",
+  "updatedAt": "2025-04-14T07:40:51.000Z",
   "versionId": "1b94bf69-88b5-4d8d-bb15-f7c5cb898189"
 }
