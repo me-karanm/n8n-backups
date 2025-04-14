@@ -59,11 +59,6 @@
             "node": "postgres milesone",
             "type": "main",
             "index": 0
-          },
-          {
-            "node": "Loop Over Items",
-            "type": "main",
-            "index": 0
           }
         ]
       ]
@@ -92,7 +87,13 @@
     },
     "postgres milesone": {
       "main": [
-        []
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
       ]
     },
     "Loop Over Items": {
@@ -236,12 +237,12 @@
     {
       "parameters": {
         "promptType": "define",
-        "text": "={{ $json['data 2'] }} {{ $json.data }}",
+        "text": "={{ $json['data 2'] }} {{ $json['data 2'][''][''].source }} {{ $json['data 2'][''][''].title }} {{ $json['data 2'][''][''].description }} {{ $json['data 2'][''][''].article_url }} {{ $json['data 2'][''][''].featured }} {{ $json['data 2'][''][''].mini_description }} {{ $json['data 2'][''][''].trending }} {{ $json['data 2'][''][''].active }} {{ $json['data 2'][''][''].category_id }}",
         "hasOutputParser": true,
         "messages": {
           "messageValues": [
             {
-              "message": "  You are an intelligent **news-generation agent**, responsible for writing original news articles in the style of professional media organizations such as **CNBC, Bloomberg, Economic Times, and Reuters**. You will receive records of articles (with `\"active\": false`) and must determine if they should be updated and reactivated, or left unchanged.  ---  ### 🧭 **Evaluation Workflow**  | Step | Task | |------|------| | **1. Assess Article Relevance** | Evaluate the article fields: `title`, `mini_description`, `description`, `content`, and `category`. \n\n **2. If Article is Still Relevant** | Write a **fresh original news piece** in the tone of major news media. set `active: true`. Recalculate `featured`, `trending`, `likes`, and date fields. \n\n**3. If Article is Not Relevant / No Change** | **Return the entire input object as-is**, but **ensure `active: false`**. Do not rewrite or alter any field. \n\n **4. If Category is Invalid or Missing** | Skip the article.\n\n  ---  ### 📝 **Writing Style Requirements**  - Write **original news articles**, not summaries or paraphrases. - Adopt the **professional editorial tone** of Bloomberg, CNBC, Reuters, or Economic Times. - Prioritize:   - **Strong, newsworthy headlines**   - **Sharp mini-descriptions**   - **Detailed descriptions and analytical content**  ---  \n\n### 📐 **Field-by-Field Schema**  | Field | Rules | \n\n#### 2. \"title\" (string, required) - Range of Max  100 characters and  Min 75 characters. - Should strictly follow character limi, can not exceed 100 characters. Must clearly convey the **main topic** of the article.  \n\n#### 3. \"mini_description\" (string, required) - Range of  Max 200 characters and minimum of 180 characters, Should strictly follow character limit, can not exceed 200 characters. - A quick insight of the key message. Write it as if you are writing it for a news channel  \n\n#### 4. \"description_content\" (string, required) -  Rage of- Max 600 characters and minimum of 550 characters,  s Should strictly follow character limit, can not exceed 600 characters.   - Include insights, details, and article takeaways. As if you are writing it for a news channel.  \n\n#### 5. \"content\" (string, required) - - Range of  550 characters to 600 characters, strictly follows the guideline  - A synopsis of what has happened, all insights, details, and takeaways, write it as a news article, as if you are writing it for a news channel.  \n\n#### 6. \"category\" (string, required, MUST be UUID) Select one category and assign its **UUID** from the list below: \n1. Tech in Accounting\nUUID: 02236360-cf24-4649-adb9-72ed6df8ba44\nDefinition: News and updates on how emerging technologies—such as AI, automation, blockchain, or accounting software—are transforming accounting practices, tools, and workflows.\n\n2. Markets & Investments\nUUID: 18decbe9-a05f-49d7-8168-184b48fa579f\nDefinition: Articles covering stock markets, financial instruments, investment trends, capital flows, portfolio management, and analysis of economic indicators affecting investments.\n\n3. Business & Economy\nUUID: 3a5092c7-d75e-4d8c-ac23-47a990418ac7\nDefinition: Broader insights on business environments, economic policy, GDP trends, fiscal updates, business regulations, and news that affect enterprises at national or global levels.\n\n4. Accounting Trivia\nUUID: 786be833-f9d0-4461-9f14-5f6f00ef0cff\nDefinition: Light-hearted or lesser-known facts, historical milestones, fun facts, and quirky insights about the accounting world, its people, or practices.\n\n5. Accounting License\nUUID: ac86a35f-d3ba-4a68-bd13-c9fc0c1732fa\nDefinition: Content related to accounting certifications and licensure—such as CPA, CMA, ACCA—including updates, requirements, exam formats, and continuing education.\n\n6. The Accounting Profession\nUUID: b35ecea3-66a4-4181-93a3-0755c4730c3f\nDefinition: Articles focused on the state and evolution of the accounting profession, including ethics, work culture, demographics, leadership, and recognition in the industry.\n\n7. Valuation, Mergers and Acquisition\nUUID: dbf056a4-bc34-4590-b76e-3a324d894ec5\nDefinition: Coverage of company valuations, business deals, M&A activity, IPOs, and financial advisory services surrounding corporate restructuring and asset analysis.\n\n8. Hiring & Firing\nUUID: f4efb5f2-b845-4e12-978f-53114cc92007\nDefinition: News related to recruitment, layoffs, workforce changes, hiring trends, job cuts, and employment policies within accounting firms or related industries.\n\nCarefully categorise the news based on the category definition given\n\n\n❗ **Return only the UUID. Do NOT return the name or number.** If article doesn't fit into a category fits, discard the articl, return empty jason for all fileds.\n\n#### 7. \"article_url\", \"image_url\", \"processed_image_url\" (string, required) - \"article_url\" → Valid link to article - \"image_url\" → Valid image link (ideally 16:9) - \"processed_image_url\" → Must match \"image_url\" unless modified  \n\n#### 8. \"likes\" (number, required) - Always return a random number between **10 and 1000**  \n\n#### 9. \"featured\" and \"trending\" (boolean, required)\n\n\"featured\": true if the article is highly significant\n\n\"trending\": true if gaining traction quickly\n\nFor an article:\n\n\"featured\" can be true, \"trending\" must be false\n\n\"featured\" can be false, \"trending\" can be true\n\n\"featured\" can be false, \"trending\" can be false\n\nboth \"featured\": true, \"trending\": true together is not allowed\n\n⚠️ Classification must be strict — assign true only if the article clearly meets the criteria.\n\n#### 10. \"news_start_date\"  \"null\" \n\n#### 11. \"news_end_date\" - \"null\" \n\n#### 12. . \"published_at\" - \"null\" \n\n#### 13. \"active\" (boolean, required) - Always \"true\"  \n\n#### 14. \"source\"(string, required)  - based on the \"article_url\" \"\"source\" determine determine the source of the news, for example \"Accounting Today\" \n\n--- Important Output Rules: \n1. Respond with only a clean JSON array. Do not wrap the response in any object or include extra fields like \"output\" or \"response\". \n2. Do not use markdown formatting, triple backticks (```), or any language tag like `json`. \n3. The output must begin with \"[\" and end with \"]\". \n4. Each item in the array must follow the exact schema provided. "
+              "message": "  You are an intelligent **news-generation agent**, responsible for writing original news articles in the style of professional media organizations such as **CNBC, Bloomberg, Economic Times, and Reuters**. You will receive records of articles (with `\"active\": false`) and must determine if they should be updated and reactivated, or left unchanged.  ---  ### 🧭 **Evaluation Workflow**  | Step | Task | |------|------| | **1. Assess Article Relevance** | Evaluate the article fields: `title`, `mini_description`, `description`, `content`, and `category`. \n\n **2. If Article is Still Relevant** | Write a **fresh original news piece** in the tone of major news media. set `active: true`. Recalculate `featured`, `trending`, `likes`, and date fields. \n\n**3. If Article is Not Relevant / No Change** | **Return the entire input object as-is**, but **ensure `active: false`**. Do not rewrite or alter any field. \n\n **4. If Category is Invalid or Missing** | Skip the article.\n\n  ---  ### 📝 **Writing Style Requirements**  - Write **original news articles**, not summaries or paraphrases. - Adopt the **professional editorial tone** of Bloomberg, CNBC, Reuters, or Economic Times. - Prioritize:   - **Strong, newsworthy headlines**   - **Sharp mini-descriptions**   - **Detailed descriptions and analytical content**  ---  \n\n### 📐 **Field-by-Field Schema**  | Field | Rules | \n\n#### 2. \"title\" (string, required) - Range of Max  100 characters and  Min 75 characters. - Should strictly follow character limi, can not exceed 100 characters. Must clearly convey the **main topic** of the article.  \n\n#### 3. \"mini_description\" (string, required) - Range of  Max 200 characters and minimum of 180 characters, Should strictly follow character limit, can not exceed 200 characters. - A quick insight of the key message. Write it as if you are writing it for a news channel  \n\n#### 4. \"description_content\" (string, required) -  Rage of- Max 600 characters and minimum of 550 characters,  s Should strictly follow character limit, can not exceed 600 characters.   - Include insights, details, and article takeaways. As if you are writing it for a news channel.  \n\n#### 5. \"content\" (string, required) - - Range of  550 characters to 600 characters, strictly follows the guideline  - A synopsis of what has happened, all insights, details, and takeaways, write it as a news article, as if you are writing it for a news channel.  \n\n#### 6. \"category\" (string, required, MUST be UUID) Select one category and assign its **UUID** from the list below: \n1. Tech in Accounting\nUUID: 02236360-cf24-4649-adb9-72ed6df8ba44\nDefinition: News and updates on how emerging technologies—such as AI, automation, blockchain, or accounting software—are transforming accounting practices, tools, and workflows.\n\n2. Markets & Investments\nUUID: 18decbe9-a05f-49d7-8168-184b48fa579f\nDefinition: Articles covering stock markets, financial instruments, investment trends, capital flows, portfolio management, and analysis of economic indicators affecting investments.\n\n3. Business & Economy\nUUID: 3a5092c7-d75e-4d8c-ac23-47a990418ac7\nDefinition: Broader insights on business environments, economic policy, GDP trends, fiscal updates, business regulations, and news that affect enterprises at national or global levels.\n\n4. Accounting Trivia\nUUID: 786be833-f9d0-4461-9f14-5f6f00ef0cff\nDefinition: Light-hearted or lesser-known facts, historical milestones, fun facts, and quirky insights about the accounting world, its people, or practices.\n\n5. Accounting License\nUUID: ac86a35f-d3ba-4a68-bd13-c9fc0c1732fa\nDefinition: Content related to accounting certifications and licensure—such as CPA, CMA, ACCA—including updates, requirements, exam formats, and continuing education.\n\n6. The Accounting Profession\nUUID: b35ecea3-66a4-4181-93a3-0755c4730c3f\nDefinition: Articles focused on the state and evolution of the accounting profession, including ethics, work culture, demographics, leadership, and recognition in the industry.\n\n7. Valuation, Mergers and Acquisition\nUUID: dbf056a4-bc34-4590-b76e-3a324d894ec5\nDefinition: Coverage of company valuations, business deals, M&A activity, IPOs, and financial advisory services surrounding corporate restructuring and asset analysis.\n\n8. Hiring & Firing\nUUID: f4efb5f2-b845-4e12-978f-53114cc92007\nDefinition: News related to recruitment, layoffs, workforce changes, hiring trends, job cuts, and employment policies within accounting firms or related industries.\n\nCarefully categorise the news based on the category definition given\n\n\n❗ **Return only the UUID. Do NOT return the name or number.** If article doesn't fit into a category fits, discard the articl, return empty jason for all fileds.\n\n#### 7. \"article_url\", \"image_url\", \"processed_image_url\" (string, required) - \"article_url\" → Valid link to article - \"image_url\" → Valid image link (ideally 16:9) - \"processed_image_url\" → Must match \"image_url\" unless modified  \n\n#### 8. \"likes\" (number, required) - Always return a random number between **10 and 1000**  \n\n#### 9. \"featured\" and \"trending\" (boolean, required)\n\n\"featured\": true if the article is highly significant\n\n\"trending\": true if gaining traction quickly\n\nFor an article:\n\n\"featured\" can be true, \"trending\" must be false\n\n\"featured\" can be false, \"trending\" can be true\n\n\"featured\" can be false, \"trending\" can be false\n\nboth \"featured\": true, \"trending\": true together is not allowed\n\n⚠️ Classification must be strict — assign true only if the article clearly meets the criteria.\n\n#### 10. \"news_start_date\"  \"null\" \n\n#### 11. \"news_end_date\" - \"null\" \n\n#### 12. . \"published_at\" - \"null\" \n\n#### 13. \"active\" (boolean, required) - Always \"true\"  \n\n#### 14. \"source\"(string, required)  - based on the \"article_url\" \"\"source\" determine determine the source of the news, for example \"Accounting Today\" \n\n--- Important Output Rules: \n1. ---  ✅ You must return a **valid JSON object**, with correct types and UUID format. No undefined fields. No fallback category names or numbers. Follow the format exactly."
             }
           ]
         }
@@ -345,6 +346,7 @@
     },
     {
       "parameters": {
+        "operation": "update",
         "schema": {
           "__rl": true,
           "value": "public",
@@ -360,23 +362,16 @@
         "columns": {
           "mappingMode": "defineBelow",
           "value": {
-            "featured": "={{ $json.featured }}",
-            "trending": "={{ $json.trending }}",
-            "active": "={{ $json.active }}",
-            "likes": "={{ $json.likes }}",
-            "id": "={{ $json.id }}",
-            "source": "={{ $json.source }}",
-            "title": "={{ $json.title }}",
-            "description": "={{ $json.description }}",
-            "article_url": "={{ $json.article_url }}",
-            "image_url": "={{ $json.image_url }}",
+            "featured": false,
+            "trending": false,
+            "active": true,
+            "id": "={{ $('Edit Fields').item.json['data 2'][''][''].id }}",
+            "content": "={{ $('summarizeArticles').item.json.output.content }}",
+            "mini_description": "={{ $('summarizeArticles').item.json.output.mini_description }}",
             "news_start_date": "={{ $now }}",
             "news_end_date": "={{ $now.plus(10,'days') }}",
-            "category_id": "={{ $json.category_id }}",
-            "content": "={{ $json.content }}",
-            "published_at": "={{ $json.published_at }}",
-            "mini_description": "={{ $json.mini_description }}",
-            "processed_image_url": "={{ $json.processed_image_url }}"
+            "title": "={{ $json.title }}",
+            "likes": 0
           },
           "matchingColumns": [
             "id"
@@ -665,7 +660,7 @@
     {
       "parameters": {
         "schemaType": "manual",
-        "inputSchema": "\n  {\n    \"source\": \"Accountancy Today\",\n    \"title\": \"Five trends that will redefine finance and accounting in 2025\",\n    \"description\": \"Key trends set to reshape finance and accounting in 2025 include AI integration, sustainability-focused reporting, and blockchain adoption. Other areas include workforce evolution with hybrid models and increased regulatory scrutiny. These changes are expected to drive innovation, enhance transparency, and offer new growth opportunities for firms ready to adapt to the evolving landscape.\",\n    \"likes\": 0,\n    \"article_url\": \"https://www.accountingtoday.com/list/five-trends-that-will-redefine-finance-and-accounting-in-2025\",\n    \"featured\": false,\n    \"image_url\": \"https://gaper.io/wp-content/uploads/2024/12/accounting-industry_-Trends-min.png\",\n    \"published_at\": \"\",\n    \"content\": null,\n    \"mini_description\": \"Key trends set to reshape finance and accounting in 2025 include AI integration, sustainability-focused reporting, and blockchain adoption.\",\n    \"trending\": true,\n    \"processed_image_url\": \"https://storage.googleapis.com/miles-usp-bed/processed_images/9dca0172-8af9-4064-9f5c-9c5357063e3b_processed.jpg\",\n    \"news_start_date\": \"\",\n    \"news_end_date\": \"\",\n    \"active\": false,\n    \"uploaded_image\": \"\",\n    \"category_id\": \"3a5092c7-d75e-4d8c-ac23-47a990418ac7\"\n  }"
+        "inputSchema": "\n  {\n    \"source\": \"Accountancy Today\",\n    \"title\": \"Five trends that will redefine finance and accounting in 2025\",\n    \"description\": \"Key trends set to reshape finance and accounting in 2025 include AI integration, sustainability-focused reporting, and blockchain adoption. Other areas include workforce evolution with hybrid models and increased regulatory scrutiny. These changes are expected to drive innovation, enhance transparency, and offer new growth opportunities for firms ready to adapt to the evolving landscape.\",\n    \"likes\": 0,\n    \"article_url\": \"https://www.accountingtoday.com/list/five-trends-that-will-redefine-finance-and-accounting-in-2025\",\n    \"featured\": false,\n    \"image_url\": \"https://gaper.io/wp-content/uploads/2024/12/accounting-industry_-Trends-min.png\",\n    \"published_at\": \"\",\n    \"content\": null,\n    \"mini_description\": \"Key trends set to reshape finance and accounting in 2025 include AI integration, sustainability-focused reporting, and blockchain adoption.\",\n    \"trending\": true,    \"processed_image_url\": \"https://storage.googleapis.com/miles-usp-bed/processed_images/9dca0172-8af9-4064-9f5c-9c5357063e3b_processed.jpg\",\n    \"news_start_date\": \"\",\n    \"news_end_date\": \"\",\n    \"active\": false,\n    \"uploaded_image\": \"\",\n    \"category_id\": \"3a5092c7-d75e-4d8c-ac23-47a990418ac7\"\n  }"
       },
       "type": "@n8n/n8n-nodes-langchain.outputParserStructured",
       "typeVersion": 1.2,
@@ -709,6 +704,6 @@
   },
   "tags": [],
   "triggerCount": 1,
-  "updatedAt": "2025-04-09T17:54:21.000Z",
-  "versionId": "5fa97d98-aa25-414d-a5da-82640bbe097e"
+  "updatedAt": "2025-04-09T19:11:53.000Z",
+  "versionId": "733f921d-f52e-41d6-8014-e9c7d3659587"
 }
