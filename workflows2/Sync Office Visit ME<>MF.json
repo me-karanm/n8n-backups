@@ -197,7 +197,7 @@
         },
         "sendBody": true,
         "specifyBody": "json",
-        "jsonBody": "={\n  \"visit_date\": \"{{ $('Webhook').item.json.body.time_slots }}\",\n  \"schedule\": {{ $('Webhook').item.json[\"body\"][\"city\"]==\"Virtual Meeting\" ?1:2 }},\n  \"visit_status\": 1,\n  \"lead\": {{ $('Postgres').item.json[\"id\"] }},\n  \"visit_city\": {{ $('Postgres1').item.json[\"id\"]??2 }},\n  \"spoc\": {{ $('Postgres').item.json[\"spocId\"] }},\n  \"source\": 1,\n  \"gm_approvel\": true\n}",
+        "jsonBody": "={\n  \"visit_date\": \"{{ $('Webhook').item.json.body.time_slots }}\",\n  \"schedule\": {{ $('Webhook').item.json[\"body\"][\"city\"]==\"Virtual Meeting\" ?1:2 }},\n  \"visit_status\": 1,\n  \"lead\": {{ $('Postgres').item.json[\"id\"] }},\n  \"visit_city\": {{ $('Postgres1').item.json[\"id\"]??2 }},\n  \"spoc\": {{ $('Postgres').item.json[\"spocId\"] ?? 58 }},\n  \"source\": 1,\n  \"gm_approvel\": true\n}",
         "options": {}
       },
       "id": "ab03c2b3-4813-46de-88d1-6d811faa78e2",
@@ -453,6 +453,6 @@
   "staticData": null,
   "tags": [],
   "triggerCount": 1,
-  "updatedAt": "2025-04-02T10:09:26.000Z",
-  "versionId": "76fe0daa-ba12-4218-a52a-e4a8c8e4b13d"
+  "updatedAt": "2025-04-14T06:56:48.000Z",
+  "versionId": "6304117e-7ff2-4914-9fa8-9747dd8a7382"
 }
