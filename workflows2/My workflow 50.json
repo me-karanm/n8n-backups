@@ -1,0 +1,38 @@
+{
+  "active": false,
+  "connections": {},
+  "createdAt": "2025-04-14T13:05:52.356Z",
+  "id": "wCDTsMwhIU9SI9th",
+  "meta": null,
+  "name": "My workflow 50",
+  "nodes": [
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "={\n  \"nodes\": [\n    {\n      \"parameters\": {\n        \"custom\": true,\n        \"cronTimes\": [\n          {\n            \"cronExpression\": \"0 8 * * *\"\n          },\n          {\n            \"cronExpression\": \"0 15 * * *\"\n          }\n        ]\n      },\n      \"name\": \"Schedule Trigger\",\n      \"type\": \"n8n-nodes-base.scheduleTrigger\",\n      \"typeVersion\": 1,\n      \"position\": [\n        240,\n        300\n      ]\n    }\n  ]\n}\n"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        0,
+        0
+      ],
+      "id": "7a889da1-907b-4998-aeea-b3998e77c225",
+      "name": "Schedule Trigger"
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2025-04-14T13:05:52.356Z",
+  "versionId": "e3a9354d-a832-495c-82ac-c75463dfe0d1"
+}
