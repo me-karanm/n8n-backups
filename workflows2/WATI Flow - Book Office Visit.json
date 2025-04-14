@@ -1,0 +1,62 @@
+{
+  "active": true,
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Respond to Webhook",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-04-11T13:09:10.854Z",
+  "id": "LkLp2ihv7BJiRC9C",
+  "meta": null,
+  "name": "WATI Flow - Book Office Visit",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "book-office-visit-wati",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        0,
+        0
+      ],
+      "id": "72b1ae34-830c-4c1a-8576-fe4da9325a3e",
+      "name": "Webhook",
+      "webhookId": "c6d39e1d-04b6-48d6-965c-aa3abe48ffa4"
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.1,
+      "position": [
+        220,
+        0
+      ],
+      "id": "b17af4da-935d-4d36-8e4c-86e7d4c37b1b",
+      "name": "Respond to Webhook"
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 1,
+  "updatedAt": "2025-04-11T13:09:41.000Z",
+  "versionId": "f6068aea-ec16-4896-ba5e-d3eb31f37cc7"
+}
