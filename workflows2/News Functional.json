@@ -333,7 +333,7 @@
       "credentials": {
         "openAiApi": {
           "id": "gMimpnq5xUYwijxb",
-          "name": "Miles AI/ML - Analytics Account"
+          "name": "Miles AI/ML - Analytics Account - Open Router"
         }
       }
     },
@@ -752,8 +752,7 @@
         "rule": {
           "interval": [
             {
-              "field": "hours",
-              "hoursInterval": 12
+              "field": "={\n  \"nodes\": [\n    {\n      \"parameters\": {\n        \"custom\": true,\n        \"cronTimes\": [\n          {\n            \"cronExpression\": \"0 8 * * *\"\n          },\n          {\n            \"cronExpression\": \"0 15 * * *\"\n          }\n        ]\n      },\n      \"name\": \"Schedule Trigger\",\n      \"type\": \"n8n-nodes-base.scheduleTrigger\",\n      \"typeVersion\": 1,\n      \"position\": [\n        240,\n        300\n      ]\n    }\n  ]\n}\n"
             }
           ]
         }
@@ -816,6 +815,6 @@
   },
   "tags": [],
   "triggerCount": 1,
-  "updatedAt": "2025-04-08T09:38:33.000Z",
-  "versionId": "6d299b8a-8538-47e9-8e18-3eaf6cc594b2"
+  "updatedAt": "2025-04-14T13:07:39.000Z",
+  "versionId": "ea369f76-d5a4-4849-a303-4998780be83d"
 }
