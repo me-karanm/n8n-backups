@@ -1,0 +1,157 @@
+{
+  "active": false,
+  "connections": {
+    "Set Start Page": {
+      "main": [
+        [
+          {
+            "node": "HTTP Get Contacts",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Get Contacts": {
+      "main": [
+        [
+          {
+            "node": "Paginate While HasMore",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Paginate While HasMore": {
+      "main": [
+        [
+          {
+            "node": "Merge All Contacts",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "When clicking ‘Test workflow’": {
+      "main": [
+        [
+          {
+            "node": "Set Start Page",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-04-10T12:43:43.591Z",
+  "id": "U3Ql73tJFXlbVBEZ",
+  "meta": null,
+  "name": "My workflow 49",
+  "nodes": [
+    {
+      "parameters": {
+        "values": {
+          "string": [
+            {
+              "name": "page",
+              "value": "1"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "a917fd75-1f0e-4b43-9bbe-86072e04c1fb",
+      "name": "Set Start Page",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 2,
+      "position": [
+        -920,
+        -80
+      ]
+    },
+    {
+      "parameters": {
+        "url": "https://live-mt-server.wati.io/413503/api/v1/getContacts",
+        "options": {},
+        "headerParametersUi": {
+          "parameter": [
+            {
+              "name": "Authorization",
+              "value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiI4NGFiZDUzMy1mNmZlLTRmODEtODVlMS0zZjYxNTI2NDk0ZWIiLCJ1bmlxdWVfbmFtZSI6Im1hbmRhbGFtLmthcmFuQG1pbGVzZWR1Y2F0aW9uLmNvbSIsIm5hbWVpZCI6Im1hbmRhbGFtLmthcmFuQG1pbGVzZWR1Y2F0aW9uLmNvbSIsImVtYWlsIjoibWFuZGFsYW0ua2FyYW5AbWlsZXNlZHVjYXRpb24uY29tIiwiYXV0aF90aW1lIjoiMDQvMDQvMjAyNSAxMjoyMDowOSIsInRlbmFudF9pZCI6IjQxMzUwMyIsImRiX25hbWUiOiJtdC1wcm9kLVRlbmFudHMiLCJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3JvbGUiOiJBRE1JTklTVFJBVE9SIiwiZXhwIjoyNTM0MDIzMDA4MDAsImlzcyI6IkNsYXJlX0FJIiwiYXVkIjoiQ2xhcmVfQUkifQ.8xqEz39ggf6RghrEmXg-iHdwacDPfCgzwFexcJ3iaBQ"
+            }
+          ]
+        },
+        "queryParametersUi": {
+          "parameter": [
+            {
+              "name": "page",
+              "value": "={{$json[\"page\"]}}"
+            },
+            {
+              "name": "page_size",
+              "value": "100"
+            }
+          ]
+        }
+      },
+      "id": "323f9040-4cc7-46a6-9b80-fdf0c7e81ccd",
+      "name": "HTTP Get Contacts",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 2,
+      "position": [
+        -720,
+        -80
+      ]
+    },
+    {
+      "parameters": {
+        "functionCode": "const data = $json.data || [];\nconst meta = $json.meta || {};\nconst currentPage = meta.page || 1;\nconst hasMore = meta.hasMore || false;\n\nconst output1 = data.map(item => ({ json: item }));\nconst output2 = hasMore\n  ? [{ json: { page: currentPage + 1 } }]\n  : [];\n\nreturn [output1, output2];"
+      },
+      "id": "149ddbe7-99c3-48e9-93a0-e624b64eeeae",
+      "name": "Paginate While HasMore",
+      "type": "n8n-nodes-base.function",
+      "typeVersion": 1,
+      "position": [
+        -520,
+        -80
+      ],
+      "settings": {
+        "maxNumberOfOutputs": 2
+      }
+    },
+    {
+      "parameters": {},
+      "id": "d6583e87-c71c-4b77-829c-a96ce11bf436",
+      "name": "Merge All Contacts",
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 2,
+      "position": [
+        -200,
+        -160
+      ]
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        -1180,
+        -80
+      ],
+      "id": "30c8b7db-701f-4c4f-b1ed-8bb843f0456c",
+      "name": "When clicking ‘Test workflow’"
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2025-04-10T12:45:36.000Z",
+  "versionId": "45400890-e2fe-42b8-977c-d49aa35a5714"
+}
