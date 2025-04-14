@@ -1,0 +1,63 @@
+{
+  "active": true,
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Respond to Webhook",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-04-11T06:19:59.934Z",
+  "id": "StH8sJmzkKE4jOKJ",
+  "meta": null,
+  "name": "WATI -  Check Eligibility Webhook",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "eligibility-check",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        0,
+        0
+      ],
+      "id": "e02bef86-f170-4a6e-ba47-02093884594c",
+      "name": "Webhook",
+      "webhookId": "9f40ccfa-c3f2-4a72-b144-6223f0a082e1"
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "{\n  \"template\": \"cpa\"\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.1,
+      "position": [
+        220,
+        0
+      ],
+      "id": "12a9e63d-8073-49a8-b984-1f36ead3ca68",
+      "name": "Respond to Webhook"
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 1,
+  "updatedAt": "2025-04-11T06:36:55.000Z",
+  "versionId": "e946bf9e-def8-489e-bd6d-98b710b93d78"
+}
