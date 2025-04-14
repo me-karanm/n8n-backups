@@ -1,5 +1,5 @@
 {
-  "active": false,
+  "active": true,
   "connections": {
     "Webhook": {
       "main": [
@@ -152,7 +152,13 @@
     },
     "IF4": {
       "main": [
-        [],
+        [
+          {
+            "node": "IF5",
+            "type": "main",
+            "index": 0
+          }
+        ],
         [
           {
             "node": "Supabase3",
@@ -188,14 +194,14 @@
       "main": [
         [
           {
-            "node": "getwebinar",
+            "node": "Supabase7",
             "type": "main",
             "index": 0
           }
         ],
         [
           {
-            "node": "Supabase5",
+            "node": "IF6",
             "type": "main",
             "index": 0
           }
@@ -223,10 +229,65 @@
           }
         ]
       ]
+    },
+    "Supabase7": {
+      "main": [
+        [
+          {
+            "node": "Supabase8",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Supabase8": {
+      "main": [
+        [
+          {
+            "node": "response false3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Supabase9": {
+      "main": [
+        [
+          {
+            "node": "Supabase10",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Supabase10": {
+      "main": [
+        [
+          {
+            "node": "response false4",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "IF6": {
+      "main": [
+        [
+          {
+            "node": "Supabase9",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
     }
   },
-  "createdAt": "2023-11-04T04:54:24.554Z",
-  "id": "0zkbe4SPtzoxvwgh",
+  "createdAt": "2023-08-04T07:22:24.505Z",
+  "id": "AI5qL0olh221f3jV",
   "meta": null,
   "name": "register",
   "nodes": [
@@ -957,7 +1018,7 @@
             },
             {
               "fieldId": "webinar_id",
-              "fieldValue": "=23"
+              "fieldValue": "=27"
             },
             {
               "fieldId": "push_to_mf",
@@ -1014,7 +1075,8 @@
         "conditions": {
           "boolean": [
             {
-              "value1": "={{ $json.body.src == \"Facebook-LeadGen\" }}"
+              "value1": "={{ $json.body.src == \"LMS\" }}",
+              "value2": true
             }
           ]
         }
@@ -1024,8 +1086,8 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 1,
       "position": [
-        -20,
-        500
+        -80,
+        300
       ]
     },
     {
@@ -1146,6 +1208,271 @@
         540,
         660
       ]
+    },
+    {
+      "parameters": {
+        "operation": "get",
+        "tableId": "campaign",
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "id",
+              "keyValue": "79"
+            }
+          ]
+        }
+      },
+      "id": "4d530154-8a0b-430f-a492-cb1e279215ff",
+      "name": "Supabase7",
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        200,
+        -220
+      ],
+      "credentials": {
+        "supabaseApi": {
+          "id": "6stEFLC7gtftREcf",
+          "name": "Supabase Campaign manager"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "tableId": "leads_dump",
+        "fieldsUi": {
+          "fieldValues": [
+            {
+              "fieldId": "first_name",
+              "fieldValue": "={{ $('Webhook').item.json.body.fname }}"
+            },
+            {
+              "fieldId": "last_name",
+              "fieldValue": "={{ $('Webhook').item.json.body.lname }}"
+            },
+            {
+              "fieldId": "phone",
+              "fieldValue": "={{ $('Webhook').item.json.body.phone }}"
+            },
+            {
+              "fieldId": "email",
+              "fieldValue": "={{ $('Webhook').item.json.body.email }}"
+            },
+            {
+              "fieldId": "city",
+              "fieldValue": "={{ $('Webhook').item.json.body.location }}"
+            },
+            {
+              "fieldId": "coming_from",
+              "fieldValue": "LMS"
+            },
+            {
+              "fieldId": "camp_id",
+              "fieldValue": "={{ $json.id }}"
+            },
+            {
+              "fieldId": "whatsapp",
+              "fieldValue": "true"
+            },
+            {
+              "fieldId": "register_for_webinar",
+              "fieldValue": "false"
+            },
+            {
+              "fieldId": "push_to_mf",
+              "fieldValue": "false"
+            },
+            {
+              "fieldId": "json",
+              "fieldValue": "={{ $('Webhook').item.json.body.course }}"
+            },
+            {
+              "fieldId": "course",
+              "fieldValue": "9"
+            }
+          ]
+        }
+      },
+      "id": "62c890e2-a2fe-439c-ad4b-1fdc8269789b",
+      "name": "Supabase8",
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        360,
+        -220
+      ],
+      "credentials": {
+        "supabaseApi": {
+          "id": "6stEFLC7gtftREcf",
+          "name": "Supabase Campaign manager"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={\n\"status\":true,\n\"message\":\"\"\n}",
+        "options": {
+          "responseHeaders": {
+            "entries": [
+              {
+                "name": "Access-Control-Allow-Origin",
+                "value": "*"
+              }
+            ]
+          }
+        }
+      },
+      "id": "3dbf5cb9-1523-4e1b-8467-cf3c79aedcd4",
+      "name": "response false3",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1,
+      "position": [
+        520,
+        -220
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "get",
+        "tableId": "campaign",
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "id",
+              "keyValue": "92"
+            }
+          ]
+        }
+      },
+      "id": "cee7d80b-76fc-44c7-8df7-f43eec3ba8dd",
+      "name": "Supabase9",
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        300,
+        40
+      ],
+      "credentials": {
+        "supabaseApi": {
+          "id": "6stEFLC7gtftREcf",
+          "name": "Supabase Campaign manager"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "tableId": "leads_dump",
+        "fieldsUi": {
+          "fieldValues": [
+            {
+              "fieldId": "first_name",
+              "fieldValue": "={{ $('Webhook').item.json.body.fname ?? $('IF5').item.json.body.form_array[0].fname }}"
+            },
+            {
+              "fieldId": "last_name",
+              "fieldValue": "={{ $('Webhook').item.json.body.lname }}"
+            },
+            {
+              "fieldId": "phone",
+              "fieldValue": "={{ $('Webhook').item.json.body.phone ?? $('IF5').item.json.body.form_array[0].phone}}"
+            },
+            {
+              "fieldId": "email",
+              "fieldValue": "={{ $('Webhook').item.json.body.email ?? $('IF5').item.json.body.form_array[0].email}}"
+            },
+            {
+              "fieldId": "city",
+              "fieldValue": "={{ $('Webhook').item.json.body.location ?? $('IF5').item.json.body.form_array[0].location  }}"
+            },
+            {
+              "fieldId": "coming_from",
+              "fieldValue": "Blog"
+            },
+            {
+              "fieldId": "camp_id",
+              "fieldValue": "={{ $json.id }}"
+            },
+            {
+              "fieldId": "whatsapp",
+              "fieldValue": "true"
+            },
+            {
+              "fieldId": "register_for_webinar",
+              "fieldValue": "false"
+            },
+            {
+              "fieldId": "push_to_mf",
+              "fieldValue": "false"
+            },
+            {
+              "fieldId": "json",
+              "fieldValue": "={{ $('Webhook').item.json.body.course ?? 9 }}"
+            },
+            {
+              "fieldId": "course",
+              "fieldValue": "={{ $('Webhook').item.json.body.course ?? $('IF5').item.json.body.form_array[0].course}}"
+            }
+          ]
+        }
+      },
+      "id": "c2a5eae1-c820-4e37-b9c1-783864e483a9",
+      "name": "Supabase10",
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        460,
+        40
+      ],
+      "credentials": {
+        "supabaseApi": {
+          "id": "6stEFLC7gtftREcf",
+          "name": "Supabase Campaign manager"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={\n\"status\":true,\n\"message\":\"\"\n}",
+        "options": {
+          "responseHeaders": {
+            "entries": [
+              {
+                "name": "Access-Control-Allow-Origin",
+                "value": "*"
+              }
+            ]
+          }
+        }
+      },
+      "id": "a8ba7d86-e9a4-4217-bc63-c398a597e89d",
+      "name": "response false4",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1,
+      "position": [
+        620,
+        40
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "boolean": [
+            {
+              "value1": "={{ $json.body.src == \"blog\" }}"
+            }
+          ]
+        }
+      },
+      "id": "11b273d7-9d82-4a8f-94d6-6c840f786c9e",
+      "name": "IF6",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        140,
+        320
+      ]
     }
   ],
   "pinData": {
@@ -1154,51 +1481,42 @@
         "json": {
           "headers": {
             "host": "webhook.miles-api.com",
-            "x-real-ip": "172.70.142.188",
+            "x-real-ip": "172.70.38.132",
             "x-forwarded-host": "webhook.miles-api.com",
             "x-forwarded-server": "webhook.miles-api.com",
-            "x-forwarded-for": "103.87.102.76, 172.70.142.188",
+            "x-forwarded-for": "2403:6b80:8:100::6773:a36, 172.70.38.132",
             "connection": "close",
-            "content-length": "373",
+            "content-length": "229",
             "accept-encoding": "gzip",
-            "cf-ray": "8097e50c4ba54a08-SIN",
+            "cf-ray": "82d1520189a20816-IAD",
             "x-forwarded-proto": "https",
-            "accept": "application/json, text/plain, */*",
+            "accept": "*/*",
             "content-type": "application/json",
-            "sec-ch-ua-mobile": "?0",
-            "x-access-token": "null",
-            "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/116.0.0.0 Safari/537.36",
-            "origin": "https://mileseducation.com",
-            "sec-fetch-site": "cross-site",
-            "sec-fetch-mode": "cors",
-            "sec-fetch-dest": "empty",
-            "referer": "https://mileseducation.com/",
-            "accept-language": "en-GB,en-US;q=0.9,en;q=0.8",
             "cdn-loop": "cloudflare",
-            "cf-connecting-ip": "103.87.102.76",
-            "cf-ipcountry": "IN"
+            "cf-connecting-ip": "2403:6b80:8:100::6773:a36",
+            "cf-pseudo-ipv4": "242.51.159.125",
+            "cf-ipcountry": "US"
           },
           "params": {},
           "query": {},
           "body": {
-            "fname": "Jithin kumar",
-            "lname": "",
-            "email": "jithin@gmail.com",
-            "phone": "+916238133298",
-            "src": "MilesForce",
-            "course": [
-              "USP",
-              "CPA",
-              "CMA"
-            ],
-            "location": "Delhi, India",
-            "comingFrom": "MF",
-            "type": "",
-            "camp": "search_Delhi",
-            "campaign_id": "N/A",
-            "campaign_name": "search_Delhi",
-            "gcl_id": "CjwKCAjwjaWoBhAmEiwAXz8DBc8rP9kukY6NMjjbDpd6-yUuk86KGC8yaBS72vb2VYSPgHCZjlheKBoCnEEQAvD_BwE",
-            "whatsapp": true
+            "form_array": [
+              {
+                "fname": "Kumar",
+                "lname": "",
+                "email": "anilkumarkvp@gmail.com",
+                "phone": "9876565654",
+                "src": "Blog",
+                "location": "Bangalore",
+                "type": "",
+                "camp": "",
+                "campaign_id": "",
+                "campaign_name": "",
+                "gcl_id": null,
+                "course": 2,
+                "camp_id": 92
+              }
+            ]
           }
         }
       }
@@ -1214,7 +1532,7 @@
   },
   "staticData": null,
   "tags": [],
-  "triggerCount": 0,
-  "updatedAt": "2023-11-04T04:59:08.000Z",
-  "versionId": "5fc7c69f-9b57-45a4-825a-1b5559735825"
+  "triggerCount": 1,
+  "updatedAt": "2024-06-12T05:24:32.000Z",
+  "versionId": "4184a400-394c-4935-849f-4bdd631c5353"
 }
