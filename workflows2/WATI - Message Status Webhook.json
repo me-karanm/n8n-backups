@@ -1,0 +1,60 @@
+{
+  "active": true,
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Respond to Webhook",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-04-14T06:54:11.986Z",
+  "id": "YxN0SbgyZ0YiRWDf",
+  "meta": null,
+  "name": "WATI - Message Status Webhook",
+  "nodes": [
+    {
+      "parameters": {
+        "path": "wati-message-status",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        0,
+        0
+      ],
+      "id": "3a31671d-cc2f-4787-bef5-647110e18bee",
+      "name": "Webhook",
+      "webhookId": "6329c40b-3ed1-43dd-aab2-4fbfedcb1c04"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.1,
+      "position": [
+        220,
+        0
+      ],
+      "id": "e3a1206d-8b40-4664-85f1-d6ac91397672",
+      "name": "Respond to Webhook"
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 1,
+  "updatedAt": "2025-04-14T07:01:49.000Z",
+  "versionId": "b9b9503d-c8f3-47b2-953e-ac59856ae8b4"
+}
