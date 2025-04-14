@@ -3,13 +3,7 @@
   "connections": {
     "When clicking \"Execute Workflow\"": {
       "main": [
-        [
-          {
-            "node": "Postgres1",
-            "type": "main",
-            "index": 0
-          }
-        ]
+        []
       ]
     },
     "Postgres1": {
@@ -26,7 +20,9 @@
   },
   "createdAt": "2025-01-25T14:41:09.149Z",
   "id": "Vr6Rx6BnnNIKnZ4J",
-  "meta": null,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
   "name": "update webinar",
   "nodes": [
     {
@@ -37,7 +33,7 @@
       "typeVersion": 1,
       "position": [
         360,
-        300
+        -20
       ]
     },
     {
@@ -383,6 +379,45 @@
           "name": "MF Prod (DO NOT USE)"
         }
       }
+    },
+    {
+      "parameters": {
+        "operation": "deleteTable",
+        "schema": {
+          "__rl": true,
+          "mode": "list",
+          "value": "public"
+        },
+        "table": {
+          "__rl": true,
+          "value": "webinar_registration",
+          "mode": "name"
+        },
+        "deleteCommand": "delete",
+        "where": {
+          "values": [
+            {
+              "column": "leadId",
+              "value": "154083"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.6,
+      "position": [
+        980,
+        60
+      ],
+      "id": "f69a37ee-ee10-4b2c-8724-00b96551661f",
+      "name": "Postgres2",
+      "credentials": {
+        "postgres": {
+          "id": "VPJUosohtvWNBW4H",
+          "name": "MF Prod (DO NOT USE)"
+        }
+      }
     }
   ],
   "pinData": {},
@@ -392,6 +427,6 @@
   "staticData": null,
   "tags": [],
   "triggerCount": 0,
-  "updatedAt": "2025-03-01T05:49:51.000Z",
-  "versionId": "2461ac63-2dd1-41fb-9b19-fc9976c5d328"
+  "updatedAt": "2025-04-14T10:05:55.000Z",
+  "versionId": "46e08be6-4598-4c91-ae6f-afabc9a89be2"
 }
