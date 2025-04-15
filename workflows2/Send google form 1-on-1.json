@@ -1,0 +1,144 @@
+{
+  "active": false,
+  "connections": {
+    "Execute Workflow Trigger": {
+      "main": [
+        [
+          {
+            "node": "If",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If": {
+      "main": [
+        [
+          {
+            "node": "WhatsApp Business Cloud",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Execute Workflow",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2024-07-29T06:43:25.676Z",
+  "id": "Gxjh8M3VA1WUjhYr",
+  "meta": null,
+  "name": "Send google form 1-on-1",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "f79c5a7d-80a0-45e3-a5a6-588e4255da96",
+      "name": "Execute Workflow Trigger",
+      "type": "n8n-nodes-base.executeWorkflowTrigger",
+      "typeVersion": 1,
+      "position": [
+        760,
+        360
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict"
+          },
+          "conditions": [
+            {
+              "id": "f8547b95-9cf1-48e5-87c9-763450336ee7",
+              "leftValue": "={{ $json.payload }}",
+              "rightValue": "Schedule 1-on-1",
+              "operator": {
+                "type": "string",
+                "operation": "equals",
+                "name": "filter.operator.equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "41470774-d51c-4751-aa0e-106190985dd5",
+      "name": "If",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2,
+      "position": [
+        980,
+        360
+      ]
+    },
+    {
+      "parameters": {
+        "phoneNumberId": "171009622770823",
+        "recipientPhoneNumber": "={{ $json.wa_id }}",
+        "template": "send_1_on_1_form|en"
+      },
+      "id": "af74ae66-689d-4def-ada5-6498da8cfa47",
+      "name": "WhatsApp Business Cloud",
+      "type": "n8n-nodes-base.whatsApp",
+      "typeVersion": 1,
+      "position": [
+        1320,
+        120
+      ],
+      "credentials": {
+        "whatsAppApi": {
+          "id": "FgS03iKYFJtZDGNw",
+          "name": "WhatsApp account new"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "workflowId": "Mfke1kvGEi1aq2E5"
+      },
+      "id": "e1cad07d-8d6f-489d-aa8a-96deb5ff41ba",
+      "name": "Execute Workflow",
+      "type": "n8n-nodes-base.executeWorkflow",
+      "typeVersion": 1,
+      "position": [
+        1320,
+        380
+      ]
+    }
+  ],
+  "pinData": {
+    "Execute Workflow Trigger": [
+      {
+        "json": {
+          "response_status": false,
+          "is_retry": false,
+          "user_id": null,
+          "campaign_id": 812,
+          "message_status_id": 4028576,
+          "webinar_id": null,
+          "lead_dump_id": null,
+          "payload": "Schedul 1-on-1",
+          "wa_id": "917349296479",
+          "name": ""
+        }
+      }
+    ]
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2024-09-24T20:59:45.000Z",
+  "versionId": "409ec9d6-7bfb-43b9-be27-4b6b04491e0a"
+}
