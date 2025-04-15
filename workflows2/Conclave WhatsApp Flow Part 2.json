@@ -1,0 +1,610 @@
+{
+  "active": false,
+  "connections": {
+    "Execute Workflow Trigger": {
+      "main": [
+        [
+          {
+            "node": "Supabase",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "WhatsApp Business Cloud",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Supabase": {
+      "main": [
+        [
+          {
+            "node": "Sort",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "WhatsApp Business Cloud": {
+      "main": [
+        [
+          {
+            "node": "Supabase1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "WhatsApp Business Cloud1": {
+      "main": [
+        [
+          {
+            "node": "Supabase2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Sort": {
+      "main": [
+        [
+          {
+            "node": "Limit",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Limit": {
+      "main": [
+        [
+          {
+            "node": "Postgres4",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Postgres": {
+      "main": [
+        [
+          {
+            "node": "Postgres1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Postgres2": {
+      "main": [
+        [
+          {
+            "node": "Postgres3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Postgres4": {
+      "main": [
+        [
+          {
+            "node": "If",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request": {
+      "main": [
+        [
+          {
+            "node": "WhatsApp Business Cloud1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2024-11-29T13:23:28.940Z",
+  "id": "iaU7YkKABshMX7AK",
+  "meta": null,
+  "name": "Conclave WhatsApp Flow Part 2",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "43ef2b03-1db3-49b8-b917-9a469faa3912",
+      "name": "Execute Workflow Trigger",
+      "type": "n8n-nodes-base.executeWorkflowTrigger",
+      "typeVersion": 1,
+      "position": [
+        -1080,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict"
+          },
+          "conditions": [
+            {
+              "id": "460525ec-898f-4ccd-bf6a-90e222618966",
+              "leftValue": "={{ $('Execute Workflow Trigger').item.json.payload }}",
+              "rightValue": "Yes",
+              "operator": {
+                "type": "string",
+                "operation": "equals",
+                "name": "filter.operator.equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "96ffa1fc-64d8-4b2d-af90-64e28ebb19c6",
+      "name": "If",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2,
+      "position": [
+        220,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "get",
+        "tableId": "conclave_superbot_logger",
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "phone",
+              "keyValue": "=+{{ $json.wa_id}}"
+            },
+            {
+              "keyName": "campaign_id",
+              "keyValue": "9999"
+            }
+          ]
+        }
+      },
+      "id": "c18b5d24-8080-4813-b768-ebdba86617ea",
+      "name": "Supabase",
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        -860,
+        300
+      ],
+      "credentials": {
+        "supabaseApi": {
+          "id": "baNruLU9AV7x2GZq",
+          "name": "Supabase campaign manager"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "send",
+        "phoneNumberId": "108019349036743",
+        "recipientPhoneNumber": "={{ $('Limit').item.json.phone }}",
+        "textBody": "Thank you for your time.\nHave a nice day!",
+        "additionalFields": {}
+      },
+      "id": "02702f1a-2f7e-4431-9973-61f95b0c94dc",
+      "name": "WhatsApp Business Cloud",
+      "type": "n8n-nodes-base.whatsApp",
+      "typeVersion": 1,
+      "position": [
+        640,
+        620
+      ],
+      "credentials": {
+        "whatsAppApi": {
+          "id": "75melKbodQdQAHVp",
+          "name": "Marketing | Secondary [Miles Education]"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "tableId": "message_status",
+        "fieldsUi": {
+          "fieldValues": [
+            {
+              "fieldId": "send_status",
+              "fieldValue": "true"
+            },
+            {
+              "fieldId": "message_id",
+              "fieldValue": "={{ $json.messages[0].id }}"
+            },
+            {
+              "fieldId": "campaign_id",
+              "fieldValue": "={{ $('Execute Workflow Trigger').item.json.campaign_id }}"
+            },
+            {
+              "fieldId": "phone",
+              "fieldValue": "={{ $('Limit').item.json.phone }}"
+            },
+            {
+              "fieldId": "template_name",
+              "fieldValue": "=thank_you_not_interested_{{ $('Limit').item.json[\"coming_from\"].slice(9) }}"
+            }
+          ]
+        }
+      },
+      "id": "2d468f9a-9d0f-4b50-bb79-3d26d425af1a",
+      "name": "Supabase1",
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        1040,
+        620
+      ],
+      "credentials": {
+        "supabaseApi": {
+          "id": "baNruLU9AV7x2GZq",
+          "name": "Supabase campaign manager"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "phoneNumberId": "108019349036743",
+        "recipientPhoneNumber": "={{ $('Execute Workflow Trigger').item.json.wa_id }}",
+        "template": "utility_townhall_spoc_connect|en",
+        "components": {
+          "component": [
+            {
+              "bodyParameters": {
+                "parameter": [
+                  {
+                    "text": "={{ $('Supabase').item.json.first_name }}"
+                  },
+                  {
+                    "text": "Our SPOC"
+                  },
+                  {
+                    "text": "=*Miles {{ $('Postgres4').item.json[\"programId\"]==1?\"CPA\":\"CMA\" }} Townhall with Varun Jain!*"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      },
+      "id": "dae05b51-0fb3-4565-90a0-1ac65a18376d",
+      "name": "WhatsApp Business Cloud1",
+      "type": "n8n-nodes-base.whatsApp",
+      "typeVersion": 1,
+      "position": [
+        960,
+        20
+      ],
+      "credentials": {
+        "whatsAppApi": {
+          "id": "75melKbodQdQAHVp",
+          "name": "Marketing | Secondary [Miles Education]"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "tableId": "message_status",
+        "fieldsUi": {
+          "fieldValues": [
+            {
+              "fieldId": "send_status",
+              "fieldValue": "true"
+            },
+            {
+              "fieldId": "message_id",
+              "fieldValue": "={{ $json.messages[0].id }}"
+            },
+            {
+              "fieldId": "campaign_id",
+              "fieldValue": "={{ $('Execute Workflow Trigger').item.json.campaign_id }}"
+            },
+            {
+              "fieldId": "phone",
+              "fieldValue": "={{ $('Limit').item.json.phone }}"
+            },
+            {
+              "fieldId": "template_name",
+              "fieldValue": "=utility_townhall_spoc_connect_{{ $('Limit').item.json[\"coming_from\"].slice(9) }}"
+            }
+          ]
+        }
+      },
+      "id": "655da191-5ea8-4d02-b670-313bc4b514ca",
+      "name": "Supabase2",
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        1300,
+        20
+      ],
+      "credentials": {
+        "supabaseApi": {
+          "id": "baNruLU9AV7x2GZq",
+          "name": "Supabase campaign manager"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "sortFieldsUi": {
+          "sortField": [
+            {
+              "fieldName": "created_at",
+              "order": "descending"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "7b709ed6-dcb7-46cd-bb2c-832e98063c4d",
+      "name": "Sort",
+      "type": "n8n-nodes-base.sort",
+      "typeVersion": 1,
+      "position": [
+        -660,
+        300
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "5e60a57a-0146-4b64-be0d-bfbc734b6cfb",
+      "name": "Limit",
+      "type": "n8n-nodes-base.limit",
+      "typeVersion": 1,
+      "position": [
+        -480,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "select",
+        "schema": {
+          "__rl": true,
+          "mode": "list",
+          "value": "public"
+        },
+        "table": {
+          "__rl": true,
+          "value": "orientation",
+          "mode": "list",
+          "cachedResultName": "orientation"
+        },
+        "where": {
+          "values": [
+            {
+              "column": "id",
+              "value": "={{ $json.orientation_session_id }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "80d75b92-836f-40ba-b08d-db3268be1b17",
+      "name": "Postgres",
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.3,
+      "position": [
+        -260,
+        1440
+      ],
+      "credentials": {
+        "postgres": {
+          "id": "ggFr3kWsGBTF2B44",
+          "name": "Postgres account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "select",
+        "schema": {
+          "__rl": true,
+          "mode": "list",
+          "value": "public"
+        },
+        "table": {
+          "__rl": true,
+          "value": "miles_office",
+          "mode": "list",
+          "cachedResultName": "miles_office"
+        },
+        "where": {
+          "values": [
+            {
+              "column": "id",
+              "value": "={{ $json.milesLocationId }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "324cac2c-2507-4ba4-a981-eec195aeb8fd",
+      "name": "Postgres1",
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.3,
+      "position": [
+        -20,
+        1440
+      ],
+      "credentials": {
+        "postgres": {
+          "id": "ggFr3kWsGBTF2B44",
+          "name": "Postgres account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "select",
+        "schema": {
+          "__rl": true,
+          "mode": "list",
+          "value": "public"
+        },
+        "table": {
+          "__rl": true,
+          "value": "lead",
+          "mode": "list",
+          "cachedResultName": "lead"
+        },
+        "where": {
+          "values": [
+            {
+              "column": "id",
+              "value": "={{ $json.result.id }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "263558e9-f5af-488f-8213-dd83e30d5f9c",
+      "name": "Postgres2",
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.3,
+      "position": [
+        1640,
+        1400
+      ],
+      "credentials": {
+        "postgres": {
+          "id": "ggFr3kWsGBTF2B44",
+          "name": "Postgres account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "select",
+        "schema": {
+          "__rl": true,
+          "mode": "list",
+          "value": "public"
+        },
+        "table": {
+          "__rl": true,
+          "value": "user",
+          "mode": "list",
+          "cachedResultName": "user"
+        },
+        "options": {}
+      },
+      "id": "a00f3c89-6b47-4d26-a0f5-6dbe6f19d272",
+      "name": "Postgres3",
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.3,
+      "position": [
+        1880,
+        1400
+      ],
+      "credentials": {
+        "postgres": {
+          "id": "ggFr3kWsGBTF2B44",
+          "name": "Postgres account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "executeQuery",
+        "query": "SELECT\n  \"public\".\"orientation\".\"id\" AS \"id\",\n  \"public\".\"orientation\".\"orientation_date\" AS \"orientation_date\",\n  \"public\".\"orientation\".\"programId\" AS \"programId\",\n  \"public\".\"orientation\".\"milesLocationId\" AS \"milesLocationId\",\n  \"public\".\"orientation\".\"orientation_name\" AS \"orientation_name\",\n  \"Miles Office - MilesLocationId\".\"address\" AS \"Miles Office - MilesLocationId__address\",\n  \"Miles Office - MilesLocationId\".\"city\" AS \"Miles Office - MilesLocationId__city\",\n  \"Miles Office - MilesLocationId\".\"contact\" AS \"Miles Office - MilesLocationId__contact\",\n  \"Miles Office - MilesLocationId\".\"location_url\" AS \"Miles Office - MilesLocationId__location_url\",\n  \"Miles Office - MilesLocationId\".\"lat\" AS \"Miles Office - MilesLocationId__lat\",\n  \"Miles Office - MilesLocationId\".\"lng\" AS \"Miles Office - MilesLocationId__lng\",\n  \"Program - ProgramId\".\"name\" AS \"Program - ProgramId__name\",\n  \"Program - ProgramId\".\"full_form\" AS \"Program - ProgramId__full_form\"\nFROM\n  \"public\".\"orientation\"\n \nLEFT JOIN \"public\".\"miles_office\" AS \"Miles Office - MilesLocationId\" ON \"public\".\"orientation\".\"milesLocationId\" = \"Miles Office - MilesLocationId\".\"id\"\n  LEFT JOIN \"public\".\"program\" AS \"Program - ProgramId\" ON \"public\".\"orientation\".\"programId\" = \"Program - ProgramId\".\"id\"\nwhere \"public\".\"orientation\".\"id\" = {{ $json.orientation_session_id }}\nLIMIT\n  1048575",
+        "options": {}
+      },
+      "id": "553dd199-2e59-402b-bd99-5aad7a5167bf",
+      "name": "Postgres4",
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.3,
+      "position": [
+        -40,
+        300
+      ],
+      "credentials": {
+        "postgres": {
+          "id": "ggFr3kWsGBTF2B44",
+          "name": "Postgres account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://mfx-prod-154625965269.asia-south1.run.app/enquiries/add",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"first_name\": \"{{ $('Supabase').item.json[\"first_name\"] }}\",\n  \"phone\": \"{{ $('Supabase').item.json[\"phone\"]}}\",\n  \"email\": \"{{ $('Supabase').item.json[\"email\"] }}\",\n  \"coming_from\": \"{{ $('Supabase').item.json[\"coming_from\"] }}\",\n\"campaign_id\": 31,\n\"course_id\": {{ $json[\"programId\"] }}\n} ",
+        "options": {}
+      },
+      "id": "bdbc1132-befd-4ab2-b251-c4aeac56991d",
+      "name": "HTTP Request",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        600,
+        20
+      ],
+      "onError": "continueRegularOutput"
+    }
+  ],
+  "pinData": {
+    "Execute Workflow Trigger": [
+      {
+        "json": {
+          "response_status": false,
+          "is_retry": false,
+          "user_id": null,
+          "campaign_id": 1184,
+          "message_status_id": 6523823,
+          "webinar_id": null,
+          "lead_dump_id": null,
+          "payload": "Yes",
+          "wa_id": "917349296479",
+          "first_name": "Karan M"
+        }
+      }
+    ]
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2024-12-11T10:41:28.000Z",
+  "versionId": "cd9bd537-2274-4f55-9cbc-f9183df8ea2a"
+}
