@@ -1,0 +1,382 @@
+{
+  "active": false,
+  "connections": {
+    "Execute Workflow Trigger": {
+      "main": [
+        [
+          {
+            "node": "If",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If": {
+      "main": [
+        [
+          {
+            "node": "WhatsApp Business Cloud1",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "WhatsApp Business Cloud",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "WhatsApp Business Cloud1": {
+      "main": [
+        [
+          {
+            "node": "Supabase1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Supabase1": {
+      "main": [
+        [
+          {
+            "node": "Remove Duplicates",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "WhatsApp Business Cloud": {
+      "main": [
+        [
+          {
+            "node": "Supabase2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Supabase2": {
+      "main": [
+        [
+          {
+            "node": "Remove Duplicates1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Remove Duplicates": {
+      "main": [
+        [
+          {
+            "node": "Supabase",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Remove Duplicates1": {
+      "main": [
+        [
+          {
+            "node": "Supabase3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2024-07-29T11:58:23.662Z",
+  "id": "mKM6W76YVgJZO3gr",
+  "meta": null,
+  "name": "WA Flow (Monthly Flows)",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "c3f96fe3-8498-4c36-9c5c-5fb226847f39",
+      "name": "Execute Workflow Trigger",
+      "type": "n8n-nodes-base.executeWorkflowTrigger",
+      "typeVersion": 1,
+      "position": [
+        320,
+        360
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict"
+          },
+          "conditions": [
+            {
+              "id": "da3d6f07-4254-4a99-aabd-e999df056bbc",
+              "leftValue": "={{ $json.payload }}",
+              "rightValue": "No, count me out",
+              "operator": {
+                "type": "string",
+                "operation": "equals",
+                "name": "filter.operator.equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "a76c72b0-62d5-47db-bea5-5ae7551991aa",
+      "name": "If",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2,
+      "position": [
+        540,
+        360
+      ]
+    },
+    {
+      "parameters": {
+        "phoneNumberId": "171009622770823",
+        "recipientPhoneNumber": "={{ $('Execute Workflow Trigger').item.json.wa_id }}",
+        "template": "positive_response_superbot_campaign|en"
+      },
+      "id": "ec3b262b-7287-43ae-a43f-6a26a5653493",
+      "name": "WhatsApp Business Cloud",
+      "type": "n8n-nodes-base.whatsApp",
+      "typeVersion": 1,
+      "position": [
+        1140,
+        500
+      ],
+      "credentials": {
+        "whatsAppApi": {
+          "id": "FgS03iKYFJtZDGNw",
+          "name": "WhatsApp account new"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "phoneNumberId": "171009622770823",
+        "recipientPhoneNumber": "={{ $json.wa_id }}",
+        "template": "negative_response_superbot_campaign|en"
+      },
+      "id": "b65599b9-7dea-49e3-a068-b5e9cdfe62c1",
+      "name": "WhatsApp Business Cloud1",
+      "type": "n8n-nodes-base.whatsApp",
+      "typeVersion": 1,
+      "position": [
+        1140,
+        200
+      ],
+      "credentials": {
+        "whatsAppApi": {
+          "id": "FgS03iKYFJtZDGNw",
+          "name": "WhatsApp account new"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "tableId": "opted_out",
+        "fieldsUi": {
+          "fieldValues": [
+            {
+              "fieldId": "leads_dump_id",
+              "fieldValue": "={{ $json.id }}"
+            },
+            {
+              "fieldId": "first_name",
+              "fieldValue": "={{ $json.first_name }}"
+            },
+            {
+              "fieldId": "phone",
+              "fieldValue": "={{ 91+ $json.phone }}"
+            },
+            {
+              "fieldId": "reponse",
+              "fieldValue": "={{ $('If').item.json.payload }}"
+            }
+          ]
+        }
+      },
+      "id": "726d3c8b-f300-4971-ae06-e3c0205cbf48",
+      "name": "Supabase",
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        2120,
+        160
+      ],
+      "credentials": {
+        "supabaseApi": {
+          "id": "baNruLU9AV7x2GZq",
+          "name": "Supabase campaign manager"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "get",
+        "tableId": "leads_dump",
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "phone",
+              "keyValue": "={{ $json.contacts[0].input.slice(-10)}}"
+            }
+          ]
+        }
+      },
+      "id": "782b5800-1d80-4dc5-ac89-791bf1c357c6",
+      "name": "Supabase1",
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        1660,
+        160
+      ],
+      "credentials": {
+        "supabaseApi": {
+          "id": "baNruLU9AV7x2GZq",
+          "name": "Supabase campaign manager"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "get",
+        "tableId": "leads_dump",
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "phone",
+              "keyValue": "={{ $json.contacts[0].input.slice(-10)}}"
+            }
+          ]
+        }
+      },
+      "id": "33c0f8a9-bc1e-47ee-a1ab-660bccd0a732",
+      "name": "Supabase2",
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        1720,
+        480
+      ],
+      "credentials": {
+        "supabaseApi": {
+          "id": "baNruLU9AV7x2GZq",
+          "name": "Supabase campaign manager"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "tableId": "opted_out",
+        "fieldsUi": {
+          "fieldValues": [
+            {
+              "fieldId": "leads_dump_id",
+              "fieldValue": "={{ $json.id }}"
+            },
+            {
+              "fieldId": "first_name",
+              "fieldValue": "={{ $json.first_name }}"
+            },
+            {
+              "fieldId": "phone",
+              "fieldValue": "={{ 91+ $json.phone }}"
+            },
+            {
+              "fieldId": "reponse",
+              "fieldValue": "={{ $('If').item.json.payload }}"
+            }
+          ]
+        }
+      },
+      "id": "f34121a1-e6f7-4216-b4d5-a136b27e3dfe",
+      "name": "Supabase3",
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        2360,
+        480
+      ],
+      "credentials": {
+        "supabaseApi": {
+          "id": "baNruLU9AV7x2GZq",
+          "name": "Supabase campaign manager"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "compare": "selectedFields",
+        "fieldsToCompare": "phone",
+        "options": {}
+      },
+      "id": "d3c88b3f-7172-495f-8daa-5d87b9b1a9f8",
+      "name": "Remove Duplicates",
+      "type": "n8n-nodes-base.removeDuplicates",
+      "typeVersion": 1,
+      "position": [
+        1880,
+        160
+      ]
+    },
+    {
+      "parameters": {
+        "compare": "selectedFields",
+        "fieldsToCompare": "phone",
+        "options": {}
+      },
+      "id": "41c66f6e-1f12-40d3-8fb3-65255f6d89e9",
+      "name": "Remove Duplicates1",
+      "type": "n8n-nodes-base.removeDuplicates",
+      "typeVersion": 1,
+      "position": [
+        2020,
+        480
+      ]
+    }
+  ],
+  "pinData": {
+    "Execute Workflow Trigger": [
+      {
+        "json": {
+          "response_status": false,
+          "is_retry": false,
+          "user_id": null,
+          "campaign_id": 815,
+          "message_status_id": 4028905,
+          "webinar_id": null,
+          "lead_dump_id": null,
+          "payload": "No, count me out",
+          "wa_id": "917349296479",
+          "name": ""
+        }
+      }
+    ]
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2024-08-21T14:53:46.000Z",
+  "versionId": "2c36e0d9-e1d4-48ba-b40e-d8e909faaa82"
+}
