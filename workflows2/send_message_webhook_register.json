@@ -1,0 +1,195 @@
+{
+  "active": true,
+  "connections": {
+    "WhatsApp Business Cloud1": {
+      "main": [
+        [
+          {
+            "node": "Supabase16",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "WhatsApp Business Cloud1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2023-08-15T09:20:24.274Z",
+  "id": "Lgolv7CSzkFKcTbU",
+  "meta": null,
+  "name": "send_message_webhook_register",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "aec11715-6536-467e-aa05-5b972f08b0b9",
+        "options": {}
+      },
+      "id": "9b1762cf-3f21-4cb9-a5de-45b759cadeff",
+      "name": "Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        640,
+        380
+      ],
+      "webhookId": "aec11715-6536-467e-aa05-5b972f08b0b9"
+    },
+    {
+      "parameters": {
+        "phoneNumberId": "115484311630426",
+        "recipientPhoneNumber": "={{ $json.body.mobile_number }}",
+        "template": "16th_webinar_15th_message_not_registred|en",
+        "components": {
+          "component": [
+            {
+              "bodyParameters": {
+                "parameter": [
+                  {
+                    "text": "={{ $json.body.person_name }}"
+                  }
+                ]
+              }
+            },
+            {
+              "type": "header",
+              "headerParameters": {
+                "parameter": [
+                  {
+                    "type": "image",
+                    "imageLink": "https://hbcqpfamoozfovaszfjz.supabase.co/storage/v1/object/public/posters/15%20August%202023.png"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      },
+      "id": "85fd5bac-1ebd-4d49-b5a0-c06a981ac5f3",
+      "name": "WhatsApp Business Cloud1",
+      "type": "n8n-nodes-base.whatsApp",
+      "typeVersion": 1,
+      "position": [
+        940,
+        380
+      ],
+      "credentials": {
+        "whatsAppApi": {
+          "id": "SiXp0JiQTXH4kKE6",
+          "name": "WhatsApp account"
+        }
+      },
+      "continueOnFail": true
+    },
+    {
+      "parameters": {
+        "tableId": "message_status",
+        "fieldsUi": {
+          "fieldValues": [
+            {
+              "fieldId": "send_time",
+              "fieldValue": "={{ $now }}"
+            },
+            {
+              "fieldId": "send_status",
+              "fieldValue": "={{ $json && $json.messages && $json.messages.length > 0 ? 1 : 0 }}"
+            },
+            {
+              "fieldId": "campaign_id",
+              "fieldValue": "=2"
+            },
+            {
+              "fieldId": "message_id",
+              "fieldValue": "={{ $json.messages[0].id }}"
+            },
+            {
+              "fieldId": "user_id",
+              "fieldValue": "={{ $('Webhook').item.json.body.id }}"
+            },
+            {
+              "fieldId": "next_flow_id",
+              "fieldValue": "QeDIzKgHq0IlE145"
+            },
+            {
+              "fieldId": "root",
+              "fieldValue": "1"
+            },
+            {
+              "fieldId": "template_id",
+              "fieldValue": "2"
+            }
+          ]
+        }
+      },
+      "id": "9be82b3b-0320-4f35-a0f7-2d9e98c62110",
+      "name": "Supabase16",
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        1200,
+        380
+      ],
+      "credentials": {
+        "supabaseApi": {
+          "id": "ptZNo3FAaF0XYQKi",
+          "name": "Supabase account"
+        }
+      },
+      "continueOnFail": true
+    }
+  ],
+  "pinData": {
+    "Webhook": [
+      {
+        "json": {
+          "headers": {
+            "host": "callback.miles-api.com",
+            "x-real-ip": "172.69.87.124",
+            "x-forwarded-host": "callback.miles-api.com",
+            "x-forwarded-server": "callback.miles-api.com",
+            "x-forwarded-for": "34.93.97.0, 172.69.87.124",
+            "connection": "close",
+            "content-length": "98",
+            "accept-encoding": "gzip",
+            "cf-ray": "7f7062fec94e4835-BOM",
+            "x-forwarded-proto": "https",
+            "accept": "application/json,text/html,application/xhtml+xml,application/xml,text/*;q=0.9, image/*;q=0.8, */*;q=0.7",
+            "content-type": "application/json",
+            "user-agent": "axios/0.21.4",
+            "sentry-trace": "7325049c37cd482492982ade0c35a28b-ad48cb5a80ef7f78-0",
+            "baggage": "sentry-environment=production,sentry-release=1.1.1,sentry-public_key=1f954e089a054b8e943ae4f4042b2bff,sentry-trace_id=7325049c37cd482492982ade0c35a28b",
+            "cdn-loop": "cloudflare",
+            "cf-connecting-ip": "34.93.97.0",
+            "cf-ipcountry": "IN"
+          },
+          "params": {},
+          "query": {},
+          "body": {
+            "id": 448968,
+            "person_name": "jithin kumar",
+            "person_id": 100098989898,
+            "mobile_number": "916238133298"
+          }
+        }
+      }
+    ]
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 1,
+  "updatedAt": "2023-08-15T09:55:59.000Z",
+  "versionId": "7b25f76b-ac0e-4805-aa62-bdb56738400a"
+}
