@@ -1,0 +1,394 @@
+{
+  "active": false,
+  "connections": {
+    "Execute Workflow Trigger": {
+      "main": [
+        [
+          {
+            "node": "IF",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Supabase": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Supabase1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request": {
+      "main": [
+        [
+          {
+            "node": "WhatsApp Business Cloud",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Supabase2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "IF": {
+      "main": [
+        [
+          {
+            "node": "Supabase3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Supabase3": {
+      "main": [
+        [
+          {
+            "node": "Supabase",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2023-08-19T23:39:14.255Z",
+  "id": "vXkp5ycMSVMUFNCe",
+  "meta": null,
+  "name": "My workflow 3",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "d5aced28-6005-41cf-8b96-f06f9f1c2849",
+      "name": "Execute Workflow Trigger",
+      "type": "n8n-nodes-base.executeWorkflowTrigger",
+      "typeVersion": 1,
+      "position": [
+        380,
+        360
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "get",
+        "tableId": "avatars",
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "id",
+              "keyValue": "={{ $json.bot }}"
+            }
+          ]
+        }
+      },
+      "id": "f192be40-65ae-489d-8327-0bc4fd19b5e9",
+      "name": "Supabase",
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        1160,
+        340
+      ],
+      "credentials": {
+        "supabaseApi": {
+          "id": "yDZrtX411nScqAW2",
+          "name": "Supabase AI"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://305f-106-51-80-79.ngrok-free.app/api/chat",
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "query",
+              "value": "={{ $('Execute Workflow Trigger').item.json.body.entry[0].changes[0].value.messages[0].text.body }}"
+            },
+            {
+              "name": "persona_id",
+              "value": "={{ $json.persona_uuid }}"
+            },
+            {
+              "name": "uuid",
+              "value": "={{ $json.user_id }}"
+            },
+            {
+              "name": "persona",
+              "value": "={{ $json.description }}"
+            },
+            {
+              "name": "conversation",
+              "value": "={{ $json.example }}"
+            },
+            {
+              "name": "bot_name",
+              "value": "={{ $json.name.toUpperCase() }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "ad585af6-a069-44d2-b8ec-aba05d6c6992",
+      "name": "HTTP Request",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        1380,
+        340
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "send",
+        "phoneNumberId": "115316911630090",
+        "recipientPhoneNumber": "={{ $('Execute Workflow Trigger').item.json.body.entry[0].changes[0].value.messages[0].from }}",
+        "textBody": "={{ $json.Answer }}",
+        "additionalFields": {}
+      },
+      "id": "fee40c84-209c-45fc-b95f-9ee777b59fd2",
+      "name": "WhatsApp Business Cloud",
+      "type": "n8n-nodes-base.whatsApp",
+      "typeVersion": 1,
+      "position": [
+        1640,
+        340
+      ],
+      "credentials": {
+        "whatsAppApi": {
+          "id": "75melKbodQdQAHVp",
+          "name": "WhatsApp mikes education"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "tableId": "whatsappmessages",
+        "fieldsUi": {
+          "fieldValues": [
+            {
+              "fieldId": "message",
+              "fieldValue": "={{ $('Execute Workflow Trigger').item.json.body.entry[0].changes[0].value.messages[0].text.body }}"
+            },
+            {
+              "fieldId": "type",
+              "fieldValue": "0"
+            },
+            {
+              "fieldId": "phone",
+              "fieldValue": "={{ $('Execute Workflow Trigger').item.json.body.entry[0].changes[0].value.messages[0].from }}"
+            },
+            {
+              "fieldId": "avatar_id",
+              "fieldValue": "={{ $json.id }}"
+            },
+            {
+              "fieldId": "sender",
+              "fieldValue": "={{ $('Execute Workflow Trigger').item.json.body.entry[0].changes[0].value.contacts[0].profile.name }}"
+            }
+          ]
+        }
+      },
+      "id": "752563db-e84a-42d7-b9ed-32c0e03e326b",
+      "name": "Supabase1",
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        1380,
+        600
+      ],
+      "credentials": {
+        "supabaseApi": {
+          "id": "yDZrtX411nScqAW2",
+          "name": "Supabase AI"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "tableId": "whatsappmessages",
+        "fieldsUi": {
+          "fieldValues": [
+            {
+              "fieldId": "message",
+              "fieldValue": "={{ $json.Answer }}"
+            },
+            {
+              "fieldId": "type",
+              "fieldValue": "1"
+            },
+            {
+              "fieldId": "phone",
+              "fieldValue": "={{ $('Execute Workflow Trigger').item.json.body.entry[0].changes[0].value.messages[0].from }}"
+            },
+            {
+              "fieldId": "avatar_id",
+              "fieldValue": "={{ $('Supabase').item.json.id }}"
+            },
+            {
+              "fieldId": "sender",
+              "fieldValue": "={{ $('Supabase').item.json.name }}"
+            }
+          ]
+        }
+      },
+      "id": "67ca8333-0591-4493-af3f-91e738b5a283",
+      "name": "Supabase2",
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        1620,
+        600
+      ],
+      "credentials": {
+        "supabaseApi": {
+          "id": "yDZrtX411nScqAW2",
+          "name": "Supabase AI"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "boolean": [
+            {
+              "value1": "={{ $json.body.entry[0].id == 109891938844247}}",
+              "value2": true
+            }
+          ]
+        }
+      },
+      "id": "3baf5abf-43b0-4cdf-8988-07bdcec91022",
+      "name": "IF",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        600,
+        360
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "get",
+        "tableId": "whatsapp_bot",
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "id",
+              "keyValue": "1"
+            }
+          ]
+        }
+      },
+      "id": "b186ead5-c8ef-4938-8f2d-1fab2e0a80cc",
+      "name": "Supabase3",
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        920,
+        340
+      ],
+      "credentials": {
+        "supabaseApi": {
+          "id": "yDZrtX411nScqAW2",
+          "name": "Supabase AI"
+        }
+      }
+    }
+  ],
+  "pinData": {
+    "Execute Workflow Trigger": [
+      {
+        "json": {
+          "headers": {
+            "host": "callback.miles-api.com",
+            "x-real-ip": "172.71.30.50",
+            "x-forwarded-host": "callback.miles-api.com",
+            "x-forwarded-server": "callback.miles-api.com",
+            "x-forwarded-for": "2a03:2880:21ff:2::face:b00c, 172.71.30.50",
+            "connection": "close",
+            "content-length": "483",
+            "accept-encoding": "gzip",
+            "cf-ray": "7f96e4e30f35adc5-ATL",
+            "x-forwarded-proto": "https",
+            "accept": "*/*",
+            "user-agent": "facebookexternalua",
+            "content-type": "application/json",
+            "x-hub-signature": "sha1=bf55236fd7caceb0cfb88b366235a923c63ad646",
+            "x-hub-signature-256": "sha256=c34b758b71a57ea12cc1dc8f71a128b24efa460e189c28e67b17f934be64650a",
+            "cdn-loop": "cloudflare",
+            "cf-connecting-ip": "2a03:2880:21ff:2::face:b00c",
+            "cf-pseudo-ipv4": "249.153.78.10",
+            "cf-ipcountry": "US"
+          },
+          "params": {},
+          "query": {},
+          "body": {
+            "object": "whatsapp_business_account",
+            "entry": [
+              {
+                "id": "109891938844247",
+                "changes": [
+                  {
+                    "value": {
+                      "messaging_product": "whatsapp",
+                      "metadata": {
+                        "display_phone_number": "15550795878",
+                        "phone_number_id": "115316911630090"
+                      },
+                      "contacts": [
+                        {
+                          "profile": {
+                            "name": "Jithin"
+                          },
+                          "wa_id": "916238133298"
+                        }
+                      ],
+                      "messages": [
+                        {
+                          "from": "916238133298",
+                          "id": "wamid.HBgMOTE2MjM4MTMzMjk4FQIAEhgUM0FBRjZERTZBQTg2QjlEQUE1M0EA",
+                          "timestamp": "1692495267",
+                          "text": {
+                            "body": "What is your name ?"
+                          },
+                          "type": "text"
+                        }
+                      ]
+                    },
+                    "field": "messages"
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      }
+    ]
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2023-08-20T01:40:14.000Z",
+  "versionId": "8aca49e4-61ea-4c9e-888c-289ca2252e12"
+}
