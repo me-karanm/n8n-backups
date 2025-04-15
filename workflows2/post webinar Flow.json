@@ -1,0 +1,77 @@
+{
+  "active": false,
+  "connections": {
+    "Execute Workflow Trigger": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2024-01-27T12:53:45.570Z",
+  "id": "Wt4Gv7QYcLMcG7le",
+  "meta": null,
+  "name": "post webinar Flow",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "559808ef-c316-48c9-aa11-1a9ce1dbd758",
+      "name": "Execute Workflow Trigger",
+      "type": "n8n-nodes-base.executeWorkflowTrigger",
+      "typeVersion": 1,
+      "position": [
+        600,
+        320
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "http://34.100.163.6:5678/webhook/fce018e6-4d41-4d26-aed8-5701c946e517",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n   \"response_status\": {{ $json.response_status }},\n   \"is_retry\":{{ $json.is_retry }},\n   \"user_id\":\"{{ $json.user_id  ?? \"\"}}\",\n   \"campaign_id\":{{ $json.campaign_id }},\n   \"message_status_id\":{{ $json.message_status_id ?? \"\" }},\n   \"payload\":\"{{ $json.payload }}\",\n   \"wa_id\":\"{{ $json.wa_id }}\",\n   \"name\":\"{{ $json.name }}\"\n}",
+        "options": {}
+      },
+      "id": "8ea88478-6d27-4350-94f3-fa3a26e41143",
+      "name": "HTTP Request",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        820,
+        320
+      ]
+    }
+  ],
+  "pinData": {
+    "Execute Workflow Trigger": [
+      {
+        "json": {
+          "response_status": false,
+          "is_retry": false,
+          "user_id": null,
+          "campaign_id": 226,
+          "message_status_id": 1268020,
+          "webinar_id": null,
+          "lead_dump_id": null,
+          "payload": "It was great",
+          "wa_id": "916238133298",
+          "name": ""
+        }
+      }
+    ]
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2024-01-27T13:39:23.000Z",
+  "versionId": "57e6d8b9-24a3-4833-be96-e0e579040642"
+}
