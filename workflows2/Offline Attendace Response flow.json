@@ -1,0 +1,399 @@
+{
+  "active": false,
+  "connections": {
+    "Execute Workflow Trigger": {
+      "main": [
+        [
+          {
+            "node": "Supabase",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Supabase": {
+      "main": [
+        [
+          {
+            "node": "Summarize",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If": {
+      "main": [
+        [
+          {
+            "node": "WhatsApp Business Cloud1",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "WhatsApp Business Cloud3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Summarize": {
+      "main": [
+        [
+          {
+            "node": "If",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2024-09-20T12:58:00.245Z",
+  "id": "BoTNB6pZ54Nz6oM1",
+  "meta": null,
+  "name": "Offline Attendace Response flow",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "c181694e-4b01-43a3-a424-a06ec6fae4bd",
+      "name": "Execute Workflow Trigger",
+      "type": "n8n-nodes-base.executeWorkflowTrigger",
+      "typeVersion": 1,
+      "position": [
+        760,
+        360
+      ]
+    },
+    {
+      "parameters": {
+        "phoneNumberId": "171009622770823",
+        "recipientPhoneNumber": "={{ $('Execute Workflow Trigger').item.json.body.entry[0].changes[0].value.contacts[0].wa_id }}",
+        "template": "offline_session_attendance|en",
+        "components": {
+          "component": [
+            {
+              "bodyParameters": {
+                "parameter": [
+                  {
+                    "text": "={{ $('Execute Workflow Trigger').item.json.body.entry[0].changes[0].value.contacts[0].profile.name }}"
+                  }
+                ]
+              }
+            },
+            {
+              "type": "button",
+              "sub_type": "url",
+              "buttonParameters": {
+                "parameter": {
+                  "payload": "=?phone={{ $('Execute Workflow Trigger').item.json.body.entry[0].changes[0].value.contacts[0].wa_id }}&name={{ $('Execute Workflow Trigger').item.json.body.entry[0].changes[0].value.contacts[0].profile.name }}"
+                }
+              }
+            }
+          ]
+        }
+      },
+      "id": "c9a505ac-4af6-48f4-991f-7259795b5337",
+      "name": "WhatsApp Business Cloud",
+      "type": "n8n-nodes-base.whatsApp",
+      "typeVersion": 1,
+      "position": [
+        1660,
+        580
+      ],
+      "credentials": {
+        "whatsAppApi": {
+          "id": "FgS03iKYFJtZDGNw",
+          "name": "WhatsApp account new"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "get",
+        "tableId": "leads_dump",
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "phone",
+              "keyValue": "={{ $json.body.entry[0].changes[0].value.contacts[0].wa_id }}"
+            }
+          ]
+        }
+      },
+      "id": "dcae7bf4-c863-4744-9939-055d1b3da12c",
+      "name": "Supabase",
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        980,
+        360
+      ],
+      "alwaysOutputData": true,
+      "credentials": {
+        "supabaseApi": {
+          "id": "baNruLU9AV7x2GZq",
+          "name": "Supabase campaign manager"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict"
+          },
+          "conditions": [
+            {
+              "id": "cb60f046-4ba7-4621-a773-d466df7ca4e7",
+              "leftValue": "={{ $json?.count_attendance_code }}",
+              "rightValue": 0,
+              "operator": {
+                "type": "number",
+                "operation": "gt"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "b75fa0ea-2b6f-4f1d-9620-144601076f93",
+      "name": "If",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2,
+      "position": [
+        1420,
+        320
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "send",
+        "phoneNumberId": "171009622770823",
+        "recipientPhoneNumber": "={{ $('Execute Workflow Trigger').item.json.body.entry[0].changes[0].value.contacts[0].wa_id }}",
+        "textBody": "Hi, You are already registered, please use the code shared previously to enter the session!",
+        "additionalFields": {}
+      },
+      "id": "f0d31e90-e7f8-4653-81b3-99538abbe0d7",
+      "name": "WhatsApp Business Cloud1",
+      "type": "n8n-nodes-base.whatsApp",
+      "typeVersion": 1,
+      "position": [
+        1640,
+        140
+      ],
+      "credentials": {
+        "whatsAppApi": {
+          "id": "FgS03iKYFJtZDGNw",
+          "name": "WhatsApp account new"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict"
+          },
+          "conditions": [
+            {
+              "id": "f33e14dc-86f7-4e52-b3bb-e4b103694be0",
+              "leftValue": "={{ $json.attendance_code }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "exists",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "5ae863f4-40e9-429d-9843-1239050314cf",
+      "name": "If1",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2,
+      "position": [
+        1120,
+        180
+      ]
+    },
+    {
+      "parameters": {
+        "fieldsToSummarize": {
+          "values": [
+            {
+              "field": "attendance_code"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "35e5b553-c985-429b-8ad7-abaef4bafd64",
+      "name": "Summarize",
+      "type": "n8n-nodes-base.summarize",
+      "typeVersion": 1,
+      "position": [
+        1240,
+        380
+      ],
+      "retryOnFail": false,
+      "alwaysOutputData": true,
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "phoneNumberId": "171009622770823",
+        "recipientPhoneNumber": "={{ $('Execute Workflow Trigger').item.json.body.entry[0].changes[0].value.contacts[0].wa_id }}",
+        "template": "offline_session_attendance|en",
+        "components": {
+          "component": [
+            {
+              "bodyParameters": {
+                "parameter": [
+                  {
+                    "text": "={{ $('Execute Workflow Trigger').item.json.body.entry[0].changes[0].value.contacts[0].profile.name }}"
+                  }
+                ]
+              }
+            },
+            {
+              "type": "button",
+              "sub_type": "url",
+              "buttonParameters": {
+                "parameter": {
+                  "payload": "=?phone={{ $('Execute Workflow Trigger').item.json.body.entry[0].changes[0].value.contacts[0].wa_id }}&name={{ $('Execute Workflow Trigger').item.json.body.entry[0].changes[0].value.contacts[0].profile.name }}"
+                }
+              }
+            }
+          ]
+        }
+      },
+      "id": "02917f07-8c3b-4437-9a5a-1eb8a904bd3c",
+      "name": "WhatsApp Business Cloud2",
+      "type": "n8n-nodes-base.whatsApp",
+      "typeVersion": 1,
+      "position": [
+        1880,
+        560
+      ],
+      "credentials": {
+        "whatsAppApi": {
+          "id": "FgS03iKYFJtZDGNw",
+          "name": "WhatsApp account new"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "phoneNumberId": "171009622770823",
+        "recipientPhoneNumber": "={{ $('Execute Workflow Trigger').item.json.body.entry[0].changes[0].value.contacts[0].wa_id }}",
+        "template": "offline_session_attendance|en",
+        "components": {
+          "component": [
+            {
+              "bodyParameters": {
+                "parameter": [
+                  {
+                    "text": "={{ $('Execute Workflow Trigger').item.json.body.entry[0].changes[0].value.contacts[0].profile.name }}"
+                  }
+                ]
+              }
+            },
+            {
+              "type": "button",
+              "sub_type": "url",
+              "buttonParameters": {
+                "parameter": {
+                  "payload": "=?phone={{ $('Execute Workflow Trigger').item.json.body.entry[0].changes[0].value.contacts[0].wa_id }}&name={{ $('Execute Workflow Trigger').item.json.body.entry[0].changes[0].value.contacts[0].profile.name.split(' ')[0] }}"
+                }
+              }
+            }
+          ]
+        }
+      },
+      "id": "f48ca503-d714-46d4-9437-b2504239d98c",
+      "name": "WhatsApp Business Cloud3",
+      "type": "n8n-nodes-base.whatsApp",
+      "typeVersion": 1,
+      "position": [
+        1660,
+        360
+      ],
+      "credentials": {
+        "whatsAppApi": {
+          "id": "FgS03iKYFJtZDGNw",
+          "name": "WhatsApp account new"
+        }
+      }
+    }
+  ],
+  "pinData": {
+    "Execute Workflow Trigger": [
+      {
+        "json": {
+          "params": {},
+          "query": {},
+          "body": {
+            "object": "whatsapp_business_account",
+            "entry": [
+              {
+                "id": "207690522422697",
+                "changes": [
+                  {
+                    "value": {
+                      "messaging_product": "whatsapp",
+                      "metadata": {
+                        "display_phone_number": "917338649613",
+                        "phone_number_id": "171009622770823"
+                      },
+                      "contacts": [
+                        {
+                          "profile": {
+                            "name": "Jithin"
+                          },
+                          "wa_id": "918281141513"
+                        }
+                      ],
+                      "messages": [
+                        {
+                          "from": "918281141513",
+                          "id": "wamid.HBgMOTE4MjgxMTQxNTEzFQIAEhgUM0EyNDczMkZEN0U3ODIwQzU1NDAA",
+                          "timestamp": "1726856811",
+                          "text": {
+                            "body": "Hi, register me for the session!"
+                          },
+                          "type": "text"
+                        }
+                      ]
+                    },
+                    "field": "messages"
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      }
+    ]
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2024-09-20T18:40:49.000Z",
+  "versionId": "011aa473-837e-45d4-baff-d86630dfd72a"
+}
