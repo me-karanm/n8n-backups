@@ -1,0 +1,141 @@
+{
+  "active": false,
+  "connections": {
+    "Execute Workflow Trigger": {
+      "main": [
+        [
+          {
+            "node": "Supabase6",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Supabase6": {
+      "main": [
+        []
+      ]
+    }
+  },
+  "createdAt": "2023-08-10T06:52:47.813Z",
+  "id": "f3I1IChsbXsm8RIR",
+  "meta": null,
+  "name": "del-flow",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "dbd8997e-3e31-4282-bfa7-88d536e5807e",
+      "name": "Execute Workflow Trigger",
+      "type": "n8n-nodes-base.executeWorkflowTrigger",
+      "typeVersion": 1,
+      "position": [
+        520,
+        380
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "tableId": "message_status",
+        "matchType": "allFilters",
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "message_id",
+              "condition": "eq",
+              "keyValue": "={{ $json.body.entry[0].changes[0].value.statuses[0].id }}"
+            }
+          ]
+        },
+        "fieldsUi": {
+          "fieldValues": [
+            {
+              "fieldId": "delivery_status",
+              "fieldValue": "1"
+            },
+            {
+              "fieldId": "delivery_date",
+              "fieldValue": "={{$now}}"
+            }
+          ]
+        }
+      },
+      "id": "930ff656-dab8-4b32-a2d6-332706d4bc92",
+      "name": "Supabase6",
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        720,
+        380
+      ],
+      "credentials": {
+        "supabaseApi": {
+          "id": "baNruLU9AV7x2GZq",
+          "name": "Supabase campaign manager"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "tableId": "audience_stage_status",
+        "matchType": "allFilters",
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "user_id",
+              "condition": "eq",
+              "keyValue": "={{ $json.user_id }}"
+            },
+            {
+              "keyName": "campaign_id",
+              "condition": "eq",
+              "keyValue": "={{ $json.campaign_id }}"
+            }
+          ]
+        },
+        "fieldsUi": {
+          "fieldValues": [
+            {
+              "fieldId": "is_active",
+              "fieldValue": "1"
+            },
+            {
+              "fieldId": "last_message_id",
+              "fieldValue": "={{ $json.id }}"
+            }
+          ]
+        }
+      },
+      "id": "0f04150f-ea36-4ee7-a59c-c849155487fe",
+      "name": "Supabase",
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        940,
+        380
+      ],
+      "credentials": {
+        "supabaseApi": {
+          "id": "ptZNo3FAaF0XYQKi",
+          "name": "Supabase account"
+        }
+      },
+      "continueOnFail": true
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1",
+    "timezone": "Asia/Calcutta",
+    "saveManualExecutions": true,
+    "callerPolicy": "workflowsFromSameOwner",
+    "executionTimeout": 30
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2023-09-02T13:06:37.000Z",
+  "versionId": "f0a1885a-401f-4875-b8a1-8ecfa8cba414"
+}
