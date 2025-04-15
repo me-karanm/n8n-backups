@@ -1,0 +1,418 @@
+{
+  "active": true,
+  "connections": {
+    "Supabase2": {
+      "main": [
+        [
+          {
+            "node": "IF1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "IF1": {
+      "main": [
+        [
+          {
+            "node": "Supabase5",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "HTTP Request2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request2": {
+      "main": [
+        [
+          {
+            "node": "Supabase3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Supabase3": {
+      "main": [
+        [
+          {
+            "node": "WhatsApp Business Cloud1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "WhatsApp Business Cloud1": {
+      "main": [
+        [
+          {
+            "node": "Supabase6",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Supabase5": {
+      "main": [
+        [
+          {
+            "node": "Merge1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Supabase6": {
+      "main": [
+        [
+          {
+            "node": "Merge1",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Supabase2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2023-08-15T15:34:01.035Z",
+  "id": "0BCQVDF46iAkpEyk",
+  "meta": null,
+  "name": "register-webhook-naukri",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "1c16ff7e-8062-417c-9a96-9a628f9073b5",
+        "options": {}
+      },
+      "id": "ace8f6d6-3c84-456a-ae00-6005d9bdf5a7",
+      "name": "Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        760,
+        380
+      ],
+      "webhookId": "1c16ff7e-8062-417c-9a96-9a628f9073b5"
+    },
+    {
+      "parameters": {
+        "operation": "getAll",
+        "tableId": "zoom_webinar",
+        "limit": 1,
+        "matchType": "allFilters",
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "email_id",
+              "condition": "eq",
+              "keyValue": "={{ $json.body.email }}"
+            },
+            {
+              "keyName": "webinar_id",
+              "condition": "eq",
+              "keyValue": "=1"
+            }
+          ]
+        }
+      },
+      "id": "0883fc1d-6fcb-4116-9c01-3e3ea37b70bd",
+      "name": "Supabase2",
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        960,
+        380
+      ],
+      "alwaysOutputData": true,
+      "credentials": {
+        "supabaseApi": {
+          "id": "ptZNo3FAaF0XYQKi",
+          "name": "Supabase account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "boolean": [
+            {
+              "value1": "={{ $json.hasOwnProperty('id') }}",
+              "value2": true
+            }
+          ]
+        }
+      },
+      "id": "ab189837-4188-4cb1-88d5-3a06a8451507",
+      "name": "IF1",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        1180,
+        380
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.zoom.us/v2/webinars/87361050576/registrants",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "zoomOAuth2Api",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"first_name\": \"{{ $('Webhook').item.json.body.first_name }}\",\n  \"last_name\": \"\",\n  \"email\": \"{{ $('Webhook').item.json.body.email }}\",\n  \"phone\": \"{{ $('Webhook').item.json.body.phone }}\"\n}  ",
+        "options": {}
+      },
+      "id": "b38ed406-c5b1-421a-9991-3b2c60720fe2",
+      "name": "HTTP Request2",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        1400,
+        500
+      ],
+      "credentials": {
+        "zoomOAuth2Api": {
+          "id": "DxB7OzJRHsI70Odr",
+          "name": "Zoom account"
+        }
+      },
+      "continueOnFail": true
+    },
+    {
+      "parameters": {
+        "tableId": "zoom_webinar",
+        "fieldsUi": {
+          "fieldValues": [
+            {
+              "fieldId": "first_name",
+              "fieldValue": "={{ $('Webhook').item.json.body.first_name }}"
+            },
+            {
+              "fieldId": "email_id",
+              "fieldValue": "={{ $('Webhook').item.json.body.email }}"
+            },
+            {
+              "fieldId": "location",
+              "fieldValue": "={{ $('Webhook').item.json.body.location }}"
+            },
+            {
+              "fieldId": "contact",
+              "fieldValue": "={{ $('Webhook').item.json.body.phone }}"
+            },
+            {
+              "fieldId": "join_url",
+              "fieldValue": "={{ $json.join_url }}"
+            },
+            {
+              "fieldId": "zoom_id",
+              "fieldValue": "={{ $json.id }}"
+            },
+            {
+              "fieldId": "src",
+              "fieldValue": "={{ $('Webhook').item.json.body.src }}"
+            },
+            {
+              "fieldId": "webinar_id",
+              "fieldValue": "=1"
+            }
+          ]
+        }
+      },
+      "id": "399b5e60-eb9f-43a3-bc25-d603b101168b",
+      "name": "Supabase3",
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        1560,
+        500
+      ],
+      "credentials": {
+        "supabaseApi": {
+          "id": "ptZNo3FAaF0XYQKi",
+          "name": "Supabase account"
+        }
+      },
+      "continueOnFail": true
+    },
+    {
+      "parameters": {
+        "phoneNumberId": "115484311630426",
+        "recipientPhoneNumber": "={{ $json.contact }}",
+        "template": "naukri_thank_you_message|en",
+        "components": {
+          "component": [
+            {
+              "bodyParameters": {
+                "parameter": [
+                  {
+                    "text": "={{ $json.first_name }}"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      },
+      "id": "5c44cbd8-324a-4879-8584-0756eb37270d",
+      "name": "WhatsApp Business Cloud1",
+      "type": "n8n-nodes-base.whatsApp",
+      "typeVersion": 1,
+      "position": [
+        1760,
+        500
+      ],
+      "credentials": {
+        "whatsAppApi": {
+          "id": "SiXp0JiQTXH4kKE6",
+          "name": "WhatsApp account"
+        }
+      },
+      "continueOnFail": true
+    },
+    {
+      "parameters": {},
+      "id": "180df915-2348-47e5-ae3b-1b9fa41afffb",
+      "name": "Merge1",
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 2.1,
+      "position": [
+        2240,
+        380
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "tableId": "naukri_register",
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "id",
+              "condition": "eq",
+              "keyValue": "={{ $('Webhook').item.json.body.id }}"
+            }
+          ]
+        },
+        "fieldsUi": {
+          "fieldValues": [
+            {
+              "fieldId": "status",
+              "fieldValue": "already exists"
+            }
+          ]
+        }
+      },
+      "id": "08e6609c-7b16-4fa1-874f-03a59311499a",
+      "name": "Supabase5",
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        1660,
+        360
+      ],
+      "credentials": {
+        "supabaseApi": {
+          "id": "ptZNo3FAaF0XYQKi",
+          "name": "Supabase account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "tableId": "naukri_register",
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "id",
+              "condition": "eq",
+              "keyValue": "={{ $('Webhook').item.json.body.id }}"
+            }
+          ]
+        },
+        "fieldsUi": {
+          "fieldValues": [
+            {
+              "fieldId": "status",
+              "fieldValue": "done"
+            }
+          ]
+        }
+      },
+      "id": "58f29411-de48-41a6-9c10-5d1e1fcf3f14",
+      "name": "Supabase6",
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        1980,
+        500
+      ],
+      "credentials": {
+        "supabaseApi": {
+          "id": "ptZNo3FAaF0XYQKi",
+          "name": "Supabase account"
+        }
+      }
+    }
+  ],
+  "pinData": {
+    "Webhook": [
+      {
+        "json": {
+          "headers": {
+            "accept": "application/json,text/html,application/xhtml+xml,application/xml,text/*;q=0.9, image/*;q=0.8, */*;q=0.7",
+            "content-type": "application/json",
+            "user-agent": "axios/0.21.4",
+            "content-length": "143",
+            "sentry-trace": "7fd65b0c1a2f4991a702b2922989154b-85e81591e57d2544-0",
+            "baggage": "sentry-environment=production,sentry-release=1.1.1,sentry-public_key=1f954e089a054b8e943ae4f4042b2bff,sentry-trace_id=7fd65b0c1a2f4991a702b2922989154b",
+            "host": "34.93.97.0:5678",
+            "connection": "close"
+          },
+          "params": {},
+          "query": {},
+          "body": {
+            "id": 19685,
+            "first_name": "Deshmukh Amol Pandurang",
+            "phone": "916238133298",
+            "email": "amoldeshmukh446@gmail.com",
+            "location": "Pune",
+            "src": "Naukri"
+          }
+        }
+      }
+    ]
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 1,
+  "updatedAt": "2023-08-15T15:46:31.000Z",
+  "versionId": "db518e43-1c6d-4aa1-8041-edd5350f7b92"
+}
