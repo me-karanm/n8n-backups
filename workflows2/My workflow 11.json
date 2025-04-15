@@ -1,205 +1,54 @@
 {
   "active": false,
   "connections": {
-    "Google Sheets1": {
+    "When clicking \"Execute Workflow\"": {
       "main": [
-        []
-      ]
-    },
-    "Split In Batches2": {
-      "main": [
-        []
-      ]
-    },
-    "MySQL1": {
-      "main": [
-        []
+        [
+          {
+            "node": "WhatsApp Business Cloud",
+            "type": "main",
+            "index": 0
+          }
+        ]
       ]
     }
   },
-  "createdAt": "2024-04-18T06:16:45.571Z",
-  "id": "tQ4fLjijwdA6bCEY",
+  "createdAt": "2024-10-14T13:20:22.828Z",
+  "id": "HvwLdLJ2ZztFxoUS",
   "meta": null,
   "name": "My workflow 11",
   "nodes": [
     {
-      "parameters": {
-        "authentication": "serviceAccount",
-        "documentId": {
-          "__rl": true,
-          "value": "https://docs.google.com/spreadsheets/d/1yA3f7tjYIfZ5HxTFnHVSZDu706SWVvUAqN48cP4A6X4/edit#gid=0",
-          "mode": "url",
-          "__regex": "https:\\/\\/(?:drive|docs)\\.google\\.com(?:\\/.*|)\\/d\\/([0-9a-zA-Z\\-_]+)(?:\\/.*|)"
-        },
-        "sheetName": {
-          "__rl": true,
-          "value": "gid=0",
-          "mode": "list",
-          "cachedResultName": "Sheet1",
-          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1yA3f7tjYIfZ5HxTFnHVSZDu706SWVvUAqN48cP4A6X4/edit#gid=0"
-        },
-        "options": {
-          "dataLocationOnSheet": {
-            "values": {
-              "rangeDefinition": "specifyRange"
-            }
-          }
-        }
-      },
-      "id": "d02c8402-b945-4896-8439-737c54d93f0d",
-      "name": "Google Sheets1",
-      "type": "n8n-nodes-base.googleSheets",
-      "typeVersion": 4,
-      "position": [
-        -1140,
-        420
-      ],
-      "credentials": {
-        "googleApi": {
-          "id": "aiCprsG1ZRAOjrNn",
-          "name": "Google Sheets account"
-        }
-      }
-    },
-    {
-      "parameters": {
-        "batchSize": 1,
-        "options": {}
-      },
-      "id": "7d282031-d30a-4845-af6d-8c79d986704c",
-      "name": "Split In Batches2",
-      "type": "n8n-nodes-base.splitInBatches",
-      "typeVersion": 2,
-      "position": [
-        -680,
-        800
-      ]
-    },
-    {
-      "parameters": {
-        "operation": "select",
-        "table": {
-          "__rl": true,
-          "value": "miles_emails",
-          "mode": "list",
-          "cachedResultName": "miles_emails"
-        },
-        "limit": 1,
-        "where": {
-          "values": [
-            {
-              "column": "can_id",
-              "value": "={{ $json.Identity }}"
-            }
-          ]
-        },
-        "options": {}
-      },
-      "id": "4373c6e2-2f1e-4fe1-8a44-411ab57e8a49",
-      "name": "MySQL1",
-      "type": "n8n-nodes-base.mySql",
-      "typeVersion": 2.1,
-      "position": [
-        -400,
-        960
-      ],
-      "credentials": {
-        "mySql": {
-          "id": "UPaGqhcnQd5QQFO3",
-          "name": "MySQL account"
-        }
-      }
-    },
-    {
-      "parameters": {
-        "tableId": "leads_dump",
-        "fieldsUi": {
-          "fieldValues": [
-            {
-              "fieldId": "first_name",
-              "fieldValue": "={{ $json.person_name }}"
-            },
-            {
-              "fieldId": "phone",
-              "fieldValue": "={{ $('Split In Batches2').item.json['Phone Number'] }}"
-            },
-            {
-              "fieldId": "email",
-              "fieldValue": "={{ $json.email }}"
-            },
-            {
-              "fieldId": "course",
-              "fieldValue": "9"
-            },
-            {
-              "fieldId": "camp_id",
-              "fieldValue": "405"
-            },
-            {
-              "fieldId": "us_visa_orientation_session",
-              "fieldValue": "=1"
-            }
-          ]
-        }
-      },
-      "id": "02820fac-4345-4bae-98f1-793b473a7a8e",
-      "name": "Supabase7",
-      "type": "n8n-nodes-base.supabase",
+      "parameters": {},
+      "id": "f40e0d40-e5d4-4031-a64a-9b8c0983bcaa",
+      "name": "When clicking \"Execute Workflow\"",
+      "type": "n8n-nodes-base.manualTrigger",
       "typeVersion": 1,
       "position": [
-        -100,
-        480
-      ],
-      "credentials": {
-        "supabaseApi": {
-          "id": "6stEFLC7gtftREcf",
-          "name": "Supabase Campaign manager"
-        }
-      }
+        700,
+        360
+      ]
     },
     {
       "parameters": {
-        "pollTimes": {
-          "item": [
-            {
-              "mode": "everyMinute"
-            }
-          ]
-        },
-        "documentId": {
-          "__rl": true,
-          "mode": "list",
-          "value": ""
-        },
-        "sheetName": {
-          "__rl": true,
-          "mode": "list",
-          "value": ""
-        },
-        "options": {}
+        "phoneNumberId": "426912040510145",
+        "recipientPhoneNumber": "919819861049",
+        "template": "ca_rajkumar_icai_elections|en"
       },
-      "id": "e686f953-e9b2-4b2e-ba9b-6538b8d97374",
-      "name": "Google Sheets Trigger",
-      "type": "n8n-nodes-base.googleSheetsTrigger",
+      "id": "9deac6b8-632c-4e8f-a811-ab99329ddce6",
+      "name": "WhatsApp Business Cloud",
+      "type": "n8n-nodes-base.whatsApp",
       "typeVersion": 1,
       "position": [
-        580,
-        800
-      ]
-    },
-    {
-      "parameters": {
-        "operation": "sort",
-        "options": {}
-      },
-      "id": "ac6544b3-f11d-4607-960c-a187cae142df",
-      "name": "Item Lists",
-      "type": "n8n-nodes-base.itemLists",
-      "typeVersion": 3,
-      "position": [
-        -840,
-        480
-      ]
+        960,
+        360
+      ],
+      "credentials": {
+        "whatsAppApi": {
+          "id": "FgS03iKYFJtZDGNw",
+          "name": "WhatsApp account new"
+        }
+      }
     }
   ],
   "pinData": {},
@@ -209,6 +58,6 @@
   "staticData": null,
   "tags": [],
   "triggerCount": 0,
-  "updatedAt": "2024-04-18T11:06:55.000Z",
-  "versionId": "039b562e-9acb-47a0-94dc-225581114102"
+  "updatedAt": "2024-10-14T13:28:48.000Z",
+  "versionId": "98d09d3d-a1fa-4208-b4fb-7890402bd086"
 }
