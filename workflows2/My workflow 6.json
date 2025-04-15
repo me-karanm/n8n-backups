@@ -1,0 +1,65 @@
+{
+  "active": false,
+  "connections": {
+    "When clicking \"Execute Workflow\"": {
+      "main": [
+        [
+          {
+            "node": "Twilio",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2024-03-08T12:28:58.167Z",
+  "id": "2jXfVVaR8dtONyQq",
+  "meta": null,
+  "name": "My workflow 6",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "6f4b9ad0-cbd0-4f39-993c-ef04c86e9843",
+      "name": "When clicking \"Execute Workflow\"",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        480,
+        280
+      ]
+    },
+    {
+      "parameters": {
+        "from": "+16463502250",
+        "to": "=+916238133298",
+        "toWhatsapp": true,
+        "message": "hello",
+        "options": {}
+      },
+      "id": "bd1cb040-6083-4006-807f-18373f6a0485",
+      "name": "Twilio",
+      "type": "n8n-nodes-base.twilio",
+      "typeVersion": 1,
+      "position": [
+        660,
+        280
+      ],
+      "credentials": {
+        "twilioApi": {
+          "id": "FnKqaAMDRGUpoQmE",
+          "name": "Twilio account"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2024-03-08T12:28:58.167Z",
+  "versionId": "1a456439-cbfa-4fde-ad07-15fb84eaa81b"
+}
