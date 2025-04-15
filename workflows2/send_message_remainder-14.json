@@ -1,0 +1,351 @@
+{
+  "active": false,
+  "connections": {
+    "When clicking \"Execute Workflow\"": {
+      "main": [
+        [
+          {
+            "node": "Supabase",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Supabase": {
+      "main": [
+        [
+          {
+            "node": "Split In Batches",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Split In Batches": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "WhatsApp Business Cloud": {
+      "main": [
+        [
+          {
+            "node": "Supabase16",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Supabase16": {
+      "main": [
+        [
+          {
+            "node": "Supabase1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request": {
+      "main": [
+        [
+          {
+            "node": "Wait",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait": {
+      "main": [
+        [
+          {
+            "node": "Split In Batches",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2023-08-12T14:07:07.091Z",
+  "id": "47CCQOIj1jl501hK",
+  "meta": null,
+  "name": "send_message_remainder-14",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "2eca26c4-4ab2-43a9-be27-e7b35f5db064",
+      "name": "When clicking \"Execute Workflow\"",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        400,
+        420
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "getAll",
+        "tableId": "zoom_webinar",
+        "returnAll": true,
+        "matchType": "allFilters",
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "message_day",
+              "condition": "neq",
+              "keyValue": "5"
+            },
+            {
+              "condition": "eq",
+              "keyValue": "1"
+            }
+          ]
+        }
+      },
+      "id": "4ab82afb-29be-4bb4-b4f9-652e3ceb2e89",
+      "name": "Supabase",
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        600,
+        420
+      ],
+      "credentials": {
+        "supabaseApi": {
+          "id": "ptZNo3FAaF0XYQKi",
+          "name": "Supabase account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "batchSize": 100,
+        "options": {}
+      },
+      "id": "68e7fa76-52bf-4c31-9955-ab779db727d5",
+      "name": "Split In Batches",
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 2,
+      "position": [
+        840,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "phoneNumberId": "115484311630426",
+        "recipientPhoneNumber": "={{ $('Supabase').item.json.contact }}",
+        "template": "remainder_12th_16th_webinar|en",
+        "components": {
+          "component": [
+            {
+              "bodyParameters": {
+                "parameter": [
+                  {
+                    "text": "={{ $('Supabase').item.json.first_name }}"
+                  }
+                ]
+              }
+            },
+            {
+              "type": "header",
+              "headerParameters": {
+                "parameter": [
+                  {
+                    "type": "image",
+                    "imageLink": "https://hbcqpfamoozfovaszfjz.supabase.co/storage/v1/object/public/posters/12%20August%202023.png"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      },
+      "id": "d383defd-93bd-445e-8fdb-332df776865d",
+      "name": "WhatsApp Business Cloud",
+      "type": "n8n-nodes-base.whatsApp",
+      "typeVersion": 1,
+      "position": [
+        1100,
+        -80
+      ],
+      "credentials": {
+        "whatsAppApi": {
+          "id": "SiXp0JiQTXH4kKE6",
+          "name": "WhatsApp account"
+        }
+      },
+      "continueOnFail": true
+    },
+    {
+      "parameters": {
+        "tableId": "message_status",
+        "fieldsUi": {
+          "fieldValues": [
+            {
+              "fieldId": "send_time",
+              "fieldValue": "={{ $now }}"
+            },
+            {
+              "fieldId": "send_status",
+              "fieldValue": "={{ $json && $json.messages && $json.messages.length > 0 ? 1 : 0 }}"
+            },
+            {
+              "fieldId": "campaign_id",
+              "fieldValue": "=2"
+            },
+            {
+              "fieldId": "message_id",
+              "fieldValue": "={{ $json.messages[0].id }}"
+            },
+            {
+              "fieldId": "zoom_webinar_id",
+              "fieldValue": "={{ $('Supabase').item.json.id }}"
+            },
+            {
+              "fieldId": "next_flow_id",
+              "fieldValue": "iQbxmySUcjmCTxPZ"
+            },
+            {
+              "fieldId": "root",
+              "fieldValue": "1"
+            }
+          ]
+        }
+      },
+      "id": "715201b4-29cc-456b-81a2-8fd226deb834",
+      "name": "Supabase16",
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        1400,
+        -80
+      ],
+      "credentials": {
+        "supabaseApi": {
+          "id": "ptZNo3FAaF0XYQKi",
+          "name": "Supabase account"
+        }
+      },
+      "continueOnFail": true
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "tableId": "zoom_webinar",
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "id",
+              "condition": "eq",
+              "keyValue": "={{ $json.zoom_webinar_id }}"
+            }
+          ]
+        },
+        "fieldsUi": {
+          "fieldValues": [
+            {
+              "fieldId": "message_day",
+              "fieldValue": "2"
+            }
+          ]
+        }
+      },
+      "id": "bed1f2c1-9d92-4795-b59a-c2df7d32d297",
+      "name": "Supabase1",
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        1620,
+        -80
+      ],
+      "credentials": {
+        "supabaseApi": {
+          "id": "ptZNo3FAaF0XYQKi",
+          "name": "Supabase account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "http://34.93.97.0:5678/webhook/0a2c6de5-88a9-4dfc-948a-e559494166c9",
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "id",
+              "value": "={{ $json.id }}"
+            },
+            {
+              "name": "created_at",
+              "value": "={{ $json.created_at }}"
+            },
+            {
+              "name": "first_name",
+              "value": "={{ $json.first_name }}"
+            },
+            {
+              "name": "last_name",
+              "value": "={{ $json.last_name }}"
+            },
+            {
+              "name": "contact",
+              "value": "={{ $json.contact }}"
+            },
+            {
+              "name": "joinUrl",
+              "value": "={{ $json.join_url }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "2603bc12-b02d-4d8e-902c-ffb5cec10747",
+      "name": "HTTP Request",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        1100,
+        280
+      ]
+    },
+    {
+      "parameters": {
+        "amount": 10,
+        "unit": "seconds"
+      },
+      "id": "cdfee524-3c0d-4e33-b17a-1a5573115de5",
+      "name": "Wait",
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1,
+      "position": [
+        1320,
+        280
+      ],
+      "webhookId": "ec0fc2a5-c92b-4942-9d6f-e122fac4cfb1"
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2023-08-16T12:37:30.000Z",
+  "versionId": "912303bd-2488-4942-9fe7-cbe789f3e147"
+}
