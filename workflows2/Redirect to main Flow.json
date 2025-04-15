@@ -1,0 +1,94 @@
+{
+  "active": false,
+  "connections": {
+    "Execute Workflow Trigger": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2024-01-28T14:28:30.526Z",
+  "id": "2uqduCJairDr1PxF",
+  "meta": null,
+  "name": "Redirect to main Flow",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "bc0a259a-2705-4e73-8058-3386db81e3ca",
+      "name": "Execute Workflow Trigger",
+      "type": "n8n-nodes-base.executeWorkflowTrigger",
+      "typeVersion": 1,
+      "position": [
+        660,
+        320
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://webhook.miles-api.com/webhook/bfda5b8d-80bf-4d82-8267-eeede2007b39",
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "message_status_id",
+              "value": "={{ $json.message_status_id }}"
+            },
+            {
+              "name": "wa_id",
+              "value": "={{ $json.wa_id }}"
+            },
+            {
+              "name": "payload",
+              "value": "={{ $json.payload }}"
+            },
+            {
+              "name": "lead_dump_id",
+              "value": "={{ $json.lead_dump_id }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "53b85dc0-1006-41e9-bf71-f6ec7a5e09c6",
+      "name": "HTTP Request",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        880,
+        320
+      ]
+    }
+  ],
+  "pinData": {
+    "Execute Workflow Trigger": [
+      {
+        "json": {
+          "response_status": false,
+          "is_retry": false,
+          "user_id": null,
+          "campaign_id": null,
+          "message_status_id": 1268045,
+          "lead_dump_id": 360345,
+          "payload": "Not Interested",
+          "wa_id": "916238133298",
+          "name": ""
+        }
+      }
+    ]
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2024-01-28T14:48:29.000Z",
+  "versionId": "2706110c-707c-4fd6-907d-4d00d91ed0ed"
+}
