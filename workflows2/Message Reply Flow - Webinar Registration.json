@@ -1,0 +1,575 @@
+{
+  "active": false,
+  "connections": {
+    "Execute Workflow Trigger": {
+      "main": [
+        [
+          {
+            "node": "If",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Supabase6": {
+      "main": [
+        [
+          {
+            "node": "Supabase",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Supabase": {
+      "main": [
+        [
+          {
+            "node": "Switch",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Supabase2": {
+      "main": [
+        [
+          {
+            "node": "IF",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "IF": {
+      "main": [
+        [
+          {
+            "node": "Supabase1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Switch": {
+      "main": [
+        [
+          {
+            "node": "Supabase2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If": {
+      "main": [
+        [
+          {
+            "node": "If1",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Supabase6",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "WhatsApp Business Cloud",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If1": {
+      "main": [
+        [
+          {
+            "node": "WhatsApp Business Cloud2",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "WhatsApp Business Cloud3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2024-01-14T10:46:27.590Z",
+  "id": "dwKa2S98qMMgkJH1",
+  "meta": null,
+  "name": "Message Reply Flow - Webinar Registration",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "b0da87ac-e15c-4567-9b79-9cdc87a470b6",
+      "name": "Execute Workflow Trigger",
+      "type": "n8n-nodes-base.executeWorkflowTrigger",
+      "typeVersion": 1,
+      "position": [
+        -2560,
+        640
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "expression",
+        "output": "={{ $('Execute Workflow Trigger').item.json.payload === \"Register now\" ? 0 :$('Execute Workflow Trigger').item.json.payload === \"Book my seat\" ? 0 : $('Execute Workflow Trigger').item.json.payload === \"Register Now\" ? 0: $('Execute Workflow Trigger').item.json.payload === \"Set Reminder\" ? 1 : 2}}"
+      },
+      "id": "5b667255-1fb0-4f8b-a52e-d8abd1105a14",
+      "name": "Switch",
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 1,
+      "position": [
+        -1320,
+        640
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "get",
+        "tableId": "message_status",
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "id",
+              "keyValue": "={{ $json.message_status_id }}"
+            }
+          ]
+        }
+      },
+      "id": "87c53143-a44c-4354-8d4c-c53048bb4b5a",
+      "name": "Supabase6",
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        -1820,
+        640
+      ],
+      "credentials": {
+        "supabaseApi": {
+          "id": "baNruLU9AV7x2GZq",
+          "name": "Supabase campaign manager"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "get",
+        "tableId": "send_whatsapp_import",
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "id",
+              "keyValue": "={{ $json.send_whatsapp_import }}"
+            }
+          ]
+        }
+      },
+      "id": "13000d7a-846b-4b13-a0c9-b34f03d767d0",
+      "name": "Supabase",
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        -1600,
+        640
+      ],
+      "credentials": {
+        "supabaseApi": {
+          "id": "baNruLU9AV7x2GZq",
+          "name": "Supabase campaign manager"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "tableId": "leads_dump",
+        "fieldsUi": {
+          "fieldValues": [
+            {
+              "fieldId": "first_name",
+              "fieldValue": "={{ $('Supabase').item.json.first_name }}"
+            },
+            {
+              "fieldId": "phone",
+              "fieldValue": "={{ $('Supabase').item.json.phone.length  <= 10 ?91+$('Supabase').item.json.phone : $('Supabase').item.json.phone   }} "
+            },
+            {
+              "fieldId": "email",
+              "fieldValue": "={{ $('Supabase').item.json.email }}"
+            },
+            {
+              "fieldId": "course",
+              "fieldValue": "9"
+            },
+            {
+              "fieldId": "camp_id",
+              "fieldValue": "={{ $('Execute Workflow Trigger').item.json.campaign_id }}"
+            },
+            {
+              "fieldId": "register_for_webinar",
+              "fieldValue": "true"
+            },
+            {
+              "fieldId": "whatsapp_send_status",
+              "fieldValue": "true"
+            },
+            {
+              "fieldId": "push_to_mf",
+              "fieldValue": "false"
+            },
+            {
+              "fieldId": "webinar_id",
+              "fieldValue": "103"
+            }
+          ]
+        }
+      },
+      "id": "64fea0b6-df94-49a0-99fa-8eefe298140a",
+      "name": "Supabase1",
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        -660,
+        440
+      ],
+      "retryOnFail": false,
+      "credentials": {
+        "supabaseApi": {
+          "id": "baNruLU9AV7x2GZq",
+          "name": "Supabase campaign manager"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "get",
+        "tableId": "leads_dump",
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "webinar_id",
+              "keyValue": "103"
+            },
+            {
+              "keyName": "email",
+              "keyValue": "={{ $json.email }}"
+            }
+          ]
+        }
+      },
+      "id": "cb8848c7-2c76-46ec-a5bf-997fa8511938",
+      "name": "Supabase2",
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        -1080,
+        460
+      ],
+      "alwaysOutputData": true,
+      "credentials": {
+        "supabaseApi": {
+          "id": "baNruLU9AV7x2GZq",
+          "name": "Supabase campaign manager"
+        }
+      },
+      "continueOnFail": true
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "boolean": [
+            {
+              "value1": "={{ $json.hasOwnProperty('id') }}"
+            }
+          ]
+        }
+      },
+      "id": "d3983a3c-79e8-4f05-a677-42979054e841",
+      "name": "IF",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        -920,
+        460
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "send",
+        "phoneNumberId": "171009622770823",
+        "recipientPhoneNumber": "={{ $json.wa_id }}",
+        "textBody": "You have successfully registered for our upcoming session: *Miles US Pathway - Recruitment Drive*. 🎉 \n\n*Date: November 23, Time: 7 PM* \n\n_Make sure you join 15 mins before the session!_ ⏰ \n_See you there!_ 👋",
+        "additionalFields": {}
+      },
+      "id": "a22bd4d5-3295-4198-a5cc-c89a5007b7b2",
+      "name": "WhatsApp Business Cloud",
+      "type": "n8n-nodes-base.whatsApp",
+      "typeVersion": 1,
+      "position": [
+        -1700,
+        1040
+      ],
+      "credentials": {
+        "whatsAppApi": {
+          "id": "FgS03iKYFJtZDGNw",
+          "name": "WhatsApp account new"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://in1.api.clevertap.com/1/upload",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "X-CleverTap-Account-Id",
+              "value": "TEST-848-8KW-5W7Z"
+            },
+            {
+              "name": "X-CleverTap-Passcode",
+              "value": "SAE-KWE-USEL"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n    \"d\": [\n        {\n            \"identity\": {{ $json[\"phone\"] }},\n            \"type\": \"event\",\n            \"evtName\": \"Webinar_Registration\",\n            \"evtData\": {\n\"campaign_id\": {{ $json[\"camp_id\"] }}\n            }\n        }\n    ]\n}    ",
+        "options": {}
+      },
+      "id": "e8d691a1-ab25-4068-81a9-cea9cce495b0",
+      "name": "HTTP Request",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        -720,
+        720
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "send",
+        "phoneNumberId": "171009622770823",
+        "recipientPhoneNumber": "={{ $json.wa_id }}",
+        "textBody": "You have successfully registered for our upcoming session: *Miles US Pathway - Recruitment Drive*. 🎉 \n\n*Date:  Jul 13, Time: 7 PM* \n\n_Make sure you join 15 mins before the session!_ ⏰ \n_See you there!_ 👋",
+        "additionalFields": {}
+      },
+      "id": "d58109b0-610c-421d-b656-e48853c5dc0c",
+      "name": "WhatsApp Business Cloud1",
+      "type": "n8n-nodes-base.whatsApp",
+      "typeVersion": 1,
+      "position": [
+        460,
+        460
+      ],
+      "credentials": {
+        "whatsAppApi": {
+          "id": "FgS03iKYFJtZDGNw",
+          "name": "WhatsApp account new"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "phoneNumberId": "171009622770823",
+        "recipientPhoneNumber": "={{ $json.wa_id }}",
+        "template": "blr_successful_registration|en"
+      },
+      "id": "75b0e96f-e666-4d5a-ae9d-8437e60c3e08",
+      "name": "WhatsApp Business Cloud2",
+      "type": "n8n-nodes-base.whatsApp",
+      "typeVersion": 1,
+      "position": [
+        -1720,
+        0
+      ],
+      "credentials": {
+        "whatsAppApi": {
+          "id": "FgS03iKYFJtZDGNw",
+          "name": "WhatsApp account new"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict"
+          },
+          "conditions": [
+            {
+              "id": "01a696d5-5677-477d-adba-8263138c3c41",
+              "leftValue": "={{ $json.campaign_id }}",
+              "rightValue": 886,
+              "operator": {
+                "type": "number",
+                "operation": "equals"
+              }
+            },
+            {
+              "id": "7764b1d5-a0ff-4cef-a8c5-0f78f9df0fb3",
+              "leftValue": "={{ $json.campaign_id }}",
+              "rightValue": 892,
+              "operator": {
+                "type": "number",
+                "operation": "equals"
+              }
+            },
+            {
+              "id": "c21b7cfb-435d-4d70-92c6-b2e11353eb6d",
+              "leftValue": "={{ $json.campaign_id }}",
+              "rightValue": 895,
+              "operator": {
+                "type": "number",
+                "operation": "equals"
+              }
+            },
+            {
+              "id": "9b2b8a67-bbf0-48d8-a290-0fa6d3bc71ee",
+              "leftValue": "={{ $json.campaign_id }}",
+              "rightValue": 901,
+              "operator": {
+                "type": "number",
+                "operation": "equals"
+              }
+            },
+            {
+              "id": "9c54d03a-ba53-4f24-baab-f90cca6220f7",
+              "leftValue": "={{ $json.campaign_id }}",
+              "rightValue": 902,
+              "operator": {
+                "type": "number",
+                "operation": "equals"
+              }
+            }
+          ],
+          "combinator": "or"
+        },
+        "options": {}
+      },
+      "id": "b7944f14-8043-4af0-b8f8-db80bce9c2f3",
+      "name": "If",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2,
+      "position": [
+        -2340,
+        560
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict"
+          },
+          "conditions": [
+            {
+              "id": "ff9acbcb-dc54-4467-8c38-f583d8416985",
+              "leftValue": "={{ $('Execute Workflow Trigger').item.json.campaign_id }}",
+              "rightValue": 886,
+              "operator": {
+                "type": "number",
+                "operation": "equals"
+              }
+            },
+            {
+              "id": "abd6d5ed-3dba-49fb-83a0-5d962af83bdf",
+              "leftValue": "={{ $('Execute Workflow Trigger').item.json.campaign_id }}",
+              "rightValue": 901,
+              "operator": {
+                "type": "number",
+                "operation": "equals"
+              }
+            },
+            {
+              "id": "475a1ea3-f9e6-4588-a385-24c7479f0a7e",
+              "leftValue": "={{ $('Execute Workflow Trigger').item.json.campaign_id }}",
+              "rightValue": 902,
+              "operator": {
+                "type": "number",
+                "operation": "equals"
+              }
+            }
+          ],
+          "combinator": "or"
+        },
+        "options": {}
+      },
+      "id": "e0a20afb-c79c-4310-adef-a564ec6825f3",
+      "name": "If1",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2,
+      "position": [
+        -2020,
+        200
+      ]
+    },
+    {
+      "parameters": {
+        "phoneNumberId": "171009622770823",
+        "recipientPhoneNumber": "={{ $json.wa_id }}",
+        "template": "hyd_session_successful_registration|en"
+      },
+      "id": "de257e47-0a44-421d-8d89-cd326a76cacc",
+      "name": "WhatsApp Business Cloud3",
+      "type": "n8n-nodes-base.whatsApp",
+      "typeVersion": 1,
+      "position": [
+        -1720,
+        280
+      ],
+      "credentials": {
+        "whatsAppApi": {
+          "id": "FgS03iKYFJtZDGNw",
+          "name": "WhatsApp account new"
+        }
+      }
+    }
+  ],
+  "pinData": {
+    "Execute Workflow Trigger": [
+      {
+        "json": {
+          "response_status": false,
+          "is_retry": false,
+          "user_id": null,
+          "campaign_id": 281,
+          "message_status_id": 1482382,
+          "webinar_id": null,
+          "lead_dump_id": null,
+          "payload": "Register now",
+          "wa_id": "916238133298",
+          "name": ""
+        }
+      }
+    ]
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2024-11-19T16:03:53.000Z",
+  "versionId": "83a55805-ab93-44da-825f-fade4b14a82c"
+}
