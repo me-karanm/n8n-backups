@@ -1,0 +1,226 @@
+{
+  "active": false,
+  "connections": {
+    "Switch": {
+      "main": [
+        [
+          {
+            "node": "WhatsApp Business Cloud8",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [],
+        [],
+        []
+      ]
+    },
+    "Supabase5": {
+      "main": [
+        [
+          {
+            "node": "Switch",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Execute Workflow Trigger": {
+      "main": [
+        [
+          {
+            "node": "Supabase5",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "WhatsApp Business Cloud8": {
+      "main": [
+        [
+          {
+            "node": "Supabase6",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2023-10-10T09:14:53.281Z",
+  "id": "IBFqhYAGZ3J7e8F2",
+  "meta": null,
+  "name": "calling-flow-connected-yes",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "41cd1bd1-426d-441f-8530-2fec3d1a4e8e",
+      "name": "Execute Workflow Trigger",
+      "type": "n8n-nodes-base.executeWorkflowTrigger",
+      "typeVersion": 1,
+      "position": [
+        520,
+        240
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "expression",
+        "output": "={{ $('Execute Workflow Trigger').item.json.payload === \"Learn about refunds\" ? 0 :3 }}"
+      },
+      "id": "ebffc506-01df-41fe-bfe1-13cdbd72e301",
+      "name": "Switch",
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 1,
+      "position": [
+        1120,
+        240
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "get",
+        "tableId": "leads_dump",
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "id",
+              "keyValue": "={{ $json.lead_dump_id }}"
+            }
+          ]
+        }
+      },
+      "id": "4f31d514-8eff-4c70-b7ac-a9dfa91ece7c",
+      "name": "Supabase5",
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        780,
+        240
+      ],
+      "retryOnFail": false,
+      "alwaysOutputData": true,
+      "credentials": {
+        "supabaseApi": {
+          "id": "baNruLU9AV7x2GZq",
+          "name": "Supabase campaign manager"
+        }
+      },
+      "continueOnFail": true
+    },
+    {
+      "parameters": {
+        "tableId": "message_status",
+        "fieldsUi": {
+          "fieldValues": [
+            {
+              "fieldId": "send_status",
+              "fieldValue": "true"
+            },
+            {
+              "fieldId": "send_time",
+              "fieldValue": "={{ $now }}"
+            },
+            {
+              "fieldId": "message_id",
+              "fieldValue": "={{ $json.messages[0].id }}"
+            },
+            {
+              "fieldId": "campaign_id",
+              "fieldValue": "47"
+            },
+            {
+              "fieldId": "next_flow_id",
+              "fieldValue": "bVz88YCSQeipe0DL"
+            },
+            {
+              "fieldId": "root",
+              "fieldValue": "true"
+            },
+            {
+              "fieldId": "lead_dump_id",
+              "fieldValue": "={{ $('Execute Workflow Trigger').item.json.lead_dump_id }}"
+            }
+          ]
+        }
+      },
+      "id": "03e1fb41-f3ee-43d5-9295-e024cf43ea60",
+      "name": "Supabase6",
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        1700,
+        -100
+      ],
+      "credentials": {
+        "supabaseApi": {
+          "id": "baNruLU9AV7x2GZq",
+          "name": "Supabase campaign manager"
+        }
+      },
+      "continueOnFail": true
+    },
+    {
+      "parameters": {
+        "phoneNumberId": "108019349036743",
+        "recipientPhoneNumber": "={{ $('Execute Workflow Trigger').item.json.wa_id }}",
+        "template": "website_flow_know_more|en",
+        "components": {
+          "component": [
+            {
+              "type": "button",
+              "sub_type": "url",
+              "buttonParameters": {
+                "parameter": {
+                  "payload": "=\"https://blcwdqfhupddorxpdcjl.supabase.co/functions/v1/redirect-payment-link?id={{ $json.phone }}\""
+                }
+              }
+            }
+          ]
+        }
+      },
+      "id": "3510ca22-7057-4686-8ce1-cf3c674a88cd",
+      "name": "WhatsApp Business Cloud8",
+      "type": "n8n-nodes-base.whatsApp",
+      "typeVersion": 1,
+      "position": [
+        1420,
+        -100
+      ],
+      "credentials": {
+        "whatsAppApi": {
+          "id": "75melKbodQdQAHVp",
+          "name": "WhatsApp miles education"
+        }
+      }
+    }
+  ],
+  "pinData": {
+    "Execute Workflow Trigger": [
+      {
+        "json": {
+          "response_status": false,
+          "is_retry": false,
+          "user_id": null,
+          "campaign_id": 51,
+          "message_status_id": 113324,
+          "webinar_id": null,
+          "lead_dump_id": null,
+          "payload": "Learn about refunds",
+          "wa_id": "916238133298",
+          "name": ""
+        }
+      }
+    ]
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2023-10-10T10:23:26.000Z",
+  "versionId": "bfcdac41-63c4-448c-b534-0caa8fc4ee35"
+}
