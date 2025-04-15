@@ -1,0 +1,233 @@
+{
+  "active": true,
+  "connections": {
+    "WhatsApp Business Cloud": {
+      "main": [
+        [
+          {
+            "node": "Supabase16",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Supabase16": {
+      "main": [
+        [
+          {
+            "node": "Supabase1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "WhatsApp Business Cloud",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2023-08-16T09:37:57.896Z",
+  "id": "5o6WmZB0fYfsSuBE",
+  "meta": null,
+  "name": "webhook-register-",
+  "nodes": [
+    {
+      "parameters": {
+        "phoneNumberId": "115484311630426",
+        "recipientPhoneNumber": "={{ $json.body.contact }}",
+        "template": "16th_webinar_join_link_2|en",
+        "components": {
+          "component": [
+            {
+              "bodyParameters": {
+                "parameter": [
+                  {
+                    "text": "={{ $json.body.first_name }}"
+                  }
+                ]
+              }
+            },
+            {
+              "type": "button",
+              "sub_type": "url",
+              "buttonParameters": {
+                "parameter": {
+                  "payload": "={{ $json.body.joinUrl.slice(33)}}"
+                }
+              }
+            }
+          ]
+        }
+      },
+      "id": "34b6b57f-4e03-4b8b-a91d-5a1fa9848df7",
+      "name": "WhatsApp Business Cloud",
+      "type": "n8n-nodes-base.whatsApp",
+      "typeVersion": 1,
+      "position": [
+        840,
+        440
+      ],
+      "credentials": {
+        "whatsAppApi": {
+          "id": "SiXp0JiQTXH4kKE6",
+          "name": "WhatsApp account"
+        }
+      },
+      "continueOnFail": true
+    },
+    {
+      "parameters": {
+        "tableId": "message_status",
+        "fieldsUi": {
+          "fieldValues": [
+            {
+              "fieldId": "send_time",
+              "fieldValue": "={{ $now }}"
+            },
+            {
+              "fieldId": "send_status",
+              "fieldValue": "={{ $json && $json.messages && $json.messages.length > 0 ? 1 : 0 }}"
+            },
+            {
+              "fieldId": "campaign_id",
+              "fieldValue": "=2"
+            },
+            {
+              "fieldId": "message_id",
+              "fieldValue": "={{ $json.messages[0].id }}"
+            },
+            {
+              "fieldId": "zoom_webinar_id",
+              "fieldValue": "={{ $('Webhook').item.json.body.id }}"
+            },
+            {
+              "fieldId": "next_flow_id",
+              "fieldValue": "iQbxmySUcjmCTxPZ"
+            },
+            {
+              "fieldId": "root",
+              "fieldValue": "1"
+            },
+            {
+              "fieldId": "template_id",
+              "fieldValue": "3"
+            }
+          ]
+        }
+      },
+      "id": "51e0c477-1bc5-457b-b1b6-ff31b2383a49",
+      "name": "Supabase16",
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        1040,
+        440
+      ],
+      "credentials": {
+        "supabaseApi": {
+          "id": "ptZNo3FAaF0XYQKi",
+          "name": "Supabase account"
+        }
+      },
+      "continueOnFail": true
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "tableId": "zoom_webinar",
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "id",
+              "condition": "eq",
+              "keyValue": "={{ $json.zoom_webinar_id }}"
+            }
+          ]
+        },
+        "fieldsUi": {
+          "fieldValues": [
+            {
+              "fieldId": "message_day",
+              "fieldValue": "5"
+            }
+          ]
+        }
+      },
+      "id": "3332d69f-3b9e-42be-8a4c-53a593f44f38",
+      "name": "Supabase1",
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        1240,
+        440
+      ],
+      "credentials": {
+        "supabaseApi": {
+          "id": "ptZNo3FAaF0XYQKi",
+          "name": "Supabase account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "0a2c6de5-88a9-4dfc-948a-e559494166c9",
+        "options": {}
+      },
+      "id": "0599c852-d580-456b-8879-4da4d8008724",
+      "name": "Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        560,
+        380
+      ],
+      "webhookId": "0a2c6de5-88a9-4dfc-948a-e559494166c9"
+    }
+  ],
+  "pinData": {
+    "Webhook": [
+      {
+        "json": {
+          "headers": {
+            "accept": "application/json,text/html,application/xhtml+xml,application/xml,text/*;q=0.9, image/*;q=0.8, */*;q=0.7",
+            "content-type": "application/json",
+            "user-agent": "axios/0.21.4",
+            "content-length": "345",
+            "sentry-trace": "85e0a260884a482abe2e18f96ad2f5ad-85fc7563d3b544c0-0",
+            "baggage": "sentry-environment=production,sentry-release=1.1.1,sentry-public_key=1f954e089a054b8e943ae4f4042b2bff,sentry-trace_id=85e0a260884a482abe2e18f96ad2f5ad",
+            "host": "34.93.97.0:5678",
+            "connection": "close"
+          },
+          "params": {},
+          "query": {},
+          "body": {
+            "id": 40298,
+            "created_at": "2023-08-12T11:54:01.71597+00:00",
+            "first_name": "jithin kumar (test)",
+            "last_name": "",
+            "contact": "+916238133298",
+            "joinUrl": "https://mileseducation.zoom.us/w/87361050576?tk=BeSeinpHi9I-64qJez1q4uWSOBC0CjPoJ7nJsHnNdNg.DQMAAAAUVx_X0BZJMmVqY0pkcFQtdUtGN2tpVUN5djRnAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA&uuid=WN_sg-zbQUcQsuVRCf2bbFV5w"
+          }
+        }
+      }
+    ]
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 1,
+  "updatedAt": "2023-08-16T10:08:01.000Z",
+  "versionId": "ef6669ec-20ca-49da-8570-94e467898eec"
+}
