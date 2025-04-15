@@ -1,82 +1,86 @@
 {
   "active": false,
   "connections": {
-    "Supabase": {
+    "When clicking \"Execute Workflow\"": {
       "main": [
         [
           {
-            "node": "Code1",
+            "node": "n8n4",
             "type": "main",
             "index": 0
           }
         ]
       ]
     },
-    "Code": {
+    "n8n": {
       "main": [
         [
           {
-            "node": "Supabase",
+            "node": "Loop Over Items",
             "type": "main",
             "index": 0
           }
         ]
       ]
     },
-    "Split In Batches": {
-      "main": [
-        []
-      ]
-    },
-    "Code1": {
+    "n8n1": {
       "main": [
         [
           {
-            "node": "Supabase1",
+            "node": "n8n",
             "type": "main",
             "index": 0
           }
         ]
       ]
     },
-    "Supabase1": {
+    "Loop Over Items": {
       "main": [
+        [],
         [
           {
-            "node": "Supabase2",
+            "node": "If",
             "type": "main",
             "index": 0
           }
         ]
       ]
     },
-    "Supabase2": {
+    "If": {
       "main": [
         [
           {
-            "node": "IF",
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "n8n2",
             "type": "main",
             "index": 0
           }
         ]
       ]
     },
-    "IF": {
+    "n8n4": {
       "main": [
         [
           {
-            "node": "WhatsApp Business Cloud",
+            "node": "Loop Over Items1",
             "type": "main",
             "index": 0
           }
         ]
       ]
     },
-    "Schedule Trigger": {
+    "Loop Over Items1": {
       "main": [
+        [],
         [
           {
-            "node": "Code",
+            "node": "GitHub",
             "type": "main",
             "index": 0
           }
@@ -84,231 +88,241 @@
       ]
     }
   },
-  "createdAt": "2024-11-09T19:09:34.625Z",
-  "id": "eVrL0atkd4sCkDZk",
+  "createdAt": "2025-04-13T06:54:41.073Z",
+  "id": "5rJWAowufVs92YGX",
   "meta": null,
   "name": "My workflow 15",
   "nodes": [
     {
-      "parameters": {
-        "operation": "getAll",
-        "tableId": "messages_history",
-        "limit": 10,
-        "matchType": "allFilters",
-        "filters": {
-          "conditions": [
-            {
-              "keyName": "message",
-              "condition": "like",
-              "keyValue": "=*booking_failed_reminder_1*"
-            }
-          ]
-        }
-      },
-      "id": "7bd01c0b-2b0e-4342-a1b4-1cba2ce7f51b",
-      "name": "Supabase",
-      "type": "n8n-nodes-base.supabase",
+      "parameters": {},
+      "id": "1307288d-66d7-4ec6-b528-64f2a5c15845",
+      "name": "When clicking \"Execute Workflow\"",
+      "type": "n8n-nodes-base.manualTrigger",
       "typeVersion": 1,
       "position": [
-        880,
-        320
-      ],
-      "credentials": {
-        "supabaseApi": {
-          "id": "6stEFLC7gtftREcf",
-          "name": "Supabase Campaign manager"
-        }
-      }
-    },
-    {
-      "parameters": {
-        "jsCode": "const now = new Date();\nconst yesterday = new Date(now.getTime() - 24*60*60 * 1000);\n\nreturn [{ json: { yesterday: yesterday.toISOString() } }];\n"
-      },
-      "id": "d5a91233-f924-4197-bcbd-1087ece0e34c",
-      "name": "Code",
-      "type": "n8n-nodes-base.code",
-      "typeVersion": 2,
-      "position": [
-        600,
-        320
+        460,
+        1140
       ]
     },
     {
       "parameters": {
-        "operation": "getAll",
-        "tableId": "leads_dump",
-        "limit": 10,
+        "resource": "execution",
+        "returnAll": true,
         "filters": {
-          "conditions": [
-            {
-              "keyName": "phone",
-              "condition": "like",
-              "keyValue": "=*{{ $json.trun_ph }}*"
-            }
-          ]
-        }
-      },
-      "id": "44320529-bf8c-4287-8c4b-3319489ba692",
-      "name": "Supabase1",
-      "type": "n8n-nodes-base.supabase",
-      "typeVersion": 1,
-      "position": [
-        1520,
-        320
-      ],
-      "credentials": {
-        "supabaseApi": {
-          "id": "6stEFLC7gtftREcf",
-          "name": "Supabase Campaign manager"
-        }
-      }
-    },
-    {
-      "parameters": {
-        "batchSize": 1,
+          "workflowId": {
+            "__rl": true,
+            "value": "={{ $json.id }}",
+            "mode": "id"
+          },
+          "status": "error"
+        },
         "options": {}
       },
-      "id": "486489ab-a320-4b10-848e-de5cd9df1dd0",
-      "name": "Split In Batches",
-      "type": "n8n-nodes-base.splitInBatches",
-      "typeVersion": 2,
+      "id": "6003bb70-43a5-4a9b-acb3-7a88022a0caa",
+      "name": "n8n",
+      "type": "n8n-nodes-base.n8n",
+      "typeVersion": 1,
       "position": [
-        960,
-        120
-      ]
+        820,
+        280
+      ],
+      "credentials": {
+        "n8nApi": {
+          "id": "cQBobhU1XdEM7jP3",
+          "name": "n8n account"
+        }
+      }
     },
     {
       "parameters": {
-        "jsCode": "// Loop over input items and add a new field called 'myNewField' to the JSON of each one\nfor (const item of $input.all()) {\n  item.json.trun_ph = String(item.json.mobile).slice(-10);\n}\n\nreturn $input.all();"
+        "operation": "get",
+        "workflowId": {
+          "__rl": true,
+          "value": "HS785wpRCA9kEXIm",
+          "mode": "list",
+          "cachedResultName": "Meta-callback (#HS785wpRCA9kEXIm)"
+        }
       },
-      "id": "38082807-ce2e-40a5-aa83-aceb8a56bedf",
-      "name": "Code1",
-      "type": "n8n-nodes-base.code",
-      "typeVersion": 2,
+      "id": "2f84330a-45c1-451e-9f4c-c791ae9c97d3",
+      "name": "n8n1",
+      "type": "n8n-nodes-base.n8n",
+      "typeVersion": 1,
       "position": [
-        1200,
-        320
-      ]
+        600,
+        280
+      ],
+      "credentials": {
+        "n8nApi": {
+          "id": "cQBobhU1XdEM7jP3",
+          "name": "n8n account"
+        }
+      }
     },
     {
       "parameters": {
         "conditions": {
-          "string": [
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict"
+          },
+          "conditions": [
             {
-              "value1": "={{ $json.id }}",
-              "operation": "isEmpty"
+              "id": "3f581768-970b-40db-b96a-e3c164c540ce",
+              "leftValue": "={{ $json.retrySuccessId }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "exists",
+                "singleValue": true
+              }
             }
-          ]
-        }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
       },
-      "id": "90aed22f-f5b7-47c6-9cc2-12fde206fe05",
-      "name": "IF",
+      "id": "098464d3-0b46-4ee0-9c53-163f20ae1f95",
+      "name": "If",
       "type": "n8n-nodes-base.if",
-      "typeVersion": 1,
+      "typeVersion": 2,
       "position": [
-        2200,
-        320
+        1280,
+        480
       ]
     },
     {
       "parameters": {
-        "operation": "getAll",
-        "tableId": "visit_office",
-        "matchType": "allFilters",
-        "filters": {
-          "conditions": [
-            {
-              "keyName": "created_at",
-              "condition": "gte",
-              "keyValue": "={{ $('Code').item.json.yesterday }}"
-            },
-            {
-              "keyName": "leads_dump_id",
-              "condition": "eq",
-              "keyValue": "=1410351"
-            }
-          ]
-        }
+        "options": {}
       },
-      "id": "8fe75cd1-a396-4cb3-ab6a-9a289b5cc27d",
-      "name": "Supabase2",
-      "type": "n8n-nodes-base.supabase",
+      "id": "fcb45756-1854-4cc9-ad70-2a3abc200e72",
+      "name": "Loop Over Items",
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [
+        1040,
+        280
+      ]
+    },
+    {
+      "parameters": {
+        "resource": "execution",
+        "operation": "get",
+        "executionId": "={{ $json.id }}",
+        "options": {}
+      },
+      "id": "4779da1f-735c-4c2a-ae93-96c3508995b3",
+      "name": "n8n2",
+      "type": "n8n-nodes-base.n8n",
       "typeVersion": 1,
       "position": [
-        1860,
-        320
+        1520,
+        500
       ],
       "credentials": {
-        "supabaseApi": {
-          "id": "6stEFLC7gtftREcf",
-          "name": "Supabase Campaign manager"
+        "n8nApi": {
+          "id": "cQBobhU1XdEM7jP3",
+          "name": "n8n account"
         }
       }
     },
     {
       "parameters": {
-        "mode": "combine",
-        "mergeByFields": {
-          "values": [
-            {
-              "field1": "leads_dump_id",
-              "field2": "leads_dump_id"
-            }
-          ]
-        },
+        "resource": "audit",
+        "operation": "generate",
+        "additionalOptions": {}
+      },
+      "id": "5d723f16-4d92-4093-874c-30a5563f9c05",
+      "name": "n8n3",
+      "type": "n8n-nodes-base.n8n",
+      "typeVersion": 1,
+      "position": [
+        440,
+        480
+      ],
+      "credentials": {
+        "n8nApi": {
+          "id": "cQBobhU1XdEM7jP3",
+          "name": "n8n account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "filters": {}
+      },
+      "id": "bbcb3d5b-8619-41c1-bf6d-28ccfeb72d6c",
+      "name": "n8n4",
+      "type": "n8n-nodes-base.n8n",
+      "typeVersion": 1,
+      "position": [
+        680,
+        1140
+      ],
+      "credentials": {
+        "n8nApi": {
+          "id": "cQBobhU1XdEM7jP3",
+          "name": "n8n account"
+        }
+      }
+    },
+    {
+      "parameters": {
         "options": {}
       },
-      "id": "9df0cbb7-37c7-4f5c-8e02-29afc3953d5d",
-      "name": "Merge",
-      "type": "n8n-nodes-base.merge",
-      "typeVersion": 2.1,
-      "position": [
-        1980,
-        -200
-      ]
-    },
-    {
-      "parameters": {},
-      "id": "b1f784d9-669f-42c4-98c7-053d3f1a37f7",
-      "name": "WhatsApp Business Cloud",
-      "type": "n8n-nodes-base.whatsApp",
+      "id": "fe3bcc42-cc92-45cb-9705-2bb7a6510daf",
+      "name": "Split Out",
+      "type": "n8n-nodes-base.splitOut",
       "typeVersion": 1,
       "position": [
-        2760,
-        -120
+        1080,
+        800
       ]
     },
     {
       "parameters": {
-        "rule": {
-          "interval": [
-            {
-              "triggerAtHour": 8
-            }
-          ]
+        "options": {}
+      },
+      "id": "c2e11874-ebf6-4612-bce1-37be498fe2d3",
+      "name": "Loop Over Items1",
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [
+        900,
+        1140
+      ]
+    },
+    {
+      "parameters": {
+        "resource": "file",
+        "owner": {
+          "__rl": true,
+          "value": "me-karanm",
+          "mode": "name"
+        },
+        "repository": {
+          "__rl": true,
+          "value": "n8n-backups",
+          "mode": "list",
+          "cachedResultName": "n8n-backups",
+          "cachedResultUrl": "https://github.com/me-karanm/n8n-backups"
+        },
+        "filePath": "=workflows-metacallback/{{ $('Loop Over Items1').item.json.name }}"
+      },
+      "id": "b472779c-81bd-44f5-b494-cf7e9b92023d",
+      "name": "GitHub",
+      "type": "n8n-nodes-base.github",
+      "typeVersion": 1,
+      "position": [
+        1280,
+        1320
+      ],
+      "credentials": {
+        "githubApi": {
+          "id": "AG96HnlIamD4MIid",
+          "name": "karan's github"
         }
-      },
-      "id": "f948dd5a-7a06-42c1-8ad4-0584281f5a7c",
-      "name": "Schedule Trigger",
-      "type": "n8n-nodes-base.scheduleTrigger",
-      "typeVersion": 1.1,
-      "position": [
-        280,
-        320
-      ]
-    },
-    {
-      "parameters": {
-        "content": "create full flow here for 1 day later follow up"
-      },
-      "id": "5b4297ad-85fd-4305-90e8-6898d4fb380d",
-      "name": "Sticky Note",
-      "type": "n8n-nodes-base.stickyNote",
-      "typeVersion": 1,
-      "position": [
-        2760,
-        40
-      ]
+      }
     }
   ],
   "pinData": {},
@@ -318,6 +332,6 @@
   "staticData": null,
   "tags": [],
   "triggerCount": 0,
-  "updatedAt": "2024-11-09T19:51:32.000Z",
-  "versionId": "92e0106d-067a-45df-87fd-3db8aa768ea0"
+  "updatedAt": "2025-04-15T09:50:59.000Z",
+  "versionId": "d4083b98-15df-4cce-a008-8a123e8e2b08"
 }
