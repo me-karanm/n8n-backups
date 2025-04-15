@@ -1,0 +1,35 @@
+{
+  "active": true,
+  "connections": {},
+  "createdAt": "2025-04-04T08:27:08.842Z",
+  "id": "snhaNUupppbvlDM5",
+  "meta": null,
+  "name": "test-netcore-webhook-trigger",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "test-netcore-webhook-trigger",
+        "options": {}
+      },
+      "id": "d2b91cc6-83b3-4df3-a86b-a311b0698f2e",
+      "name": "Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1.1,
+      "position": [
+        340,
+        200
+      ],
+      "webhookId": "07f1b8bc-b0f3-4e52-96e2-c68568f3bbe9"
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 1,
+  "updatedAt": "2025-04-07T08:21:20.000Z",
+  "versionId": "acf5a3c9-ec41-405d-81f7-f71363c27e98"
+}
