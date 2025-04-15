@@ -1,0 +1,400 @@
+{
+  "active": true,
+  "connections": {
+    "Supabase2": {
+      "main": [
+        [
+          {
+            "node": "IF1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "IF1": {
+      "main": [
+        [
+          {
+            "node": "Supabase5",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "HTTP Request2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request2": {
+      "main": [
+        [
+          {
+            "node": "Supabase3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Supabase3": {
+      "main": [
+        [
+          {
+            "node": "WhatsApp Business Cloud1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "WhatsApp Business Cloud1": {
+      "main": [
+        [
+          {
+            "node": "Supabase6",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Supabase5": {
+      "main": [
+        [
+          {
+            "node": "Merge1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Supabase6": {
+      "main": [
+        [
+          {
+            "node": "Merge1",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Supabase2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2023-08-16T06:10:13.036Z",
+  "id": "XYS1haAYWOKI68wu",
+  "meta": null,
+  "name": "register-webhook-voice",
+  "nodes": [
+    {
+      "parameters": {
+        "operation": "getAll",
+        "tableId": "zoom_webinar",
+        "limit": 1,
+        "matchType": "allFilters",
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "email_id",
+              "condition": "eq",
+              "keyValue": "={{ $json.body.email }}"
+            },
+            {
+              "keyName": "webinar_id",
+              "condition": "eq",
+              "keyValue": "=1"
+            }
+          ]
+        }
+      },
+      "id": "d06db9d7-88c9-4b39-a02c-70abfc591ad4",
+      "name": "Supabase2",
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        -500,
+        180
+      ],
+      "alwaysOutputData": true,
+      "credentials": {
+        "supabaseApi": {
+          "id": "ptZNo3FAaF0XYQKi",
+          "name": "Supabase account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "boolean": [
+            {
+              "value1": "={{ $json.hasOwnProperty('id') }}",
+              "value2": true
+            }
+          ]
+        }
+      },
+      "id": "cfcc03ac-3c76-42df-9f88-e7bc45afbf87",
+      "name": "IF1",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        -280,
+        180
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.zoom.us/v2/webinars/87361050576/registrants",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "zoomOAuth2Api",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"first_name\": \"{{ $('Webhook').item.json.body.first_name }}\",\n  \"last_name\": \"\",\n  \"email\": \"{{ $('Webhook').item.json.body.email }}\",\n  \"phone\": \"{{ $('Webhook').item.json.body.phone }}\"\n}  ",
+        "options": {}
+      },
+      "id": "baa8ff4e-be67-4fd9-95d9-eab74679c8b0",
+      "name": "HTTP Request2",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        -60,
+        300
+      ],
+      "credentials": {
+        "zoomOAuth2Api": {
+          "id": "DxB7OzJRHsI70Odr",
+          "name": "Zoom account"
+        }
+      },
+      "continueOnFail": true
+    },
+    {
+      "parameters": {
+        "tableId": "zoom_webinar",
+        "fieldsUi": {
+          "fieldValues": [
+            {
+              "fieldId": "first_name",
+              "fieldValue": "={{ $('Webhook').item.json.body.first_name }}"
+            },
+            {
+              "fieldId": "email_id",
+              "fieldValue": "={{ $('Webhook').item.json.body.email }}"
+            },
+            {
+              "fieldId": "location",
+              "fieldValue": "={{ $('Webhook').item.json.body.location }}"
+            },
+            {
+              "fieldId": "contact",
+              "fieldValue": "={{ $('Webhook').item.json.body.phone }}"
+            },
+            {
+              "fieldId": "join_url",
+              "fieldValue": "={{ $json.join_url }}"
+            },
+            {
+              "fieldId": "zoom_id",
+              "fieldValue": "={{ $json.id }}"
+            },
+            {
+              "fieldId": "src",
+              "fieldValue": "={{ $('Webhook').item.json.body.src }}"
+            },
+            {
+              "fieldId": "webinar_id",
+              "fieldValue": "=1"
+            }
+          ]
+        }
+      },
+      "id": "ceca4b36-ff3f-4f9a-9c17-4f58c6d74a28",
+      "name": "Supabase3",
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        120,
+        300
+      ],
+      "credentials": {
+        "supabaseApi": {
+          "id": "ptZNo3FAaF0XYQKi",
+          "name": "Supabase account"
+        }
+      },
+      "continueOnFail": true
+    },
+    {
+      "parameters": {
+        "phoneNumberId": "115484311630426",
+        "recipientPhoneNumber": "={{ $json.contact }}",
+        "template": "webinar_thank_you_message|en",
+        "components": {
+          "component": [
+            {
+              "bodyParameters": {
+                "parameter": [
+                  {
+                    "text": "={{ $json.first_name }}"
+                  },
+                  {
+                    "text": "Placement Drive #2 for Indian Accountants to Work in the US"
+                  },
+                  {
+                    "text": "16th Aug"
+                  },
+                  {
+                    "text": "07:30 PM(IST)"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      },
+      "id": "7af33e39-2090-41be-b7da-82e624c6cabd",
+      "name": "WhatsApp Business Cloud1",
+      "type": "n8n-nodes-base.whatsApp",
+      "typeVersion": 1,
+      "position": [
+        300,
+        300
+      ],
+      "credentials": {
+        "whatsAppApi": {
+          "id": "SiXp0JiQTXH4kKE6",
+          "name": "WhatsApp account"
+        }
+      },
+      "continueOnFail": true
+    },
+    {
+      "parameters": {},
+      "id": "750a4bd3-5450-49e5-a356-11dae81984df",
+      "name": "Merge1",
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 2.1,
+      "position": [
+        780,
+        180
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "tableId": "voice_register",
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "id",
+              "condition": "eq",
+              "keyValue": "={{ $('Webhook').item.json.body.id }}"
+            }
+          ]
+        },
+        "fieldsUi": {
+          "fieldValues": [
+            {
+              "fieldId": "status",
+              "fieldValue": "already exists"
+            }
+          ]
+        }
+      },
+      "id": "ea6c5a35-703d-434f-8c48-e0f7e7a293f6",
+      "name": "Supabase5",
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        220,
+        80
+      ],
+      "credentials": {
+        "supabaseApi": {
+          "id": "ptZNo3FAaF0XYQKi",
+          "name": "Supabase account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "tableId": "voice_register",
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "id",
+              "condition": "eq",
+              "keyValue": "={{ $('Webhook').item.json.body.id }}"
+            }
+          ]
+        },
+        "fieldsUi": {
+          "fieldValues": [
+            {
+              "fieldId": "status",
+              "fieldValue": "done"
+            }
+          ]
+        }
+      },
+      "id": "79469f36-be52-4f72-9af7-b038a4fd0f73",
+      "name": "Supabase6",
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        480,
+        300
+      ],
+      "credentials": {
+        "supabaseApi": {
+          "id": "ptZNo3FAaF0XYQKi",
+          "name": "Supabase account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "d3215e75-a7d0-4ee3-84f0-ce15922b3a33",
+        "options": {}
+      },
+      "id": "51c67754-74e7-46d4-8d92-6a17f21c0386",
+      "name": "Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        -680,
+        180
+      ],
+      "webhookId": "d3215e75-a7d0-4ee3-84f0-ce15922b3a33"
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 1,
+  "updatedAt": "2023-08-16T06:40:29.000Z",
+  "versionId": "ac6cc582-e1ce-4a55-a95a-0d463a9edd95"
+}
