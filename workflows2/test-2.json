@@ -1,0 +1,158 @@
+{
+  "active": false,
+  "connections": {
+    "When clicking \"Execute Workflow\"": {
+      "main": [
+        [
+          {
+            "node": "Supabase",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Supabase": {
+      "main": [
+        [
+          {
+            "node": "Split In Batches",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Split In Batches": {
+      "main": [
+        [
+          {
+            "node": "Execute Workflow",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Split In Batches",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "WhatsApp Business Cloud": {
+      "main": [
+        []
+      ]
+    },
+    "Execute Workflow": {
+      "main": [
+        []
+      ]
+    }
+  },
+  "createdAt": "2023-08-12T19:07:14.868Z",
+  "id": "Ja4UqwsO5yH3O4XO",
+  "meta": null,
+  "name": "test-2",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "6980cf62-c0c9-4621-9415-4535e3a4940d",
+      "name": "When clicking \"Execute Workflow\"",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        540,
+        320
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "getAll",
+        "tableId": "zoom_webinar",
+        "returnAll": true,
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "contact",
+              "condition": "ilike",
+              "keyValue": "%6238133298"
+            }
+          ]
+        }
+      },
+      "id": "0651b3ec-7f13-4f0d-be31-002a8720045d",
+      "name": "Supabase",
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        760,
+        320
+      ],
+      "credentials": {
+        "supabaseApi": {
+          "id": "ptZNo3FAaF0XYQKi",
+          "name": "Supabase account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "id": "024c403e-0ec9-4071-b402-d7ed220556c1",
+      "name": "Split In Batches",
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 2,
+      "position": [
+        1000,
+        320
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "send",
+        "phoneNumberId": "115484311630426",
+        "recipientPhoneNumber": "={{ $json.contact }}",
+        "textBody": "hello test",
+        "additionalFields": {}
+      },
+      "id": "520d3ab2-d0c0-4e4b-94e1-da17762c4745",
+      "name": "WhatsApp Business Cloud",
+      "type": "n8n-nodes-base.whatsApp",
+      "typeVersion": 1,
+      "position": [
+        1440,
+        280
+      ],
+      "credentials": {
+        "whatsAppApi": {
+          "id": "SiXp0JiQTXH4kKE6",
+          "name": "WhatsApp account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "workflowId": "Ja4UqwsO5yH3O4XO"
+      },
+      "id": "6f5cd3c3-fb51-4534-ba8c-c19cf389ff59",
+      "name": "Execute Workflow",
+      "type": "n8n-nodes-base.executeWorkflow",
+      "typeVersion": 1,
+      "position": [
+        1220,
+        300
+      ]
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2023-08-12T19:26:49.000Z",
+  "versionId": "990455ca-e305-4e7d-861d-83bd7bbfb086"
+}
