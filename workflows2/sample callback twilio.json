@@ -1,0 +1,35 @@
+{
+  "active": true,
+  "connections": {},
+  "createdAt": "2024-03-09T14:33:56.858Z",
+  "id": "JElbzyO0ezr2GM5u",
+  "meta": null,
+  "name": "sample callback twilio",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "b3e911cb-cba1-4020-8229-0c6bb490bbd1",
+        "options": {}
+      },
+      "id": "fc501bf0-5727-444b-98c3-87d7609a539f",
+      "name": "Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1.1,
+      "position": [
+        660,
+        320
+      ],
+      "webhookId": "b3e911cb-cba1-4020-8229-0c6bb490bbd1"
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 1,
+  "updatedAt": "2024-03-09T14:34:05.000Z",
+  "versionId": "d8cad525-7602-432d-897d-0fa3771c501e"
+}
