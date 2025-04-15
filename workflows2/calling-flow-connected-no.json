@@ -1,0 +1,30 @@
+{
+  "active": false,
+  "connections": {},
+  "createdAt": "2023-10-10T09:36:53.599Z",
+  "id": "W9K4vFVX5smsEqg1",
+  "meta": null,
+  "name": "calling-flow-connected-no",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "8a9952ed-2509-4839-94eb-7979bf9d08b3",
+      "name": "Execute Workflow Trigger",
+      "type": "n8n-nodes-base.executeWorkflowTrigger",
+      "typeVersion": 1,
+      "position": [
+        720,
+        380
+      ]
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2023-10-10T09:37:15.000Z",
+  "versionId": "ea1303ce-bc09-46d3-b22d-419dbd21eeee"
+}
