@@ -5,40 +5,7 @@
       "main": [
         [
           {
-            "node": "Google Sheets",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Google Sheets": {
-      "main": [
-        [
-          {
-            "node": "Split In Batches",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Split In Batches": {
-      "main": [
-        [
-          {
-            "node": "Postgres",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Postgres": {
-      "main": [
-        [
-          {
-            "node": "Split In Batches",
+            "node": "HTTP Request",
             "type": "main",
             "index": 0
           }
@@ -46,264 +13,38 @@
       ]
     }
   },
-  "createdAt": "2024-07-10T15:33:14.206Z",
-  "id": "tZSj0lXnDVq1N633",
+  "createdAt": "2024-12-02T10:19:04.206Z",
+  "id": "WSL8DnHTjbPHTRGi",
   "meta": null,
   "name": "My workflow 12",
   "nodes": [
     {
       "parameters": {},
-      "id": "749309fa-11d0-4bd1-a9f0-55aae1db829b",
+      "id": "2f725e68-cc5b-4437-aefb-925a67482804",
       "name": "When clicking \"Execute Workflow\"",
       "type": "n8n-nodes-base.manualTrigger",
       "typeVersion": 1,
       "position": [
-        400,
-        260
+        760,
+        360
       ]
     },
     {
       "parameters": {
-        "schema": {
-          "__rl": true,
-          "mode": "list",
-          "value": "public"
-        },
-        "table": {
-          "__rl": true,
-          "value": "post_post",
-          "mode": "list",
-          "cachedResultName": "post_post"
-        },
-        "columns": {
-          "mappingMode": "defineBelow",
-          "value": {
-            "active": true,
-            "featured": true,
-            "id": "={{ $json.id_db }}",
-            "description": "={{ $json.des }}",
-            "title": "={{ $json.Title }}",
-            "post_type": "={{ $json.type }}",
-            "metadata": " ",
-            "full_video_url": "={{ $json.Link }}",
-            "priority": 1,
-            "likes": 33,
-            "dislikes": 1,
-            "updated_at": "2024-07-10T15:42:34.000Z"
-          },
-          "matchingColumns": [
-            "id"
-          ],
-          "schema": [
-            {
-              "id": "id",
-              "displayName": "id",
-              "required": true,
-              "defaultMatch": true,
-              "display": true,
-              "type": "string",
-              "canBeUsedToMatch": true,
-              "removed": false
-            },
-            {
-              "id": "title",
-              "displayName": "title",
-              "required": false,
-              "defaultMatch": false,
-              "display": true,
-              "type": "string",
-              "canBeUsedToMatch": true
-            },
-            {
-              "id": "post_type",
-              "displayName": "post_type",
-              "required": true,
-              "defaultMatch": false,
-              "display": true,
-              "type": "string",
-              "canBeUsedToMatch": true
-            },
-            {
-              "id": "description",
-              "displayName": "description",
-              "required": false,
-              "defaultMatch": false,
-              "display": true,
-              "type": "string",
-              "canBeUsedToMatch": true
-            },
-            {
-              "id": "metadata",
-              "displayName": "metadata",
-              "required": true,
-              "defaultMatch": false,
-              "display": true,
-              "type": "string",
-              "canBeUsedToMatch": true
-            },
-            {
-              "id": "full_video_url",
-              "displayName": "full_video_url",
-              "required": false,
-              "defaultMatch": false,
-              "display": true,
-              "type": "string",
-              "canBeUsedToMatch": true
-            },
-            {
-              "id": "blog_url",
-              "displayName": "blog_url",
-              "required": false,
-              "defaultMatch": false,
-              "display": true,
-              "type": "string",
-              "canBeUsedToMatch": true
-            },
-            {
-              "id": "active",
-              "displayName": "active",
-              "required": true,
-              "defaultMatch": false,
-              "display": true,
-              "type": "boolean",
-              "canBeUsedToMatch": true
-            },
-            {
-              "id": "featured",
-              "displayName": "featured",
-              "required": true,
-              "defaultMatch": false,
-              "display": true,
-              "type": "boolean",
-              "canBeUsedToMatch": true
-            },
-            {
-              "id": "priority",
-              "displayName": "priority",
-              "required": true,
-              "defaultMatch": false,
-              "display": true,
-              "type": "number",
-              "canBeUsedToMatch": true
-            },
-            {
-              "id": "likes",
-              "displayName": "likes",
-              "required": true,
-              "defaultMatch": false,
-              "display": true,
-              "type": "number",
-              "canBeUsedToMatch": true
-            },
-            {
-              "id": "dislikes",
-              "displayName": "dislikes",
-              "required": true,
-              "defaultMatch": false,
-              "display": true,
-              "type": "number",
-              "canBeUsedToMatch": true
-            },
-            {
-              "id": "created_at",
-              "displayName": "created_at",
-              "required": false,
-              "defaultMatch": false,
-              "display": true,
-              "type": "dateTime",
-              "canBeUsedToMatch": true
-            },
-            {
-              "id": "updated_at",
-              "displayName": "updated_at",
-              "required": true,
-              "defaultMatch": false,
-              "display": true,
-              "type": "dateTime",
-              "canBeUsedToMatch": true
-            },
-            {
-              "id": "modified_by_id",
-              "displayName": "modified_by_id",
-              "required": false,
-              "defaultMatch": false,
-              "display": true,
-              "type": "string",
-              "canBeUsedToMatch": true
-            },
-            {
-              "id": "user_id",
-              "displayName": "user_id",
-              "required": false,
-              "defaultMatch": false,
-              "display": true,
-              "type": "string",
-              "canBeUsedToMatch": true
-            }
-          ]
-        },
+        "method": "POST",
+        "url": "https://webhooks.workato.com/webhooks/rest/c402b34d-db22-4508-8ee9-7b2fd470f594/fetch_uuid",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n\"name\": \"Karan\",\n\"email\": \"mandalam.karan@mileseducation.com\"\n}",
         "options": {}
       },
-      "id": "e1220597-0e60-4d6e-8b95-bc42b6d60d6f",
-      "name": "Postgres",
-      "type": "n8n-nodes-base.postgres",
-      "typeVersion": 2.2,
+      "id": "23e933c2-7ad7-43a3-9e0d-d8da736e46ba",
+      "name": "HTTP Request",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
       "position": [
-        1180,
-        0
-      ],
-      "credentials": {
-        "postgres": {
-          "id": "X7ZgmedND25NEC31",
-          "name": "Postgres account"
-        }
-      }
-    },
-    {
-      "parameters": {
-        "authentication": "serviceAccount",
-        "documentId": {
-          "__rl": true,
-          "value": "https://docs.google.com/spreadsheets/d/1lZMttydEl8JY9DX7B-ULjUk0HOPkoRKohR9tsrg_6hg/edit?usp=sharing",
-          "mode": "url",
-          "__regex": "https:\\/\\/(?:drive|docs)\\.google\\.com(?:\\/.*|)\\/d\\/([0-9a-zA-Z\\-_]+)(?:\\/.*|)"
-        },
-        "sheetName": {
-          "__rl": true,
-          "value": "gid=0",
-          "mode": "list",
-          "cachedResultName": "Sheet1",
-          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1lZMttydEl8JY9DX7B-ULjUk0HOPkoRKohR9tsrg_6hg/edit#gid=0"
-        },
-        "options": {}
-      },
-      "id": "08707764-39da-4440-829f-e3808506cece",
-      "name": "Google Sheets",
-      "type": "n8n-nodes-base.googleSheets",
-      "typeVersion": 4,
-      "position": [
-        620,
-        260
-      ],
-      "credentials": {
-        "googleApi": {
-          "id": "aiCprsG1ZRAOjrNn",
-          "name": "Google Sheets account"
-        }
-      }
-    },
-    {
-      "parameters": {
-        "batchSize": 1,
-        "options": {}
-      },
-      "id": "a0764555-52fb-4571-a260-2408820e548b",
-      "name": "Split In Batches",
-      "type": "n8n-nodes-base.splitInBatches",
-      "typeVersion": 2,
-      "position": [
-        920,
-        260
+        1200,
+        360
       ]
     }
   ],
@@ -314,6 +55,6 @@
   "staticData": null,
   "tags": [],
   "triggerCount": 0,
-  "updatedAt": "2024-07-10T15:42:42.000Z",
-  "versionId": "97f84c6c-2fda-4dc1-9a86-f75fe95b6f49"
+  "updatedAt": "2024-12-02T11:12:52.000Z",
+  "versionId": "38fb9b3b-476d-48d8-a5ec-aa69f3261ffc"
 }
