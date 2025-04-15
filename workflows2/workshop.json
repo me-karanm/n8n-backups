@@ -1,0 +1,135 @@
+{
+  "active": false,
+  "connections": {
+    "Facebook Trigger": {
+      "main": [
+        [
+          {
+            "node": "Facebook Graph API",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2024-03-09T14:17:10.763Z",
+  "id": "7OvxnTegpMnclOBR",
+  "meta": null,
+  "name": "workshop",
+  "nodes": [
+    {
+      "parameters": {
+        "page": {
+          "__rl": true,
+          "value": "178201352233967",
+          "mode": "list",
+          "cachedResultName": "Miles Education - CPA, CMA, CFA",
+          "cachedResultUrl": "https://facebook.com/178201352233967"
+        },
+        "form": {
+          "__rl": true,
+          "value": "7127526630694196",
+          "mode": "list",
+          "cachedResultName": "Book_Appointment_LG_Form_Day&Time"
+        },
+        "options": {
+          "simplifyOutput": true
+        }
+      },
+      "id": "59997fe9-151c-42fe-9d71-e1b581926786",
+      "name": "Facebook Lead Ads Trigger",
+      "type": "n8n-nodes-base.facebookLeadAdsTrigger",
+      "typeVersion": 1,
+      "position": [
+        440,
+        120
+      ],
+      "webhookId": "f685880e-7951-46bb-90d3-331a178cdd40",
+      "credentials": {
+        "facebookLeadAdsOAuth2Api": {
+          "id": "fvfhtxQaqWoBpj1y",
+          "name": "Facebook Lead Ads account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "appId": "300874662402470",
+        "object": "instagram",
+        "fields": [
+          "*"
+        ],
+        "options": {}
+      },
+      "id": "532bde1b-c615-4068-a434-ea50569444d0",
+      "name": "Facebook Trigger",
+      "type": "n8n-nodes-base.facebookTrigger",
+      "typeVersion": 1,
+      "position": [
+        660,
+        120
+      ],
+      "webhookId": "3b876ff0-5bbb-4d06-b980-79bca8cd4b2f",
+      "credentials": {
+        "facebookGraphAppApi": {
+          "id": "JNfVx3Y41TtHEgNe",
+          "name": "Facebook Graph (App) account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "graphApiVersion": "v17.0",
+        "options": {}
+      },
+      "id": "7ca1b196-bb6e-419b-bf2d-b3cc4e5705be",
+      "name": "Facebook Graph API",
+      "type": "n8n-nodes-base.facebookGraphApi",
+      "typeVersion": 1,
+      "position": [
+        880,
+        120
+      ],
+      "credentials": {
+        "facebookGraphApi": {
+          "id": "PlEgYK1ahGFmPrw8",
+          "name": "Facebook Graph account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "appId": "300874662402470",
+        "fields": [
+          "*"
+        ],
+        "options": {}
+      },
+      "id": "3f9d87d7-8608-4d5f-9524-61c43c488870",
+      "name": "Facebook Trigger1",
+      "type": "n8n-nodes-base.facebookTrigger",
+      "typeVersion": 1,
+      "position": [
+        1100,
+        120
+      ],
+      "webhookId": "0498aa2b-7267-41b6-a971-4065f504394e",
+      "credentials": {
+        "facebookGraphAppApi": {
+          "id": "JNfVx3Y41TtHEgNe",
+          "name": "Facebook Graph (App) account 2"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2024-03-18T14:30:35.000Z",
+  "versionId": "d2fc2eea-3a0f-4269-a85a-6d503825b7cd"
+}
