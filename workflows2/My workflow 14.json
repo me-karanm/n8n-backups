@@ -5,40 +5,7 @@
       "main": [
         [
           {
-            "node": "Google Sheets",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Google Sheets": {
-      "main": [
-        [
-          {
-            "node": "Split In Batches",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Split In Batches": {
-      "main": [
-        [
-          {
-            "node": "Postgres",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Postgres": {
-      "main": [
-        [
-          {
-            "node": "Split In Batches",
+            "node": "WhatsApp Business Cloud",
             "type": "main",
             "index": 0
           }
@@ -46,557 +13,94 @@
       ]
     }
   },
-  "createdAt": "2024-10-24T16:01:59.560Z",
-  "id": "hUUOro9ow0qijpY9",
+  "createdAt": "2024-12-20T12:09:24.058Z",
+  "id": "0tD07Ehz9w7wBd6T",
   "meta": null,
   "name": "My workflow 14",
   "nodes": [
     {
       "parameters": {},
-      "id": "b8d08537-500e-46c1-9d5b-07b20dcbf3fa",
+      "id": "258492e7-9f82-4f01-8929-170e5e209520",
       "name": "When clicking \"Execute Workflow\"",
       "type": "n8n-nodes-base.manualTrigger",
       "typeVersion": 1,
       "position": [
-        680,
-        280
+        320,
+        320
       ]
     },
     {
       "parameters": {
-        "authentication": "serviceAccount",
-        "documentId": {
-          "__rl": true,
-          "value": "https://docs.google.com/spreadsheets/d/1IoxHU8MAdVpflOQFCkdNBbgVotDjgXLiqhockYgrlC4/edit?gid=640768503#gid=640768503",
-          "mode": "url",
-          "__regex": "https:\\/\\/(?:drive|docs)\\.google\\.com(?:\\/.*|)\\/d\\/([0-9a-zA-Z\\-_]+)(?:\\/.*|)"
-        },
-        "sheetName": {
-          "__rl": true,
-          "value": 1844781074,
-          "mode": "list",
-          "cachedResultName": "Sheet6",
-          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1IoxHU8MAdVpflOQFCkdNBbgVotDjgXLiqhockYgrlC4/edit#gid=1844781074"
-        },
-        "options": {}
-      },
-      "id": "5b8b150c-28a8-4b42-af9d-7a1a96f837b0",
-      "name": "Google Sheets",
-      "type": "n8n-nodes-base.googleSheets",
-      "typeVersion": 4,
-      "position": [
-        900,
-        160
-      ],
-      "credentials": {
-        "googleApi": {
-          "id": "aiCprsG1ZRAOjrNn",
-          "name": "Google Sheets account"
-        }
-      }
-    },
-    {
-      "parameters": {
-        "batchSize": 1,
-        "options": {}
-      },
-      "id": "d07f071b-fbc7-466a-84f0-fffe35bb1aed",
-      "name": "Split In Batches",
-      "type": "n8n-nodes-base.splitInBatches",
-      "typeVersion": 2,
-      "position": [
-        1120,
-        160
-      ]
-    },
-    {
-      "parameters": {
-        "schema": {
-          "__rl": true,
-          "mode": "list",
-          "value": "public"
-        },
-        "table": {
-          "__rl": true,
-          "value": "loan",
-          "mode": "list",
-          "cachedResultName": "loan"
-        },
-        "columns": {
-          "mappingMode": "defineBelow",
-          "value": {
-            "status": true,
-            "id": "={{ $json.id }}",
-            "created_by": "={{ $json.created_by }}",
-            "updated_by": "={{ $json.updated_by }}",
-            "created_at": "2024-10-24T15:55:02.000Z",
-            "updated_at": "2024-10-24T15:55:04.000Z",
-            "fullName": "={{ $json.fullName }}",
-            "gender": "1",
-            "presentAge": "={{ $json.presentAge }}",
-            "email": "={{ $json.email }}",
-            "contactNumber": "={{ $json.contactNumber }}",
-            "pan": "={{ $json.contactNumber }}",
-            "aadhaarNumber": "={{ $json.contactNumber }}",
-            "loanType": "1",
-            "tenure": "2",
-            "fullAddress": "={{ $json.fullAddress }}",
-            "city": " ",
-            "name_Of_Company": "={{ $json.name_Of_Company }}",
-            "application_Id": "={{ $json.application_Id }}",
-            "EMI": "={{ $json.EMI }}",
-            "ROI": "=0",
-            "Disbursed_Amt": "={{ $json.Disbursed_Amt }}",
-            "amount": "={{ $json.amount }}",
-            "dateOfBirth": "={{ new Date($json.dateOfBirth + 'T00:00:00').toISOString() }}",
-            "approved_amount": "={{ $json.approved_amount }}",
-            "application_status": "={{ $json.application_status }}",
-            "occupation": "={{ $json.occupation }}",
-            "state": "=  ",
-            "utr": "={{ $json.utr }}",
-            "urn": "={{ $json.urn }}",
-            "pinCode": "={{ $json.pinCode }}",
-            "monthly_Income": "0"
-          },
-          "matchingColumns": [
-            "id"
-          ],
-          "schema": [
+        "phoneNumberId": "108019349036743",
+        "recipientPhoneNumber": "+919460596406",
+        "template": "spoc_connect_from_mf|en_US",
+        "components": {
+          "component": [
             {
-              "id": "id",
-              "displayName": "id",
-              "required": false,
-              "defaultMatch": true,
-              "display": true,
-              "type": "number",
-              "canBeUsedToMatch": true,
-              "removed": false
+              "bodyParameters": {
+                "parameter": [
+                  {
+                    "text": "={{ $json.first_name }}"
+                  },
+                  {
+                    "text": "={{ $json.course }}"
+                  },
+                  {
+                    "text": "={{ $json.SPOC }}"
+                  },
+                  {
+                    "text": "={{ $json.number }}"
+                  }
+                ]
+              }
             },
             {
-              "id": "status",
-              "displayName": "status",
-              "required": true,
-              "defaultMatch": false,
-              "display": true,
-              "type": "boolean",
-              "canBeUsedToMatch": true
-            },
-            {
-              "id": "created_by",
-              "displayName": "created_by",
-              "required": false,
-              "defaultMatch": false,
-              "display": true,
-              "type": "number",
-              "canBeUsedToMatch": true
-            },
-            {
-              "id": "updated_by",
-              "displayName": "updated_by",
-              "required": false,
-              "defaultMatch": false,
-              "display": true,
-              "type": "number",
-              "canBeUsedToMatch": true
-            },
-            {
-              "id": "created_at",
-              "displayName": "created_at",
-              "required": true,
-              "defaultMatch": false,
-              "display": true,
-              "type": "dateTime",
-              "canBeUsedToMatch": true
-            },
-            {
-              "id": "updated_at",
-              "displayName": "updated_at",
-              "required": true,
-              "defaultMatch": false,
-              "display": true,
-              "type": "dateTime",
-              "canBeUsedToMatch": true
-            },
-            {
-              "id": "fullName",
-              "displayName": "fullName",
-              "required": true,
-              "defaultMatch": false,
-              "display": true,
-              "type": "string",
-              "canBeUsedToMatch": true
-            },
-            {
-              "id": "gender",
-              "displayName": "gender",
-              "required": true,
-              "defaultMatch": false,
-              "display": true,
-              "type": "options",
-              "canBeUsedToMatch": true,
-              "options": [
-                {
-                  "name": "1",
-                  "value": "1"
-                },
-                {
-                  "name": "2",
-                  "value": "2"
+              "type": "button",
+              "sub_type": "url",
+              "buttonParameters": {
+                "parameter": {
+                  "payload": "={{ $json.card }}"
                 }
-              ]
-            },
-            {
-              "id": "presentAge",
-              "displayName": "presentAge",
-              "required": true,
-              "defaultMatch": false,
-              "display": true,
-              "type": "number",
-              "canBeUsedToMatch": true
-            },
-            {
-              "id": "email",
-              "displayName": "email",
-              "required": true,
-              "defaultMatch": false,
-              "display": true,
-              "type": "string",
-              "canBeUsedToMatch": true
-            },
-            {
-              "id": "contactNumber",
-              "displayName": "contactNumber",
-              "required": true,
-              "defaultMatch": false,
-              "display": true,
-              "type": "string",
-              "canBeUsedToMatch": true
-            },
-            {
-              "id": "pan",
-              "displayName": "pan",
-              "required": true,
-              "defaultMatch": false,
-              "display": true,
-              "type": "string",
-              "canBeUsedToMatch": true
-            },
-            {
-              "id": "aadhaarNumber",
-              "displayName": "aadhaarNumber",
-              "required": true,
-              "defaultMatch": false,
-              "display": true,
-              "type": "string",
-              "canBeUsedToMatch": true
-            },
-            {
-              "id": "loanType",
-              "displayName": "loanType",
-              "required": true,
-              "defaultMatch": false,
-              "display": true,
-              "type": "options",
-              "canBeUsedToMatch": true,
-              "options": [
-                {
-                  "name": "1",
-                  "value": "1"
-                }
-              ]
-            },
-            {
-              "id": "tenure",
-              "displayName": "tenure",
-              "required": true,
-              "defaultMatch": false,
-              "display": true,
-              "type": "options",
-              "canBeUsedToMatch": true,
-              "options": [
-                {
-                  "name": "0",
-                  "value": "0"
-                },
-                {
-                  "name": "1",
-                  "value": "1"
-                },
-                {
-                  "name": "2",
-                  "value": "2"
-                }
-              ]
-            },
-            {
-              "id": "fullAddress",
-              "displayName": "fullAddress",
-              "required": true,
-              "defaultMatch": false,
-              "display": true,
-              "type": "string",
-              "canBeUsedToMatch": true
-            },
-            {
-              "id": "pinCode",
-              "displayName": "pinCode",
-              "required": true,
-              "defaultMatch": false,
-              "display": true,
-              "type": "string",
-              "canBeUsedToMatch": true
-            },
-            {
-              "id": "city",
-              "displayName": "city",
-              "required": true,
-              "defaultMatch": false,
-              "display": true,
-              "type": "string",
-              "canBeUsedToMatch": true
-            },
-            {
-              "id": "alternate_Contact_Number",
-              "displayName": "alternate_Contact_Number",
-              "required": false,
-              "defaultMatch": false,
-              "display": true,
-              "type": "string",
-              "canBeUsedToMatch": true
-            },
-            {
-              "id": "name_Of_Company",
-              "displayName": "name_Of_Company",
-              "required": true,
-              "defaultMatch": false,
-              "display": true,
-              "type": "string",
-              "canBeUsedToMatch": true
-            },
-            {
-              "id": "applicant_Id",
-              "displayName": "applicant_Id",
-              "required": false,
-              "defaultMatch": false,
-              "display": true,
-              "type": "string",
-              "canBeUsedToMatch": true
-            },
-            {
-              "id": "application_Id",
-              "displayName": "application_Id",
-              "required": false,
-              "defaultMatch": false,
-              "display": true,
-              "type": "string",
-              "canBeUsedToMatch": true
-            },
-            {
-              "id": "dropped_at",
-              "displayName": "dropped_at",
-              "required": false,
-              "defaultMatch": false,
-              "display": true,
-              "type": "dateTime",
-              "canBeUsedToMatch": true
-            },
-            {
-              "id": "programId",
-              "displayName": "programId",
-              "required": false,
-              "defaultMatch": false,
-              "display": true,
-              "type": "number",
-              "canBeUsedToMatch": true
-            },
-            {
-              "id": "leadId",
-              "displayName": "leadId",
-              "required": false,
-              "defaultMatch": false,
-              "display": true,
-              "type": "number",
-              "canBeUsedToMatch": true
-            },
-            {
-              "id": "state",
-              "displayName": "state",
-              "required": true,
-              "defaultMatch": false,
-              "display": true,
-              "type": "string",
-              "canBeUsedToMatch": true
-            },
-            {
-              "id": "occupation",
-              "displayName": "occupation",
-              "required": true,
-              "defaultMatch": false,
-              "display": true,
-              "type": "string",
-              "canBeUsedToMatch": true
-            },
-            {
-              "id": "application_status",
-              "displayName": "application_status",
-              "required": true,
-              "defaultMatch": false,
-              "display": true,
-              "type": "options",
-              "canBeUsedToMatch": true,
-              "options": [
-                {
-                  "name": "Created",
-                  "value": "Created"
-                },
-                {
-                  "name": "Pending",
-                  "value": "Pending"
-                },
-                {
-                  "name": "Approved",
-                  "value": "Approved"
-                },
-                {
-                  "name": "Rejected",
-                  "value": "Rejected"
-                },
-                {
-                  "name": "Ready To Disbursed",
-                  "value": "Ready To Disbursed"
-                },
-                {
-                  "name": "Disbursed",
-                  "value": "Disbursed"
-                }
-              ]
-            },
-            {
-              "id": "approved_amount",
-              "displayName": "approved_amount",
-              "required": false,
-              "defaultMatch": false,
-              "display": true,
-              "type": "number",
-              "canBeUsedToMatch": true
-            },
-            {
-              "id": "urn",
-              "displayName": "urn",
-              "required": false,
-              "defaultMatch": false,
-              "display": true,
-              "type": "string",
-              "canBeUsedToMatch": true
-            },
-            {
-              "id": "utr",
-              "displayName": "utr",
-              "required": false,
-              "defaultMatch": false,
-              "display": true,
-              "type": "string",
-              "canBeUsedToMatch": true
-            },
-            {
-              "id": "dateOfBirth",
-              "displayName": "dateOfBirth",
-              "required": true,
-              "defaultMatch": false,
-              "display": true,
-              "type": "dateTime",
-              "canBeUsedToMatch": true
-            },
-            {
-              "id": "amount",
-              "displayName": "amount",
-              "required": true,
-              "defaultMatch": false,
-              "display": true,
-              "type": "number",
-              "canBeUsedToMatch": true
-            },
-            {
-              "id": "monthly_Income",
-              "displayName": "monthly_Income",
-              "required": true,
-              "defaultMatch": false,
-              "display": true,
-              "type": "string",
-              "canBeUsedToMatch": true
-            },
-            {
-              "id": "Disbursed_Amt",
-              "displayName": "Disbursed_Amt",
-              "required": true,
-              "defaultMatch": false,
-              "display": true,
-              "type": "number",
-              "canBeUsedToMatch": true
-            },
-            {
-              "id": "ROI",
-              "displayName": "ROI",
-              "required": true,
-              "defaultMatch": false,
-              "display": true,
-              "type": "number",
-              "canBeUsedToMatch": true
-            },
-            {
-              "id": "EMI",
-              "displayName": "EMI",
-              "required": true,
-              "defaultMatch": false,
-              "display": true,
-              "type": "number",
-              "canBeUsedToMatch": true
-            },
-            {
-              "id": "loan_status_created_at",
-              "displayName": "loan_status_created_at",
-              "required": false,
-              "defaultMatch": false,
-              "display": true,
-              "type": "dateTime",
-              "canBeUsedToMatch": true
-            },
-            {
-              "id": "loan_drop_reason",
-              "displayName": "loan_drop_reason",
-              "required": false,
-              "defaultMatch": false,
-              "display": true,
-              "type": "string",
-              "canBeUsedToMatch": true
+              }
             }
           ]
-        },
-        "options": {}
+        }
       },
-      "id": "bb9016ae-3e45-4caf-a4d6-042e3d74ad53",
-      "name": "Postgres",
-      "type": "n8n-nodes-base.postgres",
-      "typeVersion": 2.2,
+      "id": "a0888a43-37f1-4507-ba32-3a3d94d8dad0",
+      "name": "WhatsApp Business Cloud",
+      "type": "n8n-nodes-base.whatsApp",
+      "typeVersion": 1,
       "position": [
-        1340,
-        140
+        680,
+        320
       ],
       "credentials": {
-        "postgres": {
-          "id": "VPJUosohtvWNBW4H",
-          "name": "Postgres account 2"
+        "whatsAppApi": {
+          "id": "75melKbodQdQAHVp",
+          "name": "Marketing | Secondary [Miles Education]"
         }
       }
     }
   ],
-  "pinData": {},
+  "pinData": {
+    "When clicking \"Execute Workflow\"": [
+      {
+        "json": {
+          "first_name": "Karan",
+          "course": "CPA",
+          "SPOC": "Shivam",
+          "number": "1234567890",
+          "card": "Shivam%20Chopra.vcf"
+        }
+      }
+    ]
+  },
   "settings": {
     "executionOrder": "v1"
   },
   "staticData": null,
   "tags": [],
   "triggerCount": 0,
-  "updatedAt": "2024-10-25T07:51:42.000Z",
-  "versionId": "3a5f0797-471d-4781-8a55-f0efe24288e6"
+  "updatedAt": "2024-12-20T12:13:59.000Z",
+  "versionId": "0a025e2f-2fc3-43f8-ae37-463e0da2858f"
 }
