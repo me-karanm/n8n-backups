@@ -1,0 +1,164 @@
+{
+  "active": false,
+  "connections": {
+    "On new manual Chat Message": {
+      "main": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Ollama Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "SerpAPI": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2024-01-10T09:20:11.232Z",
+  "id": "EFBUePXAenMFDg6I",
+  "meta": null,
+  "name": "AI",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "418a48c0-d2c6-41df-b14f-ba57fbc7ff4d",
+      "name": "On new manual Chat Message",
+      "type": "@n8n/n8n-nodes-langchain.manualChatTrigger",
+      "typeVersion": 1.1,
+      "position": [
+        1260,
+        600
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "322a2742-5b86-42a5-8488-2c90ae0724da",
+      "name": "Question and Answer Chain",
+      "type": "@n8n/n8n-nodes-langchain.chainRetrievalQa",
+      "typeVersion": 1.1,
+      "position": [
+        720,
+        -100
+      ]
+    },
+    {
+      "parameters": {
+        "model": "llama2:latest",
+        "options": {}
+      },
+      "id": "1d7bed83-55d0-48e4-98ef-45e958ecc98a",
+      "name": "Ollama Chat Model",
+      "type": "@n8n/n8n-nodes-langchain.lmChatOllama",
+      "typeVersion": 1,
+      "position": [
+        1460,
+        620
+      ],
+      "credentials": {
+        "ollamaApi": {
+          "id": "6jy3AYy2XjzhcGz0",
+          "name": "Ollama account"
+        }
+      }
+    },
+    {
+      "parameters": {},
+      "id": "7fad0016-b862-4ba7-8f0f-bd61bb40cecf",
+      "name": "Question and Answer Chain1",
+      "type": "@n8n/n8n-nodes-langchain.chainRetrievalQa",
+      "typeVersion": 1.1,
+      "position": [
+        1180,
+        -100
+      ]
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "id": "1a7fdd46-c7bb-49db-94e7-52307f6f9908",
+      "name": "Embeddings HuggingFace Inference",
+      "type": "@n8n/n8n-nodes-langchain.embeddingsHuggingFaceInference",
+      "typeVersion": 1,
+      "position": [
+        1880,
+        580
+      ]
+    },
+    {
+      "parameters": {
+        "prompt": "=what is the date today"
+      },
+      "id": "63783936-d223-418a-8d7d-2da2221f9b44",
+      "name": "Basic LLM Chain",
+      "type": "@n8n/n8n-nodes-langchain.chainLlm",
+      "typeVersion": 1.2,
+      "position": [
+        880,
+        60
+      ]
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "id": "d8a32763-e492-4fe6-8d7f-85513ad6cf7c",
+      "name": "SerpAPI",
+      "type": "@n8n/n8n-nodes-langchain.toolSerpApi",
+      "typeVersion": 1,
+      "position": [
+        1600,
+        640
+      ],
+      "credentials": {
+        "serpApi": {
+          "id": "HPSSAImN2SNmPMPY",
+          "name": "SerpAPI account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "id": "1719b1f0-fa9d-4bfa-84cf-45cdb639e266",
+      "name": "AI Agent",
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 1.1,
+      "position": [
+        1460,
+        300
+      ]
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2024-01-10T17:52:57.000Z",
+  "versionId": "e7ce4499-be8d-408c-b26b-d1859c7b88b0"
+}
