@@ -1,0 +1,964 @@
+{
+  "active": false,
+  "connections": {
+    "Execute Workflow Trigger": {
+      "main": [
+        [
+          {
+            "node": "Supabase6",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Switch": {
+      "main": [
+        [
+          {
+            "node": "Switch1",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Switch2",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Switch3",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Switch4",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Switch1": {
+      "main": [
+        [
+          {
+            "node": "WhatsApp Business Cloud",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "WhatsApp Business Cloud1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "WhatsApp Business Cloud": {
+      "main": [
+        [
+          {
+            "node": "Supabase8",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "WhatsApp Business Cloud1": {
+      "main": [
+        [
+          {
+            "node": "Supabase",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Switch2": {
+      "main": [
+        [
+          {
+            "node": "WhatsApp Business Cloud2",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "WhatsApp Business Cloud3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Switch3": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "WhatsApp Business Cloud4",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request": {
+      "main": [
+        [
+          {
+            "node": "Supabase1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "WhatsApp Business Cloud4": {
+      "main": [
+        [
+          {
+            "node": "Supabase2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Switch4": {
+      "main": [
+        [
+          {
+            "node": "WhatsApp Business Cloud7",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "WhatsApp Business Cloud5",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "WhatsApp Business Cloud6",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "WhatsApp Business Cloud5": {
+      "main": [
+        [
+          {
+            "node": "Supabase4",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Supabase5": {
+      "main": [
+        [
+          {
+            "node": "Switch",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "WhatsApp Business Cloud7": {
+      "main": [
+        [
+          {
+            "node": "Supabase3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Supabase6": {
+      "main": [
+        [
+          {
+            "node": "Supabase5",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2023-10-04T09:46:41.857Z",
+  "id": "bVz88YCSQeipe0DL",
+  "meta": null,
+  "name": "replay_flow_website",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "df59e04f-f3a0-4cd3-8006-c11f70b7e10c",
+      "name": "Execute Workflow Trigger",
+      "type": "n8n-nodes-base.executeWorkflowTrigger",
+      "typeVersion": 1,
+      "position": [
+        820,
+        860
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "expression",
+        "output": "={{ $('Execute Workflow Trigger').item.json.payload === \"Work in the US\" ? 0 : $('Execute Workflow Trigger').item.json.payload === \"Work in India\" ? 0 : $('Execute Workflow Trigger').item.json.payload === \"CPA\" ? 1 : $('Execute Workflow Trigger').item.json.payload === \"CMA\" ? 1 : $('Execute Workflow Trigger').item.json.payload === \"I am a graduate!\" ? 2:$('Execute Workflow Trigger').item.json.payload === \"Graduating in 2024.\" ? 2 :$('Execute Workflow Trigger').item.json.payload === \"Graduating in 2025, later\" ? 2 : 3 }}"
+      },
+      "id": "50c624d3-a815-45af-9500-b68794c573c3",
+      "name": "Switch",
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 1,
+      "position": [
+        1680,
+        860
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "expression",
+        "output": "={{ $('Execute Workflow Trigger').item.json.payload === \"Work in the US\" ? 0 :1 }}"
+      },
+      "id": "dcb74f1b-ca53-4356-94aa-20735000684d",
+      "name": "Switch1",
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 1,
+      "position": [
+        2000,
+        420
+      ]
+    },
+    {
+      "parameters": {
+        "phoneNumberId": "108019349036743",
+        "recipientPhoneNumber": "={{ $json.phone }}",
+        "template": "website_flow_1_work_in_us|en"
+      },
+      "id": "4165bba7-18fb-47e0-85be-664bffbceae9",
+      "name": "WhatsApp Business Cloud",
+      "type": "n8n-nodes-base.whatsApp",
+      "typeVersion": 1,
+      "position": [
+        2280,
+        260
+      ],
+      "credentials": {
+        "whatsAppApi": {
+          "id": "75melKbodQdQAHVp",
+          "name": "WhatsApp miles education"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "phoneNumberId": "108019349036743",
+        "recipientPhoneNumber": "={{ $json.phone }}",
+        "template": "website_flow_1_work_in_india|en"
+      },
+      "id": "b0017c3d-1e62-49d3-b459-8cec42864e8b",
+      "name": "WhatsApp Business Cloud1",
+      "type": "n8n-nodes-base.whatsApp",
+      "typeVersion": 1,
+      "position": [
+        2280,
+        500
+      ],
+      "credentials": {
+        "whatsAppApi": {
+          "id": "75melKbodQdQAHVp",
+          "name": "WhatsApp miles education"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "tableId": "message_status",
+        "fieldsUi": {
+          "fieldValues": [
+            {
+              "fieldId": "send_status",
+              "fieldValue": "true"
+            },
+            {
+              "fieldId": "send_time",
+              "fieldValue": "={{ $now }}"
+            },
+            {
+              "fieldId": "message_id",
+              "fieldValue": "={{ $json.messages[0].id }}"
+            },
+            {
+              "fieldId": "campaign_id",
+              "fieldValue": "47"
+            },
+            {
+              "fieldId": "next_flow_id",
+              "fieldValue": "bVz88YCSQeipe0DL"
+            },
+            {
+              "fieldId": "root",
+              "fieldValue": "true"
+            },
+            {
+              "fieldId": "lead_dump_id",
+              "fieldValue": "={{ $('Execute Workflow Trigger').item.json.lead_dump_id }}"
+            }
+          ]
+        }
+      },
+      "id": "ee836daa-d7f6-446b-bbb2-4aac10a49fc8",
+      "name": "Supabase8",
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        2460,
+        260
+      ],
+      "credentials": {
+        "supabaseApi": {
+          "id": "baNruLU9AV7x2GZq",
+          "name": "Supabase campaign manager"
+        }
+      },
+      "continueOnFail": true
+    },
+    {
+      "parameters": {
+        "tableId": "message_status",
+        "fieldsUi": {
+          "fieldValues": [
+            {
+              "fieldId": "send_status",
+              "fieldValue": "true"
+            },
+            {
+              "fieldId": "send_time",
+              "fieldValue": "={{ $now }}"
+            },
+            {
+              "fieldId": "message_id",
+              "fieldValue": "={{ $json.messages[0].id }}"
+            },
+            {
+              "fieldId": "campaign_id",
+              "fieldValue": "47"
+            },
+            {
+              "fieldId": "next_flow_id",
+              "fieldValue": "bVz88YCSQeipe0DL"
+            },
+            {
+              "fieldId": "root",
+              "fieldValue": "true"
+            },
+            {
+              "fieldId": "lead_dump_id",
+              "fieldValue": "={{ $('Execute Workflow Trigger').item.json.lead_dump_id }}"
+            }
+          ]
+        }
+      },
+      "id": "9521a78e-bafd-4a49-a861-1dfd67d8d7a4",
+      "name": "Supabase",
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        2440,
+        500
+      ],
+      "credentials": {
+        "supabaseApi": {
+          "id": "baNruLU9AV7x2GZq",
+          "name": "Supabase campaign manager"
+        }
+      },
+      "continueOnFail": true
+    },
+    {
+      "parameters": {
+        "mode": "expression",
+        "output": "={{ $('Execute Workflow Trigger').item.json.payload === \"CMA\" ? 1 : $('Execute Workflow Trigger').item.json.payload === \"CPA\" ? 0 : 2 }}"
+      },
+      "id": "584b31c0-0cac-46c6-8fe6-e4f13f9e4300",
+      "name": "Switch2",
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 1,
+      "position": [
+        2020,
+        780
+      ]
+    },
+    {
+      "parameters": {
+        "phoneNumberId": "108019349036743",
+        "recipientPhoneNumber": "={{ $json.phone }}",
+        "template": "website_flow_1_cpa_journey|en",
+        "components": {
+          "component": [
+            {
+              "bodyParameters": {
+                "parameter": [
+                  {
+                    "text": "={{ $json.first_name }}"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      },
+      "id": "75a8ff07-6137-4de7-9dee-7e67670e3b1a",
+      "name": "WhatsApp Business Cloud2",
+      "type": "n8n-nodes-base.whatsApp",
+      "typeVersion": 1,
+      "position": [
+        2260,
+        680
+      ],
+      "credentials": {
+        "whatsAppApi": {
+          "id": "75melKbodQdQAHVp",
+          "name": "WhatsApp miles education"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "phoneNumberId": "108019349036743",
+        "recipientPhoneNumber": "={{ $json.phone }}",
+        "template": "website_flow_1_cma_journey|en",
+        "components": {
+          "component": [
+            {
+              "bodyParameters": {
+                "parameter": [
+                  {
+                    "text": "={{ $json.first_name }}"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      },
+      "id": "8545958e-87e2-44cb-b2dc-40ada4e0bdf8",
+      "name": "WhatsApp Business Cloud3",
+      "type": "n8n-nodes-base.whatsApp",
+      "typeVersion": 1,
+      "position": [
+        2260,
+        860
+      ],
+      "credentials": {
+        "whatsAppApi": {
+          "id": "75melKbodQdQAHVp",
+          "name": "WhatsApp miles education"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://graph.facebook.com/v17.0/108019349036743/messages",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "whatsAppApi",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n   \"messaging_product\":\"whatsapp\",\n   \"recipient_type\":\"individual\",\n   \"to\":\"‪‪{{ $json.phone }}‬‬\",\n   \"type\":\"template\",\n   \"template\":{\n      \"name\":\"website_flow_1_usp_video\",\n      \"language\":{\n         \"code\":\"en\"\n      },\n      \"components\":[\n         {\n            \"type\":\"header\",\n            \"parameters\":[\n               {\n                  \"type\":\"video\",\n                  \"video\":{\n\"link\":\"https://blcwdqfhupddorxpdcjl.supabase.co/storage/v1/object/public/wa_assets/WhatsApp%20Video%202023-09-20%20at%201.59.40%20AM.mp4\"\n                  }\n               }\n            ]\n         },\n      {\n        \"type\": \"button\",\n        \"sub_type\": \"URL\",\n        \"index\": \"0\",\n        \"parameters\": [\n          {\n            \"type\": \"payload\",\n            \"payload\": \"https://blcwdqfhupddorxpdcjl.supabase.co/functions/v1/redirect-payment-link?id={{ $json.phone }}\"\n          }\n        ]\n      }\n      ]\n   }\n}",
+        "options": {}
+      },
+      "id": "068bd3e7-cd91-4c5a-919e-c61acb35888c",
+      "name": "HTTP Request",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        2280,
+        1120
+      ],
+      "credentials": {
+        "whatsAppApi": {
+          "id": "75melKbodQdQAHVp",
+          "name": "WhatsApp miles education"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "mode": "expression",
+        "output": "={{ $('Execute Workflow Trigger').item.json.payload === \"I am a graduate!\" ? 0:$('Execute Workflow Trigger').item.json.payload === \"Graduating in 2024.\" ? 1 :$('Execute Workflow Trigger').item.json.payload === \"Graduating in 2025, later\" ? 2 : 3 }}"
+      },
+      "id": "f3a0c29e-32e8-40f6-8ed4-ee7efd7dab0d",
+      "name": "Switch3",
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 1,
+      "position": [
+        2080,
+        1260
+      ]
+    },
+    {
+      "parameters": {
+        "tableId": "message_status",
+        "fieldsUi": {
+          "fieldValues": [
+            {
+              "fieldId": "send_status",
+              "fieldValue": "true"
+            },
+            {
+              "fieldId": "send_time",
+              "fieldValue": "={{ $now }}"
+            },
+            {
+              "fieldId": "message_id",
+              "fieldValue": "={{ $json.messages[0].id }}"
+            },
+            {
+              "fieldId": "campaign_id",
+              "fieldValue": "47"
+            },
+            {
+              "fieldId": "next_flow_id",
+              "fieldValue": "bVz88YCSQeipe0DL"
+            },
+            {
+              "fieldId": "root",
+              "fieldValue": "true"
+            },
+            {
+              "fieldId": "lead_dump_id",
+              "fieldValue": "={{ $('Execute Workflow Trigger').item.json.lead_dump_id }}"
+            }
+          ]
+        }
+      },
+      "id": "69624c1d-fe19-4cc6-87f0-b6e6b5328d82",
+      "name": "Supabase1",
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        2500,
+        1120
+      ],
+      "credentials": {
+        "supabaseApi": {
+          "id": "baNruLU9AV7x2GZq",
+          "name": "Supabase campaign manager"
+        }
+      },
+      "continueOnFail": true
+    },
+    {
+      "parameters": {
+        "phoneNumberId": "108019349036743",
+        "recipientPhoneNumber": "={{ $json.phone }}",
+        "template": "website_flow_1_2025_pass|en"
+      },
+      "id": "4fcb1410-5d26-492e-b318-74fb50596a41",
+      "name": "WhatsApp Business Cloud4",
+      "type": "n8n-nodes-base.whatsApp",
+      "typeVersion": 1,
+      "position": [
+        2300,
+        1380
+      ],
+      "credentials": {
+        "whatsAppApi": {
+          "id": "75melKbodQdQAHVp",
+          "name": "WhatsApp miles education"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "tableId": "message_status",
+        "fieldsUi": {
+          "fieldValues": [
+            {
+              "fieldId": "send_status",
+              "fieldValue": "true"
+            },
+            {
+              "fieldId": "send_time",
+              "fieldValue": "={{ $now }}"
+            },
+            {
+              "fieldId": "message_id",
+              "fieldValue": "={{ $json.messages[0].id }}"
+            },
+            {
+              "fieldId": "campaign_id",
+              "fieldValue": "47"
+            },
+            {
+              "fieldId": "next_flow_id",
+              "fieldValue": "bVz88YCSQeipe0DL"
+            },
+            {
+              "fieldId": "root",
+              "fieldValue": "true"
+            },
+            {
+              "fieldId": "lead_dump_id",
+              "fieldValue": "={{ $('Execute Workflow Trigger').item.json.lead_dump_id }}"
+            }
+          ]
+        }
+      },
+      "id": "c143ab94-437a-47a7-bf10-63b10c3c2298",
+      "name": "Supabase2",
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        2480,
+        1380
+      ],
+      "credentials": {
+        "supabaseApi": {
+          "id": "baNruLU9AV7x2GZq",
+          "name": "Supabase campaign manager"
+        }
+      },
+      "continueOnFail": true
+    },
+    {
+      "parameters": {
+        "mode": "expression",
+        "output": "={{ $('Execute Workflow Trigger').item.json.payload === \"Refund Policy\" ? 0:$('Execute Workflow Trigger').item.json.payload === \"Explore US CMA\" ? 1: $('Execute Workflow Trigger').item.json.payload === \"Connect Career Councillor\" ? 2 : 3 }}"
+      },
+      "id": "a1b75abd-9b4a-4ebc-a484-64df935304ef",
+      "name": "Switch4",
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 1,
+      "position": [
+        2080,
+        1700
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://graph.facebook.com/v17.0/108019349036743/messages",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "whatsAppApi",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n   \"messaging_product\":\"whatsapp\",\n   \"recipient_type\":\"individual\",\n   \"to\":\"‪‪{{ $json.phone }}‬‬\",\n   \"type\":\"template\",\n   \"template\":{\n      \"name\":\"website_flow_know_more\",\n      \"language\":{\n         \"code\":\"en\"\n      },\n      \"components\":[\n         {\n            \"type\":\"header\",\n            \"parameters\":[\n      {\n        \"type\": \"button\",\n\n        \"parameters\": [\n          {\n            \"type\": \"payload\",\n            \"payload\": \"https://blcwdqfhupddorxpdcjl.supabase.co/functions/v1/redirect-payment-link?id={{ $json.phone }}\"\n          }\n        ]\n      }\n      ]\n   }]}}\n",
+        "options": {}
+      },
+      "id": "eb094b49-c7fb-4154-8c24-784708d24502",
+      "name": "HTTP Request1",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        2740,
+        1420
+      ],
+      "credentials": {
+        "whatsAppApi": {
+          "id": "75melKbodQdQAHVp",
+          "name": "WhatsApp miles education"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "tableId": "message_status",
+        "fieldsUi": {
+          "fieldValues": [
+            {
+              "fieldId": "send_status",
+              "fieldValue": "true"
+            },
+            {
+              "fieldId": "send_time",
+              "fieldValue": "={{ $now }}"
+            },
+            {
+              "fieldId": "message_id",
+              "fieldValue": "={{ $json.messages[0].id }}"
+            },
+            {
+              "fieldId": "campaign_id",
+              "fieldValue": "47"
+            },
+            {
+              "fieldId": "next_flow_id",
+              "fieldValue": "bVz88YCSQeipe0DL"
+            },
+            {
+              "fieldId": "root",
+              "fieldValue": "true"
+            },
+            {
+              "fieldId": "lead_dump_id",
+              "fieldValue": "={{ $('Execute Workflow Trigger').item.json.lead_dump_id }}"
+            }
+          ]
+        }
+      },
+      "id": "da4e169b-9dc4-4aed-96ca-35f051c36933",
+      "name": "Supabase3",
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        2760,
+        1620
+      ],
+      "credentials": {
+        "supabaseApi": {
+          "id": "baNruLU9AV7x2GZq",
+          "name": "Supabase campaign manager"
+        }
+      },
+      "continueOnFail": true
+    },
+    {
+      "parameters": {
+        "phoneNumberId": "108019349036743",
+        "recipientPhoneNumber": "={{ $json.phone }}",
+        "template": "website_flow_1_explore_cma|en"
+      },
+      "id": "f7dcf46a-d2c2-4ddb-b068-8aaf7d0d5ef6",
+      "name": "WhatsApp Business Cloud5",
+      "type": "n8n-nodes-base.whatsApp",
+      "typeVersion": 1,
+      "position": [
+        2300,
+        1800
+      ],
+      "credentials": {
+        "whatsAppApi": {
+          "id": "75melKbodQdQAHVp",
+          "name": "WhatsApp miles education"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "tableId": "message_status",
+        "fieldsUi": {
+          "fieldValues": [
+            {
+              "fieldId": "send_status",
+              "fieldValue": "true"
+            },
+            {
+              "fieldId": "send_time",
+              "fieldValue": "={{ $now }}"
+            },
+            {
+              "fieldId": "message_id",
+              "fieldValue": "={{ $json.messages[0].id }}"
+            },
+            {
+              "fieldId": "campaign_id",
+              "fieldValue": "47"
+            },
+            {
+              "fieldId": "next_flow_id",
+              "fieldValue": "bVz88YCSQeipe0DL"
+            },
+            {
+              "fieldId": "root",
+              "fieldValue": "true"
+            },
+            {
+              "fieldId": "lead_dump_id",
+              "fieldValue": "={{ $('Execute Workflow Trigger').item.json.lead_dump_id }}"
+            }
+          ]
+        }
+      },
+      "id": "b1414597-9d5c-4680-a523-c7ea93ef8590",
+      "name": "Supabase4",
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        2480,
+        1800
+      ],
+      "credentials": {
+        "supabaseApi": {
+          "id": "baNruLU9AV7x2GZq",
+          "name": "Supabase campaign manager"
+        }
+      },
+      "continueOnFail": true
+    },
+    {
+      "parameters": {
+        "operation": "send",
+        "phoneNumberId": "108019349036743",
+        "recipientPhoneNumber": "={{ $json.phone }}",
+        "textBody": "Our career counsellor will get in touch with you shortly.",
+        "additionalFields": {}
+      },
+      "id": "1494ea9b-b5b0-4fd0-96c1-155b6bcc2df6",
+      "name": "WhatsApp Business Cloud6",
+      "type": "n8n-nodes-base.whatsApp",
+      "typeVersion": 1,
+      "position": [
+        2360,
+        2040
+      ],
+      "credentials": {
+        "whatsAppApi": {
+          "id": "75melKbodQdQAHVp",
+          "name": "WhatsApp miles education"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "get",
+        "tableId": "leads_dump",
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "id",
+              "keyValue": "={{ $('Execute Workflow Trigger').item.json.lead_dump_id }}"
+            }
+          ]
+        }
+      },
+      "id": "e7418521-22dc-4db6-90c0-9adcf729f6b6",
+      "name": "Supabase5",
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        1340,
+        860
+      ],
+      "credentials": {
+        "supabaseApi": {
+          "id": "baNruLU9AV7x2GZq",
+          "name": "Supabase campaign manager"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "phoneNumberId": "108019349036743",
+        "recipientPhoneNumber": "={{ $('Execute Workflow Trigger').item.json.wa_id }}",
+        "template": "website_flow_know_more|en",
+        "components": {
+          "component": [
+            {
+              "type": "button",
+              "sub_type": "url",
+              "buttonParameters": {
+                "parameter": {
+                  "payload": "=\"https://blcwdqfhupddorxpdcjl.supabase.co/functions/v1/redirect-payment-link?id={{ $json.phone }}\""
+                }
+              }
+            }
+          ]
+        }
+      },
+      "id": "e091afaa-663c-46d8-92c0-4eca2f4a9bc1",
+      "name": "WhatsApp Business Cloud7",
+      "type": "n8n-nodes-base.whatsApp",
+      "typeVersion": 1,
+      "position": [
+        2320,
+        1620
+      ],
+      "credentials": {
+        "whatsAppApi": {
+          "id": "75melKbodQdQAHVp",
+          "name": "WhatsApp miles education"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "get",
+        "tableId": "message_status",
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "id",
+              "keyValue": "={{ $json.message_status_id }}"
+            }
+          ]
+        }
+      },
+      "id": "20d0d5b5-7b75-46d0-a381-4f21faf2b9af",
+      "name": "Supabase6",
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        1040,
+        860
+      ],
+      "credentials": {
+        "supabaseApi": {
+          "id": "baNruLU9AV7x2GZq",
+          "name": "Supabase campaign manager"
+        }
+      }
+    }
+  ],
+  "pinData": {
+    "Execute Workflow Trigger": [
+      {
+        "json": {
+          "response_status": false,
+          "is_retry": false,
+          "user_id": null,
+          "campaign_id": 47,
+          "message_status_id": 107643,
+          "webinar_id": null,
+          "lead_dump_id": 101655,
+          "payload": "Work in India",
+          "wa_id": "916238133298",
+          "name": ""
+        }
+      }
+    ]
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2023-11-21T06:10:59.000Z",
+  "versionId": "860e99f5-1138-4b8a-9c15-c98274a9d0db"
+}
