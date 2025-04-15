@@ -1,0 +1,91 @@
+{
+  "active": false,
+  "connections": {
+    "Execute Workflow Trigger": {
+      "main": [
+        [
+          {
+            "node": "WhatsApp Business Cloud",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2023-08-10T07:22:33.608Z",
+  "id": "vMuIH2OMg69KGr7l",
+  "meta": null,
+  "name": "USP - First day",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "d5974a8d-5223-4f91-aa59-0582378d84fc",
+      "name": "Execute Workflow Trigger",
+      "type": "n8n-nodes-base.executeWorkflowTrigger",
+      "typeVersion": 1,
+      "position": [
+        160,
+        160
+      ]
+    },
+    {
+      "parameters": {
+        "phoneNumberId": "115484311630426",
+        "recipientPhoneNumber": "={{ $json.mobile_number }}",
+        "template": "16th_webinar_15th_message_not_registred|en",
+        "components": {
+          "component": [
+            {
+              "bodyParameters": {
+                "parameter": [
+                  {
+                    "text": "={{ $json.person_name }}"
+                  }
+                ]
+              }
+            },
+            {
+              "type": "header",
+              "headerParameters": {
+                "parameter": [
+                  {
+                    "type": "image",
+                    "imageLink": "https://hbcqpfamoozfovaszfjz.supabase.co/storage/v1/object/public/posters/15%20August%202023.png"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      },
+      "id": "a9c78bc4-dfbc-4481-afe2-d8acf7ad8ac3",
+      "name": "WhatsApp Business Cloud",
+      "type": "n8n-nodes-base.whatsApp",
+      "typeVersion": 1,
+      "position": [
+        500,
+        160
+      ],
+      "credentials": {
+        "whatsAppApi": {
+          "id": "SiXp0JiQTXH4kKE6",
+          "name": "WhatsApp account"
+        }
+      },
+      "continueOnFail": true
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1",
+    "timezone": "Asia/Calcutta",
+    "saveManualExecutions": true,
+    "callerPolicy": "workflowsFromSameOwner"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2023-08-15T09:55:33.000Z",
+  "versionId": "37b817ac-82c4-46dc-aea5-a4d1badf17ca"
+}
