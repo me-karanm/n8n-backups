@@ -1,0 +1,1129 @@
+{
+  "active": false,
+  "connections": {
+    "Supabase6": {
+      "main": [
+        [
+          {
+            "node": "Supabase9",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Supabase10",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Split In Batches": {
+      "main": [
+        [
+          {
+            "node": "WhatsApp Business Cloud",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Supabase15",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Supabase13": {
+      "main": [
+        [
+          {
+            "node": "Split In Batches",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Supabase14": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Supabase17": {
+      "main": [
+        [
+          {
+            "node": "IF",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "IF": {
+      "main": [
+        [
+          {
+            "node": "Supabase14",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Supabase8",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Merge": {
+      "main": [
+        [
+          {
+            "node": "Split In Batches2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Supabase8": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "Split In Batches2": {
+      "main": [
+        [
+          {
+            "node": "Supabase17",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "WhatsApp Business Cloud": {
+      "main": [
+        [
+          {
+            "node": "Supabase13",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Supabase": {
+      "main": [
+        [
+          {
+            "node": "Filter",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "WhatsApp Business Cloud1": {
+      "main": [
+        [
+          {
+            "node": "Supabase16",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Split In Batches1": {
+      "main": [
+        [
+          {
+            "node": "Supabase1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Supabase1": {
+      "main": [
+        [
+          {
+            "node": "IF1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "IF1": {
+      "main": [
+        [
+          {
+            "node": "WhatsApp Business Cloud1",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Merge1",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "Merge1": {
+      "main": [
+        [
+          {
+            "node": "Split In Batches1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Supabase16": {
+      "main": [
+        [
+          {
+            "node": "Merge1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "When clicking \"Execute Workflow\"": {
+      "main": [
+        [
+          {
+            "node": "Supabase2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Supabase2": {
+      "main": [
+        [
+          {
+            "node": "Split In Batches3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Split In Batches3": {
+      "main": [
+        [
+          {
+            "node": "Supabase3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Supabase3": {
+      "main": [
+        [
+          {
+            "node": "IF2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "IF2": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Merge2",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "HTTP Request": {
+      "main": [
+        [
+          {
+            "node": "Merge2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Merge2": {
+      "main": [
+        [
+          {
+            "node": "Split In Batches3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Filter": {
+      "main": [
+        [
+          {
+            "node": "Split In Batches1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2023-08-10T06:55:07.207Z",
+  "id": "oVlN0HHXQIPrHbI2",
+  "meta": null,
+  "name": "send-message",
+  "nodes": [
+    {
+      "parameters": {
+        "operation": "get",
+        "tableId": "campaign",
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "id",
+              "keyValue": "={{ $json.query.id}}"
+            },
+            {
+              "keyName": "status",
+              "keyValue": "0"
+            }
+          ]
+        }
+      },
+      "id": "483a7b04-6c24-4e9b-92a7-54c345874039",
+      "name": "Supabase6",
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        -520,
+        860
+      ],
+      "credentials": {
+        "supabaseApi": {
+          "id": "ptZNo3FAaF0XYQKi",
+          "name": "Supabase account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "getAll",
+        "tableId": "users",
+        "returnAll": true,
+        "matchType": "allFilters",
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "person_id",
+              "condition": "is",
+              "keyValue": "null"
+            },
+            {
+              "keyName": "source",
+              "condition": "is",
+              "keyValue": "null"
+            }
+          ]
+        }
+      },
+      "id": "a2ecf8dc-c8ef-4730-a8a5-46090b23320a",
+      "name": "Supabase9",
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        -340,
+        860
+      ],
+      "credentials": {
+        "supabaseApi": {
+          "id": "ptZNo3FAaF0XYQKi",
+          "name": "Supabase account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "tableId": "campaign",
+        "matchType": "allFilters",
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "id",
+              "condition": "eq",
+              "keyValue": "={{ $('Supabase6').item.json.id }}"
+            }
+          ]
+        },
+        "fieldsUi": {
+          "fieldValues": [
+            {
+              "fieldId": "status",
+              "fieldValue": "2"
+            }
+          ]
+        }
+      },
+      "id": "0740b945-b929-4319-aff0-52277c4f90c9",
+      "name": "Supabase10",
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        -240,
+        540
+      ],
+      "credentials": {
+        "supabaseApi": {
+          "id": "ptZNo3FAaF0XYQKi",
+          "name": "Supabase account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "id": "cd576e3c-a7f3-425c-8fdb-4663e4211394",
+      "name": "Split In Batches",
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 2,
+      "position": [
+        -100,
+        860
+      ]
+    },
+    {
+      "parameters": {
+        "tableId": "message_status",
+        "fieldsUi": {
+          "fieldValues": [
+            {
+              "fieldId": "send_time",
+              "fieldValue": "={{ $now }}"
+            },
+            {
+              "fieldId": "send_status",
+              "fieldValue": "={{ $json && $json.messages && $json.messages.length > 0 ? 1 : 0 }}"
+            },
+            {
+              "fieldId": "campaign_id",
+              "fieldValue": "={{ $('Supabase6').item.json.id }}"
+            },
+            {
+              "fieldId": "message_id",
+              "fieldValue": "={{ $json.messages[0].id }}"
+            },
+            {
+              "fieldId": "user_id",
+              "fieldValue": "={{ $('Supabase9').item.json.id }}"
+            },
+            {
+              "fieldId": "next_flow_id",
+              "fieldValue": "={{ $('Supabase6').item.json.replay_flow_id }}"
+            },
+            {
+              "fieldId": "root",
+              "fieldValue": "1"
+            }
+          ]
+        }
+      },
+      "id": "cfb3344b-db5c-41e3-8a92-4ffa1eda9cf8",
+      "name": "Supabase13",
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        400,
+        680
+      ],
+      "credentials": {
+        "supabaseApi": {
+          "id": "ptZNo3FAaF0XYQKi",
+          "name": "Supabase account"
+        }
+      },
+      "continueOnFail": true
+    },
+    {
+      "parameters": {
+        "tableId": "audience_stage_status",
+        "fieldsUi": {
+          "fieldValues": [
+            {
+              "fieldId": "user_id",
+              "fieldValue": "={{ $('Split In Batches2').item.json.user_id }}"
+            },
+            {
+              "fieldId": "campaign_id",
+              "fieldValue": "={{ $('Split In Batches2').item.json.campaign_id }}"
+            },
+            {
+              "fieldId": "current_stage",
+              "fieldValue": "0"
+            },
+            {
+              "fieldId": "last_message_id",
+              "fieldValue": "={{ $('Supabase13').item.json.id }}"
+            }
+          ]
+        }
+      },
+      "id": "98265c90-b717-4764-8b95-a056ebb575fb",
+      "name": "Supabase14",
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        120,
+        20
+      ],
+      "credentials": {
+        "supabaseApi": {
+          "id": "ptZNo3FAaF0XYQKi",
+          "name": "Supabase account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "tableId": "campaign",
+        "matchType": "allFilters",
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "id",
+              "condition": "eq",
+              "keyValue": "={{ $('Supabase6').item.json.id }}"
+            }
+          ]
+        },
+        "fieldsUi": {
+          "fieldValues": [
+            {
+              "fieldId": "status",
+              "fieldValue": "1"
+            }
+          ]
+        }
+      },
+      "id": "03a47f44-0c32-4121-93e0-43697505a6f8",
+      "name": "Supabase15",
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        160,
+        1100
+      ],
+      "credentials": {
+        "supabaseApi": {
+          "id": "ptZNo3FAaF0XYQKi",
+          "name": "Supabase account"
+        }
+      },
+      "continueOnFail": true
+    },
+    {
+      "parameters": {
+        "operation": "get",
+        "tableId": "audience_stage_status",
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "user_id",
+              "keyValue": "={{ $json.user_id }}"
+            },
+            {
+              "keyName": "campaign_id",
+              "keyValue": "={{ $json.campaign_id }}"
+            }
+          ]
+        }
+      },
+      "id": "9fe969a6-0a5b-410a-9b55-d217831c51c4",
+      "name": "Supabase17",
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        -340,
+        180
+      ],
+      "alwaysOutputData": true,
+      "credentials": {
+        "supabaseApi": {
+          "id": "ptZNo3FAaF0XYQKi",
+          "name": "Supabase account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "boolean": [
+            {
+              "value1": "={{ $input.item.json.hasOwnProperty('id') }}"
+            }
+          ]
+        }
+      },
+      "id": "ccaa2d68-bf61-4e8b-9113-f5703a00bfaa",
+      "name": "IF",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        -160,
+        180
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "fa3bdcd3-ed42-45c9-8406-fba0c4a2288e",
+      "name": "Merge",
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 2.1,
+      "position": [
+        400,
+        180
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "tableId": "audience_stage_status",
+        "matchType": "allFilters",
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "id",
+              "condition": "eq",
+              "keyValue": "={{ $json.id }}"
+            }
+          ]
+        },
+        "fieldsUi": {
+          "fieldValues": [
+            {
+              "fieldId": "last_message_id",
+              "fieldValue": "={{ $('Supabase13').item.json.id }}"
+            },
+            {
+              "fieldId": "current_stage",
+              "fieldValue": "0"
+            }
+          ]
+        }
+      },
+      "id": "18486503-38f6-4d00-b615-b385408a3aad",
+      "name": "Supabase8",
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        120,
+        200
+      ],
+      "credentials": {
+        "supabaseApi": {
+          "id": "ptZNo3FAaF0XYQKi",
+          "name": "Supabase account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "batchSize": 1,
+        "options": {}
+      },
+      "id": "b2691cfe-4a93-4359-9c7a-323c5a0b3239",
+      "name": "Split In Batches2",
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 2,
+      "position": [
+        -540,
+        360
+      ]
+    },
+    {
+      "parameters": {
+        "phoneNumberId": "115484311630426",
+        "recipientPhoneNumber": "={{ $json.mobile_number }}",
+        "template": "second_registration_16th_webinar|en",
+        "components": {
+          "component": [
+            {
+              "bodyParameters": {
+                "parameter": [
+                  {
+                    "text": "{{ $json.person_name }}"
+                  }
+                ]
+              }
+            },
+            {
+              "type": "header",
+              "headerParameters": {
+                "parameter": [
+                  {
+                    "type": "image",
+                    "imageLink": "https://hbcqpfamoozfovaszfjz.supabase.co/storage/v1/object/public/posters/PHOTO-2023-08-10-12-04-56.jpg"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      },
+      "id": "d54370d2-3080-4256-964b-43ca469d8665",
+      "name": "WhatsApp Business Cloud",
+      "type": "n8n-nodes-base.whatsApp",
+      "typeVersion": 1,
+      "position": [
+        200,
+        680
+      ],
+      "credentials": {
+        "whatsAppApi": {
+          "id": "SiXp0JiQTXH4kKE6",
+          "name": "WhatsApp account"
+        }
+      },
+      "continueOnFail": true
+    },
+    {
+      "parameters": {
+        "phoneNumberId": "115484311630426",
+        "recipientPhoneNumber": "={{ $('Split In Batches1').item.json.mobile_number }}",
+        "template": "second_registration_16th_webinar|en",
+        "components": {
+          "component": [
+            {
+              "bodyParameters": {
+                "parameter": [
+                  {
+                    "text": "={{ $('Split In Batches1').item.json.person_name }}"
+                  }
+                ]
+              }
+            },
+            {
+              "type": "header",
+              "headerParameters": {
+                "parameter": [
+                  {
+                    "type": "image",
+                    "imageLink": "https://hbcqpfamoozfovaszfjz.supabase.co/storage/v1/object/public/posters/PHOTO-2023-08-10-12-04-56.jpg"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      },
+      "id": "3c4600d2-d3f2-4e60-bd99-d965a9a2de84",
+      "name": "WhatsApp Business Cloud1",
+      "type": "n8n-nodes-base.whatsApp",
+      "typeVersion": 1,
+      "position": [
+        -1960,
+        -100
+      ],
+      "credentials": {
+        "whatsAppApi": {
+          "id": "SiXp0JiQTXH4kKE6",
+          "name": "WhatsApp account"
+        }
+      },
+      "continueOnFail": true
+    },
+    {
+      "parameters": {
+        "operation": "getAll",
+        "tableId": "users",
+        "returnAll": true,
+        "matchType": "allFilters",
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "iiml_level",
+              "condition": "neq",
+              "keyValue": "U2"
+            },
+            {
+              "keyName": "unsubscribed",
+              "condition": "eq",
+              "keyValue": "0"
+            }
+          ]
+        }
+      },
+      "id": "e7c8a469-7b9e-4056-ba71-e043d7a3688d",
+      "name": "Supabase",
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        -3140,
+        280
+      ],
+      "credentials": {
+        "supabaseApi": {
+          "id": "ptZNo3FAaF0XYQKi",
+          "name": "Supabase account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "tableId": "message_status",
+        "fieldsUi": {
+          "fieldValues": [
+            {
+              "fieldId": "send_time",
+              "fieldValue": "={{ $now }}"
+            },
+            {
+              "fieldId": "send_status",
+              "fieldValue": "={{ $json && $json.messages && $json.messages.length > 0 ? 1 : 0 }}"
+            },
+            {
+              "fieldId": "campaign_id",
+              "fieldValue": "=2"
+            },
+            {
+              "fieldId": "message_id",
+              "fieldValue": "={{ $json.messages[0].id }}"
+            },
+            {
+              "fieldId": "user_id",
+              "fieldValue": "={{ $('Supabase').item.json.id }}"
+            },
+            {
+              "fieldId": "next_flow_id",
+              "fieldValue": "QeDIzKgHq0IlE145"
+            },
+            {
+              "fieldId": "root",
+              "fieldValue": "1"
+            }
+          ]
+        }
+      },
+      "id": "9797e019-1f22-4b88-bbcb-6bca9f9a24b1",
+      "name": "Supabase16",
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        -1680,
+        -100
+      ],
+      "credentials": {
+        "supabaseApi": {
+          "id": "ptZNo3FAaF0XYQKi",
+          "name": "Supabase account"
+        }
+      },
+      "continueOnFail": true
+    },
+    {
+      "parameters": {
+        "batchSize": 1,
+        "options": {}
+      },
+      "id": "ab03c24c-fbd1-45f8-a039-d34b2c7f1db1",
+      "name": "Split In Batches1",
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 2,
+      "position": [
+        -2640,
+        160
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "getAll",
+        "tableId": "zoom_webinar",
+        "limit": 1,
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "email_id",
+              "condition": "eq",
+              "keyValue": "={{ $json.email_id }}"
+            }
+          ]
+        }
+      },
+      "id": "8f8ef7ad-9c92-446a-aed3-c2e9ba61ad81",
+      "name": "Supabase1",
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        -2480,
+        -20
+      ],
+      "alwaysOutputData": true,
+      "credentials": {
+        "supabaseApi": {
+          "id": "ptZNo3FAaF0XYQKi",
+          "name": "Supabase account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "boolean": [
+            {
+              "value1": "={{ $json.hasOwnProperty('id')}}"
+            }
+          ]
+        }
+      },
+      "id": "704e8638-301a-461e-b32e-683fc7417640",
+      "name": "IF1",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        -2260,
+        -20
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "dd84cb82-f101-4f03-90f9-8369014d951d",
+      "name": "Merge1",
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 2.1,
+      "position": [
+        -1320,
+        -20
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "71be5dae-e50f-4b66-937e-d5bbff9e65a0",
+      "name": "When clicking \"Execute Workflow\"",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        -2760,
+        600
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "getAll",
+        "tableId": "users",
+        "returnAll": true,
+        "matchType": "allFilters",
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "unsubscribed",
+              "condition": "eq",
+              "keyValue": "0"
+            },
+            {
+              "keyName": "iiml_level",
+              "condition": "eq",
+              "keyValue": "U3"
+            }
+          ]
+        }
+      },
+      "id": "5e97f3ca-22f6-42b7-85d0-a10bb099f73f",
+      "name": "Supabase2",
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        -2520,
+        600
+      ],
+      "credentials": {
+        "supabaseApi": {
+          "id": "ptZNo3FAaF0XYQKi",
+          "name": "Supabase account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "getAll",
+        "tableId": "zoom_webinar",
+        "limit": 1,
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "email_id",
+              "condition": "eq",
+              "keyValue": "={{ $json.email_id }}"
+            }
+          ]
+        }
+      },
+      "id": "c3dcba37-5940-4f64-ab6d-1880d986280b",
+      "name": "Supabase3",
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        -2080,
+        460
+      ],
+      "alwaysOutputData": true,
+      "credentials": {
+        "supabaseApi": {
+          "id": "ptZNo3FAaF0XYQKi",
+          "name": "Supabase account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "batchSize": 1,
+        "options": {}
+      },
+      "id": "7ea46e08-c439-4c88-8c52-9742ddf3df21",
+      "name": "Split In Batches3",
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 2,
+      "position": [
+        -2300,
+        600
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "boolean": [
+            {
+              "value1": "={{ $json.hasOwnProperty('id')}}"
+            }
+          ]
+        }
+      },
+      "id": "973a7ca1-ae54-4b5c-8a80-a36002856047",
+      "name": "IF2",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        -1840,
+        460
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://callback.miles-api.com/webhook/aec11715-6536-467e-aa05-5b972f08b0b9",
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "id",
+              "value": "={{ $('Split In Batches3').item.json.id }}"
+            },
+            {
+              "name": "person_name",
+              "value": "={{ $('Split In Batches3').item.json.person_name }}"
+            },
+            {
+              "name": "person_id",
+              "value": "={{ $('Split In Batches3').item.json.person_id }}"
+            },
+            {
+              "name": "mobile_number",
+              "value": "={{ $('Split In Batches3').item.json.mobile_number }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "af570f9d-338a-41ce-9985-c593cca5474e",
+      "name": "HTTP Request",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        -1600,
+        380
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "d16c8493-d2bd-4b3e-b9a0-d596319f3782",
+      "name": "Merge2",
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 2.1,
+      "position": [
+        -1340,
+        460
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "boolean": [
+            {}
+          ]
+        }
+      },
+      "id": "dbb44eff-efa0-4cfa-95fe-8660051d16c5",
+      "name": "Filter",
+      "type": "n8n-nodes-base.filter",
+      "typeVersion": 1,
+      "position": [
+        -2920,
+        280
+      ]
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1",
+    "saveManualExecutions": true,
+    "callerPolicy": "workflowsFromSameOwner",
+    "timezone": "Asia/Calcutta"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 1,
+  "updatedAt": "2023-08-16T06:08:06.000Z",
+  "versionId": "884f6fd4-8cdb-4c53-82f5-c4bd237d9e51"
+}
