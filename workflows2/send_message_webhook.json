@@ -1,0 +1,248 @@
+{
+  "active": true,
+  "connections": {
+    "WhatsApp Business Cloud": {
+      "main": [
+        [
+          {
+            "node": "Supabase16",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Supabase16": {
+      "main": [
+        [
+          {
+            "node": "Supabase1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "WhatsApp Business Cloud",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2023-08-13T09:12:09.221Z",
+  "id": "FcpdBEUaDtUqnz6Q",
+  "meta": null,
+  "name": "send_message_webhook",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "b798f34e-1cbf-4fe0-a692-0bc5da033d84",
+        "options": {}
+      },
+      "id": "5ebe5f40-90e3-417f-8771-1693d3429aa5",
+      "name": "Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        680,
+        400
+      ],
+      "webhookId": "b798f34e-1cbf-4fe0-a692-0bc5da033d84"
+    },
+    {
+      "parameters": {
+        "phoneNumberId": "115484311630426",
+        "recipientPhoneNumber": "={{ $json.body.contact }}",
+        "template": "remainder_16th_webinar_15th_aug|en",
+        "components": {
+          "component": [
+            {
+              "bodyParameters": {
+                "parameter": [
+                  {
+                    "text": "={{ $json.body.first_name }}"
+                  }
+                ]
+              }
+            },
+            {
+              "type": "header",
+              "headerParameters": {
+                "parameter": [
+                  {
+                    "type": "image",
+                    "imageLink": "https://hbcqpfamoozfovaszfjz.supabase.co/storage/v1/object/public/posters/15%20August%202023.png"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      },
+      "id": "1b855b63-eed5-4a29-aa1b-56f96493bc8a",
+      "name": "WhatsApp Business Cloud",
+      "type": "n8n-nodes-base.whatsApp",
+      "typeVersion": 1,
+      "position": [
+        900,
+        460
+      ],
+      "credentials": {
+        "whatsAppApi": {
+          "id": "SiXp0JiQTXH4kKE6",
+          "name": "WhatsApp account"
+        }
+      },
+      "continueOnFail": true
+    },
+    {
+      "parameters": {
+        "tableId": "message_status",
+        "fieldsUi": {
+          "fieldValues": [
+            {
+              "fieldId": "send_time",
+              "fieldValue": "={{ $now }}"
+            },
+            {
+              "fieldId": "send_status",
+              "fieldValue": "={{ $json && $json.messages && $json.messages.length > 0 ? 1 : 0 }}"
+            },
+            {
+              "fieldId": "campaign_id",
+              "fieldValue": "=2"
+            },
+            {
+              "fieldId": "message_id",
+              "fieldValue": "={{ $json.messages[0].id }}"
+            },
+            {
+              "fieldId": "zoom_webinar_id",
+              "fieldValue": "={{ $('Webhook').item.json.body.id }}"
+            },
+            {
+              "fieldId": "next_flow_id",
+              "fieldValue": "iQbxmySUcjmCTxPZ"
+            },
+            {
+              "fieldId": "root",
+              "fieldValue": "1"
+            },
+            {
+              "fieldId": "template_id",
+              "fieldValue": "1"
+            }
+          ]
+        }
+      },
+      "id": "12e6d743-9f3c-4505-b494-e65bec5963cb",
+      "name": "Supabase16",
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        1100,
+        460
+      ],
+      "credentials": {
+        "supabaseApi": {
+          "id": "ptZNo3FAaF0XYQKi",
+          "name": "Supabase account"
+        }
+      },
+      "continueOnFail": true
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "tableId": "zoom_webinar",
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "id",
+              "condition": "eq",
+              "keyValue": "={{ $json.zoom_webinar_id }}"
+            }
+          ]
+        },
+        "fieldsUi": {
+          "fieldValues": [
+            {
+              "fieldId": "message_day",
+              "fieldValue": "4"
+            }
+          ]
+        }
+      },
+      "id": "8dee053d-0ab5-49b7-a619-f889df3fddd9",
+      "name": "Supabase1",
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        1300,
+        460
+      ],
+      "credentials": {
+        "supabaseApi": {
+          "id": "ptZNo3FAaF0XYQKi",
+          "name": "Supabase account"
+        }
+      }
+    }
+  ],
+  "pinData": {
+    "Webhook": [
+      {
+        "json": {
+          "headers": {
+            "accept": "application/json,text/html,application/xhtml+xml,application/xml,text/*;q=0.9, image/*;q=0.8, */*;q=0.7",
+            "content-type": "application/json",
+            "user-agent": "axios/0.21.4",
+            "content-length": "564",
+            "sentry-trace": "7778c7c69cea431297afff0736597841-9541a7e4a55f4ea7-0",
+            "baggage": "sentry-environment=production,sentry-release=1.1.1,sentry-public_key=1f954e089a054b8e943ae4f4042b2bff,sentry-trace_id=7778c7c69cea431297afff0736597841",
+            "host": "34.93.97.0:5678",
+            "connection": "close"
+          },
+          "params": {},
+          "query": {},
+          "body": {
+            "id": 38573,
+            "created_at": "2023-08-12T06:26:55.647665+00:00",
+            "first_name": "Jithin test 1",
+            "last_name": "NA",
+            "contact": "916238133298",
+            "location": "Mumbai",
+            "organization": null,
+            "join_url": "https://mileseducation.zoom.us/w/87361050576?tk=CMtQ4V9EPuFqiFvoQ51VhhRilWNU2D20JbFu-q8VEVQ.DQMAAAAUVx_X0BZFR2d3cGlzVVJaeW5iZU5oNGRNVkNnAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA&uuid=WN_sg-zbQUcQsuVRCf2bbFV5w",
+            "zoom_id": 87361050576,
+            "camp": "N/A",
+            "type": "",
+            "src": "MilesForce",
+            "webinar_id": 1,
+            "src_type": "MF",
+            "coming_from": null,
+            "gcl_id": null,
+            "campaign_id": null,
+            "remainder": false,
+            "message_day": 1
+          }
+        }
+      }
+    ]
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 1,
+  "updatedAt": "2023-08-15T05:23:55.000Z",
+  "versionId": "24b238e5-dd5d-4ac2-a047-49203ae46867"
+}
