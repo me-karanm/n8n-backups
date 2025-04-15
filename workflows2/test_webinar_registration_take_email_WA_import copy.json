@@ -1,0 +1,227 @@
+{
+  "active": true,
+  "connections": {
+    "Supabase": {
+      "main": [
+        [
+          {
+            "node": "Supabase2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Supabase2": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-01-27T13:58:10.214Z",
+  "id": "qli2wCJwIGUUvYBZ",
+  "meta": null,
+  "name": "test_webinar_registration_take_email_WA_import copy",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "4a214dec-06b9-4323-aeaa-f9e4e42ec8dd",
+      "name": "Execute Workflow Trigger",
+      "type": "n8n-nodes-base.executeWorkflowTrigger",
+      "typeVersion": 1,
+      "position": [
+        440,
+        -40
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "get",
+        "tableId": "send_whatsapp_import",
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "phone",
+              "keyValue": "={{ $json.wa_id.slice(-10)}}"
+            },
+            {
+              "keyName": "camp_id",
+              "keyValue": "={{ $json.campaign_id }}"
+            }
+          ]
+        }
+      },
+      "id": "5d5584c9-9048-49b1-956c-9e288f7f32e2",
+      "name": "Supabase",
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        700,
+        200
+      ],
+      "credentials": {
+        "supabaseApi": {
+          "id": "baNruLU9AV7x2GZq",
+          "name": "Supabase campaign manager"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://graph.facebook.com/v18.0/171009622770823/messages",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "Bearer EAAERpNdf2aYBO9sU1QltjB6ZCQZArH5MwBZCZCNsiUgH0sT4mihs6TNa6xMCDqEQ6ncUy5B3qCfXH5tbCiBC5RnvZAeYwqArMJRthWGdbUHJaBdS4PBS9gkJ6o0uGZBEA73ubwkFMkQSWI7kVEywwZBH8bmLEaL3KHm5eo2QxWbLwz4KRxtENrk0QfDPrZA5NTVU"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"recipient_type\": \"individual\",\n  \"messaging_product\": \"whatsapp\",\n  \"to\": \"{{ $json.phone }}\",\n  \"type\": \"interactive\",\n  \"interactive\": {\n    \"type\": \"flow\",\n    \"footer\": {\n      \"text\": \"Miles Education\"\n    },\n    \"body\": {\n\"text\":\"Assemble for the *Miles US Pathway - Recruitment Drive on August 10, 2024 at 7 pm.* 🗓️ \\n\\n_Register now, and discover what US recruiters are seeking in Indian Accountants!_\"\n    },\n\n    \"action\": {\n      \"name\": \"flow\",\n      \"parameters\": {\n        \"flow_message_version\": \"3\",\n        \"flow_token\": \"{{ $json.id }}\",\n        \"flow_id\": \"781978673390899\",\n        \"flow_cta\": \"Register Now\",\n        \"flow_action\": \"navigate\",\n        \"flow_action_payload\": {\n          \"screen\": \"SIGN_UP\",\n          \"data\": { \n            \"pre_name\":\"{{ $json.first_name }}\"\n          }\n        }\n      }\n    }\n  }\n}",
+        "options": {}
+      },
+      "id": "71ecfd8a-5fa3-4681-88e6-879d27a7371b",
+      "name": "HTTP Request",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        1180,
+        200
+      ]
+    },
+    {
+      "parameters": {
+        "tableId": "leads_dump",
+        "fieldsUi": {
+          "fieldValues": [
+            {
+              "fieldId": "first_name",
+              "fieldValue": "={{ $json.first_name }}"
+            },
+            {
+              "fieldId": "phone",
+              "fieldValue": "={{ $json.phone }}"
+            },
+            {
+              "fieldId": "email",
+              "fieldValue": "={{ $json.email }}"
+            },
+            {
+              "fieldId": "camp_id",
+              "fieldValue": "={{ $json.camp_id }}"
+            },
+            {
+              "fieldId": "course",
+              "fieldValue": "9"
+            },
+            {
+              "fieldId": "register_for_webinar",
+              "fieldValue": "={{ $json.email === null ? 0 : 1 }}"
+            }
+          ]
+        }
+      },
+      "id": "689167bf-aba3-4b10-8b92-2094bea4baed",
+      "name": "Supabase2",
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        920,
+        200
+      ],
+      "credentials": {
+        "supabaseApi": {
+          "id": "baNruLU9AV7x2GZq",
+          "name": "Supabase campaign manager"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://in1.api.clevertap.com/1/upload",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "X-CleverTap-Account-Id",
+              "value": "TEST-848-8KW-5W7Z"
+            },
+            {
+              "name": "X-CleverTap-Passcode",
+              "value": "SAE-KWE-USEL"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n    \"d\": [\n        {\n            \"identity\": {{ $json.contacts[0].wa_id }},\n            \"type\": \"event\",\n            \"evtName\": \"Form Filled\",\n            \"evtData\": {\n\"campaign_id\": {{ $('Supabase2').item.json[\"camp_id\"] }}\n            }\n        }\n    ]\n}   ",
+        "options": {}
+      },
+      "id": "bcd90d0f-b1b7-43ca-a634-bcd6ea23ceb4",
+      "name": "CleverTap Form Filled Request",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        1400,
+        200
+      ],
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "727ebd00-0d30-4933-a151-e854d14e3d7c",
+        "options": {}
+      },
+      "id": "fd4b764b-0e03-4335-87b0-e9555fdd4abc",
+      "name": "Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1.1,
+      "position": [
+        720,
+        -100
+      ],
+      "webhookId": "727ebd00-0d30-4933-a151-e854d14e3d7c"
+    }
+  ],
+  "pinData": {
+    "Execute Workflow Trigger": [
+      {
+        "json": {
+          "response_status": false,
+          "is_retry": false,
+          "user_id": null,
+          "campaign_id": 364,
+          "message_status_id": 1896601,
+          "webinar_id": null,
+          "lead_dump_id": null,
+          "payload": "Count me in!",
+          "wa_id": "916238133298",
+          "name": ""
+        }
+      }
+    ]
+  },
+  "settings": {
+    "executionOrder": "v1",
+    "timezone": "Asia/Calcutta",
+    "saveManualExecutions": true,
+    "callerPolicy": "workflowsFromSameOwner"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 1,
+  "updatedAt": "2025-01-27T14:11:11.000Z",
+  "versionId": "b4ff291b-683c-4f45-a8cb-a32008df5a63"
+}
