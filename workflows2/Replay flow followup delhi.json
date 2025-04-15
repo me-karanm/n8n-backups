@@ -1,0 +1,760 @@
+{
+  "active": false,
+  "connections": {
+    "Execute Workflow Trigger": {
+      "main": [
+        [
+          {
+            "node": "Supabase6",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Switch": {
+      "main": [
+        [
+          {
+            "node": "IF",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Supabase6": {
+      "main": [
+        [
+          {
+            "node": "Supabase",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Supabase": {
+      "main": [
+        [
+          {
+            "node": "Switch",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "IF": {
+      "main": [
+        [
+          {
+            "node": "Set1",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Set",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request4": {
+      "main": [
+        [
+          {
+            "node": "IF3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "MySQL3": {
+      "main": [
+        [
+          {
+            "node": "Set CPA1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request": {
+      "main": [
+        [
+          {
+            "node": "IF2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "MySQL5": {
+      "main": [
+        [
+          {
+            "node": "Set CPA",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Set CPA": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Set CPA1": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request4",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Set": {
+      "main": [
+        [
+          {
+            "node": "MySQL3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Set1": {
+      "main": [
+        [
+          {
+            "node": "MySQL5",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "IF2": {
+      "main": [
+        [
+          {
+            "node": "WhatsApp Business Cloud2",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "WhatsApp Business Cloud2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "IF3": {
+      "main": [
+        [
+          {
+            "node": "WhatsApp Business Cloud1",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "WhatsApp Business Cloud1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2023-12-06T06:35:29.647Z",
+  "id": "N0kXUYLWimoUzZYy",
+  "meta": null,
+  "name": "Replay flow followup delhi",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "7bbc6865-f558-4c8b-b652-b7e473b71236",
+      "name": "Execute Workflow Trigger",
+      "type": "n8n-nodes-base.executeWorkflowTrigger",
+      "typeVersion": 1,
+      "position": [
+        -6340,
+        -1200
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "expression",
+        "output": "={{ $('Execute Workflow Trigger').item.json.payload === \"Book Your Seat\" ? 0 :1}}"
+      },
+      "id": "a1b2a31a-c8ce-4953-9c26-6f3d04257543",
+      "name": "Switch",
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 1,
+      "position": [
+        -5620,
+        -1200
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "get",
+        "tableId": "message_status",
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "id",
+              "keyValue": "={{ $json.message_status_id }}"
+            }
+          ]
+        }
+      },
+      "id": "9d02b17f-e01f-4383-b568-8d9ceb58ca15",
+      "name": "Supabase6",
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        -6120,
+        -1200
+      ],
+      "credentials": {
+        "supabaseApi": {
+          "id": "baNruLU9AV7x2GZq",
+          "name": "Supabase campaign manager"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "get",
+        "tableId": "send_whatsapp_import",
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "id",
+              "keyValue": "={{ $json.send_whatsapp_import }}"
+            }
+          ]
+        }
+      },
+      "id": "29ada82e-4b75-47fc-bede-54f4cf6c6305",
+      "name": "Supabase",
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        -5900,
+        -1200
+      ],
+      "credentials": {
+        "supabaseApi": {
+          "id": "baNruLU9AV7x2GZq",
+          "name": "Supabase campaign manager"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "string": [
+            {
+              "value1": "={{ $json.course }}",
+              "operation": "contains",
+              "value2": "CPA"
+            }
+          ]
+        }
+      },
+      "id": "7dd712bc-36c5-4a78-aced-fcc62a48861a",
+      "name": "IF",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        -5340,
+        -1480
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://cma-api.mileseducation.com/registerLiveSessionWhatsapp",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n\"live_webinar_id\" :207,\n\"city\" : \"{{ $json.city_id }}\",\n\"phone_no\" : \"{{ $json.phone }}\",\n\"is_enrolled\" : {{ $json.student_id == 0 ? 0 :1 }},\n\"source\" : \"WhatsApp\",\n\"user_name\" :\"{{ $json.name }}\",\n\"email_id\" :\"{{ $json.email }}\",\n\"canid\" :\"{{ $json.identity }}\",\n\"student_id\" : {{ $json.student_id }}\n} ",
+        "options": {}
+      },
+      "id": "0448fd1f-2efb-4174-a8f2-896dd57fd276",
+      "name": "HTTP Request4",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        -4260,
+        -1320
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "select",
+        "table": {
+          "__rl": true,
+          "value": "app_users",
+          "mode": "list",
+          "cachedResultName": "app_users"
+        },
+        "limit": 1,
+        "where": {
+          "values": [
+            {
+              "column": "identity",
+              "value": "={{ $json['CAN-ID'] }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "b3ab823b-30ed-4012-a007-135dee2558bd",
+      "name": "MySQL3",
+      "type": "n8n-nodes-base.mySql",
+      "typeVersion": 2.1,
+      "position": [
+        -4580,
+        -1320
+      ],
+      "credentials": {
+        "mySql": {
+          "id": "PmmxUZN1aLa4HnWp",
+          "name": "CMA"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "phoneNumberId": "108019349036743",
+        "recipientPhoneNumber": "={{ $('Set CPA1').item.json.phone_formatted.toString() }}",
+        "template": "accelerator_sessions_thank_you|en",
+        "components": {
+          "component": [
+            {
+              "bodyParameters": {
+                "parameter": [
+                  {
+                    "text": "={{ $('Set CPA1').item.json.course }}"
+                  },
+                  {
+                    "text": "={{ $('Set CPA1').item.json.city }}"
+                  },
+                  {
+                    "text": "={{ $('Set CPA1').item.json.date }}"
+                  },
+                  {
+                    "text": "={{ $('Set CPA1').item.json.time }}"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      },
+      "id": "f229a90d-c15e-4e83-bc0f-64b41b7f0594",
+      "name": "WhatsApp Business Cloud1",
+      "type": "n8n-nodes-base.whatsApp",
+      "typeVersion": 1,
+      "position": [
+        -3820,
+        -1340
+      ],
+      "credentials": {
+        "whatsAppApi": {
+          "id": "75melKbodQdQAHVp",
+          "name": "WhatsApp miles education"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://cpa-api.mileseducation.com/registerLiveSessionWhatsapp",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n\"live_webinar_id\" :170,\n\"phone_no\" : \"{{ $json.phone }}\",\n\"is_enrolled\" : {{ $json.student_id == 0 ? 0 :1 }},\n\"source\" : \"WhatsApp\",\n\"user_name\" :\"{{ $json.name }}\",\n\"email_id\" :\"{{ $json.email }}\",\n\"canid\" :\"{{ $json.identity }}\",\n\"student_id\" : {{ $json.student_id}},\n\"city\":\"{{$json.city_id}}\"\n} ",
+        "options": {}
+      },
+      "id": "1dde6b59-e0ba-4a94-ac6f-9edd26dfad7f",
+      "name": "HTTP Request",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        -4240,
+        -1640
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "select",
+        "table": {
+          "__rl": true,
+          "value": "mileage_users",
+          "mode": "list",
+          "cachedResultName": "mileage_users"
+        },
+        "limit": 1,
+        "where": {
+          "values": [
+            {
+              "column": "identity",
+              "value": "={{ $json['CAN-ID'] }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "65adbe3e-29a8-4e53-8bfe-72f26e3685ba",
+      "name": "MySQL5",
+      "type": "n8n-nodes-base.mySql",
+      "typeVersion": 2.1,
+      "position": [
+        -4560,
+        -1640
+      ],
+      "credentials": {
+        "mySql": {
+          "id": "8lA9foFD93XoAQzU",
+          "name": "CPA"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "phoneNumberId": "108019349036743",
+        "recipientPhoneNumber": "={{ $('Set CPA').item.json.phone_formatted.toString() }}",
+        "template": "accelerator_sessions_thank_you|en",
+        "components": {
+          "component": [
+            {
+              "bodyParameters": {
+                "parameter": [
+                  {
+                    "text": "={{ $('Set CPA').item.json.course }}"
+                  },
+                  {
+                    "text": "={{ $('Set CPA').item.json.city }}"
+                  },
+                  {
+                    "text": "={{ $('Set CPA').item.json.date }}"
+                  },
+                  {
+                    "text": "={{ $('Set CPA').item.json.time }}"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      },
+      "id": "3f54fc8e-2ee3-4cdc-a595-36aa3c9cdae9",
+      "name": "WhatsApp Business Cloud2",
+      "type": "n8n-nodes-base.whatsApp",
+      "typeVersion": 1,
+      "position": [
+        -3780,
+        -1660
+      ],
+      "credentials": {
+        "whatsAppApi": {
+          "id": "75melKbodQdQAHVp",
+          "name": "WhatsApp miles education"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "keepOnlySet": true,
+        "values": {
+          "string": [
+            {
+              "name": "city_id",
+              "value": "4"
+            },
+            {
+              "name": "name",
+              "value": "={{ $('Supabase').item.json.first_name }}"
+            },
+            {
+              "name": "email",
+              "value": "={{ $('Supabase').item.json.email ?? $('Supabase').item.json.phone+ \"@gmail.com\" }}"
+            },
+            {
+              "name": "date",
+              "value": "10-12-2023"
+            },
+            {
+              "name": "phone",
+              "value": "={{ $('Supabase').item.json.phone }}"
+            },
+            {
+              "name": "city",
+              "value": "Delhi"
+            },
+            {
+              "name": "time",
+              "value": "03:00 PM"
+            },
+            {
+              "name": "identity",
+              "value": "={{ $('Supabase').item.json.identity }}"
+            },
+            {
+              "name": "phone_formatted",
+              "value": "={{$('Supabase').item.json.phone.toString().length = 10 ? \"91\"+ $('Supabase').item.json.phone.toString() :  $('Supabase').item.json.phone.toString() }}"
+            },
+            {
+              "name": "course",
+              "value": "CPA"
+            }
+          ],
+          "number": [
+            {
+              "name": "student_id",
+              "value": "={{ $json.int_user_id ?? \"\"}}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "25e79cd5-246c-42df-92a9-c4b26395fb1c",
+      "name": "Set CPA",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 2,
+      "position": [
+        -4400,
+        -1640
+      ]
+    },
+    {
+      "parameters": {
+        "keepOnlySet": true,
+        "values": {
+          "string": [
+            {
+              "name": "city_id",
+              "value": "4"
+            },
+            {
+              "name": "name",
+              "value": "={{ $('Set').item.json.first_name }}"
+            },
+            {
+              "name": "email",
+              "value": "={{ $('Set').item.json.email ?? $('Set').item.json.phone +\"@gmail.com\"  }}"
+            },
+            {
+              "name": "date",
+              "value": "=10-12-2023"
+            },
+            {
+              "name": "phone",
+              "value": "={{ $('Set').item.json.phone }}"
+            },
+            {
+              "name": "city",
+              "value": "Delhi"
+            },
+            {
+              "name": "time",
+              "value": "11:00 AM"
+            },
+            {
+              "name": "identity",
+              "value": "={{ $('Set').item.json.identity }}"
+            },
+            {
+              "name": "phone_formatted",
+              "value": "={{ $('Set').item.json.phone.toString().length <= 10 ? \"91\" + $('Set').item.json.phone.toString()  :  $('Set').item.json.phone  }}"
+            },
+            {
+              "name": "course",
+              "value": "CMA"
+            }
+          ],
+          "number": [
+            {
+              "name": "student_id",
+              "value": "={{ $json.int_user_id ?? \"\"}}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "38179366-ee89-4c22-a501-0db5d4d996dc",
+      "name": "Set CPA1",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 2,
+      "position": [
+        -4420,
+        -1320
+      ]
+    },
+    {
+      "parameters": {
+        "values": {
+          "string": [
+            {
+              "name": "CAN-ID",
+              "value": "={{ $json['CAN-ID'] }}"
+            },
+            {
+              "name": "name",
+              "value": "={{ $json.name }}"
+            },
+            {
+              "name": "email",
+              "value": "={{ $json.email }}"
+            },
+            {
+              "name": "phone",
+              "value": "={{ $json.phone }}"
+            },
+            {
+              "name": "Course",
+              "value": "={{ $json.Course }}"
+            },
+            {
+              "name": "City",
+              "value": "={{ $json['City '] }}"
+            },
+            {
+              "name": "source",
+              "value": "={{ $json.source }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "b721a7b6-de04-4ba2-bf06-825ac26a22ff",
+      "name": "Set",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 2,
+      "position": [
+        -4760,
+        -1320
+      ]
+    },
+    {
+      "parameters": {
+        "values": {
+          "string": [
+            {
+              "name": "CAN-ID",
+              "value": "={{ $json['CAN-ID']}}"
+            },
+            {
+              "name": "name",
+              "value": "={{ $json.name }}"
+            },
+            {
+              "name": "email",
+              "value": "={{ $json.email }}"
+            },
+            {
+              "name": "phone",
+              "value": "={{ $json.phone }}"
+            },
+            {
+              "name": "Course",
+              "value": "={{ $json.Course }}"
+            },
+            {
+              "name": "City",
+              "value": "={{ $json['City '] }}"
+            },
+            {
+              "name": "source",
+              "value": "={{ $json.source }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "8c73eff7-7750-47af-bdd1-464b69cd17d1",
+      "name": "Set1",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 2,
+      "position": [
+        -4760,
+        -1640
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "string": [
+            {
+              "value1": "={{ $json.message }}",
+              "operation": "notEqual",
+              "value2": "user already register"
+            }
+          ]
+        }
+      },
+      "id": "ce274add-6bca-485a-8b76-2452283a06f5",
+      "name": "IF2",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        -4020,
+        -1640
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "string": [
+            {
+              "value1": "={{ $json.message }}",
+              "operation": "notEqual",
+              "value2": "user already register"
+            }
+          ]
+        }
+      },
+      "id": "15eb19c3-7883-4f68-b43e-4ad6bc7f2111",
+      "name": "IF3",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        -4080,
+        -1320
+      ]
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2023-12-08T06:14:23.000Z",
+  "versionId": "76046a60-1560-4942-80c0-f2d2eefa11ac"
+}
