@@ -1,21 +1,75 @@
 {
   "active": false,
-  "connections": {},
-  "createdAt": "2024-03-05T05:19:52.259Z",
-  "id": "rODkNs7970TLHZS7",
+  "connections": {
+    "When clicking \"Execute Workflow\"": {
+      "main": [
+        [
+          {
+            "node": "Mandrill",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2024-10-04T13:27:41.250Z",
+  "id": "rKIILKQsAkMgxJAm",
   "meta": null,
   "name": "My workflow 9",
   "nodes": [
     {
       "parameters": {},
-      "id": "eeaba0a7-f53d-4c5e-8878-545ea5256b31",
+      "id": "1e20c1fc-3a7a-4d5e-8ed8-d5ccd3aa5496",
       "name": "When clicking \"Execute Workflow\"",
       "type": "n8n-nodes-base.manualTrigger",
       "typeVersion": 1,
       "position": [
-        380,
-        300
+        700,
+        360
       ]
+    },
+    {
+      "parameters": {
+        "template": "ef-form",
+        "fromEmail": "stem.nursing@milestalenthub.com",
+        "toEmail": "mandalam.karan@mileseducation.com",
+        "options": {},
+        "mergeVarsUi": {
+          "mergeVarsValues": [
+            {
+              "name": "NAME",
+              "content": "Karan"
+            },
+            {
+              "name": "CANID",
+              "content": "2345"
+            },
+            {
+              "name": "COURSE",
+              "content": "CPA"
+            },
+            {
+              "name": "LINK",
+              "content": "https://www.mileseducation.com"
+            }
+          ]
+        }
+      },
+      "id": "0517afaf-89bc-489b-90b0-e8f22c8b7fd8",
+      "name": "Mandrill",
+      "type": "n8n-nodes-base.mandrill",
+      "typeVersion": 1,
+      "position": [
+        1180,
+        360
+      ],
+      "credentials": {
+        "mandrillApi": {
+          "id": "MdiS01IyaXU55Lih",
+          "name": "Mandrill account"
+        }
+      }
     }
   ],
   "pinData": {},
@@ -25,6 +79,6 @@
   "staticData": null,
   "tags": [],
   "triggerCount": 0,
-  "updatedAt": "2024-03-05T05:19:52.259Z",
-  "versionId": "f9f19184-4c51-4b69-9e02-7ea280221150"
+  "updatedAt": "2024-10-04T13:28:32.000Z",
+  "versionId": "1982696c-6d56-445d-8be6-0a797af033c9"
 }
