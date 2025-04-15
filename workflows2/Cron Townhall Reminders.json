@@ -1,0 +1,815 @@
+{
+  "active": false,
+  "connections": {
+    "WhatsApp Business Cloud": {
+      "main": [
+        [
+          {
+            "node": "Supabase",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "When clicking \"Execute Workflow\"": {
+      "main": [
+        [
+          {
+            "node": "Postgres",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Loop Over Items": {
+      "main": [
+        [
+          {
+            "node": "WhatsApp Business Cloud3",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Code1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code1": {
+      "main": [
+        []
+      ]
+    },
+    "WhatsApp Business Cloud2": {
+      "main": [
+        [
+          {
+            "node": "Supabase2",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Supabase3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "WhatsApp Business Cloud1": {
+      "main": [
+        [
+          {
+            "node": "Supabase1",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Supabase3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Supabase1": {
+      "main": [
+        [
+          {
+            "node": "Mandrill",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Supabase2": {
+      "main": [
+        [
+          {
+            "node": "Mandrill1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Mandrill": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Supabase3": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Mandrill1": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Postgres": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Summarize",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Switch": {
+      "main": [
+        [
+          {
+            "node": "WhatsApp Business Cloud1",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "WhatsApp Business Cloud2",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2024-12-12T11:44:55.114Z",
+  "id": "wR04E1U8pU4wIx9e",
+  "meta": null,
+  "name": "Cron Townhall Reminders",
+  "nodes": [
+    {
+      "parameters": {
+        "phoneNumberId": "108019349036743",
+        "recipientPhoneNumber": "={{ $json.body.lead_details.phone }}",
+        "template": "conclave_instant_registration|en",
+        "components": {
+          "component": [
+            {
+              "type": "button",
+              "sub_type": "url",
+              "buttonParameters": {
+                "parameter": {
+                  "payload": "=?leadUuid={{ $json[\"body\"][\"lead_uuid\"] }}&orientation_id={{ $json[\"body\"][\"orientation_id\"] }}"
+                }
+              }
+            },
+            {
+              "type": "header",
+              "headerParameters": {
+                "parameter": [
+                  {
+                    "type": "image",
+                    "imageLink": "https://one.mileseducation.us/storage/v1/object/public/wa_assets/WhatsApp%20Image%202024-11-28%20at%2017.41.37.jpeg"
+                  }
+                ]
+              }
+            },
+            {
+              "bodyParameters": {
+                "parameter": [
+                  {
+                    "text": "={{ $json.body.lead_details.name }}"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      },
+      "id": "b7601731-c344-49f5-bce3-e8d334a697a5",
+      "name": "WhatsApp Business Cloud",
+      "type": "n8n-nodes-base.whatsApp",
+      "typeVersion": 1,
+      "position": [
+        1660,
+        120
+      ],
+      "credentials": {
+        "whatsAppApi": {
+          "id": "75melKbodQdQAHVp",
+          "name": "Marketing | Secondary [Miles Education]"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "tableId": "message_status",
+        "fieldsUi": {
+          "fieldValues": [
+            {
+              "fieldId": "send_status",
+              "fieldValue": "true"
+            },
+            {
+              "fieldId": "send_time",
+              "fieldValue": "={{ $now }}"
+            },
+            {
+              "fieldId": "message_id",
+              "fieldValue": "={{ $json.messages[0].id }}"
+            },
+            {
+              "fieldId": "template_name",
+              "fieldValue": "conclave_instant_registration"
+            },
+            {
+              "fieldId": "phone",
+              "fieldValue": "={{ $json.contacts[0].wa_id }}"
+            }
+          ]
+        }
+      },
+      "id": "458f764b-3acc-4ea1-860b-66f31b3cb6e7",
+      "name": "Supabase",
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        2080,
+        120
+      ],
+      "credentials": {
+        "supabaseApi": {
+          "id": "baNruLU9AV7x2GZq",
+          "name": "Supabase campaign manager"
+        }
+      }
+    },
+    {
+      "parameters": {},
+      "id": "5f68b261-3f29-43b1-becf-65cb87b08365",
+      "name": "When clicking \"Execute Workflow\"",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        380,
+        960
+      ]
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "id": "27f372f0-2a0a-49c3-89d5-94c226c67ae8",
+      "name": "Loop Over Items",
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [
+        1180,
+        960
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "const date2 = $input.first().json.Orientation__orientation_date;\n\n// Get today's date as the start date\nconst date1 = new Date().toISOString();\n\nfunction calculateDateDifference(date1, date2) {\n    const startDate = new Date(date1);\n    const endDate = new Date(date2);\n\n    // Calculate the difference in milliseconds\n    const differenceInMilliseconds = Math.abs(endDate - startDate);\n\n    // Convert to desired units\n    const differenceInDays = Math.floor(differenceInMilliseconds / (1000 * 60 * 60 * 24));\n    const differenceInHours = Math.floor(differenceInMilliseconds / (1000 * 60 * 60)) % 24;\n    const differenceInMinutes = Math.floor(differenceInMilliseconds / (1000 * 60)) % 60;\n    const differenceInSeconds = Math.floor(differenceInMilliseconds / 1000) % 60;\n\n    return {\n        days: differenceInDays,\n        hours: differenceInHours,\n        minutes: differenceInMinutes,\n        seconds: differenceInSeconds,\n    };\n}\n\n// Call the function and format the result as an array of objects\nconst difference = calculateDateDifference(date1, date2);\n\n// Return as an array of objects for n8n\nreturn [\n    {\n        json: difference,\n    },\n];\n"
+      },
+      "id": "363010e7-cba6-485b-8de4-3df221842f4f",
+      "name": "Code1",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1640,
+        1060
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "executeQuery",
+        "query": "SELECT\n  \"public\".\"lead_orientation\".\"id\" AS \"id\",\n  \"public\".\"lead_orientation\".\"created_at\" AS \"created_at\",\n  \"public\".\"lead_orientation\".\"lead_id\" AS \"lead_id\",\n  \"public\".\"lead_orientation\".\"orientation_id\" AS \"orientation_id\",\n  \"public\".\"lead_orientation\".\"source_type\" AS \"source_type\",\n  \"Lead\".\"candidate_id\" AS \"Lead__candidate_id\",\n  \"Lead\".\"first_name\" AS \"Lead__first_name\",\n  \"Lead\".\"city\" AS \"Lead__city\",\n  \"Lead\".\"uuid\" AS \"Lead__uuid\",\n  \"Phone\".\"countryCode\" AS \"Phone__countryCode\",\n  \"Phone\".\"phoneNumber\" AS \"Phone__phoneNumber\",\n  \"Email\".\"email\" AS \"Email__email\",\n  \"Orientation\".\"id\" AS \"Orientation__id\",\n  \"Orientation\".\"programId\" AS \"Orientation__programId\",\n  \"Orientation\".\"milesLocationId\" AS \"Orientation__milesLocationId\",\n  \"Orientation\".\"orientation_name\" AS \"Orientation__orientation_name\",\n  \"Orientation\".\"orientation_date\" AS \"Orientation__orientation_date\",\n  \"Miles Office\".\"address\" AS \"Miles Office__address\",\n  \"Miles Office\".\"city\" AS \"Miles Office__city\",\n  \"Miles Office\".\"contact\" AS \"Miles Office__contact\",\n  \"Miles Office\".\"location_url\" AS \"Miles Office__location_url\",\n  \"Miles Office\".\"lat\" AS \"Miles Office__lat\",\n  \"Miles Office\".\"lng\" AS \"Miles Office__lng\"\nFROM\n  \"public\".\"lead_orientation\"\n \nLEFT JOIN \"public\".\"lead\" AS \"Lead\" ON \"public\".\"lead_orientation\".\"lead_id\" = \"Lead\".\"id\"\n  LEFT JOIN \"public\".\"phone\" AS \"Phone\" ON \"Lead\".\"id\" = \"Phone\".\"leadId\"\n  LEFT JOIN \"public\".\"email\" AS \"Email\" ON \"Lead\".\"id\" = \"Email\".\"leadId\"\n  LEFT JOIN \"public\".\"orientation\" AS \"Orientation\" ON \"public\".\"lead_orientation\".\"orientation_id\" = \"Orientation\".\"id\"\n  LEFT JOIN \"public\".\"miles_office\" AS \"Miles Office\" ON \"Lead\".\"miles_office_id\" = \"Miles Office\".\"id\"\nwhere \"Orientation\".\"programId\" in (2)\nLIMIT\n  1048575",
+        "options": {}
+      },
+      "id": "8e7d596a-7323-4a37-81dd-d4c06dfb07b7",
+      "name": "Postgres",
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.3,
+      "position": [
+        640,
+        960
+      ],
+      "credentials": {
+        "postgres": {
+          "id": "ggFr3kWsGBTF2B44",
+          "name": "Postgres account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "send",
+        "phoneNumberId": "108019349036743",
+        "recipientPhoneNumber": "+919460596406",
+        "textBody": "Al reminders sent!",
+        "additionalFields": {}
+      },
+      "id": "548584c6-40bd-4475-a3ed-be461b90edae",
+      "name": "WhatsApp Business Cloud3",
+      "type": "n8n-nodes-base.whatsApp",
+      "typeVersion": 1,
+      "position": [
+        1520,
+        840
+      ],
+      "credentials": {
+        "whatsAppApi": {
+          "id": "75melKbodQdQAHVp",
+          "name": "Marketing | Secondary [Miles Education]"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "tableId": "message_status",
+        "fieldsUi": {
+          "fieldValues": [
+            {
+              "fieldId": "send_status",
+              "fieldValue": "true"
+            },
+            {
+              "fieldId": "message_id",
+              "fieldValue": "={{ $json.messages[0].id }}"
+            },
+            {
+              "fieldId": "campaign_id",
+              "fieldValue": "1243"
+            },
+            {
+              "fieldId": "phone",
+              "fieldValue": "={{ $('Postgres').item.json.Phone__phoneNumber }}"
+            },
+            {
+              "fieldId": "template_name",
+              "fieldValue": "=townhall_reminder_1_day_ {{ $('Postgres').item.json.Orientation__orientation_name }}"
+            }
+          ]
+        }
+      },
+      "id": "8611f177-967c-46d1-894d-861a14768f1c",
+      "name": "Supabase2",
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        2560,
+        1280
+      ],
+      "credentials": {
+        "supabaseApi": {
+          "id": "baNruLU9AV7x2GZq",
+          "name": "Supabase campaign manager"
+        }
+      },
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "phoneNumberId": "108019349036743",
+        "recipientPhoneNumber": "={{ $('Postgres').item.json.Phone__phoneNumber }}",
+        "template": "reminder_townhall_d_1_day|en",
+        "components": {
+          "component": [
+            {
+              "bodyParameters": {
+                "parameter": [
+                  {
+                    "text": "={{ $('Postgres').item.json.Lead__first_name }}"
+                  },
+                  {
+                    "text": "=The clock is ticking — Miles {{ $('Postgres').item.json[\"Orientation__programId\"] == 1 ?\"CPA\" : \"CMA\"}} Townhall with Varun Jain STARTS IN 2 HOURS!! 🎉"
+                  }
+                ]
+              }
+            },
+            {
+              "type": "header",
+              "headerParameters": {
+                "parameter": [
+                  {
+                    "type": "image",
+                    "imageLink": "={{ $('Postgres').item.json[\"Orientation__programId\"]==\"2\"?\"https://one.mileseducation.us/storage/v1/object/public/wa_assets/CMATownhall_Banner-ezgif.com-webp-to-jpg-converter.jpg\":\"https://one.mileseducation.us/storage/v1/object/public/wa_assets/CPATownhall_Banner-ezgif.com-webp-to-jpg-converter.jpg\" }}"
+                  }
+                ]
+              }
+            },
+            {
+              "type": "button",
+              "sub_type": "url",
+              "buttonParameters": {
+                "parameter": {
+                  "payload": "={{ $('Postgres').item.json[\"Miles Office__location_url\"].slice(34) }}"
+                }
+              }
+            },
+            {
+              "type": "button",
+              "sub_type": "url",
+              "index": 1,
+              "buttonParameters": {
+                "parameter": {
+                  "payload": "=?leadUuid={{ $('Postgres').item.json[\"Lead__uuid\"] }}&orientation_id={{ $('Postgres').item.json[\"Orientation__id\"] }}"
+                }
+              }
+            }
+          ]
+        }
+      },
+      "id": "f28bf1a9-01c5-40aa-ae46-b29fe1fab10a",
+      "name": "WhatsApp Business Cloud2",
+      "type": "n8n-nodes-base.whatsApp",
+      "typeVersion": 1,
+      "position": [
+        2240,
+        1120
+      ],
+      "credentials": {
+        "whatsAppApi": {
+          "id": "75melKbodQdQAHVp",
+          "name": "Marketing | Secondary [Miles Education]"
+        }
+      },
+      "onError": "continueErrorOutput"
+    },
+    {
+      "parameters": {
+        "tableId": "message_status",
+        "fieldsUi": {
+          "fieldValues": [
+            {
+              "fieldId": "send_status",
+              "fieldValue": "false"
+            },
+            {
+              "fieldId": "phone",
+              "fieldValue": "={{ $('Postgres').item.json.Phone__phoneNumber }}"
+            },
+            {
+              "fieldId": "template_name",
+              "fieldValue": "=failed_ {{ $('Postgres').item.json.Orientation__orientation_name }}"
+            }
+          ]
+        }
+      },
+      "id": "1f799ce3-9606-47de-b684-300334a5e7fd",
+      "name": "Supabase3",
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        2720,
+        1020
+      ],
+      "credentials": {
+        "supabaseApi": {
+          "id": "baNruLU9AV7x2GZq",
+          "name": "Supabase campaign manager"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "phoneNumberId": "108019349036743",
+        "recipientPhoneNumber": "={{ $('Postgres').item.json.Phone__phoneNumber }}",
+        "template": "reminder_townhall_d_1_day|en",
+        "components": {
+          "component": [
+            {
+              "bodyParameters": {
+                "parameter": [
+                  {
+                    "text": "={{ $('Postgres').item.json.Lead__first_name }}"
+                  },
+                  {
+                    "text": "={{ $('Postgres').item.json[\"Orientation__programId\"] == 1 ?\"CPA\" : \"CMA\"}}"
+                  },
+                  {
+                    "text": "={{ $('Postgres').item.json[\"Orientation__programId\"] == 1 ?\"3 PM\" : \"11 AM\"}}"
+                  }
+                ]
+              }
+            },
+            {
+              "type": "header",
+              "headerParameters": {
+                "parameter": [
+                  {
+                    "type": "image",
+                    "imageLink": "={{ $('Postgres').item.json[\"Orientation__programId\"]==\"2\"?\"https://one.mileseducation.us/storage/v1/object/public/wa_assets/CMATownhall_Banner-ezgif.com-webp-to-jpg-converter.jpg\":\"https://one.mileseducation.us/storage/v1/object/public/wa_assets/CPATownhall_Banner-ezgif.com-webp-to-jpg-converter.jpg\" }}"
+                  }
+                ]
+              }
+            },
+            {
+              "type": "button",
+              "sub_type": "url",
+              "buttonParameters": {
+                "parameter": {
+                  "payload": "=?leadUuid={{ $('Postgres').item.json[\"Lead__uuid\"] }}&orientation_id={{ $('Postgres').item.json[\"Orientation__id\"] }}"
+                }
+              }
+            },
+            {
+              "type": "button",
+              "sub_type": "url",
+              "index": 1,
+              "buttonParameters": {
+                "parameter": {
+                  "payload": "={{ $('Postgres').item.json[\"Miles Office__location_url\"].slice(34) }}"
+                }
+              }
+            }
+          ]
+        }
+      },
+      "id": "870324cd-6125-4656-a341-950f2b1c6025",
+      "name": "WhatsApp Business Cloud1",
+      "type": "n8n-nodes-base.whatsApp",
+      "typeVersion": 1,
+      "position": [
+        2080,
+        960
+      ],
+      "credentials": {
+        "whatsAppApi": {
+          "id": "75melKbodQdQAHVp",
+          "name": "Marketing | Secondary [Miles Education]"
+        }
+      },
+      "onError": "continueErrorOutput"
+    },
+    {
+      "parameters": {
+        "tableId": "message_status",
+        "fieldsUi": {
+          "fieldValues": [
+            {
+              "fieldId": "send_status",
+              "fieldValue": "true"
+            },
+            {
+              "fieldId": "message_id",
+              "fieldValue": "={{ $json.messages[0].id }}"
+            },
+            {
+              "fieldId": "campaign_id",
+              "fieldValue": "1243"
+            },
+            {
+              "fieldId": "phone",
+              "fieldValue": "={{ $('Postgres').item.json.Phone__phoneNumber }}"
+            },
+            {
+              "fieldId": "template_name",
+              "fieldValue": "=townhall_reminder_1_day_ {{ $('Postgres').item.json.Orientation__orientation_name }}"
+            }
+          ]
+        }
+      },
+      "id": "c4ded963-d5b6-43c2-a7e1-2b94ad349611",
+      "name": "Supabase1",
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        2360,
+        780
+      ],
+      "credentials": {
+        "supabaseApi": {
+          "id": "baNruLU9AV7x2GZq",
+          "name": "Supabase campaign manager"
+        }
+      },
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "template": "townhall-reminder-templates",
+        "fromEmail": "info@mileseducation.com",
+        "toEmail": "={{ $('Postgres').item.json.Email__email }}",
+        "options": {
+          "subject": "=Congratulations! Here are your details for the {{ $('Postgres').item.json[\"Orientation__orientation_name\"] }}!"
+        },
+        "mergeVarsUi": {
+          "mergeVarsValues": [
+            {
+              "name": "FNAME",
+              "content": "={{ $('Postgres').item.json.Lead__first_name }}"
+            },
+            {
+              "name": "COURSE",
+              "content": "={{ $('Postgres').item.json.Orientation__programId==1?\"CPA\":\"CMA\" }}"
+            },
+            {
+              "name": "TEXT",
+              "content": "=TOMORROW at {{ $('Postgres').item.json.Orientation__programId==1?\"3 PM\":\"11 AM\" }}"
+            },
+            {
+              "name": "UUID",
+              "content": "={{ $('Postgres').item.json.Lead__uuid }}"
+            },
+            {
+              "name": "ORN",
+              "content": "={{ $('Postgres').item.json.Orientation__id }}"
+            },
+            {
+              "name": "MAPS",
+              "content": "={{ $('Postgres').item.json['Miles Office__location_url'] }}"
+            }
+          ]
+        }
+      },
+      "id": "d30c347d-1329-4176-adf5-17d596a9428b",
+      "name": "Mandrill",
+      "type": "n8n-nodes-base.mandrill",
+      "typeVersion": 1,
+      "position": [
+        2680,
+        780
+      ],
+      "credentials": {
+        "mandrillApi": {
+          "id": "MdiS01IyaXU55Lih",
+          "name": "Mandrill account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "template": "townhall-reminder-templates",
+        "fromEmail": "info@mileseducation.com",
+        "toEmail": "={{ $('Postgres').item.json.Email__email }}",
+        "options": {
+          "subject": "=Congratulations! Here are your details for the {{ $('Postgres').item.json[\"Orientation__orientation_name\"] }}!"
+        },
+        "mergeVarsUi": {
+          "mergeVarsValues": [
+            {
+              "name": "FNAME",
+              "content": "={{ $('Postgres').item.json.Lead__first_name }}"
+            },
+            {
+              "name": "COURSE",
+              "content": "={{ $('Postgres').item.json.Orientation__programId==1?\"CPA\":\"CMA\" }}"
+            },
+            {
+              "name": "TEXT",
+              "content": "=TODAY at {{ $('Postgres').item.json.Orientation__programId==1?\"3 PM\":\"11 AM\" }}"
+            },
+            {
+              "name": "UUID",
+              "content": "={{ $('Postgres').item.json.Lead__uuid }}"
+            },
+            {
+              "name": "ORN",
+              "content": "={{ $('Postgres').item.json.Orientation__id }}"
+            },
+            {
+              "name": "MAPS",
+              "content": "={{ $('Postgres').item.json['Miles Office__location_url'] }}"
+            }
+          ]
+        }
+      },
+      "id": "26daba49-75b2-4aa8-beb0-e298c3c5337d",
+      "name": "Mandrill1",
+      "type": "n8n-nodes-base.mandrill",
+      "typeVersion": 1,
+      "position": [
+        2860,
+        1280
+      ],
+      "credentials": {
+        "mandrillApi": {
+          "id": "MdiS01IyaXU55Lih",
+          "name": "Mandrill account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "fieldsToSummarize": {
+          "values": [
+            {
+              "aggregation": "countUnique",
+              "field": "Lead__uuid"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "a554ee13-6197-44e7-b3b0-95021b9afb2f",
+      "name": "Summarize",
+      "type": "n8n-nodes-base.summarize",
+      "typeVersion": 1,
+      "position": [
+        1180,
+        1660
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "executeQuery",
+        "query": "SELECT\n  \"public\".\"lead_orientation\".\"id\" AS \"id\",\n  \"public\".\"lead_orientation\".\"status\" AS \"status\",\n  \"public\".\"lead_orientation\".\"created_by\" AS \"created_by\",\n  \"public\".\"lead_orientation\".\"updated_by\" AS \"updated_by\",\n  \"public\".\"lead_orientation\".\"created_at\" AS \"created_at\",\n  \"public\".\"lead_orientation\".\"updated_at\" AS \"updated_at\",\n  \"public\".\"lead_orientation\".\"lead_id\" AS \"lead_id\",\n  \"public\".\"lead_orientation\".\"orientation_id\" AS \"orientation_id\",\n  \"public\".\"lead_orientation\".\"googleCalenderId\" AS \"googleCalenderId\",\n  \"public\".\"lead_orientation\".\"attended_status\" AS \"attended_status\",\n  \"public\".\"lead_orientation\".\"lead_status\" AS \"lead_status\",\n  \"public\".\"lead_orientation\".\"source_type\" AS \"source_type\",\n  \"Orientation\".\"id\" AS \"Orientation__id\",\n  \"Orientation\".\"status\" AS \"Orientation__status\",\n  \"Orientation\".\"created_by\" AS \"Orientation__created_by\",\n  \"Orientation\".\"updated_by\" AS \"Orientation__updated_by\",\n  \"Orientation\".\"created_at\" AS \"Orientation__created_at\",\n  \"Orientation\".\"updated_at\" AS \"Orientation__updated_at\",\n  \"Orientation\".\"orientation_date\" AS \"Orientation__orientation_date\",\n  \"Orientation\".\"programId\" AS \"Orientation__programId\",\n  \"Orientation\".\"milesLocationId\" AS \"Orientation__milesLocationId\",\n  \"Orientation\".\"orientation_name\" AS \"Orientation__orientation_name\",\n  \"Orientation\".\"orientation_type\" AS \"Orientation__orientation_type\",\n  \"Miles Office - MilesLocationId\".\"id\" AS \"Miles Office - MilesLocationId__id\",\n  \"Miles Office - MilesLocationId\".\"status\" AS \"Miles Office - MilesLocationId__status\",\n  \"Miles Office - MilesLocationId\".\"created_by\" AS \"Miles Office - MilesLocationId__created_by\",\n  \"Miles Office - MilesLocationId\".\"updated_by\" AS \"Miles Office - MilesLocationId__updated_by\",\n  \"Miles Office - MilesLocationId\".\"created_at\" AS \"Miles Office - MilesLocationId__created_at\",\n  \"Miles Office - MilesLocationId\".\"updated_at\" AS \"Miles Office - MilesLocationId__updated_at\",\n  \"Miles Office - MilesLocationId\".\"address\" AS \"Miles Office - MilesLocationId__address\",\n  \"Miles Office - MilesLocationId\".\"city\" AS \"Miles Office - MilesLocationId__city\",\n  \"Miles Office - MilesLocationId\".\"contact\" AS \"Miles Office - MilesLocationId__contact\",\n  \"Miles Office - MilesLocationId\".\"country\" AS \"Miles Office - MilesLocationId__country\",\n  \"Miles Office - MilesLocationId\".\"email\" AS \"Miles Office - MilesLocationId__email\",\n  \"Miles Office - MilesLocationId\".\"location_url\" AS \"Miles Office - MilesLocationId__location_url\",\n  \"Miles Office - MilesLocationId\".\"lat\" AS \"Miles Office - MilesLocationId__lat\",\n  \"Miles Office - MilesLocationId\".\"lng\" AS \"Miles Office - MilesLocationId__lng\",\n  \"Miles Office - MilesLocationId\".\"isWarehouse\" AS \"Miles Office - MilesLocationId__isWarehouse\",\n  \"Miles Office - MilesLocationId\".\"ivr\" AS \"Miles Office - MilesLocationId__ivr\",\n  (\n    \"Lead\".\"bridge_course_recommendation\" #>> array [ 'can_id' ] :: text [ ]\n  ) :: text AS \"Lead__bridge_course_recommendation → can_id\",\n  (\n    \"Lead\".\"bridge_course_recommendation\" #>> array [ 'eligibility_code' ] :: text [ ]\n  ) :: text AS \"Lead__bridge_course_recommendation → eligibility_code\",\n  (\n    \"Lead\".\"bridge_course_recommendation\" #>> array [ 'recommend_arka_elective_ids' ] :: text [ ]\n  ) :: text AS \"Lead__bridge_course_recommendation → recommend_ar_c0573d92\",\n  \"Lead\".\"id\" AS \"Lead__id\",\n  \"Lead\".\"status\" AS \"Lead__status\",\n  \"Lead\".\"created_by\" AS \"Lead__created_by\",\n  \"Lead\".\"updated_by\" AS \"Lead__updated_by\",\n  \"Lead\".\"created_at\" AS \"Lead__created_at\",\n  \"Lead\".\"updated_at\" AS \"Lead__updated_at\",\n  \"Lead\".\"candidate_id\" AS \"Lead__candidate_id\",\n  \"Lead\".\"first_name\" AS \"Lead__first_name\",\n  \"Lead\".\"last_name\" AS \"Lead__last_name\",\n  \"Lead\".\"city\" AS \"Lead__city\",\n  \"Lead\".\"city_num_verify\" AS \"Lead__city_num_verify\",\n  \"Lead\".\"whatsapp_opt_in\" AS \"Lead__whatsapp_opt_in\",\n  \"Lead\".\"intrested_to_work_in_us\" AS \"Lead__intrested_to_work_in_us\",\n  \"Lead\".\"linked_in_url\" AS \"Lead__linked_in_url\",\n  \"Lead\".\"graduation_year\" AS \"Lead__graduation_year\",\n  \"Lead\".\"uuid\" AS \"Lead__uuid\",\n  \"Lead\".\"call_opt_in\" AS \"Lead__call_opt_in\",\n  \"Lead\".\"email_opt_in\" AS \"Lead__email_opt_in\",\n  \"Lead\".\"message_opt_in\" AS \"Lead__message_opt_in\",\n  \"Lead\".\"followup_date\" AS \"Lead__followup_date\",\n  \"Lead\".\"call_status\" AS \"Lead__call_status\",\n  \"Lead\".\"last_call_date\" AS \"Lead__last_call_date\",\n  \"Lead\".\"is_DND\" AS \"Lead__is_DND\",\n  \"Lead\".\"lead_category\" AS \"Lead__lead_category\",\n  \"Lead\".\"eligibility_code\" AS \"Lead__eligibility_code\",\n  \"Lead\".\"eligibility_course\" AS \"Lead__eligibility_course\",\n  \"Lead\".\"count_for_month\" AS \"Lead__count_for_month\",\n  \"Lead\".\"miles_office_id\" AS \"Lead__miles_office_id\",\n  \"Lead\".\"reffered_by\" AS \"Lead__reffered_by\",\n  \"Lead\".\"spocId\" AS \"Lead__spocId\",\n  \"Lead\".\"srSpocId\" AS \"Lead__srSpocId\",\n  \"Lead\".\"pathwayProfileId\" AS \"Lead__pathwayProfileId\",\n  \"Lead\".\"pushed_to_ats\" AS \"Lead__pushed_to_ats\",\n  \"Lead\".\"bridge_course_recommendation\" AS \"Lead__bridge_course_recommendation\",\n  \"Lead\".\"notify_followup\" AS \"Lead__notify_followup\",\n  \"Lead\".\"re_enquiry_date\" AS \"Lead__re_enquiry_date\",\n  \"Lead\".\"attempt_count\" AS \"Lead__attempt_count\",\n  \"Phone\".\"id\" AS \"Phone__id\",\n  \"Phone\".\"status\" AS \"Phone__status\",\n  \"Phone\".\"created_by\" AS \"Phone__created_by\",\n  \"Phone\".\"updated_by\" AS \"Phone__updated_by\",\n  \"Phone\".\"created_at\" AS \"Phone__created_at\",\n  \"Phone\".\"updated_at\" AS \"Phone__updated_at\",\n  \"Phone\".\"countryCode\" AS \"Phone__countryCode\",\n  \"Phone\".\"phoneNumber\" AS \"Phone__phoneNumber\",\n  \"Phone\".\"isActive\" AS \"Phone__isActive\",\n  \"Phone\".\"isWhatsAppNumber\" AS \"Phone__isWhatsAppNumber\",\n  \"Phone\".\"isPrimary\" AS \"Phone__isPrimary\",\n  \"Phone\".\"maskedPhoneNo\" AS \"Phone__maskedPhoneNo\",\n  \"Phone\".\"phoneType\" AS \"Phone__phoneType\",\n  \"Phone\".\"contact_removal_request_date\" AS \"Phone__contact_removal_request_date\",\n  \"Phone\".\"reason_for_delete\" AS \"Phone__reason_for_delete\",\n  \"Phone\".\"mode_of_communication\" AS \"Phone__mode_of_communication\",\n  \"Phone\".\"leadId\" AS \"Phone__leadId\",\n  \"Email\".\"id\" AS \"Email__id\",\n  \"Email\".\"status\" AS \"Email__status\",\n  \"Email\".\"created_by\" AS \"Email__created_by\",\n  \"Email\".\"updated_by\" AS \"Email__updated_by\",\n  \"Email\".\"created_at\" AS \"Email__created_at\",\n  \"Email\".\"updated_at\" AS \"Email__updated_at\",\n  \"Email\".\"email\" AS \"Email__email\",\n  \"Email\".\"isActive\" AS \"Email__isActive\",\n  \"Email\".\"isMasked\" AS \"Email__isMasked\",\n  \"Email\".\"isPrimary\" AS \"Email__isPrimary\",\n  \"Email\".\"maskedEmail\" AS \"Email__maskedEmail\",\n  \"Email\".\"contact_removal_request_date\" AS \"Email__contact_removal_request_date\",\n  \"Email\".\"reason_for_delete\" AS \"Email__reason_for_delete\",\n  \"Email\".\"mode_of_communication\" AS \"Email__mode_of_communication\",\n  \"Email\".\"leadId\" AS \"Email__leadId\"\nFROM\n  \"public\".\"lead_orientation\"\n \nLEFT JOIN \"public\".\"orientation\" AS \"Orientation\" ON \"public\".\"lead_orientation\".\"orientation_id\" = \"Orientation\".\"id\"\n  LEFT JOIN \"public\".\"miles_office\" AS \"Miles Office - MilesLocationId\" ON \"Orientation\".\"milesLocationId\" = \"Miles Office - MilesLocationId\".\"id\"\n  LEFT JOIN \"public\".\"lead\" AS \"Lead\" ON \"public\".\"lead_orientation\".\"lead_id\" = \"Lead\".\"id\"\n  LEFT JOIN \"public\".\"phone\" AS \"Phone\" ON \"Lead\".\"id\" = \"Phone\".\"leadId\"\n  LEFT JOIN \"public\".\"email\" AS \"Email\" ON \"Lead\".\"id\" = \"Email\".\"leadId\"\nWHERE\n  (\n    \"Miles Office - MilesLocationId\".\"city\" = 'Hyderabad'\n  )\n \n   AND (\n    (\"Orientation\".\"programId\" = 1)\n   \n    OR (\"Orientation\".\"programId\" = 2)\n  )\nLIMIT\n  1048575",
+        "options": {}
+      },
+      "id": "1f67ec72-64bf-463b-9e33-290b998036ce",
+      "name": "Postgres1",
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.3,
+      "position": [
+        980,
+        140
+      ],
+      "credentials": {
+        "postgres": {
+          "id": "ggFr3kWsGBTF2B44",
+          "name": "Postgres account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "value1": "={{ $json.days }}",
+        "rules": {
+          "rules": [
+            {
+              "operation": "equal",
+              "value2": 1,
+              "outputKey": "0"
+            },
+            {
+              "operation": "equal",
+              "outputKey": "1"
+            },
+            {
+              "operation": "larger",
+              "value2": 1,
+              "outputKey": "3"
+            }
+          ]
+        },
+        "fallbackOutput": 1
+      },
+      "id": "6d83c13b-1310-4ea1-a677-6786be9e6bff",
+      "name": "Switch",
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 2,
+      "position": [
+        1860,
+        1060
+      ]
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 1,
+  "updatedAt": "2024-12-14T04:06:57.000Z",
+  "versionId": "1bfeb931-3b36-4fb1-892f-6e0e917a0ced"
+}
