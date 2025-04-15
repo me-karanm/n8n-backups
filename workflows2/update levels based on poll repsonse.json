@@ -1,0 +1,122 @@
+{
+  "active": false,
+  "connections": {
+    "When clicking \"Execute Workflow\"": {
+      "main": [
+        [
+          {
+            "node": "Google Sheets",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Sheets": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Loop Over Items": {
+      "main": [
+        [],
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-02-08T14:29:30.355Z",
+  "id": "7VEzyyRGqQxa7hQ1",
+  "meta": null,
+  "name": "update levels based on poll repsonse",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "93bd5378-887c-4767-8d92-12b102494b2b",
+      "name": "When clicking \"Execute Workflow\"",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        120,
+        380
+      ]
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "https://docs.google.com/spreadsheets/d/1_tF_TvXSZKtY2MBxSuKM2OmOfP4Khgd8q3x4mS2dJ4s/edit?gid=1454589882#gid=1454589882",
+          "mode": "url"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 1454589882,
+          "mode": "list",
+          "cachedResultName": "all polls",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1_tF_TvXSZKtY2MBxSuKM2OmOfP4Khgd8q3x4mS2dJ4s/edit#gid=1454589882"
+        },
+        "options": {}
+      },
+      "id": "e59347cc-0eb4-485a-8d69-b1dc0c27737d",
+      "name": "Google Sheets",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.2,
+      "position": [
+        420,
+        380
+      ],
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "n47yck7gEPNvOMuD",
+          "name": "Google Sheets account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "id": "b4ad9646-cd19-4415-9da9-b72395e0b8e7",
+      "name": "Loop Over Items",
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [
+        760,
+        380
+      ]
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "id": "001583c1-6fdb-4179-8b32-4d9109f474ef",
+      "name": "HTTP Request",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        1180,
+        400
+      ]
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2025-02-08T14:31:18.000Z",
+  "versionId": "48768aea-8f24-4b8a-b719-e642b3c1bfaf"
+}
