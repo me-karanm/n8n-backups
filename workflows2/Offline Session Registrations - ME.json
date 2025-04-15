@@ -1,0 +1,117 @@
+{
+  "active": false,
+  "connections": {
+    "Supabase": {
+      "main": [
+        [
+          {
+            "node": "Supabase1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Execute Workflow Trigger": {
+      "main": [
+        []
+      ]
+    }
+  },
+  "createdAt": "2024-09-09T18:30:40.798Z",
+  "id": "E7udVgRmmZPMSleU",
+  "meta": null,
+  "name": "Offline Session Registrations - ME",
+  "nodes": [
+    {
+      "parameters": {
+        "operation": "getAll",
+        "tableId": "leads_dump",
+        "returnAll": true,
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "webinar_id",
+              "condition": "eq",
+              "keyValue": "85"
+            },
+            {
+              "keyName": "webinar_id",
+              "condition": "eq",
+              "keyValue": "86"
+            }
+          ]
+        }
+      },
+      "id": "b73ebe65-64d6-4e27-830d-858afee12141",
+      "name": "Supabase",
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        340,
+        300
+      ],
+      "credentials": {
+        "supabaseApi": {
+          "id": "baNruLU9AV7x2GZq",
+          "name": "Supabase campaign manager"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "tableId": "webinar_registration",
+        "fieldsUi": {
+          "fieldValues": [
+            {
+              "fieldId": "leads_dump_id",
+              "fieldValue": "={{ $json.id }}"
+            },
+            {
+              "fieldId": "webinar_id",
+              "fieldValue": "={{ $json.webinar_id }}"
+            },
+            {
+              "fieldId": "registration_email",
+              "fieldValue": "={{ $json.email }}"
+            }
+          ]
+        }
+      },
+      "id": "7ffde990-1915-4fb6-80a5-bb4cc5e6fa81",
+      "name": "Supabase1",
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        700,
+        300
+      ],
+      "credentials": {
+        "supabaseApi": {
+          "id": "baNruLU9AV7x2GZq",
+          "name": "Supabase campaign manager"
+        }
+      }
+    },
+    {
+      "parameters": {},
+      "id": "a59f86c8-0978-4f6d-8c33-614ab5d24de6",
+      "name": "Execute Workflow Trigger",
+      "type": "n8n-nodes-base.executeWorkflowTrigger",
+      "typeVersion": 1,
+      "position": [
+        40,
+        300
+      ]
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2024-09-09T20:11:33.000Z",
+  "versionId": "a44f64fc-360a-4d73-acd3-0cf5e6a14e07"
+}
