@@ -1,0 +1,1462 @@
+{
+  "active": false,
+  "connections": {
+    "When clicking \"Execute Workflow\"": {
+      "main": [
+        [
+          {
+            "node": "Google Sheets",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Split In Batches": {
+      "main": [
+        [
+          {
+            "node": "IF2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request4": {
+      "main": [
+        [
+          {
+            "node": "IF1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "MySQL3": {
+      "main": [
+        [
+          {
+            "node": "Set CPA1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request": {
+      "main": [
+        [
+          {
+            "node": "IF",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "MySQL5": {
+      "main": [
+        [
+          {
+            "node": "Set CPA",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Set CPA": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Set CPA1": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request4",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Switch3": {
+      "main": [
+        [
+          {
+            "node": "Set1",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Set",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Set": {
+      "main": [
+        [
+          {
+            "node": "MySQL3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Set1": {
+      "main": [
+        [
+          {
+            "node": "MySQL5",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "IF": {
+      "main": [
+        [
+          {
+            "node": "WhatsApp Business Cloud2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "IF1": {
+      "main": [
+        [
+          {
+            "node": "WhatsApp Business Cloud1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Supabase": {
+      "main": [
+        [
+          {
+            "node": "Split In Batches",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "IF2": {
+      "main": [
+        [
+          {
+            "node": "Supabase1",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Split In Batches",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Supabase1": {
+      "main": [
+        [
+          {
+            "node": "Supabase2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Supabase2": {
+      "main": [
+        [
+          {
+            "node": "Set2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request5": {
+      "main": [
+        [
+          {
+            "node": "IF5",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request1": {
+      "main": [
+        [
+          {
+            "node": "IF4",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Switch": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request1",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "HTTP Request5",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "IF4": {
+      "main": [
+        [
+          {
+            "node": "WhatsApp Business Cloud4",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Split In Batches",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "IF5": {
+      "main": [
+        [
+          {
+            "node": "WhatsApp Business Cloud",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Split In Batches",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Set2": {
+      "main": [
+        [
+          {
+            "node": "Switch",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "WhatsApp Business Cloud4": {
+      "main": [
+        [
+          {
+            "node": "Split In Batches",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "WhatsApp Business Cloud": {
+      "main": [
+        [
+          {
+            "node": "Split In Batches",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Sheets": {
+      "main": [
+        [
+          {
+            "node": "Split In Batches2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Split In Batches1": {
+      "main": [
+        [
+          {
+            "node": "MF API1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "MF API1": {
+      "main": [
+        [
+          {
+            "node": "Split In Batches1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Split In Batches2": {
+      "main": [
+        [
+          {
+            "node": "Set3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Set3": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request2": {
+      "main": [
+        [
+          {
+            "node": "Split In Batches2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2023-11-29T07:48:54.368Z",
+  "id": "u7yBWqd8LauIlpzQ",
+  "meta": null,
+  "name": "Tag MHP",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "973cc75a-9ff1-44b4-abcd-5f5d5a62d086",
+      "name": "When clicking \"Execute Workflow\"",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        -100,
+        460
+      ]
+    },
+    {
+      "parameters": {
+        "batchSize": 1,
+        "options": {}
+      },
+      "id": "d5092175-2e70-40b6-9ea0-3e48d23d1ec6",
+      "name": "Split In Batches",
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 2,
+      "position": [
+        480,
+        280
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://website-api.mileseducation.com/Createform",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\"form_array\":[{\"push_source\":\"n8n\",\"fullName\":\"{{$json.first_name}}\",\"email\":\"{{ $json.email }}\",\"contact\":\"{{ $json.phone }}\",\"comingFrom\":\"{{ $json.source }}\",\"course\":\"{{ $json.trye }}\",\"campaign_name\":\"accelerator-session\",\"location\":\"{{ $json.city}}\"}]}  ",
+        "options": {}
+      },
+      "id": "9bb6fa91-9d75-48e9-931f-4a2346fae495",
+      "name": "MF API1",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        1160,
+        480
+      ],
+      "continueOnFail": true
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://cma-api.mileseducation.com/registerLiveSessionWhatsapp",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n\"live_webinar_id\" :207,\n\"city\" : \"{{ $json.city_id }}\",\n\"phone_no\" : \"{{ $json.phone }}\",\n\"is_enrolled\" : {{ $json.student_id == 0 ? 0 :1 }},\n\"source\" : \"Superbot\",\n\"user_name\" :\"{{ $json.name }}\",\n\"email_id\" :\"{{ $json.email }}\",\n\"canid\" :\"{{ $json.identity }}\",\n\"student_id\" : {{ $json.student_id }}\n} ",
+        "options": {}
+      },
+      "id": "8008ed78-45d2-4a7c-80b5-1df90e68b4e5",
+      "name": "HTTP Request4",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        3040,
+        860
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "select",
+        "table": {
+          "__rl": true,
+          "value": "app_users",
+          "mode": "list",
+          "cachedResultName": "app_users"
+        },
+        "limit": 1,
+        "where": {
+          "values": [
+            {
+              "column": "identity",
+              "value": "={{ $json['CAN-ID'] }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "cfeee4c9-75b3-4fc8-8288-9e4093f61ea4",
+      "name": "MySQL3",
+      "type": "n8n-nodes-base.mySql",
+      "typeVersion": 2.1,
+      "position": [
+        2720,
+        860
+      ],
+      "credentials": {
+        "mySql": {
+          "id": "PmmxUZN1aLa4HnWp",
+          "name": "CMA"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "phoneNumberId": "108019349036743",
+        "recipientPhoneNumber": "={{ $('Set CPA1').item.json.phone_formatted.toString() }}",
+        "template": "accelerator_sessions_thank_you|en",
+        "components": {
+          "component": [
+            {
+              "bodyParameters": {
+                "parameter": [
+                  {
+                    "text": "={{ $('Set').item.json.Course }}"
+                  },
+                  {
+                    "text": "={{ $('Set').item.json['City '] }}"
+                  },
+                  {
+                    "text": "={{ $('Set CPA1').item.json.date }}"
+                  },
+                  {
+                    "text": "={{ $('Set CPA1').item.json.time }}"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      },
+      "id": "69f7fd5a-e585-4495-95c6-742b7eb70b33",
+      "name": "WhatsApp Business Cloud1",
+      "type": "n8n-nodes-base.whatsApp",
+      "typeVersion": 1,
+      "position": [
+        3520,
+        840
+      ],
+      "credentials": {
+        "whatsAppApi": {
+          "id": "75melKbodQdQAHVp",
+          "name": "WhatsApp miles education"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://cpa-api.mileseducation.com/registerLiveSessionWhatsapp",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n\"live_webinar_id\" :170,\n\"phone_no\" : \"{{ $json.phone }}\",\n\"is_enrolled\" : {{ $json.student_id == 0 ? 0 :1 }},\n\"source\" : \"Superbot\",\n\"user_name\" :\"{{ $json.name }}\",\n\"email_id\" :\"{{ $json.email }}\",\n\"canid\" :\"{{ $json.identity }}\",\n\"student_id\" : {{ $json.student_id}},\n\"city\":\"{{$json.city_id}}\"\n} ",
+        "options": {}
+      },
+      "id": "98bac0a6-e4d1-47ee-8094-eb900950b9a5",
+      "name": "HTTP Request",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        3060,
+        540
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "select",
+        "table": {
+          "__rl": true,
+          "value": "mileage_users",
+          "mode": "list",
+          "cachedResultName": "mileage_users"
+        },
+        "limit": 1,
+        "where": {
+          "values": [
+            {
+              "column": "identity",
+              "value": "={{ $json['CAN-ID'] }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "f595c3e4-2cd2-4ef6-93b6-0c55e62178c4",
+      "name": "MySQL5",
+      "type": "n8n-nodes-base.mySql",
+      "typeVersion": 2.1,
+      "position": [
+        2740,
+        540
+      ],
+      "credentials": {
+        "mySql": {
+          "id": "8lA9foFD93XoAQzU",
+          "name": "CPA"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "phoneNumberId": "108019349036743",
+        "recipientPhoneNumber": "={{ $('Set CPA').item.json.phone_formatted.toString() }}",
+        "template": "accelerator_sessions_thank_you|en",
+        "components": {
+          "component": [
+            {
+              "bodyParameters": {
+                "parameter": [
+                  {
+                    "text": "={{ $('Set CPA').item.json.course }}"
+                  },
+                  {
+                    "text": "={{ $('Set CPA').item.json.city }}"
+                  },
+                  {
+                    "text": "={{ $('Set CPA').item.json.date }}"
+                  },
+                  {
+                    "text": "={{ $('Set CPA').item.json.time }}"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      },
+      "id": "8384f26d-acba-426e-aa50-18c004b1be04",
+      "name": "WhatsApp Business Cloud2",
+      "type": "n8n-nodes-base.whatsApp",
+      "typeVersion": 1,
+      "position": [
+        3520,
+        520
+      ],
+      "credentials": {
+        "whatsAppApi": {
+          "id": "75melKbodQdQAHVp",
+          "name": "WhatsApp miles education"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "keepOnlySet": true,
+        "values": {
+          "string": [
+            {
+              "name": "city_id",
+              "value": "={{$('Split In Batches').item.json['City '].toLowerCase() == \"bangalore\" ? \"2\" : \n$('Split In Batches').item.json['City '].toLowerCase() == \"hyderabad\" ?\"7\" : \n$('Split In Batches').item.json['City '].toLowerCase() == \"ahmedabad\" ? \"1\" : \n$('Split In Batches').item.json['City '].toLowerCase() == \"delhi\" ? \"4\" :\n$('Split In Batches').item.json['City '].toLowerCase() == \"mumbai\" ? \"8\" :\n$('Split In Batches').item.json['City '].toLowerCase() == \"chennai\" ? \"3\" :\n$('Split In Batches').item.json['City '].toLowerCase() == \"pune\" ? \"9\" : \"7\"\n  }}"
+            },
+            {
+              "name": "name",
+              "value": "={{ $('Split In Batches').item.json.name }}"
+            },
+            {
+              "name": "email",
+              "value": "={{ $('Split In Batches').item.json.email }}"
+            },
+            {
+              "name": "date",
+              "value": "=  {{$('Split In Batches').item.json['City '].toLowerCase() == \"bangalore\" ? \"17-12-2023\" : \n$('Split In Batches').item.json['City '].toLowerCase() == \"hyderabad\" ?\"09-12-2023\" : \n$('Split In Batches').item.json['City '].toLowerCase() == \"ahmedabad\" ? \"03-12-2023\" : \n$('Split In Batches').item.json['City '].toLowerCase() == \"delhi\" ? \"10-12-2023\" :\n$('Split In Batches').item.json['City '].toLowerCase() == \"mumbai\" ? \"16-12-2023\" : \"17-12-2023\"\n  }}"
+            },
+            {
+              "name": "phone",
+              "value": "={{ $('Split In Batches').item.json.phone }}"
+            },
+            {
+              "name": "city",
+              "value": "={{ $('Split In Batches').item.json['City '] }}"
+            },
+            {
+              "name": "time",
+              "value": "03:00 PM"
+            },
+            {
+              "name": "identity",
+              "value": "={{ $('Split In Batches').item.json['CAN-ID'] }}"
+            },
+            {
+              "name": "phone_formatted",
+              "value": "={{ $('Split In Batches').item.json.phone.length <= 10 ? \"91+\" $('Split In Batches').item.json.phone.toString() : $('Split In Batches').item.json.phone   }}"
+            },
+            {
+              "name": "course",
+              "value": "CPA"
+            }
+          ],
+          "number": [
+            {
+              "name": "student_id",
+              "value": "={{ $json.int_user_id ?? \"\"}}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "0c35678b-ed80-4c45-9450-2ac5f1d5400a",
+      "name": "Set CPA",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 2,
+      "position": [
+        2900,
+        540
+      ]
+    },
+    {
+      "parameters": {
+        "keepOnlySet": true,
+        "values": {
+          "string": [
+            {
+              "name": "city_id",
+              "value": "={{$('Set').item.json['City '].toLowerCase() == \"bangalore\" ? \"2\" : \n$('Set').item.json['City '].toLowerCase() == \"hyderabad\" ?\"7\" : \n$('Set').item.json['City '].toLowerCase() == \"ahmedabad\" ? \"1\" : \n$('Set').item.json['City '].toLowerCase() == \"delhi\" ? \"4\" :\n$('Set').item.json['City '].toLowerCase() == \"mumbai\" ? \"8\" :\n$('Set').item.json['City '].toLowerCase() == \"chennai\" ? \"3\" :\n$('Set').item.json['City '].toLowerCase() == \"pune\" ? \"9\" : \"7\"}} "
+            },
+            {
+              "name": "name",
+              "value": "={{ $('Set').item.json.name }}"
+            },
+            {
+              "name": "email",
+              "value": "={{ $('Set').item.json.email }}"
+            },
+            {
+              "name": "date",
+              "value": "=  {{$('Set').item.json['City '].toLowerCase() == \"bangalore\" ? \"17-12-2023\" : \n$('Set').item.json['City '].toLowerCase() == \"hyderabad\" ?\"09-12-2023\" : \n$('Set').item.json['City '].toLowerCase() == \"ahmedabad\" ? \"03-12-2023\" : \n$('Set').item.json['City '].toLowerCase() == \"delhi\" ? \"10-12-2023\" :\n$('Set').item.json['City '].toLowerCase() == \"mumbai\" ? \"16-12-2023\" : \"17-12-2023\"\n  }}"
+            },
+            {
+              "name": "phone",
+              "value": "={{ $('Set').item.json.phone }}"
+            },
+            {
+              "name": "city",
+              "value": "={{ $('Set').item.json.City }}"
+            },
+            {
+              "name": "time",
+              "value": "11:00 AM"
+            },
+            {
+              "name": "identity",
+              "value": "={{ $('Set').item.json['CAN-ID'] }}"
+            },
+            {
+              "name": "phone_formatted",
+              "value": "={{ $('Set').item.json.phone.toString().length <= 10 ? \"91\" + $('Set').item.json.phone.toString()  :  $('Set').item.json.phone  }}"
+            },
+            {
+              "name": "course",
+              "value": "CMA"
+            }
+          ],
+          "number": [
+            {
+              "name": "student_id",
+              "value": "={{ $json.int_user_id ?? \"\"}}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "3f200123-b428-4f15-8841-d916c083768f",
+      "name": "Set CPA1",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 2,
+      "position": [
+        2880,
+        860
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "expression",
+        "output": "={{ $('Split In Batches').item.json.Course  == \"CPA\" ? 0 : 1}}"
+      },
+      "id": "f78f2083-f9ea-49d4-9ab3-de1bc1acd8b5",
+      "name": "Switch3",
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 1,
+      "position": [
+        2280,
+        720
+      ]
+    },
+    {
+      "parameters": {
+        "values": {
+          "string": [
+            {
+              "name": "CAN-ID",
+              "value": "={{ $json['CAN-ID'] }}"
+            },
+            {
+              "name": "name",
+              "value": "={{ $json.name }}"
+            },
+            {
+              "name": "email",
+              "value": "={{ $json.email }}"
+            },
+            {
+              "name": "phone",
+              "value": "={{ $json.phone }}"
+            },
+            {
+              "name": "Course",
+              "value": "={{ $json.Course }}"
+            },
+            {
+              "name": "City",
+              "value": "={{ $json['City '] }}"
+            },
+            {
+              "name": "source",
+              "value": "={{ $json.source }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "04d4a797-18b5-4333-bead-d000e3768ed2",
+      "name": "Set",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 2,
+      "position": [
+        2540,
+        860
+      ]
+    },
+    {
+      "parameters": {
+        "values": {
+          "string": [
+            {
+              "name": "CAN-ID",
+              "value": "={{ $json['CAN-ID']}}"
+            },
+            {
+              "name": "name",
+              "value": "={{ $json.name }}"
+            },
+            {
+              "name": "email",
+              "value": "={{ $json.email }}"
+            },
+            {
+              "name": "phone",
+              "value": "={{ $json.phone }}"
+            },
+            {
+              "name": "Course",
+              "value": "={{ $json.Course }}"
+            },
+            {
+              "name": "City",
+              "value": "={{ $json['City '] }}"
+            },
+            {
+              "name": "source",
+              "value": "={{ $json.source }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "a948504d-207d-4f3f-8ecc-6be339332ff7",
+      "name": "Set1",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 2,
+      "position": [
+        2520,
+        540
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "string": [
+            {
+              "value1": "={{ $json.message }}",
+              "operation": "notEqual",
+              "value2": "user already register"
+            }
+          ]
+        }
+      },
+      "id": "721cbd15-e18c-4e88-a53d-87175845116a",
+      "name": "IF",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        3280,
+        540
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "string": [
+            {
+              "value1": "={{ $json.message }}",
+              "operation": "notEqual",
+              "value2": "User already register"
+            }
+          ]
+        }
+      },
+      "id": "18f22687-3e39-4031-91f3-e1b03771a60f",
+      "name": "IF1",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        3240,
+        860
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "getAll",
+        "tableId": "leads_dump",
+        "returnAll": true,
+        "matchType": "allFilters",
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "created_at",
+              "condition": "gte",
+              "keyValue": "2023-11-22"
+            },
+            {
+              "keyName": "course",
+              "condition": "lte",
+              "keyValue": "3"
+            }
+          ]
+        }
+      },
+      "id": "aea5fdb1-0034-467c-947d-0e76005a750a",
+      "name": "Supabase",
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        260,
+        280
+      ],
+      "credentials": {
+        "supabaseApi": {
+          "id": "baNruLU9AV7x2GZq",
+          "name": "Supabase campaign manager"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "boolean": [
+            {
+              "value1": "={{ $json.email === null }}"
+            },
+            {
+              "value1": "={{$json.city.toLowerCase() == \"bangalore\" ||\n$json.city.toLowerCase() == \"hyderabad\" ||\n$json.city.toLowerCase() == \"ahmedabad\" ||\n$json.city.toLowerCase() == \"delhi\" ||\n$json.city.toLowerCase() == \"mumbai\"\n  }}",
+              "value2": true
+            }
+          ]
+        }
+      },
+      "id": "45b8b007-d18f-48f7-99ef-c08dceaa7a70",
+      "name": "IF2",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        840,
+        0
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "boolean": [
+            {
+              "value1": "={{$json.city.toLowerCase() == \"bangalore\" ||\n$json.city.toLowerCase() == \"hyderabad\" ||\n$json.city.toLowerCase() == \"ahmedabad\" ||\n$json.city.toLowerCase() == \"delhi\" ||\n$json.city.toLowerCase() == \"mumbai\" ||\n$json.city.toLowerCase() == \"chennai\" ||\n$json.city.toLowerCase() == \"pune\"\n  }}",
+              "value2": true
+            }
+          ]
+        },
+        "combineOperation": "any"
+      },
+      "id": "2d3bdee8-cc35-4755-b995-a459b0329432",
+      "name": "IF3",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        180,
+        -280
+      ]
+    },
+    {
+      "parameters": {
+        "values": {
+          "string": [
+            {
+              "name": "name",
+              "value": "={{ $('IF2').item.json.first_name }}"
+            },
+            {
+              "name": "course",
+              "value": "={{ $json.course  === 3 ? \"CMA\":\"CPA\"}}"
+            },
+            {
+              "name": "phone",
+              "value": "={{ $('IF2').item.json.phone }}"
+            },
+            {
+              "name": "email",
+              "value": "={{ $('IF2').item.json.email }}"
+            },
+            {
+              "name": "city",
+              "value": "={{ $('IF2').item.json.city }}"
+            },
+            {
+              "name": "city_id",
+              "value": "={{$('IF2').item.json.city.toLowerCase() == \"bangalore\" ? \"2\" : \n$('IF2').item.json.city.toLowerCase() == \"hyderabad\" ?\"7\" : \n$('IF2').item.json.city.toLowerCase() == \"ahmedabad\" ? \"1\" : \n$('IF2').item.json.city.toLowerCase() == \"delhi\" ? \"4\" :\n$('IF2').item.json.city.toLowerCase() == \"mumbai\" ? \"8\" :\n$('IF2').item.json.city.toLowerCase() == \"chennai\" ? \"3\" :\n$('IF2').item.json.city.toLowerCase() == \"pune\" ? \"9\" : \"7\"\n  }}"
+            },
+            {
+              "name": "source",
+              "value": "={{ $json.source_name }}"
+            },
+            {
+              "name": "phone_formated",
+              "value": "={{ $('IF2').item.json.phone.length <= 10 ? \"91+\" $('IF2').item.json.phone.toString() : $('IF2').item.json.phone   }}"
+            },
+            {
+              "name": "date",
+              "value": "={{$('IF2').item.json.city.toLowerCase() == \"bangalore\" ? \"17-12-2023\" : \n$('IF2').item.json.city.toLowerCase() == \"hyderabad\" ?\"09-12-2023\" : \n$('IF2').item.json.city.toLowerCase() == \"ahmedabad\" ? \"03-12-2023\" : \n$('IF2').item.json.city.toLowerCase() == \"delhi\" ? \"10-12-2023\" :\n$('IF2').item.json.city.toLowerCase() == \"mumbai\" ? \"16-12-2023\" : \"\"\n  }}"
+            }
+          ]
+        },
+        "options": {
+          "dotNotation": true
+        }
+      },
+      "id": "389a7b02-bfb4-4a58-bdaf-b97f85db8ff1",
+      "name": "Set2",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 2,
+      "position": [
+        1500,
+        -20
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "get",
+        "tableId": "campaign",
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "id",
+              "keyValue": "={{ $json.camp_id }}"
+            }
+          ]
+        }
+      },
+      "id": "75d49fbd-e7fd-48a1-8f23-7dc32be029a7",
+      "name": "Supabase1",
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        1040,
+        -20
+      ],
+      "credentials": {
+        "supabaseApi": {
+          "id": "baNruLU9AV7x2GZq",
+          "name": "Supabase campaign manager"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "get",
+        "tableId": "campaign_source",
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "id",
+              "keyValue": "={{ $json.source }}"
+            }
+          ]
+        }
+      },
+      "id": "f2901034-5663-4732-a7b7-e5ab49a8ed81",
+      "name": "Supabase2",
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        1260,
+        -20
+      ],
+      "credentials": {
+        "supabaseApi": {
+          "id": "baNruLU9AV7x2GZq",
+          "name": "Supabase campaign manager"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://cma-api.mileseducation.com/registerLiveSessionWhatsapp",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n\"live_webinar_id\" :207,\n\"city\" : \"{{ $json.city_id }}\",\n\"phone_no\" : \"{{ $json.phone }}\",\n\"is_enrolled\" :0,\n\"source\" : \"{{ $json.source }}\",\n\"user_name\" :\"{{ $json.name }}\",\n\"email_id\" :\"{{ $json.email }}\",\n\"canid\" :\"\",\n\"student_id\" : 0\n}",
+        "options": {}
+      },
+      "id": "c4412fa4-fab7-4630-82a6-6f53dfe1690b",
+      "name": "HTTP Request5",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        1980,
+        20
+      ]
+    },
+    {
+      "parameters": {
+        "phoneNumberId": "108019349036743",
+        "recipientPhoneNumber": "={{ $('Set2').item.json.phone }}",
+        "template": "accelerator_sessions_thank_you|en",
+        "components": {
+          "component": [
+            {
+              "bodyParameters": {
+                "parameter": [
+                  {
+                    "text": "={{ $('Set2').item.json.course }}"
+                  },
+                  {
+                    "text": "={{ $('Set2').item.json.city }}"
+                  },
+                  {
+                    "text": "={{ $('Set2').item.json.date }}"
+                  },
+                  {
+                    "text": "11:00 AM"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      },
+      "id": "6ccd4316-2c31-4ed3-ab5d-04ca872806fc",
+      "name": "WhatsApp Business Cloud",
+      "type": "n8n-nodes-base.whatsApp",
+      "typeVersion": 1,
+      "position": [
+        2340,
+        0
+      ],
+      "credentials": {
+        "whatsAppApi": {
+          "id": "75melKbodQdQAHVp",
+          "name": "WhatsApp miles education"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://cpa-api.mileseducation.com/registerLiveSessionWhatsapp",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n\"live_webinar_id\" :170,\n\"city\" : \"{{ $json.city_id }}\",\n\"phone_no\" : \"{{ $json.phone }}\",\n\"is_enrolled\" :0,\n\"source\" : \"{{ $json.source }}\",\n\"user_name\" :\"{{ $json.name }}\",\n\"email_id\" :\"{{ $json.email }}\",\n\"canid\" :\"\",\n\"student_id\" : 0\n}",
+        "options": {}
+      },
+      "id": "bb940cf2-c370-4cf0-9b30-3b60f4e8d7ce",
+      "name": "HTTP Request1",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        1980,
+        -180
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "expression",
+        "output": "={{ $json.course == \"CPA\" ? 0 : 1}}"
+      },
+      "id": "6f94d02a-cd43-4aab-bed8-80635011171b",
+      "name": "Switch",
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 1,
+      "position": [
+        1740,
+        -20
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "string": [
+            {
+              "value1": "={{ $json.message }}",
+              "operation": "notEqual",
+              "value2": "user already register"
+            }
+          ]
+        }
+      },
+      "id": "10d4ac03-a9a8-4392-8436-bdcd78123503",
+      "name": "IF4",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        2140,
+        -180
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "string": [
+            {
+              "value1": "={{ $json.message }}",
+              "operation": "notEqual",
+              "value2": "User already register"
+            }
+          ]
+        }
+      },
+      "id": "2a96dc62-868f-4fd7-b1ac-5c66d702acc4",
+      "name": "IF5",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        2140,
+        20
+      ]
+    },
+    {
+      "parameters": {
+        "phoneNumberId": "108019349036743",
+        "recipientPhoneNumber": "={{ $('Set2').item.json.phone }}",
+        "template": "accelerator_sessions_thank_you|en",
+        "components": {
+          "component": [
+            {
+              "bodyParameters": {
+                "parameter": [
+                  {
+                    "text": "={{ $('Set2').item.json.course }}"
+                  },
+                  {
+                    "text": "={{ $('Set2').item.json.city }}"
+                  },
+                  {
+                    "text": "={{ $('Set2').item.json.date }}"
+                  },
+                  {
+                    "text": "03:00 PM"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      },
+      "id": "f76ace64-94e8-461a-894a-e00a342cf658",
+      "name": "WhatsApp Business Cloud4",
+      "type": "n8n-nodes-base.whatsApp",
+      "typeVersion": 1,
+      "position": [
+        2340,
+        -200
+      ],
+      "credentials": {
+        "whatsAppApi": {
+          "id": "75melKbodQdQAHVp",
+          "name": "WhatsApp miles education"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "https://docs.google.com/spreadsheets/d/1yEIr1pcjLIRyUmTY1jK8X4Jd89NoyvIW1NI9S7HtNqo/edit#gid=1074560121&range=C1  Link for MHP",
+          "mode": "url",
+          "__regex": "https:\\/\\/(?:drive|docs)\\.google\\.com(?:\\/.*|)\\/d\\/([0-9a-zA-Z\\-_]+)(?:\\/.*|)"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 1820006655,
+          "mode": "list",
+          "cachedResultName": "Sheet6",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1yEIr1pcjLIRyUmTY1jK8X4Jd89NoyvIW1NI9S7HtNqo/edit#gid=1820006655"
+        },
+        "options": {}
+      },
+      "id": "ad7e5ccf-410f-42a4-b6e2-66822c45a4a6",
+      "name": "Google Sheets",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4,
+      "position": [
+        240,
+        1220
+      ],
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "6bNFwDEitIgWBzpL",
+          "name": "OAuth 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "batchSize": 1,
+        "options": {}
+      },
+      "id": "6f0bc6ff-34ce-426a-a814-214eeca163fb",
+      "name": "Split In Batches1",
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 2,
+      "position": [
+        400,
+        680
+      ]
+    },
+    {
+      "parameters": {
+        "phoneNumberId": "108019349036743",
+        "recipientPhoneNumber": "=91{{ $json.Phone }}",
+        "template": "cancel_message_acc|en",
+        "components": {
+          "component": [
+            {
+              "bodyParameters": {
+                "parameter": [
+                  {
+                    "text": "={{ $json['Shipping City'] }}"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      },
+      "id": "c2f239d7-40d6-4c93-b1c6-af5029059794",
+      "name": "WhatsApp Business Cloud3",
+      "type": "n8n-nodes-base.whatsApp",
+      "typeVersion": 1,
+      "position": [
+        1560,
+        500
+      ],
+      "credentials": {
+        "whatsAppApi": {
+          "id": "75melKbodQdQAHVp",
+          "name": "WhatsApp miles education"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "values": {
+          "string": [
+            {
+              "name": "name",
+              "value": "={{ $json.first_name }}"
+            },
+            {
+              "name": "course",
+              "value": "=CPA"
+            },
+            {
+              "name": "phone",
+              "value": "={{ $json.phone }}"
+            },
+            {
+              "name": "email",
+              "value": "={{ $json.email }}"
+            },
+            {
+              "name": "city",
+              "value": "={{ $json.city }}"
+            },
+            {
+              "name": "city_id",
+              "value": "={{\n$json.city.toLowerCase().trim() == \"bangalore\" ? \"2\" : \n$json.city.toLowerCase().trim() == \"hyderabad\" ? \"7\" : \n$json.city.toLowerCase().trim() == \"ahmedabad\" ? \"1\" : \n$json.city.toLowerCase().trim() == \"delhi\" ? \"4\" :\n$json.city.toLowerCase().trim() == \"mumbai\" ? \"8\" :\n$json.city.toLowerCase().trim() == \"chennai\" ? \"3\" :\n$json.city.toLowerCase().trim() == \"pune\" ? \"9\" : \"0\"\n  }}"
+            },
+            {
+              "name": "source",
+              "value": "={{ $json.source }}"
+            },
+            {
+              "name": "phone_formated",
+              "value": "={{ $json.phone}}"
+            },
+            {
+              "name": "date",
+              "value": "={{$json.city.toLowerCase().trim() == \"bangalore\" ? \"17-12-2023\" : \n$json.city.toLowerCase().trim() == \"hyderabad\" ?\"09-12-2023\" : \n$json.city.toLowerCase().trim() == \"ahmedabad\" ? \"03-12-2023\" : \n$json.city.toLowerCase().trim() == \"delhi\" ? \"10-12-2023\" :\n$json.city.toLowerCase().trim() == \"mumbai\" ? \"16-12-2023\" : \"\"\n  }}"
+            }
+          ]
+        },
+        "options": {
+          "dotNotation": true
+        }
+      },
+      "id": "3e285e4a-96d3-412a-b523-810d0496b3ae",
+      "name": "Set3",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 2,
+      "position": [
+        680,
+        1120
+      ]
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "id": "dfce8262-fd11-4d5f-bcb8-afb5decee0b6",
+      "name": "Split In Batches2",
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 2,
+      "position": [
+        460,
+        1220
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://cpa-api.mileseducation.com/registerLiveSessionWhatsapp",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n\"live_webinar_id\" :170,\n\"city\" : \"{{ $json.city_id }}\",\n\"phone_no\" : \"{{ $json.phone }}\",\n\"is_enrolled\" :0,\n\"source\" : \"{{ $json.source }}\",\n\"user_name\" :\"{{ $json.name }}\",\n\"email_id\" :\"{{ $json.email }}\",\n\"canid\" :\"\",\n\"student_id\" : 0\n}",
+        "options": {}
+      },
+      "id": "cfdb97c0-3b42-459d-9f10-550da94f7265",
+      "name": "HTTP Request2",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        960,
+        940
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://cma-api.mileseducation.com/registerLiveSessionWhatsapp",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n\"live_webinar_id\" :207,\n\"city\" : \"{{ $json.city_id }}\",\n\"phone_no\" : \"{{ $json.phone }}\",\n\"is_enrolled\" :0,\n\"source\" : \"{{ $json.source }}\",\n\"user_name\" :\"{{ $json.name }}\",\n\"email_id\" :\"{{ $json.email }}\",\n\"canid\" :\"\",\n\"student_id\" : 0\n}",
+        "options": {}
+      },
+      "id": "09e0055f-7574-4a4c-871d-19a703846997",
+      "name": "HTTP Request6",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        1100,
+        1240
+      ]
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1",
+    "timezone": "Asia/Calcutta",
+    "saveManualExecutions": true,
+    "callerPolicy": "workflowsFromSameOwner"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2023-12-11T06:35:17.000Z",
+  "versionId": "81786d29-5e59-4647-b77a-848fcf1650b6"
+}
