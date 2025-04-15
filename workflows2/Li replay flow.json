@@ -1,0 +1,316 @@
+{
+  "active": false,
+  "connections": {
+    "Execute Workflow Trigger": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request": {
+      "main": [
+        [
+          {
+            "node": "If",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request2",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "MySQL",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "MySQL": {
+      "main": [
+        [
+          {
+            "node": "MySQL1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "MySQL1": {
+      "main": [
+        [
+          {
+            "node": "WhatsApp Business Cloud",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2024-03-27T11:49:05.040Z",
+  "id": "C5qlEAyN6vhuHjLY",
+  "meta": null,
+  "name": "Li replay flow",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "17fe57fa-1fad-420e-b1d2-6073a7e1e184",
+      "name": "Execute Workflow Trigger",
+      "type": "n8n-nodes-base.executeWorkflowTrigger",
+      "typeVersion": 1,
+      "position": [
+        420,
+        320
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict"
+          },
+          "conditions": [
+            {
+              "id": "5e3772f3-a024-4872-9ef5-5e833694ea1f",
+              "leftValue": "={{ $('Execute Workflow Trigger').item.json.payload }}",
+              "rightValue": "Schedule Meeting",
+              "operator": {
+                "type": "string",
+                "operation": "equals",
+                "name": "filter.operator.equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "70a48f7e-8b54-47a3-bb74-857bedfc8baa",
+      "name": "If",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2,
+      "position": [
+        820,
+        320
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://blcwdqfhupddorxpdcjl.supabase.co/rest/v1/rpc/get_lead_not_booked_visit_by_id",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "ApiKey",
+              "value": " eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJsY3dkcWZodXBkZG9yeHBkY2psIiwicm9sZSI6ImFub24iLCJpYXQiOjE2OTI4NzkxMjgsImV4cCI6MjAwODQ1NTEyOH0.NdAhT3uGNwQahfxxUKM8BGV-gEjuIpl8NKVPpcaSFGM"
+            }
+          ]
+        },
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "data_id",
+              "value": "={{ $json.lead_dump_id }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "fec314f0-b093-4154-8eda-a923587fd108",
+      "name": "HTTP Request",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        620,
+        320
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://graph.facebook.com/v18.0/171009622770823/messages",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "Bearer EAAERpNdf2aYBO9sU1QltjB6ZCQZArH5MwBZCZCNsiUgH0sT4mihs6TNa6xMCDqEQ6ncUy5B3qCfXH5tbCiBC5RnvZAeYwqArMJRthWGdbUHJaBdS4PBS9gkJ6o0uGZBEA73ubwkFMkQSWI7kVEywwZBH8bmLEaL3KHm5eo2QxWbLwz4KRxtENrk0QfDPrZA5NTVU"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"recipient_type\": \"individual\",\n  \"messaging_product\": \"whatsapp\",\n  \"to\": \"{{ $json.lead_details.phone }}\",\n  \"type\": \"interactive\",\n  \"interactive\": {\n    \"type\": \"flow\",\n    \"footer\": {\n      \"text\": \"Miles Education\"\n    },\n    \"body\": {\n\"text\":\"Hi {{ $json.lead_details.first_name }},\\n\\nWe're glad you're interested in the {{ $json.course_details.full_form }}. However,you probably have a lot of questions and want to know if this aligns with your career goals.\\n\\nSo, as a next step, schedule a visit to the nearest Miles office 🏢 *OR* connect with our experts.\\n\\nCheers, \\nTeam Miles\"\n    },\n\n    \"action\": {\n      \"name\": \"flow\",\n      \"parameters\": {\n        \"flow_message_version\": \"3\",\n        \"flow_token\": \"{{ $json.lead_details.lead_id }}\",\n        \"flow_id\": \"716068467346171\",\n        \"flow_cta\": \"Book Slot\",\n        \"flow_action\": \"navigate\",\n        \"flow_action_payload\": {\n          \"screen\": \"SIGN_UP\",\n          \"data\": { \n            \"pre_min_date\": \"{{ $now + 86400000}}\",\n            \"pre_max_date\":\"{{ $now + (15 * 24 * 60 * 60 * 1000)}}\",\n            \"pre_name\":\"{{ $json.lead_details.first_name }}\",\n            \"pre_email\":\"{{ $json.lead_details.email }}\"\n          }\n        }\n      }\n    }\n  }\n}",
+        "options": {}
+      },
+      "id": "edffb31d-8ae8-4ab7-be31-3d55078368f7",
+      "name": "HTTP Request2",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        1160,
+        0
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "select",
+        "table": {
+          "__rl": true,
+          "value": "miles_net_enquiries",
+          "mode": "list",
+          "cachedResultName": "miles_net_enquiries"
+        },
+        "limit": 1,
+        "where": {
+          "values": [
+            {
+              "column": "ne_id",
+              "value": "={{ $('HTTP Request').item.json.lead_details.unique_id }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "75716c6b-b97e-4219-80bb-0916929241b8",
+      "name": "MySQL",
+      "type": "n8n-nodes-base.mySql",
+      "typeVersion": 2.2,
+      "position": [
+        1220,
+        760
+      ],
+      "credentials": {
+        "mySql": {
+          "id": "zHxYEwXoO70wcXbg",
+          "name": "MF Read"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "select",
+        "table": {
+          "__rl": true,
+          "value": "users",
+          "mode": "list",
+          "cachedResultName": "users"
+        },
+        "limit": 1,
+        "where": {
+          "values": [
+            {
+              "column": "id",
+              "value": "={{ $json.selected_spoc }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "a04713cd-8c2b-407b-b802-ff0a64ea7622",
+      "name": "MySQL1",
+      "type": "n8n-nodes-base.mySql",
+      "typeVersion": 2.2,
+      "position": [
+        1420,
+        760
+      ],
+      "credentials": {
+        "mySql": {
+          "id": "zHxYEwXoO70wcXbg",
+          "name": "MF Read"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "phoneNumberId": "171009622770823",
+        "recipientPhoneNumber": "={{ $('HTTP Request').item.json.lead_details.phone }}",
+        "template": "spoc_details_requested_linkedin|en",
+        "components": {
+          "component": [
+            {
+              "bodyParameters": {
+                "parameter": [
+                  {
+                    "text": "={{ $('HTTP Request').item.json.lead_details.first_name }}"
+                  },
+                  {
+                    "text": "={{ $('HTTP Request').item.json.course_details.full_form }}"
+                  },
+                  {
+                    "text": "={{ $json.first_name }}"
+                  },
+                  {
+                    "text": "={{ $json.phone }}"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      },
+      "id": "19b62c0b-e5db-45c7-8d55-d14014ded8da",
+      "name": "WhatsApp Business Cloud",
+      "type": "n8n-nodes-base.whatsApp",
+      "typeVersion": 1,
+      "position": [
+        1640,
+        760
+      ],
+      "credentials": {
+        "whatsAppApi": {
+          "id": "FgS03iKYFJtZDGNw",
+          "name": "WhatsApp account new"
+        }
+      }
+    }
+  ],
+  "pinData": {
+    "Execute Workflow Trigger": [
+      {
+        "json": {
+          "response_status": false,
+          "is_retry": false,
+          "user_id": null,
+          "campaign_id": 320,
+          "message_status_id": 2005493,
+          "webinar_id": null,
+          "lead_dump_id": 688735,
+          "payload": "Schedule Office Visit",
+          "wa_id": "916238133298",
+          "name": ""
+        }
+      }
+    ]
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2024-04-04T07:54:26.000Z",
+  "versionId": "2940a7e6-5b9c-4b81-95bb-26d17034c8ee"
+}
