@@ -1,0 +1,75 @@
+{
+  "active": false,
+  "connections": {
+    "When clicking \"Execute Workflow\"": {
+      "main": [
+        [
+          {
+            "node": "Supabase",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2024-03-15T12:24:41.766Z",
+  "id": "bzEEWD4Z0j0NfcGt",
+  "meta": null,
+  "name": "Push missing leads on whatsapp",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "2d7f06e5-1ae0-45d6-9513-201667a4ed21",
+      "name": "When clicking \"Execute Workflow\"",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        380,
+        280
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "getAll",
+        "tableId": "messages_history",
+        "returnAll": true,
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "message",
+              "condition": "ilike",
+              "keyValue": "%Can I get more info%"
+            }
+          ]
+        }
+      },
+      "id": "461d28f9-0d4e-4960-966e-34fe1b6cf73f",
+      "name": "Supabase",
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        640,
+        280
+      ],
+      "credentials": {
+        "supabaseApi": {
+          "id": "baNruLU9AV7x2GZq",
+          "name": "Supabase campaign manager"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1",
+    "timezone": "Asia/Calcutta",
+    "saveManualExecutions": true,
+    "callerPolicy": "workflowsFromSameOwner"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2024-03-15T12:37:26.000Z",
+  "versionId": "0d01bc36-8fe0-4017-9b69-37652ce75196"
+}
