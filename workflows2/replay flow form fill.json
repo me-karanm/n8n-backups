@@ -1,0 +1,248 @@
+{
+  "active": false,
+  "connections": {
+    "Execute Workflow Trigger": {
+      "main": [
+        [
+          {
+            "node": "Supabase6",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Supabase6": {
+      "main": [
+        [
+          {
+            "node": "Supabase",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Supabase": {
+      "main": [
+        [
+          {
+            "node": "Set",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Set": {
+      "main": [
+        [
+          {
+            "node": "Switch",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Switch": {
+      "main": [
+        [
+          {
+            "node": "WhatsApp Business Cloud1",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "WhatsApp Business Cloud",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2023-12-20T05:35:12.133Z",
+  "id": "HyV9JMH1Z1pWR7gs",
+  "meta": null,
+  "name": "replay flow form fill",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "5f00af80-79bd-46ef-8002-fbc6e97f120f",
+      "name": "Execute Workflow Trigger",
+      "type": "n8n-nodes-base.executeWorkflowTrigger",
+      "typeVersion": 1,
+      "position": [
+        -6460,
+        -1280
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "get",
+        "tableId": "message_status",
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "id",
+              "keyValue": "={{ $json.message_status_id }}"
+            }
+          ]
+        }
+      },
+      "id": "33a7a9a1-5043-4570-b112-231e8eb9cc7d",
+      "name": "Supabase6",
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        -6260,
+        -1280
+      ],
+      "credentials": {
+        "supabaseApi": {
+          "id": "baNruLU9AV7x2GZq",
+          "name": "Supabase campaign manager"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "get",
+        "tableId": "leads_dump",
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "id",
+              "keyValue": "={{ $json.lead_dump_id }}"
+            }
+          ]
+        }
+      },
+      "id": "80460e14-3277-4f71-966d-7fd31fc83a4e",
+      "name": "Supabase",
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        -6060,
+        -1280
+      ],
+      "credentials": {
+        "supabaseApi": {
+          "id": "baNruLU9AV7x2GZq",
+          "name": "Supabase campaign manager"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "keepOnlySet": true,
+        "values": {
+          "string": [
+            {
+              "name": "phone",
+              "value": "={{ $json.phone.length > 11 ?$json.phone : \"+91\"+$json.phone  }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "8c868018-c219-4bc6-8b91-5d813a5e6655",
+      "name": "Set",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 2,
+      "position": [
+        -5840,
+        -1280
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "send",
+        "phoneNumberId": "108019349036743",
+        "recipientPhoneNumber": "={{ $json.phone }}",
+        "textBody": "Thank you for requesting a callback! 📞 Our team will get in touch with you shortly to address your queries and discuss your interests. Looking forward to speaking with you soon!",
+        "additionalFields": {}
+      },
+      "id": "ce751a62-b476-4c76-89a8-9d54dba1761c",
+      "name": "WhatsApp Business Cloud",
+      "type": "n8n-nodes-base.whatsApp",
+      "typeVersion": 1,
+      "position": [
+        -5340,
+        -1220
+      ],
+      "credentials": {
+        "whatsAppApi": {
+          "id": "75melKbodQdQAHVp",
+          "name": "WhatsApp miles education"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "mode": "expression",
+        "output": "={{ $('Execute Workflow Trigger').item.json.payload === \"Tell me about Masterclass\" ? 0 :1}}"
+      },
+      "id": "910ee960-1def-424d-8c82-323c5ffaa19e",
+      "name": "Switch",
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 1,
+      "position": [
+        -5660,
+        -1280
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "send",
+        "phoneNumberId": "108019349036743",
+        "recipientPhoneNumber": "={{ $json.phone }}",
+        "textBody": "We are excited for you to attend our CPA Masterclass with Varun Jain, the world's favorite CPA instructor. Make the most of this opportunity! \n\n📅 Date: 06/01/2023\n⏰ 5 PM\n\nKeep an eye out for further details! See you there. 🚀",
+        "additionalFields": {}
+      },
+      "id": "80b96991-67a8-4062-a4ce-fb1d4e0da301",
+      "name": "WhatsApp Business Cloud1",
+      "type": "n8n-nodes-base.whatsApp",
+      "typeVersion": 1,
+      "position": [
+        -5320,
+        -1460
+      ],
+      "credentials": {
+        "whatsAppApi": {
+          "id": "75melKbodQdQAHVp",
+          "name": "WhatsApp miles education"
+        }
+      }
+    }
+  ],
+  "pinData": {
+    "Execute Workflow Trigger": [
+      {
+        "json": {
+          "response_status": false,
+          "is_retry": false,
+          "user_id": null,
+          "campaign_id": 47,
+          "message_status_id": 553792,
+          "webinar_id": null,
+          "lead_dump_id": 181263,
+          "payload": "Tell me about Masterclass",
+          "wa_id": "916238133298",
+          "name": ""
+        }
+      }
+    ]
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2023-12-22T05:44:35.000Z",
+  "versionId": "3c52b823-d87e-4ad3-a732-45c2d5d3b221"
+}
