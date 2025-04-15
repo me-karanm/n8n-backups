@@ -1,0 +1,159 @@
+{
+  "active": false,
+  "connections": {
+    "When clicking \"Execute Workflow\"": {
+      "main": [
+        [
+          {
+            "node": "Supabase",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Supabase": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request": {
+      "main": [
+        [
+          {
+            "node": "Supabase1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2024-12-12T10:15:37.551Z",
+  "id": "giW5V2uBWCIOGjNf",
+  "meta": null,
+  "name": "Upload Nursing net enquiry to MF2.0",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "5acaaa7b-a866-41fe-be27-4baf67c09e26",
+      "name": "When clicking \"Execute Workflow\"",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        460,
+        380
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://mfx-prod-154625965269.asia-south1.run.app/enquiries/add",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"first_name\": \"{{ $('Supabase').item.json[\"first_name\"] }}\",\n  \"phone\": \"+91{{ $('Supabase').item.json[\"phone\"]}}\",\n  \"email\": \"{{ $('Supabase').item.json[\"email\"] }}\",\n  \"coming_from\": \"{{ $json[\"source\"] }}\",\n\"campaign_id\": 31,\n\"course_id\": {{ $json[\"course_id\"] }}\n} ",
+        "options": {}
+      },
+      "id": "2dede930-97da-4db2-86e9-44d35937ddc3",
+      "name": "HTTP Request",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        980,
+        380
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "getAll",
+        "tableId": "MF2_manual_upload",
+        "returnAll": true,
+        "matchType": "allFilters",
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "course_id",
+              "condition": "eq",
+              "keyValue": "34"
+            },
+            {
+              "keyName": "uploaded_to_mf",
+              "condition": "neq",
+              "keyValue": "true"
+            }
+          ]
+        }
+      },
+      "id": "88b96929-0a58-479b-af6a-e87b9aa21a55",
+      "name": "Supabase",
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        720,
+        380
+      ],
+      "credentials": {
+        "supabaseApi": {
+          "id": "baNruLU9AV7x2GZq",
+          "name": "Supabase campaign manager"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "tableId": "MF2_manual_upload",
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "id",
+              "condition": "eq",
+              "keyValue": "={{ $('Supabase').item.json.id }}"
+            }
+          ]
+        },
+        "fieldsUi": {
+          "fieldValues": [
+            {
+              "fieldId": "uploaded_to_mf",
+              "fieldValue": "true"
+            },
+            {
+              "fieldId": "ne_id",
+              "fieldValue": "={{ $json.result.id }}"
+            }
+          ]
+        }
+      },
+      "id": "190459b1-325c-40c3-a477-9c67d92471b0",
+      "name": "Supabase1",
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        1220,
+        380
+      ],
+      "credentials": {
+        "supabaseApi": {
+          "id": "baNruLU9AV7x2GZq",
+          "name": "Supabase campaign manager"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2024-12-16T09:01:43.000Z",
+  "versionId": "806b6144-5fa0-4bce-8d8a-453024ca6e36"
+}
