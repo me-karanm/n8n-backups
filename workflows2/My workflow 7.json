@@ -1,26 +1,27 @@
 {
-  "active": true,
-  "connections": {},
-  "createdAt": "2024-01-17T13:19:10.780Z",
-  "id": "FOwUN3ToGgPaCp9v",
+  "active": false,
+  "connections": {
+    "When clicking \"Execute Workflow\"": {
+      "main": [
+        []
+      ]
+    }
+  },
+  "createdAt": "2024-09-05T10:55:32.848Z",
+  "id": "e64z8EJfxwoE26sn",
   "meta": null,
   "name": "My workflow 7",
   "nodes": [
     {
-      "parameters": {
-        "httpMethod": "POST",
-        "path": "create-chat",
-        "options": {}
-      },
-      "id": "3aed89ed-2eda-4ac6-9d0c-6241df2969b0",
-      "name": "Webhook",
-      "type": "n8n-nodes-base.webhook",
+      "parameters": {},
+      "id": "3f99cd7f-2bfe-458e-8175-38180f8dbdda",
+      "name": "When clicking \"Execute Workflow\"",
+      "type": "n8n-nodes-base.manualTrigger",
       "typeVersion": 1,
       "position": [
-        600,
-        320
-      ],
-      "webhookId": "107531e6-8a5c-4bb1-80ad-389947c2924f"
+        700,
+        360
+      ]
     }
   ],
   "pinData": {},
@@ -29,7 +30,7 @@
   },
   "staticData": null,
   "tags": [],
-  "triggerCount": 1,
-  "updatedAt": "2024-01-17T13:19:10.000Z",
-  "versionId": "083c6e1f-5bf1-461d-848d-bff54603a238"
+  "triggerCount": 0,
+  "updatedAt": "2024-09-05T10:56:35.000Z",
+  "versionId": "985826ae-3e74-4caf-a9bf-d16d1336be8e"
 }
