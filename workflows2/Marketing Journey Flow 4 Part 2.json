@@ -1,0 +1,473 @@
+{
+  "active": false,
+  "connections": {
+    "Execute Workflow Trigger": {
+      "main": [
+        [
+          {
+            "node": "Supabase",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Supabase": {
+      "main": [
+        [
+          {
+            "node": "Supabase5",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "WhatsApp Business Cloud": {
+      "main": [
+        [
+          {
+            "node": "Supabase1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Supabase1": {
+      "main": [
+        [
+          {
+            "node": "Supabase2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "WhatsApp Business Cloud1": {
+      "main": [
+        [
+          {
+            "node": "Supabase3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Supabase3": {
+      "main": [
+        [
+          {
+            "node": "Supabase4",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "WhatsApp Business Cloud1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request": {
+      "main": [
+        [
+          {
+            "node": "WhatsApp Business Cloud",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Supabase5": {
+      "main": [
+        [
+          {
+            "node": "If",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-02-07T13:07:53.488Z",
+  "id": "hTowLGEgU1t8hjO5",
+  "meta": null,
+  "name": "Marketing Journey Flow 4 Part 2",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "daa47dda-78fe-46a1-84b1-31a2a138fcc9",
+      "name": "Execute Workflow Trigger",
+      "type": "n8n-nodes-base.executeWorkflowTrigger",
+      "typeVersion": 1,
+      "position": [
+        380,
+        420
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict"
+          },
+          "conditions": [
+            {
+              "id": "048cd81c-4d6d-4f35-9b6a-8f04ea5b6500",
+              "leftValue": "={{ $('Execute Workflow Trigger').item.json.payload }}",
+              "rightValue": "Yes",
+              "operator": {
+                "type": "string",
+                "operation": "equals",
+                "name": "filter.operator.equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "fb0bdb09-f797-41ac-9327-c30fecc06c30",
+      "name": "If",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2,
+      "position": [
+        960,
+        420
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://mfx-prod-154625965269.asia-south1.run.app/enquiries/add",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n\"first_name\":\"{{ $('Supabase').item.json[\"first_name\"]}}\",\n\"phone\":\"+91{{$('Supabase').item.json[\"phone\"] }}\",\n\"contact_number\":\"+91{{$('Supabase').item.json[\"phone\"] }}\",\n\"email\":\"{{$('Supabase').item.json[\"email\"] }}\",\n\"course_id\":3,\n\"whatsapp_opt_in\":true,\n\"educational_qualification\":null,\n\"campaign_id\":{{ $('Supabase5').item.json[\"mf2_camp_id\"] }},\n\"register_for_webinar\":true,\n\"coming_from\": \"whatsapp_campaign_{{ $('Supabase5').item.json[\"mf2_camp_id\"]}}\"\n}",
+        "options": {}
+      },
+      "id": "df2cb859-3e47-42e1-8c88-5ebd110b40ab",
+      "name": "HTTP Request",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        1260,
+        300
+      ],
+      "alwaysOutputData": false,
+      "retryOnFail": true,
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "operation": "get",
+        "tableId": "send_whatsapp_import",
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "phone",
+              "keyValue": "={{ $json.wa_id.slice(2) }}"
+            },
+            {
+              "keyName": "camp_id",
+              "keyValue": "={{ $json.campaign_id }}"
+            }
+          ]
+        }
+      },
+      "id": "9f1ec30b-c69e-4956-bb5f-5e09733e62d2",
+      "name": "Supabase",
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        560,
+        420
+      ],
+      "retryOnFail": true,
+      "credentials": {
+        "supabaseApi": {
+          "id": "baNruLU9AV7x2GZq",
+          "name": "Supabase campaign manager"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "phoneNumberId": "171009622770823",
+        "recipientPhoneNumber": "={{ $('Execute Workflow Trigger').item.json.wa_id }}",
+        "template": "confirmation_paid_search_clicked_but_not_enrolled|en"
+      },
+      "id": "9420586a-263f-48e4-be5a-d8608115cad9",
+      "name": "WhatsApp Business Cloud",
+      "type": "n8n-nodes-base.whatsApp",
+      "typeVersion": 1,
+      "position": [
+        1480,
+        300
+      ],
+      "retryOnFail": true,
+      "credentials": {
+        "whatsAppApi": {
+          "id": "FgS03iKYFJtZDGNw",
+          "name": "Marketing | Primary [Miles Education]"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "tableId": "message_status",
+        "fieldsUi": {
+          "fieldValues": [
+            {
+              "fieldId": "send_status",
+              "fieldValue": "true"
+            },
+            {
+              "fieldId": "message_id",
+              "fieldValue": "={{ $json.messages[0].id }}"
+            },
+            {
+              "fieldId": "campaign_id",
+              "fieldValue": "={{ $('Execute Workflow Trigger').item.json.campaign_id }}"
+            },
+            {
+              "fieldId": "phone",
+              "fieldValue": "={{ $('Execute Workflow Trigger').item.json.wa_id.slice(2) }}"
+            },
+            {
+              "fieldId": "template_name",
+              "fieldValue": "confirmation_paid_search_clicked_but_not_enrolled"
+            }
+          ]
+        }
+      },
+      "id": "5be8760b-e18b-4647-b95b-6a75bffbee5f",
+      "name": "Supabase1",
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        1740,
+        300
+      ],
+      "retryOnFail": true,
+      "credentials": {
+        "supabaseApi": {
+          "id": "baNruLU9AV7x2GZq",
+          "name": "Supabase campaign manager"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "tableId": "messages_history",
+        "fieldsUi": {
+          "fieldValues": [
+            {
+              "fieldId": "mobile",
+              "fieldValue": "={{ $json.phone }}"
+            },
+            {
+              "fieldId": "message_status_id",
+              "fieldValue": "={{ $json.id }}"
+            },
+            {
+              "fieldId": "message",
+              "fieldValue": "Great! We're setting up a call with you. Our career expert will reach out to you within the next 48 hours!"
+            }
+          ]
+        }
+      },
+      "id": "046e2c93-15f1-4bb2-9a0c-06ade5187de9",
+      "name": "Supabase2",
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        1960,
+        300
+      ],
+      "retryOnFail": true,
+      "credentials": {
+        "supabaseApi": {
+          "id": "baNruLU9AV7x2GZq",
+          "name": "Supabase campaign manager"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "phoneNumberId": "171009622770823",
+        "recipientPhoneNumber": "={{ $('Execute Workflow Trigger').item.json.wa_id }}",
+        "template": "not_sure_paid_search_clicked_but_not_enrolled|en"
+      },
+      "id": "393420a7-d966-4292-8367-3b7fe0c3540b",
+      "name": "WhatsApp Business Cloud1",
+      "type": "n8n-nodes-base.whatsApp",
+      "typeVersion": 1,
+      "position": [
+        1480,
+        620
+      ],
+      "retryOnFail": true,
+      "credentials": {
+        "whatsAppApi": {
+          "id": "FgS03iKYFJtZDGNw",
+          "name": "Marketing | Primary [Miles Education]"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "tableId": "message_status",
+        "fieldsUi": {
+          "fieldValues": [
+            {
+              "fieldId": "send_status",
+              "fieldValue": "true"
+            },
+            {
+              "fieldId": "message_id",
+              "fieldValue": "={{ $json.messages[0].id }}"
+            },
+            {
+              "fieldId": "campaign_id",
+              "fieldValue": "={{ $('Execute Workflow Trigger').item.json.campaign_id }}"
+            },
+            {
+              "fieldId": "phone",
+              "fieldValue": "={{ $('Execute Workflow Trigger').item.json.wa_id.slice(2) }}"
+            },
+            {
+              "fieldId": "template_name",
+              "fieldValue": "not_sure_paid_search_clicked_but_not_enrolled"
+            }
+          ]
+        }
+      },
+      "id": "1890231e-c967-485d-82f0-eac40752c900",
+      "name": "Supabase3",
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        1720,
+        620
+      ],
+      "credentials": {
+        "supabaseApi": {
+          "id": "baNruLU9AV7x2GZq",
+          "name": "Supabase campaign manager"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "tableId": "messages_history",
+        "fieldsUi": {
+          "fieldValues": [
+            {
+              "fieldId": "mobile",
+              "fieldValue": "={{ $json.phone }}"
+            },
+            {
+              "fieldId": "message_status_id",
+              "fieldValue": "={{ $json.id }}"
+            },
+            {
+              "fieldId": "message",
+              "fieldValue": "That's alright. If you want to know more about opportunities for accountants in the Big 4 & top MNCs in India & the US, feel free to call us at the number below."
+            }
+          ]
+        }
+      },
+      "id": "c39d89d6-b9fa-42a9-b133-abebef00971c",
+      "name": "Supabase4",
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        1920,
+        620
+      ],
+      "retryOnFail": true,
+      "credentials": {
+        "supabaseApi": {
+          "id": "baNruLU9AV7x2GZq",
+          "name": "Supabase campaign manager"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "get",
+        "tableId": "campaign",
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "id",
+              "keyValue": "={{ $json.camp_id }}"
+            }
+          ]
+        }
+      },
+      "id": "6bec4f22-c477-4fa4-b35d-6172e4e095f1",
+      "name": "Supabase5",
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        780,
+        420
+      ],
+      "retryOnFail": true,
+      "credentials": {
+        "supabaseApi": {
+          "id": "baNruLU9AV7x2GZq",
+          "name": "Supabase campaign manager"
+        }
+      }
+    }
+  ],
+  "pinData": {
+    "Execute Workflow Trigger": [
+      {
+        "json": {
+          "response_status": false,
+          "is_retry": false,
+          "user_id": null,
+          "campaign_id": 1388,
+          "message_status_id": 6771402,
+          "webinar_id": null,
+          "lead_dump_id": null,
+          "payload": "I'm Not Sure",
+          "wa_id": "917349296479",
+          "first_name": "Karan M"
+        }
+      }
+    ]
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2025-02-12T13:34:04.000Z",
+  "versionId": "138a8d0e-e10a-42b6-9ed6-5baa3c9569db"
+}
