@@ -1,0 +1,217 @@
+{
+  "active": false,
+  "connections": {
+    "Supabase": {
+      "main": [
+        [
+          {
+            "node": "If",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If": {
+      "main": [
+        [
+          {
+            "node": "WhatsApp Business Cloud",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Supabase1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2024-09-03T18:34:25.756Z",
+  "id": "cVVged4w0yZctiEm",
+  "meta": null,
+  "name": "Healthcare WA flow - MSG 2",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "9b85dee3-97fa-49ac-8767-41eea570660d",
+      "name": "Execute Workflow Trigger",
+      "type": "n8n-nodes-base.executeWorkflowTrigger",
+      "typeVersion": 1,
+      "position": [
+        180,
+        400
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "get",
+        "tableId": "send_whatsapp_import",
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "phone",
+              "keyValue": "={{ ($json.wa_id).slice(2) }}"
+            },
+            {
+              "keyName": "camp_id",
+              "keyValue": "={{ $json.campaign_id }}"
+            }
+          ]
+        }
+      },
+      "id": "05ffc16f-269d-4282-8e6c-9e16bdf9f991",
+      "name": "Supabase",
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        400,
+        400
+      ],
+      "credentials": {
+        "supabaseApi": {
+          "id": "baNruLU9AV7x2GZq",
+          "name": "Supabase campaign manager"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict"
+          },
+          "conditions": [
+            {
+              "id": "cb17daa0-5f72-48f6-9280-6ac68abe69cf",
+              "leftValue": "={{ $('Execute Workflow Trigger').item.json.payload }}",
+              "rightValue": "Yes, I am interested",
+              "operator": {
+                "type": "string",
+                "operation": "equals",
+                "name": "filter.operator.equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "b7cae775-83e8-40c6-86e8-a3d6436032a2",
+      "name": "If",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2,
+      "position": [
+        660,
+        400
+      ]
+    },
+    {
+      "parameters": {
+        "phoneNumberId": "171009622770823",
+        "recipientPhoneNumber": "={{ $json.phone }}",
+        "template": "healthcare_chat_flow_msg_2|en"
+      },
+      "id": "0ade398f-d3c6-4e97-92ab-5d512bfeb5fb",
+      "name": "WhatsApp Business Cloud",
+      "type": "n8n-nodes-base.whatsApp",
+      "typeVersion": 1,
+      "position": [
+        1160,
+        240
+      ],
+      "credentials": {
+        "whatsAppApi": {
+          "id": "FgS03iKYFJtZDGNw",
+          "name": "WhatsApp account new"
+        }
+      }
+    },
+    {
+      "parameters": {},
+      "id": "17ae28a6-3218-4337-b94b-f253b4ec1b5e",
+      "name": "Execute Workflow",
+      "type": "n8n-nodes-base.executeWorkflow",
+      "typeVersion": 1,
+      "position": [
+        1500,
+        240
+      ]
+    },
+    {
+      "parameters": {
+        "tableId": "healthcare_wa_flow_responses",
+        "fieldsUi": {
+          "fieldValues": [
+            {
+              "fieldId": "first_name",
+              "fieldValue": "={{ $('Supabase').item.json.first_name }}"
+            },
+            {
+              "fieldId": "phone",
+              "fieldValue": "={{ $('Supabase').item.json.phone }}"
+            },
+            {
+              "fieldId": "email",
+              "fieldValue": "={{ $('Supabase').item.json.email }}"
+            },
+            {
+              "fieldId": "status",
+              "fieldValue": "No, I am not interested"
+            },
+            {
+              "fieldId": "camp_id",
+              "fieldValue": "={{ $json.camp_id }}"
+            }
+          ]
+        }
+      },
+      "id": "af6f62d3-3616-43b0-9b68-6fa1518ecdff",
+      "name": "Supabase1",
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        1140,
+        540
+      ],
+      "credentials": {
+        "supabaseApi": {
+          "id": "baNruLU9AV7x2GZq",
+          "name": "Supabase campaign manager"
+        }
+      }
+    }
+  ],
+  "pinData": {
+    "Execute Workflow Trigger": [
+      {
+        "json": {
+          "response_status": false,
+          "is_retry": false,
+          "user_id": null,
+          "campaign_id": 934,
+          "message_status_id": 5385521,
+          "webinar_id": null,
+          "lead_dump_id": null,
+          "payload": "No, I am not interested",
+          "wa_id": "917349296479",
+          "first_name": ""
+        }
+      }
+    ]
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2024-09-04T04:27:14.000Z",
+  "versionId": "68bfc599-0724-465a-8ec3-cf4520cd6f1d"
+}
