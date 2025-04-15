@@ -1,0 +1,939 @@
+{
+  "active": false,
+  "connections": {
+    "Execute Workflow Trigger": {
+      "main": [
+        [
+          {
+            "node": "Supabase6",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Supabase6": {
+      "main": [
+        [
+          {
+            "node": "Supabase",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Supabase": {
+      "main": [
+        [
+          {
+            "node": "Set",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Set": {
+      "main": [
+        [
+          {
+            "node": "IF",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "IF": {
+      "main": [
+        [
+          {
+            "node": "Switch",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "IF2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Switch1": {
+      "main": [
+        [
+          {
+            "node": "WhatsApp Business Cloud1",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "IF1",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "WhatsApp Business Cloud2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "IF1": {
+      "main": [
+        [
+          {
+            "node": "WhatsApp Business Cloud3",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "IF3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "IF2": {
+      "main": [
+        [
+          {
+            "node": "Switch1",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Switch3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "IF3": {
+      "main": [
+        [
+          {
+            "node": "WhatsApp Business Cloud4",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "WhatsApp Business Cloud5",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Switch": {
+      "main": [
+        [
+          {
+            "node": "WhatsApp Business Cloud6",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "WhatsApp Business Cloud7",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "WhatsApp Business Cloud8",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Switch2": {
+      "main": [
+        [
+          {
+            "node": "WhatsApp Business Cloud9",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "IF4",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "WhatsApp Business Cloud10",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "IF4": {
+      "main": [
+        [
+          {
+            "node": "WhatsApp Business Cloud11",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "IF5",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "IF5": {
+      "main": [
+        [
+          {
+            "node": "WhatsApp Business Cloud12",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "WhatsApp Business Cloud13",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Switch3": {
+      "main": [
+        [
+          {
+            "node": "WhatsApp Business Cloud14",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "WhatsApp Business Cloud16",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2023-12-22T05:44:43.756Z",
+  "id": "1Ul1696FsBq1VdS2",
+  "meta": null,
+  "name": "replay flow form fill og",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "006d752e-aead-4ec0-8748-6aecd6992b55",
+      "name": "Execute Workflow Trigger",
+      "type": "n8n-nodes-base.executeWorkflowTrigger",
+      "typeVersion": 1,
+      "position": [
+        60,
+        260
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "get",
+        "tableId": "message_status",
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "id",
+              "keyValue": "={{ $json.message_status_id }}"
+            }
+          ]
+        }
+      },
+      "id": "0285f27a-e5dd-448b-8676-01553653d79c",
+      "name": "Supabase6",
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        260,
+        260
+      ],
+      "credentials": {
+        "supabaseApi": {
+          "id": "baNruLU9AV7x2GZq",
+          "name": "Supabase campaign manager"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "get",
+        "tableId": "leads_dump",
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "id",
+              "keyValue": "={{ $json.lead_dump_id }}"
+            }
+          ]
+        }
+      },
+      "id": "43deac02-947a-4477-8ad6-5dbc56dab3aa",
+      "name": "Supabase",
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        460,
+        260
+      ],
+      "credentials": {
+        "supabaseApi": {
+          "id": "baNruLU9AV7x2GZq",
+          "name": "Supabase campaign manager"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "keepOnlySet": true,
+        "values": {
+          "string": [
+            {
+              "name": "phone",
+              "value": "={{ $json.phone.length > 11 ?$json.phone : \"+91\"+$json.phone  }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "8f1a7642-14db-48bc-bde0-eb69ade2b98c",
+      "name": "Set",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 2,
+      "position": [
+        660,
+        260
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "expression",
+        "output": "={{ $('Execute Workflow Trigger').item.json.payload === \"Work in India\" ? 0 : \n$('Execute Workflow Trigger').item.json.payload === \"Work in the US\" ? 1  :\n$('Execute Workflow Trigger').item.json.payload === \"Request Callback\" ? 2 : 3}}"
+      },
+      "id": "c414ba40-e04c-43cf-a9a3-c39c34c1d46d",
+      "name": "Switch",
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 1,
+      "position": [
+        1100,
+        -200
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "send",
+        "phoneNumberId": "115484311630426",
+        "recipientPhoneNumber": "={{ $('Execute Workflow Trigger').item.json.wa_id }}",
+        "textBody": "Awesome! Our team will be in touch with you.",
+        "additionalFields": {}
+      },
+      "id": "31594383-19a5-477b-a783-f559effbf15b",
+      "name": "WhatsApp Business Cloud",
+      "type": "n8n-nodes-base.whatsApp",
+      "typeVersion": 1,
+      "position": [
+        1340,
+        100
+      ],
+      "credentials": {
+        "whatsAppApi": {
+          "id": "SiXp0JiQTXH4kKE6",
+          "name": "WhatsApp account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "string": [
+            {
+              "value1": "={{ $('Supabase').item.json.url_page_path }}",
+              "value2": "/"
+            }
+          ]
+        }
+      },
+      "id": "506993c0-03db-4913-9d29-06c5ce56be68",
+      "name": "IF",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        880,
+        260
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "expression",
+        "output": "={{ $('Execute Workflow Trigger').item.json.payload === \"Request call back\" ? 0 :$('Execute Workflow Trigger').item.json.payload === \"Tell me about Masterclass\" ? 1 : $('Execute Workflow Trigger').item.json.payload === \"Not Interested\" ? 2 :3}}"
+      },
+      "id": "b0896f23-d611-41f7-ae35-f9ffa9a80e51",
+      "name": "Switch1",
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 1,
+      "position": [
+        1340,
+        600
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "send",
+        "phoneNumberId": "108019349036743",
+        "recipientPhoneNumber": "={{ $('Set').item.json.phone }}",
+        "textBody": "Thank you for requesting a callback! 📞 Our team will get in touch with you shortly to address your queries and discuss your interests. Looking forward to speaking with you soon!",
+        "additionalFields": {}
+      },
+      "id": "0904b875-a9d8-4227-8f83-19d7075be39f",
+      "name": "WhatsApp Business Cloud1",
+      "type": "n8n-nodes-base.whatsApp",
+      "typeVersion": 1,
+      "position": [
+        1600,
+        440
+      ],
+      "credentials": {
+        "whatsAppApi": {
+          "id": "75melKbodQdQAHVp",
+          "name": "WhatsApp miles education"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "send",
+        "phoneNumberId": "108019349036743",
+        "recipientPhoneNumber": "={{ $('Set').item.json.phone }}",
+        "textBody": "No worries! 🙌 Miles is here to support you on your journey towards professional success in India! 🇮🇳",
+        "additionalFields": {}
+      },
+      "id": "4ef952eb-857d-4536-86f7-ee1f6fc61b12",
+      "name": "WhatsApp Business Cloud2",
+      "type": "n8n-nodes-base.whatsApp",
+      "typeVersion": 1,
+      "position": [
+        1600,
+        720
+      ],
+      "credentials": {
+        "whatsAppApi": {
+          "id": "75melKbodQdQAHVp",
+          "name": "WhatsApp miles education"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "string": [
+            {
+              "value1": "={{ $('Supabase').item.json.intrested_in }}",
+              "value2": "Yes"
+            }
+          ]
+        }
+      },
+      "id": "30090e75-c05a-4290-9710-70f943faf9fe",
+      "name": "IF1",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        1820,
+        580
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "send",
+        "phoneNumberId": "108019349036743",
+        "recipientPhoneNumber": "={{ $('Set').item.json.phone }}",
+        "textBody": "We are super excited to extend an invitation to you for our Alumni meet & greet webinar.   🔍 Discover the endless possibilities of working in the US and earning over $60,000/year! Get an opportunity to get insider insights, network with accountants working in top public accounting firms, and unlock your dream career! 💼  _Save the Date:_ 📅 *7th January* 🕒 *7 PM to 9 PM* 👉 *Meet Indian Accountants Living their American Dream*   See you there. 🚀  Cheers, Team Miles Education  PS: Stay updated on the latest Miles US Pathway developments! Follow Varun on Linkedin.",
+        "additionalFields": {}
+      },
+      "id": "a23bd434-ecd1-4718-9bc5-d6e941868cc3",
+      "name": "WhatsApp Business Cloud3",
+      "type": "n8n-nodes-base.whatsApp",
+      "typeVersion": 1,
+      "position": [
+        2060,
+        340
+      ],
+      "credentials": {
+        "whatsAppApi": {
+          "id": "75melKbodQdQAHVp",
+          "name": "WhatsApp miles education"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "string": [
+            {
+              "value1": "={{ $('Supabase').item.json.url_page_path }}",
+              "operation": "notEqual",
+              "value2": "/work-in-the-us"
+            }
+          ]
+        }
+      },
+      "id": "2e9430d3-6499-4756-9dd9-cd9aeb433c8d",
+      "name": "IF2",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        1160,
+        1000
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "number": [
+            {
+              "value1": "={{ $('Supabase').item.json.course }}",
+              "value2": 2
+            }
+          ]
+        }
+      },
+      "id": "c7aa2d37-7c83-4ad3-b2ca-4ac06ac37073",
+      "name": "IF3",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        2020,
+        860
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "send",
+        "phoneNumberId": "108019349036743",
+        "recipientPhoneNumber": "={{ $('Set').item.json.phone }}",
+        "textBody": "We are super excited to extend an invitation to you for our Alumni meet & greet webinar.   🔍 Discover the endless possibilities of working in the US and earning over $60,000/year! Get an opportunity to get insider insights, network with accountants working in top public accounting firms, and unlock your dream career! 💼  _Save the Date:_ 📅 *7th January* 🕒 *7 PM to 9 PM* 👉 *Meet Indian Accountants Living their American Dream*   See you there. 🚀  Cheers, Team Miles Education  PS: Stay updated on the latest Miles US Pathway developments! Follow Varun on Linkedin.",
+        "additionalFields": {}
+      },
+      "id": "82c5d91c-7bbf-4d19-afd6-56ef35e4541d",
+      "name": "WhatsApp Business Cloud4",
+      "type": "n8n-nodes-base.whatsApp",
+      "typeVersion": 1,
+      "position": [
+        2240,
+        700
+      ],
+      "credentials": {
+        "whatsAppApi": {
+          "id": "75melKbodQdQAHVp",
+          "name": "WhatsApp miles education"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "send",
+        "phoneNumberId": "108019349036743",
+        "recipientPhoneNumber": "={{ $('Set').item.json.phone }}",
+        "textBody": "We are excited for you to attend our CMA Masterclass with Varun Jain, the world's favorite CPA instructor. Make the most of this opportunity! \n\n📅 Date: 07/01/2023\n⏰ 3 PM\n\nKeep an eye out for further details! See you there. 🚀",
+        "additionalFields": {}
+      },
+      "id": "d0185755-d4a5-4fff-aac2-44a1e86780de",
+      "name": "WhatsApp Business Cloud5",
+      "type": "n8n-nodes-base.whatsApp",
+      "typeVersion": 1,
+      "position": [
+        2220,
+        1020
+      ],
+      "credentials": {
+        "whatsAppApi": {
+          "id": "75melKbodQdQAHVp",
+          "name": "WhatsApp miles education"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "send",
+        "phoneNumberId": "108019349036743",
+        "recipientPhoneNumber": "={{ $('Set').item.json.phone }}",
+        "textBody": "Awesome! Our team will be in touch with you. ",
+        "additionalFields": {}
+      },
+      "id": "0b8ee9a1-0c91-4f62-bce1-206e13db281b",
+      "name": "WhatsApp Business Cloud6",
+      "type": "n8n-nodes-base.whatsApp",
+      "typeVersion": 1,
+      "position": [
+        1600,
+        -460
+      ],
+      "credentials": {
+        "whatsAppApi": {
+          "id": "75melKbodQdQAHVp",
+          "name": "WhatsApp miles education"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "send",
+        "phoneNumberId": "108019349036743",
+        "recipientPhoneNumber": "={{ $('Set').item.json.phone }}",
+        "textBody": "We're excited about your interest to work in the US. _*The Miles US Pathway*_ allows you to work at top public accounting firms in the US with a _starting salary of $60,000+ (₹50 Lakhs+)_. 🚀 ",
+        "additionalFields": {}
+      },
+      "id": "ecc5642d-136b-4212-82d7-05e27d7d54a2",
+      "name": "WhatsApp Business Cloud7",
+      "type": "n8n-nodes-base.whatsApp",
+      "typeVersion": 1,
+      "position": [
+        1600,
+        -260
+      ],
+      "credentials": {
+        "whatsAppApi": {
+          "id": "75melKbodQdQAHVp",
+          "name": "WhatsApp miles education"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "send",
+        "phoneNumberId": "108019349036743",
+        "recipientPhoneNumber": "={{ $('Set').item.json.phone }}",
+        "textBody": "Thanks for requesting a callback from Miles Education! 📞 Our team will be in touch with you shortly. ",
+        "additionalFields": {}
+      },
+      "id": "461bea48-e7ff-4292-b12e-fe20c3ab6d97",
+      "name": "WhatsApp Business Cloud8",
+      "type": "n8n-nodes-base.whatsApp",
+      "typeVersion": 1,
+      "position": [
+        1600,
+        -20
+      ],
+      "credentials": {
+        "whatsAppApi": {
+          "id": "75melKbodQdQAHVp",
+          "name": "WhatsApp miles education"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "mode": "expression",
+        "output": "={{ $('Execute Workflow Trigger').item.json.payload === \"Request call back\" ? 0 :$('Execute Workflow Trigger').item.json.payload === \"Tell me about Masterclass\" ? 1 : $('Execute Workflow Trigger').item.json.payload === \"Not Interested\" ? 2 :3}}"
+      },
+      "id": "32e1e8a0-f882-42db-903d-f9acbe63f5aa",
+      "name": "Switch2",
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 1,
+      "position": [
+        -2080,
+        500
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "send",
+        "phoneNumberId": "108019349036743",
+        "recipientPhoneNumber": "={{ $('Set').item.json.phone }}",
+        "textBody": "Thank you for requesting a callback! 📞 Our team will get in touch with you shortly to address your queries and discuss your interests. Looking forward to speaking with you soon!",
+        "additionalFields": {}
+      },
+      "id": "da4184ce-0dd8-4a0f-b74a-1e3385e327ee",
+      "name": "WhatsApp Business Cloud9",
+      "type": "n8n-nodes-base.whatsApp",
+      "typeVersion": 1,
+      "position": [
+        -1820,
+        340
+      ],
+      "credentials": {
+        "whatsAppApi": {
+          "id": "75melKbodQdQAHVp",
+          "name": "WhatsApp miles education"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "send",
+        "phoneNumberId": "108019349036743",
+        "recipientPhoneNumber": "={{ $('Set').item.json.phone }}",
+        "textBody": "No worries! 🙌 Miles is here to support you on your journey towards professional success in India! 🇮🇳",
+        "additionalFields": {}
+      },
+      "id": "69adee84-6ff0-46c6-99b1-b83b6b6c37da",
+      "name": "WhatsApp Business Cloud10",
+      "type": "n8n-nodes-base.whatsApp",
+      "typeVersion": 1,
+      "position": [
+        -1820,
+        620
+      ],
+      "credentials": {
+        "whatsAppApi": {
+          "id": "75melKbodQdQAHVp",
+          "name": "WhatsApp miles education"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "string": [
+            {
+              "value1": "={{ $('Supabase').item.json.intrested_in }}",
+              "value2": "Yes"
+            }
+          ]
+        }
+      },
+      "id": "38b8d47c-be52-4a5b-9fdb-64aa520b67ce",
+      "name": "IF4",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        -1600,
+        480
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "send",
+        "phoneNumberId": "108019349036743",
+        "recipientPhoneNumber": "={{ $('Set').item.json.phone }}",
+        "textBody": "We are super excited to extend an invitation to you for our Alumni meet & greet webinar.   🔍 Discover the endless possibilities of working in the US and earning over $60,000/year! Get an opportunity to get insider insights, network with accountants working in top public accounting firms, and unlock your dream career! 💼  _Save the Date:_ 📅 *7th January* 🕒 *7 PM to 9 PM* 👉 *Meet Indian Accountants Living their American Dream*   See you there. 🚀  Cheers, Team Miles Education  PS: Stay updated on the latest Miles US Pathway developments! Follow Varun on Linkedin.",
+        "additionalFields": {}
+      },
+      "id": "f9b3c3af-97a9-4f9f-9475-51181d36cc2c",
+      "name": "WhatsApp Business Cloud11",
+      "type": "n8n-nodes-base.whatsApp",
+      "typeVersion": 1,
+      "position": [
+        -1360,
+        240
+      ],
+      "credentials": {
+        "whatsAppApi": {
+          "id": "75melKbodQdQAHVp",
+          "name": "WhatsApp miles education"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "number": [
+            {
+              "value1": "={{ $('Supabase').item.json.course }}",
+              "value2": 2
+            }
+          ]
+        }
+      },
+      "id": "bbd5cc5d-a723-420e-9983-94a38922b8df",
+      "name": "IF5",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        -1400,
+        760
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "send",
+        "phoneNumberId": "108019349036743",
+        "recipientPhoneNumber": "={{ $('Set').item.json.phone }}",
+        "textBody": "We are super excited to extend an invitation to you for our Alumni meet & greet webinar.   🔍 Discover the endless possibilities of working in the US and earning over $60,000/year! Get an opportunity to get insider insights, network with accountants working in top public accounting firms, and unlock your dream career! 💼  _Save the Date:_ 📅 *7th January* 🕒 *7 PM to 9 PM* 👉 *Meet Indian Accountants Living their American Dream*   See you there. 🚀  Cheers, Team Miles Education  PS: Stay updated on the latest Miles US Pathway developments! Follow Varun on Linkedin.",
+        "additionalFields": {}
+      },
+      "id": "f8d102cf-1ea5-493a-806d-5a5351ec9efb",
+      "name": "WhatsApp Business Cloud12",
+      "type": "n8n-nodes-base.whatsApp",
+      "typeVersion": 1,
+      "position": [
+        -1180,
+        600
+      ],
+      "credentials": {
+        "whatsAppApi": {
+          "id": "75melKbodQdQAHVp",
+          "name": "WhatsApp miles education"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "send",
+        "phoneNumberId": "108019349036743",
+        "recipientPhoneNumber": "={{ $('Set').item.json.phone }}",
+        "textBody": "We are excited for you to attend our CMA Masterclass with Varun Jain, the world's favorite CPA instructor. Make the most of this opportunity! \n\n📅 Date: 07/01/2023\n⏰ 3 PM\n\nKeep an eye out for further details! See you there. 🚀",
+        "additionalFields": {}
+      },
+      "id": "efc0e59e-c82f-4089-9eb7-d878b5329b0b",
+      "name": "WhatsApp Business Cloud13",
+      "type": "n8n-nodes-base.whatsApp",
+      "typeVersion": 1,
+      "position": [
+        -1200,
+        920
+      ],
+      "credentials": {
+        "whatsAppApi": {
+          "id": "75melKbodQdQAHVp",
+          "name": "WhatsApp miles education"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "mode": "expression",
+        "output": "={{ $('Execute Workflow Trigger').item.json.payload === \"Request Callback\" ? 0 :$('Execute Workflow Trigger').item.json.payload === \"Tell me about Masterclass\" ? 1 : $('Execute Workflow Trigger').item.json.payload === \"Not Interested\" ? 2 :3}}"
+      },
+      "id": "edcc31b4-8f2c-4a7c-b417-1e9625e90b78",
+      "name": "Switch3",
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 1,
+      "position": [
+        1460,
+        1600
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "send",
+        "phoneNumberId": "108019349036743",
+        "recipientPhoneNumber": "={{ $('Set').item.json.phone }}",
+        "textBody": "Thank you for requesting a callback! 📞 Our team will get in touch with you shortly to address your queries and discuss your interests. Looking forward to speaking with you soon!",
+        "additionalFields": {}
+      },
+      "id": "b523c772-630f-47dd-ad75-c1547f2e1160",
+      "name": "WhatsApp Business Cloud14",
+      "type": "n8n-nodes-base.whatsApp",
+      "typeVersion": 1,
+      "position": [
+        1760,
+        1360
+      ],
+      "credentials": {
+        "whatsAppApi": {
+          "id": "75melKbodQdQAHVp",
+          "name": "WhatsApp miles education"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "send",
+        "phoneNumberId": "108019349036743",
+        "recipientPhoneNumber": "={{ $('Set').item.json.phone }}",
+        "textBody": "No worries! 🙌 Miles is here to support you on your journey towards professional success in India! 🇮🇳",
+        "additionalFields": {}
+      },
+      "id": "695bee17-fdc9-46c4-828a-cf163e665a20",
+      "name": "WhatsApp Business Cloud15",
+      "type": "n8n-nodes-base.whatsApp",
+      "typeVersion": 1,
+      "position": [
+        -1080,
+        240
+      ],
+      "credentials": {
+        "whatsAppApi": {
+          "id": "75melKbodQdQAHVp",
+          "name": "WhatsApp miles education"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "send",
+        "phoneNumberId": "108019349036743",
+        "recipientPhoneNumber": "={{ $('Set').item.json.phone }}",
+        "textBody": "We are super excited to extend an invitation to you for our Alumni meet & greet webinar.   🔍 Discover the endless possibilities of working in the US and earning over $60,000/year! Get an opportunity to get insider insights, network with accountants working in top public accounting firms, and unlock your dream career! 💼  _Save the Date:_ 📅 *7th January* 🕒 *7 PM to 9 PM* 👉 *Meet Indian Accountants Living their American Dream*   See you there. 🚀  Cheers, Team Miles Education  PS: Stay updated on the latest Miles US Pathway developments! Follow Varun on Linkedin.",
+        "additionalFields": {}
+      },
+      "id": "427170fe-c302-476d-8434-57de675aa07e",
+      "name": "WhatsApp Business Cloud16",
+      "type": "n8n-nodes-base.whatsApp",
+      "typeVersion": 1,
+      "position": [
+        1740,
+        1600
+      ],
+      "credentials": {
+        "whatsAppApi": {
+          "id": "75melKbodQdQAHVp",
+          "name": "WhatsApp miles education"
+        }
+      }
+    }
+  ],
+  "pinData": {
+    "Execute Workflow Trigger": [
+      {
+        "json": {
+          "response_status": false,
+          "is_retry": false,
+          "user_id": null,
+          "campaign_id": 47,
+          "message_status_id": 560530,
+          "webinar_id": null,
+          "lead_dump_id": 190419,
+          "payload": "Work in the US",
+          "wa_id": "916238133298",
+          "name": ""
+        }
+      }
+    ]
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2024-01-12T14:18:29.000Z",
+  "versionId": "22cb740b-fd9f-4b8e-9f79-dcc3bf4c4e13"
+}
