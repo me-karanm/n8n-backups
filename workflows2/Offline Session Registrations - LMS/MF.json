@@ -1,0 +1,316 @@
+{
+  "active": true,
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Supabase",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Supabase": {
+      "main": [
+        [
+          {
+            "node": "If",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If": {
+      "main": [
+        [
+          {
+            "node": "Supabase1",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "If1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If1": {
+      "main": [
+        [
+          {
+            "node": "Supabase2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2024-09-09T11:00:33.272Z",
+  "id": "uKD7CWZYVPzklIDX",
+  "meta": null,
+  "name": "Offline Session Registrations - LMS/MF",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "offline-registrations",
+        "options": {}
+      },
+      "id": "822db7df-3fa9-407c-ad3f-3d488b095a65",
+      "name": "Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1.1,
+      "position": [
+        680,
+        360
+      ],
+      "webhookId": "712a3c56-45e3-4a02-8c4a-5f8a20b96faa"
+    },
+    {
+      "parameters": {
+        "operation": "get",
+        "tableId": "leads_dump",
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "email",
+              "keyValue": "={{ $json.body.email }}"
+            }
+          ]
+        }
+      },
+      "id": "43e8a587-93ca-4568-b61a-9a51d8fe76a8",
+      "name": "Supabase",
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        960,
+        360
+      ],
+      "credentials": {
+        "supabaseApi": {
+          "id": "baNruLU9AV7x2GZq",
+          "name": "Supabase campaign manager"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "mode": "expression",
+        "output": "={{ $json.cityname  == \"Mumbai\" ? 1 : $$json.cityname  ==  \"Ahmedabad\" ? 0 : $json.cityname  == \"Delhi\" ? 2 : 3 }} "
+      },
+      "id": "e33f6811-c69c-4af2-8166-babd66faa1e1",
+      "name": "Switch",
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 2,
+      "position": [
+        640,
+        120
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict"
+          },
+          "conditions": [
+            {
+              "id": "a31cb1af-e88f-4631-8a70-997ccfdb1134",
+              "leftValue": "={{ $('Webhook').item.json.cityname }}",
+              "rightValue": "Mumbai",
+              "operator": {
+                "type": "string",
+                "operation": "equals",
+                "name": "filter.operator.equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "288d16e3-ef5a-4918-b38f-23e6a484e6e2",
+      "name": "If",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2,
+      "position": [
+        1280,
+        360
+      ]
+    },
+    {
+      "parameters": {
+        "tableId": "webinar_registration",
+        "fieldsUi": {
+          "fieldValues": [
+            {
+              "fieldId": "leads_dump_id",
+              "fieldValue": "={{ $json.id }}"
+            },
+            {
+              "fieldId": "registration_email",
+              "fieldValue": "={{ $json.email }}"
+            },
+            {
+              "fieldId": "created_at",
+              "fieldValue": "={{ $json.now() }}"
+            },
+            {
+              "fieldId": "webinar_id",
+              "fieldValue": "86"
+            }
+          ]
+        }
+      },
+      "id": "acd03f89-4102-4fdf-a606-b1a48f49d080",
+      "name": "Supabase1",
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        1600,
+        160
+      ],
+      "credentials": {
+        "supabaseApi": {
+          "id": "baNruLU9AV7x2GZq",
+          "name": "Supabase campaign manager"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "tableId": "webinar_registration",
+        "fieldsUi": {
+          "fieldValues": [
+            {
+              "fieldId": "leads_dump_id",
+              "fieldValue": "={{ $json.id }}"
+            },
+            {
+              "fieldId": "registration_email",
+              "fieldValue": "={{ $json.email }}"
+            },
+            {
+              "fieldId": "created_at",
+              "fieldValue": "={{ $json.now() }}"
+            },
+            {
+              "fieldId": "webinar_id",
+              "fieldValue": "89"
+            }
+          ]
+        }
+      },
+      "id": "a79279b4-dfde-4fbd-9326-a0b785cb921b",
+      "name": "Supabase2",
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        1860,
+        440
+      ],
+      "credentials": {
+        "supabaseApi": {
+          "id": "baNruLU9AV7x2GZq",
+          "name": "Supabase campaign manager"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict"
+          },
+          "conditions": [
+            {
+              "id": "2d0e1884-e773-4e1b-9095-0a895e3f400f",
+              "leftValue": "={{ $('Webhook').item.json.cityname }}",
+              "rightValue": "Delhi",
+              "operator": {
+                "type": "string",
+                "operation": "equals",
+                "name": "filter.operator.equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "e67b61b2-c0da-4453-94d5-82fbc3b7844d",
+      "name": "If1",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2,
+      "position": [
+        1520,
+        620
+      ]
+    },
+    {
+      "parameters": {
+        "tableId": "webinar_registration",
+        "fieldsUi": {
+          "fieldValues": [
+            {
+              "fieldId": "leads_dump_id",
+              "fieldValue": "={{ $json.id }}"
+            },
+            {
+              "fieldId": "registration_email",
+              "fieldValue": "={{ $json.email }}"
+            },
+            {
+              "fieldId": "created_at",
+              "fieldValue": "={{ $json.now() }}"
+            },
+            {
+              "fieldId": "webinar_id",
+              "fieldValue": "87"
+            }
+          ]
+        }
+      },
+      "id": "ed502e6a-7e49-4a5c-a3a0-e6efedb8bc64",
+      "name": "Supabase3",
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        1860,
+        740
+      ],
+      "credentials": {
+        "supabaseApi": {
+          "id": "baNruLU9AV7x2GZq",
+          "name": "Supabase campaign manager"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1",
+    "timezone": "Asia/Calcutta",
+    "saveManualExecutions": true,
+    "callerPolicy": "workflowsFromSameOwner",
+    "saveExecutionProgress": true
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 1,
+  "updatedAt": "2024-09-19T12:13:18.000Z",
+  "versionId": "2d6f9907-7277-417e-8f4c-2cd300a5cd40"
+}
