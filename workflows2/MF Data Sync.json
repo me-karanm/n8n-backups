@@ -1,0 +1,62 @@
+{
+  "active": false,
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "MySQL",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2023-08-04T13:14:31.969Z",
+  "id": "Ji1bPXslqiq2Ua7S",
+  "meta": null,
+  "name": "MF Data Sync",
+  "nodes": [
+    {
+      "parameters": {
+        "options": {}
+      },
+      "id": "e868204e-dd1b-4747-9190-7e0838207d4b",
+      "name": "Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        880,
+        440
+      ],
+      "webhookId": "11529607-c857-49bb-83e3-ba494b5ee67c"
+    },
+    {
+      "parameters": {
+        "table": {
+          "__rl": true,
+          "mode": "list",
+          "value": ""
+        }
+      },
+      "id": "b5bad3ac-23f6-4267-9253-921b3172e4c7",
+      "name": "MySQL",
+      "type": "n8n-nodes-base.mySql",
+      "typeVersion": 2.1,
+      "position": [
+        1100,
+        440
+      ]
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2023-08-11T14:18:23.000Z",
+  "versionId": "5b4159f8-ed53-4498-8347-512e1447de21"
+}
