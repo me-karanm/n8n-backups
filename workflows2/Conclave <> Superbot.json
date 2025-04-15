@@ -1,0 +1,2562 @@
+{
+  "active": false,
+  "connections": {
+    "Postgres": {
+      "main": [
+        [
+          {
+            "node": "Supabase4",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "If",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request": {
+      "main": [
+        [
+          {
+            "node": "Supabase",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "HTTP Request2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "WhatsApp Business Cloud6": {
+      "main": [
+        [
+          {
+            "node": "Supabase6",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request3": {
+      "main": [
+        [
+          {
+            "node": "Supabase2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request4": {
+      "main": [
+        [
+          {
+            "node": "Supabase7",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request5": {
+      "main": [
+        [
+          {
+            "node": "Supabase8",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If1": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request7",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Switch": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request3",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "HTTP Request4",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "HTTP Request5",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "HTTP Request8",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Supabase7": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Supabase2": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Supabase8": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Supabase9": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Mandrill": {
+      "main": [
+        [
+          {
+            "node": "Supabase11",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields": {
+      "main": [
+        [
+          {
+            "node": "Mandrill",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request2": {
+      "main": [
+        [
+          {
+            "node": "Supabase",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If": {
+      "main": [
+        [
+          {
+            "node": "If2",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "If1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Postgres",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request7": {
+      "main": [
+        [
+          {
+            "node": "Supabase10",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Supabase12",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Supabase10": {
+      "main": [
+        [
+          {
+            "node": "Supabase13",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request8": {
+      "main": [
+        [
+          {
+            "node": "Supabase9",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Supabase14": {
+      "main": [
+        [
+          {
+            "node": "Switch1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Supabase15": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request9": {
+      "main": [
+        [
+          {
+            "node": "Supabase14",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "HTTP Request13",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request10": {
+      "main": [
+        [
+          {
+            "node": "Supabase15",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Supabase16": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request11": {
+      "main": [
+        [
+          {
+            "node": "Supabase16",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Supabase17": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request12": {
+      "main": [
+        [
+          {
+            "node": "Supabase17",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Supabase18": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Switch1": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request10",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "HTTP Request11",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "HTTP Request12",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "HTTP Request14",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields1": {
+      "main": [
+        [
+          {
+            "node": "Mandrill1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request13": {
+      "main": [
+        [
+          {
+            "node": "Supabase14",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request14": {
+      "main": [
+        [
+          {
+            "node": "Supabase18",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If2": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "HTTP Request9",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Mandrill1": {
+      "main": [
+        [
+          {
+            "node": "Supabase19",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Supabase": {
+      "main": [
+        [
+          {
+            "node": "Switch",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2024-11-29T07:57:50.796Z",
+  "id": "ZFnk1mlO52MtlwiE",
+  "meta": null,
+  "name": "Conclave <> Superbot",
+  "nodes": [
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict"
+          },
+          "conditions": [
+            {
+              "id": "06437683-871a-478e-8fd8-4cb1204b0728",
+              "leftValue": "={{ $('Webhook').item.json.body.disposition }}",
+              "rightValue": "CALLBACK REQUESTED",
+              "operator": {
+                "type": "string",
+                "operation": "equals",
+                "name": "filter.operator.equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "a4341904-16a8-47af-b751-66139cf21064",
+      "name": "If1",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2,
+      "position": [
+        1680,
+        820
+      ]
+    },
+    {
+      "parameters": {
+        "phoneNumberId": "108019349036743",
+        "recipientPhoneNumber": "={{ $json.body.phone }}",
+        "template": "conclave_utility_invitation_new|en",
+        "components": {
+          "component": [
+            {
+              "type": "header",
+              "headerParameters": {
+                "parameter": [
+                  {
+                    "type": "image",
+                    "imageLink": "https://one.mileseducation.us/storage/v1/object/public/wa_assets/WhatsApp%20Image%202024-11-29%20at%2019.41.44.jpeg"
+                  }
+                ]
+              }
+            },
+            {
+              "bodyParameters": {
+                "parameter": [
+                  {
+                    "text": "={{ $('Webhook').item.json.body.first_name }}"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      },
+      "id": "cd377790-17e9-4137-a5e6-8466d8e33c3f",
+      "name": "WhatsApp Business Cloud",
+      "type": "n8n-nodes-base.whatsApp",
+      "typeVersion": 1,
+      "position": [
+        3520,
+        1720
+      ],
+      "credentials": {
+        "whatsAppApi": {
+          "id": "75melKbodQdQAHVp",
+          "name": "Marketing | Secondary [Miles Education]"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "tableId": "message_status",
+        "fieldsUi": {
+          "fieldValues": [
+            {
+              "fieldId": "send_status",
+              "fieldValue": "true"
+            },
+            {
+              "fieldId": "message_id",
+              "fieldValue": "={{ $json.messages[0].id }}"
+            },
+            {
+              "fieldId": "campaign_id",
+              "fieldValue": "1184"
+            },
+            {
+              "fieldId": "next_flow_id",
+              "fieldValue": "rKKvbYbXnfyZlBKt"
+            },
+            {
+              "fieldId": "phone",
+              "fieldValue": "={{ $('Webhook').item.json.body.phone }}"
+            },
+            {
+              "fieldId": "template_name",
+              "fieldValue": "conclave_utility_invitation_new"
+            }
+          ]
+        }
+      },
+      "id": "9bf5aadb-e4b5-425e-8280-080d891fa9a8",
+      "name": "Supabase1",
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        3120,
+        1360
+      ],
+      "credentials": {
+        "supabaseApi": {
+          "id": "baNruLU9AV7x2GZq",
+          "name": "Supabase campaign manager"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "phoneNumberId": "108019349036743",
+        "recipientPhoneNumber": "={{ $('Webhook').item.json.body.phone }}",
+        "template": "utility_invitation_townhall|en",
+        "components": {
+          "component": [
+            {
+              "bodyParameters": {
+                "parameter": [
+                  {
+                    "text": "=Miles {{ $('Postgres').item.json[\"Program - ProgramId__name\"] }} Townhall with Varun Jain is coming to {{ $('Postgres').item.json[\"Miles Office - MilesLocationId__city\"] }}!"
+                  },
+                  {
+                    "text": "={{ $('Postgres').item.json.orientation_date.toDate().format(\"d MMMM, y\") }}"
+                  },
+                  {
+                    "text": "={{ $('Postgres').item.json[\"Program - ProgramId__name\"] == \"CMA\"?\"11 AM\":\"3 PM\" }}"
+                  },
+                  {
+                    "text": "={{ $json['Miles Office - MilesLocationId__city'] }}"
+                  },
+                  {
+                    "text": "=*Why You MUST Be There:*\\n🌟 Learn *EXAM STRATEGIES*\\n💼 Gain industry insights\\n🤝 Get on the *PATHWAY* to *{{ $('Postgres').item.json[\"Program - ProgramId__name\"] }} SUCCESS*"
+                  },
+                  {
+                    "text": "=Click YES and secure your VIP pass to learn the secret recipe to PASS your {{ $('Postgres').item.json[\"Program - ProgramId__name\"] }} exam."
+                  }
+                ]
+              }
+            },
+            {
+              "type": "header",
+              "headerParameters": {
+                "parameter": [
+                  {
+                    "type": "image",
+                    "imageLink": "https://one.mileseducation.us/storage/v1/object/public/wa_assets/CMATownhall_Banner-ezgif.com-webp-to-jpg-converter.jpg"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      },
+      "id": "f752371f-e392-40d0-a0cc-3e26ea6998b5",
+      "name": "WhatsApp Business Cloud1",
+      "type": "n8n-nodes-base.whatsApp",
+      "typeVersion": 1,
+      "position": [
+        3340,
+        1300
+      ],
+      "credentials": {
+        "whatsAppApi": {
+          "id": "75melKbodQdQAHVp",
+          "name": "Marketing | Secondary [Miles Education]"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "tableId": "message_status",
+        "fieldsUi": {
+          "fieldValues": [
+            {
+              "fieldId": "send_status",
+              "fieldValue": "true"
+            },
+            {
+              "fieldId": "message_id",
+              "fieldValue": "={{ $json.messages[0].id }}"
+            },
+            {
+              "fieldId": "phone",
+              "fieldValue": "={{ $json.contacts[0].input }}"
+            },
+            {
+              "fieldId": "campaign_id",
+              "fieldValue": "={{ $('Supabase').item.json.camp_id }}"
+            },
+            {
+              "fieldId": "template_name",
+              "fieldValue": "=utility_townhall_confirmation_{{ $('Postgres').item.json['Program - ProgramId__name'] }}"
+            }
+          ]
+        }
+      },
+      "id": "0b7f20e3-0fc9-4cf9-9f2e-7cecdcd97d1b",
+      "name": "Supabase2",
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        3500,
+        -580
+      ],
+      "credentials": {
+        "supabaseApi": {
+          "id": "baNruLU9AV7x2GZq",
+          "name": "Supabase campaign manager"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "phoneNumberId": "108019349036743"
+      },
+      "id": "ad47c4b6-0d3e-419d-9340-10d9f009d7db",
+      "name": "WhatsApp Business Cloud2",
+      "type": "n8n-nodes-base.whatsApp",
+      "typeVersion": 1,
+      "position": [
+        4700,
+        1380
+      ],
+      "credentials": {
+        "whatsAppApi": {
+          "id": "75melKbodQdQAHVp",
+          "name": "Marketing | Secondary [Miles Education]"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "phoneNumberId": "108019349036743",
+        "recipientPhoneNumber": "={{ $json.body.phone }}",
+        "template": "conclave_utility_invitation_new|en",
+        "components": {
+          "component": [
+            {
+              "type": "header",
+              "headerParameters": {
+                "parameter": [
+                  {
+                    "type": "image",
+                    "imageLink": "https://one.mileseducation.us/storage/v1/object/public/wa_assets/WhatsApp%20Image%202024-11-29%20at%2019.41.44.jpeg"
+                  }
+                ]
+              }
+            },
+            {
+              "bodyParameters": {
+                "parameter": [
+                  {
+                    "text": "={{ $('Webhook').item.json.body.first_name }}"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      },
+      "id": "87e0f9b5-3b62-461d-98b1-27a162c491dd",
+      "name": "WhatsApp Business Cloud3",
+      "type": "n8n-nodes-base.whatsApp",
+      "typeVersion": 1,
+      "position": [
+        360,
+        720
+      ],
+      "credentials": {
+        "whatsAppApi": {
+          "id": "75melKbodQdQAHVp",
+          "name": "Marketing | Secondary [Miles Education]"
+        }
+      }
+    },
+    {
+      "parameters": {},
+      "id": "6622033e-c7a0-4f6c-8f3e-29e42c21de24",
+      "name": "Supabase3",
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        4760,
+        1060
+      ],
+      "credentials": {
+        "supabaseApi": {
+          "id": "baNruLU9AV7x2GZq",
+          "name": "Supabase campaign manager"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "tableId": "conclave_superbot_logger",
+        "fieldsUi": {
+          "fieldValues": [
+            {
+              "fieldId": "first_name",
+              "fieldValue": "={{ $('Webhook').item.json.body.first_name }}"
+            },
+            {
+              "fieldId": "phone",
+              "fieldValue": "={{ $('Webhook').item.json.body.phone }}"
+            },
+            {
+              "fieldId": "status",
+              "fieldValue": "={{ $('Webhook').item.json.body.status }}"
+            },
+            {
+              "fieldId": "campaign_id",
+              "fieldValue": "={{ $('Webhook').item.json.body.campaign_id }}"
+            },
+            {
+              "fieldId": "email",
+              "fieldValue": "={{ $('Webhook').item.json.body.email }}"
+            },
+            {
+              "fieldId": "orientation_session_id",
+              "fieldValue": "={{ $('Webhook').item.json.body.orientation_session_id }}"
+            },
+            {
+              "fieldId": "connected_date_time",
+              "fieldValue": "={{ $('Webhook').item.json.body.connected_date_time }}"
+            },
+            {
+              "fieldId": "outcome",
+              "fieldValue": "={{ $('Webhook').item.json.body.outcome }}"
+            },
+            {
+              "fieldId": "disposition",
+              "fieldValue": "={{ $('Webhook').item.json.body.disposition }}"
+            },
+            {
+              "fieldId": "identity",
+              "fieldValue": "={{ $('Webhook').item.json.body.identity }}"
+            },
+            {
+              "fieldId": "vertical",
+              "fieldValue": "={{ $('Webhook').item.json.body.vertical }}"
+            },
+            {
+              "fieldId": "audience_type",
+              "fieldValue": "={{ $('Webhook').item.json.body.audience_type }}"
+            },
+            {
+              "fieldId": "coming_from",
+              "fieldValue": "=townhall_ {{ $json['Program - ProgramId__name'] }}_ {{ $json['Miles Office - MilesLocationId__city'] }}"
+            }
+          ]
+        }
+      },
+      "id": "abb418ef-6377-454f-b05b-2fadbfe6baa4",
+      "name": "Supabase4",
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        1500,
+        1180
+      ],
+      "credentials": {
+        "supabaseApi": {
+          "id": "baNruLU9AV7x2GZq",
+          "name": "Supabase campaign manager"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://mfx-prod-154625965269.asia-south1.run.app/website-forms/large-event-registration",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"first_name\": \"{{ $('Webhook').item.json[\"body\"][\"first_name\"] }}\",\n  \"contact_number\": \"{{ $('Webhook').item.json[\"body\"][\"phone\"] }}\",\n  \"email\": \"{{ $('Webhook').item.json[\"body\"][\"email\"] }}\",\n  \"coming_from\": \"milespublicaccountingconclave\",\n\"campaign_id\": 31,\n\"type\":\"{{ $('Webhook').item.json[\"body\"][\"audience\"] }}\",\n\"orientation_id\": 72\n}",
+        "options": {}
+      },
+      "id": "88c99eed-a2f7-4553-8a8f-3cd988aa6477",
+      "name": "HTTP Request1",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        -100,
+        -960
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "executeQuery",
+        "query": "SELECT\n  \"public\".\"orientation\".\"id\" AS \"id\",\n  \"public\".\"orientation\".\"orientation_date\" AS \"orientation_date\",\n  \"public\".\"orientation\".\"programId\" AS \"programId\",\n  \"public\".\"orientation\".\"milesLocationId\" AS \"milesLocationId\",\n  \"public\".\"orientation\".\"orientation_name\" AS \"orientation_name\",\n  \"Miles Office - MilesLocationId\".\"address\" AS \"Miles Office - MilesLocationId__address\",\n  \"Miles Office - MilesLocationId\".\"city\" AS \"Miles Office - MilesLocationId__city\",\n  \"Miles Office - MilesLocationId\".\"contact\" AS \"Miles Office - MilesLocationId__contact\",\n  \"Miles Office - MilesLocationId\".\"location_url\" AS \"Miles Office - MilesLocationId__location_url\",\n  \"Miles Office - MilesLocationId\".\"lat\" AS \"Miles Office - MilesLocationId__lat\",\n  \"Miles Office - MilesLocationId\".\"lng\" AS \"Miles Office - MilesLocationId__lng\",\n  \"Program - ProgramId\".\"name\" AS \"Program - ProgramId__name\",\n  \"Program - ProgramId\".\"full_form\" AS \"Program - ProgramId__full_form\"\nFROM\n  \"public\".\"orientation\"\n \nLEFT JOIN \"public\".\"miles_office\" AS \"Miles Office - MilesLocationId\" ON \"public\".\"orientation\".\"milesLocationId\" = \"Miles Office - MilesLocationId\".\"id\"\n  LEFT JOIN \"public\".\"program\" AS \"Program - ProgramId\" ON \"public\".\"orientation\".\"programId\" = \"Program - ProgramId\".\"id\"\nwhere \"public\".\"orientation\".\"id\" = {{ $json.body.orientation_session_id }}\nLIMIT\n  1048575",
+        "options": {}
+      },
+      "id": "8a49dd9e-ec56-4f6f-b086-107de5342168",
+      "name": "Postgres",
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.3,
+      "position": [
+        760,
+        360
+      ],
+      "credentials": {
+        "postgres": {
+          "id": "ggFr3kWsGBTF2B44",
+          "name": "Postgres account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "tableId": "conclave_townhall_registrations",
+        "fieldsUi": {
+          "fieldValues": [
+            {
+              "fieldId": "first_name",
+              "fieldValue": "={{ $json.result.data.first_name }}"
+            },
+            {
+              "fieldId": "phone",
+              "fieldValue": "={{ $json.result.data.contact_number }}"
+            },
+            {
+              "fieldId": "email",
+              "fieldValue": "={{ $json.result.data.email }}"
+            },
+            {
+              "fieldId": "disposition",
+              "fieldValue": "={{ $('Webhook').item.json.body.disposition }}"
+            },
+            {
+              "fieldId": "vertical",
+              "fieldValue": "={{ $('Webhook').item.json.body.vertical }}"
+            },
+            {
+              "fieldId": "outcome",
+              "fieldValue": "={{ $('Webhook').item.json.body.outcome }}"
+            },
+            {
+              "fieldId": "retry_count",
+              "fieldValue": "={{ $('Webhook').item.json.body.retry_count }}"
+            },
+            {
+              "fieldId": "superbot_campaign_id",
+              "fieldValue": "={{ $('Webhook').item.json.body.campaign_id }}"
+            },
+            {
+              "fieldId": "camp_id",
+              "fieldValue": "1184"
+            },
+            {
+              "fieldId": "mf_camp_id",
+              "fieldValue": "={{ $json.result.data.campaign_id }}"
+            },
+            {
+              "fieldId": "orientation_id",
+              "fieldValue": "={{ $json.result.data.orientation_id }}"
+            }
+          ]
+        }
+      },
+      "id": "fa34e756-cbc6-4fc2-9ea1-5b6678b2f89e",
+      "name": "Supabase5",
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        5000,
+        1000
+      ],
+      "credentials": {
+        "supabaseApi": {
+          "id": "baNruLU9AV7x2GZq",
+          "name": "Supabase campaign manager"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "tableId": "message_status",
+        "fieldsUi": {
+          "fieldValues": [
+            {
+              "fieldId": "send_status",
+              "fieldValue": "true"
+            },
+            {
+              "fieldId": "message_id",
+              "fieldValue": "={{ $json.messages[0].id }}"
+            },
+            {
+              "fieldId": "phone",
+              "fieldValue": "={{ $json.contacts[0].input }}"
+            },
+            {
+              "fieldId": "campaign_id",
+              "fieldValue": "={{ $('Supabase5').item.json.camp_id }}"
+            },
+            {
+              "fieldId": "template_name",
+              "fieldValue": "=utility_townhall_confirmation_{{ $('Postgres').item.json['Program - ProgramId__name'] }}"
+            }
+          ]
+        }
+      },
+      "id": "547d6927-bd84-40ac-8276-331b8770e078",
+      "name": "Supabase6",
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        4920,
+        800
+      ],
+      "credentials": {
+        "supabaseApi": {
+          "id": "baNruLU9AV7x2GZq",
+          "name": "Supabase campaign manager"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://mfx-prod-154625965269.asia-south1.run.app/website-forms/large-event-registration",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"first_name\": \"{{ $('Webhook').item.json[\"body\"][\"first_name\"] }}\",\n  \"contact_number\": \"{{ $('Webhook').item.json[\"body\"][\"phone\"] }}\",\n  \"email\": \"{{ $('Webhook').item.json[\"body\"][\"email\"] }}\",\n  \"coming_from\": \"townhall_{{ $json[\"Program - ProgramId__name\"] }}_{{ $json[\"Miles Office - MilesLocationId__city\"] }}\",\n\"campaign_id\": 31,\n\"type\":\"{{ $('Webhook').item.json[\"body\"][\"audience_type\"] }}\",\n\"orientation_id\": {{ $('Webhook').item.json[\"body\"][\"orientation_session_id\"] }},\n\"course_id\": {{ $json[\"programId\"] }}\n}",
+        "options": {}
+      },
+      "id": "272eb117-f3ca-418b-8d8c-ecb0f8f22aca",
+      "name": "HTTP Request",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        2020,
+        -280
+      ],
+      "retryOnFail": true,
+      "onError": "continueErrorOutput"
+    },
+    {
+      "parameters": {
+        "phoneNumberId": "108019349036743",
+        "recipientPhoneNumber": "={{ $('Webhook').item.json.body.phone }}",
+        "template": "townhall_confirmation_utility|en",
+        "components": {
+          "component": [
+            {
+              "bodyParameters": {
+                "parameter": [
+                  {
+                    "text": "=Miles {{ $('Postgres').item.json[\"Program - ProgramId__name\"] }} Townhall with Varun Jain is coming to {{ $('Postgres').item.json[\"Miles Office - MilesLocationId__city\"] }}!"
+                  },
+                  {
+                    "text": "={{ $('Postgres').item.json.orientation_date.toDate().format(\"d MMMM, y\") }}"
+                  },
+                  {
+                    "text": "={{ $('Postgres').item.json[\"Program - ProgramId__name\"] == \"CMA\"?\"11 AM\":\"3 PM\" }}"
+                  },
+                  {
+                    "text": "=*Why You MUST Be There:*\\n🌟 Learn *EXAM STRATEGIES*\\n💼 Gain industry insights\\n🤝 Get on the *PATHWAY* to *{{ $('Postgres').item.json[\"Program - ProgramId__name\"] }} SUCCESS*"
+                  },
+                  {
+                    "text": "=Click YES and secure your VIP pass to learn the secret recipe to PASS your {{ $('Postgres').item.json[\"Program - ProgramId__name\"] }} exam."
+                  }
+                ]
+              }
+            },
+            {
+              "type": "header",
+              "headerParameters": {
+                "parameter": [
+                  {
+                    "type": "image",
+                    "imageLink": "https://one.mileseducation.us/storage/v1/object/public/wa_assets/WhatsApp%20Image%202024-11-29%20at%2019.41.44.jpeg"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      },
+      "id": "f248423e-2bd9-4611-95e2-8dac149ae023",
+      "name": "WhatsApp Business Cloud5",
+      "type": "n8n-nodes-base.whatsApp",
+      "typeVersion": 1,
+      "position": [
+        5240,
+        1660
+      ],
+      "credentials": {
+        "whatsAppApi": {
+          "id": "75melKbodQdQAHVp",
+          "name": "Marketing | Secondary [Miles Education]"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "phoneNumberId": "108019349036743",
+        "recipientPhoneNumber": "={{ $json.phone }}",
+        "template": "utility_townhall_confirmation|en",
+        "components": {
+          "component": [
+            {
+              "bodyParameters": {
+                "parameter": [
+                  {
+                    "text": "={{ $('Webhook').item.json.body.first_name }}"
+                  },
+                  {
+                    "text": "={{ $('Postgres').item.json['Program - ProgramId__name'] }}"
+                  },
+                  {
+                    "text": "={{ $('Postgres').item.json.orientation_date.toDate().format(\"d MMMM, y\") }}"
+                  },
+                  {
+                    "text": "={{ $('Postgres').item.json[\"Program - ProgramId__name\"] == \"CMA\"?\"11 AM\":\"3 PM\" }}"
+                  },
+                  {
+                    "text": "={{ $('Postgres').item.json[\"Miles Office - MilesLocationId__address\"] }}"
+                  }
+                ]
+              }
+            },
+            {
+              "type": "header",
+              "headerParameters": {
+                "parameter": [
+                  {
+                    "type": "image",
+                    "imageLink": "={{ $('Postgres').item.json[\"Program - ProgramId__name\"]==\"CMA\"?\"https://one.mileseducation.us/storage/v1/object/public/wa_assets/CMATownhall_Banner-ezgif.com-webp-to-jpg-converter.jpg\":\"https://one.mileseducation.us/storage/v1/object/public/wa_assets/CPATownhall_Banner-ezgif.com-webp-to-jpg-converter.jpg\" }}"
+                  }
+                ]
+              }
+            },
+            {
+              "type": "button",
+              "sub_type": "url",
+              "buttonParameters": {
+                "parameter": {
+                  "type": "text",
+                  "text": "={{ $json[\"Miles Office - MilesLocationId__location_url\"].slice(34) }}"
+                }
+              }
+            }
+          ]
+        }
+      },
+      "id": "e442deb5-b748-45c5-89a8-614f0fff9aad",
+      "name": "WhatsApp Business Cloud4",
+      "type": "n8n-nodes-base.whatsApp",
+      "typeVersion": 1,
+      "position": [
+        180,
+        -960
+      ],
+      "credentials": {
+        "whatsAppApi": {
+          "id": "75melKbodQdQAHVp",
+          "name": "Marketing | Secondary [Miles Education]"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "phoneNumberId": "108019349036743",
+        "recipientPhoneNumber": "={{ $json.phone }}",
+        "template": "utility_townhall_confirmation|en",
+        "components": {
+          "component": [
+            {
+              "bodyParameters": {
+                "parameter": [
+                  {
+                    "text": "={{ $('Webhook').item.json.body.first_name }}"
+                  },
+                  {
+                    "text": "={{ $('Postgres').item.json['Program - ProgramId__name'] }}"
+                  },
+                  {
+                    "text": "={{ $('Postgres').item.json.orientation_date.toDate().format(\"d MMMM, y\") }}"
+                  },
+                  {
+                    "text": "={{ $('Postgres').item.json[\"Program - ProgramId__name\"] == \"CMA\"?\"11 AM\":\"3 PM\" }}"
+                  },
+                  {
+                    "text": "={{ $('Postgres').item.json[\"Miles Office - MilesLocationId__address\"] }}"
+                  }
+                ]
+              }
+            },
+            {
+              "type": "header",
+              "headerParameters": {
+                "parameter": [
+                  {
+                    "type": "image",
+                    "imageLink": "https://one.mileseducation.us/storage/v1/object/public/wa_assets/CMATownhall_Banner-ezgif.com-webp-to-jpg-converter.jpg"
+                  }
+                ]
+              }
+            },
+            {
+              "type": "button",
+              "sub_type": "url",
+              "buttonParameters": {
+                "parameter": {
+                  "payload": "={{ $('Postgres').item.json['Miles Office - MilesLocationId__location_url'].slice(34) }}"
+                }
+              }
+            }
+          ]
+        }
+      },
+      "id": "83bbcf31-95fc-47e8-aa2c-2cc4dee8fd92",
+      "name": "WhatsApp Business Cloud6",
+      "type": "n8n-nodes-base.whatsApp",
+      "typeVersion": 1,
+      "position": [
+        4660,
+        800
+      ],
+      "credentials": {
+        "whatsAppApi": {
+          "id": "75melKbodQdQAHVp",
+          "name": "Marketing | Secondary [Miles Education]"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://graph.facebook.com/v17.0/108019349036743/messages",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "whatsAppApi",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n   \"messaging_product\": \"whatsapp\",\n   \"recipient_type\": \"individual\",\n   \"to\": \"{{ $('Webhook').item.json[\"body\"][\"phone\"] }}\",\n   \"type\": \"template\",\n   \"template\": {\n      \"name\": \"utility_townhall_confirmation\",\n      \"language\": {\n         \"code\": \"en\"\n      },\n      \"components\": [\n         {\n            \"type\": \"header\",\n            \"parameters\": [\n               {\n                  \"type\": \"image\",\n                  \"image\": {\n                     \"link\": \"{{ $('Postgres').item.json[\"Program - ProgramId__name\"]==\"CMA\"?\"https://one.mileseducation.us/storage/v1/object/public/wa_assets/CMATownhall_Banner-ezgif.com-webp-to-jpg-converter.jpg\":\"https://one.mileseducation.us/storage/v1/object/public/wa_assets/CPATownhall_Banner-ezgif.com-webp-to-jpg-converter.jpg\" }}\"\n                  }\n               }\n            ]\n         },\n         {\n            \"type\": \"body\",\n            \"parameters\": [\n               {\n                  \"type\": \"text\",\n                  \"text\": \"Miles {{ $('Postgres').item.json[\"Program - ProgramId__name\"] }} Townhall with Varun Jain is coming to {{ $('Postgres').item.json[\"Miles Office - MilesLocationId__city\"] }}!\"\n               },\n               {\n                  \"type\": \"text\",\n                  \"text\": \"{{ $('Postgres').item.json.orientation_date.toDate().format(\"d MMMM, y\") }}\"\n               },\n               {\n                  \"type\": \"text\",\n                  \"text\": \"{{ $('Postgres').item.json[\"Program - ProgramId__name\"] == \"CMA\"?\"11 AM\":\"3 PM\" }}\"\n               },\n               {\n                  \"type\": \"text\",\n                  \"text\": \"Miles Education, {{ $('Postgres').item.json[\"Miles Office - MilesLocationId__city\"]}}\"\n               },\n               {\n                  \"type\": \"text\",\n                  \"text\": \"Level - 1, Jayabheri Silicon Towers, Hitech City Road, Kothaguda, Hyderabad - 500084\"\n               }\n            ]\n         },\n         {\n            \"type\": \"button\",\n            \"sub_type\": \"url\",\n            \"index\": \"0\",\n            \"parameters\": [\n               {\n                  \"type\": \"text\",\n                  \"text\": \"{{ $('Postgres').item.json[\"Miles Office - MilesLocationId__location_url\"].slice(34) }}\"\n               }\n            ]\n         }\n      ]\n   }\n}\n",
+        "options": {}
+      },
+      "id": "4e7df2cd-60a3-4450-9705-4e745abe28d4",
+      "name": "HTTP Request3",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        3220,
+        -580
+      ],
+      "credentials": {
+        "whatsAppApi": {
+          "id": "75melKbodQdQAHVp",
+          "name": "Marketing | Secondary [Miles Education]"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "tableId": "message_status",
+        "fieldsUi": {
+          "fieldValues": [
+            {
+              "fieldId": "send_status",
+              "fieldValue": "true"
+            },
+            {
+              "fieldId": "message_id",
+              "fieldValue": "={{ $json.messages[0].id }}"
+            },
+            {
+              "fieldId": "phone",
+              "fieldValue": "={{ $json.contacts[0].input }}"
+            },
+            {
+              "fieldId": "campaign_id",
+              "fieldValue": "={{ $('Supabase').item.json.camp_id }}"
+            },
+            {
+              "fieldId": "template_name",
+              "fieldValue": "=utility_townhall_confirmation_{{ $('Postgres').item.json['Program - ProgramId__name'] }}"
+            }
+          ]
+        }
+      },
+      "id": "ddaeb424-afab-432a-a32f-4448e668fff7",
+      "name": "Supabase7",
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        3500,
+        -320
+      ],
+      "credentials": {
+        "supabaseApi": {
+          "id": "baNruLU9AV7x2GZq",
+          "name": "Supabase campaign manager"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://graph.facebook.com/v17.0/108019349036743/messages",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "whatsAppApi",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n   \"messaging_product\": \"whatsapp\",\n   \"recipient_type\": \"individual\",\n   \"to\": \"{{ $('Webhook').item.json[\"body\"][\"phone\"] }}\",\n   \"type\": \"template\",\n   \"template\": {\n      \"name\": \"utility_townhall_confirmation\",\n      \"language\": {\n         \"code\": \"en\"\n      },\n      \"components\": [\n         {\n            \"type\": \"header\",\n            \"parameters\": [\n               {\n                  \"type\": \"image\",\n                  \"image\": {\n                     \"link\": \"{{ $('Postgres').item.json[\"Program - ProgramId__name\"]==\"CMA\"?\"https://one.mileseducation.us/storage/v1/object/public/wa_assets/CMATownhall_Banner-ezgif.com-webp-to-jpg-converter.jpg\":\"https://one.mileseducation.us/storage/v1/object/public/wa_assets/CPATownhall_Banner-ezgif.com-webp-to-jpg-converter.jpg\" }}\"\n                  }\n               }\n            ]\n         },\n         {\n            \"type\": \"body\",\n            \"parameters\": [\n               {\n                  \"type\": \"text\",\n                  \"text\": \"Miles {{ $('Postgres').item.json[\"Program - ProgramId__name\"] }} Townhall with Varun Jain is coming to {{ $('Postgres').item.json[\"Miles Office - MilesLocationId__city\"] }}!\"\n               },\n               {\n                  \"type\": \"text\",\n                  \"text\": \"{{ $('Postgres').item.json.orientation_date.toDate().format(\"d MMMM, y\") }}\"\n               },\n               {\n                  \"type\": \"text\",\n                  \"text\": \"{{ $('Postgres').item.json[\"Program - ProgramId__name\"] == \"CMA\"?\"11 AM\":\"3 PM\" }}\"\n               },\n               {\n                  \"type\": \"text\",\n                  \"text\": \"Miles Education, {{ $('Postgres').item.json[\"Miles Office - MilesLocationId__city\"]}}\"\n               },\n               {\n                  \"type\": \"text\",\n                  \"text\": \"911/912, Wing A, Kanakia Wall Street, Andheri Kurla Road, Mumbai - 400093\"\n               }\n            ]\n         },\n         {\n            \"type\": \"button\",\n            \"sub_type\": \"url\",\n            \"index\": \"0\",\n            \"parameters\": [\n               {\n                  \"type\": \"text\",\n                  \"text\": \"{{ $('Postgres').item.json[\"Miles Office - MilesLocationId__location_url\"].slice(34) }}\"\n               }\n            ]\n         }\n      ]\n   }\n}\n\n",
+        "options": {}
+      },
+      "id": "7ed10484-9579-4787-bd10-9ac8d1f4475a",
+      "name": "HTTP Request4",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        3240,
+        -320
+      ],
+      "credentials": {
+        "whatsAppApi": {
+          "id": "75melKbodQdQAHVp",
+          "name": "Marketing | Secondary [Miles Education]"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "tableId": "message_status",
+        "fieldsUi": {
+          "fieldValues": [
+            {
+              "fieldId": "send_status",
+              "fieldValue": "true"
+            },
+            {
+              "fieldId": "message_id",
+              "fieldValue": "={{ $json.messages[0].id }}"
+            },
+            {
+              "fieldId": "phone",
+              "fieldValue": "={{ $json.contacts[0].input }}"
+            },
+            {
+              "fieldId": "campaign_id",
+              "fieldValue": "={{ $('Supabase').item.json.camp_id }}"
+            },
+            {
+              "fieldId": "template_name",
+              "fieldValue": "=utility_townhall_confirmation_{{ $('Postgres').item.json['Program - ProgramId__name'] }}"
+            }
+          ]
+        }
+      },
+      "id": "bf0f519c-3dc6-4d5d-8a05-80574be0c538",
+      "name": "Supabase8",
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        3500,
+        -80
+      ],
+      "credentials": {
+        "supabaseApi": {
+          "id": "baNruLU9AV7x2GZq",
+          "name": "Supabase campaign manager"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://graph.facebook.com/v17.0/108019349036743/messages",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "whatsAppApi",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n   \"messaging_product\": \"whatsapp\",\n   \"recipient_type\": \"individual\",\n   \"to\": \"{{ $('Webhook').item.json[\"body\"][\"phone\"] }}\",\n   \"type\": \"template\",\n   \"template\": {\n      \"name\": \"utility_townhall_confirmation\",\n      \"language\": {\n         \"code\": \"en\"\n      },\n      \"components\": [\n         {\n            \"type\": \"header\",\n            \"parameters\": [\n               {\n                  \"type\": \"image\",\n                  \"image\": {\n                     \"link\": \"{{ $('Postgres').item.json[\"Program - ProgramId__name\"]==\"CMA\"?\"https://one.mileseducation.us/storage/v1/object/public/wa_assets/CMATownhall_Banner-ezgif.com-webp-to-jpg-converter.jpg\":\"https://one.mileseducation.us/storage/v1/object/public/wa_assets/CPATownhall_Banner-ezgif.com-webp-to-jpg-converter.jpg\" }}\"\n                  }\n               }\n            ]\n         },\n         {\n            \"type\": \"body\",\n            \"parameters\": [\n               {\n                  \"type\": \"text\",\n                  \"text\": \"{{ $('Webhook').item.json[\"body\"][\"first_name\"] }}\"\n               },\n{\n                  \"type\": \"text\",\n                  \"text\": \"{{ $('Postgres').item.json[\"Program - ProgramId__name\"] }}\"\n               },\n               {\n                  \"type\": \"text\",\n                  \"text\": \"{{ $('Postgres').item.json.orientation_date.toDate().format(\"d MMMM, y\") }}\"\n               },\n               {\n                  \"type\": \"text\",\n                  \"text\": \"{{ $('Postgres').item.json[\"Program - ProgramId__name\"] == \"CMA\"?\"11 AM\":\"3 PM\" }}\"\n               },\n               {\n                  \"type\": \"text\",\n                  \"text\": \"Miles Education, {{ $('Postgres').item.json[\"Miles Office - MilesLocationId__city\"]}}\"\n               },\n               {\n                  \"type\": \"text\",\n                  \"text\": \"704 Satyaone Complex, Near Helmet Cross Road, Memnagar, Ahmedabad - 380052\"\n               }\n            ]\n         },\n         {\n            \"type\": \"button\",\n            \"sub_type\": \"url\",\n            \"index\": \"0\",\n            \"parameters\": [\n               {\n                  \"type\": \"text\",\n                  \"text\": \"{{ $('Postgres').item.json[\"Miles Office - MilesLocationId__location_url\"].slice(34) }}\"\n               }\n            ]\n         }\n      ]\n   }\n}\n",
+        "options": {}
+      },
+      "id": "659fc5e8-8198-436b-a424-a13b970a4e35",
+      "name": "HTTP Request5",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        3240,
+        -80
+      ],
+      "credentials": {
+        "whatsAppApi": {
+          "id": "75melKbodQdQAHVp",
+          "name": "Marketing | Secondary [Miles Education]"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "tableId": "message_status",
+        "fieldsUi": {
+          "fieldValues": [
+            {
+              "fieldId": "send_status",
+              "fieldValue": "true"
+            },
+            {
+              "fieldId": "message_id",
+              "fieldValue": "={{ $json.messages[0].id }}"
+            },
+            {
+              "fieldId": "phone",
+              "fieldValue": "={{ $json.contacts[0].input }}"
+            },
+            {
+              "fieldId": "campaign_id",
+              "fieldValue": "={{ $('Supabase').item.json.camp_id }}"
+            },
+            {
+              "fieldId": "template_name",
+              "fieldValue": "=utility_townhall_confirmation_{{ $('Postgres').item.json['Program - ProgramId__name'] }}"
+            }
+          ]
+        }
+      },
+      "id": "0f501e63-ac31-4dce-b0de-c857a0f1ea6c",
+      "name": "Supabase9",
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        3500,
+        180
+      ],
+      "credentials": {
+        "supabaseApi": {
+          "id": "baNruLU9AV7x2GZq",
+          "name": "Supabase campaign manager"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "tableId": "message_status",
+        "fieldsUi": {
+          "fieldValues": [
+            {
+              "fieldId": "send_status",
+              "fieldValue": "true"
+            },
+            {
+              "fieldId": "message_id",
+              "fieldValue": "={{ $json.messages[0].id }}"
+            },
+            {
+              "fieldId": "phone",
+              "fieldValue": "={{ $json.contacts[0].input }}"
+            },
+            {
+              "fieldId": "template_name",
+              "fieldValue": "=utility_townhall_confirmation_{{ $('Postgres').item.json['Program - ProgramId__name'] }}"
+            },
+            {
+              "fieldId": "next_flow_id",
+              "fieldValue": "rKKvbYbXnfyZlBKt"
+            }
+          ]
+        }
+      },
+      "id": "82288551-077a-450e-bfa7-769bd81df346",
+      "name": "Supabase10",
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        2620,
+        640
+      ],
+      "credentials": {
+        "supabaseApi": {
+          "id": "baNruLU9AV7x2GZq",
+          "name": "Supabase campaign manager"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "dataType": "string",
+        "value1": "={{ $('Postgres').item.json['Miles Office - MilesLocationId__city'] }}",
+        "rules": {
+          "rules": [
+            {
+              "value2": "Hyderabad",
+              "outputKey": "0"
+            },
+            {
+              "value2": "Mumbai",
+              "outputKey": "1"
+            },
+            {
+              "value2": "Ahmedabad",
+              "outputKey": "2"
+            },
+            {
+              "value2": "Delhi",
+              "outputKey": "3"
+            }
+          ]
+        }
+      },
+      "id": "d35470b0-7417-4994-8eae-fe7807f81d32",
+      "name": "Switch",
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 2,
+      "position": [
+        2900,
+        -200
+      ]
+    },
+    {
+      "parameters": {
+        "template": "townhall-confirmation-mail",
+        "fromEmail": "info@mileseducation.com",
+        "toEmail": "={{ $('Webhook').item.json.body.email }}",
+        "options": {
+          "subject": "=Congratulations! Here's your confirmation for Miles {{ $('Postgres').item.json[\"programId\"]==1?\"CPA\":\"CMA\" }} Townhall with Varun Jain🔥"
+        },
+        "mergeVarsUi": {
+          "mergeVarsValues": [
+            {
+              "name": "FNAME",
+              "content": "={{ $('Webhook').item.json.body.first_name }}"
+            },
+            {
+              "name": "COURSE",
+              "content": "={{ $('Postgres').item.json['Program - ProgramId__name'] }}"
+            },
+            {
+              "name": "DATE",
+              "content": "={{ $('Postgres').item.json.orientation_date.toDate().format(\"d MMMM, y\") }}"
+            },
+            {
+              "name": "TIME",
+              "content": "={{ $('Postgres').item.json[\"Program - ProgramId__name\"] == \"CMA\"?\"11 AM\":\"3 PM\" }}"
+            },
+            {
+              "name": "LOCATION",
+              "content": "={{ $('Postgres').item.json['Miles Office - MilesLocationId__address'] }}"
+            },
+            {
+              "name": "MAPS",
+              "content": "={{ $('Postgres').item.json['Miles Office - MilesLocationId__location_url'] }}"
+            }
+          ]
+        }
+      },
+      "id": "9e27ed77-e815-45d8-82c1-4ffc7779a3b7",
+      "name": "Mandrill",
+      "type": "n8n-nodes-base.mandrill",
+      "typeVersion": 1,
+      "position": [
+        4400,
+        -220
+      ],
+      "credentials": {
+        "mandrillApi": {
+          "id": "MdiS01IyaXU55Lih",
+          "name": "Mandrill account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "tableId": "conclave_townhall_registrations",
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "id",
+              "condition": "eq",
+              "keyValue": "={{ $('Supabase').item.json.id }}"
+            }
+          ]
+        },
+        "fieldsUi": {
+          "fieldValues": [
+            {
+              "fieldId": "email_send_id",
+              "fieldValue": "={{ $json._id }}"
+            },
+            {
+              "fieldId": "wa_msg_id",
+              "fieldValue": "={{ $('Edit Fields').item.json.message_id }}"
+            }
+          ]
+        }
+      },
+      "id": "09c9f08a-e1ec-44ad-860d-6abb3f9b5bc4",
+      "name": "Supabase11",
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        4660,
+        -220
+      ],
+      "credentials": {
+        "supabaseApi": {
+          "id": "baNruLU9AV7x2GZq",
+          "name": "Supabase campaign manager"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "fields": {
+          "values": [
+            {
+              "name": "wa_msg_id",
+              "stringValue": "={{ $json.messages[0].id }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "6be5bfd2-8d49-4687-a388-7a5ca1dc120e",
+      "name": "Edit Fields",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.2,
+      "position": [
+        4040,
+        -220
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://mfx-prod-154625965269.asia-south1.run.app/website-forms/large-event-registration",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"first_name\": \"{{ $('Webhook').item.json[\"body\"][\"first_name\"] }}\",\n  \"contact_number\": \"{{ $('Webhook').item.json[\"body\"][\"phone\"] }}\",\n  \"email\": \"{{ $('Webhook').item.json[\"body\"][\"email\"] }}\",\n  \"coming_from\": \"townhall_{{ $json[\"Program - ProgramId__name\"] }}_{{ $json[\"Miles Office - MilesLocationId__city\"] }}\",\n\"campaign_id\": 31,\n\"type\":\"not_enrolled\",\n\"orientation_id\": {{ $('Postgres').item.json[\"id\"] }},\n\"educational_qualification\": \"2024_false\",\n\"course_id\": {{ $json[\"programId\"] }}\n}",
+        "options": {}
+      },
+      "id": "d575bf90-1b9f-404c-a2f1-6dd4963b1f01",
+      "name": "HTTP Request2",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        2260,
+        20
+      ],
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://graph.facebook.com/v17.0/108019349036743/messages",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "whatsAppApi",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n   \"messaging_product\": \"whatsapp\",\n   \"recipient_type\": \"individual\",\n   \"to\": \"{{ $('Webhook').item.json[\"body\"][\"phone\"] }}\",\n   \"type\": \"template\",\n   \"template\": {\n      \"name\": \"utility_townhall_confirmation\",\n      \"language\": {\n         \"code\": \"en\"\n      },\n      \"components\": [\n         {\n            \"type\": \"header\",\n            \"parameters\": [\n               {\n                  \"type\": \"image\",\n                  \"image\": {\n                     \"link\": \"{{ $('Postgres').item.json[\"Program - ProgramId__name\"]==\"CMA\"?\"https://one.mileseducation.us/storage/v1/object/public/wa_assets/CMATownhall_Banner-ezgif.com-webp-to-jpg-converter.jpg\":\"https://one.mileseducation.us/storage/v1/object/public/wa_assets/CPATownhall_Banner-ezgif.com-webp-to-jpg-converter.jpg\" }}\"\n                  }\n               }\n            ]\n         },\n         {\n            \"type\": \"body\",\n            \"parameters\": [\n               {\n                  \"type\": \"text\",\n                  \"text\": \"Miles {{ $('Postgres').item.json[\"Program - ProgramId__name\"] }} Townhall with Varun Jain is coming to {{ $('Postgres').item.json[\"Miles Office - MilesLocationId__city\"] }}!\"\n               },\n               {\n                  \"type\": \"text\",\n                  \"text\": \"{{ $('Postgres').item.json.orientation_date.toDate().format(\"d MMMM, y\") }}\"\n               },\n               {\n                  \"type\": \"text\",\n                  \"text\": \"{{ $('Postgres').item.json[\"Program - ProgramId__name\"] == \"CMA\"?\"11 AM\":\"3 PM\" }}\"\n               },\n               {\n                  \"type\": \"text\",\n                  \"text\": \"Miles Education, {{ $('Postgres').item.json[\"Miles Office - MilesLocationId__city\"]}}\"\n               },\n               {\n                  \"type\": \"text\",\n                  \"text\": \"3rd and 4th Floor, Old Fort Building, Near DLF Mall, Main Road, Saket, New Delhi, Delhi 110017\"\n               }\n            ]\n         },\n         {\n            \"type\": \"button\",\n            \"sub_type\": \"url\",\n            \"index\": \"0\",\n            \"parameters\": [\n               {\n                  \"type\": \"text\",\n                  \"text\": \"{{ $('Postgres').item.json[\"Miles Office - MilesLocationId__location_url\"].slice(34) }}\"\n               }\n            ]\n         }\n      ]\n   }\n}\n",
+        "options": {}
+      },
+      "id": "807b01eb-a51c-4a13-8268-f98dcddd71a0",
+      "name": "HTTP Request6",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        3740,
+        1480
+      ],
+      "credentials": {
+        "whatsAppApi": {
+          "id": "75melKbodQdQAHVp",
+          "name": "Marketing | Secondary [Miles Education]"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict"
+          },
+          "conditions": [
+            {
+              "id": "c0f8be63-7a64-40ad-98c3-308bdd35c877",
+              "leftValue": "={{ $('Webhook').item.json.body.disposition }}",
+              "rightValue": "INTERESTED FOR EVENT",
+              "operator": {
+                "type": "string",
+                "operation": "equals",
+                "name": "filter.operator.equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "0df0ca9f-4ee6-4906-bc98-ee99e94c4c1d",
+      "name": "If",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2,
+      "position": [
+        1280,
+        360
+      ]
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "conclave-superbot",
+        "options": {}
+      },
+      "id": "ca7f0f63-fd14-4636-b8a5-a0b7fd056e60",
+      "name": "Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1.1,
+      "position": [
+        460,
+        360
+      ],
+      "webhookId": "35bfc426-2c26-4b3b-8a78-d442dc9eb103"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://graph.facebook.com/v17.0/108019349036743/messages",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "whatsAppApi",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n   \"messaging_product\": \"whatsapp\",\n   \"recipient_type\": \"individual\",\n   \"to\": \"{{ $('Webhook').item.json['body']['phone'] }}\",\n   \"type\": \"template\",\n   \"template\": {\n      \"name\": \"utility_invitation_townhall_new\",\n      \"language\": {\n         \"code\": \"en\"\n      },\n      \"components\": [\n         {\n            \"type\": \"header\",\n            \"parameters\": [\n               {\n                  \"type\": \"image\",\n                  \"image\": {\n                     \"link\": \"{{ $('Postgres').item.json['Program - ProgramId__name'] == 'CMA' ? 'https://one.mileseducation.us/storage/v1/object/public/wa_assets/CMATownhall_Banner-ezgif.com-webp-to-jpg-converter.jpg' : 'https://one.mileseducation.us/storage/v1/object/public/wa_assets/CPATownhall_Banner-ezgif.com-webp-to-jpg-converter.jpg' }}\"\n                  }\n               }\n            ]\n         },\n         {\n            \"type\": \"body\",\n            \"parameters\": [\n               {\n                  \"type\": \"text\",\n                  \"text\": \"Miles {{ $('Postgres').item.json['Program - ProgramId__name'] }} Townhall with Varun Jain is coming to {{ $('Postgres').item.json['Miles Office - MilesLocationId__city'] }}!\"\n               },\n               {\n                  \"type\": \"text\",\n                  \"text\": \"{{ $('Postgres').item.json.orientation_date.toDate().format('d MMMM, y') }}\"\n               },\n               {\n                  \"type\": \"text\",\n                  \"text\": \"{{ $('Postgres').item.json['Program - ProgramId__name'] == 'CMA' ? '11 AM' : '3 PM' }}\"\n               },\n               {\n                  \"type\": \"text\",\n                  \"text\": \"{{ $('Postgres').item.json['Miles Office - MilesLocationId__city'] }}\"\n               },\n               {\n                  \"type\": \"text\",\n                  \"text\": \"*Why You MUST Be There:* 🌟 Learn *EXAM STRATEGIES*, 💼 Gain industry insights, 🤝 Get on the *PATHWAY* to *{{ $('Postgres').item.json['Program - ProgramId__name'] }} SUCCESS*\"\n               },\n               {\n                  \"type\": \"text\",\n                  \"text\": \"Click YES and secure your VIP pass to learn the secret recipe to PASS your {{ $('Postgres').item.json['Program - ProgramId__name'] }} exam.\"\n               }\n            ]\n         },\n         {\n            \"type\": \"button\",\n            \"sub_type\": \"quick_reply\",\n            \"index\": \"0\",\n            \"parameters\": [\n               {\n                  \"type\": \"text\",\n                  \"text\": \"Yes, I'm Interested\"\n               }\n            ]\n         },\n         {\n            \"type\": \"button\",\n            \"sub_type\": \"quick_reply\",\n            \"index\": \"1\",\n            \"parameters\": [\n               {\n                  \"type\": \"text\",\n                  \"text\": \"Maybe\"\n               }\n            ]\n         }\n      ]\n   }\n}\n",
+        "options": {}
+      },
+      "id": "f64c8593-68a5-4763-97e0-6c5eefa5096a",
+      "name": "HTTP Request7",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        2120,
+        660
+      ],
+      "credentials": {
+        "whatsAppApi": {
+          "id": "75melKbodQdQAHVp",
+          "name": "Marketing | Secondary [Miles Education]"
+        }
+      },
+      "onError": "continueErrorOutput"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://graph.facebook.com/v17.0/108019349036743/messages",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "whatsAppApi",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n   \"messaging_product\": \"whatsapp\",\n   \"recipient_type\": \"individual\",\n   \"to\": \"{{ $('Webhook').item.json[\"body\"][\"phone\"] }}\",\n   \"type\": \"template\",\n   \"template\": {\n      \"name\": \"utility_townhall_confirmation\",\n      \"language\": {\n         \"code\": \"en\"\n      },\n      \"components\": [\n         {\n            \"type\": \"header\",\n            \"parameters\": [\n               {\n                  \"type\": \"image\",\n                  \"image\": {\n                     \"link\": \"{{ $('Postgres').item.json[\"Program - ProgramId__name\"]==\"CMA\"?\"https://one.mileseducation.us/storage/v1/object/public/wa_assets/CMATownhall_Banner-ezgif.com-webp-to-jpg-converter.jpg\":\"https://one.mileseducation.us/storage/v1/object/public/wa_assets/CPATownhall_Banner-ezgif.com-webp-to-jpg-converter.jpg\" }}\"\n                  }\n               }\n            ]\n         },\n         {\n            \"type\": \"body\",\n            \"parameters\": [\n               {\n                  \"type\": \"text\",\n                  \"text\": \"{{ $('Webhook').item.json[\"body\"][\"first_name\"] }}\"\n               },\n{\n                  \"type\": \"text\",\n                  \"text\": \"{{ $('Postgres').item.json[\"Program - ProgramId__name\"] }}\"\n               },\n               {\n                  \"type\": \"text\",\n                  \"text\": \"{{ $('Postgres').item.json.orientation_date.toDate().format(\"d MMMM, y\") }}\"\n               },\n               {\n                  \"type\": \"text\",\n                  \"text\": \"{{ $('Postgres').item.json[\"Program - ProgramId__name\"] == \"CMA\"?\"11 AM\":\"3 PM\" }}\"\n               },\n               {\n                  \"type\": \"text\",\n                  \"text\": \"Miles Education, {{ $('Postgres').item.json[\"Miles Office - MilesLocationId__city\"]}}\"\n               },\n               {\n                  \"type\": \"text\",\n                  \"text\": \"Miles, Delhi\"\n               }\n            ]\n         },\n         {\n            \"type\": \"button\",\n            \"sub_type\": \"url\",\n            \"index\": \"0\",\n            \"parameters\": [\n               {\n                  \"type\": \"text\",\n                  \"text\": \"{{ $('Postgres').item.json[\"Miles Office - MilesLocationId__location_url\"].slice(34) }}\"\n               }\n            ]\n         }\n      ]\n   }\n}\n",
+        "options": {}
+      },
+      "id": "5d6cc5cd-af7a-4e8e-abe9-bc4862a98605",
+      "name": "HTTP Request8",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        3240,
+        180
+      ],
+      "credentials": {
+        "whatsAppApi": {
+          "id": "75melKbodQdQAHVp",
+          "name": "Marketing | Secondary [Miles Education]"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "tableId": "conclave_townhall_registrations",
+        "fieldsUi": {
+          "fieldValues": [
+            {
+              "fieldId": "first_name",
+              "fieldValue": "={{ $json.result.data.first_name }}"
+            },
+            {
+              "fieldId": "phone",
+              "fieldValue": "={{ $json.result.data.contact_number }}"
+            },
+            {
+              "fieldId": "email",
+              "fieldValue": "={{ $json.result.data.email }}"
+            },
+            {
+              "fieldId": "disposition",
+              "fieldValue": "={{ $('Webhook').item.json.body.disposition }}"
+            },
+            {
+              "fieldId": "vertical",
+              "fieldValue": "={{ $('Webhook').item.json.body.vertical }}"
+            },
+            {
+              "fieldId": "outcome",
+              "fieldValue": "={{ $('Webhook').item.json.body.outcome }}"
+            },
+            {
+              "fieldId": "retry_count",
+              "fieldValue": "={{ $('Webhook').item.json.body.retry_count }}"
+            },
+            {
+              "fieldId": "superbot_campaign_id",
+              "fieldValue": "={{ $('Webhook').item.json.body.campaign_id }}"
+            },
+            {
+              "fieldId": "camp_id",
+              "fieldValue": "1184"
+            },
+            {
+              "fieldId": "mf_camp_id",
+              "fieldValue": "={{ $json.result.data.campaign_id }}"
+            },
+            {
+              "fieldId": "orientation_id",
+              "fieldValue": "={{ $json.result.data.orientation_id }}"
+            },
+            {
+              "fieldId": "coming_from",
+              "fieldValue": "={{ $json.result.data.coming_from }}"
+            }
+          ]
+        }
+      },
+      "id": "ab0c4025-4c06-4990-9186-b396e59c8708",
+      "name": "Supabase14",
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        2520,
+        -1380
+      ],
+      "credentials": {
+        "supabaseApi": {
+          "id": "baNruLU9AV7x2GZq",
+          "name": "Supabase campaign manager"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "tableId": "message_status",
+        "fieldsUi": {
+          "fieldValues": [
+            {
+              "fieldId": "send_status",
+              "fieldValue": "true"
+            },
+            {
+              "fieldId": "message_id",
+              "fieldValue": "={{ $json.messages[0].id }}"
+            },
+            {
+              "fieldId": "phone",
+              "fieldValue": "={{ $json.contacts[0].input }}"
+            },
+            {
+              "fieldId": "campaign_id",
+              "fieldValue": "={{ $('Supabase14').item.json.camp_id }}"
+            },
+            {
+              "fieldId": "template_name",
+              "fieldValue": "=utility_townhall_confirmation_{{ $('Postgres').item.json['Program - ProgramId__name'] }}"
+            }
+          ]
+        }
+      },
+      "id": "5412097d-e5dd-44db-ab8f-5e63586a7f05",
+      "name": "Supabase15",
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        3500,
+        -1660
+      ],
+      "credentials": {
+        "supabaseApi": {
+          "id": "baNruLU9AV7x2GZq",
+          "name": "Supabase campaign manager"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://mfx-prod-154625965269.asia-south1.run.app/website-forms/large-event-registration",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"first_name\": \"{{ $('Webhook').item.json[\"body\"][\"first_name\"] }}\",\n  \"contact_number\": \"{{ $('Webhook').item.json[\"body\"][\"phone\"] }}\",\n  \"coming_from\": \"townhall_{{ $json[\"Program - ProgramId__name\"] }}_{{ $json[\"Miles Office - MilesLocationId__city\"] }}\",\n\"campaign_id\": 31,\n\"type\":\"{{ $('Webhook').item.json[\"body\"][\"audience_type\"] }}\",\n\"orientation_id\": {{ $('Webhook').item.json[\"body\"][\"orientation_session_id\"] }},\n\"course_id\": {{ $json[\"programId\"] }}\n}",
+        "options": {}
+      },
+      "id": "a378772a-3d7e-4037-92d8-bbd512f5f2f3",
+      "name": "HTTP Request9",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        2020,
+        -1360
+      ],
+      "retryOnFail": true,
+      "onError": "continueErrorOutput"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://graph.facebook.com/v17.0/108019349036743/messages",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "whatsAppApi",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n   \"messaging_product\": \"whatsapp\",\n   \"recipient_type\": \"individual\",\n   \"to\": \"{{ $('Webhook').item.json[\"body\"][\"phone\"] }}\",\n   \"type\": \"template\",\n   \"template\": {\n      \"name\": \"utility_townhall_confirmation\",\n      \"language\": {\n         \"code\": \"en\"\n      },\n      \"components\": [\n         {\n            \"type\": \"header\",\n            \"parameters\": [\n               {\n                  \"type\": \"image\",\n                  \"image\": {\n                     \"link\": \"{{ $('Postgres').item.json[\"Program - ProgramId__name\"]==\"CMA\"?\"https://one.mileseducation.us/storage/v1/object/public/wa_assets/CMATownhall_Banner-ezgif.com-webp-to-jpg-converter.jpg\":\"https://one.mileseducation.us/storage/v1/object/public/wa_assets/CPATownhall_Banner-ezgif.com-webp-to-jpg-converter.jpg\" }}\"\n                  }\n               }\n            ]\n         },\n         {\n            \"type\": \"body\",\n            \"parameters\": [\n               {\n                  \"type\": \"text\",\n                  \"text\": \"Miles {{ $('Postgres').item.json[\"Program - ProgramId__name\"] }} Townhall with Varun Jain is coming to {{ $('Postgres').item.json[\"Miles Office - MilesLocationId__city\"] }}!\"\n               },\n               {\n                  \"type\": \"text\",\n                  \"text\": \"{{ $('Postgres').item.json.orientation_date.toDate().format(\"d MMMM, y\") }}\"\n               },\n               {\n                  \"type\": \"text\",\n                  \"text\": \"{{ $('Postgres').item.json[\"Program - ProgramId__name\"] == \"CMA\"?\"11 AM\":\"3 PM\" }}\"\n               },\n               {\n                  \"type\": \"text\",\n                  \"text\": \"Miles Education, {{ $('Postgres').item.json[\"Miles Office - MilesLocationId__city\"]}}\"\n               },\n               {\n                  \"type\": \"text\",\n                  \"text\": \"Level - 1, Jayabheri Silicon Towers, Hitech City Road, Kothaguda, Hyderabad - 500084\"\n               }\n            ]\n         },\n         {\n            \"type\": \"button\",\n            \"sub_type\": \"url\",\n            \"index\": \"0\",\n            \"parameters\": [\n               {\n                  \"type\": \"text\",\n                  \"text\": \"{{ $('Postgres').item.json[\"Miles Office - MilesLocationId__location_url\"].slice(34) }}\"\n               }\n            ]\n         }\n      ]\n   }\n}\n",
+        "options": {}
+      },
+      "id": "0541eefb-9a33-47d6-89c3-49ca793ac91c",
+      "name": "HTTP Request10",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        3220,
+        -1660
+      ],
+      "credentials": {
+        "whatsAppApi": {
+          "id": "75melKbodQdQAHVp",
+          "name": "Marketing | Secondary [Miles Education]"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "tableId": "message_status",
+        "fieldsUi": {
+          "fieldValues": [
+            {
+              "fieldId": "send_status",
+              "fieldValue": "true"
+            },
+            {
+              "fieldId": "message_id",
+              "fieldValue": "={{ $json.messages[0].id }}"
+            },
+            {
+              "fieldId": "phone",
+              "fieldValue": "={{ $json.contacts[0].input }}"
+            },
+            {
+              "fieldId": "campaign_id",
+              "fieldValue": "={{ $('Supabase14').item.json.camp_id }}"
+            },
+            {
+              "fieldId": "template_name",
+              "fieldValue": "=utility_townhall_confirmation_{{ $('Postgres').item.json['Program - ProgramId__name'] }}"
+            }
+          ]
+        }
+      },
+      "id": "d8a98c61-4816-4bbe-9ac3-46ce95278ab5",
+      "name": "Supabase16",
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        3500,
+        -1400
+      ],
+      "credentials": {
+        "supabaseApi": {
+          "id": "baNruLU9AV7x2GZq",
+          "name": "Supabase campaign manager"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://graph.facebook.com/v17.0/108019349036743/messages",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "whatsAppApi",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n   \"messaging_product\": \"whatsapp\",\n   \"recipient_type\": \"individual\",\n   \"to\": \"{{ $('Webhook').item.json[\"body\"][\"phone\"] }}\",\n   \"type\": \"template\",\n   \"template\": {\n      \"name\": \"utility_townhall_confirmation\",\n      \"language\": {\n         \"code\": \"en\"\n      },\n      \"components\": [\n         {\n            \"type\": \"header\",\n            \"parameters\": [\n               {\n                  \"type\": \"image\",\n                  \"image\": {\n                     \"link\": \"{{ $('Postgres').item.json[\"Program - ProgramId__name\"]==\"CMA\"?\"https://one.mileseducation.us/storage/v1/object/public/wa_assets/CMATownhall_Banner-ezgif.com-webp-to-jpg-converter.jpg\":\"https://one.mileseducation.us/storage/v1/object/public/wa_assets/CPATownhall_Banner-ezgif.com-webp-to-jpg-converter.jpg\" }}\"\n                  }\n               }\n            ]\n         },\n         {\n            \"type\": \"body\",\n            \"parameters\": [\n               {\n                  \"type\": \"text\",\n                  \"text\": \"Miles {{ $('Postgres').item.json[\"Program - ProgramId__name\"] }} Townhall with Varun Jain is coming to {{ $('Postgres').item.json[\"Miles Office - MilesLocationId__city\"] }}!\"\n               },\n               {\n                  \"type\": \"text\",\n                  \"text\": \"{{ $('Postgres').item.json.orientation_date.toDate().format(\"d MMMM, y\") }}\"\n               },\n               {\n                  \"type\": \"text\",\n                  \"text\": \"{{ $('Postgres').item.json[\"Program - ProgramId__name\"] == \"CMA\"?\"11 AM\":\"3 PM\" }}\"\n               },\n               {\n                  \"type\": \"text\",\n                  \"text\": \"Miles Education, {{ $('Postgres').item.json[\"Miles Office - MilesLocationId__city\"]}}\"\n               },\n               {\n                  \"type\": \"text\",\n                  \"text\": \"911/912, Wing A, Kanakia Wall Street, Andheri Kurla Road, Mumbai - 400093\"\n               }\n            ]\n         },\n         {\n            \"type\": \"button\",\n            \"sub_type\": \"url\",\n            \"index\": \"0\",\n            \"parameters\": [\n               {\n                  \"type\": \"text\",\n                  \"text\": \"{{ $('Postgres').item.json[\"Miles Office - MilesLocationId__location_url\"].slice(34) }}\"\n               }\n            ]\n         }\n      ]\n   }\n}\n\n",
+        "options": {}
+      },
+      "id": "e0fdc73b-d20f-4386-8e47-33f4b6d902f2",
+      "name": "HTTP Request11",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        3240,
+        -1400
+      ],
+      "credentials": {
+        "whatsAppApi": {
+          "id": "75melKbodQdQAHVp",
+          "name": "Marketing | Secondary [Miles Education]"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "tableId": "message_status",
+        "fieldsUi": {
+          "fieldValues": [
+            {
+              "fieldId": "send_status",
+              "fieldValue": "true"
+            },
+            {
+              "fieldId": "message_id",
+              "fieldValue": "={{ $json.messages[0].id }}"
+            },
+            {
+              "fieldId": "phone",
+              "fieldValue": "={{ $json.contacts[0].input }}"
+            },
+            {
+              "fieldId": "campaign_id",
+              "fieldValue": "={{ $('Supabase14').item.json.camp_id }}"
+            },
+            {
+              "fieldId": "template_name",
+              "fieldValue": "=utility_townhall_confirmation_{{ $('Postgres').item.json['Program - ProgramId__name'] }}"
+            }
+          ]
+        }
+      },
+      "id": "842a3af3-d400-4773-a084-9aa615d869a8",
+      "name": "Supabase17",
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        3500,
+        -1160
+      ],
+      "credentials": {
+        "supabaseApi": {
+          "id": "baNruLU9AV7x2GZq",
+          "name": "Supabase campaign manager"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://graph.facebook.com/v17.0/108019349036743/messages",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "whatsAppApi",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n   \"messaging_product\": \"whatsapp\",\n   \"recipient_type\": \"individual\",\n   \"to\": \"{{ $('Webhook').item.json[\"body\"][\"phone\"] }}\",\n   \"type\": \"template\",\n   \"template\": {\n      \"name\": \"utility_townhall_confirmation\",\n      \"language\": {\n         \"code\": \"en\"\n      },\n      \"components\": [\n         {\n            \"type\": \"header\",\n            \"parameters\": [\n               {\n                  \"type\": \"image\",\n                  \"image\": {\n                     \"link\": \"{{ $('Postgres').item.json[\"Program - ProgramId__name\"]==\"CMA\"?\"https://one.mileseducation.us/storage/v1/object/public/wa_assets/CMATownhall_Banner-ezgif.com-webp-to-jpg-converter.jpg\":\"https://one.mileseducation.us/storage/v1/object/public/wa_assets/CPATownhall_Banner-ezgif.com-webp-to-jpg-converter.jpg\" }}\"\n                  }\n               }\n            ]\n         },\n         {\n            \"type\": \"body\",\n            \"parameters\": [\n               {\n                  \"type\": \"text\",\n                  \"text\": \"{{ $('Webhook').item.json[\"body\"][\"first_name\"] }}\"\n               },\n{\n                  \"type\": \"text\",\n                  \"text\": \"{{ $('Postgres').item.json[\"Program - ProgramId__name\"] }}\"\n               },\n               {\n                  \"type\": \"text\",\n                  \"text\": \"{{ $('Postgres').item.json.orientation_date.toDate().format(\"d MMMM, y\") }}\"\n               },\n               {\n                  \"type\": \"text\",\n                  \"text\": \"{{ $('Postgres').item.json[\"Program - ProgramId__name\"] == \"CMA\"?\"11 AM\":\"3 PM\" }}\"\n               },\n               {\n                  \"type\": \"text\",\n                  \"text\": \"Miles Education, {{ $('Postgres').item.json[\"Miles Office - MilesLocationId__city\"]}}\"\n               },\n               {\n                  \"type\": \"text\",\n                  \"text\": \"704 Satyaone Complex, Near Helmet Cross Road, Memnagar, Ahmedabad - 380052\"\n               }\n            ]\n         },\n         {\n            \"type\": \"button\",\n            \"sub_type\": \"url\",\n            \"index\": \"0\",\n            \"parameters\": [\n               {\n                  \"type\": \"text\",\n                  \"text\": \"{{ $('Postgres').item.json[\"Miles Office - MilesLocationId__location_url\"].slice(34) }}\"\n               }\n            ]\n         }\n      ]\n   }\n}\n",
+        "options": {}
+      },
+      "id": "f1d510eb-9b1f-43db-8242-512a9195f335",
+      "name": "HTTP Request12",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        3240,
+        -1160
+      ],
+      "credentials": {
+        "whatsAppApi": {
+          "id": "75melKbodQdQAHVp",
+          "name": "Marketing | Secondary [Miles Education]"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "tableId": "message_status",
+        "fieldsUi": {
+          "fieldValues": [
+            {
+              "fieldId": "send_status",
+              "fieldValue": "true"
+            },
+            {
+              "fieldId": "message_id",
+              "fieldValue": "={{ $json.messages[0].id }}"
+            },
+            {
+              "fieldId": "phone",
+              "fieldValue": "={{ $json.contacts[0].input }}"
+            },
+            {
+              "fieldId": "campaign_id",
+              "fieldValue": "={{ $('Supabase14').item.json.camp_id }}"
+            },
+            {
+              "fieldId": "template_name",
+              "fieldValue": "=utility_townhall_confirmation_{{ $('Postgres').item.json['Program - ProgramId__name'] }}"
+            }
+          ]
+        }
+      },
+      "id": "f9d1c301-048c-4bdb-a750-006a487e4fa3",
+      "name": "Supabase18",
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        3500,
+        -900
+      ],
+      "credentials": {
+        "supabaseApi": {
+          "id": "baNruLU9AV7x2GZq",
+          "name": "Supabase campaign manager"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "dataType": "string",
+        "value1": "={{ $('Postgres').item.json['Miles Office - MilesLocationId__city'] }}",
+        "rules": {
+          "rules": [
+            {
+              "value2": "Hyderabad",
+              "outputKey": "0"
+            },
+            {
+              "value2": "Mumbai",
+              "outputKey": "1"
+            },
+            {
+              "value2": "Ahmedabad",
+              "outputKey": "2"
+            },
+            {
+              "value2": "Delhi",
+              "outputKey": "3"
+            }
+          ]
+        }
+      },
+      "id": "a58cf178-0568-430c-8b1d-3f72fd82b28a",
+      "name": "Switch1",
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 2,
+      "position": [
+        2900,
+        -1280
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "tableId": "conclave_townhall_registrations",
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "id",
+              "condition": "eq",
+              "keyValue": "={{ $('Supabase14').item.json.id }}"
+            }
+          ]
+        },
+        "fieldsUi": {
+          "fieldValues": [
+            {
+              "fieldId": "email_send_id",
+              "fieldValue": "={{ $json._id }}"
+            },
+            {
+              "fieldId": "wa_msg_id",
+              "fieldValue": "={{ $('Edit Fields1').item.json.message_id }}"
+            }
+          ]
+        }
+      },
+      "id": "a85c3aac-a963-4383-9758-1787c74d9c64",
+      "name": "Supabase19",
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        4660,
+        -1300
+      ],
+      "credentials": {
+        "supabaseApi": {
+          "id": "baNruLU9AV7x2GZq",
+          "name": "Supabase campaign manager"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "fields": {
+          "values": [
+            {
+              "name": "wa_msg_id",
+              "stringValue": "={{ $json.messages[0].id }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "c5a7be90-0314-4b13-8e02-d2c7b02dd709",
+      "name": "Edit Fields1",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.2,
+      "position": [
+        4040,
+        -1300
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://mfx-prod-154625965269.asia-south1.run.app/website-forms/large-event-registration",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"first_name\": \"{{ $('Webhook').item.json[\"body\"][\"first_name\"] }}\",\n  \"contact_number\": \"{{ $('Webhook').item.json[\"body\"][\"phone\"] }}\",\n  \"coming_from\": \"townhall_{{ $json[\"Program - ProgramId__name\"] }}_{{ $json[\"Miles Office - MilesLocationId__city\"] }}\",\n\"campaign_id\": 31,\n\"type\":\"not_enrolled\",\n\"orientation_id\": {{ $('Postgres').item.json[\"id\"] }},\n\"educational_qualification\": \"2024_false\",\n\"course_id\": {{ $json[\"programId\"] }}\n}",
+        "options": {}
+      },
+      "id": "af647504-7f56-4088-bb22-b8c9ff7cc4c7",
+      "name": "HTTP Request13",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        2260,
+        -1060
+      ],
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://graph.facebook.com/v17.0/108019349036743/messages",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "whatsAppApi",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n   \"messaging_product\": \"whatsapp\",\n   \"recipient_type\": \"individual\",\n   \"to\": \"{{ $('Webhook').item.json[\"body\"][\"phone\"] }}\",\n   \"type\": \"template\",\n   \"template\": {\n      \"name\": \"utility_townhall_confirmation\",\n      \"language\": {\n         \"code\": \"en\"\n      },\n      \"components\": [\n         {\n            \"type\": \"header\",\n            \"parameters\": [\n               {\n                  \"type\": \"image\",\n                  \"image\": {\n                     \"link\": \"{{ $('Postgres').item.json[\"Program - ProgramId__name\"]==\"CMA\"?\"https://one.mileseducation.us/storage/v1/object/public/wa_assets/CMATownhall_Banner-ezgif.com-webp-to-jpg-converter.jpg\":\"https://one.mileseducation.us/storage/v1/object/public/wa_assets/CPATownhall_Banner-ezgif.com-webp-to-jpg-converter.jpg\" }}\"\n                  }\n               }\n            ]\n         },\n         {\n            \"type\": \"body\",\n            \"parameters\": [\n               {\n                  \"type\": \"text\",\n                  \"text\": \"{{ $('Webhook').item.json[\"body\"][\"first_name\"] }}\"\n               },\n{\n                  \"type\": \"text\",\n                  \"text\": \"{{ $('Postgres').item.json[\"Program - ProgramId__name\"] }}\"\n               },\n               {\n                  \"type\": \"text\",\n                  \"text\": \"{{ $('Postgres').item.json.orientation_date.toDate().format(\"d MMMM, y\") }}\"\n               },\n               {\n                  \"type\": \"text\",\n                  \"text\": \"{{ $('Postgres').item.json[\"Program - ProgramId__name\"] == \"CMA\"?\"11 AM\":\"3 PM\" }}\"\n               },\n               {\n                  \"type\": \"text\",\n                  \"text\": \"Miles Education, Delhi\"\n               }\n            ]\n         },\n         {\n            \"type\": \"button\",\n            \"sub_type\": \"url\",\n            \"index\": \"0\",\n            \"parameters\": [\n               {\n                  \"type\": \"text\",\n                  \"text\": \"{{ $('Postgres').item.json[\"Miles Office - MilesLocationId__location_url\"].slice(34) }}\"\n               }\n            ]\n         }\n      ]\n   }\n}\n",
+        "options": {}
+      },
+      "id": "57aef817-c491-47eb-b428-63d93a206cb4",
+      "name": "HTTP Request14",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        3240,
+        -900
+      ],
+      "credentials": {
+        "whatsAppApi": {
+          "id": "75melKbodQdQAHVp",
+          "name": "Marketing | Secondary [Miles Education]"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict"
+          },
+          "conditions": [
+            {
+              "id": "bb754219-3ba0-4144-8e0a-021cdbfbae88",
+              "leftValue": "={{ $('Webhook').item.json.body.email}}",
+              "rightValue": "@",
+              "operator": {
+                "type": "string",
+                "operation": "contains"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "71ff70ba-a02a-4f1e-845b-7b2a910d5828",
+      "name": "If2",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2,
+      "position": [
+        1500,
+        260
+      ]
+    },
+    {
+      "parameters": {
+        "template": "townhall-confirmation-mail",
+        "fromEmail": "info@mileseducation.com",
+        "toEmail": "={{ $('Webhook').item.json.body.email }}",
+        "options": {
+          "subject": "=Congratulations! Here's your confirmation for Miles {{ $('Postgres').item.json[\"programId\"]==1?\"CPA\":\"CMA\" }} Townhall with Varun Jain🔥"
+        },
+        "mergeVarsUi": {
+          "mergeVarsValues": [
+            {
+              "name": "FNAME",
+              "content": "={{ $('Webhook').item.json.body.first_name }}"
+            },
+            {
+              "name": "COURSE",
+              "content": "={{ $('Postgres').item.json['Program - ProgramId__name'] }}"
+            },
+            {
+              "name": "DATE",
+              "content": "={{ $('Postgres').item.json.orientation_date.toDate().format(\"d MMMM, y\") }}"
+            },
+            {
+              "name": "TIME",
+              "content": "={{ $('Postgres').item.json[\"Program - ProgramId__name\"] == \"CMA\"?\"11 AM\":\"3 PM\" }}"
+            },
+            {
+              "name": "LOCATION",
+              "content": "={{ $('Postgres').item.json['Miles Office - MilesLocationId__address'] }}"
+            },
+            {
+              "name": "MAPS",
+              "content": "={{ $('Postgres').item.json['Miles Office - MilesLocationId__location_url'] }}"
+            }
+          ]
+        }
+      },
+      "id": "eb39905c-8ad5-4b23-a7c1-5e5a4142973b",
+      "name": "Mandrill1",
+      "type": "n8n-nodes-base.mandrill",
+      "typeVersion": 1,
+      "position": [
+        4400,
+        -1300
+      ],
+      "credentials": {
+        "mandrillApi": {
+          "id": "MdiS01IyaXU55Lih",
+          "name": "Mandrill account"
+        }
+      },
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "tableId": "conclave_superbot_logger",
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "phone",
+              "condition": "eq",
+              "keyValue": "={{ $('Webhook').item.json.body.phone }}"
+            },
+            {
+              "keyName": "disposition",
+              "condition": "eq",
+              "keyValue": "={{ $('Webhook').item.json.body.disposition }}"
+            },
+            {
+              "keyName": "connected_date_time",
+              "condition": "eq",
+              "keyValue": "={{ $('Webhook').item.json.body.connected_date_time }}"
+            }
+          ]
+        },
+        "fieldsUi": {
+          "fieldValues": [
+            {
+              "fieldId": "whatsapp_status",
+              "fieldValue": "=CALLBACK REQUESTED\n_{{ $json.error.cause.stack }}"
+            }
+          ]
+        }
+      },
+      "id": "2d759517-d204-44a5-8b76-177237ead2bc",
+      "name": "Supabase12",
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        2500,
+        900
+      ],
+      "credentials": {
+        "supabaseApi": {
+          "id": "baNruLU9AV7x2GZq",
+          "name": "Supabase campaign manager"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "tableId": "conclave_townhall_registrations",
+        "fieldsUi": {
+          "fieldValues": [
+            {
+              "fieldId": "first_name",
+              "fieldValue": "={{ $json.result.data.first_name }}"
+            },
+            {
+              "fieldId": "phone",
+              "fieldValue": "={{ $json.result.data.contact_number }}"
+            },
+            {
+              "fieldId": "email",
+              "fieldValue": "={{ $json.result.data.email }}"
+            },
+            {
+              "fieldId": "disposition",
+              "fieldValue": "={{ $('Webhook').item.json.body.disposition }}"
+            },
+            {
+              "fieldId": "vertical",
+              "fieldValue": "={{ $('Webhook').item.json.body.vertical }}"
+            },
+            {
+              "fieldId": "outcome",
+              "fieldValue": "={{ $('Webhook').item.json.body.outcome }}"
+            },
+            {
+              "fieldId": "retry_count",
+              "fieldValue": "={{ $('Webhook').item.json.body.retry_count }}"
+            },
+            {
+              "fieldId": "superbot_campaign_id",
+              "fieldValue": "={{ $('Webhook').item.json.body.campaign_id }}"
+            },
+            {
+              "fieldId": "camp_id",
+              "fieldValue": "1184"
+            },
+            {
+              "fieldId": "mf_camp_id",
+              "fieldValue": "={{ $json.result.data.campaign_id }}"
+            },
+            {
+              "fieldId": "orientation_id",
+              "fieldValue": "={{ $json.result.data.orientation_id }}"
+            },
+            {
+              "fieldId": "coming_from",
+              "fieldValue": "={{ $json.result.data.coming_from }}"
+            }
+          ]
+        }
+      },
+      "id": "7c4fa3e4-6282-4bdf-a941-2ddcf8c28d9c",
+      "name": "Supabase",
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        2520,
+        -300
+      ],
+      "credentials": {
+        "supabaseApi": {
+          "id": "baNruLU9AV7x2GZq",
+          "name": "Supabase campaign manager"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "tableId": "conclave_superbot_logger",
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "connected_date_time",
+              "condition": "eq",
+              "keyValue": "={{ $('Webhook').item.json.body.connected_date_time }}"
+            },
+            {
+              "keyName": "phone",
+              "condition": "eq",
+              "keyValue": "={{ $('Webhook').item.json.body.phone }}"
+            },
+            {
+              "keyName": "orientation_session_id",
+              "condition": "eq",
+              "keyValue": "={{ $('Webhook').item.json.body.orientation_session_id }}"
+            }
+          ]
+        },
+        "fieldsUi": {
+          "fieldValues": [
+            {
+              "fieldId": "whatsapp_status",
+              "fieldValue": "={{ $('HTTP Request7').item.json.messages[0].id }}"
+            },
+            {
+              "fieldId": "coming_from",
+              "fieldValue": "=townhall_{{ $('Postgres').item.json['Program - ProgramId__name'] }}_ {{ $('Postgres').item.json['Miles Office - MilesLocationId__city'] }}_WA_ {{ $('Webhook').item.json.body.disposition }}"
+            }
+          ]
+        }
+      },
+      "id": "bd0dddf1-8a71-4152-b50d-3f87ff846e81",
+      "name": "Supabase13",
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        2840,
+        640
+      ],
+      "credentials": {
+        "supabaseApi": {
+          "id": "baNruLU9AV7x2GZq",
+          "name": "Supabase campaign manager"
+        }
+      }
+    }
+  ],
+  "pinData": {
+    "Webhook": [
+      {
+        "json": {
+          "headers": {
+            "host": "callback.miles-api.com",
+            "x-real-ip": "172.71.202.2",
+            "x-forwarded-host": "callback.miles-api.com",
+            "x-forwarded-server": "callback.miles-api.com",
+            "x-forwarded-for": "35.200.234.171, 172.71.202.2",
+            "connection": "close",
+            "content-length": "266",
+            "accept-encoding": "gzip, br",
+            "cf-ray": "8c9aac3d3e9ff480-BOM",
+            "x-forwarded-proto": "https"
+          },
+          "params": {},
+          "query": {},
+          "body": {
+            "phone": "+917349296479",
+            "first_name": "tech Test Karan",
+            "email": "",
+            "disposition": "INTERESTED FOR EVENT",
+            "connected_date_time": "2024-11-29 13:45:14",
+            "status": "answered",
+            "outcome": "disposed",
+            "campaign_id": 9999,
+            "retry_count": 1,
+            "vertical": "accounting",
+            "identity": "K-test7",
+            "audience_type": "enrolled",
+            "orientation_session_id": 74
+          }
+        }
+      }
+    ]
+  },
+  "settings": {
+    "executionOrder": "v1",
+    "timezone": "Asia/Calcutta",
+    "saveExecutionProgress": true,
+    "saveManualExecutions": true,
+    "callerPolicy": "workflowsFromSameOwner"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 1,
+  "updatedAt": "2025-01-25T15:00:04.000Z",
+  "versionId": "cef13f85-1865-4d31-97f2-014d55e997bf"
+}
