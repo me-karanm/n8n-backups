@@ -1,0 +1,1021 @@
+{
+  "active": true,
+  "connections": {
+    "Split In Batches": {
+      "main": [
+        [
+          {
+            "node": "IF",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "IF": {
+      "main": [
+        [
+          {
+            "node": "MySQL2",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "MySQL1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "MySQL1": {
+      "main": [
+        [
+          {
+            "node": "Set",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "MySQL2": {
+      "main": [
+        [
+          {
+            "node": "Set",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Set": {
+      "main": [
+        [
+          {
+            "node": "Supabase",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "When clicking \"Execute Workflow\"": {
+      "main": [
+        [
+          {
+            "node": "Supabase2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Split In Batches1": {
+      "main": [
+        [
+          {
+            "node": "IF1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "IF1": {
+      "main": [
+        [
+          {
+            "node": "MySQL5",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "MySQL4",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "MySQL4": {
+      "main": [
+        [
+          {
+            "node": "Set1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "MySQL5": {
+      "main": [
+        [
+          {
+            "node": "Set1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Set1": {
+      "main": [
+        [
+          {
+            "node": "Supabase4",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Item Lists1": {
+      "main": [
+        [
+          {
+            "node": "MySQL3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Supabase": {
+      "main": [
+        [
+          {
+            "node": "Split In Batches",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Supabase1": {
+      "main": [
+        [
+          {
+            "node": "Item Lists",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Item Lists": {
+      "main": [
+        [
+          {
+            "node": "MySQL",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Supabase2": {
+      "main": [
+        [
+          {
+            "node": "Item Lists1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Supabase4": {
+      "main": [
+        [
+          {
+            "node": "Split In Batches1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "MySQL": {
+      "main": [
+        [
+          {
+            "node": "Split In Batches",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "MySQL3": {
+      "main": [
+        [
+          {
+            "node": "Split In Batches1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2023-11-23T18:46:04.371Z",
+  "id": "q9FVXwPlQr0Gv42E",
+  "meta": null,
+  "name": "sync to sheet",
+  "nodes": [
+    {
+      "parameters": {
+        "operation": "select",
+        "table": {
+          "__rl": true,
+          "value": "otb_live_webinar_user_relation",
+          "mode": "list",
+          "cachedResultName": "otb_live_webinar_user_relation"
+        },
+        "returnAll": true,
+        "where": {
+          "values": [
+            {
+              "column": "live_webinar_id",
+              "value": "170"
+            },
+            {
+              "column": "webinar_user_rel_id",
+              "condition": ">",
+              "value": "=28354"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "b0c49d37-3ee7-4dce-a08e-ad0157d6f158",
+      "name": "MySQL",
+      "type": "n8n-nodes-base.mySql",
+      "typeVersion": 2.1,
+      "position": [
+        1240,
+        -120
+      ],
+      "credentials": {
+        "mySql": {
+          "id": "8lA9foFD93XoAQzU",
+          "name": "CPA"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "batchSize": 1,
+        "options": {}
+      },
+      "id": "dbd9c74b-5219-4eb1-9d1c-682dec16bfc7",
+      "name": "Split In Batches",
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 2,
+      "position": [
+        1640,
+        -240
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "number": [
+            {
+              "value1": "={{ $json.int_user_id }}",
+              "operation": "equal"
+            }
+          ]
+        },
+        "combineOperation": "any"
+      },
+      "id": "dedc1563-17f8-43fc-a948-1cc9dca1b9c1",
+      "name": "IF",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        1840,
+        -420
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "select",
+        "table": {
+          "__rl": true,
+          "value": "mileage_users",
+          "mode": "list",
+          "cachedResultName": "mileage_users"
+        },
+        "limit": 1,
+        "where": {
+          "values": [
+            {
+              "column": "id",
+              "value": "={{ $json.int_user_id }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "1308066f-a763-4070-8b2e-24ef1cb4efc6",
+      "name": "MySQL1",
+      "type": "n8n-nodes-base.mySql",
+      "typeVersion": 2.1,
+      "position": [
+        2160,
+        -300
+      ],
+      "credentials": {
+        "mySql": {
+          "id": "8lA9foFD93XoAQzU",
+          "name": "CPA"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "select",
+        "table": {
+          "__rl": true,
+          "value": "mwb",
+          "mode": "list",
+          "cachedResultName": "mwb"
+        },
+        "where": {
+          "values": [
+            {
+              "column": "identity",
+              "value": "={{ $json.canid }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "58800578-76c9-40a7-8eb4-d3891ddabcf9",
+      "name": "MySQL2",
+      "type": "n8n-nodes-base.mySql",
+      "typeVersion": 2.1,
+      "position": [
+        2160,
+        -600
+      ],
+      "credentials": {
+        "mySql": {
+          "id": "zHxYEwXoO70wcXbg",
+          "name": "MF Read"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "keepOnlySet": true,
+        "values": {
+          "number": [
+            {
+              "name": "name",
+              "value": "={{ $json.person_name ??$json.txt_name }}"
+            }
+          ],
+          "string": [
+            {
+              "name": "email",
+              "value": "={{ $('Split In Batches').item.json.email ?? $json.email }}"
+            },
+            {
+              "name": "phone",
+              "value": "={{ $('Split In Batches').item.json.phone_no ?? $json.txt_phone_number}}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "9511192f-5a4b-4615-917d-f92352c062d7",
+      "name": "Set",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 2,
+      "position": [
+        2500,
+        -440
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "6609631e-9bd4-4d35-8c06-456ae0a1250b",
+      "name": "When clicking \"Execute Workflow\"",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        420,
+        -60
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "https://docs.google.com/spreadsheets/d/1NsexZ-wRmYHHxMUzwU2_8tDYpKXtyL1HCiovF20vlmg/edit#gid=0",
+          "mode": "url",
+          "__regex": "https:\\/\\/(?:drive|docs)\\.google\\.com(?:\\/.*|)\\/d\\/([0-9a-zA-Z\\-_]+)(?:\\/.*|)"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 1766558009,
+          "mode": "list",
+          "cachedResultName": "CMA",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1NsexZ-wRmYHHxMUzwU2_8tDYpKXtyL1HCiovF20vlmg/edit#gid=1766558009"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "id": "={{ $('Split In Batches1').item.json.webinar_user_rel_id }}",
+            "created_at": "={{ $('Split In Batches1').item.json.created_date }}",
+            "first_name": "={{ $json.name }}",
+            "phone": "={{$json.phone ?? $('Split In Batches1').item.json.phone_no}} ",
+            "email": "={{ $json.email ?? $('Split In Batches').item.json.email }}",
+            "city": "={{$('Split In Batches1').item.json.city == 2 ?  \"Bangalore\" : \n$('Split In Batches1').item.json.city == 7 ? \"Hyderabad\" : \n$('Split In Batches1').item.json.city == 1 ? \"Ahmedabad\" : \n$('Split In Batches1').item.json.city == 4 ? \"Delhi\" :\n$('Split In Batches1').item.json.city ==8 ? \"Mumbai\" :\n$('Split In Batches1').item.json.city == 3 ?  \"Chennai\" :\n$('Split In Batches1').item.json.city == 9 ? \"Pune\" :\"Other\"\n  }}",
+            "source_name": "={{ $('Split In Batches1').item.json.source }}",
+            "lms_user_id": "={{ $('Split In Batches1').item.json.int_user_id }}"
+          },
+          "matchingColumns": [
+            "id"
+          ],
+          "schema": [
+            {
+              "id": "created_at",
+              "displayName": "created_at",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "first_name",
+              "displayName": "first_name",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "last_name",
+              "displayName": "last_name",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "phone",
+              "displayName": "phone",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "email",
+              "displayName": "email",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "city",
+              "displayName": "city",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "source_name",
+              "displayName": "source_name",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "id",
+              "displayName": "id",
+              "required": false,
+              "defaultMatch": true,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "lms_user_id",
+              "displayName": "lms_user_id",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "768c3574-2699-45af-a39d-19442c4a3a97",
+      "name": "Google Sheets2",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4,
+      "position": [
+        2480,
+        40
+      ],
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "6bNFwDEitIgWBzpL",
+          "name": "OAuth 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "select",
+        "table": {
+          "__rl": true,
+          "value": "otb_live_webinar_user_relation",
+          "mode": "list",
+          "cachedResultName": "otb_live_webinar_user_relation"
+        },
+        "returnAll": true,
+        "where": {
+          "values": [
+            {
+              "column": "live_webinar_id",
+              "value": "207"
+            },
+            {
+              "column": "webinar_user_rel_id",
+              "condition": ">",
+              "value": "=26201"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "0f480e32-de54-4713-a51b-3c28a45e1577",
+      "name": "MySQL3",
+      "type": "n8n-nodes-base.mySql",
+      "typeVersion": 2.1,
+      "position": [
+        1060,
+        240
+      ],
+      "credentials": {
+        "mySql": {
+          "id": "PmmxUZN1aLa4HnWp",
+          "name": "CMA"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "batchSize": 1,
+        "options": {}
+      },
+      "id": "3d51604e-df9d-441f-a8e4-d22d693b088f",
+      "name": "Split In Batches1",
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 2,
+      "position": [
+        1320,
+        240
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "number": [
+            {
+              "value1": "={{ $json.int_user_id }}",
+              "operation": "equal"
+            }
+          ]
+        }
+      },
+      "id": "15a6d898-f4b5-46b8-9ba8-ebd6bd59a90d",
+      "name": "IF1",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        1520,
+        60
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "select",
+        "table": {
+          "__rl": true,
+          "value": "app_users",
+          "mode": "list",
+          "cachedResultName": "app_users"
+        },
+        "limit": 1,
+        "where": {
+          "values": [
+            {
+              "column": "int_user_id",
+              "value": "={{ $json.int_user_id }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "35b1593d-f755-47c1-b376-75049a102626",
+      "name": "MySQL4",
+      "type": "n8n-nodes-base.mySql",
+      "typeVersion": 2.1,
+      "position": [
+        1840,
+        180
+      ],
+      "credentials": {
+        "mySql": {
+          "id": "PmmxUZN1aLa4HnWp",
+          "name": "CMA"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "select",
+        "table": {
+          "__rl": true,
+          "value": "mwb",
+          "mode": "list",
+          "cachedResultName": "mwb"
+        },
+        "where": {
+          "values": [
+            {
+              "column": "identity",
+              "value": "={{ $json.canid }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "26ac84c3-7aa5-4ea1-9e64-438f0f5c54e6",
+      "name": "MySQL5",
+      "type": "n8n-nodes-base.mySql",
+      "typeVersion": 2.1,
+      "position": [
+        1840,
+        -60
+      ],
+      "credentials": {
+        "mySql": {
+          "id": "zHxYEwXoO70wcXbg",
+          "name": "MF Read"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "keepOnlySet": true,
+        "values": {
+          "number": [
+            {
+              "name": "name",
+              "value": "={{ $json.person_name ??$json.txt_name }}"
+            }
+          ],
+          "string": [
+            {
+              "name": "email",
+              "value": "={{ $('Split In Batches1').item.json.email ?? $json.email }}"
+            },
+            {
+              "name": "phone",
+              "value": "={{ $('Split In Batches1').item.json.phone_no ?? $json.txt_phone_number}}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "7601dc19-3476-48d2-b530-31b432d0ecbe",
+      "name": "Set1",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 2,
+      "position": [
+        2180,
+        40
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "limit",
+        "keep": "lastItems"
+      },
+      "id": "8426ce0c-cced-4735-b619-2eef03405660",
+      "name": "Item Lists1",
+      "type": "n8n-nodes-base.itemLists",
+      "typeVersion": 3,
+      "position": [
+        860,
+        240
+      ]
+    },
+    {
+      "parameters": {
+        "amount": 1.5,
+        "unit": "seconds"
+      },
+      "id": "022ddb63-5be0-4881-b451-4d2cc435a675",
+      "name": "Wait1",
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1,
+      "position": [
+        2920,
+        40
+      ],
+      "webhookId": "8ed92090-f2a4-410a-a3cb-fdba0bf60587"
+    },
+    {
+      "parameters": {
+        "tableId": "reports_temp",
+        "fieldsUi": {
+          "fieldValues": [
+            {
+              "fieldId": "date",
+              "fieldValue": "={{ $('Split In Batches').item.json.created_date }}"
+            },
+            {
+              "fieldId": "first_name",
+              "fieldValue": "={{ $json.name }}"
+            },
+            {
+              "fieldId": "phone",
+              "fieldValue": "={{ $json.phone }}"
+            },
+            {
+              "fieldId": "email",
+              "fieldValue": "={{ $json.email }}"
+            },
+            {
+              "fieldId": "city",
+              "fieldValue": "={{$('Split In Batches').item.json.city == 2 ?  \"Bangalore\" : \n$('Split In Batches').item.json.city == 7 ? \"Hyderabad\" : \n$('Split In Batches').item.json.city == 1 ? \"Ahmedabad\" : \n$('Split In Batches').item.json.city == 4 ? \"Delhi\" :\n$('Split In Batches').item.json.city ==8 ? \"Mumbai\" :\n$('Split In Batches').item.json.city == 3 ?  \"Chennai\" :\n$('Split In Batches').item.json.city == 9 ? \"Pune\" :\"Other\"\n  }} "
+            },
+            {
+              "fieldId": "source",
+              "fieldValue": "={{ $('Split In Batches').item.json.source }}"
+            },
+            {
+              "fieldId": "course",
+              "fieldValue": "CPA"
+            },
+            {
+              "fieldId": "trye",
+              "fieldValue": "15"
+            },
+            {
+              "fieldId": "id_lms_rel",
+              "fieldValue": "={{ $('Split In Batches').item.json.webinar_user_rel_id }}"
+            }
+          ]
+        }
+      },
+      "id": "d0c5675b-f531-454a-ac18-9d50fe92b009",
+      "name": "Supabase",
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        2780,
+        -440
+      ],
+      "credentials": {
+        "supabaseApi": {
+          "id": "baNruLU9AV7x2GZq",
+          "name": "Supabase campaign manager"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "get",
+        "tableId": "reports_temp",
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "trye",
+              "keyValue": "15"
+            }
+          ]
+        }
+      },
+      "id": "f4584769-6180-4a18-8334-311529fbd492",
+      "name": "Supabase1",
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        780,
+        -120
+      ],
+      "alwaysOutputData": true,
+      "credentials": {
+        "supabaseApi": {
+          "id": "baNruLU9AV7x2GZq",
+          "name": "Supabase campaign manager"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "limit",
+        "keep": "lastItems"
+      },
+      "id": "bdfc44f0-cf86-422c-93ee-5e139f44d632",
+      "name": "Item Lists",
+      "type": "n8n-nodes-base.itemLists",
+      "typeVersion": 3,
+      "position": [
+        1000,
+        -120
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "get",
+        "tableId": "reports_temp",
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "trye",
+              "keyValue": "14"
+            }
+          ]
+        }
+      },
+      "id": "adc5a42c-6d26-4508-a40c-6a2c7fa5c6b0",
+      "name": "Supabase2",
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        680,
+        240
+      ],
+      "alwaysOutputData": true,
+      "credentials": {
+        "supabaseApi": {
+          "id": "baNruLU9AV7x2GZq",
+          "name": "Supabase campaign manager"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "tableId": "reports_temp",
+        "fieldsUi": {
+          "fieldValues": [
+            {
+              "fieldId": "date",
+              "fieldValue": "={{ $('Split In Batches').item.json.created_date }}"
+            },
+            {
+              "fieldId": "first_name",
+              "fieldValue": "={{ $json.name }}"
+            },
+            {
+              "fieldId": "phone",
+              "fieldValue": "={{ $json.phone }}"
+            },
+            {
+              "fieldId": "email",
+              "fieldValue": "={{ $json.email }}"
+            },
+            {
+              "fieldId": "city",
+              "fieldValue": "={{$('Split In Batches').item.json.city == 2 ?  \"Bangalore\" : \n$('Split In Batches').item.json.city == 7 ? \"Hyderabad\" : \n$('Split In Batches').item.json.city == 1 ? \"Ahmedabad\" : \n$('Split In Batches').item.json.city == 4 ? \"Delhi\" :\n$('Split In Batches').item.json.city ==8 ? \"Mumbai\" :\n$('Split In Batches').item.json.city == 3 ?  \"Chennai\" :\n$('Split In Batches').item.json.city == 9 ? \"Pune\" :\"Other\"\n  }} "
+            },
+            {
+              "fieldId": "source",
+              "fieldValue": "={{ $('Split In Batches').item.json.source }}"
+            },
+            {
+              "fieldId": "course",
+              "fieldValue": "CPA"
+            },
+            {
+              "fieldId": "trye",
+              "fieldValue": "0"
+            },
+            {
+              "fieldId": "id_lms_rel",
+              "fieldValue": "={{ $('Split In Batches').item.json.webinar_user_rel_id }}"
+            }
+          ]
+        }
+      },
+      "id": "9ba68fee-c3a3-48df-8b9a-1bc5965ab9bb",
+      "name": "Supabase3",
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        460,
+        460
+      ],
+      "credentials": {
+        "supabaseApi": {
+          "id": "baNruLU9AV7x2GZq",
+          "name": "Supabase campaign manager"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "tableId": "reports_temp",
+        "fieldsUi": {
+          "fieldValues": [
+            {
+              "fieldId": "date",
+              "fieldValue": "={{ $('Split In Batches1').item.json.created_date }}"
+            },
+            {
+              "fieldId": "first_name",
+              "fieldValue": "={{ $json.name }}"
+            },
+            {
+              "fieldId": "phone",
+              "fieldValue": "={{ $json.phone }}"
+            },
+            {
+              "fieldId": "email",
+              "fieldValue": "={{ $json.email }}"
+            },
+            {
+              "fieldId": "city",
+              "fieldValue": "={{$('Split In Batches1').item.json.city == 2 ?  \"Bangalore\" : \n$('Split In Batches1').item.json.city == 7 ? \"Hyderabad\" : \n$('Split In Batches1').item.json.city == 1 ? \"Ahmedabad\" : \n$('Split In Batches1').item.json.city == 4 ? \"Delhi\" :\n$('Split In Batches1').item.json.city ==8 ? \"Mumbai\" :\n$('Split In Batches1').item.json.city == 3 ?  \"Chennai\" :\n$('Split In Batches1').item.json.city == 9 ? \"Pune\" :\"Other\"\n  }} "
+            },
+            {
+              "fieldId": "source",
+              "fieldValue": "={{ $('Split In Batches1').item.json.source }}"
+            },
+            {
+              "fieldId": "course",
+              "fieldValue": "CMA"
+            },
+            {
+              "fieldId": "trye",
+              "fieldValue": "14"
+            },
+            {
+              "fieldId": "id_lms_rel",
+              "fieldValue": "={{ $('Split In Batches1').item.json.webinar_user_rel_id }}"
+            }
+          ]
+        }
+      },
+      "id": "79a9b664-d574-40de-8a41-6c33f08a254f",
+      "name": "Supabase4",
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        2600,
+        -120
+      ],
+      "credentials": {
+        "supabaseApi": {
+          "id": "baNruLU9AV7x2GZq",
+          "name": "Supabase campaign manager"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": {
+    "node:Schedule Trigger": {
+      "recurrencyRules": [
+        4
+      ]
+    }
+  },
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2023-12-17T10:12:59.000Z",
+  "versionId": "ca55a83d-9050-467f-83e1-e7ddaefb7353"
+}
