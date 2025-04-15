@@ -1,0 +1,227 @@
+{
+  "active": true,
+  "connections": {
+    "WhatsApp Business Cloud": {
+      "main": [
+        [
+          {
+            "node": "Supabase",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Mandrill",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Webhook": {
+      "main": [
+        []
+      ]
+    }
+  },
+  "createdAt": "2024-12-05T13:44:50.564Z",
+  "id": "4X5xOPghEUYZGl8S",
+  "meta": null,
+  "name": "Conclave Walk-in registration",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "send-qr-for-conclave",
+        "options": {}
+      },
+      "id": "3a525e4a-83cf-4ee9-a0a8-b599eb29efd4",
+      "name": "Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1.1,
+      "position": [
+        760,
+        360
+      ],
+      "webhookId": "35684780-f832-4712-bac0-dee7814f2afe"
+    },
+    {
+      "parameters": {
+        "phoneNumberId": "108019349036743",
+        "recipientPhoneNumber": "={{ $json.body.lead_details.phone }}",
+        "template": "conclave_instant_registration|en",
+        "components": {
+          "component": [
+            {
+              "type": "button",
+              "sub_type": "url",
+              "buttonParameters": {
+                "parameter": {
+                  "payload": "=?leadUuid={{ $json[\"body\"][\"lead_uuid\"] }}&orientation_id={{ $json[\"body\"][\"orientation_id\"] }}"
+                }
+              }
+            },
+            {
+              "type": "header",
+              "headerParameters": {
+                "parameter": [
+                  {
+                    "type": "image",
+                    "imageLink": "https://one.mileseducation.us/storage/v1/object/public/wa_assets/WhatsApp%20Image%202024-11-28%20at%2017.41.37.jpeg"
+                  }
+                ]
+              }
+            },
+            {
+              "bodyParameters": {
+                "parameter": [
+                  {
+                    "text": "={{ $json.body.lead_details.name }}"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      },
+      "id": "ad3402d4-7150-46a1-a842-fec028e56ac7",
+      "name": "WhatsApp Business Cloud",
+      "type": "n8n-nodes-base.whatsApp",
+      "typeVersion": 1,
+      "position": [
+        980,
+        360
+      ],
+      "credentials": {
+        "whatsAppApi": {
+          "id": "75melKbodQdQAHVp",
+          "name": "Marketing | Secondary [Miles Education]"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "tableId": "message_status",
+        "fieldsUi": {
+          "fieldValues": [
+            {
+              "fieldId": "send_status",
+              "fieldValue": "true"
+            },
+            {
+              "fieldId": "send_time",
+              "fieldValue": "={{ $now }}"
+            },
+            {
+              "fieldId": "message_id",
+              "fieldValue": "={{ $json.messages[0].id }}"
+            },
+            {
+              "fieldId": "template_name",
+              "fieldValue": "conclave_instant_registration"
+            },
+            {
+              "fieldId": "phone",
+              "fieldValue": "={{ $json.contacts[0].wa_id }}"
+            }
+          ]
+        }
+      },
+      "id": "332e07bb-816f-4938-be7a-48661c8a1e25",
+      "name": "Supabase",
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        1400,
+        360
+      ],
+      "credentials": {
+        "supabaseApi": {
+          "id": "baNruLU9AV7x2GZq",
+          "name": "Supabase campaign manager"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "template": "walkin-registration",
+        "fromEmail": "vasudha.dubey@milestalenthub.com",
+        "toEmail": "={{ $('Webhook').item.json.body.lead_details.email }}",
+        "options": {
+          "subject": "Congratulations! Here are your details for M-PACT!"
+        },
+        "mergeVarsUi": {
+          "mergeVarsValues": [
+            {
+              "name": "FNAME",
+              "content": "={{ $('Webhook').item.json.body.lead_details.name }}"
+            },
+            {
+              "name": "UUID",
+              "content": "={{ $('Webhook').item.json.body.lead_uuid }}"
+            }
+          ]
+        }
+      },
+      "id": "c80f7c88-01fb-4322-bfe1-46c851f2c8f9",
+      "name": "Mandrill",
+      "type": "n8n-nodes-base.mandrill",
+      "typeVersion": 1,
+      "position": [
+        1280,
+        660
+      ],
+      "credentials": {
+        "mandrillApi": {
+          "id": "MdiS01IyaXU55Lih",
+          "name": "Mandrill account"
+        }
+      }
+    }
+  ],
+  "pinData": {
+    "Webhook": [
+      {
+        "json": {
+          "headers": {
+            "host": "callback.miles-api.com",
+            "x-real-ip": "108.162.227.128",
+            "x-forwarded-host": "callback.miles-api.com",
+            "x-forwarded-server": "callback.miles-api.com",
+            "x-forwarded-for": "115.240.189.114, 108.162.227.128",
+            "connection": "close",
+            "content-length": "225",
+            "accept-encoding": "gzip, br",
+            "cf-ray": "8eda722d2bb53e3e-SIN",
+            "x-forwarded-proto": "https",
+            "accept": "application/json, text/plain, */*",
+            "content-type": "application/json",
+            "user-agent": "axios/1.7.9",
+            "cf-connecting-ip": "115.240.189.114",
+            "cdn-loop": "cloudflare; loops=1",
+            "cf-ipcountry": "IN"
+          },
+          "params": {},
+          "query": {},
+          "body": {
+            "lead_uuid": "824b1ded-dfb7-4951-9246-fff05cf8cf8d",
+            "orientation_id": 72,
+            "registration_date": "2024-12-06T07:08:39.667Z",
+            "lead_details": {
+              "name": "Karan",
+              "email": "kmandalam@gmail.com",
+              "phone": "7349296479"
+            }
+          }
+        }
+      }
+    ]
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 1,
+  "updatedAt": "2024-12-12T11:58:49.000Z",
+  "versionId": "1b80c55d-28f5-4914-b0f0-0cad86caf884"
+}
