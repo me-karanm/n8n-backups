@@ -1,0 +1,528 @@
+{
+  "active": false,
+  "connections": {
+    "Execute Workflow Trigger": {
+      "main": [
+        [
+          {
+            "node": "Set1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Supabase6": {
+      "main": [
+        [
+          {
+            "node": "Supabase",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Switch": {
+      "main": [
+        [],
+        [
+          {
+            "node": "Set",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request": {
+      "main": [
+        [
+          {
+            "node": "Supabase8",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Supabase": {
+      "main": [
+        [
+          {
+            "node": "Switch",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Set1": {
+      "main": [
+        [
+          {
+            "node": "Supabase6",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Set": {
+      "main": [
+        [
+          {
+            "node": "Date & Time",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Date & Time": {
+      "main": [
+        [
+          {
+            "node": "Supabase1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Supabase1": {
+      "main": [
+        [
+          {
+            "node": "Date & Time1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Date & Time1": {
+      "main": [
+        [
+          {
+            "node": "WhatsApp Business Cloud1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2024-01-07T09:20:08.448Z",
+  "id": "gnAQu5oZzm9gxDjn",
+  "meta": null,
+  "name": "replay flow book session",
+  "nodes": [
+    {
+      "parameters": {
+        "mode": "expression",
+        "output": "={{ $('Execute Workflow Trigger').item.json.payload === \"Yes\" ? 0 : $('Execute Workflow Trigger').item.json.payload === \"Not Interested\" ? 2 : 1 }}"
+      },
+      "id": "f6e3be75-dc6b-4833-916d-d74ff7ca29b6",
+      "name": "Switch",
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 1,
+      "position": [
+        -360,
+        980
+      ]
+    },
+    {
+      "parameters": {
+        "phoneNumberId": "108019349036743",
+        "recipientPhoneNumber": "={{ $json.phone }}",
+        "template": "website_flow_1_work_in_us|en"
+      },
+      "id": "8991e1e3-5e56-4d1e-ba21-ebda4cfcc6b4",
+      "name": "WhatsApp Business Cloud",
+      "type": "n8n-nodes-base.whatsApp",
+      "typeVersion": 1,
+      "position": [
+        760,
+        1220
+      ],
+      "credentials": {
+        "whatsAppApi": {
+          "id": "75melKbodQdQAHVp",
+          "name": "WhatsApp miles education"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "tableId": "message_status",
+        "fieldsUi": {
+          "fieldValues": [
+            {
+              "fieldId": "send_status",
+              "fieldValue": "true"
+            },
+            {
+              "fieldId": "send_time",
+              "fieldValue": "={{ $now }}"
+            },
+            {
+              "fieldId": "message_id",
+              "fieldValue": "={{ $json.messages[0].id }}"
+            },
+            {
+              "fieldId": "campaign_id",
+              "fieldValue": "181"
+            },
+            {
+              "fieldId": "next_flow_id",
+              "fieldValue": "bVz88YCSQeipe0DL"
+            },
+            {
+              "fieldId": "root",
+              "fieldValue": "true"
+            },
+            {
+              "fieldId": "send_whatsapp_import",
+              "fieldValue": "={{ $('Supabase6').item.json.send_whatsapp_import }}"
+            }
+          ]
+        }
+      },
+      "id": "9f82d742-f149-4dd2-b23b-04f1f4869ecd",
+      "name": "Supabase8",
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        180,
+        600
+      ],
+      "credentials": {
+        "supabaseApi": {
+          "id": "baNruLU9AV7x2GZq",
+          "name": "Supabase campaign manager"
+        }
+      },
+      "continueOnFail": true
+    },
+    {
+      "parameters": {},
+      "id": "ee2b28cc-4984-4c9b-a7dd-f1ec521f1fbb",
+      "name": "Execute Workflow Trigger",
+      "type": "n8n-nodes-base.executeWorkflowTrigger",
+      "typeVersion": 1,
+      "position": [
+        -1340,
+        980
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "get",
+        "tableId": "message_status",
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "id",
+              "keyValue": "={{ $('Execute Workflow Trigger').item.json.message_status_id }}"
+            }
+          ]
+        }
+      },
+      "id": "7183d5ea-1955-4ec7-943b-375a728039dc",
+      "name": "Supabase6",
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        -840,
+        980
+      ],
+      "credentials": {
+        "supabaseApi": {
+          "id": "baNruLU9AV7x2GZq",
+          "name": "Supabase campaign manager"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "get",
+        "tableId": "counselling_session",
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "id",
+              "keyValue": "={{ $json.counselling_session_id }}"
+            }
+          ]
+        }
+      },
+      "id": "1eb2c8c4-a9b9-45f6-b89c-d200552bc605",
+      "name": "Supabase",
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        -620,
+        980
+      ],
+      "credentials": {
+        "supabaseApi": {
+          "id": "baNruLU9AV7x2GZq",
+          "name": "Supabase campaign manager"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://graph.facebook.com/v17.0/108019349036743/messages",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "whatsAppApi",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"recipient_type\": \"individual\",\n  \"messaging_product\": \"whatsapp\",\n  \"to\": \"{{ $('Execute Workflow Trigger').item.json.wa_id }}\",\n  \"type\": \"interactive\",\n  \"interactive\": {\n    \"type\": \"flow\",\n     \"header\": {\n       \"type\": \"text\",\n       \"text\": \"Hey, {{ $('Supabase').item.json.first_name }}\"\n     },\n    \"body\": {\n      \"text\": \"Choose your preferred slot for our expert to get in touch with you!\"\n    },\n    \"footer\": {\n      \"text\": \"Miles Education\"\n    },\n    \"action\": {\n      \"name\": \"flow\",\n      \"parameters\": {\n        \"flow_message_version\": \"3\",\n        \"flow_token\": \"AQAAAAACS5FpgQ_cAAAAAD0QI3s.\",\n        \"flow_id\": \"930886885066878\",\n        \"flow_cta\": \"Let's start !\",\n        \"flow_action\": \"navigate\",\n        \"flow_action_payload\": {\n          \"screen\": \"SIGN_UP\",\n          \"data\": { \n            \"product_name\": \"name\",\n            \"product_description\": \"description\",\n            \"product_price\": 100\n          }\n        }\n      }\n    }\n  }\n} ",
+        "options": {}
+      },
+      "id": "c5cb82bd-d6a1-441d-84ec-9fc2e2a03dec",
+      "name": "HTTP Request",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        -80,
+        600
+      ],
+      "credentials": {
+        "whatsAppApi": {
+          "id": "75melKbodQdQAHVp",
+          "name": "WhatsApp miles education"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "keepOnlySet": true,
+        "values": {
+          "string": [
+            {
+              "name": "email",
+              "value": "={{$('Set1').item.json.propertyName.email}}"
+            },
+            {
+              "name": "Time",
+              "value": "={{$('Set1').item.json.propertyName.time}}"
+            }
+          ],
+          "number": [
+            {
+              "name": "date",
+              "value": "={{$('Set1').item.json.propertyName.date}}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "fe4c115a-a86a-45fc-a48b-63b2455600c0",
+      "name": "Set",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 2,
+      "position": [
+        -60,
+        980
+      ]
+    },
+    {
+      "parameters": {
+        "keepOnlySet": true,
+        "values": {
+          "string": [
+            {
+              "value": "={{JSON.parse($json.response)}}"
+            },
+            {
+              "name": "propertyName1",
+              "value": "{ \"email\": \"Jithin@gmail.co\", \"flow_token\": \"AQAAAAACS5FpgQ_cAAAAAD0QI3s.\", \"date\": \"1704825000000\", \"time\": \"5\" }"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "a821222b-aeb9-4ab7-8fec-6661eac87421",
+      "name": "Set1",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 2,
+      "position": [
+        -1120,
+        980
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "formatDate",
+        "date": "={{ $json.date }}",
+        "format": "yyyy-MM-dd",
+        "options": {
+          "timezone": true
+        }
+      },
+      "id": "8928d3ae-937f-4521-a506-82887bc2da4b",
+      "name": "Date & Time",
+      "type": "n8n-nodes-base.dateTime",
+      "typeVersion": 2,
+      "position": [
+        160,
+        980
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "send",
+        "phoneNumberId": "108019349036743",
+        "recipientPhoneNumber": "={{ $('Execute Workflow Trigger').item.json.wa_id }}",
+        "textBody": "=Your slot with our expert has been booked on {{ $json.formattedDate1 }} at {{ $('Set').item.json.Time == 1 ? \"10:30 AM\" : \n   $('Set').item.json.Time == 2 ? \"11:00 AM\" : \n   $('Set').item.json.Time == 3 ? \"11:30 AM\" : \n   $('Set').item.json.Time == 4 ? \"12:00 PM\" : \n   $('Set').item.json.Time == 5 ? \"12:30 PM\" : \n   $('Set').item.json.Time == 6 ? \"1:00 PM\" : \n   $('Set').item.json.Time == 7 ? \"1:30 PM\" : \n   $('Set').item.json.Time == 8 ? \"2:00 PM\" : \n   $('Set').item.json.Time == 9 ? \"2:30 PM\" : \n   $('Set').item.json.Time == 10 ? \"3:00 PM\" : \n   $('Set').item.json.Time == 11 ? \"3:30 PM\" : \n   $('Set').item.json.Time == 12 ? \"4:00 PM\" : \n   $('Set').item.json.Time == 13 ? \"4:30 PM\" : \n   $('Set').item.json.Time == 14 ? \"5:00 PM\" : \n   $('Set').item.json.Time == 15 ? \"5:30 PM\" : \n   $('Set').item.json.Time == 16 ? \"6:00 PM\" : \n   $('Set').item.json.Time == 17 ? \"6:30 PM\" : \"10:30 AM\" }}.",
+        "additionalFields": {}
+      },
+      "id": "492752d4-fd22-47e2-968e-d9887594f34a",
+      "name": "WhatsApp Business Cloud1",
+      "type": "n8n-nodes-base.whatsApp",
+      "typeVersion": 1,
+      "position": [
+        900,
+        980
+      ],
+      "credentials": {
+        "whatsAppApi": {
+          "id": "75melKbodQdQAHVp",
+          "name": "WhatsApp miles education"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "send",
+        "phoneNumberId": "108019349036743",
+        "recipientPhoneNumber": "={{ $('Execute Workflow Trigger').item.json.wa_id }}",
+        "textBody": "No problem! Feel free to get in touch with us if you change your mind.",
+        "additionalFields": {}
+      },
+      "id": "ead123a5-6f68-46f1-af9d-6fbff9fb5534",
+      "name": "WhatsApp Business Cloud2",
+      "type": "n8n-nodes-base.whatsApp",
+      "typeVersion": 1,
+      "position": [
+        240,
+        1360
+      ],
+      "credentials": {
+        "whatsAppApi": {
+          "id": "75melKbodQdQAHVp",
+          "name": "WhatsApp miles education"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "tableId": "counselling_session",
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "id",
+              "condition": "eq",
+              "keyValue": "={{ $('Supabase6').item.json.counselling_session_id }}"
+            }
+          ]
+        },
+        "fieldsUi": {
+          "fieldValues": [
+            {
+              "fieldId": "date",
+              "fieldValue": "={{ $json.formattedDate }}"
+            },
+            {
+              "fieldId": "time",
+              "fieldValue": "={{ $('Set').item.json.Time }}"
+            },
+            {
+              "fieldId": "time_string",
+              "fieldValue": "={{ $('Set').item.json.Time == 1 ? \"10:30 AM\" : \n   $('Set').item.json.Time == 2 ? \"11:00 AM\" : \n   $('Set').item.json.Time == 3 ? \"11:30 AM\" : \n   $('Set').item.json.Time == 4 ? \"12:00 PM\" : \n   $('Set').item.json.Time == 5 ? \"12:30 PM\" : \n   $('Set').item.json.Time == 6 ? \"1:00 PM\" : \n   $('Set').item.json.Time == 7 ? \"1:30 PM\" : \n   $('Set').item.json.Time == 8 ? \"2:00 PM\" : \n   $('Set').item.json.Time == 9 ? \"2:30 PM\" : \n   $('Set').item.json.Time == 10 ? \"3:00 PM\" : \n   $('Set').item.json.Time == 11 ? \"3:30 PM\" : \n   $('Set').item.json.Time == 12 ? \"4:00 PM\" : \n   $('Set').item.json.Time == 13 ? \"4:30 PM\" : \n   $('Set').item.json.Time == 14 ? \"5:00 PM\" : \n   $('Set').item.json.Time == 15 ? \"5:30 PM\" : \n   $('Set').item.json.Time == 16 ? \"6:00 PM\" : \n   $('Set').item.json.Time == 17 ? \"6:30 PM\" : \"10:30 AM\" }}\n"
+            },
+            {
+              "fieldId": "email",
+              "fieldValue": "={{ $('Set').item.json.email }}"
+            },
+            {
+              "fieldId": "camp_id",
+              "fieldValue": "181"
+            }
+          ]
+        }
+      },
+      "id": "e9495ee9-0ad5-40e0-bfd9-d6c784848439",
+      "name": "Supabase1",
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        380,
+        980
+      ],
+      "credentials": {
+        "supabaseApi": {
+          "id": "baNruLU9AV7x2GZq",
+          "name": "Supabase campaign manager"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "formatDate",
+        "date": "={{ $('Set').item.json.date }}",
+        "format": "custom",
+        "customFormat": "dd/MM/yyyy",
+        "outputFieldName": "formattedDate1",
+        "options": {}
+      },
+      "id": "fc75ecaa-4806-4e72-8c0f-dd2160662c9c",
+      "name": "Date & Time1",
+      "type": "n8n-nodes-base.dateTime",
+      "typeVersion": 2,
+      "position": [
+        600,
+        980
+      ]
+    }
+  ],
+  "pinData": {
+    "Execute Workflow Trigger": [
+      {
+        "json": {
+          "response_status": false,
+          "is_retry": false,
+          "user_id": null,
+          "campaign_id": 181,
+          "message_status_id": 944965,
+          "webinar_id": null,
+          "lead_dump_id": null,
+          "payload": "interactive",
+          "wa_id": "916238133298",
+          "response": {
+            "email": "Jithin@gmail.con",
+            "date": "1704825000000",
+            "time": "4",
+            "flow_token": "AQAAAAACS5FpgQ_cAAAAAD0QI3s."
+          }
+        }
+      }
+    ]
+  },
+  "settings": {
+    "executionOrder": "v1",
+    "timezone": "Asia/Calcutta",
+    "saveManualExecutions": true,
+    "callerPolicy": "workflowsFromSameOwner"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2024-01-17T12:49:34.000Z",
+  "versionId": "b89c5868-57f0-4ccf-af7e-05020cc7a761"
+}
