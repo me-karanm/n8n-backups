@@ -1,0 +1,86 @@
+{
+  "active": false,
+  "connections": {
+    "Execute Workflow Trigger": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2023-09-02T13:49:44.979Z",
+  "id": "DzC2VgEXVwBL6kPc",
+  "meta": null,
+  "name": "call retry to another n8n",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "42f95a29-ba71-4ced-87a3-e577f1568ea2",
+      "name": "Execute Workflow Trigger",
+      "type": "n8n-nodes-base.executeWorkflowTrigger",
+      "typeVersion": 1,
+      "position": [
+        580,
+        340
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "http://34.100.163.6:5678/webhook/ce3b6bb9-f946-4dee-8426-3e4c84e0c924",
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "person_id",
+              "value": "={{ $json.user_id }}"
+            },
+            {
+              "name": "camp_id",
+              "value": "={{ $json.campaign_id }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "f6d2ea51-901f-4a07-9225-0daa35afd08e",
+      "name": "HTTP Request",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        880,
+        340
+      ]
+    }
+  ],
+  "pinData": {
+    "Execute Workflow Trigger": [
+      {
+        "json": {
+          "response_status": false,
+          "is_retry": true,
+          "user_id": 100000001,
+          "campaign_id": 25,
+          "message_status_id": 16,
+          "webinar_id": null,
+          "payload": "Yes",
+          "wa_id": "916238133298",
+          "name": ""
+        }
+      }
+    ]
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2023-09-02T13:53:37.000Z",
+  "versionId": "930f3978-8ceb-40d2-9e66-6d3fb471532b"
+}
