@@ -1,0 +1,30 @@
+{
+  "active": false,
+  "connections": {},
+  "createdAt": "2024-01-24T19:08:29.496Z",
+  "id": "GWeBHm9PXbIIOR9M",
+  "meta": null,
+  "name": "Replay to redirect",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "7a29f76c-d15f-4153-983b-2568bae5e42d",
+      "name": "Execute Workflow Trigger",
+      "type": "n8n-nodes-base.executeWorkflowTrigger",
+      "typeVersion": 1,
+      "position": [
+        600,
+        320
+      ]
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2024-01-24T19:08:35.000Z",
+  "versionId": "f5becd6f-8392-4823-a72e-8f73a289c62e"
+}
