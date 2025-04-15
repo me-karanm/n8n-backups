@@ -1,0 +1,279 @@
+{
+  "active": false,
+  "connections": {
+    "Execute Workflow Trigger": {
+      "main": [
+        [
+          {
+            "node": "Supabase6",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Switch": {
+      "main": [
+        [
+          {
+            "node": "Supabase2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Supabase6": {
+      "main": [
+        [
+          {
+            "node": "Supabase",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Supabase": {
+      "main": [
+        [
+          {
+            "node": "Switch",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Supabase2": {
+      "main": [
+        [
+          {
+            "node": "IF",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "IF": {
+      "main": [
+        [
+          {
+            "node": "Supabase1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2023-11-10T16:09:14.094Z",
+  "id": "JXJbAtpDB3HipTu7",
+  "meta": null,
+  "name": "10th nov Enrolled candidates (U3, U3+) webinar awareness",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "b8289aba-8c64-4fe7-92be-11f6a906f744",
+      "name": "Execute Workflow Trigger",
+      "type": "n8n-nodes-base.executeWorkflowTrigger",
+      "typeVersion": 1,
+      "position": [
+        -860,
+        660
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "expression",
+        "output": "={{ $('Execute Workflow Trigger').item.json.payload === \"Register Now\" ? 0 :1}}"
+      },
+      "id": "672b309d-dc8d-4f9f-bd28-dfc5c03e5a45",
+      "name": "Switch",
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 1,
+      "position": [
+        -140,
+        660
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "get",
+        "tableId": "message_status",
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "id",
+              "keyValue": "={{ $json.message_status_id }}"
+            }
+          ]
+        }
+      },
+      "id": "e0e5ec5f-21d2-4b06-b426-6be413022d79",
+      "name": "Supabase6",
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        -640,
+        660
+      ],
+      "credentials": {
+        "supabaseApi": {
+          "id": "baNruLU9AV7x2GZq",
+          "name": "Supabase campaign manager"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "get",
+        "tableId": "send_whatsapp_import",
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "id",
+              "keyValue": "={{ $json.send_whatsapp_import }}"
+            }
+          ]
+        }
+      },
+      "id": "9c19ec45-6a4f-4c5c-9149-c76d1680f4e9",
+      "name": "Supabase",
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        -420,
+        660
+      ],
+      "credentials": {
+        "supabaseApi": {
+          "id": "baNruLU9AV7x2GZq",
+          "name": "Supabase campaign manager"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "tableId": "leads_dump",
+        "fieldsUi": {
+          "fieldValues": [
+            {
+              "fieldId": "first_name",
+              "fieldValue": "={{ $('Supabase').item.json.first_name }}"
+            },
+            {
+              "fieldId": "phone",
+              "fieldValue": "={{ $('Supabase').item.json.phone.length  <= 10 ?91+$('Supabase').item.json.phone : $('Supabase').item.json.phone   }} "
+            },
+            {
+              "fieldId": "email",
+              "fieldValue": "={{ $('Supabase').item.json.email }}"
+            },
+            {
+              "fieldId": "course",
+              "fieldValue": "9"
+            },
+            {
+              "fieldId": "camp_id",
+              "fieldValue": "87"
+            },
+            {
+              "fieldId": "register_for_webinar",
+              "fieldValue": "true"
+            },
+            {
+              "fieldId": "whatsapp_send_status",
+              "fieldValue": "true"
+            },
+            {
+              "fieldId": "push_to_mf",
+              "fieldValue": "false"
+            },
+            {
+              "fieldId": "webinar_id",
+              "fieldValue": "23"
+            }
+          ]
+        }
+      },
+      "id": "5ad8ee07-cfaf-4178-86f9-d24fb113f9d4",
+      "name": "Supabase1",
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        460,
+        460
+      ],
+      "credentials": {
+        "supabaseApi": {
+          "id": "baNruLU9AV7x2GZq",
+          "name": "Supabase campaign manager"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "get",
+        "tableId": "leads_dump",
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "webinar_id",
+              "keyValue": "23"
+            },
+            {
+              "keyName": "email",
+              "keyValue": "={{ $json.email }}"
+            }
+          ]
+        }
+      },
+      "id": "97f140f6-5172-4eae-a11b-648b18bfa2e6",
+      "name": "Supabase2",
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        100,
+        480
+      ],
+      "alwaysOutputData": true,
+      "credentials": {
+        "supabaseApi": {
+          "id": "baNruLU9AV7x2GZq",
+          "name": "Supabase campaign manager"
+        }
+      },
+      "continueOnFail": true
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "boolean": [
+            {
+              "value1": "={{ $json.hasOwnProperty('id') }}"
+            }
+          ]
+        }
+      },
+      "id": "363382f5-e4f5-4295-990c-b3006ac893f9",
+      "name": "IF",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        260,
+        480
+      ]
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2023-11-15T09:24:33.000Z",
+  "versionId": "9663dc9c-3e62-4efa-a07a-ca80987a0113"
+}
