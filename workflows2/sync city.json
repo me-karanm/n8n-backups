@@ -1,0 +1,426 @@
+{
+  "active": false,
+  "connections": {
+    "When clicking \"Execute Workflow\"": {
+      "main": [
+        [
+          {
+            "node": "Google Sheets",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Sheets": {
+      "main": [
+        [
+          {
+            "node": "Split In Batches",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Split In Batches": {
+      "main": [
+        [
+          {
+            "node": "Supabase",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Supabase": {
+      "main": [
+        [
+          {
+            "node": "Google Sheets1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Sheets1": {
+      "main": [
+        [
+          {
+            "node": "Split In Batches",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2023-08-16T17:04:17.553Z",
+  "id": "IQdjo30SeReAQZq6",
+  "meta": null,
+  "name": "sync city",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "e25f552f-e270-4ef1-8f9a-e858866be84a",
+      "name": "When clicking \"Execute Workflow\"",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        460,
+        320
+      ]
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "https://docs.google.com/spreadsheets/d/1lxT-Fl6a6wHDfMQE7gDRsJXk4byR558qJudLePQqCqc/edit#gid=1541118573",
+          "mode": "url",
+          "__regex": "https:\\/\\/(?:drive|docs)\\.google\\.com(?:\\/.*|)\\/d\\/([0-9a-zA-Z\\-_]+)(?:\\/.*|)"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 1541118573,
+          "mode": "list",
+          "cachedResultName": "Placement Drive - Attendee Report",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1lxT-Fl6a6wHDfMQE7gDRsJXk4byR558qJudLePQqCqc/edit#gid=1541118573"
+        },
+        "options": {}
+      },
+      "id": "db45e2e0-1602-41ee-8d4e-4549027aa2a9",
+      "name": "Google Sheets",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4,
+      "position": [
+        700,
+        320
+      ],
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "QaXIjtC6vZ4jwXwX",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "batchSize": 1,
+        "options": {}
+      },
+      "id": "12e5536c-4e47-4e13-9c98-137486418bb5",
+      "name": "Split In Batches",
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 2,
+      "position": [
+        920,
+        220
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "getAll",
+        "tableId": "zoom_webinar",
+        "limit": 1,
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "email_id",
+              "condition": "eq",
+              "keyValue": "={{ $json.Email }}"
+            }
+          ]
+        }
+      },
+      "id": "8574f1d5-4757-41ae-a0ac-8c8343dcc41e",
+      "name": "Supabase",
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        1200,
+        200
+      ],
+      "credentials": {
+        "supabaseApi": {
+          "id": "ptZNo3FAaF0XYQKi",
+          "name": "Supabase account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "documentId": {
+          "__rl": true,
+          "value": "https://docs.google.com/spreadsheets/d/1lxT-Fl6a6wHDfMQE7gDRsJXk4byR558qJudLePQqCqc/edit#gid=1541118573",
+          "mode": "url",
+          "__regex": "https:\\/\\/(?:drive|docs)\\.google\\.com(?:\\/.*|)\\/d\\/([0-9a-zA-Z\\-_]+)(?:\\/.*|)"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 1541118573,
+          "mode": "list",
+          "cachedResultName": "Placement Drive - Attendee Report",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1lxT-Fl6a6wHDfMQE7gDRsJXk4byR558qJudLePQqCqc/edit#gid=1541118573"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Email": "={{ $json.email_id }}",
+            "Attended": "={{ $('Split In Batches').item.json.Attended }}",
+            "User Name (Original Name)": "={{ $('Split In Batches').item.json['User Name (Original Name)'] }}",
+            "First Name": "={{ $('Split In Batches').item.json['First Name'] }}",
+            "Last Name": "={{ $('Split In Batches').item.json['Last Name'] }}",
+            "Phone": "={{ $('Split In Batches').item.json.Email }}",
+            "City": "={{ $json.location }}",
+            "Poll: How many years of work-ex do you have (including any articleship work-ex)?": "={{ $('Split In Batches').item.json['Poll: How many years of work-ex do you have (including any articleship work-ex)?'] }}",
+            "CAN ID": "={{ $('Split In Batches').item.json['CAN ID'] }}",
+            "CM SPOC": "={{ $('Split In Batches').item.json['CM SPOC'] }}",
+            "SR SPOC": "={{ $('Split In Batches').item.json['SR SPOC'] }}",
+            "U Level": "={{ $('Split In Batches').item.json['U Level'] }}",
+            "M Level": "={{ $('Split In Batches').item.json['M Level'] }}",
+            "GM": "={{ $('Split In Batches').item.json.GM }}",
+            "City Tier": "={{ $('Split In Batches').item.json['City Tier'] }}",
+            "Enrolled course": "={{ $('Split In Batches').item.json['Enrolled course'] }}",
+            "NE SPOC": "={{ $('Split In Batches').item.json['NE SPOC'] }}",
+            "NE SPOC GM": "={{ $('Split In Batches').item.json['NE SPOC GM'] }}",
+            "NE SPOC City Tier": "={{ $('Split In Batches').item.json['NE SPOC City Tier'] }}",
+            "NE assigned Date": "={{ $('Split In Batches').item.json['NE assigned Date'] }}",
+            "M Level Update": "={{ $('Split In Batches').item.json['M Level Update'] }}",
+            "U Level Update": "={{ $('Split In Batches').item.json['U Level Update'] }}"
+          },
+          "matchingColumns": [
+            "Email"
+          ],
+          "schema": [
+            {
+              "id": "Attended",
+              "displayName": "Attended",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "User Name (Original Name)",
+              "displayName": "User Name (Original Name)",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "First Name",
+              "displayName": "First Name",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Last Name",
+              "displayName": "Last Name",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Email",
+              "displayName": "Email",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Phone",
+              "displayName": "Phone",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "City",
+              "displayName": "City",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Poll: How many years of work-ex do you have (including any articleship work-ex)?",
+              "displayName": "Poll: How many years of work-ex do you have (including any articleship work-ex)?",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "CAN ID",
+              "displayName": "CAN ID",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "CM SPOC",
+              "displayName": "CM SPOC",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "SR SPOC",
+              "displayName": "SR SPOC",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "U Level",
+              "displayName": "U Level",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "M Level",
+              "displayName": "M Level",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "GM",
+              "displayName": "GM",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "City Tier",
+              "displayName": "City Tier",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Enrolled course",
+              "displayName": "Enrolled course",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "NE SPOC",
+              "displayName": "NE SPOC",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "NE SPOC GM",
+              "displayName": "NE SPOC GM",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "NE SPOC City Tier",
+              "displayName": "NE SPOC City Tier",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "NE assigned Date",
+              "displayName": "NE assigned Date",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "M Level Update",
+              "displayName": "M Level Update",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "U Level Update",
+              "displayName": "U Level Update",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "b243eb0e-4579-4774-9491-cee0e7558c6a",
+      "name": "Google Sheets1",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4,
+      "position": [
+        1420,
+        200
+      ],
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "QaXIjtC6vZ4jwXwX",
+          "name": "Google Sheets account"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2023-08-17T08:46:08.000Z",
+  "versionId": "1e704030-e1cb-45fa-9f81-cce9be474fa9"
+}
