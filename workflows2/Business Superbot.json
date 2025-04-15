@@ -1,0 +1,699 @@
+{
+  "active": true,
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Code1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Supabase": {
+      "main": [
+        [
+          {
+            "node": "IF",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Set": {
+      "main": [
+        [
+          {
+            "node": "Supabase",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code1": {
+      "main": [
+        [
+          {
+            "node": "Set",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "IF": {
+      "main": [
+        [],
+        [
+          {
+            "node": "If1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Switch": {
+      "main": [
+        [
+          {
+            "node": "WhatsApp Business Cloud",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "WhatsApp Business Cloud",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "WhatsApp Business Cloud": {
+      "main": [
+        [
+          {
+            "node": "Supabase3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Supabase3": {
+      "main": [
+        [
+          {
+            "node": "Supabase4",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Supabase4": {
+      "main": [
+        [
+          {
+            "node": "Mandrill",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Mandrill": {
+      "main": [
+        [
+          {
+            "node": "Supabase9",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If1": {
+      "main": [
+        [
+          {
+            "node": "Switch",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        []
+      ]
+    }
+  },
+  "createdAt": "2024-12-23T13:22:03.634Z",
+  "id": "OlNiZnjbiqRN9gsQ",
+  "meta": null,
+  "name": "Business Superbot",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "business-superbot",
+        "options": {}
+      },
+      "id": "0d5f6ed6-781b-43a1-aabc-7c6e792a5522",
+      "name": "Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        180,
+        960
+      ],
+      "webhookId": "0fd20325-24d8-498c-83da-7d055bf1c9e3"
+    },
+    {
+      "parameters": {
+        "jsCode": "const results = [];\n\n// Loop through all input items\nfor (let i = 0; i < items.length; i++) {\n    // Get the date from the current item (assuming the input is in the field 'date')\n    const inputDate = items[i].json.body.connected_date_time;\n\n    // Check if the input date is valid\n    if (!inputDate || isNaN(new Date(inputDate).getTime())) {\n        results.push({\n            json: {\n                error: 'Invalid date input',\n                originalDate: inputDate\n            }\n        });\n        continue; // Skip to the next item if the date is invalid\n    }\n\n    const date = new Date(inputDate);\n\n    // Adjusting for the timezone offset (+5:30)\n    const timezoneOffset = 5.5 * 60 * 60 * 1000;\n    const adjustedDate = new Date(date.getTime() + timezoneOffset);\n\n    const isoString = adjustedDate.toISOString();\n\n    // Remove the 'Z' at the end of the ISO string (UTC indicator)\n    const withoutZ = isoString.replace('Z', '');\n\n    // Add the timezone information (+05:30)\n    const formattedDate = withoutZ + '+05:30';\n\n    // Add the formatted date to the result for this item\n    results.push({\n        json: {\n            formattedDate\n        }\n    });\n}\n\n// Return the results in the expected format\nreturn results;\n"
+      },
+      "id": "bd026db2-565d-4a1f-a37e-f5e15f5c4336",
+      "name": "Code",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        560,
+        280
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api2.netcoresmartech.com/v1/activity/upload",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "Bearer 8b61610ee5bc044df4a95a7d87c6e436"
+            },
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "=[\n  {\n    \"asset_id\": \"5110a91370e379b21165d47435cf6106\",\n    \"activity_name\": \"superbot_all_activity\",\n    \"timestamp\": \"{{ $json[\"formattedDate\"] }}\",\n    \"identity\": \"{{$('Webhook').item.json[\"body\"][\"identity\"]}}\",\n    \"activity_source\": \"web\",\n    \"activity_params\": {\n      \"first_name\": \"{{ $('Webhook').item.json[\"body\"][\"name\"]}}\",\n      \"vertical\": \"{{ $('Webhook').item.json[\"body\"][\"vertical\"] }}\",\n      \"disposition\": \"{{ $('Webhook').item.json[\"body\"][\"disposition\"] }}\"\n         }\n  }\n]",
+        "options": {}
+      },
+      "id": "1b1e0e84-f2e1-4f83-b4d2-42538da618c2",
+      "name": "HTTP Request",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        800,
+        280
+      ]
+    },
+    {
+      "parameters": {
+        "content": "Netcore",
+        "height": 242,
+        "width": 547
+      },
+      "id": "f247f74a-e6ad-41a7-88b7-57db043b9ba8",
+      "name": "Sticky Note",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        480,
+        220
+      ]
+    },
+    {
+      "parameters": {
+        "tableId": "business_superbot_flow_reponses",
+        "fieldsUi": {
+          "fieldValues": [
+            {
+              "fieldId": "first_name",
+              "fieldValue": "={{ $('Webhook').item.json.body.first_name }}"
+            },
+            {
+              "fieldId": "phone",
+              "fieldValue": "={{ $json.normalizedPhoneNumber }}"
+            },
+            {
+              "fieldId": "email",
+              "fieldValue": "={{ $('Webhook').item.json.body.email }}"
+            },
+            {
+              "fieldId": "status_payload",
+              "fieldValue": "={{ $('Webhook').item.json.body.status }}"
+            },
+            {
+              "fieldId": "camp_id",
+              "fieldValue": "=1280"
+            },
+            {
+              "fieldId": "uuid",
+              "fieldValue": "={{ $('Webhook').item.json.body.email }} {{ $('Webhook').item.json.body.phone }}"
+            },
+            {
+              "fieldId": "disposition",
+              "fieldValue": "={{ $('Webhook').item.json.body.disposition }}"
+            },
+            {
+              "fieldId": "vertical",
+              "fieldValue": "={{ $('Webhook').item.json.body.vertical }}"
+            },
+            {
+              "fieldId": "status_superbot",
+              "fieldValue": "={{ $('Webhook').item.json.body.status }}"
+            },
+            {
+              "fieldId": "outcome",
+              "fieldValue": "={{ $('Webhook').item.json.body.outcome }}"
+            },
+            {
+              "fieldId": "superbot_campaign_id",
+              "fieldValue": "={{ $('Webhook').item.json.body.campaign_id }}"
+            },
+            {
+              "fieldId": "connected_date_time",
+              "fieldValue": "={{ $('Webhook').item.json.body.connected_date_time }}"
+            },
+            {
+              "fieldId": "retry_count",
+              "fieldValue": "={{ $('Webhook').item.json.body.retry_count }}"
+            }
+          ]
+        }
+      },
+      "id": "75c9fc57-813a-4c28-83cc-57f2452eaa22",
+      "name": "Supabase",
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        1120,
+        960
+      ],
+      "credentials": {
+        "supabaseApi": {
+          "id": "baNruLU9AV7x2GZq",
+          "name": "Supabase campaign manager"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "values": {
+          "string": [
+            {
+              "name": "phone",
+              "value": "={{ $json.normalizedPhoneNumber }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "4f85f65c-9cb6-4107-88db-e3495d8df9a0",
+      "name": "Set",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 2,
+      "position": [
+        760,
+        960
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "const items = $input.all();  // Fetch all input items\nconst results = [];\n\nfor (let i = 0; i < items.length; i++) {\n    let number = items[i].json.body.phone;  // Assuming the input number is under 'phoneNumber' key\n\n    // Check if number is defined and is a valid string or number\n    if (!number) {\n        results.push({\n            json: {\n                normalizedPhoneNumber: 'Invalid number format'\n            }\n        });\n        continue;  // Skip to the next iteration\n    }\n\n    // Remove all non-digit characters\n    let cleanNumber = number.toString().replace(/[^\\d]/g, '');\n\n    let normalizedNumber;\n    \n    // If the number starts with '91' and is 12 digits long, remove the first two digits\n    if (cleanNumber.startsWith('91') && cleanNumber.length === 12) {\n        normalizedNumber = cleanNumber.slice(2);\n    } \n    // If the number is already 10 digits, use it as is\n    else if (cleanNumber.length === 10) {\n        normalizedNumber = cleanNumber;\n    } \n    // If the number starts with '+91' and is 13 digits long, remove the first three digits\n    else if (cleanNumber.startsWith('91') && cleanNumber.length === 13) {\n        normalizedNumber = cleanNumber.slice(3);\n    } else {\n        normalizedNumber = 'Invalid number format';\n    }\n\n    results.push({\n        json: {\n            normalizedPhoneNumber: normalizedNumber\n        }\n    });\n}\n\nreturn results;\n"
+      },
+      "id": "18c29162-9a7a-46fe-89d1-738a84869afc",
+      "name": "Code1",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        460,
+        960
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "string": [
+            {
+              "value1": "={{ $json.status_superbot }}",
+              "value2": "failed"
+            }
+          ]
+        }
+      },
+      "id": "7f2b3117-3c6e-4bf0-a6f2-0aae3e82c723",
+      "name": "IF",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        1380,
+        960
+      ]
+    },
+    {
+      "parameters": {
+        "phoneNumberId": "171009622770823",
+        "recipientPhoneNumber": "={{ $('Webhook').item.json.body.phone }}",
+        "template": "business_mba_util_callback_req|en",
+        "components": {
+          "component": [
+            {
+              "bodyParameters": {
+                "parameter": [
+                  {
+                    "text": "={{ $json.first_name }}"
+                  },
+                  {
+                    "text": "We are glad to know that you are keen to Live your American Dream! 🇺🇸"
+                  },
+                  {
+                    "text": "Miles brings you an opportunity to pursue an MBA from a Top 100 US MBA school, along with a PG certificate from IIM Indore."
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      },
+      "id": "b0cde775-78fc-4296-90bd-5774f77f60c2",
+      "name": "WhatsApp Business Cloud",
+      "type": "n8n-nodes-base.whatsApp",
+      "typeVersion": 1,
+      "position": [
+        3080,
+        1120
+      ],
+      "credentials": {
+        "whatsAppApi": {
+          "id": "FgS03iKYFJtZDGNw",
+          "name": "Marketing | Primary [Miles Education]"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "mode": "expression",
+        "output": "={{ \n$json.disposition == \"CALLBACK REQUESTED\" ? 0:\n$json.disposition == \"INTERESTED IN MBA ABROAD\" ? 1: 2\n}}"
+      },
+      "id": "38922f61-6310-4208-9b7c-80e9a2b2a6d5",
+      "name": "Switch",
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 1,
+      "position": [
+        2200,
+        1160
+      ]
+    },
+    {
+      "parameters": {
+        "content": "Connected Workflow"
+      },
+      "id": "3a2ec365-de1c-4820-8fc3-f31fbc8bf5d6",
+      "name": "Sticky Note2",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        2040,
+        1080
+      ]
+    },
+    {
+      "parameters": {
+        "tableId": "message_status",
+        "fieldsUi": {
+          "fieldValues": [
+            {
+              "fieldId": "send_status",
+              "fieldValue": "true"
+            },
+            {
+              "fieldId": "send_time",
+              "fieldValue": "={{ $now }}"
+            },
+            {
+              "fieldId": "read_status",
+              "fieldValue": "false"
+            },
+            {
+              "fieldId": "message_id",
+              "fieldValue": "={{ $json.messages[0].id }}"
+            },
+            {
+              "fieldId": "campaign_id",
+              "fieldValue": "={{ $('Supabase').item.json.camp_id }}"
+            },
+            {
+              "fieldId": "template_name",
+              "fieldValue": "=business_mba_util_callback_req_{{ $('Webhook').item.json.body.campaign_id }}_{{ $('Webhook').item.json.body.vertical }}"
+            }
+          ]
+        }
+      },
+      "id": "314f5667-97db-4ddf-8e08-a82c4271e6c5",
+      "name": "Supabase3",
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        3400,
+        1120
+      ],
+      "credentials": {
+        "supabaseApi": {
+          "id": "baNruLU9AV7x2GZq",
+          "name": "Supabase campaign manager"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "tableId": "business_superbot_flow_reponses",
+        "matchType": "allFilters",
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "id",
+              "condition": "eq",
+              "keyValue": "={{ $('Supabase').item.json.id }}"
+            }
+          ]
+        },
+        "fieldsUi": {
+          "fieldValues": [
+            {
+              "fieldId": "wa_msg_id_string",
+              "fieldValue": "={{ $('WhatsApp Business Cloud').item.json.messages[0].id }}"
+            }
+          ]
+        }
+      },
+      "id": "71a87127-27b7-4e3f-af1d-b4fdd9ed03ec",
+      "name": "Supabase4",
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        3720,
+        1120
+      ],
+      "credentials": {
+        "supabaseApi": {
+          "id": "baNruLU9AV7x2GZq",
+          "name": "Supabase campaign manager"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "content": "mba abroad superbot callback requested"
+      },
+      "id": "70159d12-965c-4407-9f40-90341e1be930",
+      "name": "Sticky Note3",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        2980,
+        1040
+      ]
+    },
+    {
+      "parameters": {
+        "template": "business-mba-callback-req",
+        "fromEmail": "mba.abroad@mileseducation.com",
+        "toEmail": "={{ $json.email }}",
+        "options": {
+          "fromName": " Miles MBA Abroad",
+          "subject": "Thank You for Your Interest in the Miles MBA Abroad!"
+        },
+        "mergeVarsUi": {
+          "mergeVarsValues": [
+            {
+              "name": "FNAME",
+              "content": "={{ $json.first_name }}"
+            }
+          ]
+        }
+      },
+      "id": "90863b24-1c22-4c01-a248-ef569dcb8d00",
+      "name": "Mandrill",
+      "type": "n8n-nodes-base.mandrill",
+      "typeVersion": 1,
+      "position": [
+        4040,
+        1120
+      ],
+      "credentials": {
+        "mandrillApi": {
+          "id": "MdiS01IyaXU55Lih",
+          "name": "Mandrill account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "tableId": "business_superbot_flow_reponses",
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "id",
+              "condition": "eq",
+              "keyValue": "={{ $('Supabase').item.json.id }}"
+            }
+          ]
+        },
+        "fieldsUi": {
+          "fieldValues": [
+            {
+              "fieldId": "email_sent",
+              "fieldValue": "={{ $json.status }}"
+            },
+            {
+              "fieldId": "email_success_id",
+              "fieldValue": "={{ $json._id }}"
+            }
+          ]
+        }
+      },
+      "id": "927007ad-cb63-4e13-9e5f-c4df25b0c1a9",
+      "name": "Supabase9",
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        4320,
+        1120
+      ],
+      "credentials": {
+        "supabaseApi": {
+          "id": "baNruLU9AV7x2GZq",
+          "name": "Supabase campaign manager"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict"
+          },
+          "conditions": [
+            {
+              "id": "609359d3-98be-4643-86fc-048985a1e5ff",
+              "leftValue": "={{ $('Webhook').item.json.body.vertical }}",
+              "rightValue": "=mbaabroad",
+              "operator": {
+                "type": "string",
+                "operation": "equals"
+              }
+            }
+          ],
+          "combinator": "or"
+        },
+        "options": {}
+      },
+      "id": "d048c53a-cc8d-4892-9202-b827cefade26",
+      "name": "If1",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2,
+      "position": [
+        1660,
+        1180
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://graph.facebook.com/v17.0/171009622770823/messages",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "whatsAppApi",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "=\n{\n  \"messaging_product\": \"whatsapp\",\n  \"recipient_type\": \"individual\",\n  \"to\": \"{{ $json[\"phone\"] }}\",\n  \"type\": \"template\",\n  \"template\": {\n      \"name\": \"702_post_booking_watch\",\n      \"language\": {\n          \"code\": \"en\"\n      },\n      \"components\": [\n          {\n              \"type\": \"header\",\n              \"parameters\": [\n                  {\n                      \"type\": \"document\",\n                      \"document\": {                   \"link\":\"https://one.mileseducation.us/storage/v1/object/public/wa_assets/B2C-1_USP-Master%20Deck.pdf\",\n\"filename\": \"Miles US Pathway | Doctors\"\n                      }\n                  }\n              ]\n          },\n          {\n              \"type\": \"body\",\n              \"parameters\": [\n                  {\n                      \"type\": \"text\",\n                      \"text\": \"{{ $json[\"first_name\"] }}\"\n                  }\n              ]\n          }\n      ]\n  }\n}",
+        "options": {}
+      },
+      "id": "a7e9e6c7-42ed-4b02-aec8-4afffecceeb2",
+      "name": "HTTP Request1",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        1220,
+        -40
+      ],
+      "credentials": {
+        "whatsAppApi": {
+          "id": "FgS03iKYFJtZDGNw",
+          "name": "Marketing | Primary [Miles Education]"
+        }
+      }
+    }
+  ],
+  "pinData": {
+    "Webhook": [
+      {
+        "json": {
+          "headers": {
+            "host": "callback.miles-api.com",
+            "x-real-ip": "172.71.202.2",
+            "x-forwarded-host": "callback.miles-api.com",
+            "x-forwarded-server": "callback.miles-api.com",
+            "x-forwarded-for": "35.200.234.171, 172.71.202.2",
+            "connection": "close",
+            "content-length": "266",
+            "accept-encoding": "gzip, br",
+            "cf-ray": "8c9aac3d3e9ff480-BOM",
+            "x-forwarded-proto": "https"
+          },
+          "params": {},
+          "query": {},
+          "body": {
+            "phone": "+918904588110",
+            "disposition": "CALLBACK REQUESTED",
+            "connected_date_time": "2024-12-24 04:36:17",
+            "status": "answered",
+            "outcome": "disposed",
+            "campaign_id": 19478,
+            "retry_count": 1,
+            "vertical": "mbaabroad",
+            "identity": "test",
+            "first_name": "Nida"
+          }
+        }
+      }
+    ]
+  },
+  "settings": {
+    "executionOrder": "v1",
+    "timezone": "Asia/Calcutta",
+    "saveExecutionProgress": true,
+    "saveManualExecutions": true,
+    "callerPolicy": "workflowsFromSameOwner"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 1,
+  "updatedAt": "2024-12-24T06:10:59.000Z",
+  "versionId": "5b38caf1-1e27-49d4-a9cc-016e50677250"
+}
