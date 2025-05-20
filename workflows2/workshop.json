@@ -1,126 +1,74 @@
 {
   "active": false,
   "connections": {
-    "Facebook Trigger": {
+    "On new manual Chat Message": {
       "main": [
         [
           {
-            "node": "Facebook Graph API",
+            "node": "Basic LLM Chain",
             "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Ollama Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Basic LLM Chain",
+            "type": "ai_languageModel",
             "index": 0
           }
         ]
       ]
     }
   },
-  "createdAt": "2024-03-09T14:17:10.763Z",
-  "id": "7OvxnTegpMnclOBR",
+  "createdAt": "2023-11-24T09:18:52.808Z",
+  "id": "AWPzYxeFsy67yWtX",
   "meta": null,
   "name": "workshop",
   "nodes": [
     {
+      "parameters": {},
+      "id": "ca0b4325-a3ee-4d22-8b2d-162d1539021c",
+      "name": "On new manual Chat Message",
+      "type": "@n8n/n8n-nodes-langchain.manualChatTrigger",
+      "typeVersion": 1.1,
+      "position": [
+        960,
+        180
+      ]
+    },
+    {
       "parameters": {
-        "page": {
-          "__rl": true,
-          "value": "178201352233967",
-          "mode": "list",
-          "cachedResultName": "Miles Education - CPA, CMA, CFA",
-          "cachedResultUrl": "https://facebook.com/178201352233967"
-        },
-        "form": {
-          "__rl": true,
-          "value": "7127526630694196",
-          "mode": "list",
-          "cachedResultName": "Book_Appointment_LG_Form_Day&Time"
-        },
-        "options": {
-          "simplifyOutput": true
-        }
+        "options": {}
       },
-      "id": "59997fe9-151c-42fe-9d71-e1b581926786",
-      "name": "Facebook Lead Ads Trigger",
-      "type": "n8n-nodes-base.facebookLeadAdsTrigger",
+      "id": "ff802c28-9765-4e9f-89ee-9d15de835b35",
+      "name": "Ollama Chat Model",
+      "type": "@n8n/n8n-nodes-langchain.lmChatOllama",
       "typeVersion": 1,
       "position": [
-        440,
-        120
+        1260,
+        220
       ],
-      "webhookId": "f685880e-7951-46bb-90d3-331a178cdd40",
       "credentials": {
-        "facebookLeadAdsOAuth2Api": {
-          "id": "fvfhtxQaqWoBpj1y",
-          "name": "Facebook Lead Ads account"
+        "ollamaApi": {
+          "id": "6jy3AYy2XjzhcGz0",
+          "name": "Ollama account"
         }
       }
     },
     {
-      "parameters": {
-        "appId": "300874662402470",
-        "object": "instagram",
-        "fields": [
-          "*"
-        ],
-        "options": {}
-      },
-      "id": "532bde1b-c615-4068-a434-ea50569444d0",
-      "name": "Facebook Trigger",
-      "type": "n8n-nodes-base.facebookTrigger",
-      "typeVersion": 1,
+      "parameters": {},
+      "id": "250438e2-e770-4a1f-9ca3-16a0222ecf86",
+      "name": "Basic LLM Chain",
+      "type": "@n8n/n8n-nodes-langchain.chainLlm",
+      "typeVersion": 1.2,
       "position": [
-        660,
-        120
-      ],
-      "webhookId": "3b876ff0-5bbb-4d06-b980-79bca8cd4b2f",
-      "credentials": {
-        "facebookGraphAppApi": {
-          "id": "JNfVx3Y41TtHEgNe",
-          "name": "Facebook Graph (App) account 2"
-        }
-      }
-    },
-    {
-      "parameters": {
-        "graphApiVersion": "v17.0",
-        "options": {}
-      },
-      "id": "7ca1b196-bb6e-419b-bf2d-b3cc4e5705be",
-      "name": "Facebook Graph API",
-      "type": "n8n-nodes-base.facebookGraphApi",
-      "typeVersion": 1,
-      "position": [
-        880,
-        120
-      ],
-      "credentials": {
-        "facebookGraphApi": {
-          "id": "PlEgYK1ahGFmPrw8",
-          "name": "Facebook Graph account"
-        }
-      }
-    },
-    {
-      "parameters": {
-        "appId": "300874662402470",
-        "fields": [
-          "*"
-        ],
-        "options": {}
-      },
-      "id": "3f9d87d7-8608-4d5f-9524-61c43c488870",
-      "name": "Facebook Trigger1",
-      "type": "n8n-nodes-base.facebookTrigger",
-      "typeVersion": 1,
-      "position": [
-        1100,
-        120
-      ],
-      "webhookId": "0498aa2b-7267-41b6-a971-4065f504394e",
-      "credentials": {
-        "facebookGraphAppApi": {
-          "id": "JNfVx3Y41TtHEgNe",
-          "name": "Facebook Graph (App) account 2"
-        }
-      }
+        1240,
+        0
+      ]
     }
   ],
   "pinData": {},
@@ -129,7 +77,7 @@
   },
   "staticData": null,
   "tags": [],
-  "triggerCount": 0,
-  "updatedAt": "2024-03-18T14:30:35.000Z",
-  "versionId": "d2fc2eea-3a0f-4269-a85a-6d503825b7cd"
+  "triggerCount": 2,
+  "updatedAt": "2024-01-28T09:09:29.000Z",
+  "versionId": "ecdde114-fb3b-4164-9623-4a67422696f4"
 }
